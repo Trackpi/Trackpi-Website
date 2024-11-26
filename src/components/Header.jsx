@@ -28,26 +28,28 @@ function Header() {
 
   return (
     <>
-      {/* {showNavbar && ( */}
+
       <Navbar expand='lg' className={`navbar ${showNavbar ? "visible" : "hidden"}`} fixed="top">
+
         <Container fluid>
-          <Navbar.Brand href='#home'>
+
+          <Navbar.Brand href=''>
+
             <Link to={'/'} className='flex items-center text-decoration-none'>
-              {/* <img
-              src='src/images/trackpi_logo.png'
-              width='130'
-              className='d-inline-block align-top'
-              alt='logo'
-            /> */}
               <h1 className='fw-bold brandname'>
                 <span className='text-yellow-500'>TRACK</span>
                 <span className='text-black'>PI</span>
               </h1>
             </Link>
+
           </Navbar.Brand>
+
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
+
           <Navbar.Collapse id='basic-navbar-nav'>
+
             <Nav className='font-bold ms-auto'>
+
               <Nav.Link
                 as={Link}
                 className='me-3'
@@ -57,6 +59,7 @@ function Header() {
               >
                 HOME
               </Nav.Link>
+
               <Nav.Link
                 as={Link}
                 className='me-3'
@@ -66,13 +69,16 @@ function Header() {
               >
                 ABOUT
               </Nav.Link>
+
               <NavDropdown title='OUR SERVICES' className='custom-dropdown me-3' id='navlink'>
+
                 <NavDropdown
                   title='Business Consulting'
                   className='custom-dropdown me-3'
                   id='navlink'
                   drop="end"
                 >
+
                   <NavDropdown.Item
                     as={Link}
                     className='me-3'
@@ -82,6 +88,7 @@ function Header() {
                     {' '}
                     Hiring & Retention
                   </NavDropdown.Item>
+
                   <NavDropdown.Item
                     as={Link}
                     className='me-3'
@@ -90,6 +97,7 @@ function Header() {
                   >
                     Sales Training & Strategies
                   </NavDropdown.Item>
+
                   <NavDropdown.Item
                     as={Link}
                     className='me-3'
@@ -98,6 +106,7 @@ function Header() {
                   >
                     Operation Training & Strategies
                   </NavDropdown.Item>
+
                   <NavDropdown.Item
                     as={Link}
                     className='me-3'
@@ -106,6 +115,7 @@ function Header() {
                   >
                     Market Positioning & Branding
                   </NavDropdown.Item>
+
                   <NavDropdown.Item
                     as={Link}
                     className='me-3'
@@ -114,7 +124,9 @@ function Header() {
                   >
                     Procurement & Risk Management
                   </NavDropdown.Item>
+
                 </NavDropdown>
+
                 <NavDropdown.Item
                   as={Link}
                   className='me-3'
@@ -125,30 +137,28 @@ function Header() {
                   Sales Outsourcing
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link
-                as={Link}
-                className='me-3'
-                id='navlink'
-                to='/our-team'
-              >
-                OUR TEAM
-              </Nav.Link>
+
               <Nav.Link
                 as={Link}
                 className='me-3'
                 id='navlink'
                 to='/employee-verification'
+                target="_blank"
               >
                 EMPLOYEE VERIFICATION
               </Nav.Link>
+
               <Nav.Link as={Link} className='' id='navlink' to='/connect-us'>
                 CONNECT US
               </Nav.Link>
+
             </Nav>
+
           </Navbar.Collapse>
+
         </Container>
       </Navbar>
-      {/* )} */}
+
     </>
   )
 }

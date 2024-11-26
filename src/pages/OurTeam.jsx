@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 function OurTeam() {
   return (
     <>
-      <section className='flex justify-center items-center p-3 w-full h-screen bg1'>
+      <section className='flex justify-center items-center p-5 w-full'>
         <div className='flex flex-col items-center'>
           <h1 className='text-5xl md:text-7xl hover:text-sky-500 home-text'>
             Who We Are
