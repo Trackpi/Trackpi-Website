@@ -1,5 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import SalesTrainingStrategies from './SalesTrainingStrategies'
+import OperationsTrainingStrategies from './OperationsTrainingStrategies'
+import MarketPositioning from './MarketPositioning'
 
 function OurServices() {
   return (
@@ -19,6 +22,15 @@ function OurServices() {
             </div>
           </div>
         </div>
+      </section>
+      <section id="sales-training">
+        <SalesTrainingStrategies />
+      </section>
+      <section id="operations-training">
+        <OperationsTrainingStrategies/>
+      </section>
+      <section id="market-positioning">
+        <MarketPositioning/>
       </section>
     </div>
   )
