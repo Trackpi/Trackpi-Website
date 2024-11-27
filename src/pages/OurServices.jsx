@@ -1,8 +1,11 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
-import Hiring from './Hiring';
-import Procurement from './Procurement';
-import SalesOutsourcing from './SalesOutsourcing';
+import React from 'react'
+import { Button } from 'react-bootstrap'
+import SalesTrainingStrategies from './SalesTrainingStrategies';
+import OperationsTrainingStrategies from './OperationsTrainingStrategies';
+import MarketPositioning from './MarketPositioning';
+import Hiring  from "./Hiring"
+import Procurement from "./Procurement"
+import SalesOutsourcing from "./SalesOutsourcing"
 
 function OurServices() {
   return (
@@ -23,14 +26,23 @@ function OurServices() {
           </div>
         </div>
       </section>
-      <section className="mt-36">
-        <Hiring />
+      <section className='mt-28'>
+        <Hiring/>
       </section>
-      <section className="mt-36">
-        <Procurement />
+      <section className='mt-28'>
+        <SalesTrainingStrategies/>
       </section>
-      <section className="mt-36">
-        <SalesOutsourcing />
+      <section className='mt-28'>
+        <OperationsTrainingStrategies/>
+      </section>
+      <section className='mt-28'>
+        <MarketPositioning/>
+      </section>
+      <section className='mt-28'>
+        <Procurement/>
+      </section>
+      <section className='mt-28'>
+        <SalesOutsourcing/>
       </section>
     </div>
   );
