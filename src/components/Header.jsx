@@ -80,47 +80,47 @@ function Header() {
                 >
 
                   <NavDropdown.Item
-                    as={Link}
+                    href="/our-services#hiring"
                     className='me-3'
                     id='navlink'
-                    to='/our-services'
+                    
                   >
                     {' '}
                     Hiring & Retention
                   </NavDropdown.Item>
 
                   <NavDropdown.Item
-                    as={Link}
+                     href="/our-services#sales-training"
                     className='me-3'
                     id='navlink'
-                    to='/our-services'
+                    
                   >
                     Sales Training & Strategies
                   </NavDropdown.Item>
 
                   <NavDropdown.Item
-                    as={Link}
+                    href="/our-services#operations-training"
                     className='me-3'
                     id='navlink'
-                    to='/our-services'
+
                   >
                     Operation Training & Strategies
                   </NavDropdown.Item>
 
                   <NavDropdown.Item
-                    as={Link}
+                    href="/our-services#market-positioning"
                     className='me-3'
                     id='navlink'
-                    to='/our-services'
+
                   >
                     Market Positioning & Branding
                   </NavDropdown.Item>
 
                   <NavDropdown.Item
-                    as={Link}
+                    href="/our-services#procurement"
                     className='me-3'
                     id='navlink'
-                    to='/our-services'
+
                   >
                     Procurement & Risk Management
                   </NavDropdown.Item>
@@ -128,12 +128,10 @@ function Header() {
                 </NavDropdown>
 
                 <NavDropdown.Item
-                  as={Link}
-                  className='me-3'
-                  id='navlink'
-                  to='/our-services'
+                  href="/our-services#sales-outsourcing"
+                  className="me-3"
+                  id="navlink"
                 >
-                  {' '}
                   Sales Outsourcing
                 </NavDropdown.Item>
               </NavDropdown>

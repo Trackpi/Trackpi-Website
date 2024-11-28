@@ -6,7 +6,7 @@ function Home() {
     <>
       <section className='flex justify-center items-center p-3 w-full h-screen bg1'>
         <div className='flex flex-col items-center'>
-          <h1 className='text-5xl md:text-7xl hover:text-sky-500 home-text'>
+          <h1 className='fw-bold md:text-7xl hover:text-sky-500 display-1 home-text'>
             Reinvent Your <br />
             Organization
           </h1>
@@ -23,78 +23,48 @@ function Home() {
         </div>
       </section>
 
-      <section className='mt-36 w-full h-screen'>
+      <section className='bg- mt-5 w-full h-full'>
         <Container>
-          <Row>
-            <Col md={6} className='flex flex-col'>
-              <h1 className='fw-bold display-5'>We see the challenge</h1>
-              <p className='text-xl md:text-justify md:text-lg'>We’re all wrestling with complexity. Every company, work function, and team now faces a tall order: to be more adaptive, strategic, effective, human, and equitable amidst growing uncertainty.</p>
+          <Row >
+            <Col md={6} className='flex flex-col justify-center items-center'>
+              <h1 className='fw-bold text-yellow-500 display-5'>We see the challenge</h1>
+              <p className='text-justify text-sm md:text-lg'>We’re all wrestling with complexity. Every company, work function, and team now faces a tall order: to be more adaptive, strategic, effective, human, and equitable amidst growing uncertainty.</p>
             </Col>
-            <Col md={6}>
+            <Col md={6} className='flex flex-col items-center p-5'>
               <img src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp" alt="" />
             </Col>
           </Row>
         </Container>
       </section>
 
-      <section className='mt-36 w-full h-screen bg2'>
-        <Container>
-          <Row >
-            <Col md={6} className='p-5'>
-              <img src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp" alt="" />
+      <section className='bg-yellow-300 md:mt-5 w-full h-full md:bg2'>
+        <Container className=''>
+          <Row className=''>
+            <Col md={6} xs={12} sm={6} className='flex flex-col justify-center items-center md:p-5 pt-5'>
+              <img className='md:pt-5' src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp" alt="" />
             </Col>
-            <Col md={6} className='flex flex-col p-5'>
-              <h1 className='fw-bold display-5'>We need to shift <br /> our thinking</h1>
+            <Col md={6} xs={12} sm={12} className='flex flex-col justify-center items-center'>
+              <h1 className='md:pt-5 fw-bold display-5 md'>We need to shift <br /> our thinking</h1>
               <p className='text-justify text-sm md:text-lg'>Organizations are human systems full of potential to navigate complexity, design human processes, and make meaningful change. But tapping into that potential requires a mindset shift, one that accepts that organizations aren't machines. It requires having the courage to say no to the status quo and yes to building future-ready capabilities.</p>
             </Col>
           </Row>
         </Container>
       </section>
 
-      <section className='flex justify-center items-center bg-gradient-to-r from-yellow-500 to-gray-400 mt-36 w-full h-screen'>
+      <section className='mt-24 w-full h-full'>
 
-        <Container >
-
-          <Row className='flex flex-col justify-center items-center'>
-
-            <Col className='flex justify-center item-center'>
-              <h1 className='text-4xl md:text-7xl home-text'>
-                We're Ready to Help
-              </h1>
-            </Col>
-
-            <Col className='flex justify-center item-center font-semibold text-2xl text-slate-800 sm:text-lg'>
-
-              <p className='text-justify'>How we work is broken, dehumanizing, and held back by bureaucracy. But it can be reinvented in service of human flourishing even joy. These changes aren't at the expense of business outcomes. Instead, they're fuel for even greater ambitions. The Ready helps organizations accelerate that change as fast, far, and wide as possible.</p>
-
-            </Col>
-
-            <Col className='flex justify-center item-center'>
-
-              <Button className='btn-block bg-black mt-5 p-3 rounded-pill btn btn-lg'>
-                OUR SERVICES
-              </Button>
-
-            </Col>
-
-          </Row>
-        </Container>
-      </section>
-
-      <section className='mt-36 w-full h-full'>
-
-        <Container className='flex flex-col gap-5'>
+        <Container className='flex flex-col'>
 
           <Row>
-            <h1 className='fw-bold display-4'>
+            <h1 className='fw-bold text-center text-yellow-500 display-4'>
               The old ways of working aren’t <br /> the only ways of working
             </h1>
           </Row>
 
           <Row>
-            <Col md={6} className='flex flex-col text-xl'>
+            <Col md={6} className='flex flex-col p-5 text-xl'>
 
-              <p>We help organizations evolve new practices:</p>
+              <p className='fw-bold'>We help organizations evolve new practices:</p>
 
               <p>
                 From struggling to attract and retain top talent
@@ -123,7 +93,7 @@ function Home() {
 
             </Col>
 
-            <Col md={6}>
+            <Col md={6} className='p-5'>
               <img src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe1e6665d1761c0f0a082c_home-about-1-p-800.webp" alt="" />
             </Col>
 
@@ -131,7 +101,37 @@ function Home() {
         </Container>
       </section>
 
-      <section className='mt-36 p-5 w-full h-full'>
+      <section className='flex justify-center items-center bg-gradient-to-r from-yellow-300 to-white mt-5 w-full h-screen'>
+
+        <Container >
+
+          <Row className='flex flex-col justify-center items-center'>
+
+            <Col className='flex justify-center item-center'>
+              <h1 className='text-4xl md:text-7xl hover:text-yellow-500 home-text'>
+                We're Ready to Help
+              </h1>
+            </Col>
+
+            <Col className='flex justify-center item-center font-semibold text-lg text-slate-800 md:text-2xl'>
+
+              <p className='text-justify'>How we work is broken, dehumanizing, and held back by bureaucracy. But it can be reinvented in service of human flourishing even joy. These changes aren't at the expense of business outcomes. Instead, they're fuel for even greater ambitions. The Ready helps organizations accelerate that change as fast, far, and wide as possible.</p>
+
+            </Col>
+
+            <Col className='flex justify-center item-center'>
+
+              <Button className='btn-block bg-black mt-5 p-3 rounded-pill btn btn-lg'>
+                OUR SERVICES
+              </Button>
+
+            </Col>
+
+          </Row>
+        </Container>
+      </section>
+
+      <section className='mt-5 p-5 w-full h-full'>
 
         <Row className='text-yellow-500'>
           <h5>OUR CLIENTS</h5>
