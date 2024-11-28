@@ -26,23 +26,26 @@ function OurServices() {
           </div>
         </div>
       </section>
-      <section className='mt-28 w-100'>
-        <Hiring/>
+
+   
+
+      <section id="hiring" className="mt-28 w-100">
+        <Hiring />
       </section>
-      <section className='mt-28 w-100'>
-        <SalesTrainingStrategies/>
+      <section id="sales-training" className="mt-28  w-100">
+        <SalesTrainingStrategies />
       </section>
-      <section className='mt-28 w-100'>
-        <OperationsTrainingStrategies/>
+      <section id="operations-training" className="mt-28  w-100">
+        <OperationsTrainingStrategies />
       </section>
-      <section className='mt-28 w-100'>
-        <MarketPositioning/>
+      <section id="market-positioning" className="mt-28  w-100">
+        <MarketPositioning />
       </section>
-      <section className='mt-28 w-100'>
-        <Procurement/>
+      <section id="procurement" className="mt-28  w-100">
+        <Procurement />
       </section>
-      <section className='mt-28 w-100'>
-        <SalesOutsourcing/>
+      <section id="sales-outsourcing" className="mt-28  w-100">
+        <SalesOutsourcing />
       </section>
     </div>
   );
