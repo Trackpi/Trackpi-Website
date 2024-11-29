@@ -13,7 +13,6 @@ function Procurement() {
 
   return (
     <div>
-      {/* Header Section */}
       <section
         ref={refHeader}
         className="flex justify-center items-center bg-white-300 p-5 w-full h-full"
@@ -30,11 +29,10 @@ function Procurement() {
         </motion.div>
       </section>
 
-      {/* First Section */}
       <section ref={refFirstSection} className="w-full h-full pb-10 px-10">
-        <Container>
+        {/* <Container> */}
           <Row className="flex flex-col md:flex-row items-center ">
-            <Col>
+            <Col  className="p-4 w-100">
               <motion.img
                 src="https://media.istockphoto.com/id/1347197740/photo/business-people-having-casual-discussion-during-meeting.jpg?s=612x612&w=0&k=20&c=HSnFzyuwUDZFCehBv0W0jjRfwY1eKjGV1Lkek8lXY2Q="
                 alt="Strategic Procurement"
@@ -44,7 +42,7 @@ function Procurement() {
                 transition={{ duration: 0.8 }}
               />
             </Col>
-            <Col className="w-100">
+            <Col className="p-4 w-100">
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
@@ -64,7 +62,7 @@ function Procurement() {
               </motion.div>
             </Col>
           </Row>
-        </Container>
+        {/* </Container> */}
       </section>
 
       {/* Second Section */}
@@ -72,7 +70,7 @@ function Procurement() {
         ref={refSecondSection}
         className="w-full h-full pb-10 px-10 bg-gray-100"
       >
-        <Container>
+        {/* <Container> */}
           <Row className="flex flex-col md:flex-row-reverse items-center">
             <Col className="p-4 w-100">
               <motion.img
@@ -104,7 +102,7 @@ function Procurement() {
               </motion.div>
             </Col>
           </Row>
-        </Container>
+        {/* </Container> */}
       </section>
     </div>
   );

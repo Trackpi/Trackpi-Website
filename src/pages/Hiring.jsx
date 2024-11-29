@@ -29,9 +29,9 @@ function Hiring() {
       </section>
 
       {/* About Hiring Process */}
-      <section ref={refAbout} className="bg-gray-100 py-10">
+      <section ref={refAbout} className="bg-gray-100 pb-10 px-10">
         <motion.div
-          className="flex flex-col md:flex-row items-center p-8"
+          className="flex flex-col md:flex-row items-center"
           initial={{ opacity: 0, x: -50 }}
           animate={inViewAbout ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -64,9 +64,9 @@ function Hiring() {
       </section>
 
       {/* Transformer Role Section */}
-      <section ref={refRole} className="bg-white py-10">
+      <section ref={refRole} className="bg-white pb-10 px-10">
         <motion.div
-          className="flex flex-col md:flex-row-reverse items-center p-8"
+          className="flex flex-col md:flex-row-reverse items-center"
           initial={{ opacity: 0, x: 50 }}
           animate={inViewRole ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
