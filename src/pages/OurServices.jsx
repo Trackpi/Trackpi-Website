@@ -9,7 +9,7 @@ import SalesOutsourcing from "./SalesOutsourcing"
 
 function OurServices() {
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <section className="flex justify-center items-center p-3 w-full h-screen bg1">
         <div className="flex flex-col items-center">
           <h1 className="text-5xl md:text-7xl hover:text-sky-500 home-text">
@@ -26,22 +26,25 @@ function OurServices() {
           </div>
         </div>
       </section>
-      <section id="hiring" className="mt-28">
+
+   
+
+      <section id="hiring" className="mt-5 w-full">
         <Hiring />
       </section>
-      <section id="sales-training" className="mt-28">
+      <section id="sales-training" className="mt-5 w-full">
         <SalesTrainingStrategies />
       </section>
-      <section id="operations-training" className="mt-28">
+      <section id="operations-training" className="mt-5 w-full">
         <OperationsTrainingStrategies />
       </section>
-      <section id="market-positioning" className="mt-28">
+      <section id="market-positioning" className="mt-5 w-full">
         <MarketPositioning />
       </section>
-      <section id="procurement" className="mt-28">
+      <section id="procurement" className="mt-5 w-full">
         <Procurement />
       </section>
-      <section id="sales-outsourcing" className="mt-28">
+      <section id="sales-outsourcing" className="mt-5 w-full">
         <SalesOutsourcing />
       </section>
     </div>
