@@ -71,8 +71,10 @@ function Hiring() {
           animate={inViewRole ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-           <div className="md:w-1/2 p-4 w-100">
-            <h1 className="text-4xl text-amber-500 font-bold mb-4">Transformer Role</h1>
+          <div className="md:w-1/2 p-4 w-100">
+            <h1 className="text-4xl text-amber-500 font-bold mb-4">
+              Transformer Role
+            </h1>
             <p className="text-xl md:text-justify md:text-lg">
               The majority of our members at The Ready are in the Transformer
               role (what we call our “consultants” here). We regularly open our
@@ -87,7 +89,6 @@ function Hiring() {
               className="w-full rounded-lg shadow-lg"
             />
           </div>
-         
         </motion.div>
       </section>
     </div>

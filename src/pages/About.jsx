@@ -16,7 +16,7 @@ function About() {
         </div>
       </section>
 
-      <section className="mt-36">
+      <section className="mt-12">
         <OurTeam />
       </section>
     </>

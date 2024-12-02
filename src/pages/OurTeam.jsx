@@ -16,7 +16,7 @@ function OurTeam() {
       <section className="mt-5 w-full h-full">
         <Container>
           <Row>
-            <Col md={6} className="flex flex-col justify-center items-center">
+            <Col md={6} className="flex flex-col items-center pt-12">
               <h1 className="text-yellow-500 fw-bold display-5">
                 We’re The Ready
               </h1>
@@ -40,7 +40,7 @@ function OurTeam() {
         </Container>
       </section>
 
-      <section className="mt-5 w-full h-full bg-yellow-300">
+      <section className="mt-0 w-full h-full bg2 flex items-center">
         <Container>
           <Row>
             <Col md={6} className="flex flex-col items-center p-5">
@@ -49,7 +49,7 @@ function OurTeam() {
                 alt=""
               />
             </Col>
-            <Col md={6} className="flex flex-col justify-center items-center">
+            <Col md={6} className="flex flex-col items-center pt-12">
               <h1 className="fw-bold display-5">Our people</h1>
               <p className="text-justify text-xl md:text-lg">
                 The people who make up The Ready are specialists in the ways of
@@ -66,10 +66,10 @@ function OurTeam() {
         </Container>
       </section>
 
-      <section className="mt-5 w-full h-full">
+      <section className="mt-0 w-full h-full">
         <Container>
           <Row>
-            <Col md={6} className="flex flex-col  justify-center items-center">
+            <Col md={6} className="flex flex-col items-center pt-12">
               <h1 className="text-yellow-500 fw-bold display-5">
                 Join our team
               </h1>
@@ -116,6 +116,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63fce813121cf15b66a4a342_image_SharanBall-p-500.webp"
                 />
@@ -128,6 +129,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/65204a533d23e5f0bd75aeb5_image_MattBasford-p-500.webp"
                 />
@@ -140,6 +142,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/6733b5ea13122525ab85c122_image_JasonBeck%402x-p-500.webp"
                 />
@@ -155,6 +158,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63fce813121cf15b66a4a342_image_SharanBall-p-500.webp"
                 />
@@ -167,6 +171,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/65204a533d23e5f0bd75aeb5_image_MattBasford-p-500.webp"
                 />
@@ -179,6 +184,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/6733b5ea13122525ab85c122_image_JasonBeck%402x-p-500.webp"
                 />
@@ -194,6 +200,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63fce813121cf15b66a4a342_image_SharanBall-p-500.webp"
                 />
@@ -206,6 +213,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/65204a533d23e5f0bd75aeb5_image_MattBasford-p-500.webp"
                 />
@@ -218,6 +226,7 @@ function OurTeam() {
             <Col md={4} sm={12}>
               <Card>
                 <Card.Img
+                  className="team-img"
                   variant="top"
                   src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/6733b5ea13122525ab85c122_image_JasonBeck%402x-p-500.webp"
                 />
