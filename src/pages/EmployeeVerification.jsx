@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import { Verify } from 'react-puzzle-captcha';
+import 'react-puzzle-captcha/dist/react-puzzle-captcha.css';
 
 function EmployeeVerification() {
   const [formData, setFormData] = useState({
     employeeId: '',
-    fullName: '',
-    department: '',
   });
 
   const [errors, setErrors] = useState({});
   const [searchResults, setSearchResults] = useState([]);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [captchaMessage, setCaptchaMessage] = useState(''); // State for CAPTCHA messages
 
   // Dummy data (simulate a backend response)
   const dummyData = [
@@ -28,72 +30,54 @@ function EmployeeVerification() {
   // Validation function
   const validate = () => {
     const validationErrors = {};
-    const { employeeId, fullName, department } = formData;
+    const { employeeId } = formData;
 
-    // Check if at least one field is filled
-    if (!employeeId && !fullName && !department) {
-      validationErrors.general = 'Please fill in at least one field.';
+    if (!employeeId) {
+      validationErrors.general = 'Please fill the field.';
     }
 
-    // Employee ID validation
     if (employeeId && !/^[a-zA-Z0-9]+$/.test(employeeId)) {
       validationErrors.employeeId = 'Employee ID must be alphanumeric.';
     }
 
-    // Full Name validation
-    if (fullName && !/^[a-zA-Z\s]+$/.test(fullName)) {
-      validationErrors.fullName = 'Full Name must contain only alphabets.';
-    }
-
-    // Department validation
-    if (department && !/^[a-zA-Z\s]+$/.test(department)) {
-      validationErrors.department = 'Department must contain only alphabets.';
-    }
-
     setErrors(validationErrors);
-    return Object.keys(validationErrors).length === 0; // Returns true if no errors
+    return Object.keys(validationErrors).length === 0;
   };
 
   // Handle form submission
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('Form submitted!');
     if (validate()) {
-      console.log('Validation passed!');
-      console.log('Form Data:', formData);
-
       // Filter the dummy data based on the form inputs
       const filteredResults = dummyData.filter(employee => {
         const matchesEmployeeId = formData.employeeId
           ? employee.employeeId.includes(formData.employeeId)
           : true;
-        const matchesFullName = formData.fullName
-          ? employee.fullName
-              .toLowerCase()
-              .includes(formData.fullName.toLowerCase())
-          : true;
-        const matchesDepartment = formData.department
-          ? employee.department
-              .toLowerCase()
-              .includes(formData.department.toLowerCase())
-          : true;
-        return matchesEmployeeId && matchesFullName && matchesDepartment;
+        return matchesEmployeeId;
       });
 
-      // Check if there's a mismatch or no matching results
       if (filteredResults.length === 0) {
         setErrors({
           general: 'Invalid verification terms: No matching employee found.',
         });
-        setSearchResults([]); // Clear search results if no match
+        setSearchResults([]); 
       } else {
-        // Set the filtered results
         setSearchResults(filteredResults);
-        setErrors({}); // Clear general error if validation passed
+        setErrors({}); 
       }
-    } else {
-      console.log('Validation failed!');
     }
+  };
+
+  // Handle CAPTCHA success
+  const handleCaptchaSuccess = () => {
+    setCaptchaVerified(true);
+    setCaptchaMessage('CAPTCHA verified successfully!');
+  };
+
+  // Handle CAPTCHA failure
+  const handleCaptchaFail = () => {
+    setCaptchaVerified(false);
+    setCaptchaMessage('CAPTCHA verification failed. Please try again.');
   };
 
   return (
@@ -138,47 +122,24 @@ function EmployeeVerification() {
               )}
             </div>
 
-            {/* Full Name */}
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 font-medium mb-2"
-                htmlFor="fullName"
-              >
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="Enter Full Name"
-              />
-              {errors.fullName && (
-                <p className="text-red-500 text-sm">{errors.fullName}</p>
-              )}
-            </div>
+            {/* CAPTCHA */}
+            <Verify
+              width={250}
+              height={120}
+              onSuccess={handleCaptchaSuccess} // Handle success
+              onFail={handleCaptchaFail} // Handle failure
+            />
 
-            {/* Department */}
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 font-medium mb-2"
-                htmlFor="department"
+            {/* CAPTCHA Message */}
+            {captchaMessage && (
+              <p
+                className={`text-sm text-center ${
+                  captchaVerified ? 'text-green-600' : 'text-red-500'
+                }`}
               >
-                Department
-              </label>
-              <input
-                type="text"
-                id="department"
-                value={formData.department}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="Enter Department"
-              />
-              {errors.department && (
-                <p className="text-red-500 text-sm">{errors.department}</p>
-              )}
-            </div>
+                {captchaMessage}
+              </p>
+            )}
 
             {/* General Error */}
             {errors.general && (
@@ -189,7 +150,8 @@ function EmployeeVerification() {
             <div className="text-center">
               <button
                 type="submit"
-                className=" transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 text-black font-semibold px-6 py-2 rounded-md  hover:bg-blue-700"
+                disabled={!captchaVerified} // Disable submit button until CAPTCHA is verified
+                className="transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 text-black font-semibold px-6 py-2 rounded-md mt-4 hover:bg-blue-700"
               >
                 Verify Employee
               </button>
@@ -239,7 +201,7 @@ function EmployeeVerification() {
             activities.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className=" hover:shadow-2xl transform hover:scale-105 p-6 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
+            <div className="hover:shadow-2xl transform hover:scale-105 p-6 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
               <h3 className="text-xl font-medium text-black mb-2">
                 Authenticity
               </h3>
