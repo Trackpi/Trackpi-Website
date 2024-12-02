@@ -54,16 +54,6 @@ function Header() {
                 as={Link}
                 className='me-3'
                 id='navlink'
-                to='/'
-                href='#home'
-              >
-                HOME
-              </Nav.Link>
-
-              <Nav.Link
-                as={Link}
-                className='me-3'
-                id='navlink'
                 to='/about'
                 href='#about'
               >
@@ -83,17 +73,17 @@ function Header() {
                     href="/our-services#hiring"
                     className='me-3'
                     id='navlink'
-                    
+
                   >
                     {' '}
                     Hiring & Retention
                   </NavDropdown.Item>
 
                   <NavDropdown.Item
-                     href="/our-services#sales-training"
+                    href="/our-services#sales-training"
                     className='me-3'
                     id='navlink'
-                    
+
                   >
                     Sales Training & Strategies
                   </NavDropdown.Item>
@@ -143,6 +133,7 @@ function Header() {
                 to='/employee-verification'
                 target="_blank"
               >
+                <i className="fa-solid fa-user-shield me-1"></i>
                 EMPLOYEE VERIFICATION
               </Nav.Link>
 
