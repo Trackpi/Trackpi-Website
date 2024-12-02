@@ -83,28 +83,28 @@ function EmployeeVerification() {
   return (
     <>
       {/* Hero Section */}
-      <section className="flex justify-center items-center p-3 w-full h-screen bg1 relative">
-        <div className="flex flex-col items-center z-10">
+      <section className="relative flex justify-center items-center p-3 w-full h-screen bg1">
+        <div className="z-10 flex flex-col items-center">
           <h1 className="text-5xl md:text-7xl hover:text-sky-500 home-text">
             Employee Verification
           </h1>
-          <p className="mt-4 text-xl text-center text-black-300">
+          <p className="mt-4 text-black-300 text-center text-xl">
             Verify employee credentials and details securely and efficiently.
           </p>
         </div>
       </section>
 
       {/* Verification Form Section */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-3xl mx-auto bg-white shadow-lg p-8 rounded-lg">
-          <h2 className="text-3xl font-semibold mb-6 text-center text-amber-600">
+      <section className="bg-gray-50 px-6 py-16">
+        <div className="bg-white shadow-lg mx-auto p-8 rounded-lg max-w-3xl">
+          <h2 className="mb-6 font-semibold text-3xl text-amber-600 text-center">
             Employee Verification Form
           </h2>
           <form onSubmit={handleSubmit}>
             {/* Employee ID */}
             <div className="mb-4">
               <label
-                className="block text-gray-700 font-medium mb-2"
+                className="block mb-2 font-medium text-gray-700"
                 htmlFor="employeeId"
               >
                 Employee ID
@@ -114,7 +114,7 @@ function EmployeeVerification() {
                 id="employeeId"
                 value={formData.employeeId}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md p-2"
+                className="border-gray-300 p-2 border rounded-md w-full"
                 placeholder="Enter Employee ID"
               />
               {errors.employeeId && (
@@ -143,7 +143,7 @@ function EmployeeVerification() {
 
             {/* General Error */}
             {errors.general && (
-              <p className="text-red-500 text-center mb-4">{errors.general}</p>
+              <p className="mb-4 text-center text-red-500">{errors.general}</p>
             )}
 
             {/* Submission Button */}
@@ -151,7 +151,7 @@ function EmployeeVerification() {
               <button
                 type="submit"
                 disabled={!captchaVerified} // Disable submit button until CAPTCHA is verified
-                className="transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 text-black font-semibold px-6 py-2 rounded-md mt-4 hover:bg-blue-700"
+                className="transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 mt-4 px-6 py-2 rounded-md font-semibold text-black"
               >
                 Verify Employee
               </button>
@@ -162,25 +162,25 @@ function EmployeeVerification() {
 
       {/* Display search results */}
       {searchResults.length > 0 && (
-        <section className="py-16 px-6 bg-white">
-          <h2 className="font-semibold text-center text-gray-800 mb-6">
+        <section className="bg-white px-6 py-16">
+          <h2 className="mb-6 font-semibold text-center text-gray-800">
             Search Results
           </h2>
-          <div className="max-w-5xl mx-auto">
-            <table className="min-w-full table-auto bg-yellow-100 text-black">
+          <div className="mx-auto max-w-5xl">
+            <table className="bg-yellow-100 min-w-full text-black table-auto">
               <thead>
                 <tr>
-                  <th className="py-2 px-4 border ">Employee ID</th>
-                  <th className="py-2 px-4 border">Full Name</th>
-                  <th className="py-2 px-4 border">Department</th>
+                  <th className="px-4 py-2 border">Employee ID</th>
+                  <th className="px-4 py-2 border">Full Name</th>
+                  <th className="px-4 py-2 border">Department</th>
                 </tr>
               </thead>
               <tbody>
                 {searchResults.map((employee, index) => (
                   <tr key={index}>
-                    <td className="py-2 px-4 border">{employee.employeeId}</td>
-                    <td className="py-2 px-4 border">{employee.fullName}</td>
-                    <td className="py-2 px-4 border">{employee.department}</td>
+                    <td className="px-4 py-2 border">{employee.employeeId}</td>
+                    <td className="px-4 py-2 border">{employee.fullName}</td>
+                    <td className="px-4 py-2 border">{employee.department}</td>
                   </tr>
                 ))}
               </tbody>
@@ -190,19 +190,19 @@ function EmployeeVerification() {
       )}
 
       {/* Benefits of Verification Section */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-6 text-black">
+      <section className="bg-white px-6 py-16">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="mb-6 font-semibold text-3xl text-black">
             Why Verify Employees?
           </h2>
-          <p className="text-black mb-8">
+          <p className="mb-8 text-black">
             Ensuring that employee information is accurate helps maintain a
             trustworthy workplace environment and reduces the risk of fraudulent
             activities.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="hover:shadow-2xl transform hover:scale-105 p-6 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
-              <h3 className="text-xl font-medium text-black mb-2">
+          <div className="gap-8 grid grid-cols-1 md:grid-cols-3">
+            <div className="hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 shadow-lg p-6 rounded-md">
+              <h3 className="mb-2 font-medium text-black text-xl">
                 Authenticity
               </h3>
               <p className="text-black">
@@ -210,14 +210,14 @@ function EmployeeVerification() {
                 details.
               </p>
             </div>
-            <div className="p-6 hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
-              <h3 className="text-xl font-medium text-black mb-2">Security</h3>
+            <div className="bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 shadow-lg hover:shadow-2xl p-6 rounded-md transform hover:scale-105">
+              <h3 className="mb-2 font-medium text-black text-xl">Security</h3>
               <p className="text-black">
                 Protect your organization from unauthorized individuals.
               </p>
             </div>
-            <div className="p-6 hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg hover:bg-blue-500">
-              <h3 className="text-xl font-medium text-black mb-2">
+            <div className="hover:bg-blue-500 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 shadow-lg hover:shadow-2xl p-6 rounded-md transform hover:scale-105">
+              <h3 className="mb-2 font-medium text-black text-xl">
                 Efficiency
               </h3>
               <p className="text-black">
