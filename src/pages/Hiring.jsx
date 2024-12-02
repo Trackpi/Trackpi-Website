@@ -8,13 +8,14 @@ function Hiring() {
   const [refIntro, inViewIntro] = useInView(options);
   const [refAbout, inViewAbout] = useInView(options);
   const [refRole, inViewRole] = useInView(options);
+  const [refCTA, inViewCTA] = useInView(options);
 
   return (
     <div>
       {/* Introduction Section */}
       <section
         ref={refIntro}
-        className="flex justify-center items-center p-5 w-full bg-gray-100"
+        className="flex justify-center items-center p-5 w-full"
       >
         <motion.div
           className="flex flex-col items-center"
@@ -22,21 +23,26 @@ function Hiring() {
           animate={inViewIntro ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-5xl md:text-7xl  text-amber-500 hover:text-sky-500 home-text">
+          <h1
+            className="text-5xl md:text-7xl text-amber-500 hover:text-sky-500 home-text"
+            style={{ textShadow: '2px 2px black' }}
+          >
             Hiring & Retention
           </h1>
         </motion.div>
       </section>
 
       {/* About Hiring Process */}
-      <section ref={refAbout} className="bg-gray-100 pb-10 px-10">
-        <motion.div
-          className="flex flex-col md:flex-row items-center"
-          initial={{ opacity: 0, x: -50 }}
-          animate={inViewAbout ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+      <section ref={refAbout} className="pb-10 px-10">
+        <div
+          className="flex flex-col md:flex-row-reverse items-center" // Make the text come from right, image from left
         >
-          <div className="md:w-1/2 p-4 w-100">
+          <motion.div
+            className="md:w-1/2 p-4 w-100"
+            initial={{ opacity: 0, x: 50 }}
+            animate={inViewAbout ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             <h1 className="text-4xl text-amber-500 font-bold mb-4">
               About our
               <br />
@@ -52,42 +58,71 @@ function Hiring() {
               sessions—rather than performative Q&As—to give insight into what
               working with The Ready might actually feel like.
             </p>
-          </div>
+          </motion.div>
           <div className="md:w-1/2 p-4 w-100">
-            <img
+            <motion.img
               src="https://via.placeholder.com/500x300"
               alt="Hiring Process"
               className="w-full rounded-lg shadow-lg"
+              initial={{ opacity: 0, x: -50 }}
+              animate={inViewAbout ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
             />
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Transformer Role Section */}
-      <section ref={refRole} className="bg-white pb-10 px-10">
-        <motion.div
-          className="flex flex-col md:flex-row-reverse items-center"
-          initial={{ opacity: 0, x: 50 }}
-          animate={inViewRole ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+      <section ref={refRole} className="pb-10 px-10">
+        <div
+          className="flex flex-col md:flex-row items-center" // Text comes from left, image from right
         >
-           <div className="md:w-1/2 p-4 w-100">
-            <h1 className="text-4xl text-amber-500 font-bold mb-4">Transformer Role</h1>
+          <motion.div
+            className="md:w-1/2 p-4 w-100"
+            initial={{ opacity: 0, x: -50 }}
+            animate={inViewRole ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <h1 className="text-4xl text-amber-500 font-bold mb-4">
+              Transformer Role
+            </h1>
             <p className="text-xl md:text-justify md:text-lg">
               The majority of our members at The Ready are in the Transformer
               role (what we call our “consultants” here). We regularly open our
               Transformer hiring process, as our business is growing and
               expanding.
             </p>
-          </div>
+          </motion.div>
           <div className="md:w-1/2 p-4 w-100">
-            <img
+            <motion.img
               src="https://via.placeholder.com/500x300"
               alt="Transformer Role"
               className="w-full rounded-lg shadow-lg"
+              initial={{ opacity: 0, x: 50 }} // Image comes from right
+              animate={inViewRole ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
             />
           </div>
-         
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section ref={refCTA} className="bg-yellow-300 p-6 text-black py-10">
+        <motion.div
+          className="flex flex-col items-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inViewCTA ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl font-bold text-center mb-4">
+            Ready to Join Our Team?
+          </h2>
+          <p className="text-lg text-center mb-6">
+            Let’s work together to create something amazing. Contact us today!
+          </p>
+          <button className="bg-black text-white py-2 px-6 rounded-lg text-lg hover:bg-gray-800 transition">
+            Get in Touch
+          </button>
         </motion.div>
       </section>
     </div>

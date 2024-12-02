@@ -656,3 +656,24 @@ html {
   /* background-color: #F59724 ; */
   z-index: 1;
 }
+.ourServices
+{
+  background-image: url('./images/service.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fde047;
+  opacity: 0.8;
+  height: 100vh;
+  width: 100%;
+}
+.services-section-overlay
+{
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: #F59724 ; */
+  z-index: 1;
+}

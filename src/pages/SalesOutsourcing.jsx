@@ -13,16 +13,18 @@ const SalesOutsourcing = () => {
   const features = [
     {
       title: 'End-to-End Sales Outsourcing Solutions',
-      description:"Our End-to-End Sales Outsourcing Solutions provide a comprehensive approach to managing your entire sales process, from lead generation to closing deals. We offer specialized eams that seamlessly integrate with your business, helping you expand market reach, increase revenue, and reduce operational costs.",
-      imageUrl: 'https://thumbs.dreamstime.com/b/corporate-team-following-international-sales-process-client-feedback-using-interactive-board-to-present-resources-profit-333111286.jpg',
+      description:
+        'Our End-to-End Sales Outsourcing Solutions provide a comprehensive approach to managing your entire sales process, from lead generation to closing deals. We offer specialized eams that seamlessly integrate with your business, helping you expand market reach, increase revenue, and reduce operational costs.',
+      imageUrl:
+        'https://thumbs.dreamstime.com/b/corporate-team-following-international-sales-process-client-feedback-using-interactive-board-to-present-resources-profit-333111286.jpg',
     },
     {
       title: 'Sales Performance Enhancement Services',
       description:
         ' With our Sales Performance Enhancement Services, we empower your business to achieve higher sales productivity and improved bottom-line results. We provide flexible outsourcing models where our experienced sales professionals take on key sales responsibilities, ensuring consistency and performance excellence.',
-      imageUrl: 'https://media.istockphoto.com/id/950986656/photo/business-finance-accounting-contract-advisor-investment-consulting-marketing-plan-for-the.jpg?s=612x612&w=0&k=20&c=U-y6cADCby4QwENFptPrVcK_MplesqZmnDxUMMkJZvM=',
+      imageUrl:
+        'https://media.istockphoto.com/id/950986656/photo/business-finance-accounting-contract-advisor-investment-consulting-marketing-plan-for-the.jpg?s=612x612&w=0&k=20&c=U-y6cADCby4QwENFptPrVcK_MplesqZmnDxUMMkJZvM=',
     },
-  
   ];
 
   return (
@@ -37,52 +39,69 @@ const SalesOutsourcing = () => {
           animate={inViewHeader ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-5xl md:text-7xl text-amber-500 hover:text-sky-500 home-text">
+          <h1
+            className="text-5xl md:text-7xl text-amber-500 hover:text-sky-500 home-text"
+            style={{ textShadow: '2px 2px black' }}
+          >
             Sales Outsourcing
           </h1>
         </motion.div>
       </section>
 
       {/* Features Section */}
-      <section ref={refFeatures} className="bg-gray-100 pb-10 px-10">
+      <section ref={refFeatures} className=" pb-10 px-10">
         {features.map((feature, index) => {
           const [ref, inView] = useInView({ threshold: 0.1 });
 
           return (
-            <motion.div
+            <div
               key={index}
               ref={ref}
               className={`flex flex-col md:flex-row items-center ${
                 index % 2 === 0 ? '' : 'md:flex-row-reverse'
               }`}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              animate={
-                inView
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }
-              }
-              transition={{ duration: 0.8, delay: index * 0.2 }}
             >
               <div className="md:w-1/2 p-4 w-100">
-                <img
+                <motion.img
                   src={feature.imageUrl}
                   alt={feature.title}
                   className="w-full rounded-lg shadow-lg"
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  animate={
+                    inView
+                      ? { opacity: 1, x: 0 }
+                      : { opacity: 0, x: index % 2 === 0 ? 50 : -50 }
+                  }
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
                 />
               </div>
-              <div className="md:w-1/2 p-4 w-100">
-                <h2 className="text-2xl font-bold text-amber-500">{feature.title}</h2>
+              <motion.div
+                className="md:w-1/2 p-4 w-100"
+                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                animate={
+                  inView
+                    ? { opacity: 1, x: 0 }
+                    : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }
+                }
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+              >
+                <h2 className="text-2xl font-bold text-amber-500">
+                  {feature.title}
+                </h2>
                 <p className="text-xl md:text-justify md:text-lg">
                   {feature.description}
                 </p>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           );
         })}
       </section>
 
       {/* Call-to-Action Section */}
-      <section ref={refCTA} className="bg-yellow-300 p-3 text-black pb-10 px-10">
+      <section
+        ref={refCTA}
+        className="bg-yellow-300 p-3 text-black pb-10 px-10"
+      >
         <motion.div
           className="flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}

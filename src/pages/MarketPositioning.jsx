@@ -2,6 +2,7 @@ import React from 'react';
 import { FaBullhorn, FaChartLine, FaRegHandshake } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Button } from 'react-bootstrap';
 
 const MarketPositioning = () => {
   const animationVariants = {
@@ -17,7 +18,7 @@ const MarketPositioning = () => {
   return (
     <div>
       {/* Intro Section */}
-      <section className="flex flex-col items-center justify-center p-8 w-full">
+      <section className="flex flex-col items-center justify-center p-8 w-full bg-black text-white">
         <motion.div
           className="text-center"
           ref={introRef}
@@ -26,38 +27,33 @@ const MarketPositioning = () => {
           animate={introInView ? 'visible' : 'hidden'}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-amber-500 hover:text-sky-500">
+          <h1 className="text-4xl md:text-6xl font-bold text-amber-500 hover:text-sky-500" style={{ textShadow: '2px 2px white' }}>
             Market Positioning & Branding
           </h1>
-          <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-gray-700">
-            Our customized market positioning strategies will elevate your brand and carve a unique identity in the
-            marketplace. We focus on the power of differentiation, ensuring your products stand out and resonate with
-            your target audience.
+          <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-white">
+            Our customized market positioning strategies will elevate your brand and carve a unique identity in the marketplace.
           </p>
         </motion.div>
       </section>
 
       {/* Cards Section */}
-      <section className="flex flex-wrap justify-center items-center p-8 bg-yellow-100">
+      <section className="flex flex-wrap justify-center items-center p-8 bg-black text-white">
         <div ref={cardsRef} className="flex flex-wrap justify-center items-center">
           {[
             {
               icon: <FaBullhorn className="text-5xl text-yellow-500 mx-auto mb-4" />,
               title: 'Tailored Strategy',
-              description:
-                'We design personalized strategies that cater specifically to your market\'s needs, ensuring that your brand\'s message is impactful and long-lasting.',
+              description: "We design personalized strategies that cater to your market's needs, ensuring impactful messaging.",
             },
             {
               icon: <FaChartLine className="text-5xl text-yellow-500 mx-auto mb-4" />,
               title: 'Data-Driven Insights',
-              description:
-                'Our approach integrates in-depth market research and analytics to guide decision-making, helping you understand your target audience and market trends.',
+              description: 'In-depth market research and analytics guide your decision-making effectively.',
             },
             {
               icon: <FaRegHandshake className="text-5xl text-yellow-500 mx-auto mb-4" />,
               title: 'Building Brand Loyalty',
-              description:
-                'We focus on building long-term relationships with your customers by consistently delivering valuable experiences that enhance customer loyalty and trust in your brand.',
+              description: 'We focus on fostering customer loyalty and trust through valuable experiences.',
             },
           ].map((card, index) => (
             <motion.div
@@ -69,7 +65,7 @@ const MarketPositioning = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
               {card.icon}
-              <h3 className="text-2xl font-semibold text-black-600 text-center w-100">{card.title}</h3>
+              <h3 className="text-2xl font-semibold text-black text-center w-100">{card.title}</h3>
               <p className="text-gray-700 text-center mt-3">{card.description}</p>
             </motion.div>
           ))}
@@ -77,30 +73,19 @@ const MarketPositioning = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="flex justify-center items-center p-8 bg-yellow-50">
+      <section ref={ctaRef} className="bg-yellow-300 p-3 text-black py-10">
         <motion.div
-          ref={ctaRef}
-          className="max-w-4xl mx-auto text-center"
-          variants={animationVariants}
-          initial="hidden"
-          animate={ctaInView ? 'visible' : 'hidden'}
+          className="flex flex-col items-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={ctaInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-semibold text-yellow-600">Building a Stronger Brand Identity</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-700">
-            Our comprehensive branding techniques focus on visual storytelling and establishing a consistent brand
-            presence across all channels. The goal is to foster brand loyalty while positioning you as a thought leader
-            in your industry.
-          </p>
-
-          <div className="md:w-1/2 p-4 w-100">
-          <img
-            src="https://via.placeholder.com/800x400"
-            alt="Branding Image"
-            className="w-full h-auto rounded-lg shadow-lg"
-          />
-          </div>
-          
+          <h2 className="text-4xl font-bold text-center mb-4">
+            Ready to Elevate Your Brand?
+          </h2>
+          <Button className="bg-black mt-5 p-3 rounded-pill btn btn-lg text-white">
+            Get in Touch
+          </Button>
         </motion.div>
       </section>
     </div>
