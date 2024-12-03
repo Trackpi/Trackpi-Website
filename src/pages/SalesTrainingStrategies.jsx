@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import custTrain from "../images/cust-train.jpeg"
-import expert from "../images/expert-guide.jpg"
-import mesRes from "../images/meas-result.jpeg"
 
 const SalesTrainingStrategies = () => {
   const options = { threshold: 0.1 };
@@ -18,19 +16,19 @@ const SalesTrainingStrategies = () => {
       title: 'Customized Training',
       description:
         'Our customized training programs are tailored to meet the unique challenges and objectives of your business. We work closely with your team to identify skill gaps, improve communication, and build confidence. Through hands-on sessions and real-life scenarios, your team learns practical sales techniques that are immediately applicable. Our goal is to ensure that each training session contributes to measurable improvements in your sales performance.',
-      imageUrl: custTrain,
+      imageUrl: '',
     },
     {
       title: 'Expert Guidance',
       description:
         'Led by industry professionals with years of experience in sales and management, our training sessions offer insights that go beyond textbooks. We focus on instilling a strategic mindset, teaching negotiation tactics, and sharpening problem-solving skills. With interactive workshops and individual coaching, participants learn from experts who have a proven track record of success. This guidance ensures your team is equipped to handle high-stakes deals with confidence and professionalism.',
-      imageUrl: expert,
+      imageUrl: '',
     },
     {
       title: 'Measurable Results',
       description:
         'Our training is designed with a results-oriented approach, so you can track your team’s progress and see tangible outcomes. We provide tools and techniques that help in measuring success, setting achievable targets, and analyzing performance improvements over time. By focusing on measurable results, we ensure that every participant understands the impact of their growth, enabling your organization to maintain a continuous upward trajectory in sales performance.',
-      imageUrl: mesRes,
+      imageUrl: '',
     },
   ];
 
@@ -76,7 +74,7 @@ const SalesTrainingStrategies = () => {
             >
               <div className="md:w-1/2 p-4 w-100">
                 <motion.img
-                  src={feature.imageUrl}
+                  src="https://via.placeholder.com/500x300"
                   alt={feature.title}
                   className="w-full rounded-lg shadow-lg"
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
