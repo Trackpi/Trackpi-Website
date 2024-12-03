@@ -218,10 +218,6 @@ function Home() {
       </section>
 
 
-      <section className='mt-36 w-full h-full'>
-
-      </section>
-
     </>
   )
 }

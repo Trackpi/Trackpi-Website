@@ -121,14 +121,22 @@ function EmployeeVerification() {
                 <p className="text-red-500 text-sm">{errors.employeeId}</p>
               )}
             </div>
-
+            
             {/* CAPTCHA */}
-            <Verify
+            {captchaVerified? null:
+            <>
+            <label
+                className="block text-gray-700 font-medium mb-2"
+                htmlFor="captcha"
+              >
+                Captcha 
+              </label>
+            <Verify id="captcha" 
               width={250}
               height={120}
               onSuccess={handleCaptchaSuccess} // Handle success
               onFail={handleCaptchaFail} // Handle failure
-            />
+            /></>}
 
             {/* CAPTCHA Message */}
             {captchaMessage && (
