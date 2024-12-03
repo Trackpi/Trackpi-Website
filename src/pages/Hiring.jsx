@@ -12,7 +12,6 @@ function Hiring() {
 
   return (
     <div>
-      {/* Introduction Section */}
       <section
         ref={refIntro}
         className="flex justify-center items-center p-5 w-full"
@@ -32,10 +31,9 @@ function Hiring() {
         </motion.div>
       </section>
 
-      {/* About Hiring Process */}
       <section ref={refAbout} className="pb-10 px-10">
         <div
-          className="flex flex-col md:flex-row-reverse items-center" // Make the text come from right, image from left
+          className="flex flex-col md:flex-row-reverse items-center" 
         >
           <motion.div
             className="md:w-1/2 p-4 w-100"
@@ -72,10 +70,9 @@ function Hiring() {
         </div>
       </section>
 
-      {/* Transformer Role Section */}
       <section ref={refRole} className="pb-10 px-10">
         <div
-          className="flex flex-col md:flex-row items-center" // Text comes from left, image from right
+          className="flex flex-col md:flex-row items-center" 
         >
           <motion.div
             className="md:w-1/2 p-4 w-100"
@@ -106,7 +103,6 @@ function Hiring() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section ref={refCTA} className="bg-yellow-300 p-6 text-black py-10">
         <motion.div
           className="flex flex-col items-center"
@@ -114,7 +110,7 @@ function Hiring() {
           animate={inViewCTA ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-center mb-4">
+          <h2 className="text-4xl text-center mb-4">
             Ready to Join Our Team?
           </h2>
           <p className="text-lg text-center mb-6">

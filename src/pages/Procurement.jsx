@@ -112,7 +112,7 @@ function Procurement() {
           animate={inViewGetInTouch ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-center mb-4">
+          <h2 className="text-4xl text-center mb-4">
             Ready to Elevate Your Procurement?
           </h2>
 

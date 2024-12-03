@@ -154,7 +154,7 @@ const OperationsTrainingStrategies = () => {
           animate={ctaInView ? 'visible' : 'hidden'}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-bold text-black">
+          <h2 className="text-3xl text-black">
             Ready to Transform Your Operations?
           </h2>
           <p className="mt-3 text-lg text-black">

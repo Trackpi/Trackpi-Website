@@ -1,8 +1,17 @@
 import React from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 function Home() {
+  const options = { threshold: 0.1 };
+
+  // Hooks for intersection observers
+  const [refFirstSection, inViewFirstSection] = useInView(options);
+  const [refSecondSection, inViewSecondSection] = useInView(options);
+  const [refThirdSection, inViewThirdSection] = useInView(options);
+
   return (
     <>
       <section className='flex justify-center items-center p-3 w-full h-full bg1'>
@@ -24,92 +33,132 @@ function Home() {
         </div>
       </section>
 
-      <section className='bg- mt-5 w-full h-full'>
-        <Container>
-          <Row >
-            <Col md={6} className='flex flex-col justify-center items-center'>
-              <h1 className='fw-bold text-yellow-500 display-5'>We see the challenge</h1>
+      <section ref={refFirstSection} className="px-10 pb-10 w-full h-full">
+
+        <Row className="flex md:flex-row flex-col">
+          <Col className="p-4 w-100">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className='fw-bold text-yellow-500'>We see the challenge</h1>
               <p className='text-justify text-md md:text-xl'>We’re all wrestling with complexity. Every company, work function, and team now faces a tall order: to be more adaptive, strategic, effective, human, and equitable amidst growing uncertainty.</p>
-            </Col>
-            <Col md={6} className='flex flex-col items-center p-5'>
-              <img src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp" alt="" />
-            </Col>
-          </Row>
-        </Container>
+            </motion.div>
+          </Col>
+          <Col className="p-4 w-100">
+            <motion.img
+              src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp"
+              alt="Strategic Procurement"
+              className="shadow-lg rounded-lg w-full"
+              initial={{ opacity: 0, x: 50 }}
+              animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            />
+          </Col>
+
+        </Row>
+
       </section>
 
-      <section className='bg-gradient-to-l from-yellow-300 to-white md:mt-5 w-full h-full'>
-        <Container className=''>
-          <Row className=''>
-            <Col md={6} xs={12} sm={6} className='flex flex-col justify-center items-center md:p-5 pt-5'>
-              <img className='' src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp" alt="" />
-            </Col>
-            <Col md={6} xs={12} sm={12} className='flex flex-col justify-center items-center p-5'>
-              <h1 className='md:pt-5 fw-bold display-5 md'>We need to shift <br /> our thinking</h1>
+
+      <section ref={refSecondSection} className="px-10 pb-10 w-ful h-full bg2">
+
+        <Row className="flex md:flex-row flex-col">
+
+          <Col className="p-4 w-100">
+            <motion.img
+              src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp"
+              alt="Strategic Procurement"
+              className="shadow-lg rounded-lg w-full"
+              initial={{ opacity: 0, x: 50 }}
+              animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            />
+          </Col>
+
+          <Col className="p-4 w-100">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className='md:pt-5 fw-bold'>We need to shift <br /> our thinking</h1>
               <p className='text-justify text-md md:text-xl'>Organizations are human systems full of potential to navigate complexity, design human processes, and make meaningful change. But tapping into that potential requires a mindset shift, one that accepts that organizations aren't machines. It requires having the courage to say no to the status quo and yes to building future-ready capabilities.</p>
-            </Col>
-          </Row>
-        </Container>
+            </motion.div>
+          </Col>
+
+        </Row>
+
       </section>
 
-      <section className='mt-5 w-full h-full'>
 
-        <Container className='flex flex-col'>
+      <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
 
-          <Row>
-            <h1 className='pb-3 fw-bold text-center text-yellow-500 display-4'>
-              The old ways of working aren’t <br /> the only ways of working
-            </h1>
-          </Row>
+        <Row className="flex md:flex-row flex-col">
+          <Col className="p-4 w-100">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className='pb-3 fw-bold text-yellow-500'>
+                The old ways of working aren’t <br /> the only ways of working
+              </h1>
 
-          <Row>
-            <Col md={6} className='flex flex-col p-5 text-md md:text-xl'>
+              <p className='fw-bold text-2xl'>We help organizations evolve new practices:</p>
 
-              <p className='fw-bold'>We help organizations evolve new practices:</p>
-
-              <p>
+              <p className='text-xl'>
                 From struggling to attract and retain top talent
                 To giving everyone a voice in shaping the organization
               </p>
 
-              <p>
+              <p className='text-xl'>
                 From hoarding information
                 To making nearly all information transparent and accessible
               </p>
 
-              <p>
+              <p className='text-xl'>
                 From being bombarded with meetings and email
                 To shedding status meetings and bureaucratic theater
               </p>
 
-              <p>
+              <p className='text-xl'>
                 From hitting bottlenecks in decision-making
                 To enabling safe-to-try decisions at the edge
               </p>
 
-              <p>
+              <p className='text-xl'>
                 From obsessing over short-term results
                 To choosing strategic priorities and explicit tradeoffs
               </p>
 
-            </Col>
+            </motion.div>
+          </Col>
 
-            <Col md={6} className='flex items-center'>
-              <img src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe1e6665d1761c0f0a082c_home-about-1-p-800.webp" alt="" />
-            </Col>
+          <Col className="p-4 w-100">
+            <motion.img
+              src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe1e6665d1761c0f0a082c_home-about-1-p-800.webp"
+              alt="Strategic Procurement"
+              className="shadow-lg rounded-lg w-full"
+              initial={{ opacity: 0, x: 50 }}
+              animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            />
+          </Col>
 
-          </Row>
-        </Container>
+        </Row>
+
       </section>
 
-      <section className='flex justify-center items-center bg-gradient-to-r from-yellow-300 to-white mt-20 h-fullp- p-5 w-full'>
+      <section className='flex justify-center items-center mt-20 h-fullp- p-5 w-full bg3'>
 
         <Container >
 
           <Row className='flex flex-col justify-center items-center'>
 
             <Col className='flex justify-center items-center item-center'>
-              <h1 className='text-3xl md:text-5xl hover:text-yellow-500'>
+              <h1 className='hover:text-yellow-500'>
                 We're Ready to Help
               </h1>
             </Col>
@@ -122,7 +171,7 @@ function Home() {
 
             <Col className='flex justify-center item-center'>
 
-              <Button as={Link} to={"/our-services"} className='btn-block bg-black mt-3 p-3 rounded-pill btn btn-lg'>
+              <Button as={Link} to={"/our-services"} className='btn-block bg-black mt-3 px-4 p-2 rounded-pill btn btn-lg text'>
                 OUR SERVICES
               </Button>
 
@@ -136,7 +185,7 @@ function Home() {
 
         <Row className='text-yellow-500'>
           <h5>OUR CLIENTS</h5>
-          <h1 className='fw-bold display-4'>We’re fortunate to <br /> work with the best</h1>
+          <h1 className='fw-bold'>We’re fortunate to <br /> work with the best</h1>
         </Row>
 
         <Row className='flex justify-center items-center mt-5'>

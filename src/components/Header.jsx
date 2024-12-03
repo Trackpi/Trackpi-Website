@@ -135,8 +135,8 @@ function Header() {
                 to="/employee-verification"
                 target="_blank"
               >
-                <i className="fa-solid fa-user-shield me-1"></i>
                 EMPLOYEE VERIFICATION
+                <i className="fa-arrow-up-right-from-square fa-solid ms-1"></i>
               </Nav.Link>
               <Nav.Link as={Link} id="navlink" to="/connect-us">
                 CONNECT US

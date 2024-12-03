@@ -80,7 +80,7 @@ const MarketPositioning = () => {
           animate={ctaInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-center mb-4">
+          <h2 className="text-4xl text-center mb-4">
             Ready to Elevate Your Brand?
           </h2>
           <Button className="bg-black mt-5 p-3 rounded-pill btn btn-lg text-white">
