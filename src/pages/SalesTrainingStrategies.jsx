@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import custTrain from "../images/cust-train.jpeg"
 
 const SalesTrainingStrategies = () => {
   const options = { threshold: 0.1 };
@@ -33,38 +34,9 @@ const SalesTrainingStrategies = () => {
 
   return (
     <div>
-          {/* <section className="mt-36 w-full h-full">
-        <Container>
-          <Row>
-            <Col md={6} className="flex flex-col">
-              <h1 className="fw-bold display-5">
-                About our
-                <br />
-                Hiring Process
-              </h1>
-              <p className="text-xl md:text-justify md:text-lg">
-                We experiment with our own hiring practice to attract and choose
-                people based on demonstrable skills rather than experience,
-                identity, or connections. We want to minimize bias as much as
-                possible, which is why we won’t ask for your resume. Instead, we
-                anonymously review answers to a series of application questions
-                and our interviews are designed as experiential working
-                sessions—rather than performative Q&As—to give insight into what
-                working with The Ready might actually feel like.
-              </p>
-            </Col>
-            <Col md={6}>
-              <img
-                src="https://media.istockphoto.com/id/1453843862/photo/business-meeting.jpg?s=612x612&w=0&k=20&c=4k9H7agmpn92B7bkUywvkK5Ckwm9Y8f8QrGs4DRDWpE="
-                alt=""
-              />
-            </Col>
-          </Row>
-        </Container>
-      </section> */}
       <section
         ref={refSalesTraining}
-        className="flex justify-center items-center  p-5 w-full"
+        className=" bg-black text-white flex justify-center items-center  p-5 w-full"
       >
         <motion.div
           className="flex flex-col items-center"
@@ -72,52 +44,66 @@ const SalesTrainingStrategies = () => {
           animate={inViewSalesTraining ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-5xl md:text-7xl text-amber-500 hover:text-sky-500 home-text">
+          <h1
+            className="text-5xl md:text-7xl  text-amber-500 hover:text-sky-500 home-text"
+            style={{ textShadow: '2px 2px white' }}
+          >
             Sales Training Strategies
           </h1>
 
           <p className=" text-xl text-center  max-w-3xl md:text-lg  md:text-justify ">
-            Our sales training strategies are
-            designed to equip your team with the skills and insights they need
-            to succeed in a competitive market. With expert guidance and
-            interactive sessions, we focus on practical solutions and
-            growth-oriented techniques.
+            Our sales training strategies are designed to equip your team with
+            the skills and insights they need to succeed in a competitive
+            market. With expert guidance and interactive sessions, we focus on
+            practical solutions and growth-oriented techniques.
           </p>
         </motion.div>
       </section>
 
-      <section ref={refFeatures} className="bg-gray-100 pb-10 px-10">
+      <section ref={refFeatures} className="bg-black  text-white pb-10 px-10">
         {features.map((feature, index) => {
           const [ref, inView] = useInView({ threshold: 0.1 });
 
           return (
-            <motion.div
+            <div
               key={index}
               ref={ref}
               className={`flex flex-col md:flex-row items-center ${
                 index % 2 === 0 ? '' : 'md:flex-row-reverse'
               }`}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              animate={
-                inView
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }
-              }
-              transition={{ duration: 0.8, delay: index * 0.2 }}
             >
               <div className="md:w-1/2 p-4 w-100">
-                <img
+                <motion.img
                   src="https://via.placeholder.com/500x300"
                   alt={feature.title}
                   className="w-full rounded-lg shadow-lg"
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  animate={
+                    inView
+                      ? { opacity: 1, x: 0 }
+                      : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }
+                  }
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
                 />
               </div>
-              <div className="md:w-1/2 p-4 w-100 ">
-                <h2 className="text-2xl font-bold text-amber-500">{feature.title}</h2>
-                <p className="text-xl md:text-justify md:text-lg">{feature.description}</p>
-               
-              </div>
-            </motion.div>
+              <motion.div
+                className="md:w-1/2 p-4 w-100"
+                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                animate={
+                  inView
+                    ? { opacity: 1, x: 0 }
+                    : { opacity: 0, x: index % 2 === 0 ? 50 : -50 }
+                }
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+              >
+                <h2 className="text-2xl font-bold text-amber-500">
+                  {feature.title}
+                </h2>
+                <p className="text-xl md:text-justify md:text-lg">
+                  {feature.description}
+                </p>
+              </motion.div>
+            </div>
           );
         })}
       </section>
@@ -129,7 +115,7 @@ const SalesTrainingStrategies = () => {
           animate={inViewCTA ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-center mb-4">
+          <h2 className="text-4xl text-center mb-4">
             Ready to Elevate Your Sales Team?
           </h2>
           <Button className="bg-black mt-5 p-3 rounded-pill btn btn-lg">
