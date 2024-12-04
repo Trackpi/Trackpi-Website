@@ -596,3 +596,28 @@ html {
   /* background-color: #F59724 ; */
   z-index: 1;
 }
+
+/* Home image */
+.home-section{
+  background-image: url('./images/inRe.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  /* background-color: #fde047; */
+  opacity: 0.8;
+  height: 100vh;
+  width: 100%;
+}
+.home-section::before
+{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f0cd09c2;
+  clip-path: inherit;
+  z-index: -1;
+}
