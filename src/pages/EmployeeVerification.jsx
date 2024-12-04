@@ -168,7 +168,6 @@ function EmployeeVerification() {
         </div>
       </section>
 
-      {/* Display search results */}
       {searchResults.length > 0 && (
         <section className="bg-white px-6 py-16">
           <h2 className="mb-6 font-semibold text-center text-gray-800">
