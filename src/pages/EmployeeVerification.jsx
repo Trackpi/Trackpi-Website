@@ -83,16 +83,16 @@ function EmployeeVerification() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative flex justify-center items-center p-3 w-full h-screen bg1">
-        <div className="z-10 flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl hover:text-sky-500 home-text">
-            Employee Verification
+      <section className="flex justify-center items-center p-3 w-full h-screen employ_section bg1 relative">
+        <div className="flex flex-col items-center z-10">
+          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+          Employee Verification 
           </h1>
-          <p className="mt-4 text-black-300 text-center text-xl">
-            Verify employee credentials and details securely and efficiently.
+          <p className="font-semibold text-md md:text-2xl working_subheading text-center">
+          Verify employee credentials and details securely and efficiently.
           </p>
         </div>
-      </section>
+        </section>
 
       {/* Verification Form Section */}
       <section className="bg-gray-50 px-6 py-16">

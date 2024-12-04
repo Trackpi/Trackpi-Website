@@ -37,10 +37,10 @@ const SalesOutsourcing = () => {
           className="flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={inViewHeader ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.3 ,ease:"easeInOut"}}
         >
           <h1
-            className="text-5xl md:text-7xl text-amber-500 hover:text-sky-500 home-text"
+            className="text-5xl md:text-7xl text-amber-500 home-text"
             style={{ textShadow: '2px 2px black' }}
           >
             Sales Outsourcing
@@ -72,7 +72,7 @@ const SalesOutsourcing = () => {
                       ? { opacity: 1, x: 0 }
                       : { opacity: 0, x: index % 2 === 0 ? 50 : -50 }
                   }
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  transition={{ duration: 0.8,ease:"easeInOut", delay: index * 0.2 }}
                 />
               </div>
               <motion.div
@@ -83,7 +83,7 @@ const SalesOutsourcing = () => {
                     ? { opacity: 1, x: 0 }
                     : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }
                 }
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                transition={{ duration: 0.8,ease:"easeInOut", delay: index * 0.2 }}
               >
                 <h2 className="text-2xl font-bold text-amber-500">
                   {feature.title}
@@ -98,7 +98,7 @@ const SalesOutsourcing = () => {
       </section>
 
       {/* Call-to-Action Section */}
-      <section
+      {/* <section
         ref={refCTA}
         className="bg-yellow-300 p-3 text-black pb-10 px-10"
       >
@@ -115,7 +115,7 @@ const SalesOutsourcing = () => {
             Get in Touch
           </Button>
         </motion.div>
-      </section>
+      </section> */}
     </div>
   );
 };

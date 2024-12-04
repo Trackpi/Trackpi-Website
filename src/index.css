@@ -92,7 +92,7 @@ html {
 .bg1 {
   width: 100%;
   height: 100vh;
-  background: #fde047;
+  background-color: rgba(253, 223, 71, 0.781);
   clip-path: polygon(
     100% 0%,
     0% 0%,
@@ -546,7 +546,7 @@ html {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #fde047;
+  background-color: rgba(253, 223, 71, 0.4);
   opacity: 0.8;
   height: 100vh;
   width: 100%;
@@ -595,4 +595,182 @@ html {
   height: 100%;
   /* background-color: #F59724 ; */
   z-index: 1;
+}
+
+
+/* General text styles for headings and subheadings */
+.working_heading, .working_subheading, .about_heading, .about_subheading {
+  color: rgb(0, 0, 0); /* Black color */
+  text-align: center;
+  cursor: default;
+}
+
+/* About Section */
+.about_section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; /* Prevents content overflow */
+}
+
+/* About Section Background with Opacity */
+.about_section::before {
+  content: ''; /* Creates the pseudo-element */
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/bg_About.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Adjust opacity of background */
+  z-index: 1; /* Ensures it is below the content */
+  pointer-events: none; /* Allows interaction with the content */
+}
+
+/* Our Services Section */
+.ourServices {
+  position: relative; 
+  height: 100vh;
+  width: 100%;
+}
+
+/* Our Services Background with Opacity */
+.services_section::before {
+  content: ''; /* Creates the pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/service.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Adjust opacity of background */
+  z-index: 1; /* Ensures it is below the content */
+  pointer-events: none; /* Allows interaction with the content */
+}
+
+/* Ensure content is above background */
+.ourServices > *, .about_section > *, .connect_section >* ,.connect_section>* {
+  position: relative;
+  z-index: 2; /* Places content above the background */
+}
+
+.about_heading:hover,.working_heading:hover{
+  color: white;
+}
+/*  hiring */
+.hiring_heading{
+  text-shadow: 2px 2px black;
+  color:  rgb(245 158 11);
+  cursor: default;
+}
+
+/* get in touch */
+.to-top{
+  background-color: #fde047  !important;
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
+  width: max-content;
+  height: 50px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.4rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .5s;
+  border: black 1px solid;
+  color: black;
+  text-align: center;
+  font-weight: 600;
+}
+.to-top span{
+  padding: 18px;
+}
+.to-top i {
+  color: black ;
+  border-radius: 50px;
+  background-color: white;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+}
+.to-top.active{
+  bottom: 2rem;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+
+  .to-top{
+    right: .5rem;
+    font-size: 1rem;
+    height: 30px;
+    font-weight: 700;
+  }
+  .to-top i {
+    height: 28px;
+    width: 28px;
+  }
+}
+
+/* connect */
+.connect_section{
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; /* Prevents content overflow */
+}
+
+/* About Section Background with Opacity */
+.connect_section::before {
+  content: ''; /* Creates the pseudo-element */
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/connect.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Adjust opacity of background */
+  z-index: 1; /* Ensures it is below the content */
+  pointer-events: none; /* Allows interaction with the content */
+}
+
+/* employee verification */
+.connect_section{
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; /* Prevents content overflow */
+}
+
+/* About Section Background with Opacity */
+.employ_section::before {
+  content: ''; /* Creates the pseudo-element */
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/employ.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Adjust opacity of background */
+  z-index: 1; /* Ensures it is below the content */
+  pointer-events: none; /* Allows interaction with the content */
 }

@@ -25,9 +25,9 @@ const MarketPositioning = () => {
           variants={animationVariants}
           initial="hidden"
           animate={introInView ? 'visible' : 'hidden'}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8 ,ease:"easeInOut"}}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-amber-500 hover:text-sky-500" style={{ textShadow: '2px 2px white' }}>
+          <h1 className="text-4xl md:text-6xl font-bold text-amber-500 " style={{ textShadow: '2px 2px white' }}>
             Market Positioning & Branding
           </h1>
           <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-white">
@@ -62,7 +62,7 @@ const MarketPositioning = () => {
               variants={animationVariants}
               initial="hidden"
               animate={cardsInView ? 'visible' : 'hidden'}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6,ease:"easeInOut", delay: index * 0.2 }}
             >
               {card.icon}
               <h3 className="text-2xl font-semibold text-black text-center w-100">{card.title}</h3>
@@ -73,7 +73,7 @@ const MarketPositioning = () => {
       </section>
 
       {/* CTA Section */}
-      <section ref={ctaRef} className="bg-yellow-300 p-3 text-black py-10">
+      {/* <section ref={ctaRef} className="bg-yellow-300 p-3 text-black py-10">
         <motion.div
           className="flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
@@ -87,7 +87,7 @@ const MarketPositioning = () => {
             Get in Touch
           </Button>
         </motion.div>
-      </section>
+      </section> */}
     </div>
   );
 };

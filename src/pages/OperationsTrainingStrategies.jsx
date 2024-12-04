@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Button } from 'react-bootstrap';
+import sales from '../images/sale.jpg'
 
 const OperationsTrainingStrategies = () => {
   // Animation variants
@@ -35,15 +35,15 @@ const OperationsTrainingStrategies = () => {
           variants={animationVariants}
           initial="hidden"
           animate={introInView ? 'visible' : 'hidden'}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8,ease:"easeInOut" }}
         >
           <h1
-            className="text-4xl md:text-6xl font-bold text-amber-500 hover:text-sky-500"
+            className="text-4xl md:text-6xl font-bold text-amber-500"
             style={{ textShadow: '2px 2px black' }}
           >
             Operations Training & Strategies
           </h1>
-          <p className="text-xl mt-4 max-w-3xl mx-auto">
+          <p style={{textAlign:"justify"}}  className="text-xl mt-4 max-w-3xl mx-auto">
             Transform your operations with our tailored strategies. Our training
             programs focus on optimizing processes, enhancing efficiency, and
             empowering your team to excel in dynamic environments.
@@ -59,7 +59,7 @@ const OperationsTrainingStrategies = () => {
             variants={animationVariants}
             initial={{ opacity: 0, x: 50 }} 
             animate={whyChooseInView ?  { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8,ease:"easeInOut" }}
           >
             <h2 className="text-3xl font-bold text-amber-500 mb-4 p-2">
               Why Choose Us?
@@ -88,11 +88,11 @@ const OperationsTrainingStrategies = () => {
             variants={animationVariants}
             initial={{ opacity: 0, x: -50 }} 
             animate={whyChooseInView ?  { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8,ease:"easeInOut" }}
             className="flex justify-center p-4 w-100"
           >
             <img
-              src="https://via.placeholder.com/500x300"
+              src={sales}
               alt="Operations Training"
               className="w-full rounded-lg shadow-lg "
             />
@@ -132,7 +132,7 @@ const OperationsTrainingStrategies = () => {
               variants={animationVariants}
               initial="hidden"
               animate={benefitsInView ? 'visible' : 'hidden'}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6,ease:"easeInOut", delay: index * 0.2 }}
             >
               <h3 className="font-bold text-lg text-amber-500">
                 {benefit.title}
@@ -144,7 +144,7 @@ const OperationsTrainingStrategies = () => {
       </section>
 
       {/* Call-to-Action Section */}
-      <section
+      {/* <section
         className="p-10 bg-yellow-300 text-white text-center"
         ref={ctaRef}
       >
@@ -165,7 +165,7 @@ const OperationsTrainingStrategies = () => {
             Get in Touch
           </Button>
         </motion.div>
-      </section>
+      </section> */}
     </div>
   );
 };

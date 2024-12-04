@@ -4,17 +4,17 @@ import OurTeam from './OurTeam';
 function About() {
   return (
     <>
-      <section className="flex justify-center items-center p-3 w-full h-screen about-section ">
-        <div className="about-section-overlay"></div>
-        <div className="flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl  hover:text-sky-500 home-text">
+      <section className="flex justify-center items-center p-3 w-full h-screen about_section bg1 relative">
+
+        <div className="flex flex-col items-center z-10">
+          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
             About Us
           </h1>
-          <h2 className="text-lg md:text-2xl mt-4">
+          <p className="font-semibold text-md md:text-2xl working_subheading text-center">
             Learn more about our journey and what drives us forward.
-          </h2>
+          </p>
         </div>
-      </section>
+        </section>
 
       <section className="mt-12">
         <OurTeam />

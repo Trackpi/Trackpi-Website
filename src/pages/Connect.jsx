@@ -7,13 +7,17 @@ import Form from 'react-bootstrap/Form';
 function Connect() {
   return (
     <div>
-      <section className='flex justify-center items-center p-3 w-full h-screen bg1'>
-        <div className='flex flex-col items-center'>
-          <h1 className='text-5xl md:text-7xl hover:text-sky-500 home-text'>
-            Connect With Us
+      <section className="flex justify-center items-center p-3 w-full h-screen connect_section bg1 relative">
+        <div className="flex flex-col items-center z-10">
+          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+          Connect with us
           </h1>
+          <p className="font-semibold text-md md:text-2xl working_subheading text-center">
+          Reach out to us for any inquiries or support — we are here to help.
+          </p>
         </div>
-      </section>
+        </section>
+
 
       <section className='mt-32 w-full'>
 

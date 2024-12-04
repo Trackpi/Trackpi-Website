@@ -6,28 +6,24 @@ import MarketPositioning from './MarketPositioning';
 import Hiring  from "./Hiring"
 import Procurement from "./Procurement"
 import SalesOutsourcing from "./SalesOutsourcing"
+import GetInTouch from '../components/GetInTouch';
 
 function OurServices() {
   return (
+    <div>
     <div className='overflow-x-hidden'>
-      <section className="flex justify-center items-center p-3 w-full h-screen  ourServices bg1">
-      <div className="services-section-overlay"></div>
+          <section className="flex justify-center items-center p-3 w-full h-screen services_section bg1 relative">
 
-        <div className="flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl hover:text-sky-500 home-text">
-            Working Together
+        <div className="flex flex-col items-center z-10">
+          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+          Working Together
           </h1>
-          <div className="font-semibold text-md md:text-2xl">
-            We help organizations thrive in complexity
-            <div />
-            <div className="flex justify-center items-center">
-              <Button className="btn-block bg-black mt-5 p-3 rounded-pill btn btn-lg">
-                LEARN HOW
-              </Button>
-            </div>
-          </div>
+          <p className="font-semibold text-md md:text-2xl working_subheading text-center">
+          We help organizations navigate and thrive in the face of complexity.
+          </p>
         </div>
       </section>
+
 
    
 
@@ -49,6 +45,8 @@ function OurServices() {
       <section id="sales-outsourcing" className="mt-5 w-full">
         <SalesOutsourcing />
       </section>
+    </div>
+      <GetInTouch/>
     </div>
   );
 }
