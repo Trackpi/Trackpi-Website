@@ -31,16 +31,27 @@ function Connect() {
                 controlId="floatingInput"
                 label=" Name" r
                 className="mb-3"
+                
               >
-                <Form.Control type="text" placeholder="" className="bg-transparent border border-black"/>
+                <Form.Control type="text" placeholder="" className="bg-transparent border border-black" required/>
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingInput"
+                label=" Contact Number"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                className="mb-3"
+                
+              >
+                <Form.Control type="tel" placeholder="123-456-7890" className="bg-transparent border border-black" required />
               </FloatingLabel>
 
               <FloatingLabel
                 controlId="floatingInput"
                 label=" Email address"
                 className="mb-3"
+                
               >
-                <Form.Control type="email" placeholder="name@example.com" className="bg-transparent border border-black" />
+                <Form.Control type="email" placeholder="name@example.com" className="bg-transparent border border-black" required />
               </FloatingLabel>
 
               <FloatingLabel
@@ -48,23 +59,24 @@ function Connect() {
                 label=" Where Are You Located? "
                 className="mb-3"
               >
-                <Form.Control type="text" placeholder="" className="bg-transparent border border-black"/>
+                <Form.Control type="text" placeholder="" className="bg-transparent border border-black" required/>
               </FloatingLabel>
 
-              <FloatingLabel
-                controlId="floatingInput"
-                label="Name Of Organization"
-                className="mb-3"
-              >
-                <Form.Control type="text" placeholder="" className="bg-transparent border border-black"/>
-              </FloatingLabel>
+              
 
               <FloatingLabel
                 controlId="floatingInput"
                 label="How Did You Hear About Us?"
                 className="mb-3"
               >
-                <Form.Control type="text" placeholder="" className="bg-transparent border border-black" />
+                 <Form.Select  className="bg-transparent border border-black" required>
+                      <option value="">Select how you heard about us</option>
+                      <option value="socialMedia">Social Media</option>
+                      <option value="searchEngine">Search Engine</option>
+                      <option value="friendFamily">Friend or Family</option>
+                      <option value="advertisement">Advertisement</option>
+                      <option value="other">Other</option>
+                  </Form.Select>
               </FloatingLabel>
 
               <FloatingLabel controlId="floatingTextarea" label="Message">
