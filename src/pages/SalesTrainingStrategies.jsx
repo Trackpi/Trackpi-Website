@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import custTrain from "../images/cust-train.jpeg"
 
 const SalesTrainingStrategies = () => {
   const options = { threshold: 0.1 };
