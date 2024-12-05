@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import training from "../images/trainings.jpg"
-import expert from "../images/expert.jpg"
-import result from "../images/growth.jpg"
+import training from "../images/trainings.jpg";
+import expert from "../images/expert.jpg";
+import result from "../images/growth.jpg";
+
 
 const SalesTrainingStrategies = () => {
   const options = { threshold: 0.1 };
