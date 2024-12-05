@@ -85,7 +85,7 @@ const SalesOutsourcing = () => {
                 }
                 transition={{ duration: 0.8,ease:"easeInOut", delay: index * 0.2 }}
               >
-                <h2 className="text-2xl font-bold text-amber-500">
+                <h2 className="text-2xl font-bold text-amber-500 fw-bold display-6">
                   {feature.title}
                 </h2>
                 <p className="text-xl md:text-justify md:text-lg">

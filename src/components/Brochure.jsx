@@ -1,0 +1,28 @@
+//import React from "react";
+
+const Brochure = () => {
+  const pdfPath = "/images/Technical_Round_Assignment.pdf"; // Replace with actual path
+  
+  return (
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <a href={pdfPath} download="Technical_Round_Assignment.pdf" style={{ textDecoration: "none" }}>
+        <button
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            color: "#000",
+            backgroundColor: "#ede729e6",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          
+          Download Brochure
+        </button>
+      </a>
+    </div>
+  );
+};
+
+export default Brochure;

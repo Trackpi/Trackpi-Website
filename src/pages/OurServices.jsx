@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import SalesTrainingStrategies from './SalesTrainingStrategies';
 import OperationsTrainingStrategies from './OperationsTrainingStrategies';
 import MarketPositioning from './MarketPositioning';
@@ -23,9 +22,6 @@ function OurServices() {
           </p>
         </div>
       </section>
-
-
-   
 
       <section id="hiring" className="mt-5 w-full">
         <Hiring />

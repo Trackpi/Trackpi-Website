@@ -26,16 +26,23 @@ function Home() {
           </h1>
           <div className="font-semibold text-md md:text-2xl">
             The Ready is a future-of-work consultancy committed to changing{' '}
+    <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
+        <div className="flex flex-col items-center z-10">
+          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+          Reinvent Your Organization
+            </h1>
+          <p className="font-semibold text-md md:text-2xl working_subheading text-center">
+          TrackPi is a future-of-work consultancy committed to changing{' '}
             <br /> how the world works from business as usual to brave new work.
-            <div />
-            <div className="flex justify-center items-center">
+           </p>
+           <div className="flex justify-center items-center">
               <Button className="bg-black mt-5 p-3 rounded-pill fw-bold">
                 LEARN HOW WE CAN HELP
               </Button>
             </div>
-          </div>
         </div>
       </section>
+     
 
       <section ref={refFirstSection} className="mt-5 w-full h-full">
         <Container>

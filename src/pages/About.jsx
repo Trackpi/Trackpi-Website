@@ -1,5 +1,6 @@
-import React from 'react';
+//import React from 'react';
 import OurTeam from './OurTeam';
+import Brochure from '../components/Brochure';
 
 function About() {
   return (
@@ -18,6 +19,10 @@ function About() {
 
       <section className="mt-12">
         <OurTeam />
+        
+      </section>
+      <section className='mb-32'>
+      <Brochure/>
       </section>
     </>
   );

@@ -18,7 +18,7 @@ const MarketPositioning = () => {
   return (
     <div>
       {/* Intro Section */}
-      <section className="flex flex-col items-center justify-center p-8 w-full bg-black text-white">
+      <section className="flex flex-col items-center justify-center p-8 w-full bg_yellow">
         <motion.div
           className="text-center"
           ref={introRef}
@@ -27,31 +27,31 @@ const MarketPositioning = () => {
           animate={introInView ? 'visible' : 'hidden'}
           transition={{ duration: 0.8 ,ease:"easeInOut"}}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-amber-500 " style={{ textShadow: '2px 2px white' }}>
+          <h1 className="text-4xl md:text-6xl font-bold  " style={{ textShadow: '2px 2px white' }}>
             Market Positioning & Branding
           </h1>
-          <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-white">
+          <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">
             Our customized market positioning strategies will elevate your brand and carve a unique identity in the marketplace.
           </p>
         </motion.div>
       </section>
 
       {/* Cards Section */}
-      <section className="flex flex-wrap justify-center items-center p-8 bg-black text-white">
+      <section className="flex flex-wrap justify-center items-center p-8 bg_yellow text-white">
         <div ref={cardsRef} className="flex flex-wrap justify-center items-center">
           {[
             {
-              icon: <FaBullhorn className="text-5xl text-yellow-500 mx-auto mb-4" />,
+              icon: <FaBullhorn className="text-5xl text-amber-500 mx-auto mb-4" />,
               title: 'Tailored Strategy',
               description: "We design personalized strategies that cater to your market's needs, ensuring impactful messaging.",
             },
             {
-              icon: <FaChartLine className="text-5xl text-yellow-500 mx-auto mb-4" />,
+              icon: <FaChartLine className="text-5xl text-amber-500 mx-auto mb-4" />,
               title: 'Data-Driven Insights',
               description: 'In-depth market research and analytics guide your decision-making effectively.',
             },
             {
-              icon: <FaRegHandshake className="text-5xl text-yellow-500 mx-auto mb-4" />,
+              icon: <FaRegHandshake className="text-5xl text-amber-500 mx-auto mb-4" />,
               title: 'Building Brand Loyalty',
               description: 'We focus on fostering customer loyalty and trust through valuable experiences.',
             },
