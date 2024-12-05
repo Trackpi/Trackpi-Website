@@ -768,7 +768,7 @@ html {
   pointer-events: none; /* Allows interaction with the content */
 }
 
-/* Home Section */
+/* Home Section  css created by shalu*/
 .home-section {
   background-image: url('./images/inRe.jpeg');
   background-size: cover;
@@ -791,7 +791,7 @@ html {
   z-index: -1;
 }
 
-
+/* Scroll bar created by Shalu */
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
@@ -809,6 +809,6 @@ html {
 }
 
 .custom-scrollbar {
-  scrollbar-width: thin;
+  scrollbar-width: auto;
   scrollbar-color: #e4be03 #f3f3f3; 
 }
