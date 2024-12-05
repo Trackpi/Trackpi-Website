@@ -61,7 +61,7 @@ const OperationsTrainingStrategies = () => {
             animate={whyChooseInView ?  { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8,ease:"easeInOut" }}
           >
-            <h2 className="text-3xl font-bold text-amber-500 mb-4 p-2">
+            <h2 className="text-3xl font-bold text-amber-500 mb-4 p-2 fw-bold display-6">
               Why Choose Us?
             </h2>
             <ul className="list-disc list-inside text-xl md:text-lg">
@@ -102,7 +102,7 @@ const OperationsTrainingStrategies = () => {
 
       {/* Key Benefits Section */}
       <section className="p-10 text-center">
-        <h2 className="text-3xl font-bold text-amber-600">
+        <h2 className="text-3xl font-bold text-amber-500 fw-bold display-6">
           Key Benefits of Our Training
         </h2>
         <div

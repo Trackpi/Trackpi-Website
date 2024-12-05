@@ -51,7 +51,7 @@ function Procurement() {
               animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8,ease:"easeInOut" }}
             >
-              <h2 className="text-2xl font-bold text-amber-500">
+              <h2 className="text-2xl font-bold text-amber-500 fw-bold display-6">
                 Strategic Procurement Solutions
               </h2>
               <p style={{textAlign:"justify"}}  className="text-xl md:text-justify md:text-lg">
@@ -86,7 +86,7 @@ function Procurement() {
               animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 ,ease:"easeInOut"}}
             >
-              <h2 className="text-2xl font-bold text-amber-500">
+              <h2 className="text-2xl font-bold text-amber-500 fw-bold display-6">
                 Comprehensive Risk Management Advisory
               </h2>
               <p style={{textAlign:"justify"}}  className="text-xl md:text-justify md:text-lg">

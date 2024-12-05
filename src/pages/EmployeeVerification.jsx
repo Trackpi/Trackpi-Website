@@ -4,13 +4,15 @@ import 'react-puzzle-captcha/dist/react-puzzle-captcha.css';
 
 function EmployeeVerification() {
   const [formData, setFormData] = useState({
-    employeeId: '',
+    employeeId: ''
   });
 
   const [errors, setErrors] = useState({});
   const [searchResults, setSearchResults] = useState([]);
   const [captchaVerified, setCaptchaVerified] = useState(false);
-  const [captchaMessage, setCaptchaMessage] = useState(''); // State for CAPTCHA messages
+  const [captchaMessage, setCaptchaMessage] = useState(''); 
+  const [isTouched, setIsTouched] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   // Dummy data (simulate a backend response)
   const dummyData = [
@@ -35,8 +37,11 @@ function EmployeeVerification() {
     if (!employeeId) {
       validationErrors.general = 'Please fill the field.';
     }
+    else if (!captchaVerified) {
+      validationErrors.general = 'Captcha not verified';
+    }
 
-    if (employeeId && !/^[a-zA-Z0-9]+$/.test(employeeId)) {
+    else if (employeeId && !/^[a-zA-Z0-9]+$/.test(employeeId)) {
       validationErrors.employeeId = 'Employee ID must be alphanumeric.';
     }
 
@@ -47,31 +52,35 @@ function EmployeeVerification() {
   // Handle form submission
   const handleSubmit = e => {
     e.preventDefault();
-    if (validate()) {
-      // Filter the dummy data based on the form inputs
-      const filteredResults = dummyData.filter(employee => {
-        const matchesEmployeeId = formData.employeeId
-          ? employee.employeeId.includes(formData.employeeId)
-          : true;
-        return matchesEmployeeId;
-      });
+    setLoading(true);  // Show loader when form submission starts
 
-      if (filteredResults.length === 0) {
-        setErrors({
-          general: 'Invalid verification terms: No matching employee found.',
-        });
-        setSearchResults([]); 
-      } else {
-        setSearchResults(filteredResults);
-        setErrors({}); 
-      }
+    if (validate()) {
+      setTimeout(() => {  // Simulate a delay, e.g., for data fetching or processing
+        const filteredResults = dummyData.filter(employee => 
+          employee.employeeId.includes(formData.employeeId)
+        );
+
+        if (filteredResults.length === 0) {
+          setErrors({ general: 'No matching employee found.' });
+          setSearchResults([]);
+        } else {
+          setSearchResults(filteredResults);
+          setErrors({});
+        }
+
+        setLoading(false);  // Hide loader after data is processed
+        resetForm();  // Optionally reset form after submission
+      }, 2000);  // Simulated delay of 2 seconds
+    } else {
+      setLoading(false);  // Hide loader if validation fails
     }
   };
+
 
   // Handle CAPTCHA success
   const handleCaptchaSuccess = () => {
     setCaptchaVerified(true);
-    setCaptchaMessage('CAPTCHA verified successfully!');
+    setCaptchaMessage('CAPTCHA successfully verified!');
   };
 
   // Handle CAPTCHA failure
@@ -80,24 +89,38 @@ function EmployeeVerification() {
     setCaptchaMessage('CAPTCHA verification failed. Please try again.');
   };
 
+  // Mark the input as touched when the user interacts with it
+  const handleTouched = (e) => {
+    setIsTouched(true); // Mark the field as touched
+    handleChange(e); // Update the form data
+  };
+  const verifyEmployee = () => {
+    setTimeout(() => {
+      setErrors(""); 
+    }, 3000); 
+    setTimeout(() => {
+      setFormData({employeeId:""})
+    }, 300); 
+  };
+
   return (
     <>
       {/* Hero Section */}
       <section className="flex justify-center items-center p-3 w-full h-screen employ_section bg1 relative">
         <div className="flex flex-col items-center z-10">
-          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
-          Employee Verification 
+          <h1 className="text-5xl md:text-7xl home-text working_heading mb-5">
+            Employee Verification
           </h1>
           <p className="font-semibold text-md md:text-2xl working_subheading text-center">
-          Verify employee credentials and details securely and efficiently.
+            Verify employee credentials and details securely and efficiently.
           </p>
         </div>
-        </section>
+      </section>
 
       {/* Verification Form Section */}
       <section className="bg-gray-50 px-6 py-16">
         <div className="bg-white shadow-lg mx-auto p-8 rounded-lg max-w-3xl">
-          <h2 className="mb-6 font-semibold text-3xl text-amber-600 text-center">
+          <h2 className="mb-6 font-bold text-3xl text-amber-600 text-center">
             Employee Verification Form
           </h2>
           <form onSubmit={handleSubmit}>
@@ -113,7 +136,7 @@ function EmployeeVerification() {
                 type="text"
                 id="employeeId"
                 value={formData.employeeId}
-                onChange={handleChange}
+                onChange={handleTouched} // Update form data and mark as touched
                 className="border-gray-300 p-2 border rounded-md w-full"
                 placeholder="Enter Employee ID"
               />
@@ -123,20 +146,23 @@ function EmployeeVerification() {
             </div>
             
             {/* CAPTCHA */}
-            {captchaVerified? null:
-            <>
-            <label
-                className="block text-gray-700 font-medium mb-2"
-                htmlFor="captcha"
-              >
-                Captcha 
-              </label>
-            <Verify id="captcha" 
-              width={250}
-              height={120}
-              onSuccess={handleCaptchaSuccess} // Handle success
-              onFail={handleCaptchaFail} // Handle failure
-            /></>}
+            {isTouched && !captchaVerified && (
+              <>
+                <label
+                  className="block text-gray-700 font-medium mb-2"
+                  htmlFor="captcha"
+                >
+                  Captcha
+                </label>
+                <Verify 
+                  id="captcha"
+                  width={250}
+                  height={120}
+                  onSuccess={handleCaptchaSuccess} // Handle success
+                  onFail={handleCaptchaFail} // Handle failure
+                />
+              </>
+            )}
 
             {/* CAPTCHA Message */}
             {captchaMessage && (
@@ -151,22 +177,27 @@ function EmployeeVerification() {
 
             {/* General Error */}
             {errors.general && (
-              <p className="mb-4 text-center text-red-500">{errors.general}</p>
+              <p className="text-center text-red-500">{errors.general}</p>
             )}
 
             {/* Submission Button */}
             <div className="text-center">
-              <button
-                type="submit"
-                disabled={!captchaVerified} // Disable submit button until CAPTCHA is verified
-                className="transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 mt-4 px-6 py-2 rounded-md font-semibold text-black"
-              >
-                Verify Employee
-              </button>
+            <button
+              type="submit"
+              onClick={verifyEmployee} // Correctly pass the function reference
+              className="mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 px-6 py-2 rounded-md font-semibold text-black"
+            >
+              Verify Employee
+            </button>
             </div>
           </form>
         </div>
       </section>
+      {loading && (
+        <div className="flex justify-center items-center fixed inset-0 bg-opacity-50 bg-yellow-500 z-50">
+          <div className="spinner"></div>  {/* Show the loader spinner */}
+        </div>
+      )}
 
       {searchResults.length > 0 && (
         <section className="bg-white px-6 py-16">
