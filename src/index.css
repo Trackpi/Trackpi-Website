@@ -790,3 +790,25 @@ html {
   background-color: #f0cd09c2;
   z-index: -1;
 }
+
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e4be03; /* Indigo */
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #e4be03 #f3f3f3; 
+}

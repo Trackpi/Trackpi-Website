@@ -3,7 +3,9 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import NewsTicker from '../components/NewsTicker';
+import NewsStream from '../components/NewsStream';
+import NewsArticle from '../components/NewArticle';
+
 
 function Home() {
   const options = { threshold: 0.1 };
@@ -15,7 +17,7 @@ function Home() {
   return (
     <>
       <section className="flex justify-center items-center p-3 w-full h-full home-section bg1">
-      <div className="home-section-overlay"></div>
+        <div className="home-section-overlay"></div>
         <div className="flex flex-col items-center">
           <h1 className="fw-bold md:text-7xl hover:text-sky-500 display-1 home-text">
             Reinvent Your <br />
@@ -41,8 +43,8 @@ function Home() {
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 1.0 , ease: "easeOut" }}
-                className="mb-5 md:mb-0" 
+                transition={{ duration: 1.0, ease: 'easeOut' }}
+                className="mb-5 md:mb-0"
               >
                 <h1 className="fw-bold text-yellow-500">
                   We see the challenge
@@ -59,65 +61,68 @@ function Home() {
               <motion.img
                 src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp"
                 alt="Strategic Procurement"
-                className="shadow-lg rounded-lg" 
+                className="shadow-lg rounded-lg"
                 initial={{ opacity: 0, x: 50 }}
                 animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 1.0 , ease: "easeOut" }}
+                transition={{ duration: 1.0, ease: 'easeOut' }}
               />
             </Col>
           </Row>
         </Container>
       </section>
 
-      <section ref={refSecondSection} className="mt-0 w-full h-full bg2 flex items-center">
+      <section
+        ref={refSecondSection}
+        className="mt-0 w-full h-full bg2 flex items-center"
+      >
         <Container>
-        <Row>
-          <Col md={6} className="flex flex-col items-center p-5">
-            <motion.img
-              src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp"
-              alt="Strategic Procurement"
-              className="shadow-lg rounded-lg w-full"
-              initial={{ opacity: 0, x: 50 }}
-              animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 1.0 , ease: "easeOut" }}
+          <Row>
+            <Col md={6} className="flex flex-col items-center p-5">
+              <motion.img
+                src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp"
+                alt="Strategic Procurement"
+                className="shadow-lg rounded-lg w-full"
+                initial={{ opacity: 0, x: 50 }}
+                animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 1.0, ease: 'easeOut' }}
               />
-          </Col>
+            </Col>
 
-          <Col  md={6} className="flex flex-col items-center p-12">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 1.0 , ease: "easeOut" }}
+            <Col md={6} className="flex flex-col items-center p-12">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 1.0, ease: 'easeOut' }}
               >
-              <h1 className="md:pt-5 fw-bold">
-                We need to shift <br /> our thinking
-              </h1>
-              <p className="text-justify text-md md:text-xl">
-                Organizations are human systems full of potential to navigate
-                complexity, design human processes, and make meaningful change.
-                But tapping into that potential requires a mindset shift, one
-                that accepts that organizations aren't machines. It requires
-                having the courage to say no to the status quo and yes to
-                building future-ready capabilities.
-              </p>
-            </motion.div>
-          </Col>
-        </Row>
+                <h1 className="md:pt-5 fw-bold">
+                  We need to shift <br /> our thinking
+                </h1>
+                <p className="text-justify text-md md:text-xl">
+                  Organizations are human systems full of potential to navigate
+                  complexity, design human processes, and make meaningful
+                  change. But tapping into that potential requires a mindset
+                  shift, one that accepts that organizations aren't machines. It
+                  requires having the courage to say no to the status quo and
+                  yes to building future-ready capabilities.
+                </p>
+              </motion.div>
+            </Col>
+          </Row>
         </Container>
-        
       </section>
       <section className="relative z-20">
-  <NewsTicker />
-</section>
+        <NewsStream />
+        <NewsArticle />
+      </section>
 
       <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
         <Row>
-          <Col className="flex flex-col items-center pt-12">
+          <Col md={6} className="flex flex-col items-center pt-12">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 1.0 , ease: "easeOut" }}
-              >
+              transition={{ duration: 1.0, ease: 'easeOut' }}
+            >
               <h1 className="pb-3 fw-bold text-yellow-500">
                 The old ways of working aren’t <br /> the only ways of working
               </h1>
@@ -153,15 +158,15 @@ function Home() {
             </motion.div>
           </Col>
 
-          <Col  className="flex flex-col items-center p-5">
+          <Col md={6} className="flex flex-col items-center">
             <motion.img
               src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe1e6665d1761c0f0a082c_home-about-1-p-800.webp"
               alt="Strategic Procurement"
               className="shadow-lg rounded-lg w-full"
               initial={{ opacity: 0, x: 50 }}
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 1.0 , ease: "easeOut" }}
-              />
+              transition={{ duration: 1.0, ease: 'easeOut' }}
+            />
           </Col>
         </Row>
       </section>
