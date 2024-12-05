@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import hiring from "../images/hiring.jpg"
+import consult from "../images/consult.jpg"
 
 function Hiring() {
   const options = { threshold: 0.1 };
@@ -20,11 +22,10 @@ function Hiring() {
           className="flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={inViewIntro ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8,ease:"easeInOut", delay: 0.3 }}
         >
           <h1
-            className="text-5xl md:text-7xl text-amber-500 hover:text-sky-500 home-text"
-            style={{ textShadow: '2px 2px black' }}
+            className="text-5xl md:text-7xl text-amber-500 home-text hiring_heading"
           >
             Hiring & Retention
           </h1>
@@ -39,14 +40,14 @@ function Hiring() {
             className="md:w-1/2 p-4 w-100"
             initial={{ opacity: 0, x: 50 }}
             animate={inViewAbout ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8,ease:"easeInOut", delay: 0.3 }}
           >
             <h1 className="text-4xl text-amber-500 font-bold mb-4">
               About our
               <br />
               Hiring Process
             </h1>
-            <p className="text-xl md:text-justify md:text-lg">
+            <p style={{textAlign:"justify"}} className="text-xl md:text-justify md:text-lg">
               We experiment with our own hiring practice to attract and choose
               people based on demonstrable skills rather than experience,
               identity, or connections. We want to minimize bias as much as
@@ -59,12 +60,12 @@ function Hiring() {
           </motion.div>
           <div className="md:w-1/2 p-4 w-100">
             <motion.img
-              src="https://via.placeholder.com/500x300"
+              src={hiring}
               alt="Hiring Process"
               className="w-full rounded-lg shadow-lg"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewAbout ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8,ease:"easeInOut" }}
             />
           </div>
         </div>
@@ -78,12 +79,12 @@ function Hiring() {
             className="md:w-1/2 p-4 w-100"
             initial={{ opacity: 0, x: -50 }}
             animate={inViewRole ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8,ease:"easeInOut", delay: 0.3 }}
           >
             <h1 className="text-4xl text-amber-500 font-bold mb-4">
               Transformer Role
             </h1>
-            <p className="text-xl md:text-justify md:text-lg">
+            <p style={{textAlign:"justify"}}  className="text-xl md:text-justify md:text-lg">
               The majority of our members at The Ready are in the Transformer
               role (what we call our “consultants” here). We regularly open our
               Transformer hiring process, as our business is growing and
@@ -92,18 +93,18 @@ function Hiring() {
           </motion.div>
           <div className="md:w-1/2 p-4 w-100">
             <motion.img
-              src="https://via.placeholder.com/500x300"
+              src={consult}
               alt="Transformer Role"
               className="w-full rounded-lg shadow-lg"
               initial={{ opacity: 0, x: 50 }} // Image comes from right
               animate={inViewRole ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8,ease:"easeInOut" }}
             />
           </div>
         </div>
       </section>
 
-      <section ref={refCTA} className="bg-yellow-300 p-6 text-black py-10">
+      {/* <section ref={refCTA} className="bg-yellow-300 p-6 text-black py-10">
         <motion.div
           className="flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
@@ -120,7 +121,7 @@ function Hiring() {
             Get in Touch
           </button>
         </motion.div>
-      </section>
+      </section> */}
     </div>
   );
 }
