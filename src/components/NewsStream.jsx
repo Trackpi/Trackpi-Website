@@ -21,7 +21,7 @@ const CustomStreamPlayer = () => {
       {/* Toggle Button */}
       <button
         className={`absolute ${
-          isExpanded ? 'top-2 left-2' : 'right-8 top-6'
+          isExpanded ? 'top-4 left-2' : 'right-8 top-6'
         } bg-transparent text-white font-semibold`}
         onClick={toggleExpand}
       >
