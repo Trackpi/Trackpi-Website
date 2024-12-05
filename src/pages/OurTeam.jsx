@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { motion } from 'framer-motion';
@@ -142,7 +142,7 @@ function OurTeam() {
         </Container>
       </section>
 
-      <section className="mt-5 mb-32 w-full">
+      <section className="mt-5 mb-5 w-full">
         <Container className="flex flex-col gap-5">
           <Row>
             <h1 className="fw-bold display-5 flex justify-center">
