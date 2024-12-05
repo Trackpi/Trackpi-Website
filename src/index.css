@@ -886,7 +886,7 @@ html {
   pointer-events: none; /* Allows interaction with the content */
 }
 
-/* Home Section */
+/* Home Section  css created by shalu*/
 .home-section {
   background-image: url('./images/inRe.jpeg');
   background-size: cover;
@@ -908,6 +908,27 @@ html {
   background-color: #f0cd09c2;
   z-index: -1;
 }
+
+/* Scroll bar created by Shalu */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e4be03; /* Indigo */
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.custom-scrollbar {
+  scrollbar-width: auto;
+  scrollbar-color: #e4be03 #f3f3f3; 
 
 /* spinner  loader*/
 .spinner {
