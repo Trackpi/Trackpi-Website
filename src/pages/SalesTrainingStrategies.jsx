@@ -38,7 +38,7 @@ const SalesTrainingStrategies = () => {
     <div>
       <section
         ref={refSalesTraining}
-        className=" bg-black text-white flex justify-center items-center  p-5 w-full"
+        className="bg_yellow flex justify-center items-center  p-5 w-full"
       >
         <motion.div
           className="flex flex-col items-center"
@@ -47,7 +47,7 @@ const SalesTrainingStrategies = () => {
           transition={{ duration: 0.8,ease:"easeInOut", delay: 0.3 }}
         >
           <h1
-            className="text-5xl md:text-7xl  text-amber-500  home-text"
+            className="text-5xl md:text-7xl home-text"
             style={{ textShadow: '2px 2px white' }}
           >
             Sales Training Strategies
@@ -59,7 +59,7 @@ const SalesTrainingStrategies = () => {
         </motion.div>
       </section>
 
-      <section ref={refFeatures} className="bg-black  text-white pb-10 px-10">
+      <section ref={refFeatures} className="bg_yellow  pb-10 px-10">
         {features.map((feature, index) => {
           const [ref, inView] = useInView({ threshold: 0.1 });
 
@@ -95,7 +95,7 @@ const SalesTrainingStrategies = () => {
                 }
                 transition={{ duration: 0.8,ease:"easeInOut", delay: index * 0.2 }}
               >
-                <h2 className="text-2xl font-bold text-amber-500">
+                <h2 className="text-2xl font-bold  fw-bold display-6">
                   {feature.title}
                 </h2>
                 <p className="text-xl md:text-justify md:text-lg">
