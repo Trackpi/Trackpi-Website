@@ -1,8 +1,6 @@
 
 import React from 'react'
-import { Container, Row} from 'react-bootstrap'
 import Details from '../components/Form';
-import React from 'react';
 import { Container, Row,  Button } from 'react-bootstrap';
 
 function Connect() {
