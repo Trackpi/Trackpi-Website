@@ -1,11 +1,11 @@
-import React from 'react';
+//import React from 'react';
 import OurTeam from './OurTeam';
+import Brochure from '../components/Brochure';
 
 function About() {
   return (
     <>
       <section className="flex justify-center items-center p-3 w-full h-screen about_section bg1 relative">
-
         <div className="flex flex-col items-center z-10">
           <h1 className="text-5xl md:text-7xl  working_heading mb-5">
             About Us
@@ -14,10 +14,13 @@ function About() {
             Learn more about our journey and what drives us forward.
           </p>
         </div>
-        </section>
+      </section>
 
       <section className="mt-12">
         <OurTeam />
+      </section>
+      <section className="mb-32">
+        <Brochure />
       </section>
     </>
   );

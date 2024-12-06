@@ -1,8 +1,7 @@
-import React from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import React from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-
 
 function Connect() {
   return (
@@ -10,29 +9,51 @@ function Connect() {
       <section className="flex justify-center items-center p-3 w-full h-screen connect_section bg1 relative">
         <div className="flex flex-col items-center z-10">
           <h1 className="text-5xl md:text-7xl working_heading mb-5">
-          Connect with us
+            Connect with us
           </h1>
           <p className="font-semibold text-md md:text-2xl working_subheading text-center">
-          Reach out to us for any inquiries or support — we are here to help.
+            Reach out to us for any inquiries or support — we are here to help.
           </p>
         </div>
-        </section>
+      </section>
 
-
-      <section className='mt-32 w-full'>
-
-        <Container className='flex flex-col items-center text-justify'>
-
-          <Row className='mt-5 md:w-1/2'>
-            <h1 className='mb-3 fw-bold display-5'>You’re ready to <br /> take the next step</h1>
-            <p className='mb-5 text-xl md:text-justify md:text-lg'>We’re all wrestling with complexity. Every company, work function, and team now faces a tall order: to be more adaptive, strategic, effective, human, and equitable amidst growing uncertainty.</p>
-            <Form className='flex flex-col'>
+      <section className="mt-32 w-full">
+        <Container className="flex flex-col items-center text-justify">
+          <Row className="mt-5 md:w-1/2">
+            <h1 className="mb-3 fw-bold display-5">
+              You’re ready to <br /> take the next step
+            </h1>
+            <p className="mb-5 text-xl md:text-justify md:text-lg">
+              We’re all wrestling with complexity. Every company, work function,
+              and team now faces a tall order: to be more adaptive, strategic,
+              effective, human, and equitable amidst growing uncertainty.
+            </p>
+            <Form className="flex flex-col">
               <FloatingLabel
                 controlId="floatingInput"
-                label=" Name" r
+                label=" Name"
+                r
                 className="mb-3"
               >
-                <Form.Control type="text" placeholder="" className="bg-transparent border border-black"/>
+                <Form.Control
+                  type="text"
+                  placeholder=""
+                  className="bg-transparent border border-black"
+                  required
+                />
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingInput"
+                label=" Contact Number"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                className="mb-3"
+              >
+                <Form.Control
+                  type="tel"
+                  placeholder="123-456-7890"
+                  className="bg-transparent border border-black"
+                  required
+                />
               </FloatingLabel>
 
               <FloatingLabel
@@ -40,7 +61,12 @@ function Connect() {
                 label=" Email address"
                 className="mb-3"
               >
-                <Form.Control type="email" placeholder="name@example.com" className="bg-transparent border border-black" />
+                <Form.Control
+                  type="email"
+                  placeholder="name@example.com"
+                  className="bg-transparent border border-black"
+                  required
+                />
               </FloatingLabel>
 
               <FloatingLabel
@@ -48,15 +74,12 @@ function Connect() {
                 label=" Where Are You Located? "
                 className="mb-3"
               >
-                <Form.Control type="text" placeholder="" className="bg-transparent border border-black"/>
-              </FloatingLabel>
-
-              <FloatingLabel
-                controlId="floatingInput"
-                label="Name Of Organization"
-                className="mb-3"
-              >
-                <Form.Control type="text" placeholder="" className="bg-transparent border border-black"/>
+                <Form.Control
+                  type="text"
+                  placeholder=""
+                  className="bg-transparent border border-black"
+                  required
+                />
               </FloatingLabel>
 
               <FloatingLabel
@@ -64,7 +87,17 @@ function Connect() {
                 label="How Did You Hear About Us?"
                 className="mb-3"
               >
-                <Form.Control type="text" placeholder="" className="bg-transparent border border-black" />
+                <Form.Select
+                  className="bg-transparent border border-black"
+                  required
+                >
+                  <option value="">Select how you heard about us</option>
+                  <option value="socialMedia">Social Media</option>
+                  <option value="searchEngine">Search Engine</option>
+                  <option value="friendFamily">Friend or Family</option>
+                  <option value="advertisement">Advertisement</option>
+                  <option value="other">Other</option>
+                </Form.Select>
               </FloatingLabel>
 
               <FloatingLabel controlId="floatingTextarea" label="Message">
@@ -76,25 +109,24 @@ function Connect() {
                 />
               </FloatingLabel>
 
-              <Row className='flex flex-col items-center gap-5 mt-5 mb-5'>
-
-                <Button type='submit' className='bg-black mb- p-3 rounded-pill w-50 text-yellow-300 btn md:btn-lg'>
+              <Row className="flex flex-col items-center gap-5 mt-5 mb-5">
+                <Button
+                  type="submit"
+                  className="bg-black mb- p-3 rounded-pill w-50 text-yellow-300 btn md:btn-lg"
+                >
                   CONNECT WITH US
                 </Button>
 
-                <h6 className='text-center'>Or email hello@trackpi.com to get in touch with our team.</h6>
+                <h6 className="text-center">
+                  Or email hello@trackpi.com to get in touch with our team.
+                </h6>
               </Row>
-
             </Form>
-
           </Row>
-
         </Container>
-
       </section>
-
-    </div >
-  )
+    </div>
+  );
 }
 
-export default Connect
+export default Connect;

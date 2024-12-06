@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { motion } from 'framer-motion';
@@ -15,8 +15,8 @@ function OurTeam() {
     <>
       <section className="flex justify-center items-center p-5 w-full">
         <div className="flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl hover:text-sky-500">
-            Who We Are
+          <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
+            Who We Are?
           </h1>
         </div>
       </section>
@@ -119,10 +119,10 @@ function OurTeam() {
                   </span>
                 </p>
                 <p className="text-xl md:text-justify md:text-lg">
-                  The Ready’s hiring team reviews all applications anonymously
+                  The Trackpi's hiring team reviews all applications anonymously
                   and will be in touch if there is a fit. If you need to get in
                   touch with them, please email{' '}
-                  <span className="underline">hiring@theready.com.</span>
+                  <span className="underline">hr@trackpi.in.</span>
                 </p>
                 <Button className="bg-white mt-5 p-2 rounded-pill fw-bold text-black">
                   JOIN OUR TEAM <i className="fa-arrow-right fa-solid"></i>
@@ -142,7 +142,7 @@ function OurTeam() {
         </Container>
       </section>
 
-      <section className="mt-5 mb-32 w-full">
+      <section className="mt-5 mb-5 w-full">
         <Container className="flex flex-col gap-5">
           <Row>
             <h1 className="fw-bold display-5 flex justify-center">

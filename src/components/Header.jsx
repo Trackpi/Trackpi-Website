@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link, useNavigate } from 'react-router-dom';
 
+
 function Header() {
   const [showNavbar, setShowNavbar] = useState(false);
   const navigate = useNavigate();
@@ -41,10 +42,12 @@ function Header() {
         <Container fluid>
           <Navbar.Brand href="">
             <Link to={'/'} className="flex items-center text-decoration-none">
+            
               <h1 className="fw-bold brandname">
                 <span className="text-yellow-500">TRACK</span>
-                <span className="text-black">PI</span>
+                <span className="text-gray-600">PI</span>
               </h1>
+              
             </Link>
           </Navbar.Brand>
 
