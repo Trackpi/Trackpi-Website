@@ -1,9 +1,12 @@
 import React from 'react';
 import OurTeam from './OurTeam';
+import GetInTouch from '../components/GetInTouch';
+import PopUp from '../components/PopUp';
 
 function About() {
   return (
     <>
+        <PopUp/>
       <section className="flex justify-center items-center p-3 w-full h-screen about_section bg1 relative">
 
         <div className="flex flex-col items-center z-10">
@@ -19,6 +22,7 @@ function About() {
       <section className="mt-12">
         <OurTeam />
       </section>
+      <GetInTouch/>
     </>
   );
 }

@@ -796,7 +796,6 @@ html {
   display: inline-block;
   height: 70px;
   width: 70px;
-  float: left;
   text-decoration: none;
   margin: 0 5px;
   overflow: hidden;
@@ -836,7 +835,7 @@ html {
 }
 
 .wrapper .button span {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 500;
   height: 70px;
   transition: all .25s ease-in-out;

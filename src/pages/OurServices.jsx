@@ -6,10 +6,12 @@ import Hiring  from "./Hiring"
 import Procurement from "./Procurement"
 import SalesOutsourcing from "./SalesOutsourcing"
 import GetInTouch from '../components/GetInTouch';
+import PopUp from '../components/PopUp';
 
 function OurServices() {
   return (
     <div>
+      <PopUp/>
     <div className='overflow-x-hidden'>
           <section className="flex justify-center items-center p-3 w-full h-screen services_section bg1 relative">
 

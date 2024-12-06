@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import NewsTicker from '../components/NewsTicker';
+import GetInTouch from '../components/GetInTouch';
 
 function Home() {
   const options = { threshold: 0.1 };
@@ -326,6 +327,7 @@ function Home() {
           </Col>
         </Row>
       </section>
+      <GetInTouch/>
     </>
   );
 }
