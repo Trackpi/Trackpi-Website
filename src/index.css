@@ -13,13 +13,19 @@
 html {
   scroll-behavior: smooth;
 }
+h1 {
+  font-family: 'Sofia Sans', sans-serif;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
 
 /* Navbar base styles */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  background: linear-gradient(45deg, white, #FFE135, white);
+  background: hsla(0, 0%, 0%, 0.1);
   /* background: #595252; #feee9e; */
   color: white;
   padding: 15px 20px;
@@ -88,6 +94,7 @@ html {
   /* color: #ffcc00;  */
 }
 
+
 #navlink::before {
   content: '';
   position: absolute;
@@ -102,6 +109,9 @@ html {
   transition: transform 0.5s ease;
 }
 
+
+
+
 #navlink:hover::before {
   
   transform: scaleX(1);
@@ -109,15 +119,29 @@ html {
 }
 
 #navlink:hover {
-  background: linear-gradient(45deg, #666666, #333333);
-  -webkit-background-clip: text;
+  background: linear-gradient(45deg, #222, #333333);
+  background-clip: text;
   color: transparent; 
 }
 
-.home-text {
-  font-family: 'Sofia Sans', serif;
-  font-weight: bold;
+
+
+.home-text h1 {
+  font-size: 3rem;
+  color: #333;
 }
+/* General text styles for headings and subheadings */
+.working_heading,
+.working_subheading {
+  color: rgb(0, 0, 0); /* Black color */
+  text-align: center;
+  cursor: default;
+}
+
+.working_heading:hover {
+  color: white;
+}
+
 
 /* section 1  styling*/
 .bg1 {
@@ -851,6 +875,11 @@ html {
   height: 100vh;
   width: 100%;
   overflow: hidden; /* Prevents content overflow */
+ 
+  
+}
+.redSelect{
+  background-color: #f5cf10;
 }
 
 .connect_section::before {

@@ -45,7 +45,7 @@ function Header() {
             
               <h1 className="fw-bold brandname">
                 <span className="text-yellow-500">TRACK</span>
-                <span className="text-gray-600">PI</span>
+                <span className="text-gray-800">PI</span>
               </h1>
               
             </Link>
