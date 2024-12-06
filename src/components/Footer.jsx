@@ -58,13 +58,13 @@ function Footer() {
         <Col className='flex flex-col sm:items-center md:items-end' md={4}>
           <h4 className='text-danger'>Contact</h4>
           <div className='text-white'>
-            <i class='fa-location-dot fa-solid me-2'></i> Kakkanad, Kochi, India
+            <i className='fa-location-dot fa-solid me-2'></i> Kakkanad, Kochi, India
           </div>
           <div className='text-white'>
-            <i class='fa-phone fa-solid me-2'></i> +91 8078179646
+            <i className='fa-phone fa-solid me-2'></i> +91 8078179646
           </div>
           <div className='text-white'>
-            <i class='fa-envelope fa-solid me-2'></i> trackpi@gmail.com
+            <i className='fa-envelope fa-solid me-2'></i> trackpi@gmail.com
           </div>
         </Col>
       </Row>
