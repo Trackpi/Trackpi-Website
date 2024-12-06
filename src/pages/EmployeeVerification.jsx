@@ -85,7 +85,7 @@ function EmployeeVerification() {
       {/* Hero Section */}
       <section className="flex justify-center items-center p-3 w-full h-screen employ_section bg1 relative">
         <div className="flex flex-col items-center z-10">
-          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+          <h1 className="text-5xl md:text-7xl working_heading mb-5">
           Employee Verification 
           </h1>
           <p className="font-semibold text-md md:text-2xl working_subheading text-center">

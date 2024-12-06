@@ -82,11 +82,22 @@ html {
 #navlink:hover::before {
   transform: scaleX(1);
 }
+h1 {
+  font-family: 'Sofia Sans', sans-serif; /* Set your desired font-family */
+  font-weight: bold; /* Set a common font weight */
+  margin: 0; /* Remove default margin to avoid layout issues */
+  padding: 0; /* Remove unwanted padding */
+}
 
-.home-text {
+.home-text h1
+{
+  font-size: 3rem;
+  color: #333;
+}
+/* .home-text {
   font-family: 'Sofia Sans', serif;
   font-weight: bold;
-}
+} */
 
 /* section 1  styling*/
 .bg1 {
@@ -809,6 +820,6 @@ html {
 }
 
 .custom-scrollbar {
-  scrollbar-width: auto;
+  scrollbar-width: thin;
   scrollbar-color: #e4be03 #f3f3f3; 
 }

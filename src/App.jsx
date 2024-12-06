@@ -9,6 +9,7 @@ import OurServices from './pages/OurServices'
 import OurTeam from './pages/OurTeam'
 import EmployeeVerification from './pages/EmployeeVerification'
 import Connect from './pages/Connect'
+import NotFound from './pages/NotFound';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,6 +25,7 @@ function App() {
         <Route path='/our-team' element={<OurTeam />}></Route>
         <Route path='/employee-verification' element={<EmployeeVerification />}></Route>
         <Route path='/connect-us' element={<Connect />}></Route>
+        <Route path="*" element={<NotFound />} /> 
       </Routes>
       <Footer />
     </div>

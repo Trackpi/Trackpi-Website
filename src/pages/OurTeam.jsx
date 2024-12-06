@@ -15,7 +15,7 @@ function OurTeam() {
     <>
       <section className="flex justify-center items-center p-5 w-full">
         <div className="flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl hover:text-sky-500 home-text">
+          <h1 className="text-5xl md:text-7xl hover:text-sky-500">
             Who We Are
           </h1>
         </div>

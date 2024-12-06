@@ -21,7 +21,7 @@ function GetInTouch() {
   return (
     <>
          <a href="/connect-us" className="to-top" ref={toTopRef}>
-         <i class="fa-solid fa-handshake-simple"></i><span> Get In Touch</span>
+         <i className="fa-solid fa-handshake-simple"></i><span> Get In Touch</span>
          </a>
     </>
   )

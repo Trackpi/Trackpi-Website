@@ -40,7 +40,7 @@ const SalesOutsourcing = () => {
           transition={{ duration: 0.8, delay: 0.3 ,ease:"easeInOut"}}
         >
           <h1
-            className="text-5xl md:text-7xl text-amber-500 home-text"
+            className="text-5xl md:text-7xl text-amber-500"
             style={{ textShadow: '2px 2px black' }}
           >
             Sales Outsourcing

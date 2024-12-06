@@ -25,7 +25,7 @@ function Hiring() {
           transition={{ duration: 0.8,ease:"easeInOut", delay: 0.3 }}
         >
           <h1
-            className="text-5xl md:text-7xl text-amber-500 home-text hiring_heading"
+            className="text-5xl md:text-7xl text-amber-500 hiring_heading"
           >
             Hiring & Retention
           </h1>
