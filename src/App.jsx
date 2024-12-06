@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css'; 
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer';
@@ -9,6 +10,9 @@ import OurServices from './pages/OurServices'
 import OurTeam from './pages/OurTeam'
 import EmployeeVerification from './pages/EmployeeVerification'
 import Connect from './pages/Connect'
+import Sidebar from './components/Sidebar';
+import NotFound from './pages/NotFound';
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +21,7 @@ function App() {
     
     <div className='' >
       <Header />
+      <Sidebar/>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/about' element={<About />}></Route>
@@ -24,6 +29,7 @@ function App() {
         <Route path='/our-team' element={<OurTeam />}></Route>
         <Route path='/employee-verification' element={<EmployeeVerification />}></Route>
         <Route path='/connect-us' element={<Connect />}></Route>
+        <Route path="*" element={<NotFound />} /> 
       </Routes>
       <Footer />
     </div>

@@ -13,7 +13,6 @@ const MarketPositioning = () => {
   // Intersection Observers
   const [introRef, introInView] = useInView({ triggerOnce: false, threshold: 0.2 });
   const [cardsRef, cardsInView] = useInView({ triggerOnce: false, threshold: 0.2 });
-  const [ctaRef, ctaInView] = useInView({ triggerOnce: false, threshold: 0.2 });
 
   return (
     <div>
