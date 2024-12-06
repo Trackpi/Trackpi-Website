@@ -93,8 +93,6 @@ h1 {
   font-size: 1.1rem; 
   /* color: #ffcc00;  */
 }
-
-
 #navlink::before {
   content: '';
   position: absolute;
@@ -108,14 +106,8 @@ h1 {
   
   transition: transform 0.5s ease;
 }
-
-
-
-
 #navlink:hover::before {
-  
   transform: scaleX(1);
-
 }
 
 #navlink:hover {
@@ -123,8 +115,6 @@ h1 {
   background-clip: text;
   color: transparent; 
 }
-
-
 
 .home-text h1 {
   font-size: 3rem;
