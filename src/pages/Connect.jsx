@@ -1,7 +1,15 @@
+
+import React from 'react'
+import { Container, Row, Col, Button } from 'react-bootstrap'
+
+import Details from '../components/Form';
+
+
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+
 
 function Connect() {
   return (
@@ -16,6 +24,13 @@ function Connect() {
           </p>
         </div>
       </section>
+
+
+          <Row className='mt-5 md:w-1/2'>
+            <h1 className='mb-3 fw-bold display-5'>You’re ready to <br /> take the next step</h1>
+            <p className='mb-5 text-xl md:text-justify md:text-lg'>We’re all wrestling with complexity. Every company, work function, and team now faces a tall order: to be more adaptive, strategic, effective, human, and equitable amidst growing uncertainty.</p>
+            <Details/>
+            
 
       <section className="mt-32 w-full">
         <Container className="flex flex-col items-center text-justify">
@@ -122,6 +137,7 @@ function Connect() {
                 </h6>
               </Row>
             </Form>
+
           </Row>
         </Container>
       </section>
