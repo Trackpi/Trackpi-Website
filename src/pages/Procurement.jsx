@@ -10,7 +10,6 @@ function Procurement() {
   const [refHeader, inViewHeader] = useInView(options);
   const [refFirstSection, inViewFirstSection] = useInView(options);
   const [refSecondSection, inViewSecondSection] = useInView(options);
-  const [refGetInTouch, inViewGetInTouch] = useInView(options);
 
   return (
     <div>
@@ -22,10 +21,10 @@ function Procurement() {
           className="flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={inViewHeader ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8,ease:"easeInOut" }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
           <h1
-            className="text-5xl md:text-7xl text-amber-500  home-text"
+            className="text-5xl md:text-7xl text-amber-500"
             style={{ textShadow: '2px 2px black' }}
           >
             Procurement & Risk Management
@@ -42,19 +41,22 @@ function Procurement() {
               className="w-full rounded-lg shadow-lg"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8,ease:"easeInOut" }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
           </Col>
           <Col className="p-4 w-100">
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8,ease:"easeInOut" }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              <h2 className="text-2xl font-bold text-amber-500">
+              <h2 className="text-2xl font-bold text-amber-500 fw-bold display-6">
                 Strategic Procurement Solutions
               </h2>
-              <p style={{textAlign:"justify"}}  className="text-xl md:text-justify md:text-lg">
+              <p
+                style={{ textAlign: 'justify' }}
+                className="text-xl md:text-justify md:text-lg"
+              >
                 Our Strategic Procurement Solutions focus on optimizing your
                 supply chain and procurement processes to drive cost-efficiency,
                 enhance supplier relationships, and ensure value for money. We
@@ -77,19 +79,22 @@ function Procurement() {
               className="w-full rounded-lg shadow-lg"
               initial={{ opacity: 0, x: 50 }}
               animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8,ease:"easeInOut" }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
           </Col>
           <Col className="p-4 w-100">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8 ,ease:"easeInOut"}}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              <h2 className="text-2xl font-bold text-amber-500">
+              <h2 className="text-2xl font-bold text-amber-500 fw-bold display-6">
                 Comprehensive Risk Management Advisory
               </h2>
-              <p style={{textAlign:"justify"}}  className="text-xl md:text-justify md:text-lg">
+              <p
+                style={{ textAlign: 'justify' }}
+                className="text-xl md:text-justify md:text-lg"
+              >
                 At the heart of our Comprehensive Risk Management Advisory, we
                 provide robust strategies to identify, assess, and mitigate
                 risks across your entire organization. From financial,
@@ -101,26 +106,6 @@ function Procurement() {
           </Col>
         </Row>
       </section>
-
-      {/* <section
-        ref={refGetInTouch}
-        className="w-full h-full bg-yellow-300 py-10 px-10"
-      >
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inViewGetInTouch ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl text-center mb-4">
-            Ready to Elevate Your Procurement?
-          </h2>
-
-          <Button className="bg-black mt-5 p-3 rounded-pill btn btn-lg">
-            Get in Touch
-          </Button>
-        </motion.div>
-      </section> */}
     </div>
   );
 }

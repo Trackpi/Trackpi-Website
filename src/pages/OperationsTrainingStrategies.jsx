@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import sales from '../images/sale.jpg'
+import sales from '../images/sale.jpg';
 
 const OperationsTrainingStrategies = () => {
   // Animation variants
@@ -35,7 +35,7 @@ const OperationsTrainingStrategies = () => {
           variants={animationVariants}
           initial="hidden"
           animate={introInView ? 'visible' : 'hidden'}
-          transition={{ duration: 0.8,ease:"easeInOut" }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
           <h1
             className="text-4xl md:text-6xl font-bold text-amber-500"
@@ -43,7 +43,10 @@ const OperationsTrainingStrategies = () => {
           >
             Operations Training & Strategies
           </h1>
-          <p style={{textAlign:"justify"}}  className="text-xl mt-4 max-w-3xl mx-auto">
+          <p
+            style={{ textAlign: 'justify' }}
+            className="text-xl mt-4 max-w-3xl mx-auto"
+          >
             Transform your operations with our tailored strategies. Our training
             programs focus on optimizing processes, enhancing efficiency, and
             empowering your team to excel in dynamic environments.
@@ -57,11 +60,11 @@ const OperationsTrainingStrategies = () => {
           <motion.div
             ref={whyChooseRef}
             variants={animationVariants}
-            initial={{ opacity: 0, x: 50 }} 
-            animate={whyChooseInView ?  { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8,ease:"easeInOut" }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={whyChooseInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
           >
-            <h2 className="text-3xl font-bold text-amber-500 mb-4 p-2">
+            <h2 className="text-3xl font-bold text-amber-500 mb-4 p-2 fw-bold display-6">
               Why Choose Us?
             </h2>
             <ul className="list-disc list-inside text-xl md:text-lg">
@@ -86,9 +89,9 @@ const OperationsTrainingStrategies = () => {
           <motion.div
             ref={whyChooseRef}
             variants={animationVariants}
-            initial={{ opacity: 0, x: -50 }} 
-            animate={whyChooseInView ?  { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8,ease:"easeInOut" }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={whyChooseInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
             className="flex justify-center p-4 w-100"
           >
             <img
@@ -102,7 +105,7 @@ const OperationsTrainingStrategies = () => {
 
       {/* Key Benefits Section */}
       <section className="p-10 text-center">
-        <h2 className="text-3xl font-bold text-amber-600">
+        <h2 className="text-3xl font-bold text-amber-500 fw-bold display-6">
           Key Benefits of Our Training
         </h2>
         <div
@@ -132,7 +135,11 @@ const OperationsTrainingStrategies = () => {
               variants={animationVariants}
               initial="hidden"
               animate={benefitsInView ? 'visible' : 'hidden'}
-              transition={{ duration: 0.6,ease:"easeInOut", delay: index * 0.2 }}
+              transition={{
+                duration: 0.6,
+                ease: 'easeInOut',
+                delay: index * 0.2,
+              }}
             >
               <h3 className="font-bold text-lg text-amber-500">
                 {benefit.title}
@@ -142,30 +149,6 @@ const OperationsTrainingStrategies = () => {
           ))}
         </div>
       </section>
-
-      {/* Call-to-Action Section */}
-      {/* <section
-        className="p-10 bg-yellow-300 text-white text-center"
-        ref={ctaRef}
-      >
-        <motion.div
-          variants={animationVariants}
-          initial="hidden"
-          animate={ctaInView ? 'visible' : 'hidden'}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-3xl text-black">
-            Ready to Transform Your Operations?
-          </h2>
-          <p className="mt-3 text-lg text-black">
-            Join us to drive operational excellence and position your
-            organization for long-term success.
-          </p>
-          <Button className="bg-black mt-5 p-3 rounded-pill btn btn-lg">
-            Get in Touch
-          </Button>
-        </motion.div>
-      </section> */}
     </div>
   );
 };

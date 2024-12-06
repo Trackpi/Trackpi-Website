@@ -1,17 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import training from "../images/trainings.jpg";
-import expert from "../images/expert.jpg";
-import result from "../images/growth.jpg";
-
+import training from '../images/trainings.jpg';
+import expert from '../images/expert.jpg';
+import result from '../images/growth.jpg';
 
 const SalesTrainingStrategies = () => {
   const options = { threshold: 0.1 };
 
   const [refSalesTraining, inViewSalesTraining] = useInView(options);
   const [refFeatures, inViewFeatures] = useInView(options);
-  const [refCTA, inViewCTA] = useInView(options);
 
   const features = [
     {
@@ -38,28 +36,34 @@ const SalesTrainingStrategies = () => {
     <div>
       <section
         ref={refSalesTraining}
-        className=" bg-black text-white flex justify-center items-center  p-5 w-full"
+        className="bg_yellow flex justify-center items-center  p-5 w-full"
       >
         <motion.div
           className="flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={inViewSalesTraining ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8,ease:"easeInOut", delay: 0.3 }}
+          transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.3 }}
         >
           <h1
-            className="text-5xl md:text-7xl  text-amber-500  home-text"
+            className="text-5xl md:text-7xl"
             style={{ textShadow: '2px 2px white' }}
           >
             Sales Training Strategies
           </h1>
 
-          <p style={{textAlign:"justify"}}  className=" text-xl text-center  max-w-3xl md:text-lg  md:text-justify ">
-            Our sales training strategies are designed to equip your team with the skills and insights they need to succeed in a competitive market. With expert guidance and interactive sessions, we focus on practical solutions and growth-oriented techniques.
+          <p
+            style={{ textAlign: 'justify' }}
+            className=" text-xl text-center  max-w-3xl md:text-lg  md:text-justify "
+          >
+            Our sales training strategies are designed to equip your team with
+            the skills and insights they need to succeed in a competitive
+            market. With expert guidance and interactive sessions, we focus on
+            practical solutions and growth-oriented techniques.
           </p>
         </motion.div>
       </section>
 
-      <section ref={refFeatures} className="bg-black  text-white pb-10 px-10">
+      <section ref={refFeatures} className="bg_yellow  pb-10 px-10">
         {features.map((feature, index) => {
           const [ref, inView] = useInView({ threshold: 0.1 });
 
@@ -82,7 +86,11 @@ const SalesTrainingStrategies = () => {
                       ? { opacity: 1, x: 0 }
                       : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }
                   }
-                  transition={{ duration: 0.8,ease:"easeInOut", delay: index * 0.2 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: 'easeInOut',
+                    delay: index * 0.2,
+                  }}
                 />
               </div>
               <motion.div
@@ -93,9 +101,13 @@ const SalesTrainingStrategies = () => {
                     ? { opacity: 1, x: 0 }
                     : { opacity: 0, x: index % 2 === 0 ? 50 : -50 }
                 }
-                transition={{ duration: 0.8,ease:"easeInOut", delay: index * 0.2 }}
+                transition={{
+                  duration: 0.8,
+                  ease: 'easeInOut',
+                  delay: index * 0.2,
+                }}
               >
-                <h2 className="text-2xl font-bold text-amber-500">
+                <h2 className="text-2xl font-bold  fw-bold display-6">
                   {feature.title}
                 </h2>
                 <p className="text-xl md:text-justify md:text-lg">
@@ -106,22 +118,6 @@ const SalesTrainingStrategies = () => {
           );
         })}
       </section>
-
-      {/* <section ref={refCTA} className="bg-yellow-300 p-3 text-black py-10">
-        <motion.div
-          className="flex flex-col items-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inViewCTA ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl text-center mb-4">
-            Ready to Elevate Your Sales Team?
-          </h2>
-          <Button className="bg-black mt-5 p-3 rounded-pill btn btn-lg">
-            Get in Touch
-          </Button>
-        </motion.div>
-      </section> */}
     </div>
   );
 };
