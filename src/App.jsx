@@ -10,8 +10,12 @@ import OurServices from './pages/OurServices'
 import OurTeam from './pages/OurTeam'
 import EmployeeVerification from './pages/EmployeeVerification'
 import Connect from './pages/Connect'
+
+import Personel from './pages/personel';
+
 import Sidebar from './components/Sidebar';
 import NotFound from './pages/NotFound';
+
 
 
 function App() {
@@ -29,7 +33,11 @@ function App() {
         <Route path='/our-team' element={<OurTeam />}></Route>
         <Route path='/employee-verification' element={<EmployeeVerification />}></Route>
         <Route path='/connect-us' element={<Connect />}></Route>
+
+        <Route path='/personel' element={<Personel/>}></Route>
+
         <Route path="*" element={<NotFound />} /> 
+
       </Routes>
       <Footer />
     </div>

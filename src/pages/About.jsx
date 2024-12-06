@@ -23,9 +23,14 @@ function About() {
         <OurTeam />
       </section>
 
+      <section className='mb-28'>
+      <Brochure/>
+
+
       <GetInTouch/>
       <section className="mb-32">
         <Brochure />
+
       </section>
     </>
   );
