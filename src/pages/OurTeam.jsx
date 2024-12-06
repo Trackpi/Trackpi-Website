@@ -15,9 +15,7 @@ function OurTeam() {
     <>
       <section className="flex justify-center items-center p-5 w-full">
         <div className="flex flex-col items-center">
-        <h1
-            className="text-5xl md:text-7xl text-amber-500 home-text hiring_heading"
-          >
+          <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
         </div>
