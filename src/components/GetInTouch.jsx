@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function GetInTouch() {
   const toTopRef = useRef(null);
@@ -21,12 +22,12 @@ function GetInTouch() {
 
   return (
     <div className="wrapper">
-      <a href="/connect-us" className="button to-top" ref={toTopRef}>
+      <NavLink to="/connect-us" className="button to-top" ref={toTopRef}>
         <div className="icon">
           <i className="fas fa-handshake"></i>
         </div>
         <span style={{color:"black"}}>Get In Touch</span>
-      </a>
+      </NavLink>
     </div>
   );
 }
