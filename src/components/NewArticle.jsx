@@ -18,7 +18,7 @@ const NewsArticle = () => {
         setLoading(true); // Start loading
         const response = await axios.get(
           'https://newsapi.org/v2/top-headlines?country=us&apiKey=9739340a28a74b57988ec33d87fb8a09'
-        ); // Replace with your API URL
+        ); 
         console.log(response.data, 'response'); // Log the full response for debugging
 
         setArticles(response.data.articles);
@@ -35,16 +35,16 @@ const NewsArticle = () => {
 
   return (
     <div
-      className={`fixed left-0 bottom-1/4 transition-all duration-300 z-50 ${
+      className={`fixed right-0 bottom-1/4 transition-all duration-300 z-50 ${
         isArticlesExpanded
           ? 'w-80 h-72 bg-white shadow-lg rounded-md'
           : 'w-44 h-12 bg-gradient-to-r from-yellow-400 to-amber-500 drop-shadow-lg rounded-md'
-      } flex flex-col items-center pt-2`}
+      } flex flex-col items-center`}
     >
       {/* Toggle Button */}
       <button
         className={`absolute ${
-          isArticlesExpanded ? 'top-2 left-2' : 'right-8 top-6'
+          isArticlesExpanded ? 'top-1 left-1' : 'right-8 top-6'
         } bg-transparent text-white font-semibold`}
         onClick={toggleArticlesExpand}
       >
@@ -71,7 +71,7 @@ const NewsArticle = () => {
       {/* Articles Content */}
       {isArticlesExpanded && (
         <motion.div
-          className="overflow-y-auto mt-4 w-full custom-scrollbar"
+          className="overflow-y-auto mt-0 w-full custom-scrollbar"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
@@ -85,7 +85,7 @@ const NewsArticle = () => {
           )}
 
           {Array.isArray(articles) && articles.length > 0 && articles.map((article, index) => (
-            <div key={index} className="p-4 border-b last:border-none hover:bg-gray-100">
+            <div key={index} className="p-4 border-b last:border-none bg-amber-100  shadow-lg rounded-md">
               {/* Display Image */}
               {article.urlToImage && (
                 <img
