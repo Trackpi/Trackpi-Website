@@ -25,9 +25,8 @@ function About() {
 
       <section className='mb-28'>
       <Brochure/>
-
-
       <GetInTouch/>
+      </section>
       <section className="mb-32">
         <Brochure />
 
