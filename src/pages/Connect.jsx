@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Details from '../components/Form';
-import { Container, Row,  Button } from 'react-bootstrap';
+import { Container, Row} from 'react-bootstrap';
 
 function Connect() {
   return (
