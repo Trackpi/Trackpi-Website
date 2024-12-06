@@ -17,16 +17,7 @@ function Home() {
 
   return (
     <>
-      <section className="flex justify-center items-center p-3 w-full h-full home-section bg1">
-        <div className="home-section-overlay"></div>
-        <div className="flex flex-col items-center">
-          <h1 className="fw-bold md:text-7xl hover:text-sky-500 display-1 home-text">
-            Reinvent Your <br />
-            Organization
-          </h1>
-          <div className="font-semibold text-md md:text-2xl">
-            The Ready is a future-of-work consultancy committed to changing{' '}
-    <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
+     <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
         <div className="flex flex-col items-center z-10">
           <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
           Reinvent Your Organization
@@ -42,7 +33,6 @@ function Home() {
             </div>
         </div>
       </section>
-     
 
       <section ref={refFirstSection} className="mt-5 w-full h-full">
         <Container>
