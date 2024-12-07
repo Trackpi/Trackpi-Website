@@ -1,10 +1,11 @@
 //import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
+
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 import TeamListMemberCrd from '../components/teamListMemberCrd';
+import Brochure from '../components/Brochure';
 function OurTeam() {
   const options = { threshold: 0.1 };
 
@@ -19,6 +20,7 @@ function OurTeam() {
           <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
+          <Brochure />
         </div>
       </section>
 
@@ -57,7 +59,9 @@ function OurTeam() {
           </Row>
         </Container>
       </section>
-
+<section>
+<Brochure/>
+</section>
       <section
         ref={refSecondSection}
         className="mt-0 w-full h-full bg2 flex items-center"
@@ -96,7 +100,7 @@ function OurTeam() {
         </Container>
       </section>
 
-      <section ref={refThirdSection} className="mt-0 w-full h-full">
+      <section ref={refThirdSection} className="mt-0  w-full h-full">
         <Container>
           <Row>
             <Col md={6} className="flex flex-col items-center pt-12">
@@ -151,132 +155,7 @@ function OurTeam() {
             </h1>
           </Row>
           <TeamListMemberCrd/>
-          <Row className="flex justify-center items-center">
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63fce813121cf15b66a4a342_image_SharanBall-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Sharan Bal</Card.Title>
-                  <Card.Text>Georgia, USA</Card.Text>
-                 
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/65204a533d23e5f0bd75aeb5_image_MattBasford-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Matt Basford</Card.Title>
-                  <Card.Text>New York, USA</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/6733b5ea13122525ab85c122_image_JasonBeck%402x-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Jason Beck</Card.Title>
-                  <Card.Text>California, USA</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-
-          <Row className="flex justify-center items-center">
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63fce813121cf15b66a4a342_image_SharanBall-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Sharan Bal</Card.Title>
-                  <Card.Text>Georgia, USA</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/65204a533d23e5f0bd75aeb5_image_MattBasford-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Matt Basford</Card.Title>
-                  <Card.Text>New York, USA</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/6733b5ea13122525ab85c122_image_JasonBeck%402x-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Jason Beck</Card.Title>
-                  <Card.Text>California, USA</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-
-          <Row className="flex justify-center items-center">
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63fce813121cf15b66a4a342_image_SharanBall-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Sharan Bal</Card.Title>
-                  <Card.Text>Georgia, USA</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/65204a533d23e5f0bd75aeb5_image_MattBasford-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Matt Basford</Card.Title>
-                  <Card.Text>New York, USA</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4} sm={12}>
-              <Card>
-                <Card.Img
-                  className="team-img"
-                  variant="top"
-                  src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/6733b5ea13122525ab85c122_image_JasonBeck%402x-p-500.webp"
-                />
-                <Card.Body>
-                  <Card.Title>Jason Beck</Card.Title>
-                  <Card.Text>California, USA</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+         
         </Container>
       </section>
     </>
