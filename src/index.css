@@ -25,7 +25,7 @@ h1 {
   position: fixed;
   top: 0;
   width: 100%;
-  background: hsla(0, 0%, 0%, 0.1);
+  background: hsla(0, 0%, 4%, 0.525);
   /* background: #595252; #feee9e; */
   color: white;
   padding: 15px 20px;
@@ -111,7 +111,7 @@ h1 {
 }
 
 #navlink:hover {
-  background: linear-gradient(45deg, #222, #333333);
+  background: linear-gradient(45deg, #222, #090909);
   background-clip: text;
   color: transparent; 
 }
