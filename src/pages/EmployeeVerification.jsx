@@ -225,6 +225,45 @@ function EmployeeVerification() {
         </section>
       )}
 
+        {/* Benefits of Verification Section */}
+        <section className="py-16 px-6 bg-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-semibold mb-6 text-black">
+            Why Verify Employees?
+          </h2>
+          <p className="text-black mb-8">
+            Ensuring that employee information is accurate helps maintain a
+            trustworthy workplace environment and reduces the risk of fraudulent
+            activities.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="hover:shadow-2xl transform hover:scale-105 p-6 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
+              <h3 className="text-xl font-medium text-black mb-2">
+                Authenticity
+              </h3>
+              <p className="text-black">
+                Verify the authenticity of employee credentials and background
+                details.
+              </p>
+            </div>
+            <div className="p-6 hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
+              <h3 className="text-xl font-medium text-black mb-2">Security</h3>
+              <p className="text-black">
+                Protect your organization from unauthorized individuals.
+              </p>
+            </div>
+            <div className="p-6 hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg hover:bg-blue-500">
+              <h3 className="text-xl font-medium text-black mb-2">
+                Efficiency
+              </h3>
+              <p className="text-black">
+                Streamline the hiring and employee verification process.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <GetInTouch />
       <ToastContainer />
     </>
