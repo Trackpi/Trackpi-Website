@@ -22,13 +22,14 @@ function GetInTouch() {
 
   return (
     <div className="wrapper">
-      <NavLink to="/connect-us" className="button to-top" ref={toTopRef}>
-        <div className="icon">
-          <i className="fas fa-handshake"></i>
-        </div>
-        <span style={{color:"black"}}>Get In Touch</span>
-      </NavLink>
-    </div>
+    <NavLink to="/connect-us" className="button to-top" ref={toTopRef}>
+      <div className="icon">
+        <i className="fas fa-handshake"></i>  {/* Font Awesome Handshake Icon */}
+      </div>
+      <span style={{color:"black"}}>Get In Touch</span>
+    </NavLink>
+  </div>
+  
   );
 }
 

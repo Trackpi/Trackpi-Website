@@ -570,7 +570,7 @@ h1 {
 /* Our services */
 
 .bg_yellow {
-  background-color: #fde047;
+  background-color: rgba(253, 223, 71, .6);
 }
 .ourServices {
   position: relative;
@@ -612,7 +612,7 @@ h1 {
 
 /* Get in Touch */
 .to-top {
-  background-color: #fde047 !important;
+  background-color: #fde047 ;
   position: fixed;
   bottom: 1rem;
   right: 2rem;
@@ -633,17 +633,6 @@ h1 {
   font-weight: 600;
 }
 
-.to-top i {
-  color: black;
-  border-radius: 50px;
-  background-color: #fde047;
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  width: 70px;
-}
 .to-top:hover i {
   font-size: 33px;
   transition: all 0.25s ease-in-out;
@@ -675,8 +664,8 @@ h1 {
 
 .wrapper .button {
   display: inline-block;
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
   text-decoration: none;
   margin: 0 5px;
   overflow: hidden;
@@ -688,18 +677,20 @@ h1 {
 }
 
 .wrapper .button:hover {
-  width: 225px;
+  width: 180px;
 }
 
 .wrapper .button .icon {
   display: inline-block;
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
   color: #000;
   text-align: center;
   border-radius: 50px;
   box-sizing: border-box;
-  line-height: 60px;
+  line-height: 50px;
   transition: all 0.25s ease-in-out;
 }
 
@@ -707,7 +698,9 @@ h1 {
   background: #fde047;
 }
 .wrapper .button .icon i {
-  font-size: 30px;
+  font-size: 16px;
+  scale: 2;
+  padding: 15px 0;
   transition: all 0.25s ease-in-out;
 }
 
@@ -716,9 +709,9 @@ h1 {
 }
 
 .wrapper .button span {
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 500;
-  height: 70px;
+  height: 20px;
   transition: all 0.25s ease-in-out;
 }
 .wrapper .button:nth-child(1) span {
