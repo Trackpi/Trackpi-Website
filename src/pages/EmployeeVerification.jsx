@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Verify } from 'react-puzzle-captcha';
 import 'react-puzzle-captcha/dist/react-puzzle-captcha.css';
+import GetInTouch from '../components/GetInTouch';
+import { toast, ToastContainer } from 'react-toastify';
 
 function EmployeeVerification() {
   const [formData, setFormData] = useState({
     employeeId: ''
   });
-
   const [errors, setErrors] = useState({});
   const [searchResults, setSearchResults] = useState([]);
   const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -36,13 +37,10 @@ function EmployeeVerification() {
 
     if (!employeeId) {
       validationErrors.general = 'Please fill the field.';
-    }
-    else if (!captchaVerified) {
+    } else if (employeeId && !/^[a-zA-Z0-9]+$/.test(employeeId)) {
+      validationErrors.general = 'Employee ID must be alphanumeric.';
+    } else if (!captchaVerified) {
       validationErrors.general = 'Captcha not verified';
-    }
-
-    else if (employeeId && !/^[a-zA-Z0-9]+$/.test(employeeId)) {
-      validationErrors.employeeId = 'Employee ID must be alphanumeric.';
     }
 
     setErrors(validationErrors);
@@ -76,7 +74,6 @@ function EmployeeVerification() {
     }
   };
 
-
   // Handle CAPTCHA success
   const handleCaptchaSuccess = () => {
     setCaptchaVerified(true);
@@ -94,14 +91,20 @@ function EmployeeVerification() {
     setIsTouched(true); // Mark the field as touched
     handleChange(e); // Update the form data
   };
-  const verifyEmployee = () => {
-    setTimeout(() => {
-      setErrors(""); 
-    }, 3000); 
-    setTimeout(() => {
-      setFormData({employeeId:""})
-    }, 300); 
+
+  const resetForm = () => {
+    setFormData({ employeeId: "" });
+    setCaptchaVerified(false);
+    setCaptchaMessage('');
+    setIsTouched(false);
   };
+
+  // Show toast notification when there's a general error
+  useEffect(() => {
+    if (errors.general) {
+      toast.info(errors.general);
+    }
+  }, [errors.general]);
 
   return (
     <>
@@ -144,7 +147,7 @@ function EmployeeVerification() {
                 <p className="text-red-500 text-sm">{errors.employeeId}</p>
               )}
             </div>
-            
+
             {/* CAPTCHA */}
             {isTouched && !captchaVerified && (
               <>
@@ -165,30 +168,25 @@ function EmployeeVerification() {
             )}
 
             {/* CAPTCHA Message */}
-            {captchaMessage && (
-              <p
-                className={`text-sm text-center ${
-                  captchaVerified ? 'text-green-600' : 'text-red-500'
-                }`}
-              >
-                {captchaMessage}
-              </p>
-            )}
+            <p className='fw-bold  text-success'>
+              {captchaMessage && (
+                <>
+                  <i className="fa-solid fa-check fa-beat me-2 fw-bolder"></i>
+                  CAPTCHA verification completed successfully!
+                </>
+              )}
+            </p>
 
-            {/* General Error */}
-            {errors.general && (
-              <p className="text-center text-red-500">{errors.general}</p>
-            )}
 
             {/* Submission Button */}
             <div className="text-center">
-            <button
-              type="submit"
-              onClick={verifyEmployee} // Correctly pass the function reference
-              className="mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 px-6 py-2 rounded-md font-semibold text-black"
-            >
-              Verify Employee
-            </button>
+              <button
+                type="submit"
+                disabled={loading} // Disable button when loading
+                className="mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 px-6 py-2 rounded-md font-semibold text-black"
+              >
+                {loading ? "Verifying..." : "Verify Employee"}
+              </button>
             </div>
           </form>
         </div>
@@ -227,20 +225,20 @@ function EmployeeVerification() {
         </section>
       )}
 
-      {/* Benefits of Verification Section */}
-      <section className="bg-white px-6 py-16">
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="mb-6 font-semibold text-3xl text-black">
+        {/* Benefits of Verification Section */}
+        <section className="py-16 px-6 bg-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-semibold mb-6 text-black">
             Why Verify Employees?
           </h2>
-          <p className="mb-8 text-black">
+          <p className="text-black mb-8">
             Ensuring that employee information is accurate helps maintain a
             trustworthy workplace environment and reduces the risk of fraudulent
             activities.
           </p>
-          <div className="gap-8 grid grid-cols-1 md:grid-cols-3">
-            <div className="hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 shadow-lg p-6 rounded-md">
-              <h3 className="mb-2 font-medium text-black text-xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="hover:shadow-2xl transform hover:scale-105 p-6 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
+              <h3 className="text-xl font-medium text-black mb-2">
                 Authenticity
               </h3>
               <p className="text-black">
@@ -248,14 +246,14 @@ function EmployeeVerification() {
                 details.
               </p>
             </div>
-            <div className="bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 shadow-lg hover:shadow-2xl p-6 rounded-md transform hover:scale-105">
-              <h3 className="mb-2 font-medium text-black text-xl">Security</h3>
+            <div className="p-6 hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
+              <h3 className="text-xl font-medium text-black mb-2">Security</h3>
               <p className="text-black">
                 Protect your organization from unauthorized individuals.
               </p>
             </div>
-            <div className="hover:bg-blue-500 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 shadow-lg hover:shadow-2xl p-6 rounded-md transform hover:scale-105">
-              <h3 className="mb-2 font-medium text-black text-xl">
+            <div className="p-6 hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg hover:bg-blue-500">
+              <h3 className="text-xl font-medium text-black mb-2">
                 Efficiency
               </h3>
               <p className="text-black">
@@ -265,6 +263,9 @@ function EmployeeVerification() {
           </div>
         </div>
       </section>
+
+      <GetInTouch />
+      <ToastContainer />
     </>
   );
 }

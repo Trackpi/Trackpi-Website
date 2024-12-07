@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
+import TeamListMemberCrd from '../components/teamListMemberCrd';
 function OurTeam() {
   const options = { threshold: 0.1 };
 
@@ -15,9 +16,7 @@ function OurTeam() {
     <>
       <section className="flex justify-center items-center p-5 w-full">
         <div className="flex flex-col items-center">
-        <h1
-            className="text-5xl md:text-7xl text-amber-500 home-text hiring_heading"
-          >
+          <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
         </div>
@@ -151,7 +150,7 @@ function OurTeam() {
               The Ready from A–Z
             </h1>
           </Row>
-
+          <TeamListMemberCrd/>
           <Row className="flex justify-center items-center">
             <Col md={4} sm={12}>
               <Card>
@@ -163,6 +162,7 @@ function OurTeam() {
                 <Card.Body>
                   <Card.Title>Sharan Bal</Card.Title>
                   <Card.Text>Georgia, USA</Card.Text>
+                 
                 </Card.Body>
               </Card>
             </Col>
