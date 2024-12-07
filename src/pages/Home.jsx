@@ -1,20 +1,36 @@
 // Created by Shalu
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import GetInTouch from '../components/GetInTouch';
 import NewsStream from '../components/NewsStream';
-import NewsArticle from '../components/NewArticle';
-
 function Home() {
   const options = { threshold: 0.1 };
 
   const [refFirstSection, inViewFirstSection] = useInView(options);
   const [refSecondSection, inViewSecondSection] = useInView(options);
   const [refThirdSection, inViewThirdSection] = useInView(options);
+  const TypingEffect = ({ text, delay = 0.1 }) => {
+    // Split text into individual characters
+    const splitText = text.split('').map((char, index) => (
+      <motion.span
+        key={index}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: index * delay, duration: 0.05 }}
+      >
+        {char}
+      </motion.span>
+    ));
 
+    return (
+      <motion.h1 className="pb-3 fw-bold text-yellow-500">
+        {splitText}
+      </motion.h1>
+    );
+  };
   return (
     <>
       <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
@@ -37,7 +53,7 @@ function Home() {
       <section ref={refFirstSection} className="mt-2 w-full h-full">
         <Container>
           <Row>
-            <Col  className="flex flex-col items-center pt-12">
+            <Col className="flex flex-col items-center pt-12">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
@@ -110,7 +126,6 @@ function Home() {
       </section>
       <section className="relative z-20">
         <NewsStream />
-        <NewsArticle />
       </section>
 
       <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
@@ -121,9 +136,12 @@ function Home() {
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 1.0, ease: 'easeOut' }}
             >
-              <h1 className="pb-3 fw-bold text-yellow-500">
+              <TypingEffect
+                text="The old ways of working aren’t the only ways of working"
+              />
+              {/* <h1 className="pb-3 fw-bold text-yellow-500">
                 The old ways of working aren’t <br /> the only ways of working
-              </h1>
+              </h1> */}
 
               <p className="fw-bold text-2xl">
                 We help organizations evolve new practices:
@@ -331,7 +349,7 @@ function Home() {
           </Col>
         </Row>
       </section>
-      <GetInTouch/>
+      <GetInTouch />
     </>
   );
 }
