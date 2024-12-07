@@ -2,8 +2,6 @@ import React from 'react'
 import { Container, Row} from 'react-bootstrap'
 import Details from '../components/Form';
 
-
-
 function Connect() {
   return (
     <div>
