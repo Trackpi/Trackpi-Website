@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
+// import { Form } from 'react-bootstrap';
+// import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import Form from "../components/Form"
 function PopUp() {
   const [show, setShow] = useState(false);
 
@@ -10,7 +11,7 @@ function PopUp() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(true);
-    }, 45000);
+    }, 25000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -18,17 +19,13 @@ function PopUp() {
     <div>
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-            <Modal.Title className="w-100 text-center fw-bold">Connect With Us</Modal.Title>
+          <Modal.Title className="w-100 text-center fw-bold">
+            Connect With Us
+          </Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
-            
-        </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer> */}
+        <Modal.Body></Modal.Body>
+        <Form />
       </Modal>
     </div>
   );

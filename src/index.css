@@ -35,11 +35,7 @@ h1 {
   position: fixed;
   top: 0;
   width: 100%;
-
-  background: hsla(0, 0%, 0%, 0.1);
-
-  background: linear-gradient(45deg, white, #ffe135, white);
-
+  background: hsla(0, 0%, 4%, 0.525);
   /* background: #595252; #feee9e; */
   color: white;
   padding: 15px 20px;
@@ -48,6 +44,7 @@ h1 {
   z-index: 1000;
   transition: transform 2s ease, opacity 2s ease;
 }
+
 
 /* Hidden state */
 .navbar.hidden {
@@ -89,8 +86,8 @@ h1 {
   left: 0;
   width: 150px;
   height: 100%;
-
-  border-radius: 8px;
+  
+  border-radius:8px;
   transition: 0.5s;
 }
 #navlink {
@@ -99,11 +96,11 @@ h1 {
   font-size: 1rem;
   font-weight: bold;
   color: #272323d3;
-  transition: transform 0.3s ease, font-size 0.3s ease;
+  transition: transform 0.3s ease, font-size 0.3s ease; 
 }
 #navlink:hover {
   transform: scale(1);
-  font-size: 1.1rem;
+  font-size: 1.1rem; 
   /* color: #ffcc00;  */
 }
 #navlink::before {
@@ -116,15 +113,15 @@ h1 {
   left: 0;
   background-color: #f5cf10;
   transform: scaleX(0);
-
+  
   transition: transform 0.5s ease;
 }
 #navlink:hover::before {
   transform: scaleX(1);
 }
 
-#navlink{
-  background: linear-gradient(45deg, #222, #333333);
+#navlink:hover {
+  background: linear-gradient(45deg, #222, #090909);
   background-clip: text;
   color: transparent; 
 }

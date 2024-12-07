@@ -4,7 +4,6 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import NewsTicker from '../components/NewsTicker';
 import GetInTouch from '../components/GetInTouch';
 import NewsStream from '../components/NewsStream';
 import NewsArticle from '../components/NewArticle';
