@@ -16,6 +16,21 @@ function Connect() {
           </p>
         </div>
       </section>
+      <div className='aa'>
+            
+               
+          <p>
+            <i className="fa-solid fa-location-dot me-2"></i> Kakkanad, Kochi, India
+          </p>
+          &nbsp;
+          <p>
+            <i className="fa-solid fa-phone me-2"></i> +91 8078179646
+          </p>
+          &nbsp;
+          <p>
+            <i className="fa-solid fa-envelope me-2"></i> trackpi@gmail.com
+          </p>
+        </div>
       <section className="mt-32 w-full">
         <Container className="flex flex-col items-center text-justify">
           <Row className="mt-5 md:w-1/2">
