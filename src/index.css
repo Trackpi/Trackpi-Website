@@ -832,3 +832,4 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
+
