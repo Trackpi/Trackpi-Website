@@ -1,0 +1,38 @@
+.popup_form input,.popup_form textarea, .popup_form select{
+    display: block;
+    margin-bottom: 10px;
+
+}
+.popup_form input::-webkit-outer-spin-button,
+.popup_form  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.popup_form button{
+    background-color: #fde047;
+    border: none;
+    font-weight: 700;
+    color: black;
+}
+.popup_form button:hover{
+    color: #fde047;
+    background-color: black;
+    border: none;
+}
+.custom-select {
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 10px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+  }
+
+  .custom-select:focus {
+    border-color: #007bff; /* Bootstrap primary color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  /* Placeholder-like style for the first option */
+  .custom-select option[disabled] {
+    color: #6c757d; /* Gray placeholder color */
+  }
