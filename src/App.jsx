@@ -13,6 +13,7 @@ import Connect from './pages/Connect';
 import Personel from './pages/personel';
 import Sidebar from './components/Sidebar';
 import NotFound from './pages/NotFound';
+import ScrollUp from './components/ScrollUp';
 import LogoLoader from './components/LogoLoader/LogoLoader';
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
 
   return (
     <div className="">
+      <Header />
+      <ScrollUp/>
       {loading ? (
         <LogoLoader />
       ) : (
