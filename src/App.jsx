@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -13,13 +13,30 @@ import Connect from './pages/Connect';
 import Personel from './pages/personel';
 import Sidebar from './components/Sidebar';
 import NotFound from './pages/NotFound';
+import LogoLoader from './components/LogoLoader/LogoLoader';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false); 
+  const location = useLocation();
+
+
+
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => setLoading(false), 1000); 
+
+    return () => clearTimeout(timeout); 
+  }, [location]);
+
+
 
   return (
     <div className="">
-      <Header />
+      {loading ? (
+        <LogoLoader />
+      ) : (
+        <>
+        <Header />
       <Sidebar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -37,6 +54,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+      </>
+        )}
     </div>
   );
 }
