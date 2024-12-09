@@ -748,6 +748,56 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
+.first{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.bb{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.aa{
+  
+padding: 50px;
+background-color: rgba(0, 0, 0, 0.892);
+width: 100%;
+display: flex !important;
+justify-content: center;
+gap: 50px !important;
+
+}
+.cards{
+  
+  width: 100%;
+  display: flex;
+  
+  gap: 20px;
+}
+.card1{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke!important;
+  color: black !important;
+
+}
+.icon{
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color: #fde047;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
 
 /* Employee Verification Section */
 .employ_section::before {
@@ -827,13 +877,3 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
-
-.aa{
-padding: 10px;
-display: flex;
-justify-content: center;
-gap: 10px;
-}
-
-
-

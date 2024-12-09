@@ -5,7 +5,7 @@ import { Container, Row} from 'react-bootstrap';
 
 function Connect() {
   return (
-    <div>
+    <div class="first">
       <section className="flex justify-center items-center p-3 w-full h-screen connect_section bg1 relative">
         <div className="flex flex-col items-center z-10">
           <h1 className="text-5xl md:text-7xl working_heading mb-5">
@@ -16,21 +16,47 @@ function Connect() {
           </p>
         </div>
       </section>
-      <div className='aa'>
+      <div className='bb'>
+        <h1>Contact Us</h1>
             
-               
-          <p>
-            <i className="fa-solid fa-location-dot me-2"></i> Kakkanad, Kochi, India
-          </p>
-          &nbsp;
-          <p>
-            <i className="fa-solid fa-phone me-2"></i> +91 8078179646
-          </p>
-          &nbsp;
-          <p>
-            <i className="fa-solid fa-envelope me-2"></i> trackpi@gmail.com
-          </p>
+        <div className='aa'>    
+          <div class="card-group cards">
+              <div class="card card1">
+                <div class="icon">
+                   <i className="fa-solid fa-location-dot me-2"></i>
+                </div>
+                {/* <img src="..." class="card-img-top" alt="..."> */}
+                <div class="card-body">
+                  <h5 class="card-title">Our Office Location</h5>
+                  <p class="card-text">Kakkanad, Kochi, India</p>
+                </div>
+                
+              </div>
+              <div class="card card1">
+                 <div class="icon">
+                   <i className="fa-solid fa-phone me-2"></i> 
+                 </div>
+                {/* <img src="..." class="card-img-top" alt="..."> */}
+                <div class="card-body">
+                  <h5 class="card-title">Phone</h5>
+                  <p class="card-text">+91 8078179646</p>
+                </div>
+              
+              </div>
+              <div class="card card1">
+                  <div class="icon">
+                     <i className="fa-solid fa-envelope me-2"></i> 
+                  </div>
+                {/* <img src="..." class="card-img-top" alt="..."> */}
+                <div class="card-body">
+                  <h5 class="card-title">E-mail</h5>
+                  <p class="card-text">trackpi@gmail.com</p>
+                </div>
+    
+          </div>
         </div>
+      </div>
+      </div>
       <section className="mt-32 w-full">
         <Container className="flex flex-col items-center text-justify">
           <Row className="mt-5 md:w-1/2">

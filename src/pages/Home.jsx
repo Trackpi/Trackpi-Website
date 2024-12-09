@@ -15,7 +15,6 @@ function Home() {
   const [refThirdSection, inViewThirdSection] = useInView(options);
   const [refLast, inViewLast] = useInView(options);
 
-
   const TypingEffect = ({ text, delay = 0.1 }) => {
     // Split text into individual characters
     const splitText = text.split('').map((char, index) => (
@@ -78,19 +77,12 @@ function Home() {
           <Row>
             <Col className="flex flex-col items-center pt-12">
               <motion.div
-                initial={{ opacity: 0, x: -100, scale: 0.9 }}
-                animate={
-                  inViewFirstSection ? { opacity: 1, x: 0, scale: 1 } : {}
-                }
-                transition={{ duration: 1.2, ease: 'easeOut' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inViewFirstSection ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
                 className="mb-5 md:mb-0"
               >
-                <motion.h1
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={inViewFirstSection ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.3, duration: 1.0, ease: 'easeOut' }}
-                  className="fw-bold text-yellow-500"
-                >
+                <motion.h1 className="fw-bold text-yellow-500">
                   We see the challenge
                 </motion.h1>
                 <motion.p
@@ -140,10 +132,10 @@ function Home() {
                 src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp"
                 alt="Strategic Procurement"
                 className="shadow-lg rounded-lg w-full"
-                initial={{ opacity: 0, scale: 0.2, rotate: 0 }} // Start zoomed out
+                initial={{ opacity: 0, scale: 0.8}} // Start zoomed out
                 animate={
                   inViewSecondSection
-                    ? { opacity: 1, scale: 1, rotate: 360 } // Ends zoomed in with full rotation
+                    ? { opacity: 1, scale: 1} // Ends zoomed in with full rotation
                     : {}
                 }
                 transition={{
@@ -185,7 +177,7 @@ function Home() {
       </section>
 
       <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
-        <Row>
+        <Row className='flex items-center'>
           <Col md={6} className="flex flex-col items-center pt-12">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -245,16 +237,16 @@ function Home() {
       <section className="flex justify-center items-center mt-20 pb-8 h-full w-full relative">
         {/* Wave Background */}
         <Wavify
-          className="wave absolute bottom-0 left-0 w-full"
+          className="wave absolute bottom-0 left-0 w-full h-96"
           fill="#fde047"
           paused={false}
           options={{
             height: 20,
-            amplitude: 30,
+            amplitude: 20,
             speed: 0.2,
             points: 4,
           }}
-          style={{ zIndex: -1, height: '55vh' }}
+          style={{ zIndex: -1}}
         />
 
         {/* Content */}
@@ -264,7 +256,7 @@ function Home() {
               <h1 className="hover:text-yellow-500">We're Ready to Help</h1>
             </Col>
 
-            <Col className="flex justify-center items-center font-semibold text-lg md:text-xl text-slate-800">
+            <Col className="flex justify-center items-center font-semibold text-md md:text-xl text-slate-800">
               <p className="text-justify">
                 How we work is broken, dehumanizing, and held back by
                 bureaucracy. But it can be reinvented in service of human
@@ -292,7 +284,7 @@ function Home() {
         <Row className="text-yellow-500">
           <motion.h5
             initial={{ opacity: 0, y: 20 }}
-            animate={inViewLast?{ opacity: 1, y: 0 }:{}}
+            animate={inViewLast ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
             OUR CLIENTS
@@ -300,7 +292,7 @@ function Home() {
           <motion.h1
             className="fw-bold"
             initial={{ opacity: 0, y: 20 }}
-            animate={inViewLast?{ opacity: 1, y: 0 }:{}}
+            animate={inViewLast ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
           >
             We’re fortunate to <br /> work with the best
