@@ -395,7 +395,9 @@ h1 {
   font-size: 1em;
 }
 /* section 3  styling*/
+
 .bg3 {
+  animation: waveAnimation 6s ease-in-out infinite;
   width: 100%;
   height: fit-content;
   background: #fde047;
