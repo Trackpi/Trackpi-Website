@@ -13,6 +13,7 @@ import Connect from './pages/Connect';
 import Personel from './pages/personel';
 import Sidebar from './components/Sidebar';
 import NotFound from './pages/NotFound';
+import ScrollUp from './components/ScrollUp';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -20,6 +21,7 @@ function App() {
   return (
     <div className="">
       <Header />
+      <ScrollUp/>
       <Sidebar />
       <Routes>
         <Route path="/" element={<Home />}></Route>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import "./popup.css";
+import Brochure from "./Brochure";
 
 function PopUp() {
     const [show, setShow] = useState(false);
@@ -46,6 +47,12 @@ function PopUp() {
                         </div>
                     </form>
                 </Modal.Body>
+                <Modal.Footer >
+                    <div className="w-100 fw-bold d-flex align-items-baseline justify-content-around">
+                    Download our Brochure here
+                    <Brochure/>
+                    </div>
+                </Modal.Footer>
             </Modal>
         </div>
     );
