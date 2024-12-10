@@ -1,10 +1,12 @@
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Row, Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import Brochure from './Brochure';
 
 function Details() {
   return (
     <Form className="flex flex-col">
+      <Brochure/>
       <FloatingLabel controlId="floatingInput" label=" Name" r className="mb-3">
         <Form.Control
           type="text"

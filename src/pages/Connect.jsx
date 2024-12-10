@@ -5,12 +5,13 @@ import { Container, Row} from 'react-bootstrap';
 
 function Connect() {
   return (
-    <div class="first">
+    <div className="first">
       <section className="flex justify-center items-center p-3 w-full h-screen connect_section bg1 relative">
         <div className="flex flex-col items-center z-10">
           <h1 className="text-5xl md:text-7xl working_heading mb-5">
             Connect with us
           </h1>
+      
           <p className="font-semibold text-md md:text-2xl working_subheading text-center">
             Reach out to us for any inquiries or support — we are here to help.
           </p>

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 import TeamListMemberCrd from '../components/teamListMemberCrd';
-import Brochure from '../components/Brochure';
+
 function OurTeam() {
   const options = { threshold: 0.1 };
 
@@ -20,7 +20,7 @@ function OurTeam() {
           <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
-          <Brochure />
+        
         </div>
       </section>
 
@@ -60,7 +60,7 @@ function OurTeam() {
         </Container>
       </section>
 <section>
-<Brochure/>
+
 </section>
       <section
         ref={refSecondSection}

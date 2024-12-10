@@ -8,13 +8,8 @@ const Brochure = () => {
       <a href={pdfPath} download="Technical_Round_Assignment.pdf" style={{ textDecoration: "none" }}>
         <button className=" mt-3 p-3 rounded-pill font-bold text-gray-800   hover:text-yellow-900 "
            style={{
-          //  padding: "10px 20px",
-          //   fontSize: "16px",
-          //   color: "#000",
-             backgroundColor: "#fde047",
-          //   border: "none",
-          //   borderRadius: "5px",
-          //   cursor: "pointer",
+          backgroundColor: "#fde047",
+          cursor: "pointer",
            }}
         >
           
