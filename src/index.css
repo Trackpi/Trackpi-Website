@@ -95,14 +95,17 @@ h1 {
   text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
-  color: rgb(7, 7, 7);
+  /* color: rgb(161, 25, 25); */
   transition: transform 0.3s ease, font-size 0.3s ease; 
 }
-#navlink:hover {
+/* #navlink:hover {
   transform: scale(1);
   font-size: 1.1rem; 
-  /* color: #ffcc00;  */
-}
+  background: rgb(15, 15, 14);
+  background-clip: text;
+  color: transparent;
+  
+} */
 #navlink::before {
   content: '';
   position: absolute;
@@ -118,12 +121,6 @@ h1 {
 }
 #navlink:hover::before {
   transform: scaleX(1);
-}
-
-#navlink:hover {
-  background: linear-gradient(45deg, #000, #090909);
-  background-clip: text;
-  color: transparent; 
 }
 
 .home-text h1 {
