@@ -3,17 +3,17 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './footer.css'
-// import { Form, Button } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-// import { SiMedium } from "react-icons/si";
-// import { SiQuora } from "react-icons/si";
-// import { RiBloggerLine } from "react-icons/ri";
-// import { IoLogoInstagram } from "react-icons/io5";
-// import { SlSocialYoutube } from "react-icons/sl";
-// import { RiFacebookCircleLine } from "react-icons/ri";
-// import { TbBrandLinkedin } from "react-icons/tb";
-// import { IoMail } from "react-icons/io5";
-// import { FaSquarePhone } from "react-icons/fa6";
+import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { SiMedium } from "react-icons/si";
+import { SiQuora } from "react-icons/si";
+import { RiBloggerLine } from "react-icons/ri";
+import { IoLogoInstagram } from "react-icons/io5";
+import { SlSocialYoutube } from "react-icons/sl";
+import { RiFacebookCircleLine } from "react-icons/ri";
+import { TbBrandLinkedin } from "react-icons/tb";
+import { IoMail } from "react-icons/io5";
+import { FaSquarePhone } from "react-icons/fa6";
 
 function Footer() {
   const videoRefs = useRef([]);
