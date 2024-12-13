@@ -13,6 +13,7 @@ import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
 import { IoMail } from "react-icons/io5";
 import { FaSquarePhone } from "react-icons/fa6";
+import './footer.css'
 
 function Footer() {
   const videoRefs = useRef([]);
