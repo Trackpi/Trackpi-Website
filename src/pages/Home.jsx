@@ -6,51 +6,92 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import GetInTouch from '../components/GetInTouch';
 import NewsStream from '../components/NewsStream';
-import Wavify from 'react-wavify';
+import { FaAngleLeft } from "react-icons/fa6";
+import logo from '../images/trackpi_logo.png';
 function Home() {
-  const options = { threshold: 0.1 };
+  const [currentIndex, setCurrentIndex] = useState(0); // Track current card index
 
-  const [refFirstSection, inViewFirstSection] = useInView(options);
-  const [refSecondSection, inViewSecondSection] = useInView(options);
-  const [refThirdSection, inViewThirdSection] = useInView(options);
-  const [refLast, inViewLast] = useInView(options);
-
-  const TypingEffect = ({ text, delay = 0.1 }) => {
-    // Split text into individual characters
-    const splitText = text.split('').map((char, index) => (
-      <motion.span
-        key={index}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          delay: index * delay,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          duration: 1.5,
-        }}
-      >
-        {char}
-      </motion.span>
-    ));
-
-    return (
-      <motion.h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
-        {splitText}
-      </motion.h1>
-    );
+  const cards = [
+    {
+      id: 1,
+      title: 'We See The Challenge',
+      description:
+        "We're all wrestling with complexity.Every company, work function, and team now facesa tall order",
+      logo: logo,
+    },
+    {
+      id: 2,
+      title: 'We See The Challenge',
+      description:
+        "We're all wrestling with complexity.Every company, work function, and team now facesa tall order",
+      logo: logo,
+    },
+    {
+      id: 3,
+      title: 'We See The Challenge',
+      description:
+        "We're all wrestling with complexity.Every company, work function, and team now facesa tall order",
+      logo: logo,
+    },
+    {
+      id: 4,
+      title: 'We See The Challenge',
+      description:
+        "We're all wrestling with complexity.Every company, work function, and team now facesa tall order",
+      logo: logo,
+    },
+  ];
+  const handlePrev = () => {
+    setCurrentIndex(prev => (prev === 0 ? cards.length - 1 : prev - 1));
   };
+
+  const handleNext = () => {
+    setCurrentIndex(prev => (prev === cards.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleDotClick = index => {
+    setCurrentIndex(index);
+  };
+  // const options = { threshold: 0.1 };
+
+  // const [refFirstSection, inViewFirstSection] = useInView(options);
+  // const [refSecondSection, inViewSecondSection] = useInView(options);
+  // const [refThirdSection, inViewThirdSection] = useInView(options);
+  // const [refLast, inViewLast] = useInView(options);
+
+  // const TypingEffect = ({ text, delay = 0.1 }) => {
+  //   // Split text into individual characters
+  //   const splitText = text.split('').map((char, index) => (
+  //     <motion.span
+  //       key={index}
+  //       initial={{ opacity: 0 }}
+  //       animate={{ opacity: 1 }}
+  //       transition={{
+  //         delay: index * delay,
+  //         repeat: Infinity,
+  //         repeatType: 'reverse',
+  //         duration: 1.5,
+  //       }}
+  //     >
+  //       {char}
+  //     </motion.span>
+  //   ));
+
+  //   return (
+  //     <motion.h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+  //       {splitText}
+  //     </motion.h1>
+  //   );
+  // };
   return (
     <>
-      <section
-        ref={refFirstSection}
-        className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative"
-      >
+      <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
         <div className="flex flex-col items-center z-10">
-          <TypingEffect text="Reinvent Your Organization" delay={0.05} />
+          {/* <TypingEffect text="Reinvent Your Organization" delay={0.05} /> */}
 
-          {/* <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
             Reinvent Your Organization
-          </h1> */}
+          </h1>
           <motion.p
             className="font-semibold text-md md:text-2xl working_subheading text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -71,8 +112,80 @@ function Home() {
           </motion.div>
         </div>
       </section>
+      <section>
+        <div className="text-center pt-12 pb-6">
+          <h1
+            className="text-4xl font-bold text-yellow-400"
+            style={{ textShadow: '#c3c5c7 2px 2px' }}
+          >
+            Real-Time Business News Updates?
+          </h1>
+        </div>
+        <div className="bg-yellow-500 py-8">
+          {/* <div className="overflow-hidden"> */}
+          <div
+            className="flex transition-transform duration-500"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {cards.map(card => (
+              <div
+                key={card.id}
+                className="w-80 bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 mx-4 hover:scale-110 cursor-pointer"
+              >
+                <img src={card.logo} alt="Trackpi_logo" className="mx-auto" />
+                <h3 className="text-lg font-bold text-amber-500 mt-4">
+                  {card.title}
+                </h3>
+                <p className="text-white mt-2">{card.description}</p>
+              </div>
+            ))}
+          </div>
+          {/* </div> */}
+        </div>
+        {/* Navigation Arrows and Dots */}
+        <div className="flex justify-between items-center mt-4">
+          <div className="flex">
+          <button
+            onClick={handlePrev}
+            className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
+          >
+            <FaAngleLeft/> 
+          </button>
+            <button
+            onClick={handleNext}
+            className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
+          >
+            &#8594;
+          </button>
+          </div>
+         
 
-      <section ref={refFirstSection} className="mt-2 w-full h-full">
+          {/* Slider Dots */}
+          <div className="flex justify-center items-center">
+            {cards.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleDotClick(index)}
+                className={`w-2.5 h-2.5 mx-1 rounded-full ${
+                  currentIndex === index ? 'bg-gray-800' : 'bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
+        {/* View More Button */}
+
+          <div className="text-right">
+          <button className="bg-amber-500 text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
+            View More
+          </button>
+        </div>
+        
+        </div>
+
+        
+      </section>
+
+      {/* <section ref={refFirstSection} className="mt-2 w-full h-full">
         <Container>
           <Row>
             <Col className="flex flex-col items-center pt-12">
@@ -174,9 +287,9 @@ function Home() {
       </section>
       <section className="relative z-20">
         <NewsStream />
-      </section>
+      </section> */}
 
-      <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
+      {/* <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
         <Row className='flex items-center'>
           <Col md={6} className="flex flex-col items-center pt-12">
             <motion.div
@@ -232,10 +345,9 @@ function Home() {
             />
           </Col>
         </Row>
-      </section>
-
+      </section> */}
+      {/* 
       <section className="flex justify-center items-center mt-20 pb-8 h-full w-full relative">
-        {/* Wave Background */}
         <Wavify
           className="wave absolute bottom-0 left-0 w-full h-96"
           fill="#fde047"
@@ -249,7 +361,6 @@ function Home() {
           style={{ zIndex: -1}}
         />
 
-        {/* Content */}
         <Container className="relative z-10">
           <Row className="flex flex-col justify-center items-center">
             <Col className="flex justify-center items-center">
@@ -278,8 +389,8 @@ function Home() {
             </Col>
           </Row>
         </Container>
-      </section>
-
+      </section> */}
+      {/* 
       <section ref={refLast} className="mt-5 p-5 w-full h-full">
         <Row className="text-yellow-500">
           <motion.h5
@@ -421,7 +532,7 @@ function Home() {
             />
           </Col>
         </Row>
-      </section>
+      </section> */}
 
       <GetInTouch />
     </>
