@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { SiMedium } from "react-icons/si";
@@ -17,7 +17,7 @@ import { FaSquarePhone } from "react-icons/fa6";
 
 
 
-import "./Footer.css";
+
 
 function Footer() {
   const videoRefs = useRef([]);
