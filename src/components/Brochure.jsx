@@ -4,21 +4,14 @@ const Brochure = () => {
   const pdfPath = "/images/Technical_Round_Assignment.pdf"; // Replace with actual path
   
   return (
-    <div style={{ textAlign: "center", marginTop: "20px" }}>
+    <div style={{ textAlign: "center", position:"absolute",zIndex:"2",marginTop:"92px",marginLeft:"1250px"}}>
       <a href={pdfPath} download="Technical_Round_Assignment.pdf" style={{ textDecoration: "none" }}>
-        <button className=" mt-3 p-3 rounded-pill font-bold text-gray-800   hover:text-yellow-900 "
-           style={{
-          //  padding: "10px 20px",
-          //   fontSize: "16px",
-          //   color: "#000",
-             backgroundColor: "#fde047",
-          //   border: "none",
-          //   borderRadius: "5px",
-          //   cursor: "pointer",
-           }}
-        >
+        <button className=" px-3 py-2 font-bold text-white bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  rounded-lg  hover:text-white">
+       
           
-          Download Brochure
+              Company Brochure
+              &nbsp;
+              <i className="fa-solid fa-download me-2"></i>
         </button>
       </a>
     </div>
