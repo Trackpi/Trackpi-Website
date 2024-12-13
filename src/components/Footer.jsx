@@ -3,17 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './footer.css'
-import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { SiMedium } from "react-icons/si";
-import { SiQuora } from "react-icons/si";
-import { RiBloggerLine } from "react-icons/ri";
-import { IoLogoInstagram } from "react-icons/io5";
-import { SlSocialYoutube } from "react-icons/sl";
-import { RiFacebookCircleLine } from "react-icons/ri";
-import { TbBrandLinkedin } from "react-icons/tb";
-import { IoMail } from "react-icons/io5";
-import { FaSquarePhone } from "react-icons/fa6";
+
 
 function Footer() {
   const videoRefs = useRef([]);
@@ -225,26 +215,26 @@ function Footer() {
             </Col>
             <Col md={3}>
               <h5>Join With Us</h5>
-              <Form>
+              {/* <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Control type="email" placeholder="Your Email Address" />
                 </Form.Group>
                 <Button variant="warning" type="submit">
                   Submit
                 </Button>
-              </Form>
+              </Form> */}
               <h5 className="mt-4">Contact</h5>
               <p>
-                <IoMail style={{ color: "#FFD43B" }} />
+                {/* <IoMail style={{ color: "#FFD43B" }} /> */}
                 <span>
                   TrackPi@gmail.com <br />
                 </span>
-                <FaSquarePhone style={{ color: "#FFD43B" }} />
+                {/* <FaSquarePhone style={{ color: "#FFD43B" }} /> */}
                 +91 9538610745
               </p>
             </Col>
           </Row>
-          <Row className=" mb-3">
+          {/* <Row className=" mb-3">
             <Col>
               <h5>Follow Us</h5>
               <div className="d-flex flex-row ">
@@ -299,7 +289,7 @@ function Footer() {
                 </Link>
               </div>
             </Col>
-          </Row>
+          </Row> */}
           <Row>
             <Col className="text-center">
               &copy; 2024 TrackPi Private Limited. All rights reserved.
