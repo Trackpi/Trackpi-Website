@@ -15,7 +15,7 @@ import { IoMail } from "react-icons/io5";
 import { FaSquarePhone } from "react-icons/fa6";
 
 
-
+import './footer.css'
 
 
 
@@ -75,8 +75,18 @@ function Footer() {
 
   return (
     <div>
-      <Container fluid className="footer-container bg-black text-white">
-      <div className="text-center w-full pt-5">
+          <Container fluid className="footer-container text-white" style={{ backgroundColor: '#0A0A0A' }}>
+        {/* <Row className="p-4 text-center text-md-start">
+          <Col sm={12} md={4} className="text-center mb-3">
+            <img
+              src="src/images/trackpi_logo.png"
+              className="w-50 mb-3"
+              alt="TrackPi Logo"
+            />
+          </Col>
+        </Row> */}
+
+        <div className="text-center w-full pt-5">
           <h1 className='slogen' style={{ fontSize: '5vw', fontWeight: '400' }} >
             Begin Your Journey With
             <span style={{ color: '#FFC100' }} className='ms-1'>TRACK</span>PI
