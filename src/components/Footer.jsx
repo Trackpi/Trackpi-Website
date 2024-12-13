@@ -9,13 +9,14 @@ function Footer() {
 
   const videoData = [
     {
-      platform: 'Instagram',
-      previewUrl: 'https://www.instagram.com/reel/DDKOzyzionq/embed',
+      platform: "Instagram",
+      previewUrl: "https://www.instagram.com/reel/DDKOzyzionq/embed",
       isYouTube: false,
     },
     {
-      platform: 'Facebook',
-      previewUrl: 'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/r/1AjiMx1emU/',
+      platform: "Facebook",
+      previewUrl:
+        "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/r/1AjiMx1emU/",
       isYouTube: false,
     },
     {
@@ -34,9 +35,15 @@ function Footer() {
   const handleHover = (index) => {
     const video = videoRefs.current[index];
     if (video && videoData[index].isYouTube) {
-      video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      video.contentWindow.postMessage(
+        '{"event":"command","func":"playVideo","args":""}',
+        "*"
+      );
       setTimeout(() => {
-        video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        video.contentWindow.postMessage(
+          '{"event":"command","func":"pauseVideo","args":""}',
+          "*"
+        );
       }, 20000);
     }
   };
@@ -44,7 +51,10 @@ function Footer() {
   const handleMouseLeave = (index) => {
     const video = videoRefs.current[index];
     if (video && videoData[index].isYouTube) {
-      video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      video.contentWindow.postMessage(
+        '{"event":"command","func":"pauseVideo","args":""}',
+        "*"
+      );
     }
   };
 
@@ -131,6 +141,160 @@ function Footer() {
           </Col>
         </Row>
       </Container>
+      <footer className="bg-light text-dark py-4">
+        <Container>
+          <Row className="mb-4">
+            <Col md={3}>
+              <img
+                src="src/images/trackpi_logo.png"
+                alt="TrackPi Logo"
+                style={{ width: "150px" }}
+              />
+              <p className="mt-3">
+                Empowering businesses to succeed through expert guidance and
+                personalized solutions. Unlocking potential and achieving
+                success.
+              </p>
+            </Col>
+            <Col md={3}>
+              <h5>Resources</h5>
+              <ul className="list-unstyled">
+                <li>
+                  <a href="/about" className="text-dark">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-dark">
+                    Blogs
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-dark">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-dark">
+                    Help Center
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-dark">
+                    Terms & Conditions
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col md={3}>
+              <h5>Services</h5>
+              <ul className="list-unstyled">
+                <li>
+                  <a href="#" className="text-dark">
+                    Business consulting
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-dark">
+                    Sales outsourcing
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-dark">
+                    Software development
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-dark">
+                    Sales training
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col md={3}>
+              <h5>Join With Us</h5>
+              {/* <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control type="email" placeholder="Your Email Address" />
+                </Form.Group>
+                <Button variant="warning" type="submit">
+                  Submit
+                </Button>
+              </Form> */}
+              <h5 className="mt-4">Contact</h5>
+              <p>
+                {/* <IoMail style={{ color: "#FFD43B" }} /> */}
+                <span>
+                  TrackPi@gmail.com <br />
+                </span>
+                {/* <FaSquarePhone style={{ color: "#FFD43B" }} /> */}
+                +91 9538610745
+              </p>
+            </Col>
+          </Row>
+          {/* <Row className=" mb-3">
+            <Col>
+              <h5>Follow Us</h5>
+              <div className="d-flex flex-row ">
+                <Link to={"#"}>
+                  <RiFacebookCircleLine
+                    style={{ color: "#FFD43B" }}
+                    size={24}
+                    className="me-3"
+                  />
+                </Link>
+                <Link to={"#"}>
+                  <SlSocialYoutube
+                    style={{ color: "#FFD43B" }}
+                    size={24}
+                    className="me-3"
+                  />
+                </Link>
+                <Link to={"#"}>
+                  <IoLogoInstagram
+                    style={{ color: "#FFD43B" }}
+                    size={24}
+                    className="me-3"
+                  />
+                </Link>
+                <Link to={"#"}>
+                  <SiMedium
+                    style={{ color: "#FFD43B" }}
+                    size={24}
+                    className="me-3"
+                  />
+                </Link>
+                <Link to={"#"}>
+                  <TbBrandLinkedin
+                    style={{ color: "#FFD43B" }}
+                    size={24}
+                    className="me-3"
+                  />
+                </Link>
+                <Link to={"#"}>
+                  <SiQuora
+                    style={{ color: "#FFD43B" }}
+                    size={24}
+                    className="me-3"
+                  />
+                </Link>
+                <Link to={"#"}>
+                  <RiBloggerLine
+                    style={{ color: "#FFD43B" }}
+                    size={24}
+                    className="me-3"
+                  />
+                </Link>
+              </div>
+            </Col>
+          </Row> */}
+          <Row>
+            <Col className="text-center">
+              &copy; 2024 TrackPi Private Limited. All rights reserved.
+            </Col>
+          </Row>
+        </Container>
+      </footer>
     </div>
   );
 }
