@@ -103,7 +103,7 @@ function Footer() {
               onMouseEnter={() => handleHover(index)}
               onMouseLeave={() => handleMouseLeave(index)}
             >
-               <div className="relative w-full mb-5" style={{ paddingTop: '177.77%' }}>
+            <div className="relative w-full mb-5" style={{ paddingTop: '177.77%' }}>
                 <iframe
                   ref={(el) => (videoRefs.current[index] = el)}
                   src={video.isYouTube ? `${video.previewUrl}?autoplay=1&mute=1&loop=1` : video.previewUrl}
@@ -142,6 +142,7 @@ function Footer() {
               for launch updates and early bird registration!</h4>
           </div>
         </div>
+        
         <Row className="text-center py-2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'rgba(255, 255, 255, 0.4)' }}>
           <Col>
             <p className="mb-0 text-sm">
