@@ -3,8 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './footer.css'
-import { linearGradient } from 'framer-motion/client';
-import { color } from 'framer-motion';
+
 function Footer() {
   const videoRefs = useRef([]);
 
