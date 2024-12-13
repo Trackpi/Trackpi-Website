@@ -14,7 +14,6 @@ import { TbBrandLinkedin } from "react-icons/tb";
 import { IoMail } from "react-icons/io5";
 import { FaSquarePhone } from "react-icons/fa6";
 
-import "./footer.css";
 
 function Footer() {
   const videoRefs = useRef([]);
@@ -32,17 +31,16 @@ function Footer() {
       isYouTube: false,
     },
     {
-      platform: "YouTube",
-      previewUrl: "https://www.youtube.com/embed/Z2jiF9w-srU",
+      platform: 'YouTube',
+      previewUrl: 'https://www.youtube.com/embed/Z2jiF9w-srU',
       isYouTube: true,
     },
   ];
 
   const platformURLs = {
-    instagram: "https://www.instagram.com/trackpi_official/",
-    youtube: "https://www.youtube.com/@trackpi/featured",
-    facebook:
-      "https://www.facebook.com/people/Trackpi-Ernakulam/pfbid0HC2UMFfh9G88BVNaogmJdQZ4cAGVtX7kvaeRw295PaHr1FdapXL6RtMftBb6PCBWl/",
+    instagram: 'https://www.instagram.com/trackpi_official/',
+    youtube: 'https://www.youtube.com/@trackpi/featured',
+    facebook: 'https://www.facebook.com/people/Trackpi-Ernakulam/pfbid0HC2UMFfh9G88BVNaogmJdQZ4cAGVtX7kvaeRw295PaHr1FdapXL6RtMftBb6PCBWl/',
   };
 
   const handleHover = (index) => {
@@ -73,11 +71,8 @@ function Footer() {
 
   return (
     <div>
-      <Container
-        fluid
-        className="footer-container text-white"
-        style={{ backgroundColor: "#0A0A0A" }}
-      >
+      <Container fluid className="footer-container text-white" style={{ backgroundColor: '#0A0A0A' }}>
+
         {/* <Row className="p-4 text-center text-md-start">
           <Col sm={12} md={4} className="text-center mb-3">
             <img
