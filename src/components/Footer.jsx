@@ -1,5 +1,8 @@
-import React, { useRef } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState, useRef } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Form , Button} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { SiMedium } from "react-icons/si";
 import { SiQuora } from "react-icons/si";
@@ -32,17 +35,16 @@ function Footer() {
       isYouTube: false,
     },
     {
-      platform: "YouTube",
-      previewUrl: "https://www.youtube.com/embed/Z2jiF9w-srU",
+      platform: 'YouTube',
+      previewUrl: 'https://www.youtube.com/embed/Z2jiF9w-srU',
       isYouTube: true,
     },
   ];
 
   const platformURLs = {
-    instagram: "https://www.instagram.com/trackpi_official/",
-    youtube: "https://www.youtube.com/@trackpi/featured",
-    facebook:
-      "https://www.facebook.com/people/Trackpi-Ernakulam/pfbid0HC2UMFfh9G88BVNaogmJdQZ4cAGVtX7kvaeRw295PaHr1FdapXL6RtMftBb6PCBWl/",
+    instagram: 'https://www.instagram.com/trackpi_official/',
+    youtube: 'https://www.youtube.com/@trackpi/featured',
+    facebook: 'https://www.facebook.com/people/Trackpi-Ernakulam/pfbid0HC2UMFfh9G88BVNaogmJdQZ4cAGVtX7kvaeRw295PaHr1FdapXL6RtMftBb6PCBWl/',
   };
 
   const handleHover = (index) => {
@@ -74,69 +76,76 @@ function Footer() {
   return (
     <div>
       <Container fluid className="footer-container bg-black text-white">
-        <Row className="p-4 text-center text-md-start">
-          <Col sm={12} md={4} className="text-center mb-3">
-            <img
-              src="src/images/trackpi_logo.png"
-              className="w-50 mb-3"
-              alt="TrackPi Logo"
-            />
+      <div className="text-center w-full pt-5">
+          <h1 className='slogen' style={{ fontSize: '5vw', fontWeight: '400' }} >
+            Begin Your Journey With
+            <span style={{ color: '#FFC100' }} className='ms-1'>TRACK</span>PI
+          </h1>
+          <h1 style={{ fontSize: '3.6vw', fontWeight: '600' }} className='slogen '>we are here to help.</h1>
+          <button className='btn text-light py-2 mt-4 mb-3  px-5 slogen joinbtn ' style={{ fontSize: '2.5vw' }}>
+            Join with us
+          </button>
+        </div>
+        <hr className='my-3' />
+        <h1 className='slogen text-center mt-5 ' style={{ fontSize: '4vw', fontWeight: '600', color: '#ffc100' }} >Discover Winning Business Strategies</h1>
+        <Row className=" " style={{ padding: '50px' }}>
+          {videoData.map((video, index) => (
+            <Col
+              key={index}
+              sm={12}
+              md={4}
+              className="text-center mb-3 p-md-5"
+              onMouseEnter={() => handleHover(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+            >
+              <div className="relative w-full mb-5" style={{ paddingTop: '177.77%' }}>
+                <iframe
+                  ref={(el) => (videoRefs.current[index] = el)}
+                  src={video.isYouTube ? `${video.previewUrl}?autoplay=1&mute=1&loop=1` : video.previewUrl}
+                  className="absolute top-0 left-0 w-full h-full"
+                  allow="autoplay; encrypted-media"
+                  frameBorder="0"
+                  scrolling="no"
+                  allowFullScreen
+                  loop
+                  style={{
+                    borderRadius: '15px',
+                    border: '4px solid white',
+                    objectFit: 'cover' // Ensures proper scaling of content inside iframe
+                  }}
+                  title={`${video.platform} Video`}
+                ></iframe>
+              </div>
+
+              <a
+                href={platformURLs[video.platform.toLowerCase()]}
+                target="_blank"
+                className="my-4 slogen pb-2  rounded-none text-warning border-bottom border-warning "
+                style={{ textDecoration: 'none', fontSize: '24px' }} // Removed text decoration
+              >
+                View More
+              </a>
+            </Col>
+          ))}
+        </Row>
+        <div className='container text-center ' >
+          <h1 className='slogen' style={{ fontSize: '4vw', fontWeight: '600', color: '#ffc100' }} >Want To Learn More</h1>
+
+          <div className='contianer  my-5 d-flex justify-content-center align-items-center'  style={{minHeight:'380px', backgroundColor: '#d9d9d9'}}>
+            <h4 className='text-black text-start container w-50 '>Coming Soon! Unlock proven strategies, sharpen your
+              skills, and take your career to new heights stay tuned
+              for launch updates and early bird registration!</h4>
+          </div>
+        </div>
+
+        <Row className="text-center py-2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'rgba(255, 255, 255, 0.4)' }}>
+          <Col>
+            <p className="mb-0 text-sm">
+              © {new Date().getFullYear()} TrackPi Private Limited. All rights reserved.
+            </p>
           </Col>
         </Row>
-
-        <div className="text-center w-full">
-          <span
-            style={{ fontSize: "16px", fontWeight: "500" }}
-            className="text-warning"
-          >
-            Ready to start?
-          </span>
-          <br />
-          <h1 style={{ fontSize: "5.5vw" }}>We’ll Show You How</h1>
-        </div>
-
-        <div className="p-md-5">
-          <Row className="p-5 mb-3">
-            {videoData.map((video, index) => (
-              <Col
-                key={index}
-                sm={12}
-                md={4}
-                className="text-center mb-3 p-md-5"
-                onMouseEnter={() => handleHover(index)}
-                onMouseLeave={() => handleMouseLeave(index)}
-              >
-                <div
-                  className="relative w-full"
-                  style={{ paddingTop: "177.77%" }}
-                >
-                  <iframe
-                    ref={(el) => (videoRefs.current[index] = el)}
-                    src={
-                      video.isYouTube
-                        ? `${video.previewUrl}?autoplay=1&mute=1`
-                        : video.previewUrl
-                    }
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="autoplay; encrypted-media"
-                    frameBorder="0"
-                    allowFullScreen
-                    style={{ borderRadius: "8px", border: "2px solid white" }}
-                    title={`${video.platform} Video`}
-                  ></iframe>
-                </div>
-                <a
-                  href={platformURLs[video.platform.toLowerCase()]}
-                  target="_blank"
-                  className="btn btn-warning my-4"
-                  style={{ textDecoration: "none" }} // Removed text decoration
-                >
-                  See More
-                </a>
-              </Col>
-            ))}
-          </Row>
-        </div>
+        
       </Container>
       <footer className="bg-light text-dark py-4">
         <Container>
