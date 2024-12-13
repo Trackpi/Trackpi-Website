@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import GetInTouch from '../components/GetInTouch';
-import NewsStream from '../components/NewsStream';
-import { FaAngleLeft } from "react-icons/fa6";
+import { FaAngleRight } from 'react-icons/fa6';
+import { FaAngleLeft } from 'react-icons/fa6';
 import logo from '../images/trackpi_logo.png';
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0); // Track current card index
@@ -41,14 +41,40 @@ function Home() {
       logo: logo,
     },
   ];
+  const clients = [
+    {
+      id: 1,
+      name: 'Growth Partners',
+      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b392159be09bdd1f1a6_airbnb.svg',
+    },
+    {
+      id: 2,
+      name: 'Talent Boosters',
+      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/64075cdef7a9a07a16cc0818_arcadis-logo.svg',
+    },
+    {
+      id: 3,
+      name: 'Strategic Thinkers',
+      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/64076123e7fd47d10ab57ad6_bloomin%20(1).png',
+    },
+  ];
+  const cardsPerSlide = 4; // Number of cards to display per slide
+
+  // Handle Previous Button Click
   const handlePrev = () => {
-    setCurrentIndex(prev => (prev === 0 ? cards.length - 1 : prev - 1));
+    setCurrentIndex(prevIndex =>
+      prevIndex > 0 ? prevIndex - 1 : Math.floor(cards.length / cardsPerSlide)
+    );
   };
 
+  // Handle Next Button Click
   const handleNext = () => {
-    setCurrentIndex(prev => (prev === cards.length - 1 ? 0 : prev + 1));
+    setCurrentIndex(prevIndex =>
+      prevIndex < Math.floor(cards.length / cardsPerSlide) ? prevIndex + 1 : 0
+    );
   };
 
+  // Handle Dot Click to navigate to a specific index
   const handleDotClick = index => {
     setCurrentIndex(index);
   };
@@ -122,7 +148,6 @@ function Home() {
           </h1>
         </div>
         <div className="bg-yellow-500 py-8">
-          {/* <div className="overflow-hidden"> */}
           <div
             className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -140,25 +165,22 @@ function Home() {
               </div>
             ))}
           </div>
-          {/* </div> */}
         </div>
-        {/* Navigation Arrows and Dots */}
-        <div className="flex justify-between items-center mt-4">
-          <div className="flex">
-          <button
-            onClick={handlePrev}
-            className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
-          >
-            <FaAngleLeft/> 
-          </button>
+        <div className="flex justify-between items-center mt-4 mx-4">
+          <div className="flex gap-5">
             <button
-            onClick={handleNext}
-            className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
-          >
-            &#8594;
-          </button>
+              onClick={handlePrev}
+              className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
+            >
+              <FaAngleLeft size={18} />
+            </button>
+            <button
+              onClick={handleNext}
+              className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
+            >
+              <FaAngleRight size={18} />
+            </button>
           </div>
-         
 
           {/* Slider Dots */}
           <div className="flex justify-center items-center">
@@ -167,24 +189,22 @@ function Home() {
                 key={index}
                 onClick={() => handleDotClick(index)}
                 className={`w-2.5 h-2.5 mx-1 rounded-full ${
-                  currentIndex === index ? 'bg-gray-800' : 'bg-gray-400'
+                  currentIndex === index ? 'bg-yellow-500  w-4' : 'bg-gray-400'
                 }`}
               />
             ))}
           </div>
-        {/* View More Button */}
+          {/* View More Button */}
 
           <div className="text-right">
-          <button className="bg-amber-500 text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
-            View More
-          </button>
+            <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
+              View More
+            </button>
+          </div>
         </div>
-        
-        </div>
-
-        
       </section>
 
+    
       {/* <section ref={refFirstSection} className="mt-2 w-full h-full">
         <Container>
           <Row>
@@ -390,27 +410,16 @@ function Home() {
           </Row>
         </Container>
       </section> */}
-      {/* 
-      <section ref={refLast} className="mt-5 p-5 w-full h-full">
-        <Row className="text-yellow-500">
-          <motion.h5
-            initial={{ opacity: 0, y: 20 }}
-            animate={inViewLast ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, ease: 'easeOut' }}
-          >
-            OUR CLIENTS
-          </motion.h5>
-          <motion.h1
-            className="fw-bold"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inViewLast ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
-          >
-            We’re fortunate to <br /> work with the best
-          </motion.h1>
+
+      <section className="w-full h-full">
+        <Row className="text-yellow-500 mt-5 p-5">
+          <h1>OUR CLIENTS</h1>
+          <h4 className="fw-bold text-black">
+            We’re fortunate to work with the best
+          </h4>
         </Row>
 
-        <Row className="flex justify-center items-center mt-5">
+        <Row className="flex justify-center items-center  bg-yellow-500 py-5">
           <Col xs={6} md={2} className="client-logo">
             <img
               className="sm:w-50"
@@ -441,23 +450,6 @@ function Home() {
           </Col>
           <Col xs={6} md={2} className="client-logo">
             <img
-              className="sm:w-50"
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b61cbd31d488e3a5ff8_Charles%20Schwab.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              className="sm:w-50"
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b88b8a9214280bfccbd_dropbox-3%201.svg"
-              alt=""
-            />
-          </Col>
-        </Row>
-
-        <Row className="flex justify-center items-center mt-5">
-          <Col xs={6} md={2} className="client-logo">
-            <img
               src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1ba4a10c05870d2569d0_fidelity-investments-3%201.svg"
               alt=""
             />
@@ -468,71 +460,8 @@ function Home() {
               alt=""
             />
           </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1bd520f51d0dc3c7e507_Gitcoin.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1be3119f35337075f102_hyatt-hotels-1%201.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1d74f551682172d0889e_macys-logo%201.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1d925cdbc2b071b705e5_microsoft%201.svg"
-              alt=""
-            />
-          </Col>
         </Row>
-
-        <Row className="flex justify-center items-center mt-5">
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/645abfdcab1afd1257413b3e_TR%2BWebsite%2BLogos.025.png"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1db4e9d846503ca8fa0d_roche-logo.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/645abfcc75e323605f15a068_TR%2BWebsite%2BLogos.008.png"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/645abfb5b9f0756bc8655367_TR%2BWebsite%2BLogos.005.png"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1dfebc9839505159dbd7_sweetgreen%20logo.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1e1843ac9c6bbcfe55d9_teachforamerica-logo.svg"
-              alt=""
-            />
-          </Col>
-        </Row>
-      </section> */}
+      </section>
 
       <GetInTouch />
     </>
