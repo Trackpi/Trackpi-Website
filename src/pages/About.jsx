@@ -1,8 +1,8 @@
 //import React from 'react';
 import OurTeam from './OurTeam';
-import GetInTouch from '../components/GetInTouch';
 import PopUp from '../components/PopUp';
 import Brochure from '../components/Brochure';
+import ConnectButtons from '../components/ConnectButtons';
 
 function About() {
   return (
@@ -26,9 +26,8 @@ function About() {
 
       <section className='mb-28'>
     
-      <GetInTouch/>
       </section>
-     
+     <ConnectButtons/>
     </>
   );
 }

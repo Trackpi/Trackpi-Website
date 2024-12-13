@@ -4,9 +4,8 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import GetInTouch from '../components/GetInTouch';
-import NewsStream from '../components/NewsStream';
 import Wavify from 'react-wavify';
+import ConnectButtons from '../components/ConnectButtons';
 function Home() {
   const options = { threshold: 0.1 };
 
@@ -173,7 +172,6 @@ function Home() {
         </Container>
       </section>
       <section className="relative z-20">
-        <NewsStream />
       </section>
 
       <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
@@ -422,8 +420,8 @@ function Home() {
           </Col>
         </Row>
       </section>
+      <ConnectButtons/>
 
-      <GetInTouch />
     </>
   );
 }
