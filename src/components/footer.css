@@ -1,31 +1,5 @@
-.footer-container {
-    background-color: #000;
-    color: #fff;
-  }
-  
-  .footer-container h5 {
-    color: #ffc107;
-  }
-  
-  .footer-container a {
-    color: #ffc107;
-    text-decoration: none;
-  }
-  
-  .footer-container a:hover {
-    text-decoration: underline;
-  }
-  
-  .btn-warning {
-    background-color: #ffc107;
-    border: none;
-  }
-  
-  .btn-warning:hover {
-    background-color: #e0a800;
-  }
 
-  @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 .slogen{
     font-family: "Urbanist", sans-serif;
