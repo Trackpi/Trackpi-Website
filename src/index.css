@@ -666,7 +666,7 @@ h1 {
 .first{
   display: flex;
   flex-direction: column;
-  gap: 20px;
+ 
 }
 .bb{
   display: flex;
@@ -677,7 +677,7 @@ h1 {
 .aa{
   
 padding: 50px;
-background-color: rgba(0, 0, 0, 0.892);
+
 width: 100%;
 display: flex !important;
 justify-content: center;
@@ -688,23 +688,29 @@ gap: 50px !important;
   
   width: 100%;
   display: flex;
-  
+ border-radius: 7px !important;
   gap: 20px;
+}
+.icon-color{
+  color:rgb(245, 158, 11);
 }
 .card1{
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke!important;
+  background-color: rgb(245, 158, 11)!important;
   color: black !important;
-
+  border-radius: 7px !important;
+}
+.connect-text-Color{
+color: rgb(245, 158, 11);
 }
 .icon{
   height: 50px;
   width: 50px;
   border-radius: 100%;
-  background-color: #fde047;
+  background-color:white;
   display: flex;
   justify-content: center;
   align-items: center;
