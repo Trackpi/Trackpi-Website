@@ -4,15 +4,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { SiMedium } from "react-icons/si";
-import { SiQuora } from "react-icons/si";
-import { RiBloggerLine } from "react-icons/ri";
-import { IoLogoInstagram } from "react-icons/io5";
-import { SlSocialYoutube } from "react-icons/sl";
-import { RiFacebookCircleLine } from "react-icons/ri";
-import { TbBrandLinkedin } from "react-icons/tb";
-import { IoMail } from "react-icons/io5";
-import { FaSquarePhone } from "react-icons/fa6";
+// import { SiMedium } from "react-icons/si";
+// import { SiQuora } from "react-icons/si";
+// import { RiBloggerLine } from "react-icons/ri";
+// import { IoLogoInstagram } from "react-icons/io5";
+// import { SlSocialYoutube } from "react-icons/sl";
+// import { RiFacebookCircleLine } from "react-icons/ri";
+// import { TbBrandLinkedin } from "react-icons/tb";
+// import { IoMail } from "react-icons/io5";
+// import { FaSquarePhone } from "react-icons/fa6";
 import './footer.css'
 
 function Footer() {
