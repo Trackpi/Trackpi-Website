@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './footer.css'
 
 function Footer() {
   const videoRefs = useRef([]);
@@ -49,8 +50,8 @@ function Footer() {
 
   return (
     <div>
-      <Container fluid className="footer-container bg-black text-white">
-        <Row className="p-4 text-center text-md-start">
+      <Container fluid className="footer-container text-white" style={{ backgroundColor: '#0A0A0A' }}>
+        {/* <Row className="p-4 text-center text-md-start">
           <Col sm={12} md={4} className="text-center mb-3">
             <img
               src="src/images/trackpi_logo.png"
@@ -58,77 +59,67 @@ function Footer() {
               alt="TrackPi Logo"
             />
           </Col>
-        </Row>
+        </Row> */}
 
-        <div className="text-center w-full">
-          <span style={{ fontSize: '16px', fontWeight: '500' }} className="text-warning">Ready to start?</span>
-          <br />
-          <h1 style={{ fontSize: '5.5vw' }}>We’ll Show You How</h1>
+        <div className="text-center w-full pt-5">
+          <h1 className='slogen' style={{ fontSize: '5vw', fontWeight: '400' }} >
+            Begin Your Journey With
+            <span style={{ color: '#FFC100' }} className='ms-1'>TRACK</span>PI
+          </h1>
+          <h1 style={{ fontSize: '3.6vw', fontWeight: '600' }} className='slogen '>we are here to help.</h1>
+          <button className='btn text-light py-2 mt-4 mb-3  px-5 slogen joinbtn ' style={{ fontSize: '2.5vw' }}>
+            Join with us
+          </button>
         </div>
+        <hr className='my-3' />
+        <h1 className='slogen text-center mt-5 ' style={{ fontSize: '4vw', fontWeight: '600', color: '#ffc100' }} >Discover Winning Business Strategies</h1>
+        <Row className=" " style={{ padding: '50px' }}>
+          {videoData.map((video, index) => (
+            <Col
+              key={index}
+              sm={12}
+              md={4}
+              className="text-center mb-3 p-md-5"
+              onMouseEnter={() => handleHover(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+            >
+              <div className="relative w-full mb-5" style={{ paddingTop: '177.77%' }}>
+                <iframe
+                  ref={(el) => (videoRefs.current[index] = el)}
+                  src={video.isYouTube ? `${video.previewUrl}?autoplay=1&mute=1&loop=1` : video.previewUrl}
+                  className="absolute top-0 left-0 w-full h-full"
+                  allow="autoplay; encrypted-media"
+                  frameBorder="0"
+                  scrolling="no"
+                  allowFullScreen
+                  loop
+                  style={{
+                    borderRadius: '15px',
+                    border: '4px solid white',
+                    objectFit: 'cover' // Ensures proper scaling of content inside iframe
+                  }}
+                  title={`${video.platform} Video`}
+                ></iframe>
+              </div>
 
-        <div className="p-md-5">
-          <Row className="p-5 mb-3">
-            {videoData.map((video, index) => (
-              <Col
-                key={index}
-                sm={12}
-                md={4}
-                className="text-center mb-3 p-md-5"
-                onMouseEnter={() => handleHover(index)}
-                onMouseLeave={() => handleMouseLeave(index)}
+              <a
+                href={platformURLs[video.platform.toLowerCase()]}
+                target="_blank"
+                className="my-4 slogen pb-2  rounded-none text-warning border-bottom border-warning "
+                style={{ textDecoration: 'none', fontSize: '24px' }} // Removed text decoration
               >
-                <div className="relative w-full" style={{ paddingTop: '177.77%' }}>
-                  <iframe
-                    ref={(el) => (videoRefs.current[index] = el)}
-                    src={video.isYouTube ? `${video.previewUrl}?autoplay=1&mute=1` : video.previewUrl}
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="autoplay; encrypted-media"
-                    frameBorder="0"
-                    allowFullScreen
-                    style={{ borderRadius: '8px', border: '2px solid white' }}
-                    title={`${video.platform} Video`}
-                  ></iframe>
-                </div>
-                <a
-                  href={platformURLs[video.platform.toLowerCase()]}
-                  target="_blank"
-                  className="btn btn-warning my-4"
-                  style={{ textDecoration: 'none' }} // Removed text decoration
-                >
-                  See More
-                </a>
-              </Col>
-            ))}
-          </Row>
+                View More
+              </a>
+            </Col>
+          ))}
+        </Row>
+        <div className='container text-center ' >
+          <h1 className='slogen' style={{ fontSize: '4vw', fontWeight: '600', color: '#ffc100' }} >Want To Learn More</h1>
 
-          <div className="text-center">
-            <a
-              href="https://maps.app.goo.gl/iyiRhsk6zCTBK7AE6"
-              target="_blank"
-              style={{ textDecoration: 'none' }} // Removed text decoration
-            >
-              <abbr title="location">
-                <i className="fa-solid fa-location-dot mx-4 fa-xl text-white"></i>
-              </abbr>
-            </a>
-            <a
-              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=vinupsvinayak@gmail.com"
-              target="_blank"
-              style={{ textDecoration: 'none' }} // Removed text decoration
-            >
-              <abbr title="vinupsvinayak@gmail.com">
-                <i className="fa-solid fa-envelope mx-4 fa-xl text-white"></i>
-              </abbr>
-            </a>
-            <a
-              href="tel:+918078179646"
-              target="_blank"
-              style={{ textDecoration: 'none' }} // Removed text decoration
-            >
-              <abbr title="+91 8078179646">
-                <i className="fa-solid fa-phone mx-4 fa-xl text-white"></i>
-              </abbr>
-            </a>
+          <div className='contianer  my-5 d-flex justify-content-center align-items-center'  style={{minHeight:'380px', backgroundColor: '#d9d9d9'}}>
+            <h4 className='text-black text-start container w-50 '>Coming Soon! Unlock proven strategies, sharpen your
+              skills, and take your career to new heights stay tuned
+              for launch updates and early bird registration!</h4>
           </div>
         </div>
 
