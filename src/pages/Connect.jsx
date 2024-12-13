@@ -2,6 +2,7 @@
 import React from 'react'
 import Details from '../components/Form';
 import { Container, Row} from 'react-bootstrap';
+import ConnectButtons from '../components/ConnectButtons';
 
 function Connect() {
   return (
@@ -72,6 +73,7 @@ function Connect() {
           </Row>
         </Container>
       </section>
+      <ConnectButtons/>
     </div>
   );
 }

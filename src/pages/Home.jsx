@@ -4,10 +4,12 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import GetInTouch from '../components/GetInTouch';
+import Wavify from 'react-wavify';
+import ConnectButtons from '../components/ConnectButtons';
 import { FaAngleRight } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
 import logo from '../images/trackpi_logo.png';
+ 
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0); // Track current card index
 
@@ -306,8 +308,11 @@ function Home() {
         </Container>
       </section>
       <section className="relative z-20">
-        <NewsStream />
+
+      </section>
+
       </section> */}
+
 
       {/* <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
         <Row className='flex items-center'>
@@ -462,8 +467,8 @@ function Home() {
           </Col>
         </Row>
       </section>
+      <ConnectButtons/>
 
-      <GetInTouch />
     </>
   );
 }
