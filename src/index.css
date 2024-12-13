@@ -534,11 +534,13 @@ h1 {
 
 /* About page  */
 
+
 .about_section {
   position: relative;
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  
 }
 /* About Section Background with Opacity */
 .about_section::before {
@@ -565,7 +567,30 @@ h1 {
 .team-img:hover {
   filter: grayscale(0%);
 }
+/* About page carousel */
 
+.card11{
+  padding: 20px;
+  height: 384px;
+  background: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+ 
+  
+  }
+  .box-front{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: white;
+    height: 100px;
+    width: 200px;
+  }
+ 
+  
 /* Our services */
 
 .bg_yellow {
