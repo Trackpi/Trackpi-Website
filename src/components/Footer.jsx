@@ -1,4 +1,4 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { SiMedium } from "react-icons/si";
@@ -10,9 +10,6 @@ import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
 import { IoMail } from "react-icons/io5";
 import { FaSquarePhone } from "react-icons/fa6";
-
-
-
 
 
 
