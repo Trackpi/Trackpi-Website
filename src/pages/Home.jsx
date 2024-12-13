@@ -4,53 +4,122 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import GetInTouch from '../components/GetInTouch';
-import NewsStream from '../components/NewsStream';
 import Wavify from 'react-wavify';
+import ConnectButtons from '../components/ConnectButtons';
+import { FaAngleRight } from 'react-icons/fa6';
+import { FaAngleLeft } from 'react-icons/fa6';
+import logo from '../images/trackpi_logo.png';
+ 
 function Home() {
-  const options = { threshold: 0.1 };
+  const [currentIndex, setCurrentIndex] = useState(0); // Track current card index
 
-  const [refFirstSection, inViewFirstSection] = useInView(options);
-  const [refSecondSection, inViewSecondSection] = useInView(options);
-  const [refThirdSection, inViewThirdSection] = useInView(options);
-  const [refLast, inViewLast] = useInView(options);
+  const cards = [
+    {
+      id: 1,
+      title: 'We See The Challenge',
+      description:
+        "We're all wrestling with complexity.Every company, work function, and team now facesa tall order",
+      logo: logo,
+    },
+    {
+      id: 2,
+      title: 'We See The Challenge',
+      description:
+        "We're all wrestling with complexity.Every company, work function, and team now facesa tall order",
+      logo: logo,
+    },
+    {
+      id: 3,
+      title: 'We See The Challenge',
+      description:
+        "We're all wrestling with complexity.Every company, work function, and team now facesa tall order",
+      logo: logo,
+    },
+    {
+      id: 4,
+      title: 'We See The Challenge',
+      description:
+        "We're all wrestling with complexity.Every company, work function, and team now facesa tall order",
+      logo: logo,
+    },
+  ];
+  const clients = [
+    {
+      id: 1,
+      name: 'Growth Partners',
+      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b392159be09bdd1f1a6_airbnb.svg',
+    },
+    {
+      id: 2,
+      name: 'Talent Boosters',
+      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/64075cdef7a9a07a16cc0818_arcadis-logo.svg',
+    },
+    {
+      id: 3,
+      name: 'Strategic Thinkers',
+      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/64076123e7fd47d10ab57ad6_bloomin%20(1).png',
+    },
+  ];
+  const cardsPerSlide = 4; // Number of cards to display per slide
 
-  const TypingEffect = ({ text, delay = 0.1 }) => {
-    // Split text into individual characters
-    const splitText = text.split('').map((char, index) => (
-      <motion.span
-        key={index}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          delay: index * delay,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          duration: 1.5,
-        }}
-      >
-        {char}
-      </motion.span>
-    ));
-
-    return (
-      <motion.h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
-        {splitText}
-      </motion.h1>
+  // Handle Previous Button Click
+  const handlePrev = () => {
+    setCurrentIndex(prevIndex =>
+      prevIndex > 0 ? prevIndex - 1 : Math.floor(cards.length / cardsPerSlide)
     );
   };
+
+  // Handle Next Button Click
+  const handleNext = () => {
+    setCurrentIndex(prevIndex =>
+      prevIndex < Math.floor(cards.length / cardsPerSlide) ? prevIndex + 1 : 0
+    );
+  };
+
+  // Handle Dot Click to navigate to a specific index
+  const handleDotClick = index => {
+    setCurrentIndex(index);
+  };
+  // const options = { threshold: 0.1 };
+
+  // const [refFirstSection, inViewFirstSection] = useInView(options);
+  // const [refSecondSection, inViewSecondSection] = useInView(options);
+  // const [refThirdSection, inViewThirdSection] = useInView(options);
+  // const [refLast, inViewLast] = useInView(options);
+
+  // const TypingEffect = ({ text, delay = 0.1 }) => {
+  //   // Split text into individual characters
+  //   const splitText = text.split('').map((char, index) => (
+  //     <motion.span
+  //       key={index}
+  //       initial={{ opacity: 0 }}
+  //       animate={{ opacity: 1 }}
+  //       transition={{
+  //         delay: index * delay,
+  //         repeat: Infinity,
+  //         repeatType: 'reverse',
+  //         duration: 1.5,
+  //       }}
+  //     >
+  //       {char}
+  //     </motion.span>
+  //   ));
+
+  //   return (
+  //     <motion.h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+  //       {splitText}
+  //     </motion.h1>
+  //   );
+  // };
   return (
     <>
-      <section
-        ref={refFirstSection}
-        className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative"
-      >
+      <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
         <div className="flex flex-col items-center z-10">
-          <TypingEffect text="Reinvent Your Organization" delay={0.05} />
+          {/* <TypingEffect text="Reinvent Your Organization" delay={0.05} /> */}
 
-          {/* <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
+          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
             Reinvent Your Organization
-          </h1> */}
+          </h1>
           <motion.p
             className="font-semibold text-md md:text-2xl working_subheading text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -71,8 +140,74 @@ function Home() {
           </motion.div>
         </div>
       </section>
+      <section>
+        <div className="text-center pt-12 pb-6">
+          <h1
+            className="text-4xl font-bold text-yellow-400"
+            style={{ textShadow: '#c3c5c7 2px 2px' }}
+          >
+            Real-Time Business News Updates?
+          </h1>
+        </div>
+        <div className="bg-yellow-500 py-8">
+          <div
+            className="flex transition-transform duration-500"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {cards.map(card => (
+              <div
+                key={card.id}
+                className="w-80 bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 mx-4 hover:scale-110 cursor-pointer"
+              >
+                <img src={card.logo} alt="Trackpi_logo" className="mx-auto" />
+                <h3 className="text-lg font-bold text-amber-500 mt-4">
+                  {card.title}
+                </h3>
+                <p className="text-white mt-2">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-between items-center mt-4 mx-4">
+          <div className="flex gap-5">
+            <button
+              onClick={handlePrev}
+              className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
+            >
+              <FaAngleLeft size={18} />
+            </button>
+            <button
+              onClick={handleNext}
+              className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
+            >
+              <FaAngleRight size={18} />
+            </button>
+          </div>
 
-      <section ref={refFirstSection} className="mt-2 w-full h-full">
+          {/* Slider Dots */}
+          <div className="flex justify-center items-center">
+            {cards.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleDotClick(index)}
+                className={`w-2.5 h-2.5 mx-1 rounded-full ${
+                  currentIndex === index ? 'bg-yellow-500  w-4' : 'bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
+          {/* View More Button */}
+
+          <div className="text-right">
+            <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
+              View More
+            </button>
+          </div>
+        </div>
+      </section>
+
+    
+      {/* <section ref={refFirstSection} className="mt-2 w-full h-full">
         <Container>
           <Row>
             <Col className="flex flex-col items-center pt-12">
@@ -173,10 +308,13 @@ function Home() {
         </Container>
       </section>
       <section className="relative z-20">
-        <NewsStream />
+
       </section>
 
-      <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
+      </section> */}
+
+
+      {/* <section ref={refThirdSection} className="px-10 py-10 w-full h-full">
         <Row className='flex items-center'>
           <Col md={6} className="flex flex-col items-center pt-12">
             <motion.div
@@ -232,10 +370,9 @@ function Home() {
             />
           </Col>
         </Row>
-      </section>
-
+      </section> */}
+      {/* 
       <section className="flex justify-center items-center mt-20 pb-8 h-full w-full relative">
-        {/* Wave Background */}
         <Wavify
           className="wave absolute bottom-0 left-0 w-full h-96"
           fill="#fde047"
@@ -249,7 +386,6 @@ function Home() {
           style={{ zIndex: -1}}
         />
 
-        {/* Content */}
         <Container className="relative z-10">
           <Row className="flex flex-col justify-center items-center">
             <Col className="flex justify-center items-center">
@@ -278,28 +414,17 @@ function Home() {
             </Col>
           </Row>
         </Container>
-      </section>
+      </section> */}
 
-      <section ref={refLast} className="mt-5 p-5 w-full h-full">
-        <Row className="text-yellow-500">
-          <motion.h5
-            initial={{ opacity: 0, y: 20 }}
-            animate={inViewLast ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, ease: 'easeOut' }}
-          >
-            OUR CLIENTS
-          </motion.h5>
-          <motion.h1
-            className="fw-bold"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inViewLast ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
-          >
-            We’re fortunate to <br /> work with the best
-          </motion.h1>
+      <section className="w-full h-full">
+        <Row className="text-yellow-500 mt-5 p-5">
+          <h1>OUR CLIENTS</h1>
+          <h4 className="fw-bold text-black">
+            We’re fortunate to work with the best
+          </h4>
         </Row>
 
-        <Row className="flex justify-center items-center mt-5">
+        <Row className="flex justify-center items-center  bg-yellow-500 py-5">
           <Col xs={6} md={2} className="client-logo">
             <img
               className="sm:w-50"
@@ -330,23 +455,6 @@ function Home() {
           </Col>
           <Col xs={6} md={2} className="client-logo">
             <img
-              className="sm:w-50"
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b61cbd31d488e3a5ff8_Charles%20Schwab.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              className="sm:w-50"
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b88b8a9214280bfccbd_dropbox-3%201.svg"
-              alt=""
-            />
-          </Col>
-        </Row>
-
-        <Row className="flex justify-center items-center mt-5">
-          <Col xs={6} md={2} className="client-logo">
-            <img
               src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1ba4a10c05870d2569d0_fidelity-investments-3%201.svg"
               alt=""
             />
@@ -357,73 +465,10 @@ function Home() {
               alt=""
             />
           </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1bd520f51d0dc3c7e507_Gitcoin.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1be3119f35337075f102_hyatt-hotels-1%201.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1d74f551682172d0889e_macys-logo%201.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1d925cdbc2b071b705e5_microsoft%201.svg"
-              alt=""
-            />
-          </Col>
-        </Row>
-
-        <Row className="flex justify-center items-center mt-5">
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/645abfdcab1afd1257413b3e_TR%2BWebsite%2BLogos.025.png"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1db4e9d846503ca8fa0d_roche-logo.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/645abfcc75e323605f15a068_TR%2BWebsite%2BLogos.008.png"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/645abfb5b9f0756bc8655367_TR%2BWebsite%2BLogos.005.png"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1dfebc9839505159dbd7_sweetgreen%20logo.svg"
-              alt=""
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1e1843ac9c6bbcfe55d9_teachforamerica-logo.svg"
-              alt=""
-            />
-          </Col>
         </Row>
       </section>
+      <ConnectButtons/>
 
-      <GetInTouch />
     </>
   );
 }

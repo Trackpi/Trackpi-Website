@@ -1,11 +1,12 @@
 //import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button} from 'react-bootstrap';
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 import TeamListMemberCrd from '../components/teamListMemberCrd';
 
+import Clients from '../components/carousel';
 function OurTeam() {
   const options = { threshold: 0.1 };
 
@@ -20,7 +21,9 @@ function OurTeam() {
           <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
-        
+
+          {/* <Brochure /> */}
+
         </div>
       </section>
 
@@ -60,8 +63,64 @@ function OurTeam() {
         </Container>
       </section>
 <section>
-
+{/* <Brochure/> */}
 </section>
+<section  className="mt-0 flex flex-col items-center gap-10 w-full h-full">
+       <div className="flex flex-col items-center ">
+          <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
+            OUR CLIENTS
+          </h1>
+          <h5 className='text-bold text-black' >We're fortunate to work with the best!</h5>
+          
+        </div>
+        <Clients/>
+</section>
+<section ref={refThirdSection} className="mt-0  w-full h-full">
+        <Container>
+          <Row>
+            <Col md={6} className="flex flex-col items-center pt-12">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8 }}
+              >
+                <h1 className="text-yellow-500 fw-bold display-5">
+                  Join our team
+                </h1>
+                <p className="text-xl md:text-justify md:text-lg">
+                  We are always on the lookout for our next stunning colleague.
+                  If you either have experience working closely with
+                  organizations to help them think and act differently or are
+                  hoping to apply your unique skillset toward changing how the
+                  world works and participating in a self-managing environment,{' '}
+                  <span className="underline">
+                    please learn about our hiring process and consider applying
+                    with us!
+                  </span>
+                </p>
+                <p className="text-xl md:text-justify md:text-lg">
+                  The Trackpi's hiring team reviews all applications anonymously
+                  and will be in touch if there is a fit. If you need to get in
+                  touch with them, please email{' '}
+                  <span className="underline">hr@trackpi.in.</span>
+                </p>
+                <Button className="bg-white  mt-5 p-2 rounded-pill fw-bold text-black">
+                  JOIN OUR TEAM <i className="fa-arrow-right fa-solid"></i>
+                </Button>
+              </motion.div>
+            </Col>
+            <Col md={6} className="flex flex-col items-center p-5">
+              <motion.img
+                src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64495b2e1589c13e25e8db88_image_OurTeamForeground%402x-p-1080.webp"
+                alt=""
+                initial={{ opacity: 0, x: 50 }}
+                animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8 }}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <section
         ref={refSecondSection}
         className="mt-0 w-full h-full bg2 flex items-center"
@@ -99,54 +158,6 @@ function OurTeam() {
           </Row>
         </Container>
       </section>
-
-      <section ref={refThirdSection} className="mt-0  w-full h-full">
-        <Container>
-          <Row>
-            <Col md={6} className="flex flex-col items-center pt-12">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="text-yellow-500 fw-bold display-5">
-                  Join our team
-                </h1>
-                <p className="text-xl md:text-justify md:text-lg">
-                  We are always on the lookout for our next stunning colleague.
-                  If you either have experience working closely with
-                  organizations to help them think and act differently or are
-                  hoping to apply your unique skillset toward changing how the
-                  world works and participating in a self-managing environment,{' '}
-                  <span className="underline">
-                    please learn about our hiring process and consider applying
-                    with us!
-                  </span>
-                </p>
-                <p className="text-xl md:text-justify md:text-lg">
-                  The Trackpi's hiring team reviews all applications anonymously
-                  and will be in touch if there is a fit. If you need to get in
-                  touch with them, please email{' '}
-                  <span className="underline">hr@trackpi.in.</span>
-                </p>
-                <Button className="bg-white mt-5 p-2 rounded-pill fw-bold text-black">
-                  JOIN OUR TEAM <i className="fa-arrow-right fa-solid"></i>
-                </Button>
-              </motion.div>
-            </Col>
-            <Col md={6} className="flex flex-col items-center p-5">
-              <motion.img
-                src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64495b2e1589c13e25e8db88_image_OurTeamForeground%402x-p-1080.webp"
-                alt=""
-                initial={{ opacity: 0, x: 50 }}
-                animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8 }}
-              />
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
       <section className="mt-5 mb-5 w-full">
         <Container className="flex flex-col gap-5">
           <Row>

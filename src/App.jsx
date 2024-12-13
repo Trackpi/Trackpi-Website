@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
@@ -14,52 +14,49 @@ import Personel from './pages/personel';
 import Sidebar from './components/Sidebar';
 import NotFound from './pages/NotFound';
 import ScrollUp from './components/ScrollUp';
-import LogoLoader from './components/LogoLoader/LogoLoader';
+import Loader from './components/Loader';
 
 function App() {
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
 
-
-
   useEffect(() => {
-    setLoading(true);
-    const timeout = setTimeout(() => setLoading(false), 1000); 
+    if (location.pathname === '/') {
+      setLoading(true);
+      const timeout = setTimeout(() => setLoading(false), 2250);
 
-    return () => clearTimeout(timeout); 
+      return () => clearTimeout(timeout); 
+    } else {
+      setLoading(false); 
+    }
   }, [location]);
 
-
-
   return (
-    <div className="">
-      <Header />
-      <ScrollUp/>
+    <>
+      <ScrollUp />
       {loading ? (
-        <LogoLoader />
+        <Loader />
       ) : (
         <>
-        <Header />
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/our-services" element={<OurServices />}></Route>
-        <Route path="/our-team" element={<OurTeam />}></Route>
-        <Route
-          path="/employee-verification"
-          element={<EmployeeVerification />}
-        ></Route>
-        <Route path="/connect-us" element={<Connect />}></Route>
-
-        <Route path="/personel" element={<Personel />}></Route>
-
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-      </>
-        )}
-    </div>
+          <Header />
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/our-services" element={<OurServices />} />
+            <Route path="/our-team" element={<OurTeam />} />
+            <Route
+              path="/employee-verification"
+              element={<EmployeeVerification />}
+            />
+            <Route path="/connect-us" element={<Connect />} />
+            <Route path="/personel" element={<Personel />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </>
+      )}
+    </>
   );
 }
 

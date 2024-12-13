@@ -5,15 +5,19 @@
   top: 0;
   left: 0;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
+  display: block;
+  align-items: center;
+  transition: visibility 0.3s ease, opacity 0.3s ease; 
+  opacity: 1; 
 }
 
 .sidebar nav {
   font-family: 'Montserrat', sans-serif;
   position: fixed;
-  width: 25px;
-  margin-top: 200px;
-  height: 120px;
+  width: 35px;
+  margin-top: 280px;
+  height: 245px;
   transition: all 0.3s linear;
   box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, .4);
   list-style: none;
@@ -25,7 +29,7 @@
 }
 
 .sidebar nav li {
-  height: 30px; /* Adjust height to match the smaller icons */
+  height: 35px; /* Adjust height to match the smaller icons */
   position: relative;
 }
 
@@ -39,27 +43,39 @@ nav ul li a {
   text-decoration: none;
   padding-left: 15px; /* Adjust padding as needed */
   border-bottom: 1px solid rgba(0, 0, 0, .4);
-  transition: all .3s linear;
+  transition: all .2s linear;
 }
 
 .sidebar nav li:nth-child(1) a {
-  background: #316FF6;
+  background: #f09433; 
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+  background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
 }
 
 .sidebar nav li:nth-child(2) a {
-  background: #E1306C;
+  background: #316FF6;
 }
 
 .sidebar nav li:nth-child(3) a {
-  background: #0077B5;
-}
-
-.sidebar nav li:nth-child(4) a {
   background: #ff0000;
 }
 
+.sidebar nav li:nth-child(4) a {
+  background: #0077B5;
+}
+.sidebar nav li:nth-child(5) a {
+  background: #B92B27;
+}
+.sidebar nav li:nth-child(6) a {
+  background: #FF5722;
+}
+.sidebar nav li:nth-child(7) a {
+  background: black;
+}
+
 .sidebar nav li a i {
-  font-size: 14px;  /* Adjusted icon size to make it smaller */
+  font-size: 18px;  /* Adjusted icon size to make it smaller */
   margin-right: 14px;  /* Space between icon and text */
   height: 30px;  /* Set the icon height */
   padding-top: 7.5px;
@@ -68,16 +84,20 @@ nav ul li a {
 .sidebar ul li a span {
   display: none;
   font-weight: bold;
-  padding: 0  10px 0 0 ;
+  padding: 0  10px 0 0;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 10px;
   text-align: start;
+  transition: all 0.3s ease; 
+  transition-delay: 0.3s; 
 }
 
 ul li:hover a span {
   display: block;
+  transition-delay: 0s; 
 }
+
 
 @media screen and (min-width: 768px) {
   .sidebar a:hover {
@@ -105,4 +125,8 @@ ul li:hover a span {
   ul li:hover a span {
     display: none;
   }
+}
+.sidebar.hidden {
+  visibility: hidden;
+  opacity: 0;
 }
