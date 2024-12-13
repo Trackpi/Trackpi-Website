@@ -142,6 +142,8 @@ function Footer() {
               for launch updates and early bird registration!</h4>
           </div>
         </div>
+
+        
         <Row className="text-center py-2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'rgba(255, 255, 255, 0.4)' }}>
           <Col>
             <p className="mb-0 text-sm">
