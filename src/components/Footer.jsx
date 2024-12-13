@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './footer.css'
 // import { Form, Button } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 // import { SiMedium } from "react-icons/si";
@@ -13,7 +14,6 @@ import Col from 'react-bootstrap/Col';
 // import { TbBrandLinkedin } from "react-icons/tb";
 // import { IoMail } from "react-icons/io5";
 // import { FaSquarePhone } from "react-icons/fa6";
-import './footer.css'
 
 function Footer() {
   const videoRefs = useRef([]);
