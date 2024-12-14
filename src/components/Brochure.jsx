@@ -6,7 +6,7 @@ const Brochure = () => {
   return (
     <div style={{ textAlign: "center", position:"absolute",zIndex:"2",marginTop:"92px",marginLeft:"1250px"}}>
       <a href={pdfPath} download="Technical_Round_Assignment.pdf" style={{ textDecoration: "none" }}>
-        <button className=" px-3 py-2 font-bold text-white bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  rounded-lg  hover:text-white">
+        <button className=" px-3 py-2 font-bold text-white bg-gradient-to-r from-[#FFC100] to-[#FF9D00]   rounded-2xl  hover:text-white">
        
           
               Company Brochure
