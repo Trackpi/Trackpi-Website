@@ -7,6 +7,7 @@ import Procurement from './Procurement';
 import SalesOutsourcing from './SalesOutsourcing';
 import PopUp from '../components/PopUp';
 import ConnectButtons from '../components/ConnectButtons';
+import HeaderBanner from '../components/HeaderBanner';
 
 function OurServices() {
   return (
@@ -14,16 +15,8 @@ function OurServices() {
       <PopUp />
       <div className="overflow-x-hidden">
         {/* Hero Section */}
-        <section className="flex justify-center items-center p-3 w-full h-screen services_section bg1 relative">
-          <div className="flex flex-col items-center z-10">
-            <h1 className="text-5xl md:text-7xl working_heading mb-5">
-              Working Together
-            </h1>
-            <p className="font-semibold text-md md:text-2xl working_subheading text-center">
-              We help organizations navigate and thrive in the face of complexity.
-            </p>
-          </div>
-        </section>
+        <HeaderBanner title="Working Together" description="We help organizations navigate and thrive in the face of complexity."classname='bg3'/>
+
 
         {/* Content Sections */}
         <section id="hiring" className="mt-5 w-full">
