@@ -109,10 +109,6 @@ ul li:hover a span {
 }
 
 @media screen and (max-width: 768px) {
-  .sidebar nav {
-    width: 25px;
-    height: 100px;
-  }
   .sidebar ul li a span {
     font-weight: bold;
     letter-spacing: 1px;

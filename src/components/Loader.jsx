@@ -9,17 +9,17 @@ function Loader() {
   // Track image loading progress
   const handleImageLoad = () => {
     let progress = 0;
-    const totalDuration = 2000; // 2.5 seconds
-    const intervalTime = 25; // Update every 25ms for smooth progress
+    const totalDuration = 1600; 
+    const intervalTime = 25; 
 
-    const increment = (100 / totalDuration) * intervalTime; // Calculate how much to increment
+    const increment = (100 / totalDuration) * intervalTime; 
 
     const interval = setInterval(() => {
       progress += increment;
-      setLoadingProgress(Math.min(progress, 100)); // Ensure progress doesn't exceed 100
+      setLoadingProgress(Math.min(progress, 100)); 
 
       if (progress >= 100) {
-        clearInterval(interval); // Stop the interval when progress reaches 100
+        clearInterval(interval); 
       }
     }, intervalTime);
   };
