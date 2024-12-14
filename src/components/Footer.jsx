@@ -143,6 +143,8 @@ function Footer() {
               for launch updates and early bird registration!</h4>
           </div>
         </div>
+        <Row>
+        </Row>
       </Container>
       <footer className="bg-light text-dark py-4">
         <Container>
