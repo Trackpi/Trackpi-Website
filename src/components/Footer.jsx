@@ -2,6 +2,17 @@ import React, { useState, useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Form, Button, InputGroup } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import { SiMedium } from "react-icons/si";
+import { SiQuora } from "react-icons/si";
+import { RiBloggerLine } from "react-icons/ri";
+import { IoLogoInstagram } from "react-icons/io5";
+import { SlSocialYoutube } from "react-icons/sl";
+import { RiFacebookCircleLine } from "react-icons/ri";
+import { TbBrandLinkedin } from "react-icons/tb";
+import { IoMail } from "react-icons/io5";
+import { FaSquarePhone } from "react-icons/fa6";
 import './footer.css'
 
 function Footer() {
@@ -132,24 +143,15 @@ function Footer() {
               for launch updates and early bird registration!</h4>
           </div>
         </div>
-
-        <Row className="text-center py-2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'rgba(255, 255, 255, 0.4)' }}>
-          <Col>
-            <p className="mb-0 text-sm">
-              © {new Date().getFullYear()} TrackPi Private Limited. All rights
-              reserved.
-            </p>
-          </Col>
-        </Row>
       </Container>
       <footer className="bg-light text-dark py-4">
         <Container>
           <Row className="mb-4">
-            <Col md={3}>
+            <Col md={3} lg={4}>
               <img
                 src="src/images/trackpi_logo.png"
                 alt="TrackPi Logo"
-                style={{ width: "150px" }}
+                style={{ width: "250px" }}
               />
               <p className="mt-3">
                 Empowering businesses to succeed through expert guidance and
@@ -157,83 +159,94 @@ function Footer() {
                 success.
               </p>
             </Col>
-            <Col md={3}>
-              <h5>Resources</h5>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="/about" className="text-dark">
+            <Col md={3} lang={2}>
+              <h5 className='mb-3'>Resources</h5>
+              <ul className="list-unstyled ">
+                <li className='mb-3'>
+                  <a href="/about" className="text-dark text-decoration-none" >
                     About
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="text-dark">
+                <li className='mb-3'>
+                  <a href="#" className="text-dark text-decoration-none">
                     Blogs
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="text-dark">
+                <li className='mb-3'>
+                  <a href="#" className="text-dark text-decoration-none">
                     Careers
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="text-dark">
+                <li className='mb-3'>
+                  <a href="#" className="text-dark text-decoration-none">
                     Help Center
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="text-dark">
+                <li className='mb-3'>
+                  <a href="#" className="text-dark text-decoration-none">
                     Terms & Conditions
                   </a>
                 </li>
               </ul>
             </Col>
-            <Col md={3}>
-              <h5>Services</h5>
+            <Col md={3} lg={2}>
+              <h5 className='mb-3'>Services</h5>
               <ul className="list-unstyled">
-                <li>
-                  <a href="#" className="text-dark">
+                <li className='mb-3'>
+                  <a href="#" className="text-dark text-decoration-none">
                     Business consulting
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="text-dark">
+                <li className='mb-3'>
+                  <a href="#" className="text-dark text-decoration-none">
                     Sales outsourcing
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="text-dark">
+                <li className='mb-3'>
+                  <a href="#" className="text-dark text-decoration-none">
                     Software development
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="text-dark">
+                <li className='mb-3'>
+                  <a href="#" className="text-dark text-decoration-none">
                     Sales training
                   </a>
                 </li>
               </ul>
             </Col>
-            <Col md={3}>
-              <h5>Join With Us</h5>
-              {/* <Form>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control type="email" placeholder="Your Email Address" />
-                </Form.Group>
-                <Button variant="warning" type="submit">
+            <Col md={3} lg={2} className='px-0'>
+              <h5 className='mb-3'>Join With Us</h5>
+              {/* <div className='d-flex'>
+                  <input type="email" className='form-control' placeholder="Your Email Address"  style={{width:"200px"}}/>
+                <div/>
+                <button  type="submit" className='btn btn-warning ms-3' >
                   Submit
-                </Button>
-              </Form> */}
-              <h5 className="mt-4">Contact</h5>
-              <p>
-                {/* <IoMail style={{ color: "#FFD43B" }} /> */}
-                <span>
-                  TrackPi@gmail.com <br />
-                </span>
-                {/* <FaSquarePhone style={{ color: "#FFD43B" }} /> */}
-                +91 9538610745
-              </p>
+                </button>
+              </div> */}
+               <InputGroup>
+            <Form.Control
+              type="email"
+              placeholder="Your Email Address"
+              className="border-warning"
+            />
+            <Button
+              variant="warning"
+              className="text-white gradient-button"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </InputGroup>
+              <h5 className="mt-4 mb-3">Contact</h5>
+              <div className='d-flex'>
+                <FaSquarePhone style={{ color: "#FFD43B" }} size={24} /><span className="ms-3">+91 9538610745</span>
+              </div>
+              <div className='d-flex'>
+                <IoMail style={{ color: "#FFD43B" }} size={24} /><span className='ms-3'>TrackPi@gmail.com <br /></span>
+              </div>
             </Col>
           </Row>
-          {/* <Row className=" mb-3">
+          <Row className=" mb-3">
             <Col>
               <h5>Follow Us</h5>
               <div className="d-flex flex-row ">
@@ -288,7 +301,7 @@ function Footer() {
                 </Link>
               </div>
             </Col>
-          </Row> */}
+          </Row>
           <Row>
             <Col className="text-center">
               &copy; 2024 TrackPi Private Limited. All rights reserved.
