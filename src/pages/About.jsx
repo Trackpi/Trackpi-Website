@@ -14,6 +14,7 @@ function About() {
                 <OurTeam />
             </section>
 
+
             <section className="mb-28"></section>
             <ConnectButtons />
         </>
