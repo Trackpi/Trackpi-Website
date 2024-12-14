@@ -281,7 +281,7 @@ h1 {
 .bg2 {
   width: 100%;
   height: fit-content;
-  background: #fde047;
+  /* background: #fde047; */
   clip-path: polygon(
     100% 100%,
     0% 100%,
@@ -567,29 +567,9 @@ h1 {
 .team-img:hover {
   filter: grayscale(0%);
 }
-/* About page carousel */
-
-.card11{
-  padding: 20px;
-  height: 384px;
-  background: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
- 
-  
-  }
-  .box-front{
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    background-color: white;
-    height: 100px;
-    width: 200px;
-  }
- 
+.ff{
+  border: 1px solid #FFC100 !important;
+}
   
 /* Our services */
 
