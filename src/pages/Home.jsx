@@ -1,14 +1,11 @@
 // Created by Shalu
 import React, { useState } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import Wavify from 'react-wavify';
+import { Row, Col } from 'react-bootstrap';
 import ConnectButtons from '../components/ConnectButtons';
 import { FaAngleRight } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
 import logo from '../images/trackpi_logo.png';
+import HeaderBanner from '../components/HeaderBanner';
  
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0); // Track current card index
@@ -113,33 +110,7 @@ function Home() {
   // };
   return (
     <>
-      <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
-        <div className="flex flex-col items-center z-10">
-          {/* <TypingEffect text="Reinvent Your Organization" delay={0.05} /> */}
-
-          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
-            Reinvent Your Organization
-          </h1>
-          <motion.p
-            className="font-semibold text-md md:text-2xl working_subheading text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
-          >
-            TrackPi is a future-of-work consultancy committed to changing <br />{' '}
-            how the world works from business as usual to brave new work.
-          </motion.p>
-          <motion.div
-            className="flex justify-center items-center"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <Button className="bg-black mt-5 p-3 rounded-pill fw-bold ">
-              LEARN HOW WE CAN HELP
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+        <HeaderBanner title="People's Interest, Our Interest" description="TrackPi is a future-of-work consultancy committed to changing how the world works from business as usual to brave new work." brochure learn  classname='bg1'/>
       <section>
         <div className="text-center pt-12 pb-6">
           <h1
