@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Verify } from "react-puzzle-captcha";
 import "react-puzzle-captcha/dist/react-puzzle-captcha.css";
-import GetInTouch from "../components/GetInTouch";
 import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
@@ -258,7 +257,6 @@ function EmployeeVerification() {
                 </div>
             </section>
 
-            <GetInTouch />
             <ToastContainer />
         </>
     );

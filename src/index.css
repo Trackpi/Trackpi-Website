@@ -95,14 +95,17 @@ h1 {
   text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
-  color: rgb(7, 7, 7);
+  /* color: rgb(161, 25, 25); */
   transition: transform 0.3s ease, font-size 0.3s ease; 
 }
-#navlink:hover {
+/* #navlink:hover {
   transform: scale(1);
   font-size: 1.1rem; 
-  /* color: #ffcc00;  */
-}
+  background: rgb(15, 15, 14);
+  background-clip: text;
+  color: transparent;
+  
+} */
 #navlink::before {
   content: '';
   position: absolute;
@@ -118,12 +121,6 @@ h1 {
 }
 #navlink:hover::before {
   transform: scaleX(1);
-}
-
-#navlink:hover {
-  background: linear-gradient(45deg, #000, #090909);
-  background-clip: text;
-  color: transparent; 
 }
 
 .home-text h1 {
@@ -537,11 +534,13 @@ h1 {
 
 /* About page  */
 
+
 .about_section {
   position: relative;
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  
 }
 /* About Section Background with Opacity */
 .about_section::before {
@@ -568,7 +567,30 @@ h1 {
 .team-img:hover {
   filter: grayscale(0%);
 }
+/* About page carousel */
 
+.card11{
+  padding: 20px;
+  height: 384px;
+  background: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+ 
+  
+  }
+  .box-front{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: white;
+    height: 100px;
+    width: 200px;
+  }
+ 
+  
 /* Our services */
 
 .bg_yellow {
@@ -598,7 +620,7 @@ h1 {
 }
 /* Hiring Section */
 .hiring_heading {
-  text-shadow: 2px 2px black;
+
   color: rgb(245, 158, 11);
   cursor: default;
 }
@@ -612,113 +634,6 @@ h1 {
   z-index: 2; /* Places content above the background */
 }
 
-/* Get in Touch */
-.to-top {
-  background-color: #fde047 ;
-  position: fixed;
-  bottom: 1rem;
-  right: 2rem;
-  width: max-content;
-  height: 75px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 1.4rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.25s ease-in-out;
-  border: white 1px solid;
-  color: black;
-  text-align: center;
-  font-weight: 600;
-}
-
-.to-top:hover i {
-  font-size: 33px;
-  transition: all 0.25s ease-in-out;
-}
-
-.to-top.active {
-  bottom: 2rem;
-  pointer-events: auto;
-  opacity: 1;
-}
-
-@media screen and (max-width: 768px) {
-  .to-top {
-    right: 0.5rem;
-    font-size: 1rem;
-    height: 30px;
-    font-weight: 700;
-  }
-  .to-top i {
-    color: black;
-    border-radius: 50px;
-    background-color: #fde047;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-  }
-}
-
-.wrapper .button {
-  display: inline-block;
-  height: 60px;
-  width: 60px;
-  text-decoration: none;
-  margin: 0 5px;
-  overflow: hidden;
-  background: #fde047;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.25s ease-in-out;
-}
-
-.wrapper .button:hover {
-  width: 180px;
-}
-
-.wrapper .button .icon {
-  display: inline-block;
-  height: 60px;
-  width: 60px;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-  text-align: center;
-  border-radius: 50px;
-  box-sizing: border-box;
-  line-height: 50px;
-  transition: all 0.25s ease-in-out;
-}
-
-.wrapper .button:nth-child(1):hover .icon {
-  background: #fde047;
-}
-.wrapper .button .icon i {
-  font-size: 16px;
-  scale: 2;
-  padding: 15px 0;
-  transition: all 0.25s ease-in-out;
-}
-
-.wrapper .button:hover .icon i {
-  color: black;
-}
-
-.wrapper .button span {
-  font-size: 16px;
-  font-weight: 500;
-  height: 20px;
-  transition: all 0.25s ease-in-out;
-}
-.wrapper .button:nth-child(1) span {
-  color: white;
-}
 
 /* Connect Section */
 .connect_section {
@@ -748,6 +663,62 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
+.first{
+  display: flex;
+  flex-direction: column;
+ 
+}
+.bb{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.aa{
+  
+padding: 50px;
+
+width: 100%;
+display: flex !important;
+justify-content: center;
+gap: 50px !important;
+
+}
+.cards{
+  
+  width: 100%;
+  display: flex;
+ border-radius: 7px !important;
+  gap: 20px;
+}
+.icon-color{
+  color:rgb(245, 158, 11);
+}
+.card1{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 158, 11)!important;
+  color: black !important;
+  border-radius: 7px !important;
+}
+.connect-text-Color{
+color: rgb(245, 158, 11);
+}
+.icon{
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
 
 /* Employee Verification Section */
 .employ_section::before {
@@ -827,13 +798,3 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
-
-.aa{
-padding: 10px;
-display: flex;
-justify-content: center;
-gap: 10px;
-}
-
-
-

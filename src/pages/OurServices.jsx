@@ -5,8 +5,8 @@ import MarketPositioning from './MarketPositioning';
 import Hiring from './Hiring';
 import Procurement from './Procurement';
 import SalesOutsourcing from './SalesOutsourcing';
-import GetInTouch from '../components/GetInTouch';
 import PopUp from '../components/PopUp';
+import ConnectButtons from '../components/ConnectButtons';
 
 function OurServices() {
   return (
@@ -46,8 +46,8 @@ function OurServices() {
         </section>
 
         {/* Contact Section */}
-        <GetInTouch />
       </div>
+      <ConnectButtons/>
     </div>
   );
 }

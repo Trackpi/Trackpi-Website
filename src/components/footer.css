@@ -1,4 +1,5 @@
 
+
 .gradient-button {
     background: linear-gradient(90deg, #ffc107, #ff8c00);
     border: none;
@@ -20,3 +21,14 @@
     box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
   }
   
+=======
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+.slogen{
+    font-family: "Urbanist", sans-serif;
+}
+
+.joinbtn{
+    border: 2px solid #FFDF41; 
+    border-image: linear-gradient(to right, #FFDF41, #FF8800) 1; 
+}

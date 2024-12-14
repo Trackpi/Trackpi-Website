@@ -85,18 +85,18 @@ function Details() {
         />
       </FloatingLabel>
 
-      <Row className="flex flex-col items-center gap-5 mt-5 mb-5">
-        <Button
-          type="submit"
-          className="bg-black mb- p-3 rounded-pill w-50 text-yellow-300 btn md:btn-lg"
-        >
-          CONNECT WITH US
-        </Button>
-
+      <div className="text-center">
+      <button
+            type="submit"
+            className="mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 px-6 py-2 rounded-md font-semibold text-black"
+      > Submit
+      </button>
+       </div>
+<div className='pt-3 mb-5'>
         <h6 className="text-center">
           Or email hello@trackpi.com to get in touch with our team.
         </h6>
-      </Row>
+        </div>
     </Form>
   );
 }
