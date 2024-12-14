@@ -1,17 +1,17 @@
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { Row, Button } from 'react-bootstrap';
+//import { Row, Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import Brochure from './Brochure';
+
 
 function Details() {
   return (
     <Form className="flex flex-col">
-      <Brochure/>
-      <FloatingLabel controlId="floatingInput" label=" Name" r className="mb-3">
+    
+      <FloatingLabel controlId="floatingInput" label="Full Name" r className="mb-3">
         <Form.Control
           type="text"
           placeholder=""
-          className="bg-transparent border border-black"
+          className="bg-transparent border"
           required
         />
       </FloatingLabel>
@@ -24,7 +24,7 @@ function Details() {
         <Form.Control
           type="tel"
           placeholder="123-456-7890"
-          className="bg-transparent border border-black"
+          className="bg-transparent border "
           required
         />
       </FloatingLabel>
@@ -37,7 +37,7 @@ function Details() {
         <Form.Control
           type="email"
           placeholder="name@example.com"
-          className="bg-transparent border border-black"
+          className="bg-transparent border"
           required
         />
       </FloatingLabel>
@@ -50,7 +50,7 @@ function Details() {
         <Form.Control
           type="text"
           placeholder=""
-          className="bg-transparent border border-black"
+          className="bg-transparent border"
           required
         />
       </FloatingLabel>
@@ -61,7 +61,7 @@ function Details() {
         className="mb-3"
       >
         <Form.Select
-          className="bg-transparent border border-black   "
+          className="bg-transparent border"
           style={{
             padding: '15px',
             outline: 'none',
@@ -83,7 +83,7 @@ function Details() {
           as="textarea"
           placeholder="Leave a comment here"
           style={{ height: '150px' }}
-          className="bg-transparent mb-3 border border-black"
+          className="bg-transparent mb-3 border"
         />
       </FloatingLabel>
 

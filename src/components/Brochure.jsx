@@ -7,12 +7,12 @@ const Brochure = () => {
     <div style={{ textAlign: "center", position:"absolute",zIndex:"2",marginTop:"92px",marginLeft:"1250px"}}>
       <a href={pdfPath} download="Technical_Round_Assignment.pdf" style={{ textDecoration: "none" }}>
 
-        <button className=" mt-3 p-3 rounded-pill font-bold text-gray-800   hover:text-yellow-900 "
+        {/* <button className=" mt-3 p-3 rounded-pill font-bold text-gray-800   hover:text-yellow-900 "
            style={{
           backgroundColor: "#fde047",
           cursor: "pointer",
            }}
-        ></button>
+        > </button> */}
         <button className=" px-3 py-2 font-bold text-white bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  rounded-lg  hover:text-white">
        
 
