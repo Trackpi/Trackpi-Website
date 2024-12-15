@@ -464,3 +464,6 @@ color: rgb(245, 158, 11);
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
+.border-black{
+  border-color:none!important;
+}

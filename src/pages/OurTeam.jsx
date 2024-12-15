@@ -1,11 +1,11 @@
 //import React from 'react';
-import { Container, Row, Col, Button, Carousel } from 'react-bootstrap';
+import { Container, Row, Col, Button} from 'react-bootstrap';
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 import TeamListMemberCrd from '../components/teamListMemberCrd';
-import Brochure from '../components/Brochure';
+
 import Clients from '../components/carousel';
 function OurTeam() {
   const options = { threshold: 0.1 };
@@ -21,6 +21,10 @@ function OurTeam() {
           <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
+
+
+          {/* <Brochure /> */}
+
         </div>
       </section>
 
