@@ -1,11 +1,11 @@
 //import React from 'react';
-import { Container, Row, Col, Button, Carousel } from 'react-bootstrap';
+import { Container, Row, Col, Button} from 'react-bootstrap';
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 import TeamListMemberCrd from '../components/teamListMemberCrd';
-import Brochure from '../components/Brochure';
+
 import Clients from '../components/carousel';
 function OurTeam() {
   const options = { threshold: 0.1 };
@@ -21,14 +21,17 @@ function OurTeam() {
           <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
+
+
           {/* <Brochure /> */}
+
         </div>
       </section>
 
-      <section ref={refFirstSection} className="mt-5 w-full h-full">
-        <Container>
+      <section ref={refFirstSection} className="mt-0  w-full h-full">
+        <Container >
           <Row>
-            <Col md={6} className="flex flex-col items-center pt-12">
+            <Col md={6} className="flex flex-col justify-center  items-center line-clamp-3 pt-12">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
@@ -37,7 +40,7 @@ function OurTeam() {
                 <h1 className="text-yellow-500 fw-bold display-5">
                   We’re The Ready
                 </h1>
-                <p className="text-xl text-justify md:text-lg">
+                <p className="text-2xl   md:text-left md:text-lg">
                   We’re here to change how the world works—from business as
                   usual to brave new work. It takes an unusual person to disrupt
                   decades of tradition and guide hundreds or thousands of people
@@ -52,6 +55,8 @@ function OurTeam() {
               <motion.img
                 src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64ecb80f6f19b2addac4e0f1_image_WeAreTheReady1-p-800.webp"
                 alt="Team Image"
+                height="500px"
+                width="500px"
                 initial={{ opacity: 0, x: 50 }}
                 animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8 }}
@@ -82,7 +87,7 @@ function OurTeam() {
                 animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8 }}
               >
-                <h1 className="text-yellow-500 fw-bold display-5">
+                <h1 className="text-yellow-500  fw-bold display-5">
                   Join our team
                 </h1>
                 <p className="text-xl md:text-justify md:text-lg">
@@ -102,8 +107,8 @@ function OurTeam() {
                   touch with them, please email{' '}
                   <span className="underline">hr@trackpi.in.</span>
                 </p>
-                <Button className="bg-white  mt-5 p-2 rounded-pill fw-bold text-black">
-                  JOIN OUR TEAM <i className="fa-arrow-right fa-solid"></i>
+                <Button className="bg-white  mt-5 p-2 rounded-pill fw-bold text-black ff  ">
+                  JOIN OUR TEAM <i className="fa-arrow-right fa-solid "></i>
                 </Button>
               </motion.div>
             </Col>
@@ -121,20 +126,22 @@ function OurTeam() {
       </section>
       <section
         ref={refSecondSection}
-        className="mt-0 w-full h-full bg2 flex items-center"
+        className="mt-0 w-full bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] h-full bg2 flex items-center"
       >
-        <Container>
+        <Container >
           <Row>
             <Col md={6} className="flex flex-col items-center p-5">
               <motion.img
                 src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64495b02c779ff9ad9a7990f_image_OurPeopleForeground%402x-p-1080.webp"
                 alt="Team Image"
+                height="500px"
+                width="500px"
                 initial={{ opacity: 0, x: 50 }}
                 animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8 }}
               />
             </Col>
-            <Col md={6} className="flex flex-col items-center pt-12">
+            <Col md={6} className="flex flex-col justify-center items-center pt-12">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
@@ -159,7 +166,7 @@ function OurTeam() {
       <section className="mt-5 mb-5 w-full">
         <Container className="flex flex-col gap-5">
           <Row>
-            <h1 className="fw-bold display-5 flex justify-center">
+            <h1 className="fw-bold text-amber-500 display-5 flex justify-center">
               The Ready from A–Z
             </h1>
           </Row>

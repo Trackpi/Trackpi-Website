@@ -8,9 +8,9 @@
   }
   
   .image-animation {
-    animation: loadFromLeft 2s ease-in-out forwards; /* Apply animation */
+    animation: loadFromLeft 1.5s ease-in-out forwards; /* Apply animation */
     display: block;
-    height: 125px !important; /* Adjust the width as needed */
+    height: 100px !important; /* Adjust the width as needed */
   }
   .loader_main{
     display: flex ;
@@ -30,10 +30,10 @@
     overflow: hidden;
     white-space: nowrap;
     width: 50;
-    animation: loadingText 2s ease-in-out forwards;
+    animation: loadingText 1.5s ease-in-out forwards;
   }
     .img-overlay{
       position: absolute;
-      height: 125px; 
+      height: 100px; 
       opacity: .075;
     }

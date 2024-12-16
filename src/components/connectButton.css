@@ -3,9 +3,9 @@
   flex-direction: column; /* Stacks the buttons vertically */
   align-items: flex-end; /* Aligns buttons to the right */
   position: fixed;
-  bottom: 10px;
+  bottom: 50px;
   right: 10px;
-  gap: 10px; /* Adds space between buttons */
+  gap: 5px; /* Adds space between buttons */
 }
 
 .wrapper .button {

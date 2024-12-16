@@ -2,14 +2,17 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import home1 from '../images/home1.png';
+import home2 from '../images/home2.png';
 import { useInView } from 'react-intersection-observer';
-import Wavify from 'react-wavify';
 import ConnectButtons from '../components/ConnectButtons';
 import { FaAngleRight } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
 import logo from '../images/trackpi_logo.png';
 import { Carousel } from 'react-bootstrap';
+import clientLogo1 from '../images/growthfactor.png';
+import clientLogo2 from '../images/trademax.png';
+import HeaderBanner from '../components/HeaderBanner';
 
 function Home() {
   const cards = [
@@ -78,23 +81,21 @@ function Home() {
     },
   ];
   const clients = [
-    {
-      id: 1,
-      name: 'Growth Partners',
-      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b392159be09bdd1f1a6_airbnb.svg',
-    },
-    {
-      id: 2,
-      name: 'Talent Boosters',
-      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/64075cdef7a9a07a16cc0818_arcadis-logo.svg',
-    },
-    {
-      id: 3,
-      name: 'Strategic Thinkers',
-      logo: 'https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/64076123e7fd47d10ab57ad6_bloomin%20(1).png',
-    },
+    { id: 1, logo: clientLogo1 },
+    { id: 2, logo: clientLogo2 },
+    { id: 3, logo: clientLogo1 },
+    { id: 4, logo: clientLogo2 },
+    { id: 5, logo: clientLogo1 },
+    { id: 6, logo: clientLogo2 },
+    { id: 7, logo: clientLogo1 },
+    { id: 8, logo: clientLogo2 },
+    { id: 9, logo: clientLogo1 },
+    { id: 10, logo: clientLogo2 },
+    { id: 11, logo: clientLogo1 },
+    { id: 12, logo: clientLogo2 },
+    { id: 13, logo: clientLogo1 },
+    { id: 14, logo: clientLogo2 },
   ];
-  const cardsPerSlide = 4; // Number of cards to display per slide
 
   // const options = { threshold: 0.1 };
 
@@ -141,9 +142,8 @@ function Home() {
 
   return (
     <>
-      <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
+      {/* <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
         <div className="flex flex-col items-center z-10">
-          {/* <TypingEffect text="Reinvent Your Organization" delay={0.05} /> */}
 
           <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
             Reinvent Your Organization
@@ -167,7 +167,7 @@ function Home() {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <section>
         <div className="text-center pt-12 pb-6">
           <h1
@@ -231,6 +231,13 @@ function Home() {
           </div>
         </div>
       </section> */}
+      <HeaderBanner
+        title="People's Interest, Our Interest"
+        description="TrackPi is a future-of-work consultancy committed to changing how the world works from business as usual to brave new work."
+        brochure
+        learn
+        classname="bgOne"
+      />
       <section>
         <div className="text-center pt-12 pb-6">
           <h1
@@ -321,62 +328,27 @@ function Home() {
         </div>
       </section>
 
-     
-
       <section className="w-full h-full">
-        <Row className="text-yellow-500 mt-5 p-5">
-          <h1>OUR CLIENTS</h1>
-          <h4 className="fw-bold text-black">
-            We’re fortunate to work with the best
-          </h4>
-        </Row>
+      <Row className="text-yellow-500 mt-5 p-5">
+        <h1>OUR CLIENTS</h1>
+        <h4 className="fw-bold text-black">We’re fortunate to work with the best</h4>
+      </Row>
 
-        {/* Client Logos Section */}
-        <Row className="flex justify-center items-center bg-yellow-500 py-5">
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              className="sm:w-50"
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b392159be09bdd1f1a6_airbnb.svg"
-              alt="Client 1"
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              className="sm:w-50"
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/64075cdef7a9a07a16cc0818_arcadis-logo.svg"
-              alt="Client 2"
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              className="sm:w-50"
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/64076123e7fd47d10ab57ad6_bloomin%20(1).png"
-              alt="Client 3"
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              className="sm:w-50"
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1b71cbd31d5c483a603f_Charity%20Water.svg"
-              alt="Client 4"
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1ba4a10c05870d2569d0_fidelity-investments-3%201.svg"
-              alt="Client 5"
-            />
-          </Col>
-          <Col xs={6} md={2} className="client-logo">
-            <img
-              src="https://cdn.prod.website-files.com/63fce6fc122b4d8b036757a0/63ff1bc8339a977f1114c45d_fresh%20direct.svg"
-              alt="Client 6"
-            />
-          </Col>
-        </Row>
-      </section>
-
-
+      {/* Client Logos Section */}
+      <Row className="flex gap-4 justify-center items-center bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] py-2">
+        <div className="flex  animate-scroll">
+          {clients.map((client, index) => (
+            <Col xs={6} md={2} key={client.id} className="client-logo">
+              <img
+                className="sm:w-50 w-full h-[85px] object-contain"
+                src={client.logo}
+                alt={`Client ${index + 1}`}
+              />
+            </Col>
+          ))}
+        </div>
+      </Row>
+    </section>
       <section className="mt-2 w-full h-full">
         <Container>
           <Row>
@@ -399,7 +371,7 @@ function Home() {
             <Col md={6} className="flex flex-col items-center p-5">
               <div>
                 <img
-                  src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp"
+                  src={home2}
                   alt="Strategic Procurement"
                   className="shadow-lg rounded-lg"
                 />
@@ -409,18 +381,21 @@ function Home() {
         </Container>
       </section>
 
-      <section className="mt-0 w-full h-full bg2 flex items-center">
+      <section className="mt-0 w-full h-full  flex items-center  relative bg2" style={{ backgroundColor: '#FFC100' }}>
         <Container>
           <Row>
             <Col md={6} className="flex flex-col items-center p-5">
               <img
-                src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe133956f1ef78ea26b9d2_home-2-col-2-p-800.webp"
+                src={home2}
                 alt="Strategic Procurement"
                 className="shadow-lg rounded-lg w-full"
               />
             </Col>
 
-            <Col md={6} className="flex flex-col justify-center items-center p-12">
+            <Col
+              md={6}
+              className="flex flex-col justify-center items-center p-12"
+            >
               <div
               // initial={{ opacity: 0, x: -50 }}
               // animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
@@ -485,7 +460,7 @@ function Home() {
 
           <Col md={6} className="flex flex-col items-center">
             <img
-              src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/63fe1e6665d1761c0f0a082c_home-about-1-p-800.webp"
+              src={home2}
               alt="Strategic Procurement"
               className="shadow-lg rounded-lg w-full"
             />
@@ -493,12 +468,11 @@ function Home() {
         </Row>
       </section>
 
-      <section className="flex justify-center items-center  pb-8 h-full w-full relative  bg-yellow-500 bg3">
-     
+      <section className="flex justify-center items-center  pb-8 h-full w-full relative mb-14 bg-yellow-500 bg3">
         <Container className="relative z-10">
           <Row className="flex flex-col justify-center items-center">
             <Col className="flex justify-center items-center">
-              <h1 className='text-black font-bold'>We're Ready to Help</h1>
+              <h1 className="text-black font-bold">We're Ready to Help</h1>
             </Col>
 
             <Col className="flex justify-center items-center font-semibold text-md md:text-xl text-black">

@@ -15,9 +15,7 @@ import Sidebar from './components/Sidebar';
 import NotFound from './pages/NotFound';
 import ScrollUp from './components/ScrollUp';
 import Loader from './components/Loader';
-// Import these in your main JS or App.js file
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 
 
 function App() {
