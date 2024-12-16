@@ -7,21 +7,11 @@ import HeaderBanner from "../components/HeaderBanner";
 function Connect() {
 
   return (
-    <div className="first">
+  
 
-      <section className="flex justify-center items-center p-3 w-full h-screen connect_section bg1 relative">
-        <div className="flex flex-col items-center z-10 text-center">
-          <h1 className="text-5xl md:text-7xl working_heading mb-5">
-            Connect with us
-          </h1>
-      
-          <p className="font-semibold text-md md:text-2xl working_subheading">
-            Reach out to us for any inquiries or support — we are here to help.
-          </p>
-        </div>
-      </section>
-      <div className='bb pt-3'>
-        <h1 className='text-center text-3xl font-bold'>Contact Us</h1>
+     
+      <>
+       
 
      <HeaderBanner title="Connect Us" description="Reach out to us for any inquiries or support — we are here to help." brochure classname='bg5'/>
       <div className='bb'>
@@ -86,7 +76,8 @@ function Connect() {
               </Container>
       </section>
       <ConnectButtons/>
-    </div>
+    </>
+   
   );
 }
 
