@@ -144,7 +144,7 @@ function EmployeeVerification() {
     return (
         <>
             {/* Hero Section */}
-            <HeaderBanner title="Employee Verification" description="Verify employee credentials and details securely and efficiently."  classname='bg4'  />
+            <HeaderBanner title="Employee Verification" description="Verify employee credentials and details securely and efficiently."  classname='bgFour'  />
 
             {/* Verification Form Section */}
             <section className="bg-gray-50 px-6 py-16">
