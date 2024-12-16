@@ -380,8 +380,9 @@ function Home() {
           </Row>
         </Container>
       </section>
-
       <ConnectButtons />
+
+
     </>
   );
 }
