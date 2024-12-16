@@ -3,6 +3,7 @@ import OurTeam from "./OurTeam";
 import PopUp from "../components/PopUp";
 import ConnectButtons from "../components/ConnectButtons";
 import HeaderBanner from "../components/HeaderBanner";
+import Brochure from "../components/Brochure";
 
 function About() {
     return (
@@ -12,6 +13,7 @@ function About() {
 
             <section className="mt-12">
                 <OurTeam />
+               
             </section>
 
 

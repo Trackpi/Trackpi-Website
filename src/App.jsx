@@ -33,11 +33,15 @@ function App() {
 
   return (
     <>
+    
       <ScrollUp />
       {loading ? (
         <Loader />
       ) : (
         <>
+         <Routes>
+              
+          </Routes>
           <Header />
           <Sidebar />
           <Routes>
@@ -50,10 +54,11 @@ function App() {
               element={<EmployeeVerification />}
             />
             <Route path="/connect-us" element={<Connect />} />
-            <Route path="/personel" element={<Personel />} />
+            <Route path="/personnel" element={<Personel />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          
         </>
       )}
     </>
