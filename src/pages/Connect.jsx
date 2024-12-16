@@ -13,7 +13,7 @@ function Connect() {
       <>
        
 
-     <HeaderBanner title="Connect Us" description="Reach out to us for any inquiries or support — we are here to help." brochure classname='bg5'/>
+     <HeaderBanner title="Connect Us" description="Reach out to us for any inquiries or support — we are here to help." brochure classname='bgFive'/>
       <div className='bb'>
         <h1>Contact Us</h1>
 

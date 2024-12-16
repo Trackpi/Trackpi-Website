@@ -110,7 +110,7 @@ function Home() {
   // };
   return (
     <>
-        <HeaderBanner title="People's Interest, Our Interest" description="TrackPi is a future-of-work consultancy committed to changing how the world works from business as usual to brave new work." brochure learn  classname='bg1'/>
+        <HeaderBanner title="People's Interest, Our Interest" description="TrackPi is a future-of-work consultancy committed to changing how the world works from business as usual to brave new work." brochure learn  classname='bgOne'/>
       <section>
         <div className="text-center pt-12 pb-6">
           <h1
