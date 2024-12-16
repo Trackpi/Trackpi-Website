@@ -8,7 +8,7 @@ function About() {
     return (
         <>
             <PopUp />
-            <HeaderBanner title="About Us" description="Learn more about our journey and what drives us forward."classname='bg2'/>
+            <HeaderBanner title="About Us" description="Learn more about our journey and what drives us forward."classname='bgTwo'/>
 
             <section className="mt-12">
                 <OurTeam />
