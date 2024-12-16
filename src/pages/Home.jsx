@@ -4,7 +4,6 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import home1 from '../images/home1.png';
 import home2 from '../images/home2.png';
-import { useInView } from 'react-intersection-observer';
 import ConnectButtons from '../components/ConnectButtons';
 import { FaAngleRight } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
@@ -97,140 +96,18 @@ function Home() {
     { id: 14, logo: clientLogo2 },
   ];
 
-  // const options = { threshold: 0.1 };
-
-  // const [refFirstSection, inViewFirstSection] = useInView(options);
-  // const [refSecondSection, inViewSecondSection] = useInView(options);
-  // const [refThirdSection, inViewThirdSection] = useInView(options);
-  // const [refLast, inViewLast] = useInView(options);
-
-  // const TypingEffect = ({ text, delay = 0.1 }) => {
-  //   // Split text into individual characters
-  //   const splitText = text.split('').map((char, index) => (
-  //     <span
-  //       key={index}
-  //       initial={{ opacity: 0 }}
-  //       animate={{ opacity: 1 }}
-  //       transition={{
-  //         delay: index * delay,
-  //         repeat: Infinity,
-  //         repeatType: 'reverse',
-  //         duration: 1.5,
-  //       }}
-  //     >
-  //       {char}
-  //     </span>
-  //   ));
-
-  //   return (
-  //     <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
-  //       {splitText}
-  //     </h1>
-  //   );
-  // };
-
   const groupedCards = [];
   for (let i = 0; i < cards.length; i += 4) {
     groupedCards.push(cards.slice(i, i + 4));
   }
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Handle dot click
   const handleDotClick = index => {
-    setCurrentIndex(index); // Set the current slide index when a dot is clicked
+    setCurrentIndex(index);
   };
 
   return (
     <>
-      {/* <section className="flex justify-center items-center p-3 w-full h-screen home_section bg1 relative">
-        <div className="flex flex-col items-center z-10">
-
-          <h1 className="text-5xl md:text-7xl  home-text working_heading mb-5">
-            Reinvent Your Organization
-          </h1>
-          <p
-            className="font-semibold text-md md:text-2xl working_subheading text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
-          >
-            TrackPi is a future-of-work consultancy committed to changing <br />{' '}
-            how the world works from business as usual to brave new work.
-          </p>
-          <div
-            className="flex justify-center items-center"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <Button className="bg-black mt-5 p-3 rounded-pill fw-bold ">
-              LEARN HOW WE CAN HELP
-            </Button>
-          </div>
-        </div>
-      </section> */}
-      {/* <section>
-        <div className="text-center pt-12 pb-6">
-          <h1
-            className="text-4xl font-bold text-yellow-400"
-            style={{ textShadow: '#c3c5c7 2px 2px' }}
-          >
-            Real-Time Business News Updates?
-          </h1>
-        </div>
-        <div className="bg-yellow-500 py-8">
-          <div
-            className="flex transition-transform duration-500"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {cards.map(card => (
-              <div
-                key={card.id}
-                className="w-80 bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 mx-4 hover:scale-110 cursor-pointer"
-              >
-                <img src={card.logo} alt="Trackpi_logo" className="mx-auto" />
-                <h3 className="text-lg font-bold text-amber-500 mt-4">
-                  {card.title}
-                </h3>
-                <p className="text-white mt-2">{card.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="flex justify-between items-center mt-4 mx-4">
-          <div className="flex gap-5">
-            <button
-              onClick={handlePrev}
-              className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
-            >
-              <FaAngleLeft size={18} />
-            </button>
-            <button
-              onClick={handleNext}
-              className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
-            >
-              <FaAngleRight size={18} />
-            </button>
-          </div>
-
-          <div className="flex justify-center items-center">
-            {cards.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handleDotClick(index)}
-                className={`w-2.5 h-2.5 mx-1 rounded-full ${
-                  currentIndex === index ? 'bg-yellow-500  w-4' : 'bg-gray-400'
-                }`}
-              />
-            ))}
-          </div>
-
-          <div className="text-right">
-            <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
-              View More
-            </button>
-          </div>
-        </div>
-      </section> */}
       <HeaderBanner
         title="People's Interest, Our Interest"
         description="TrackPi is a future-of-work consultancy committed to changing how the world works from business as usual to brave new work."
@@ -329,26 +206,28 @@ function Home() {
       </section>
 
       <section className="w-full h-full">
-      <Row className="text-yellow-500 mt-5 p-5">
-        <h1>OUR CLIENTS</h1>
-        <h4 className="fw-bold text-black">We’re fortunate to work with the best</h4>
-      </Row>
+        <Row className="text-yellow-500 mt-5 p-5">
+          <h1>OUR CLIENTS</h1>
+          <h4 className="fw-bold text-black">
+            We’re fortunate to work with the best
+          </h4>
+        </Row>
 
-      {/* Client Logos Section */}
-      <Row className="flex gap-4 justify-center items-center bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] py-2">
-        <div className="flex  animate-scroll">
-          {clients.map((client, index) => (
-            <Col xs={6} md={2} key={client.id} className="client-logo">
-              <img
-                className="sm:w-50 w-full h-[85px] object-contain"
-                src={client.logo}
-                alt={`Client ${index + 1}`}
-              />
-            </Col>
-          ))}
-        </div>
-      </Row>
-    </section>
+        {/* Client Logos Section */}
+        <Row className="flex gap-4 justify-center items-center bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] py-2">
+          <div className="flex  animate-scroll">
+            {clients.map((client, index) => (
+              <Col xs={6} md={2} key={client.id} className="client-logo">
+                <img
+                  className="sm:w-50 w-full h-[85px] object-contain"
+                  src={client.logo}
+                  alt={`Client ${index + 1}`}
+                />
+              </Col>
+            ))}
+          </div>
+        </Row>
+      </section>
       <section className="mt-2 w-full h-full">
         <Container>
           <Row>
@@ -381,7 +260,10 @@ function Home() {
         </Container>
       </section>
 
-      <section className="mt-0 w-full h-full  flex items-center  relative bg2" style={{ backgroundColor: '#FFC100' }}>
+      <section
+        className="mt-0 w-full h-full  flex items-center  relative bg2"
+        style={{ backgroundColor: '#FFC100' }}
+      >
         <Container>
           <Row>
             <Col md={6} className="flex flex-col items-center p-5">
