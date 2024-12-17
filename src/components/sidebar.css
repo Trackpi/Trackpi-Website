@@ -2,21 +2,21 @@
 
 .sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
+  top: 50%; 
+  left: 0; 
+  transform: translateY(-50%); 
+  height: auto; 
   z-index: 2;
-  display: block;
-  align-items: center;
+  display: flex; 
+  align-items: center; 
   transition: visibility 0.3s ease, opacity 0.3s ease; 
-  opacity: 1; 
+  opacity: 1;
 }
 
 .sidebar nav {
   font-family: 'Montserrat', sans-serif;
   position: fixed;
   width: 35px;
-  margin-top: 280px;
   height: 245px;
   transition: all 0.3s linear;
   box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, .4);

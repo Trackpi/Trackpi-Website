@@ -9,7 +9,7 @@ import TeamListMemberCrd from '../components/teamListMemberCrd';
 import Clients from '../components/carousel';
 function OurTeam() {
   const options = { threshold: 0.1 };
-
+  
   // Hooks for intersection observers
   const [refFirstSection, inViewFirstSection] = useInView(options);
   const [refSecondSection, inViewSecondSection] = useInView(options);
@@ -68,6 +68,7 @@ function OurTeam() {
 <section>
 {/* <Brochure/> */}
 </section>
+
 <section  className="mt-0 flex flex-col items-center gap-10 w-full h-full">
        <div className="flex flex-col items-center ">
           <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
@@ -126,7 +127,7 @@ function OurTeam() {
       </section>
       <section
         ref={refSecondSection}
-        className="mt-0 w-full bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] h-full bg2 flex items-center"
+        className="mt-0 w-full bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] h-full bgg11 flex items-center"
       >
         <Container >
           <Row>
@@ -163,12 +164,14 @@ function OurTeam() {
           </Row>
         </Container>
       </section>
+    
       <section className="mt-5 mb-5 w-full">
         <Container className="flex flex-col gap-5">
           <Row>
             <h1 className="fw-bold text-amber-500 display-5 flex justify-center">
               The Ready from A–Z
             </h1>
+            
           </Row>
           <TeamListMemberCrd/>
          

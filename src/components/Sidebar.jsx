@@ -9,25 +9,21 @@ function Sidebar() {
   useEffect(() => {
     const handleScroll = () => {
       const sidebar = document.querySelector('.sidebar');
-      const footer = document.querySelector('.footer-container');
+      const footer = document.querySelector('footer');
 
       if (!sidebar || !footer) return;
 
-      // Get the bounding rect of the footer
       const footerRect = footer.getBoundingClientRect();
 
-      // If the bottom of the footer is in the viewport, hide the sidebar
       if (footerRect.top <= window.innerHeight) {
-        setIsSidebarVisible(false); // Hide sidebar
+        setIsSidebarVisible(false); 
       } else {
-        setIsSidebarVisible(true); // Show sidebar
+        setIsSidebarVisible(true); 
       }
     };
 
-    // Add event listener for scroll
     window.addEventListener('scroll', handleScroll);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };

@@ -15,7 +15,7 @@ function OurServices() {
       <PopUp />
       <div className="overflow-x-hidden">
         {/* Hero Section */}
-        <HeaderBanner title="Working Together" description="We help organizations navigate and thrive in the face of complexity."classname='bg3'/>
+        <HeaderBanner title="Working Together" description="We help organizations navigate and thrive in the face of complexity."classname='bgThree'/>
 
 
         {/* Content Sections */}
