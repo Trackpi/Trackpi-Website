@@ -114,7 +114,7 @@ function Home() {
         brochure
         learn
         classname="bgOne"
-      />
+       titleTwo="Your Strategic Growth Partner"/>
       <section>
         <div className="text-center pt-12 pb-6">
           <h1
