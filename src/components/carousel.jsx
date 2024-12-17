@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { FaAngleRight } from 'react-icons/fa6';
-import { FaAngleLeft } from 'react-icons/fa6';
+// import { FaAngleRight } from 'react-icons/fa6';
+// import { FaAngleLeft } from 'react-icons/fa6';
 
 function Clients (){
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,16 +28,16 @@ function Clients (){
         },
       ];
       const cardsPerSlide = 3;
-      const handlePrev = () => {
-        setCurrentIndex(prevIndex =>
-          prevIndex > 0 ? prevIndex - 1 : Math.floor(clients.length / cardsPerSlide)
-        );
-      };
-      const handleNext = () => {
-        setCurrentIndex(prevIndex =>
-          prevIndex < Math.floor(clients.length / cardsPerSlide) ? prevIndex + 1 : 0
-        );
-      };
+      // const handlePrev = () => {
+      //   setCurrentIndex(prevIndex =>
+      //     prevIndex > 0 ? prevIndex - 1 : Math.floor(clients.length / cardsPerSlide)
+      //   );
+      // };
+      // const handleNext = () => {
+      //   setCurrentIndex(prevIndex =>
+      //     prevIndex < Math.floor(clients.length / cardsPerSlide) ? prevIndex + 1 : 0
+      //   );
+      // };
       const handleDotClick = index => {
         setCurrentIndex(index);
       };
@@ -53,7 +53,7 @@ function Clients (){
               {clients.map(card => (
                 <div
                   key={card.id}
-                  className="w-100 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 mx-4 hover:scale-110 cursor-pointer"
+                  className="w-[410px] h-[384px] bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg +  text-center transform transition-all  duration-300 mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
                 >
                   <img src={card.logo} height="200px"width="200px" alt="" className="mx-auto" />
                   <h3 className="text-lg text-center font-bold text-black mt-4">
@@ -64,8 +64,8 @@ function Clients (){
               ))}
             </div>
           
-          <div className="flex justify-between items-center  mt-4 mx-4">
-            <div className="flex gap-5">
+          <div className="flex justify-center items-center  mt-4 mx-4">
+            {/* <div className="flex gap-5">
               <button
                 onClick={handlePrev}
                 className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
@@ -78,7 +78,7 @@ function Clients (){
               >
                 <FaAngleRight size={18} />
               </button>
-            </div>
+            </div> */}
   
             {/* Slider Dots */}
             <div className="flex justify-center items-center">
@@ -94,11 +94,11 @@ function Clients (){
             </div>
             {/* View More Button */}
   
-            <div className="text-right">
+            {/* <div className="text-right">
               <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
                 View More
               </button>
-            </div>
+            </div> */}
           </div>
         
           </section>
