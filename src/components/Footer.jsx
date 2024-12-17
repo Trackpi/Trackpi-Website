@@ -149,10 +149,13 @@ function Footer() {
         <h1> ‎ </h1>
       </Container>
 
-      <footer className=" text-dark py-4">
-        <Container>
-          <Row className="mb-4">
-            <Col md={3} lg={4} className=''>
+
+      <footer className=" text-dark py-4 mx-3">
+        
+          <Row>
+            <Col md={3} lg={4}>
+      
+
               <Row>
                 <Col sm={12} className='ms-5'>
                   <img
@@ -277,7 +280,9 @@ function Footer() {
                 </li>
               </ul>
             </Col>
-            <Col md={3} lg={2} className='mx-auto'>
+
+            <Col md={3} lg={2} >
+
               <h5 className='mb-3 font-bold text-2xl'>Join With Us</h5>
               {/* <div className='d-flex'>
                   <input type="email" className='form-control' placeholder="Your Email Address"  style={{width:"200px"}}/>
@@ -309,7 +314,8 @@ function Footer() {
               </div>
             </Col>
           </Row>
-        </Container>
+
+
       </footer>
       <hr />
       <Row>
