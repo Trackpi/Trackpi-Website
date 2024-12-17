@@ -1,81 +1,49 @@
 import React from "react";
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Link } from "react-router-dom";
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+// import { Link } from "react-router-dom";
 import { IoLogoInstagram } from "react-icons/io5";
 import { SlSocialYoutube } from "react-icons/sl";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
-import { IoMdClose } from "react-icons/io";
-import { useLocation, useNavigate } from "react-router-dom";
+// import { IoMdClose } from "react-icons/io";
+import { Modal } from "react-bootstrap";
+// import { useLocation, useNavigate } from "react-router-dom";
 
-function Personel() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const setCmp = location.state; // Access the passed data here
+function Personel({ show, onHide, member }) {
 
   return (
-    <section className="flex justify-center items-center p-3 w-full h-screen relative">
-      <div className="personnel-overlay">
-        <div className="personnel-popup">
-          {/* Orange Header Section */}
-          <div className="personnelfirst rounded-lg">
-          <button className="close "  onClick={() => navigate(-1)}><IoMdClose /></button>
-            <h1 className="personnel-title">{setCmp?.title}</h1>
-            <p className="personnel-designation text-2xl font-normal">
-              {setCmp?.designation}
-            </p>
-          </div>
-
-          {/* Square Image */}
+    <Modal show={show} onHide={onHide} centered size="md">
+      <Modal.Header className="bg-white px-1 py-1 text-center text-black" >
+        <Modal.Title className="personnelfirst" closeButton >
+          <h2>{member.title}</h2>
+          <p className="text-2xl font-normal">{member.designation}</p>
+          </Modal.Title>
           <img
-            src={setCmp?.image}
-            alt={setCmp?.title}
-            className="personnelimg"
+            src={member.image}
+            alt={member.title}
+            className="rounded-md w-52 h-52 personnelimg object-cover"
           />
-
-          {/* White Content Section */}
-          <div className="personnel-details">
-             <p className="text-left"><span className="font-bold underline">SELF INTRODUCTION:</span> &nbsp;{setCmp?.selfIntroduction}</p>
-             <Row className="">
-            <Col>
-              <div className="d-flex justify-evenly flex-row ">
-                <Link to={"#"}>
-                  <RiFacebookCircleLine
-                    style={{ color: "#FFD43B" }}
-                    size={36}
-                    className="me-3"
-                  />
-                </Link>
-                <Link to={"#"}>
-                  <SlSocialYoutube
-                    style={{ color: "#FFD43B" }}
-                    size={36}
-                    className="me-3"
-                  />
-                </Link>
-                <Link to={"#"}>
-                  <IoLogoInstagram
-                    style={{ color: "#FFD43B" }}
-                    size={36}
-                    className="me-3"
-                  />
-                </Link>
-                
-                <Link to={"#"}>
-                  <TbBrandLinkedin
-                    style={{ color: "#FFD43B" }}
-                    size={36}
-                    className="me-3"
-                  />
-                </Link>
-              </div>
-            </Col>
-          </Row>
+      </Modal.Header>
+      <Modal.Body className="p-4 flex gap-50 ">
+        <div>
+         
+          <div className="flex flex-col ">
+            
+            <p className="mt-2"><br/><br/><br/>
+            <span className="font-bold underline">SELF INTRODUCTION:</span>
+            &nbsp;
+            {member.selfIntroduction}</p>
           </div>
+          <div className="flex justify-evenly gap-20">
+          <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
+          <SlSocialYoutube size={35} className="text-yellow-500 cursor-pointer" />
+          <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />
+          <TbBrandLinkedin size={35} className="text-yellow-500 cursor-pointer" />
         </div>
-      </div>
-    </section>
+        </div>
+      </Modal.Body>
+    </Modal>
   );
 }
 
