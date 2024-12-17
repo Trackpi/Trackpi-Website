@@ -1,26 +1,24 @@
-
-import React from 'react'
-import Details from '../components/Form';
-import { Container, Row} from 'react-bootstrap';
-import ConnectButtons from '../components/ConnectButtons';
+import React from "react";
+import Details from "../components/Form";
+import { Container, Row } from "react-bootstrap";
+import ConnectButtons from "../components/ConnectButtons";
+import HeaderBanner from "../components/HeaderBanner";
 
 function Connect() {
+
   return (
-    <div className="first">
-      <section className="flex justify-center items-center p-3 w-full h-screen connect_section bg1 relative">
-        <div className="flex flex-col items-center z-10">
-          <h1 className="text-5xl md:text-7xl working_heading mb-5">
-            Connect with us
-          </h1>
-          <p className="font-semibold text-md md:text-2xl working_subheading text-center">
-            Reach out to us for any inquiries or support — we are here to help.
-          </p>
-        </div>
-      </section>
+  
+
+     
+      <>
+       
+
+     <HeaderBanner title="Connect Us" description="Reach out to us for any inquiries or support — we are here to help." brochure classname='bgFive'/>
       <div className='bb'>
         <h1>Contact Us</h1>
+
             
-        <div className='aa'>    
+        <div className='aa grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-16'>    
           <div className="card-group cards rounded">
               <div className="card card1 pt-4 rounded-2xl">
                 <div className="icon">
@@ -72,13 +70,14 @@ function Connect() {
               </Row>
               </Container>
               <Container className='flex flex-col items-center'>
-              <div className=' md:w-1/2 '>
+              <div className='w-full md:w-1/2 '>
               <Details/>
               </div>
               </Container>
       </section>
       <ConnectButtons/>
-    </div>
+    </>
+   
   );
 }
 

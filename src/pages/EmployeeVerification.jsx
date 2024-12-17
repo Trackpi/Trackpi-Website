@@ -4,6 +4,7 @@ import "react-puzzle-captcha/dist/react-puzzle-captcha.css";
 import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
+import HeaderBanner from "../components/HeaderBanner";
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ function EmployeeVerification() {
     const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false);
 
-    const navigate=useNavigate()
+    const navigate = useNavigate();
 
     // Dummy data (simulate a backend response)
     const dummyData = [
@@ -36,60 +37,56 @@ function EmployeeVerification() {
 
     // Validation function
     const validate = () => {
-      const { employeeId } = formData;
-  
-      if (!employeeId) {
-          toast.error("Please fill the Employee ID field."); // Show toast for empty field
-          return false;
-      }
-  
-      if (!/^[a-zA-Z0-9]+$/.test(employeeId)) {
-          toast.error("Employee ID must be alphanumeric."); // Show toast for invalid characters
-          return false;
-      }
-  
-      return true;
-  };
-  
+        const { employeeId } = formData;
+
+        if (!employeeId) {
+            toast.error("Please fill the Employee ID field."); // Show toast for empty field
+            return false;
+        }
+
+        if (!/^[a-zA-Z0-9]+$/.test(employeeId)) {
+            toast.error("Employee ID must be alphanumeric."); // Show toast for invalid characters
+            return false;
+        }
+
+        return true;
+    };
 
     // Handle form submission
     const handleSubmit = (e) => {
-      e.preventDefault();
-      setLoading(true);
-  
-      // Validate input and show relevant toast errors
-      if (!validate()) {
-          setLoading(false);
-          return;
-      }
-  
-      // Show CAPTCHA modal if not verified
-      if (!captchaVerified) {
-          setModalShow(true);
-          setLoading(false);
-          return;
-      }
-  
-      // Proceed with submission after CAPTCHA
-      setTimeout(() => {
-          const { employeeId } = formData;
-          const filteredResults = dummyData.filter((employee) =>
-              employee.employeeId.includes(employeeId)
-          );
-  
-          if (filteredResults.length === 0) {
-              setSearchResults([]);
-              toast.info("No matching employee found."); // Show toast for no results
-          } else {
-              setSearchResults(filteredResults);
-              toast.success("Employee found!"); // Show toast for success
-          }
-  
-          setLoading(false);
-          resetForm();
-      }, 2000);
-  };
-  
+        e.preventDefault();
+        setLoading(true);
+
+        // Validate input and show relevant toast errors
+        if (!validate()) {
+            setLoading(false);
+            return;
+        }
+
+        // Show CAPTCHA modal if not verified
+        if (!captchaVerified) {
+            setModalShow(true);
+            setLoading(false);
+            return;
+        }
+
+        // Proceed with submission after CAPTCHA
+        setTimeout(() => {
+            const { employeeId } = formData;
+            const filteredResults = dummyData.filter((employee) => employee.employeeId.includes(employeeId));
+
+            if (filteredResults.length === 0) {
+                setSearchResults([]);
+                toast.info("No matching employee found."); // Show toast for no results
+            } else {
+                setSearchResults(filteredResults);
+                toast.success("Employee found!"); // Show toast for success
+            }
+
+            setLoading(false);
+            resetForm();
+        }, 2000);
+    };
 
     // Handle CAPTCHA success
     const handleCaptchaSuccess = () => {
@@ -103,22 +100,21 @@ function EmployeeVerification() {
 
             if (filteredResults.length === 0) {
                 setSearchResults([]);
-                setLoading(true)
-                setTimeout(()=>{
-                  setLoading(false)
-                  toast.info("No matching employee found.");
-                },2000)
+                setLoading(true);
+                setTimeout(() => {
+                    setLoading(false);
+                    toast.info("No matching employee found.");
+                }, 2000);
             } else {
-                setLoading(true)
-                setTimeout(()=>{
-                  setLoading(false)
-                  navigate('/personel')
-                },2000)
+                setLoading(true);
+                setTimeout(() => {
+                    setLoading(false);
+                    navigate("/personel");
+                }, 2000);
             }
             resetForm();
         }
     };
-
 
     // Mark the input as touched when the user interacts with it
     const handleTouched = (e) => {
@@ -140,39 +136,53 @@ function EmployeeVerification() {
         }
     }, [errors.general]);
 
+    const clients = [
+        {
+            id: 1,
+            name: "Authenticity",
+            description: "Verify the authenticity of employee credentials and background details.",
+        },
+        {
+            id: 2,
+            name: "Security",
+            description: "Protect your organization from unauthorized individuals.",
+        },
+        {
+            id: 3,
+            name: "Efficiency",
+            description: "Streamline the hiring and employee verification process.",
+        },
+    ];
+
     return (
         <>
             {/* Hero Section */}
-            <section className="flex justify-center items-center p-3 w-full h-screen employ_section bg1 relative">
-                <div className="flex flex-col items-center z-10">
-                    <h1 className="text-5xl md:text-7xl home-text working_heading mb-5">Employee Verification</h1>
-                    <p className="font-semibold text-md md:text-2xl working_subheading text-center">
-                        Verify employee credentials and details securely and efficiently.
-                    </p>
-                </div>
-            </section>
+            <HeaderBanner
+                title="Employee Verification"
+                description="Verify employee credentials and details securely and efficiently."
+                classname="bgFour"
+            />
 
             {/* Verification Form Section */}
-            <section className="bg-gray-50 px-6 py-16">
-                <div className="bg-white shadow-lg mx-auto p-8 rounded-lg max-w-3xl">
-                    <h2 className="mb-6 font-bold text-3xl text-amber-600 text-center">Employee Verification Form</h2>
+            <section className=" px-6 py-16">
+                <div style={{maxWidth:'1100px'}} className="bg-white shadow-lg mx-auto p-8 rounded-lg max-w-3xl">
+                    <h2 className="m-6 font-bold text-5xl text-amber-400 text-center">Employee Verification</h2>
                     <form>
                         {/* Employee ID */}
-                        <div className="mb-4">
-    <label className="block mb-2 font-medium text-gray-700" htmlFor="employeeId">
-        Employee ID
-    </label>
-    <input
-        type="text"
-        id="employeeId"
-        aria-label="Enter Employee ID"
-        value={formData.employeeId}
-        onChange={handleTouched}
-        className="border-gray-300 p-2 border rounded-md w-full"
-        placeholder="Enter Employee ID"
-    />
-</div>
-
+                        <div style={{fontWeight:"600"}} className="mb-4 fs-4">
+                            <label className="block my-2 text-dark" htmlFor="employeeId">
+                                Employee ID
+                            </label>
+                            <input
+                                type="text"
+                                id="employeeId"
+                                aria-label="Enter Employee ID"
+                                value={formData.employeeId}
+                                onChange={handleTouched}
+                                className="border-gray-300 p-2 font-normal border rounded-md w-full"
+                                placeholder="Enter Employee ID"
+                            />
+                        </div>
 
                         {/* Submission Button */}
                         <div className="text-center">
@@ -180,7 +190,7 @@ function EmployeeVerification() {
                                 type="submit"
                                 onClick={handleSubmit}
                                 disabled={loading} // Disable button when loading
-                                className="mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 px-6 py-2 rounded-md font-semibold text-black"
+                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-400 to-orange-500  px-6 py-2 rounded-md font-semibold fs-3 text-black"
                             >
                                 {loading ? "Verifying..." : "Verify Employee"}
                             </button>
@@ -197,64 +207,40 @@ function EmployeeVerification() {
             {/* Modal for Captcha  */}
             <Modal size="sm" aria-labelledby="captcha-modal" centered show={modalShow} onHide={() => setModalShow(false)}>
                 <Modal.Header className="text-center">
-                <h5 className="w-100 text-black font-semibold m-0">Are you a robot?</h5> 
+                    <h5 className="w-100 text-black font-semibold m-0">Are you a robot?</h5>
                 </Modal.Header>
                 <Modal.Body>
                     <Verify id="captcha" width={250} height={120} onSuccess={handleCaptchaSuccess} />
                 </Modal.Body>
             </Modal>
 
-            {/* {searchResults.length > 0 && (
-                <section className="bg-white px-6 py-16">
-                    <h2 className="mb-6 font-semibold text-center text-gray-800">Search Results</h2>
-                    <div className="mx-auto max-w-5xl">
-                        <table className="bg-yellow-100 min-w-full text-black table-auto">
-                            <thead>
-                                <tr>
-                                    <th className="px-4 py-2 border">Employee ID</th>
-                                    <th className="px-4 py-2 border">Full Name</th>
-                                    <th className="px-4 py-2 border">Department</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {searchResults.map((employee, index) => (
-                                    <tr key={index}>
-                                        <td className="px-4 py-2 border">{employee.employeeId}</td>
-                                        <td className="px-4 py-2 border">{employee.fullName}</td>
-                                        <td className="px-4 py-2 border">{employee.department}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            )} */}
-
-            {/* Benefits of Verification Section */}
-            <section className="py-16 px-6 bg-white">
-                <div className="max-w-5xl mx-auto text-center">
-                    <h2 className="text-3xl font-semibold mb-6 text-black">Why Verify Employees?</h2>
-                    <p className="text-black mb-8">
+            <section className="flex flex-col items-center gap-10 w-full h-full">
+                <div className="flex flex-col items-center p-3">
+                    <h1 className="text-5xl md:text-5xl text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
+                    <h5 style={{ maxWidth: "1126px" }}className="fw-normal text-black fs-4 px-3 text-justify lg:text-center">
                         Ensuring that employee information is accurate helps maintain a trustworthy workplace environment
                         and reduces the risk of fraudulent activities.
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div className="hover:shadow-2xl transform hover:scale-105 p-6 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
-                            <h3 className="text-xl font-medium text-black mb-2">Authenticity</h3>
-                            <p className="text-black">
-                                Verify the authenticity of employee credentials and background details.
-                            </p>
-                        </div>
-                        <div className="p-6 hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg">
-                            <h3 className="text-xl font-medium text-black mb-2">Security</h3>
-                            <p className="text-black">Protect your organization from unauthorized individuals.</p>
-                        </div>
-                        <div className="p-6 hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r from-amber-200 via-amber-500 to-yellow-300 rounded-md shadow-lg hover:bg-blue-500">
-                            <h3 className="text-xl font-medium text-black mb-2">Efficiency</h3>
-                            <p className="text-black">Streamline the hiring and employee verification process.</p>
-                        </div>
-                    </div>
+                    </h5>
                 </div>
+                <div className="pb-8 w-100 row mx-auto g-4 d-flex align-items-stretch justify-content-center">
+    {clients.map((card) => (
+        <div
+            key={card.id}
+            className="col-lg-4 col-md-6 col-12 p-4 d-flex h-100"
+        >
+            <div className="w-100 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 hover:scale-110 cursor-pointer d-flex flex-column justify-between h-100">
+            <h3 className=" text-center text-black mt-4 font-bold text-3xl ">
+    {card.name}
+</h3>
+
+<p className="text-black text-center mt-2 text-xl sm:xs sm:p-1">
+    {card.description}
+</p>
+
+            </div>
+        </div>
+    ))}
+</div>
             </section>
 
             <ToastContainer />

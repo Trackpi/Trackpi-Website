@@ -16,6 +16,8 @@ import NotFound from './pages/NotFound';
 import ScrollUp from './components/ScrollUp';
 import Loader from './components/Loader';
 
+
+
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
@@ -33,11 +35,15 @@ function App() {
 
   return (
     <>
+      <Routes>
+            <Route path="/personnel" element={<Personel />} /> 
+      </Routes>
       <ScrollUp />
       {loading ? (
         <Loader />
       ) : (
         <>
+         
           <Header />
           <Sidebar />
           <Routes>
@@ -50,10 +56,11 @@ function App() {
               element={<EmployeeVerification />}
             />
             <Route path="/connect-us" element={<Connect />} />
-            <Route path="/personel" element={<Personel />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          
         </>
       )}
     </>

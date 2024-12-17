@@ -1,173 +1,111 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js"
+
+import React, { useState } from 'react';
+import { FaAngleRight } from 'react-icons/fa6';
+import { FaAngleLeft } from 'react-icons/fa6';
 
 function Clients (){
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const clients = [
+        {
+          id: 1,
+          name: 'Growth Father',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+
+          logo: '/src/images/growthfactor.png',
+        },
+        {
+          id: 2,
+          name: 'Trade Max Academy',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+          logo: '/src/images/trademax.png',
+        },
+        {
+          id: 3,
+          name: 'Growth Father',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+
+          logo: '/src/images/growthfactor.png',
+        },
+      ];
+      const cardsPerSlide = 3;
+      const handlePrev = () => {
+        setCurrentIndex(prevIndex =>
+          prevIndex > 0 ? prevIndex - 1 : Math.floor(clients.length / cardsPerSlide)
+        );
+      };
+      const handleNext = () => {
+        setCurrentIndex(prevIndex =>
+          prevIndex < Math.floor(clients.length / cardsPerSlide) ? prevIndex + 1 : 0
+        );
+      };
+      const handleDotClick = index => {
+        setCurrentIndex(index);
+      };
+
     return(
-        <div className="container">
-            <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
-            
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <div className="row">
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="https://s3-alpha-sig.figma.com/img/65d0/cc31/683ff2651f317dd58f52323fdee60a4b?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=P2f1xSf4JmykwqSjH~LMzeYHDS7eA~s8nE4XMWqMvgvH9HlaZjxnMteU36UQ755p4~RiueT5bxojpnUpWcVyNY3nK59DqlaQvcpwJx9EMcnKtzP55LNANN2x2WAP6LHxs6Z7a-xCjoEnb-p2hkpyXEk5iC5~wTQNRV4jtp6d~kAGKS2r6haZ5hB4~nqiEAAH20BmDoMQu2g79OXB2Cq~hbV47MUMtL8KH1mkam3nST4JDGn5t7PYSYD0hO2rEN8wroMJawMsPAxaCjam~2eE4tdVfukTcBepe5h2eteF3XZ6M6P56X1CN79rrFc1JLNI11tTPKSxK-gsi9g1yhShFw__" className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div className="box-bottom">
-                                        <h3>Full Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="https://s3-alpha-sig.figma.com/img/fd6b/e7a5/edc0e55cdeeceda2851181c6b596fff6?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OTUklbThtVgMNZh5yX89MxCEcb6mcUqFbAwJtPLXJW3wVF~2fTVU84T8BZW7QoJ1T-~SyAVjVnFVmwHv4Fncl5CHndUV-aocG0TLxIc1PhCkt57QnX5JFciTieDB-XoOguK8gbj7MJzN4As50X2H~nmE6hg-7AtE9A3wLrdgflhNcLGXVF~TzeskTuySsn1OPlkuUcS-wO~u0lcMlqnwQVe-6jAfEdIlc9om2C2KcVeCed0gVJKz7efD6idy8v3EN1dmbIB4LzeXH1GdgxifHsUzrvJ3tZcjJPGHmQP~rLV2q3pgWFMOhA76ctp9D9iUs7uoQZOFTlYwc7cb9GUeqw__" className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div>
-                                        <h3>Full Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="https://s3-alpha-sig.figma.com/img/65d0/cc31/683ff2651f317dd58f52323fdee60a4b?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=P2f1xSf4JmykwqSjH~LMzeYHDS7eA~s8nE4XMWqMvgvH9HlaZjxnMteU36UQ755p4~RiueT5bxojpnUpWcVyNY3nK59DqlaQvcpwJx9EMcnKtzP55LNANN2x2WAP6LHxs6Z7a-xCjoEnb-p2hkpyXEk5iC5~wTQNRV4jtp6d~kAGKS2r6haZ5hB4~nqiEAAH20BmDoMQu2g79OXB2Cq~hbV47MUMtL8KH1mkam3nST4JDGn5t7PYSYD0hO2rEN8wroMJawMsPAxaCjam~2eE4tdVfukTcBepe5h2eteF3XZ6M6P56X1CN79rrFc1JLNI11tTPKSxK-gsi9g1yhShFw__" className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div>
-                                        <h3>Full Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                   
-                    </div>
-                    <div className="carousel-item">
-                    <div className="row">
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="..." className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div>
-                                        <h3> Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="..." className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div>
-                                        <h3> Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="..." className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div>
-                                        <h3>Full Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-                    <div className="carousel-item">
-                    <div className="row">
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="..." className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div>
-                                        <h3>Full Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="..." className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div>
-                                        <h3>Full Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="card card11">
-                                    <div className="box-front">
-                                      <img src="..." className="d-block w-100" alt="..."/>
-                                    </div>
-                                    <div>
-                                        <h3>Full Name</h3>
-                                        <p>
-                                        credentials and background details
-                                        Verify the authenticity of employee
-                                        credentials and background details.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <>
+         <section className=' py-8 px-8 w-full '>
+          
+            <div
+              className="flex transition-transform duration-500 flex justify-between"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {clients.map(card => (
+                <div
+                  key={card.id}
+                  className="w-100 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 mx-4 hover:scale-110 cursor-pointer"
+                >
+                  <img src={card.logo} height="200px"width="200px" alt="" className="mx-auto" />
+                  <h3 className="text-lg text-center font-bold text-black mt-4">
+                    {card.name}
+                  </h3>
+                  <p className="text-black text-left mt-2">{card.description}</p>
                 </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                 </button>
+              ))}
             </div>
-        </div>
+          
+          <div className="flex justify-between items-center  mt-4 mx-4">
+            <div className="flex gap-5">
+              <button
+                onClick={handlePrev}
+                className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
+              >
+                <FaAngleLeft size={18} />
+              </button>
+              <button
+                onClick={handleNext}
+                className="text-4xl text-gray-600 hover:text-gray-800 transition duration-300"
+              >
+                <FaAngleRight size={18} />
+              </button>
+            </div>
+  
+            {/* Slider Dots */}
+            <div className="flex justify-center items-center">
+              {clients.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleDotClick(index)}
+                  className={`w-2.5 h-2.5 mx-1 rounded-full ${
+                    currentIndex === index ? 'bg-yellow-500  w-4' : 'bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+            {/* View More Button */}
+  
+            <div className="text-right">
+              <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
+                View More
+              </button>
+            </div>
+          </div>
+        
+          </section>
+          </>          
+                  
+       
+      
     );
 }
 

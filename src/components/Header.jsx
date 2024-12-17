@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 function Header() {
   const [showNavbar, setShowNavbar] = useState(false);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,28 +38,41 @@ function Header() {
 
   return (
     <>
-           <Navbar expand='lg' className={`navbar ${showNavbar ? "visible" : "hidden"}`} fixed="top">
+      <Navbar expand='lg' className={`navbar px-md-5 navbar-dark`} fixed="top">
 
         <Container fluid>
-          <Navbar.Brand href="">
-            <Link to={'/'} className="flex items-center text-decoration-none">
+          <Navbar.Brand href="" className='ms-md-3'>
+            <Link to={'/'} className="flex items-center text-decoration-none p-1">
             
-              <h1 className="fw-bold brandname">
+              {/* <h1 className="fw-bold brandname">
                 <span className="text-yellow-500 ">TRACK</span>
                 <span className="text-gray-800">PI</span>
-              </h1>
-              
+              </h1> */}
+               <img
+                src="src/images/trackpi_logo_one.png"
+                alt="TrackPi Logo"
+                style={{ width: "120px" }}
+              />
             </Link>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="font-bold ms-auto">
+            <Nav className="font-bold ms-auto ">
               {/* Use Link for About to navigate normally */}
               <Nav.Link
                 as={Link}
+                to="/"
+                className="me-3 text-white"
+                id="navlink"
+                href="#home"
+              >
+                HOME
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
                 to="/about"
-                className="me-3"
+                className="me-3 text-white"
                 id="navlink"
                 href="#about"
               >
@@ -67,12 +81,12 @@ function Header() {
 
               <NavDropdown
                 title="OUR SERVICES"
-                className="custom-dropdown me-3"
+                className="custom-dropdown me-3 text-white "
                 id="navlink"
               >
                 <NavDropdown
                   title="Business Consulting"
-                  className="custom-dropdown me-3"
+                  className="custom-dropdown me-3 "
                   id="navlink"
                   drop="end"
                 >
@@ -133,7 +147,7 @@ function Header() {
 
               <Nav.Link
                 as={Link}
-                className="me-3"
+                className="me-3 text-white"
                 id="navlink"
                 to="/employee-verification"
                 target="_blank"
@@ -141,7 +155,7 @@ function Header() {
                 EMPLOYEE VERIFICATION
                 <i className="fa-arrow-up-right-from-square fa-solid ms-1"></i>
               </Nav.Link>
-              <Nav.Link as={Link} id="navlink" to="/connect-us">
+              <Nav.Link as={Link} id="navlink" to="/connect-us" className='text-white'>
                 CONNECT US
               </Nav.Link>
             </Nav>

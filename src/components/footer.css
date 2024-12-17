@@ -28,7 +28,10 @@
     font-family: "Urbanist", sans-serif;
 }
 
-.joinbtn{
+/* .joinbtn{
     border: 2px solid #FFDF41; 
     border-image: linear-gradient(to right, #FFDF41, #FF8800) 1; 
+} */
+.joinbtn{
+  border: 2px solid #FFDF41; 
 }
