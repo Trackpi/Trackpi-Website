@@ -16,6 +16,8 @@ import NotFound from './pages/NotFound';
 import ScrollUp from './components/ScrollUp';
 import Loader from './components/Loader';
 
+
+
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
