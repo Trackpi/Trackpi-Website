@@ -279,13 +279,6 @@ function Footer() {
             </Col>
             <Col md={3} lg={2} className='mx-auto'>
               <h5 className='mb-3 font-bold text-2xl'>Join With Us</h5>
-              {/* <div className='d-flex'>
-                  <input type="email" className='form-control' placeholder="Your Email Address"  style={{width:"200px"}}/>
-                <div/>
-                <button  type="submit" className='btn btn-warning ms-3' >
-                  Submit
-                </button>
-              </div> */}
               <InputGroup className='w-100'>
                 <Form.Control
                   type="email"
