@@ -645,6 +645,193 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
+.bgg11{
+  width: 100%;
+  height: fit-content;
+  clip-path: polygon(
+    100% 100%,
+    0% 100%,
+    0% 2.16%,
+    1% 2.03%,
+    2% 1.89%,
+    3% 1.76%,
+    4% 1.63%,
+    5% 1.51%,
+    6% 1.39%,
+    7% 1.28%,
+    8% 1.17%,
+    9% 1.07%,
+    10% 0.97%,
+    11% 0.88%,
+    12% 0.79%,
+    13% 0.71%,
+    14% 0.63%,
+    15% 0.56%,
+    16% 0.49%,
+    17% 0.43%,
+    18% 0.37%,
+    19% 0.32%,
+    20% 0.28%,
+    21% 0.24%,
+    22% 0.2%,
+    23% 0.17%,
+    24% 0.15%,
+    25% 0.13%,
+    26% 0.12%,
+    27% 0.11%,
+    28% 0.11%,
+    29% 0.12%,
+    30% 0.12%,
+    31% 0.14%,
+    32% 0.16%,
+    33% 0.19%,
+    34% 0.22%,
+    35% 0.26%,
+    36% 0.3%,
+    37% 0.35%,
+    38% 0.4%,
+    39% 0.46%,
+    40% 0.52%,
+    41% 0.59%,
+    42% 0.67%,
+    43% 0.75%,
+    44% 0.83%,
+    45% 0.92%,
+    46% 1.02%,
+    47% 1.12%,
+    48% 1.22%,
+    49% 1.33%,
+    50% 1.44%,
+    51% 1.56%,
+    52% 1.69%,
+    53% 1.82%,
+    54% 1.95%,
+    55% 2.09%,
+    56% 2.23%,
+    57% 2.37%,
+    58% 2.52%,
+    59% 2.68%,
+    60% 2.84%,
+    61% 3%,
+    62% 3.16%,
+    63% 3.33%,
+    64% 3.5%,
+    65% 3.68%,
+    66% 3.86%,
+    67% 4.04%,
+    68% 4.23%,
+    69% 4.42%,
+    70% 4.61%,
+    71% 4.8%,
+    72% 5%,
+    73% 5.2%,
+    74% 5.4%,
+    75% 5.6%,
+    76% 5.81%,
+    77% 6.01%,
+    78% 6.22%,
+    79% 6.43%,
+    80% 6.65%,
+    81% 6.86%,
+    82% 7.08%,
+    83% 7.29%,
+    84% 7.51%,
+    85% 7.73%,
+    86% 7.95%,
+    87% 8.17%,
+    88% 8.39%,
+    89% 8.61%,
+    90% 8.83%,
+    91% 9.05%,
+    92% 9.27%,
+    93% 9.49%,
+    94% 9.71%,
+    95% 9.93%,
+    96% 10.15%,
+    97% 10.36%,
+    98% 10.58%,
+    99% 10.8%,
+    100% 11.01%
+  );
+  overflow: visible;
+  position: relative;
+  font-size: 1em;
+}
+
+/* personnel of about page */
+.personnel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.personnel-popup {
+  position: relative;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  padding: 5px;
+  
+}
+.close{
+  margin-right: -550px !important;
+}
+
+
+.personnelfirst {
+  background: rgba(255, 179, 0, 1);
+  position: relative;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 0 8px 15px rgba(255, 179, 0, 0), 0 4px 6px rgba(255, 179, 0, 1);
+}
+
+.personnel-title {
+  font-size: 2rem;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.personnel-designation {
+  color: black;
+}
+
+.personnelimg {
+  position: absolute;
+  top: calc(30vh - 100px); /* 50% of the image in orange and 50% in white */
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 200px;
+  width: 200px;
+  background: white;
+  border: 5px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.personnel-details {
+  margin-top: 120px; /* Adjust spacing from the image */
+  padding: 10px;
+}
+
+
 
 
 /* Apply grayscale by default */

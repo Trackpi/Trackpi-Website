@@ -1,3 +1,4 @@
+
 import MemberCard from "./memberCard";
 
 
@@ -9,6 +10,7 @@ const memberList = [
         ph: '+1-334-3452-345',
         mail: 'Johnsm@financitytheme.com',
         titleLink: '/personnel',
+        selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
     },
     {
         image: 'src/images/personnel-2-400x310.jpg',
@@ -17,6 +19,8 @@ const memberList = [
         ph: '+1-334-3452-345',
         mail: 'Johnsm@financitytheme.com',
         titleLink: '/personnel',
+        selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
+
     },
     {
         image: 'src/images/personnel-3-400x310.jpg',
@@ -25,6 +29,8 @@ const memberList = [
         ph: '+1-334-3452-345',
         mail: 'Johnsm@financitytheme.com',
         titleLink: '/personnel',
+        selfIntroduction:' dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
+
     },
     {
         image: 'src/images/personnel-4-400x310.jpg',
@@ -33,6 +39,8 @@ const memberList = [
         ph: '+1-334-3452-345',
         mail: 'Johnsm@financitytheme.com',
         titleLink: '/personnel',
+        selfIntroduction:'  dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
+
     },
     {
         image: 'src/images/personnel-5-400x310.jpg',
@@ -41,6 +49,8 @@ const memberList = [
         ph: '+1-334-3452-345',
         mail: 'Johnsm@financitytheme.com',
         titleLink: '/personnel',
+        selfIntroduction:' dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
+
     },
     {
         image: 'src/images/personnel-6-400x310.jpg',
@@ -49,6 +59,8 @@ const memberList = [
         ph: '+1-334-3452-345',
         mail: 'Johnsm@financitytheme.com',
         titleLink: '/personnel',
+        selfIntroduction:' dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
+
     },
 ];
 
@@ -64,6 +76,7 @@ const memberList = [
                             <div key={index}>
                             
                                 { <MemberCard setCmp={item} /> }
+                                
                             </div>
                         ))}
                     </div>

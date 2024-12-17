@@ -56,7 +56,7 @@ function Clients (){
                   className="w-100 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 mx-4 hover:scale-110 cursor-pointer"
                 >
                   <img src={card.logo} height="200px"width="200px" alt="" className="mx-auto" />
-                  <h3 className="text-lg text-left font-bold text-black mt-4">
+                  <h3 className="text-lg text-center font-bold text-black mt-4">
                     {card.name}
                   </h3>
                   <p className="text-black text-left mt-2">{card.description}</p>
