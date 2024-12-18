@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 // import { FaAngleRight } from 'react-icons/fa6';
 // import { FaAngleLeft } from 'react-icons/fa6';
 
 function Clients (){
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false); // Track hover state
     const clients = [
         {
           id: 1,
@@ -26,8 +27,53 @@ function Clients (){
 
           logo: '/src/images/growthfactor.png',
         },
+        {
+          id: 4,
+          name: 'Growth Father',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+
+          logo: '/src/images/growthfactor.png',
+        },
+        {
+          id: 5,
+          name: 'Trade Max Academy',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+          logo: '/src/images/trademax.png',
+        },
+        {
+          id: 6,
+          name: 'Growth Father',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+
+          logo: '/src/images/growthfactor.png',
+        },
+        {
+          id: 7,
+          name: 'Growth Father',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+
+          logo: '/src/images/growthfactor.png',
+        },
+        {
+          id: 8,
+          name: 'Trade Max Academy',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+          logo: '/src/images/trademax.png',
+        },
+        {
+          id: 9,
+          name: 'Growth Father',
+          description:'credentials and background details Verify the authenticity of employee credentials and background details.',
+
+          logo: '/src/images/growthfactor.png',
+        },
       ];
+
+      
+    
+      
       const cardsPerSlide = 3;
+      const totalSlides = Math.ceil(clients.length / cardsPerSlide);
       // const handlePrev = () => {
       //   setCurrentIndex(prevIndex =>
       //     prevIndex > 0 ? prevIndex - 1 : Math.floor(clients.length / cardsPerSlide)
@@ -42,25 +88,47 @@ function Clients (){
         setCurrentIndex(index);
       };
 
+      
+      useEffect(() => {
+        if (isHovered) return; // Stop the interval when hovered
+    
+        const interval = setInterval(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
+        }, 5000); // 5 seconds interval
+    
+        return () => clearInterval(interval); // Cleanup interval on unmount or hover
+      }, [isHovered, totalSlides]); // Re-run effect when hover state changes
+
     return(
         <>
-         <section className=' py-8 px-8 w-full '>
+         <section className=' py-8 px-9 w-full '
+         onMouseEnter={() => setIsHovered(true)} // Stop auto-sliding
+         onMouseLeave={() => setIsHovered(false)} // Resume auto-sliding
+         >
           
             <div
-              className="flex transition-transform duration-500 flex justify-between"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              className="flex transition-transform duration-500 flex justify-evenly gap-1"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` ,width: `${totalSlides * 100}%`,}}
             >
-              {clients.map(card => (
+              {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                  <div
+                  key={slideIndex}
+                  className="flex justify-evenly gap-6 w-full"
+                  style={{ flex: "0 0 100%" }}
+                >
+              {clients.slice().map(card => (
                 <div
                   key={card.id}
-                  className="w-[410px] h-[384px] bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg +  text-center transform transition-all  duration-300 mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
+                  className="lg:w-[10%] xl:w-[10%] md:w-[40%] sm:w-[100%] h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px] lg:text-xl flex flex-col justify-center items-center lg:gap-4 gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
                 >
                   <img src={card.logo} height="200px"width="200px" alt="" className="mx-auto" />
-                  <h3 className="text-lg text-center font-bold text-black mt-4">
+                  <h3 className="text-lg text-center font-bold text-black mt-4 md:text-xl lg:text-3xl ">
                     {card.name}
                   </h3>
-                  <p className="text-black text-left mt-2">{card.description}</p>
+                  <p className="text-black text-left mt-2 md:text-lg lg:text-2xl ">{card.description}</p>
                 </div>
+                  ))}
+                  </div>
               ))}
             </div>
           
@@ -82,7 +150,7 @@ function Clients (){
   
             {/* Slider Dots */}
             <div className="flex justify-center items-center">
-              {clients.map((_, index) => (
+            {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => handleDotClick(index)}
