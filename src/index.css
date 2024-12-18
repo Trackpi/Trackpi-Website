@@ -903,13 +903,14 @@ gap: 50px !important;
   color: black !important;
   border-radius: 7px !important;
 }
-.connect-text-Color{
-color: rgb(245, 158, 11);
-  background: rgba(255, 179, 0, 1) !important;
+/* .connect-text-Color{
+
   color: black !important;
   border-radius: 7px !important;
-}
+} */
 .fixed-card {
+  color: rgb(245, 158, 11);
+  background: rgba(255, 179, 0, 1) !important;
   width: 410px !important;    /* Fixed width */
   height: 230px !important;   /* Fixed height */
   display: flex !important;

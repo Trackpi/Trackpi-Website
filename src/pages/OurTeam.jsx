@@ -17,8 +17,8 @@ function OurTeam() {
   return (
     <>
       <section className="flex justify-center items-center  h-full w-full">
-        <div className="flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
+        <div className="  flex flex-col items-center">
+          <h1 className="text-6xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
         </div>
