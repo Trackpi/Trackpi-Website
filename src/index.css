@@ -9,6 +9,12 @@
 ::-webkit-scrollbar {
   display: none;
 }
+*
+{
+  box-sizing: border-box;
+ 
+}
+
 
 body, html {
   overflow-x: hidden;
