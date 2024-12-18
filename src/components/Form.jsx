@@ -5,7 +5,8 @@ import Form from 'react-bootstrap/Form';
 
 function Details() {
   return (
-    <Form className="flex flex-col">
+    <div className="w-full mx-auto px-4">
+    <Form className="flex flex-col max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto  ">
     
       <FloatingLabel controlId="floatingInput" label="Full Name" r className="mb-3">
         <Form.Control
@@ -61,15 +62,15 @@ function Details() {
         className="mb-3"
       >
         <Form.Select
-          className="bg-transparent border"
-          style={{
-            padding: '15px',
-            outline: 'none',
-            transition: 'border-color 0.3s ease-in-out',
-          }}
+          className="bg-transparent border  "
+          // style={{
+          //   padding: 'px',
+          //   outline: 'none',
+          //   transition: 'border-color 0.3s ease-in-out',
+          // }}
           required
         >
-          <option value="">How Did You Hear About Us?</option>
+          <option value="" >How Did You Hear About Us?</option>
           <option value="socialMedia">Social Media</option>
           <option value="searchEngine">Search Engine</option>
           <option value="friendFamily">Friend or Family</option>
@@ -100,6 +101,7 @@ function Details() {
         </h6>
         </div>
     </Form>
+    </div>
   );
 }
 
