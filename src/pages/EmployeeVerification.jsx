@@ -164,12 +164,12 @@ function EmployeeVerification() {
             />
 
             {/* Verification Form Section */}
-            <section className=" px-6 py-16">
-                <div style={{maxWidth:'1100px'}} className="bg-white shadow-lg mx-auto p-8 rounded-lg max-w-3xl">
+            <section className=" py-16 px-3 w-100">
+                <div style={{maxWidth:'1100px'}} className="bg-white shadow-lg mx-auto p-8 rounded-lg ">
                     <h2 className="m-6 font-bold text-5xl text-amber-400 text-center">Employee Verification</h2>
                     <form>
                         {/* Employee ID */}
-                        <div style={{fontWeight:"600"}} className="mb-4 fs-4">
+                        <div style={{fontWeight:"600"}} className="mb-4 fs-3 g-5">
                             <label className="block my-2 text-dark" htmlFor="employeeId">
                                 Employee ID
                             </label>
@@ -179,8 +179,9 @@ function EmployeeVerification() {
                                 aria-label="Enter Employee ID"
                                 value={formData.employeeId}
                                 onChange={handleTouched}
-                                className="border-gray-300 p-2 font-normal border rounded-md w-full"
+                                className="border-black p-3 font-normal fs-4  rounded-md w-full"
                                 placeholder="Enter Employee ID"
+                                style={{border:'1px black solid'}}
                             />
                         </div>
 
@@ -190,7 +191,7 @@ function EmployeeVerification() {
                                 type="submit"
                                 onClick={handleSubmit}
                                 disabled={loading} // Disable button when loading
-                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-400 to-orange-500  px-6 py-2 rounded-md font-semibold fs-3 text-black"
+                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-300 to-orange-400 p-[12px] px-[30px]  rounded-md font-semibold text-2xl text-black"
                             >
                                 {loading ? "Verifying..." : "Verify Employee"}
                             </button>
@@ -222,22 +223,18 @@ function EmployeeVerification() {
                         and reduces the risk of fraudulent activities.
                     </h5>
                 </div>
-                <div className="pb-8 w-100 row mx-auto g-4 d-flex align-items-stretch justify-content-center">
+               <div className="max-w-[1310px] pb-20 w-full mx-auto grid gap-10 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
     {clients.map((card) => (
         <div
             key={card.id}
-            className="col-lg-4 col-md-6 col-12 p-4 d-flex h-100"
+            className=" px-10 py-7 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] rounded-lg shadow-lg text-center cursor-pointer flex flex-col justify-between h-full"
         >
-            <div className="w-100 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 hover:scale-110 cursor-pointer d-flex flex-column justify-between h-100">
-            <h3 className=" text-center text-black mt-4 font-bold text-3xl ">
-    {card.name}
-</h3>
-
-<p className="text-black text-center mt-2 text-xl sm:xs sm:p-1">
-    {card.description}
-</p>
-
-            </div>
+            <h3 className="text-black mt-4 font-bold text-2xl">
+                {card.name}
+            </h3>
+            <p className="text-black font-semibold mt-2 text-xl">
+                {card.description}
+            </p>
         </div>
     ))}
 </div>

@@ -16,15 +16,11 @@ function OurTeam() {
   const [refThirdSection, inViewThirdSection] = useInView(options);
   return (
     <>
-      <section className="flex justify-center items-center p-5 w-full">
-        <div className="flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl text-amber-500  hiring_heading">
+      <section className="flex justify-center items-center  h-full w-full">
+        <div className="  flex flex-col items-center">
+          <h1 className="text-6xl md:text-7xl text-amber-500  hiring_heading">
             Who We Are?
           </h1>
-
-
-          {/* <Brochure /> */}
-
         </div>
       </section>
 
@@ -40,6 +36,7 @@ function OurTeam() {
                 <h1 className="text-yellow-500 fw-bold display-5">
                   We’re The Ready
                 </h1>
+                <br/>
                 <p className="text-2xl   md:text-left md:text-lg">
                   We’re here to change how the world works—from business as
                   usual to brave new work. It takes an unusual person to disrupt
@@ -55,8 +52,7 @@ function OurTeam() {
               <motion.img
                 src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64ecb80f6f19b2addac4e0f1_image_WeAreTheReady1-p-800.webp"
                 alt="Team Image"
-                height="500px"
-                width="500px"
+                style={{ width: '590px', height: '490px', objectFit: 'cover' }}
                 initial={{ opacity: 0, x: 50 }}
                 animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8 }}
@@ -79,18 +75,60 @@ function OurTeam() {
         </div>
         <Clients/>
 </section>
+<section
+        ref={refSecondSection}
+        className="mt-0 w-full bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] h-full bgg11 flex items-center"
+      >
+        <Container >
+          <Row>
+            <Col md={6} className="flex flex-col items-center p-5">
+              <motion.img
+                src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64495b02c779ff9ad9a7990f_image_OurPeopleForeground%402x-p-1080.webp"
+                alt="Team Image"
+                style={{ width: '590px', height: '490px', objectFit: 'cover' }}
+                initial={{ opacity: 0, x: 50 }}
+                animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8 }}
+              />
+            </Col>
+            <Col md={6} className="flex flex-col justify-center items-center pt-12">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8 }}
+              >
+                <h1 className="fw-bold display-5">Our people</h1>
+                <br/>
+                <p className="text-justify text-xl md:text-lg">
+                  The people who make up The Ready are specialists in the ways
+                  of organizational culture and transformation. Yet within that
+                  world we are generalists drawing freely from the principles
+                  and practices of dozens of theories and hundreds of
+                  iconoclastic firms. We are coaches, facilitators, academics,
+                  psychologists, technologists, and corporate veterans who have
+                  found each other in our quest to make work better. Our
+                  backgrounds are varied but our ambition is united.
+                </p>
+              </motion.div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    
 <section ref={refThirdSection} className="mt-0  w-full h-full">
         <Container>
           <Row>
-            <Col md={6} className="flex flex-col items-center pt-12">
+            <Col md={6} className="  flex flex-col items-center  pt-12">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8 }}
               >
+                
                 <h1 className="text-yellow-500  fw-bold display-5">
                   Join our team
                 </h1>
+                <br/>
                 <p className="text-xl md:text-justify md:text-lg">
                   We are always on the lookout for our next stunning colleague.
                   If you either have experience working closely with
@@ -117,6 +155,7 @@ function OurTeam() {
               <motion.img
                 src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64495b2e1589c13e25e8db88_image_OurTeamForeground%402x-p-1080.webp"
                 alt=""
+                style={{ width: '590px', height: '490px', objectFit: 'cover' }}
                 initial={{ opacity: 0, x: 50 }}
                 animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8 }}
@@ -125,46 +164,7 @@ function OurTeam() {
           </Row>
         </Container>
       </section>
-      <section
-        ref={refSecondSection}
-        className="mt-0 w-full bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] h-full bgg11 flex items-center"
-      >
-        <Container >
-          <Row>
-            <Col md={6} className="flex flex-col items-center p-5">
-              <motion.img
-                src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64495b02c779ff9ad9a7990f_image_OurPeopleForeground%402x-p-1080.webp"
-                alt="Team Image"
-                height="500px"
-                width="500px"
-                initial={{ opacity: 0, x: 50 }}
-                animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8 }}
-              />
-            </Col>
-            <Col md={6} className="flex flex-col justify-center items-center pt-12">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="fw-bold display-5">Our people</h1>
-                <p className="text-justify text-xl md:text-lg">
-                  The people who make up The Ready are specialists in the ways
-                  of organizational culture and transformation. Yet within that
-                  world we are generalists drawing freely from the principles
-                  and practices of dozens of theories and hundreds of
-                  iconoclastic firms. We are coaches, facilitators, academics,
-                  psychologists, technologists, and corporate veterans who have
-                  found each other in our quest to make work better. Our
-                  backgrounds are varied but our ambition is united.
-                </p>
-              </motion.div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-    
+      
       <section className="mt-5 mb-5 w-full">
         <Container className="flex flex-col gap-5">
           <Row>

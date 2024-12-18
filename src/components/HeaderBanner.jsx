@@ -18,11 +18,12 @@ function HeaderBanner({ title, description, brochure, learn, classname, titleTwo
         <>
             <section className={`w-full h-screen home_section relative ${classname}`}>
                 <div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
-                    <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg py-2 px-6 mx-3 font-bold flex items-center space-x-2">
+                    {brochure ?  <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg py-2 px-6 mx-3 font-bold flex items-center space-x-2">
                         <LuCirclePlus />
                         <span>Submit New Project</span>
                     </button>
-                    {brochure ? <Brochure /> : null}
+                    : null}
+                     <Brochure />
                 </div>
 
                 <div className="flex justify-center items-center h-screen ">
@@ -37,7 +38,7 @@ function HeaderBanner({ title, description, brochure, learn, classname, titleTwo
 
                         {learn ? (
                             <div className="flex justify-center items-center">
-                                <button class="header_button">Learn How We Can Help</button>
+                                <button className="header_button">Learn How We Can Help</button>
                             </div>
                         ) : null}
                     </div>

@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
+footer{
+  font-family: "Urbanist", sans-serif;
 
+}
 .gradient-button {
     background: linear-gradient(90deg, #ffc107, #ff8c00);
     border: none;
-    font-weight: bold;
 
   }
   
@@ -28,10 +30,6 @@
     font-family: "Urbanist", sans-serif;
 }
 
-/* .joinbtn{
-    border: 2px solid #FFDF41; 
-    border-image: linear-gradient(to right, #FFDF41, #FF8800) 1; 
-} */
 .joinbtn{
   border: 2px solid #FFDF41; 
 }

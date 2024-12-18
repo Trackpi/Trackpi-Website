@@ -9,11 +9,12 @@
 ::-webkit-scrollbar {
   display: none;
 }
-*
-{
+* {
   box-sizing: border-box;
- 
+  font-family: 'Urbanist', sans-serif;
+
 }
+
 body,
 html {
   overflow-x: hidden;
@@ -21,25 +22,13 @@ html {
 
 }
 
-h1 {
-  font-family: 'Sofia Sans', sans-serif;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-}
-h1 {
-  font-family: 'Sofia Sans', sans-serif;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-}
 
 /* Navbar base styles */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #0A0A0A;
+  background: black;
   /* background: #595252; #feee9e; */
   color: white;
   padding: 15px 20px;
@@ -62,53 +51,45 @@ h1 {
 }
 
 .custom-dropdown .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
+  background-color: white;
   box-shadow: none;
+  margin: 0;
 }
 
 .custom-dropdown .dropdown-item {
+  font-weight: 600;
   color: #000;
 }
 
 .custom-dropdown .dropdown-item:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #ffc100;
 }
 
-.brandname {
-  font-family: 'Pacifico', cursive;
-  font-weight: 400;
-  font-style: normal;
+#navlink + .dropdown-menu .dropdown-toggle:first-of-type,
+#navlink + .dropdown-menu .dropdown-item {
+  color: black;
+  font-weight: 500;
+  text-align: center;
+}
+
+#navlink + .dropdown-menu .dropdown-toggle:first-of-type:hover,
+#navlink + .dropdown-menu .dropdown-item:hover {
+  background-color: #ffc107;
+  color: #000;
 }
 
 /* Navbar animation  */
-
-.nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 100%;
-
-  border-radius: 8px;
-  transition: 0.5s;
-}
 #navlink {
   position: relative;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
-  /* color: rgb(161, 25, 25); */
   transition: transform 0.3s ease, font-size 0.3s ease;
+  color: white;
 }
-/* #navlink:hover {
-  transform: scale(1);
-  font-size: 1.1rem; 
-  background: rgb(15, 15, 14);
-  background-clip: text;
-  color: transparent;
-  
-} */
+
+#navlink:hover {
+  color: #ffc100;
+}
+
 #navlink::before {
   content: '';
   position: absolute;
@@ -119,12 +100,43 @@ h1 {
   left: 0;
   background-color: #f5cf10;
   transform: scaleX(0);
-
   transition: transform 0.5s ease;
 }
+
+/* Ensure underline appears when hovering */
 #navlink:hover::before {
   transform: scaleX(1);
 }
+
+#navlink.active,
+.dropdown.active {
+  color: #ffc100;
+  font-weight: bold;
+}
+
+#navlink.active::before,
+.dropdown.active::before {
+  transform: scaleX(1);
+}
+
+.dropdown-menu .nav-link {
+  color: inherit;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.dropdown-menu .nav-link:hover {
+  color: #ffc100; /* Hover color for dropdown items */
+}
+
+.dropdown-menu .nav-link.active {
+  color: #ffc100;
+  font-weight: bold; /* Optional */
+}
+
+.dropdown-menu .nav-link.active::before {
+  transform: scaleX(1);
+}
+
 /* header button */
 .header_button {
   background: linear-gradient(to right, #ffdf41, #ff8800);
@@ -394,8 +406,25 @@ h1 {
   position: relative;
   font-size: 1em;
 }
-/* section 3  styling*/
+.shadow-bottom {
+  position: relative;
+  background: transparent; /* No background color */
+}
+
+.shadow-bottom::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px; /* Adjust as needed */
+  box-shadow: 0px 10px 10px rgb(22 21 21 / 20%);
+  z-index: -1; /* Ensure it stays behind */
+}
+
+
 .bg3 {
+
   width: 100%;
   height: fit-content;
   clip-path: polygon(
@@ -655,7 +684,8 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
-.bgg11{
+
+.bgg11 {
   width: 100%;
   height: fit-content;
   clip-path: polygon(
@@ -768,35 +798,18 @@ h1 {
   font-size: 1em;
 }
 
+.car {
+  box-shadow: 0 0 10px 3px rgba(255, 223, 65, 0.7),
+    /* Yellow glow */ 0 0 20px 6px rgba(255, 136, 0, 0.6) !important; /* Orange glow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.car:hover {
+  transform: scale(1.1) !important; /* Slightly enlarge the icon on hover */
+  box-shadow: 0 0 15px 5px rgba(255, 223, 65, 0.8),
+    0 0 25px 8px rgba(255, 136, 0, 0.7) !important; /* Enhanced glow on hover */
+}
+
 /* personnel of about page */
-.personnel-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.65);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.personnel-popup {
-  position: relative;
-  padding: 10px;
-  background: white;
-  border-radius: 8px;
-  text-align: center;
-  width: 80%;
-  max-width: 600px;
-  padding: 5px;
-  
-}
-.close{
-  margin-right: -550px !important;
-}
-
-
 .personnelfirst {
   background: rgba(255, 179, 0, 1);
   position: relative;
@@ -804,7 +817,7 @@ h1 {
   top: 0;
   left: 0;
   width: 100%;
-  height: 30vh;
+  height: 230px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -813,35 +826,52 @@ h1 {
   box-shadow: 0 8px 15px rgba(255, 179, 0, 0), 0 4px 6px rgba(255, 179, 0, 1);
 }
 
-.personnel-title {
+/* .personnel-title {
   font-size: 2rem;
   color: black;
   margin-bottom: 5px;
-}
+} */
 
-.personnel-designation {
+/* .personnel-designation {
   color: black;
-}
+} */
 
 .personnelimg {
   position: absolute;
-  top: calc(30vh - 100px); /* 50% of the image in orange and 50% in white */
+  top: calc(230px - 110px); /* 50% of the image in orange and 50% in white */
   left: 50%;
   transform: translate(-50%, 0);
   height: 200px;
-  width: 200px;
-  background: white;
-  border: 5px solid white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 270px;
   z-index: 1;
 }
 
-.personnel-details {
-  margin-top: 120px; /* Adjust spacing from the image */
-  padding: 10px;
+
+
+/* Responsive Design Adjustments */
+@media (min-width: 768px) {
+  .personnelimg {
+    top: calc(230px - 110px); /* More space for larger screens */
+  }
+
+  
 }
 
+@media (min-width: 1024px) {
+  .personnelimg {
+    top: calc(230px - 110px); /* Adjusting for larger screen sizes */
+  }
 
+ 
+}
+
+@media (min-width: 1280px) {
+  .personnelimg {
+    top: calc(230px - 110px); /* Even more space for extra-large screens */
+  }
+
+  
+}
 
 /* Apply grayscale by default */
 .team-img {
@@ -901,6 +931,22 @@ h1 {
   color: black !important;
   border-radius: 7px !important;
 }
+/* .connect-text-Color{
+
+  color: black !important;
+  border-radius: 7px !important;
+} */
+.fixed-card {
+  color: rgb(245, 158, 11);
+  background: rgba(255, 179, 0, 1) !important;
+  width: 410px !important; /* Fixed width */
+  height: 230px !important; /* Fixed height */
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for better visual separation */
+}
+
 .connect-text-Color {
   color: rgb(245, 158, 11);
 }
