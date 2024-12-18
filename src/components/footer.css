@@ -1,18 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
-footer{
-  font-family: "Urbanist", sans-serif;
 
-}
 .gradient-button {
     background: linear-gradient(90deg, #ffc107, #ff8c00);
     border: none;
+    font-weight: bold;
 
   }
-  
-  .gradient-button:hover {
-    background: linear-gradient(90deg, #ff8c00, #ffc107);
+  footer{
+    font-family: "Urbanist", sans-serif;
   }
+
   
   .border-warning {
     border-color: #ffc107 !important;
@@ -30,6 +28,3 @@ footer{
     font-family: "Urbanist", sans-serif;
 }
 
-.joinbtn{
-  border: 2px solid #FFDF41; 
-}

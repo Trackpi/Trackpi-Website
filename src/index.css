@@ -20,6 +20,7 @@
 body, html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  font-size: 16px;
 
 }
 
@@ -128,27 +129,19 @@ h1 {
   font-weight: bold; 
 }
 
-#navlink.active::before, .dropdown.active::before {
+#navlink:hover::before {
+  transform: scaleX(1);
+}
+
+#navlink.active, .dropdown.active, .active #navlink {
+  color: #FFC100  ; 
+  font-weight: bold; 
+}
+
+#navlink.active::before, .dropdown.active::before, .active #navlink::before{
   transform: scaleX(1); 
 }
 
-.dropdown-menu .nav-link {
-  color: inherit; 
-  transition: color 0.3s ease, font-size 0.3s ease;
-}
-
-.dropdown-menu .nav-link:hover {
-  color: #FFC100; /* Hover color for dropdown items */
-}
-
-.dropdown-menu .nav-link.active {
-  color: #FFC100;
-  font-weight: bold; /* Optional */
-}
-
-.dropdown-menu .nav-link.active::before {
-  transform: scaleX(1);
-}
 
 /* header button */
 .header_button{

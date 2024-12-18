@@ -169,12 +169,12 @@ function Home() {
   return (
     <>
       <HeaderBanner
-        title="People's Interest, Our Interest"
+        titleTwo="People's Interest, Our Interest"
         description="TrackPi is a future-of-work consultancy committed to changing how the world works from business as usual to brave new work."
         brochure
         learn
         classname="bgOne"
-        titleTwo="Your Strategic Growth Partner"
+        title="Your Strategic Growth Partner"
       />
       <section>
         <div className="text-center pt-12 pb-6">

@@ -23,15 +23,19 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/') {
-      setLoading(true);
-      const timeout = setTimeout(() => setLoading(false), 2250);
+    const loaderShown = sessionStorage.getItem("loaderShown");
+    if (location.pathname === "/" && !loaderShown) {
+        setLoading(true);
+        const timeout = setTimeout(() => {
+            setLoading(false);
+            sessionStorage.setItem("loaderShown", "true");
+        }, 2250);
 
-      return () => clearTimeout(timeout); 
+        return () => clearTimeout(timeout);
     } else {
-      setLoading(false); 
+        setLoading(false);
     }
-  }, [location]);
+}, [location]);
 
   return (
     <>
