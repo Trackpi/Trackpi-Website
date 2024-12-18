@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import './footer.css'
 import fbIcon from '../images/fb.svg'
 import quoraIcon from '../images/quora.svg'
-import youtubeIcon from '../images/youtube.svg'
+import youtubeIcon from '../images/yout.svg'
 import linkedinIcon from '../images/linkedin.svg'
 import bloggerIcon from '../images/blogger.svg'
 import mediumIcon from '../images/medium.svg'
@@ -16,63 +16,54 @@ import phoneIcon from '../images/phone.svg'
 import mailIcon from '../images/mail.svg'
 
 function Footer() {
-  const videoRefs = useRef([]);
+    const videoRefs = useRef([]);
 
-  const videoData = [
-    {
-      platform: "Instagram",
-      previewUrl: "https://www.instagram.com/reel/DDKOzyzionq/embed",
-      isYouTube: false,
-    },
-    {
-      platform: "Facebook",
-      previewUrl:
-        "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/r/1AjiMx1emU/",
-      isYouTube: false,
-    },
-    {
-      platform: 'YouTube',
-      previewUrl: 'https://www.youtube.com/embed/Z2jiF9w-srU',
-      isYouTube: true,
-    },
-  ];
+    const videoData = [
+        {
+            platform: "Instagram",
+            previewUrl: "https://www.instagram.com/reel/DDKOzyzionq/embed",
+            isYouTube: false,
+        },
+        {
+            platform: "Facebook",
+            previewUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/r/1AjiMx1emU/",
+            isYouTube: false,
+        },
+        {
+            platform: "YouTube",
+            previewUrl: "https://www.youtube.com/embed/Z2jiF9w-srU",
+            isYouTube: true,
+        },
+    ];
 
-  const platformURLs = {
-    instagram: 'https://www.instagram.com/trackpi_official/',
-    youtube: 'https://www.youtube.com/@trackpi/featured',
-    facebook: 'https://www.facebook.com/people/Trackpi-Ernakulam/pfbid0HC2UMFfh9G88BVNaogmJdQZ4cAGVtX7kvaeRw295PaHr1FdapXL6RtMftBb6PCBWl/',
-  };
+    const platformURLs = {
+        instagram: "https://www.instagram.com/trackpi_official/",
+        youtube: "https://www.youtube.com/@trackpi/featured",
+        facebook:
+            "https://www.facebook.com/people/Trackpi-Ernakulam/pfbid0HC2UMFfh9G88BVNaogmJdQZ4cAGVtX7kvaeRw295PaHr1FdapXL6RtMftBb6PCBWl/",
+    };
 
-  const handleHover = (index) => {
-    const video = videoRefs.current[index];
-    if (video && videoData[index].isYouTube) {
-      video.contentWindow.postMessage(
-        '{"event":"command","func":"playVideo","args":""}',
-        "*"
-      );
-      setTimeout(() => {
-        video.contentWindow.postMessage(
-          '{"event":"command","func":"pauseVideo","args":""}',
-          "*"
-        );
-      }, 20000);
-    }
-  };
+    const handleHover = (index) => {
+        const video = videoRefs.current[index];
+        if (video && videoData[index].isYouTube) {
+            video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
+            setTimeout(() => {
+                video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
+            }, 20000);
+        }
+    };
 
-  const handleMouseLeave = (index) => {
-    const video = videoRefs.current[index];
-    if (video && videoData[index].isYouTube) {
-      video.contentWindow.postMessage(
-        '{"event":"command","func":"pauseVideo","args":""}',
-        "*"
-      );
-    }
-  };
+    const handleMouseLeave = (index) => {
+        const video = videoRefs.current[index];
+        if (video && videoData[index].isYouTube) {
+            video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
+        }
+    };
 
-  return (
-    <div>
-      <Container fluid className="footer-container text-white" style={{ backgroundColor: '#0A0A0A' }}>
-        {/* <Row className="p-4 text-center text-md-start">
+    return (
+        <div>
+            <Container fluid className="footer-container text-white" style={{ backgroundColor: "#0A0A0A" }}>
+                {/* <Row className="p-4 text-center text-md-start">
           <Col sm={12} md={4} className="text-center mb-3">
             <img
               src="src/images/trackpi_logo.png"
@@ -82,130 +73,156 @@ function Footer() {
           </Col>
         </Row> */}
 
-        <div className="text-center w-full pt-5 px-2">
-          <h1 className='slogen text-6xl ' style={{ fontWeight: '400' }} >
-            Begin Your Journey With
-            <span style={{ color: '#FFC100' }} className='ms-1'>TRACK <span className='text-light'>PI</span></span>
-          </h1>
-          <h1 className='slogen text-3xl mt-4' style={{ fontWeight: '700' }}>we are here to help.</h1>
-          <button className='btn text-light py-2 mt-4 mb-3  px-5 slogen joinbtn rounded-4 ' style={{ fontSize: '1.9rem' }}>
-            Join with us
-          </button>
-        </div>
-        <hr className='mt-3' />
-        <div className='p-md-5'>
-          <h1 className='slogen text-center  text-5xl' style={{ fontWeight: '600', color: '#ffc100' }} >Discover Winning Business Strategies</h1>
-
-          <Row className=" " style={{ padding: '50px' }}>
-            {videoData.map((video, index) => (
-              <Col
-                key={index}
-                sm={12}
-                md={4}
-                className="text-center mb-5 p-md-5"
-                onMouseEnter={() => handleHover(index)}
-                onMouseLeave={() => handleMouseLeave(index)}
-              >
-                <div className="relative w-full mb-2" style={{ paddingTop: '177.77%' }}>
-                  <iframe
-                    ref={(el) => (videoRefs.current[index] = el)}
-                    src={video.isYouTube ? `${video.previewUrl}?autoplay=1&loop=1&mute=1` : video.previewUrl}
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="autoplay; encrypted-media"
-                    frameBorder="0"
-                    scrolling="no"
-                    allowFullScreen
-                    loop
-                    style={{
-                      borderRadius: '15px',
-                      border: '4px solid white',
-                      objectFit: 'cover' // Ensures proper scaling of content inside iframe
-                    }}
-                    title={`${video.platform} Video`}
-                  ></iframe>
+                <div className="text-center w-full pt-5 px-2">
+                    <h1 className="slogen text-6xl " style={{ fontWeight: "400" }}>
+                        Begin Your Journey With
+                        <span style={{ color: "#FFC100" }} className="ms-1">
+                            TRACK <span className="text-light">PI</span>
+                        </span>
+                    </h1>
+                    <h1 className="slogen text-3xl mt-4" style={{ fontWeight: "700" }}>
+                        we are here to help.
+                    </h1>
+                    <button
+                        className="btn text-light py-2 mt-4 mb-3 px-5 rounded-4"
+                        style={{
+                            fontSize: "1.9rem",
+                            border: "2px solid transparent",
+                            borderRadius: "8px",
+                            backgroundImage: "linear-gradient(black, black), linear-gradient(90deg, #FFDF41, #FF8800)",
+                            backgroundOrigin: "border-box",
+                            backgroundClip: "padding-box, border-box",
+                            color: "white",
+                            cursor: "pointer",
+                        }}
+                    >
+                        Join with us
+                    </button>
                 </div>
+                <hr className="mt-3" />
+                <div className="p-md-5">
+                    <h1 className="slogen text-center  text-5xl" style={{ fontWeight: "600", color: "#ffc100" }}>
+                        Discover Winning Business Strategies
+                    </h1>
 
-                <a
-                  href={platformURLs[video.platform.toLowerCase()]}
-                  target="_blank"
-                  className="slogen pb-2   rounded-none text-warning border-bottom border-warning "
-                  style={{ textDecoration: 'none', fontSize: '24px' }} // Removed text decoration
-                >
-                  View More
-                </a>
-              </Col>
-            ))}
-          </Row>
-        </div>
-        <div className='container text-center ' >
-          <h1 className='slogen text-5xl mb-5' style={{ fontWeight: '600', color: '#ffc100' }} >Want To Learn More</h1>
+                    <Row className=" " style={{ padding: "50px" }}>
+                        {videoData.map((video, index) => (
+                            <Col
+                                key={index}
+                                sm={12}
+                                md={4}
+                                className="text-center mb-5 p-md-5"
+                                onMouseEnter={() => handleHover(index)}
+                                onMouseLeave={() => handleMouseLeave(index)}
+                            >
+                                <div className="relative w-full mb-2" style={{ paddingTop: "177.77%" }}>
+                                    <iframe
+                                        ref={(el) => (videoRefs.current[index] = el)}
+                                        src={
+                                            video.isYouTube
+                                                ? `${video.previewUrl}?autoplay=1&loop=1&mute=1`
+                                                : video.previewUrl
+                                        }
+                                        className="absolute top-0 left-0 w-full h-full"
+                                        allow="autoplay; encrypted-media"
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        allowFullScreen
+                                        loop
+                                        style={{
+                                            borderRadius: "15px",
+                                            border: "4px solid white",
+                                            objectFit: "cover", // Ensures proper scaling of content inside iframe
+                                        }}
+                                        title={`${video.platform} Video`}
+                                    ></iframe>
+                                </div>
 
-          <div className='contianer d-flex justify-content-center align-items-center' style={{ minHeight: '380px', backgroundColor: '#d9d9d9' }}>
-            <h4 className='text-black text-start container w-50 '>Coming Soon! Unlock proven strategies, sharpen your
-              skills, and take your career to new heights stay tuned
-              for launch updates and early bird registration!</h4>
-          </div>
-        </div>
-        <h1> ‎ </h1>
-      </Container>
+                                <a
+                                    href={platformURLs[video.platform.toLowerCase()]}
+                                    target="_blank"
+                                    className="slogen pb-2   rounded-none text-warning border-bottom border-warning "
+                                    style={{ textDecoration: "none", fontSize: "24px" }} // Removed text decoration
+                                >
+                                    View More
+                                </a>
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
+                <div className="container text-center ">
+                    <h1 className="slogen text-5xl mb-5" style={{ fontWeight: "600", color: "#ffc100" }}>
+                        Want To Learn More
+                    </h1>
+
+                    <div
+                        className="contianer d-flex justify-content-center align-items-center"
+                        style={{ minHeight: "380px", backgroundColor: "#d9d9d9" }}
+                    >
+                        <h4 className="text-black text-start container w-50 ">
+                            Coming Soon! Unlock proven strategies, sharpen your skills, and take your career to new heights
+                            stay tuned for launch updates and early bird registration!
+                        </h4>
+                    </div>
+                </div>
+                <h1> ‎ </h1>
+            </Container>
 
 
-      <footer className="text-dark py-4 mx-auto font-medium">
-        <div className="container max-w-[1230px]">
-          <div className='container row justify-content-center '>
-          <Col sm={12} md={6} lg={5}>
-          <Col sm={12} className="text-center">
-  <img
-    src="src/images/trackpi_logo_one.png"
-    alt="TrackPi Logo"
-    width="150"
-    className="img-fluid mx-auto "
-  />
-</Col>
-
-
-                <Col sm={12} >
-                  <p className="mt-3 text-lg text-justify font-medium max-w-[423px]">
-                    Empowering businesses to succeed through expert guidance and
-                    personalized solutions. Unlocking potential and achieving
-                    success.
-                  </p>
-                </Col>
-                <Col sm={12}>
-                  <Row className=" mb-3">
-                    <Col>
-                      <h5 className='mb-3 font-semibold text-2xl'>Follow Us</h5>
-                      <div className="d-flex gap-6 flex-row ">
-                        <Link to={"#"}>
-                          <img src={fbIcon} alt="" />
-                        </Link>
-                        <Link to={"#"}>
-                          <img src={instagramIcon} alt="" />
-                        </Link>
-                        <Link to={"#"}>
-                          <img src={mediumIcon} alt="" />
-                        </Link>
-                        <Link to={"#"}>
-                          <img src={quoraIcon} alt="" />
-                        </Link>
-                        <Link to={"#"}>
-                          <img src={bloggerIcon} alt="" />
-                        </Link>
-                        <Link to={"#"}>
-                          <img src={youtubeIcon} alt="" />
-                        </Link>
-                        <Link to={"#"}>
-                          <img src={linkedinIcon} alt="" />
-                        </Link>
-                        
-                      </div>
+            <footer className="px- py-10 text-dark  mx-auto lg:px-20">
+                <Row>
+                    <Col md={6} lg={4} sm={12}>
+                        <Row>
+                            <Col sm={12} className="ms-5">
+                                <img
+                                    src="src/images/trackpi_logo_one.png"
+                                    alt="TrackPi Logo"
+                                    style={{ width: "150px" }}
+                                    className="img-fluid"
+                                />
+                            </Col>
+                            <Col sm={12}>
+                            <p className="mt-3 text-lg text-justify font-medium max-w-[423px]">
+                  Empowering businesses to succeed through expert guidance and
+                  personalized solutions. Unlocking potential and achieving
+                  success.
+                </p>
+                            </Col>
+                            <Col sm={12}>
+                                <Row className=" mb-3">
+                                    <Col>
+                                        <h5 className="mb-3 font-semibold text-2xl">Follow Us</h5>
+                                        <div className="d-flex gap-6 flex-row ">
+                                            <Link to={"#"}>
+                                                <img src={fbIcon} alt="" />
+                                            </Link>
+                                            <Link to={"#"}>
+                                                <img src={youtubeIcon} alt="" />
+                                            </Link>
+                                            <Link to={"#"}>
+                                                <img src={instagramIcon} alt="" />
+                                            </Link>
+                                            <Link to={"#"}>
+                                                <img src={mediumIcon} alt="" />
+                                            </Link>
+                                            <Link to={"#"}>
+                                                <img src={linkedinIcon} alt="" />
+                                            </Link>
+                                            <Link to={"#"}>
+                                                <img src={quoraIcon} alt="" />
+                                            </Link>
+                                            <Link to={"#"}>
+                                                <img src={bloggerIcon} alt="" />
+                                            </Link>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
                     </Col>
-                  </Row>
-                </Col>
-            </Col>
-            <Col md={6} lg={2} className='mx-auto  '>
-              <h5 className='mb-3 font-bold text-2xl'>Resources</h5>
-              <ul className="list-unstyled ">
+                    <Col md={6} lg={2} sm={12} className="mx-auto">
+                    <h5 className='mb-3 font-bold text-2xl'>Resources</h5>
+              <ul className="list-unstyled font-medium">
                 <li className='mb-2'>
                   <a href="/about" className="text-dark text-decoration-none text-lg" >
                     About
@@ -232,10 +249,11 @@ function Footer() {
                   </a>
                 </li>
               </ul>
-            </Col>
-            <Col md={6} lg={2} className='mx-auto '>
-              <h5 className='mb-3 font-bold text-2xl'>Services</h5>
-              <ul className="list-unstyled">
+                    </Col>
+                    
+                    <Col md={6} lg={2} sm={12} className="mx-auto">
+                    <h5 className='mb-3 font-bold text-2xl'>Services</h5>
+              <ul className="list-unstyled font-medium">
                 <li className='mb-2'>
                   <a href="#" className="text-dark text-decoration-none text-lg">
                     Business consulting
@@ -256,46 +274,44 @@ function Footer() {
                     Sales training
                   </a>
                 </li>
+                <li className='mb-2'>
+                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  Operations training
+                  </a>
+                </li>
               </ul>
-            </Col>
+                    </Col>
 
-            <Col md={6} lg={3} >
-
-              <h5 className='mb-3 font-bold text-2xl'>Join With Us</h5>
-              <InputGroup  className='max-w-[250px]'>
-                <Form.Control
-                  type="email"
-                  placeholder="Your Email Address"
-                  className="border-warning"
-                />
-                <Button
-                  variant="warning"
-                  className="text-white gradient-button"
-                  type="submit"
-                >
-                  Submit
-                </Button>
-              </InputGroup>
-              <h5 className="mt-5 mb-3 font-bold  text-2xl">Contact</h5>
-              <div className='d-flex my-4'>
-                <img src={phoneIcon} alt="" /><span className="ms-3 font-semibold  text-lg ">+91 9538610745</span>
-              </div>
-              <div className='d-flex my-4'>
-                <img src={mailIcon} alt="" /><span className='ms-3 font-semibold  text-lg'>TrackPi@gmail.com <br /></span>
-              </div>
-            </Col>
-          </div>
-</div>
-
-      </footer>
-      <hr />
-      <Row className="text-center g-2 h-10 ">
-        <Col className='text-sm m-auto font-medium'>
-          &copy; 2024 TrackPi Private Limited. All rights reserved.
-        </Col>
-      </Row>
-    </div>
-  );
+                    <Col md={6} lg={3} sm={12}>
+                    <div style={{width:"max-content"}}className='ms-auto'>
+                        <h5 className="mb-3 font-bold text-2xl">Join With Us</h5>
+                        <InputGroup className="w-100 max-w-[250px]">
+                            <Form.Control type="email" placeholder="Your Email Address" className="border-warning" />
+                            <Button variant="warning" className="text-white gradient-button hover:scale-105 transition-transform duration-300" type="submit">
+                                <span className='text-sm '>Submit</span>
+                            </Button>
+                        </InputGroup>
+                        <h5 className="mt-5 mb-3 font-bold  text-2xl">Contact</h5>
+                        <div className="d-flex my-4">
+                            <img src={phoneIcon} alt="" />
+                            <span className="ms-3 font-semibold  text-lg ">+91 9538610745</span>
+                        </div>
+                        <div className="d-flex my-4">
+                            <img src={mailIcon} alt="" />
+                            <span className="ms-3 font-semibold  text-lg">
+                                TrackPi@gmail.com <br />
+                            </span>
+                        </div>
+                        </div>
+                    </Col>
+                </Row>
+            </footer>
+            <hr />
+            <Row>
+                <Col className="text-center font-medium text-sm mb-3">&copy; 2024 TrackPi Private Limited. All rights reserved.</Col>
+            </Row>
+        </div>
+    );
 }
 
 export default Footer;
