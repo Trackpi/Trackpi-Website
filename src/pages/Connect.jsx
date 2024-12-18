@@ -14,12 +14,12 @@ function Connect() {
        
 
      <HeaderBanner title="Connect Us" description="Reach out to us for any inquiries or support — we are here to help." brochure classname='bgFive'/>
-      <div className='bb'>
-        <h1>Contact Us</h1>
+      <div className='bb '>
+        <h1 >Contact Us</h1>
 
             
-        <div className='aa grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-16'>    
-          <div className="card-group cards rounded">
+        <div className='aa  grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-16'>    
+          <div className="card-group w-full cards rounded">
               <div className="card card1 pt-4 rounded-2xl fixed-card">
                 <div className="icon">
                    <i className="fa-solid fa-location-dot icon-color"></i>
@@ -62,7 +62,7 @@ function Connect() {
       <section className=" w-full">
         <Container className="text-center">
           <Row className="mt-5">
-              <h1 className="mb-3 fw-bold connect-text-Color ">
+              <h1 className="mb-3 text-7xl fw-bold connect-text-Color ">
                 You’re ready to <br /> take the next step
               </h1>
               <p className="mb-5">
