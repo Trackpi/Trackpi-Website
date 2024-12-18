@@ -4,16 +4,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { SiMedium } from "react-icons/si";
-import { SiQuora } from "react-icons/si";
-import { RiBloggerLine } from "react-icons/ri";
-import { IoLogoInstagram } from "react-icons/io5";
-import { SlSocialYoutube } from "react-icons/sl";
-import { RiFacebookCircleLine } from "react-icons/ri";
-import { TbBrandLinkedin } from "react-icons/tb";
-import { IoMail } from "react-icons/io5";
-import { FaSquarePhone } from "react-icons/fa6";
 import './footer.css'
+import fbIcon from '../images/fb.svg'
+import quoraIcon from '../images/quora.svg'
+import youtubeIcon from '../images/youtube.svg'
+import linkedinIcon from '../images/linkedin.svg'
+import bloggerIcon from '../images/blogger.svg'
+import mediumIcon from '../images/medium.svg'
+import instagramIcon from '../images/insta.svg'
+import phoneIcon from '../images/phone.svg'
+import mailIcon from '../images/mail.svg'
 
 function Footer() {
   const videoRefs = useRef([]);
@@ -150,23 +150,22 @@ function Footer() {
       </Container>
 
 
-      <footer className=" text-dark py-4 mx-3">
-        
-          <Row>
-            <Col md={3} lg={4}>
-      
+      <footer className="text-dark py-4 mx-auto font-medium">
+        <div className="container max-w-[1230px]">
+          <div className='container row justify-content-center '>
+          <Col sm={12} md={6} lg={5}>
+          <Col sm={12} className="text-center">
+  <img
+    src="src/images/trackpi_logo_one.png"
+    alt="TrackPi Logo"
+    width="150"
+    className="img-fluid mx-auto "
+  />
+</Col>
 
-              <Row>
-                <Col sm={12} className='ms-5'>
-                  <img
-                    src="src/images/trackpi_logo_one.png"
-                    alt="TrackPi Logo"
-                    style={{ width: "150px" }}
-                    className='img-fluid'
-                  />
-                </Col>
-                <Col sm={12}>
-                  <p className="mt-3 text-lg font-normal">
+
+                <Col sm={12} >
+                  <p className="mt-3 text-lg text-justify font-medium max-w-[423px]">
                     Empowering businesses to succeed through expert guidance and
                     personalized solutions. Unlocking potential and achieving
                     success.
@@ -175,123 +174,95 @@ function Footer() {
                 <Col sm={12}>
                   <Row className=" mb-3">
                     <Col>
-                      <h5 className='mb-3 font-bold text-2xl'>Follow Us</h5>
-                      <div className="d-flex flex-row ">
+                      <h5 className='mb-3 font-semibold text-2xl'>Follow Us</h5>
+                      <div className="d-flex gap-6 flex-row ">
                         <Link to={"#"}>
-                          <RiFacebookCircleLine
-                            style={{ color: "#FFD43B" }}
-                            size={30}
-                            className="mx-2"                          />
+                          <img src={fbIcon} alt="" />
                         </Link>
                         <Link to={"#"}>
-                          <SlSocialYoutube
-                            style={{ color: "#FFD43B" }}
-                            size={30}
-                            className="mx-2"                          />
+                          <img src={instagramIcon} alt="" />
                         </Link>
                         <Link to={"#"}>
-                          <IoLogoInstagram
-                            style={{ color: "#FFD43B" }}
-                            size={30}
-                            className="mx-2"                          />
+                          <img src={mediumIcon} alt="" />
                         </Link>
                         <Link to={"#"}>
-                          <SiMedium
-                            style={{ color: "#FFD43B" }}
-                            size={30}
-                            className="mx-2"                          />
+                          <img src={quoraIcon} alt="" />
                         </Link>
                         <Link to={"#"}>
-                          <TbBrandLinkedin
-                            style={{ color: "#FFD43B" }}
-                            size={30}
-                            className="mx-2"                          />
+                          <img src={bloggerIcon} alt="" />
                         </Link>
                         <Link to={"#"}>
-                          <SiQuora
-                            style={{ color: "#FFD43B" }}
-                            size={30}
-                            className="mx-2"                          />
+                          <img src={youtubeIcon} alt="" />
                         </Link>
                         <Link to={"#"}>
-                          <RiBloggerLine
-                            style={{ color: "#FFD43B" }}
-                            size={30}
-                            className="mx-2"                          />
+                          <img src={linkedinIcon} alt="" />
                         </Link>
+                        
                       </div>
                     </Col>
                   </Row>
                 </Col>
-              </Row>
             </Col>
-            <Col md={3} lg={2} className='mx-auto'>
+            <Col md={6} lg={2} className='mx-auto  '>
               <h5 className='mb-3 font-bold text-2xl'>Resources</h5>
               <ul className="list-unstyled ">
                 <li className='mb-2'>
-                  <a href="/about" className="text-dark text-decoration-none  font-normal text-lg" >
+                  <a href="/about" className="text-dark text-decoration-none text-lg" >
                     About
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none font-normal text-lg">
+                  <a href="#" className="text-dark text-decoration-none text-lg">
                     Blogs
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none font-normal text-lg">
+                  <a href="#" className="text-dark text-decoration-none text-lg">
                     Careers
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none font-normal text-lg">
+                  <a href="#" className="text-dark text-decoration-none text-lg">
                     Help Center
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none font-normal text-lg">
+                  <a href="#" className="text-dark text-decoration-none text-lg">
                     Terms & Conditions
                   </a>
                 </li>
               </ul>
             </Col>
-            <Col md={3} lg={2} className='mx-auto'>
+            <Col md={6} lg={2} className='mx-auto '>
               <h5 className='mb-3 font-bold text-2xl'>Services</h5>
               <ul className="list-unstyled">
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none font-normal text-lg">
+                  <a href="#" className="text-dark text-decoration-none text-lg">
                     Business consulting
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none font-normal text-lg">
+                  <a href="#" className="text-dark text-decoration-none text-lg">
                     Sales outsourcing
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none font-normal text-lg">
+                  <a href="#" className="text-dark text-decoration-none text-lg">
                     Software development
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none font-normal text-lg">
+                  <a href="#" className="text-dark text-decoration-none text-lg">
                     Sales training
                   </a>
                 </li>
               </ul>
             </Col>
 
-            <Col md={3} lg={2} >
+            <Col md={6} lg={3} >
 
               <h5 className='mb-3 font-bold text-2xl'>Join With Us</h5>
-              {/* <div className='d-flex'>
-                  <input type="email" className='form-control' placeholder="Your Email Address"  style={{width:"200px"}}/>
-                <div/>
-                <button  type="submit" className='btn btn-warning ms-3' >
-                  Submit
-                </button>
-              </div> */}
-              <InputGroup className='w-100'>
+              <InputGroup  className='max-w-[250px]'>
                 <Form.Control
                   type="email"
                   placeholder="Your Email Address"
@@ -307,19 +278,19 @@ function Footer() {
               </InputGroup>
               <h5 className="mt-5 mb-3 font-bold  text-2xl">Contact</h5>
               <div className='d-flex my-4'>
-                <FaSquarePhone style={{ color: "#FFD43B" }} size={25}  className='rounded-pill'/><span className="ms-3 font-semibold  text-lg ">+91 9538610745</span>
+                <img src={phoneIcon} alt="" /><span className="ms-3 font-semibold  text-lg ">+91 9538610745</span>
               </div>
               <div className='d-flex my-4'>
-                <IoMail style={{ color: "#FFD43B" }} size={25} /><span className='ms-3 font-semibold  text-lg'>TrackPi@gmail.com <br /></span>
+                <img src={mailIcon} alt="" /><span className='ms-3 font-semibold  text-lg'>TrackPi@gmail.com <br /></span>
               </div>
             </Col>
-          </Row>
-
+          </div>
+</div>
 
       </footer>
       <hr />
-      <Row>
-        <Col className="text-center mb-3">
+      <Row className="text-center g-2 h-10 ">
+        <Col className='text-sm m-auto font-medium'>
           &copy; 2024 TrackPi Private Limited. All rights reserved.
         </Col>
       </Row>

@@ -10,11 +10,12 @@
   display: none;
 }
 
-body,
-html {
+body, html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+
 }
+
 
 h1 {
   font-family: 'Sofia Sans', sans-serif;
@@ -34,7 +35,7 @@ h1 {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #0A0A0A;
+  background:black;
   /* background: #595252; #feee9e; */
   color: white;
   padding: 15px 20px;
@@ -43,6 +44,7 @@ h1 {
   z-index: 1000;
   transition: transform 2s ease, opacity 2s ease;
 }
+
 
 /* Hidden state */
 .navbar.hidden {
@@ -57,53 +59,45 @@ h1 {
 }
 
 .custom-dropdown .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
+  background-color: white;
   box-shadow: none;
+  margin: 0;
 }
 
 .custom-dropdown .dropdown-item {
+  font-weight: 600;
   color: #000;
 }
 
 .custom-dropdown .dropdown-item:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #FFC100;
 }
 
-.brandname {
-  font-family: 'Pacifico', cursive;
-  font-weight: 400;
-  font-style: normal;
+
+#navlink + .dropdown-menu .dropdown-toggle:first-of-type,#navlink + .dropdown-menu .dropdown-item  {
+  color: black; 
+  font-weight: 500;
+  text-align: center;
 }
+
+#navlink + .dropdown-menu .dropdown-toggle:first-of-type:hover,#navlink + .dropdown-menu .dropdown-item:hover  {
+  background-color: #FFC107; 
+  color: #000;
+}
+
 
 /* Navbar animation  */
-
-.nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 100%;
-
-  border-radius: 8px;
-  transition: 0.5s;
-}
 #navlink {
   position: relative;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
-  /* color: rgb(161, 25, 25); */
   transition: transform 0.3s ease, font-size 0.3s ease;
+  color: white;
 }
-/* #navlink:hover {
-  transform: scale(1);
-  font-size: 1.1rem; 
-  background: rgb(15, 15, 14);
-  background-clip: text;
-  color: transparent;
-  
-} */
+
+#navlink:hover {
+  color: #FFC100;
+}
+
 #navlink::before {
   content: '';
   position: absolute;
@@ -114,34 +108,63 @@ h1 {
   left: 0;
   background-color: #f5cf10;
   transform: scaleX(0);
-
   transition: transform 0.5s ease;
 }
+
+/* Ensure underline appears when hovering */
 #navlink:hover::before {
   transform: scaleX(1);
 }
+
+#navlink.active, .dropdown.active {
+  color: #FFC100;
+  font-weight: bold; 
+}
+
+#navlink.active::before, .dropdown.active::before {
+  transform: scaleX(1); 
+}
+
+.dropdown-menu .nav-link {
+  color: inherit; 
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.dropdown-menu .nav-link:hover {
+  color: #FFC100; /* Hover color for dropdown items */
+}
+
+.dropdown-menu .nav-link.active {
+  color: #FFC100;
+  font-weight: bold; /* Optional */
+}
+
+.dropdown-menu .nav-link.active::before {
+  transform: scaleX(1);
+}
+
 /* header button */
-.header_button {
-  background: linear-gradient(to right, #ffdf41, #ff8800);
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 22px;
-  padding: 20px 24px;
-  border: none;
-}
-@media screen and (max-width: 768px) {
-  .header_button {
-    font-size: 18px;
-    padding: 12px 16px;
+.header_button{
+    background: linear-gradient(to right, #FFDF41,#FF8800);
+    border-radius: 10px;
+    font-weight: 600 ;
+    font-size: 22px ;
+    padding: 20px 24px;
+    border: none;
   }
-}
-@media screen and (max-width: 576px) {
-  .header_button {
-    font-size: 12px;
-    padding: 10px 14px;
+  @media screen and (max-width: 768px) {
+    .header_button{
+      font-size: 18px;
+      padding: 12px 16px;
+    }
   }
-}
-.headerbuttons {
+  @media screen and (max-width: 576px) {
+    .header_button{
+      font-size: 12px;
+      padding: 10px 14px;
+    }
+  } 
+.headerbuttons{
   position: relative;
   height: 0;
   color: white;
@@ -149,14 +172,14 @@ h1 {
   top: 135px;
   font-size: 14px;
 }
-.headerbuttons svg {
+.headerbuttons svg{
   scale: 1.4;
 }
-.headerbuttons div {
+.headerbuttons div{
   cursor: pointer;
 }
 @media screen and (max-width: 576px) {
-  .headerbuttons {
+  .headerbuttons{
     font-size: 8px;
     top: 100px;
     justify-content: center;
@@ -391,113 +414,112 @@ h1 {
 }
 /* section 3  styling*/
 .bg3 {
-  padding: 5rem;
   width: 100%;
   height: fit-content;
   clip-path: polygon(
     100% 100%,
     0% 100%,
-    0% 17.14%,
-    1% 17.13%,
-    2% 17.1%,
-    3% 17.04%,
-    4% 16.96%,
-    5% 16.86%,
-    6% 16.74%,
-    7% 16.6%,
-    8% 16.44%,
-    9% 16.25%,
-    10% 16.05%,
-    11% 15.83%,
-    12% 15.59%,
-    13% 15.34%,
-    14% 15.07%,
-    15% 14.79%,
-    16% 14.49%,
-    17% 14.18%,
-    18% 13.86%,
-    19% 13.53%,
-    20% 13.19%,
-    21% 12.85%,
-    22% 12.5%,
-    23% 12.14%,
-    24% 11.79%,
-    25% 11.43%,
-    26% 11.07%,
-    27% 10.71%,
-    28% 10.36%,
-    29% 10.01%,
-    30% 9.66%,
-    31% 9.33%,
-    32% 9%,
-    33% 8.68%,
-    34% 8.37%,
-    35% 8.07%,
-    36% 7.79%,
-    37% 7.52%,
-    38% 7.26%,
-    39% 7.03%,
-    40% 6.81%,
-    41% 6.6%,
-    42% 6.42%,
-    43% 6.26%,
-    44% 6.12%,
-    45% 5.99%,
-    46% 5.89%,
-    47% 5.82%,
-    48% 5.76%,
-    49% 5.73%,
-    50% 5.71%,
-    51% 5.73%,
-    52% 5.76%,
-    53% 5.82%,
-    54% 5.89%,
-    55% 5.99%,
-    56% 6.12%,
-    57% 6.26%,
-    58% 6.42%,
-    59% 6.6%,
-    60% 6.81%,
-    61% 7.03%,
-    62% 7.26%,
-    63% 7.52%,
-    64% 7.79%,
-    65% 8.07%,
-    66% 8.37%,
-    67% 8.68%,
-    68% 9%,
-    69% 9.33%,
-    70% 9.66%,
-    71% 10.01%,
-    72% 10.36%,
-    73% 10.71%,
-    74% 11.07%,
-    75% 11.43%,
-    76% 11.79%,
-    77% 12.14%,
-    78% 12.5%,
-    79% 12.85%,
-    80% 13.19%,
-    81% 13.53%,
-    82% 13.86%,
-    83% 14.18%,
-    84% 14.49%,
-    85% 14.79%,
-    86% 15.07%,
-    87% 15.34%,
-    88% 15.59%,
-    89% 15.83%,
-    90% 16.05%,
-    91% 16.25%,
-    92% 16.44%,
-    93% 16.6%,
-    94% 16.74%,
-    95% 16.86%,
-    96% 16.96%,
-    97% 17.04%,
-    98% 17.1%,
-    99% 17.13%,
-    100% 17.14%
+    0% 2.24%,
+    1% 1.93%,
+    2% 1.62%,
+    3% 1.31%,
+    4% 1.01%,
+    5% 0.73%,
+    6% 0.49%,
+    7% 0.29%,
+    8% 0.14%,
+    9% 0.04%,
+    10% 0%,
+    11% 0.02%,
+    12% 0.1%,
+    13% 0.23%,
+    14% 0.41%,
+    15% 0.64%,
+    16% 0.9%,
+    17% 1.2%,
+    18% 1.5%,
+    19% 1.82%,
+    20% 2.13%,
+    21% 2.42%,
+    22% 2.68%,
+    23% 2.91%,
+    24% 3.1%,
+    25% 3.23%,
+    26% 3.31%,
+    27% 3.33%,
+    28% 3.29%,
+    29% 3.2%,
+    30% 3.05%,
+    31% 2.85%,
+    32% 2.61%,
+    33% 2.33%,
+    34% 2.04%,
+    35% 1.72%,
+    36% 1.41%,
+    37% 1.11%,
+    38% 0.82%,
+    39% 0.57%,
+    40% 0.35%,
+    41% 0.18%,
+    42% 0.07%,
+    43% 0.01%,
+    44% 0.01%,
+    45% 0.06%,
+    46% 0.18%,
+    47% 0.35%,
+    48% 0.56%,
+    49% 0.81%,
+    50% 1.1%,
+    51% 1.4%,
+    52% 1.71%,
+    53% 2.02%,
+    54% 2.32%,
+    55% 2.6%,
+    56% 2.84%,
+    57% 3.04%,
+    58% 3.19%,
+    59% 3.29%,
+    60% 3.33%,
+    61% 3.31%,
+    62% 3.24%,
+    63% 3.1%,
+    64% 2.92%,
+    65% 2.69%,
+    66% 2.43%,
+    67% 2.14%,
+    68% 1.83%,
+    69% 1.52%,
+    70% 1.21%,
+    71% 0.92%,
+    72% 0.65%,
+    73% 0.42%,
+    74% 0.24%,
+    75% 0.1%,
+    76% 0.02%,
+    77% 0%,
+    78% 0.04%,
+    79% 0.13%,
+    80% 0.28%,
+    81% 0.48%,
+    82% 0.73%,
+    83% 1%,
+    84% 1.3%,
+    85% 1.61%,
+    86% 1.92%,
+    87% 2.23%,
+    88% 2.51%,
+    89% 2.76%,
+    90% 2.98%,
+    91% 3.15%,
+    92% 3.27%,
+    93% 3.33%,
+    94% 3.33%,
+    95% 3.27%,
+    96% 3.15%,
+    97% 2.99%,
+    98% 2.77%,
+    99% 2.52%,
+    100% 2.24%
   );
   overflow: visible;
   position: relative;
@@ -505,11 +527,7 @@ h1 {
 }
 
 /* section 1  styling*/
-.bgOne,
-.bgTwo,
-.bgThree,
-.bgFour,
-.bgFive {
+.bgOne, .bgTwo , .bgThree, .bgFour, .bgFive{
   clip-path: polygon(
     100% 0%,
     0% 0%,
@@ -618,28 +636,25 @@ h1 {
   overflow: visible;
   position: relative;
   background-size: cover;
-  background-position: center;
+  background-position: center ;
   background-repeat: no-repeat;
 }
-.bgOne,
-.bgTwo {
+.bgOne ,.bgTwo{
   background-image: url('./images/team.jpg');
 }
-.bgThree {
+.bgThree{
   background-image: url('./images/services.jpg');
 }
-.bgFour {
+.bgFour{
   background-image: url('./images/employ.jpg');
 }
-.bgFive {
+.bgFive{
   background-image: url('./images/connect.jpg');
 }
 
-.bgOne::before,
-.bgTwo::before,
-.bgThree::before,
-.bgFour::before,
-.bgFive::before {
+
+
+.bgOne::before,.bgTwo::before, .bgThree::before, .bgFour::before, .bgFive::before {
   content: ''; /* Creates the pseudo-element */
   position: absolute;
   top: 0;
@@ -651,6 +666,7 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
+
 .bgg11{
   width: 100%;
   height: fit-content;
@@ -828,51 +844,61 @@ h1 {
 .team-img:hover {
   filter: grayscale(0%);
 }
-.ff {
-  border: 1px solid #ffc100 !important;
+.ff{
+  border: 1px solid #FFC100 !important;
 }
-
+  
 /* Our services */
 
 .bg_yellow {
-  background-color: rgba(253, 223, 71, 0.6);
+  background-color: rgba(253, 223, 71, .6);
 }
-.redSelect {
+.redSelect{
   background-color: #f5cf10;
 }
 
-.first {
+.first{
   display: flex;
   flex-direction: column;
+ 
 }
-.bb {
+.bb{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.aa {
-  padding: 50px;
+.aa{
+  
+padding: 50px;
 
-  width: 100%;
-  display: flex !important;
-  justify-content: center;
-  gap: 50px !important;
+width: 100%;
+display: flex !important;
+justify-content: center;
+gap: 50px !important;
+
 }
-.cards {
+.cards{
+  
   width: 100%;
   display: flex;
-  border-radius: 7px !important;
+ border-radius: 7px !important;
   gap: 20px;
 }
-.icon-color {
-  color: rgb(245, 158, 11);
+.icon-color{
+  color:rgb(245, 158, 11);
 }
-.card1 {
+.card1{
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(245, 158, 11)!important;
+  color: black !important;
+  border-radius: 7px !important;
+}
+.connect-text-Color{
+color: rgb(245, 158, 11);
   background: rgba(255, 179, 0, 1) !important;
   color: black !important;
   border-radius: 7px !important;
@@ -889,15 +915,19 @@ h1 {
 .connect-text-Color {
   color: rgb(245, 158, 11);
 }
-.icon {
+.icon{
   height: 50px;
   width: 50px;
   border-radius: 100%;
-  background-color: white;
+  background-color:white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+
+
+
 
 /* Employee Verification Section */
 .employ_section::before {
@@ -964,7 +994,7 @@ h1 {
 
 .personel_section::before {
   content: ''; /* Creates the pseudo-element */
-  position: absolute;
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;
@@ -977,6 +1007,6 @@ h1 {
   z-index: 1; /* Ensures it is below the content */
   pointer-events: none; /* Allows interaction with the content */
 }
-.border-black {
-  border-color: none !important;
+.border-black{
+  border-color:none!important;
 }

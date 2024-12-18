@@ -3,13 +3,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Header() {
   const [showNavbar, setShowNavbar] = useState(false);
   const navigate = useNavigate();
-  
+  const location = useLocation(); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,79 +26,70 @@ function Header() {
   }, []);
 
   const handleNavigation = (path, hash) => {
-    navigate(path); // Navigate to the page
+    navigate(path); 
     setTimeout(() => {
       const section = document.querySelector(hash);
       if (section) {
-        section.scrollIntoView({ behavior: 'smooth' }); // Scroll to the section
+        section.scrollIntoView({ behavior: 'smooth' }); 
       }
     }, 0);
   };
 
+  const isActive = (path) => location.pathname === path; 
+  
+
   return (
     <>
-      <Navbar expand='lg' className={`navbar px-md-5 navbar-dark`} fixed="top">
-
+      <Navbar expand="lg" className={`navbar px-md-5 font-bold text-base navbar-dark`} fixed="top">
         <Container fluid>
-          <Navbar.Brand href="" className='ms-md-3'>
+          <Navbar.Brand href="" className="ms-md-3">
             <Link to={'/'} className="flex items-center text-decoration-none p-1">
-            
-              {/* <h1 className="fw-bold brandname">
-                <span className="text-yellow-500 ">TRACK</span>
-                <span className="text-gray-800">PI</span>
-              </h1> */}
-               <img
+              <img
                 src="src/images/trackpi_logo_one.png"
                 alt="TrackPi Logo"
-                style={{ width: "120px" }}
+                style={{ width: "110px" }}
               />
             </Link>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="font-bold ms-auto ">
-              {/* Use Link for About to navigate normally */}
+            <Nav className="ms-auto">
               <Nav.Link
                 as={Link}
                 to="/"
-                className="me-3 text-white"
+                className={`me-2.5 ${isActive('/') ? 'active' : ''}`}
                 id="navlink"
-                href="#home"
               >
                 HOME
               </Nav.Link>
               <Nav.Link
                 as={Link}
                 to="/about"
-                className="me-3 text-white"
+                className={`me-2.5 ${isActive('/about') ? 'active' : ''}`} 
                 id="navlink"
-                href="#about"
               >
                 ABOUT
               </Nav.Link>
 
               <NavDropdown
-                title="OUR SERVICES"
-                className="custom-dropdown me-3 text-white "
-                id="navlink"
+                 title="OUR SERVICES" id='navlink'
+                 className={`me-2.5 ${isActive('/our-services') ? 'active' : ''}`} 
+                
               >
                 <NavDropdown
                   title="Business Consulting"
-                  className="custom-dropdown me-3 "
-                  id="navlink"
+                  className="custom-dropdown  "
                   drop="end"
                 >
                   <NavDropdown.Item
                     className="me-3"
-                    id="navlink"
                     onClick={() => handleNavigation('/our-services', '#hiring')}
                   >
                     Hiring & Retention
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     className="me-3"
-                    id="navlink"
                     onClick={() =>
                       handleNavigation('/our-services', '#sales-training')
                     }
@@ -108,7 +98,6 @@ function Header() {
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     className="me-3"
-                    id="navlink"
                     onClick={() =>
                       handleNavigation('/our-services', '#operations-training')
                     }
@@ -117,7 +106,6 @@ function Header() {
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     className="me-3"
-                    id="navlink"
                     onClick={() =>
                       handleNavigation('/our-services', '#market-positioning')
                     }
@@ -126,10 +114,7 @@ function Header() {
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     className="me-3"
-                    id="navlink"
-                    onClick={() =>
-                      handleNavigation('/our-services', '#procurement')
-                    }
+                    onClick={() => handleNavigation('/our-services', '#procurement')}
                   >
                     Procurement & Risk Management
                   </NavDropdown.Item>
@@ -138,8 +123,7 @@ function Header() {
                   onClick={() =>
                     handleNavigation('/our-services', '#sales-outsourcing')
                   }
-                  className="me-3"
-                  id="navlink"
+                  className="me-1 dropdown-sales"
                 >
                   Sales Outsourcing
                 </NavDropdown.Item>
@@ -147,7 +131,7 @@ function Header() {
 
               <Nav.Link
                 as={Link}
-                className="me-3 text-white"
+                className={`me-2.5 ${isActive('/employee-verification') ? 'active' : ''}`} 
                 id="navlink"
                 to="/employee-verification"
                 target="_blank"
@@ -155,7 +139,12 @@ function Header() {
                 EMPLOYEE VERIFICATION
                 <i className="fa-arrow-up-right-from-square fa-solid ms-1"></i>
               </Nav.Link>
-              <Nav.Link as={Link} id="navlink" to="/connect-us" className='text-white'>
+              <Nav.Link
+                as={Link}
+                id="navlink"
+                to="/connect-us"
+                className={`${isActive('/connect-us') ? 'active' : ''}`} 
+              >
                 CONNECT US
               </Nav.Link>
             </Nav>
