@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import HeaderBanner from "../components/HeaderBanner";
+import Brochure from "../components/Brochure";
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({
@@ -157,20 +158,30 @@ function EmployeeVerification() {
     return (
         <>
             {/* Hero Section */}
-            <HeaderBanner
+            {/* <HeaderBanner
                 title="Employee Verification"
                 description="Verify employee credentials and details securely and efficiently."
                 classname="bgFour"
-            />
+            /> */}
+             <section className={`w-full h-screen home_section relative bgFour`}>
+                <div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
+                     <Brochure />
+                </div>
 
-            {/* Verification Form Section */}
-            <section className=" py-16 px-3 w-100">
-                <div style={{maxWidth:'1100px'}} className="bg-white shadow-lg mx-auto p-8 rounded-lg ">
-                    <h2 className="m-6 font-bold text-5xl text-amber-400 text-center">Employee Verification</h2>
-                    <form>
+                <div className="flex justify-center items-center h-screen ">
+                    <div className={`flex flex-col max-w-[846px] text-center items-center z-2 `}>
+                        <h1 className="text-yellow-400 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[62px]">
+                        Employee Verification
+                        </h1>
+
+                        {/* <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[26px] sm:p-5 text-white text-center">
+                        Verify employee credentials and details securely and efficiently.
+                        </p> */}
+                        
+                        <form className="my-10" style={{}}>
                         {/* Employee ID */}
-                        <div style={{fontWeight:"600"}} className="mb-4 fs-3 g-5">
-                            <label className="block my-2 text-dark" htmlFor="employeeId">
+                        <div style={{fontWeight:"600", minWidth:'75vw'}} className="mb-4 fs-3 g-5">
+                            <label className="block my-2 text-left text-light" htmlFor="employeeId">
                                 Employee ID
                             </label>
                             <input
@@ -197,8 +208,44 @@ function EmployeeVerification() {
                             </button>
                         </div>
                     </form>
+                    </div>
                 </div>
             </section>
+
+            {/* Verification Form Section */}
+            {/* <section className=" py-16 px-3 w-100">
+                <div style={{maxWidth:'1100px'}} className="bg-white shadow-lg mx-auto p-8 rounded-lg ">
+                    <h2 className="m-6 font-bold text-5xl text-amber-400 text-center">Employee Verification</h2>
+                    <form>
+                        <div style={{fontWeight:"600"}} className="mb-4 fs-3 g-5">
+                            <label className="block my-2 text-dark" htmlFor="employeeId">
+                                Employee ID
+                            </label>
+                            <input
+                                type="text"
+                                id="employeeId"
+                                aria-label="Enter Employee ID"
+                                value={formData.employeeId}
+                                onChange={handleTouched}
+                                className="border-black p-3 font-normal fs-4  rounded-md w-full"
+                                placeholder="Enter Employee ID"
+                                style={{border:'1px black solid'}}
+                            />
+                        </div>
+
+                        <div className="text-center">
+                            <button
+                                type="submit"
+                                onClick={handleSubmit}
+                                disabled={loading} // Disable button when loading
+                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-300 to-orange-400 p-[12px] px-[30px]  rounded-md font-semibold text-2xl text-black"
+                            >
+                                {loading ? "Verifying..." : "Verify Employee"}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section> */}
             {loading && (
                 <div className="flex justify-center items-center fixed inset-0 bg-opacity-50 bg-yellow-500 z-50">
                     <div className="spinner"></div> {/* Show the loader spinner */}
@@ -217,22 +264,22 @@ function EmployeeVerification() {
 
             <section className="flex flex-col items-center gap-10 w-full h-full">
                 <div className="flex flex-col items-center p-3">
-                    <h1 className="text-5xl md:text-5xl text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
-                    <h5 style={{ maxWidth: "1126px" }}className="fw-normal text-black fs-4 px-3 text-justify lg:text-center">
+                    <h1 className="text-2xl md:text-4xl lg:text-5xl text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
+                    <div style={{ maxWidth: "1126px" }}className="fw-normal text-black text-base md:text-xl lg:text-2xl px-3 text-justify lg:text-center">
                         Ensuring that employee information is accurate helps maintain a trustworthy workplace environment
                         and reduces the risk of fraudulent activities.
-                    </h5>
+                    </div>
                 </div>
-               <div className="max-w-[1310px] pb-20 w-full mx-auto grid gap-10 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+               <div className=" px-5 lg:px-20 pb-20 w-full mx-auto grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center">
     {clients.map((card) => (
         <div
             key={card.id}
-            className=" px-10 py-7 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] rounded-lg shadow-lg text-center cursor-pointer flex flex-col justify-between h-full"
+            className=" px-10 py-7 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] rounded-lg shadow-lg text-center cursor-pointer flex flex-col  h-full"
         >
-            <h3 className="text-black mt-4 font-bold text-2xl">
+            <h3 className="text-black mt-4 font-bold text-base md:text-xl lg:text-2xl">
                 {card.name}
             </h3>
-            <p className="text-black font-semibold mt-2 text-xl">
+            <p className="text-black font-medium mt-2 text-base md:text-xl lg:text-2xl">
                 {card.description}
             </p>
         </div>
