@@ -27,19 +27,23 @@ function App() {
       setLoading(true);
       const timeout = setTimeout(() => setLoading(false), 2250);
 
-      return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout); 
     } else {
-      setLoading(false);
+      setLoading(false); 
     }
   }, [location]);
 
   return (
     <>
+      <Routes>
+            <Route path="/personnel" element={<Personel />} /> 
+      </Routes>
       <ScrollUp />
       {loading ? (
         <Loader />
       ) : (
         <>
+         
           <Header />
           <Sidebar />
           <Routes>
@@ -52,15 +56,15 @@ function App() {
               element={<EmployeeVerification />}
             />
             <Route path="/connect-us" element={<Connect />} />
-            <Route path="/personnel" element={<Personel />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          
         </>
       )}
     </>
   );
 }
-
 
 export default App;

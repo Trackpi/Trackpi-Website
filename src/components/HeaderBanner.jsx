@@ -38,7 +38,7 @@ function HeaderBanner({ title, description, brochure, learn, classname, titleTwo
 
                         {learn ? (
                             <div className="flex justify-center items-center">
-                                <button className="header_button">Learn How We Can Help</button>
+                                <button class="header_button">Learn How We Can Help</button>
                             </div>
                         ) : null}
                     </div>
