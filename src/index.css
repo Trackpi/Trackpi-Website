@@ -81,9 +81,16 @@ h1 {
 }
 
 
+
 #navlink + .dropdown-menu .dropdown-toggle:first-of-type,#navlink + .dropdown-menu .dropdown-item  {
   color: black; 
   font-weight: 500;
+
+#navlink + .dropdown-menu .dropdown-toggle:first-of-type,
+#navlink + .dropdown-menu .dropdown-item {
+  color: black;
+  font-weight: 600;
+
   text-align: center;
 }
 
@@ -128,6 +135,7 @@ h1 {
   font-weight: bold; 
 }
 
+
 #navlink.active::before, .dropdown.active::before {
   transform: scaleX(1); 
 }
@@ -144,11 +152,21 @@ h1 {
 .dropdown-menu .nav-link.active {
   color: #FFC100;
   font-weight: bold; /* Optional */
-}
 
-.dropdown-menu .nav-link.active::before {
+#navlink:hover::before {
   transform: scaleX(1);
 }
+
+#navlink.active, .dropdown.active, .active #navlink {
+  color: #FFC100  ; 
+  font-weight: bold; 
+}
+
+#navlink.active::before, .dropdown.active::before, .active #navlink::before{
+  transform: scaleX(1); 
+
+}
+
 
 /* header button */
 .header_button{
