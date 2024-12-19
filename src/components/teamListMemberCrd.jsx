@@ -76,9 +76,9 @@ const memberList = [
     };
    
     return (
-        <div className="w-full px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 ">
+        <div className="w-full">
             <div>
-                <div className="max-w-full mx-auto px-4 sm:px-8 md:px-10 lg:px-16 xl:px-20 2xl:px-24">
+                <div className="max-w-7xl mx-auto px-4">
                    
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {memberList.map((item, index) => (

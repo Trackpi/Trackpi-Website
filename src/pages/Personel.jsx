@@ -1,7 +1,7 @@
 import React from "react";
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
-
+// import { Link } from "react-router-dom";
 import { IoLogoInstagram } from "react-icons/io5";
 import { SlSocialYoutube } from "react-icons/sl";
 import { RiFacebookCircleLine } from "react-icons/ri";
@@ -11,30 +11,13 @@ import { Modal } from "react-bootstrap";
 // import { useLocation, useNavigate } from "react-router-dom";
 
 function Personel({ show, onHide, member }) {
-  
+
   return (
     <Modal show={show} onHide={onHide} centered size="md">
       <Modal.Header className="bg-white px-1 py-1 text-center text-black" >
-        <Modal.Title className="personnelfirst" >
+        <Modal.Title className="personnelfirst" closeButton >
           <h2>{member.title}</h2>
           <p className="text-2xl font-normal">{member.designation}</p>
-          <button
-            onClick={onHide}
-            style={{
-              position: "absolute",
-              top: "10px",
-              right: "10px",
-              border: "none",
-              borderRadius: "50%",
-              color: "black",
-              width: "30px",
-              height: "30px",
-              cursor: "pointer",
-              fontSize: "18px",
-            }}
-          >
-            &times;
-          </button>
           </Modal.Title>
           <img
             src={member.image}
@@ -42,17 +25,17 @@ function Personel({ show, onHide, member }) {
             className="rounded-md w-52 h-52 personnelimg object-cover"
           />
       </Modal.Header>
-      <Modal.Body className="p-2 py-4 flex gap-50 ">
+      <Modal.Body className="p-4 flex gap-50 ">
         <div>
          
           <div className="flex flex-col ">
             
-            <p className="mt-4 font-medium"><br/><br/><br/>
+            <p className="mt-2"><br/><br/><br/>
             <span className="font-bold underline">SELF INTRODUCTION:</span>
             &nbsp;
             {member.selfIntroduction}</p>
           </div>
-          <div className="flex justify-evenly gap-20 mt-6">
+          <div className="flex justify-evenly gap-20">
           <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
           <SlSocialYoutube size={35} className="text-yellow-500 cursor-pointer" />
           <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />
@@ -60,7 +43,6 @@ function Personel({ show, onHide, member }) {
         </div>
         </div>
       </Modal.Body>
-      
     </Modal>
   );
 }

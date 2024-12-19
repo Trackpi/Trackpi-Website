@@ -10,7 +10,7 @@ function About() {
         <>
             <PopUp />
                 <HeaderBanner title="About Us" description="Learn more about our journey and what drives us forward."classname='bgTwo'/>
-                <section >
+                <section className="mt-12 ">
                     <OurTeam />  
                 </section>
             <section className="mb-28"></section>
