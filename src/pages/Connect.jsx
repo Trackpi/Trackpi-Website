@@ -19,40 +19,40 @@ function Connect() {
 
             
         <div className='aa  grid grid-cols-1 md:grid-cols-3 gap-8 px-6  md:px-16'>    
-          <div className="card-group w-full cards rounded">
-              <div className="card card1 pt-4 rounded-2xl fixed-card">
+          <div className="card-group w-full  flex flex-wrap justify-between gap-10 ">
+              <div className="card card1 pt-4 rounded-2xl fixed-card sm:w-[410px] h-[230px] p-[30px]" >
                 <div className="icon">
                    <i className="fa-solid fa-location-dot icon-color"></i>
                 </div>
                
                 <div className="card-body flex flex-col justify-center items-center ">
-                  <h6 className="card-title">Our Office Location</h6>
+                  <h6 className="card-title text-lg leading-tight" style={{ fontSize: '20px' }}>Our Office Location</h6>
                   <br/>
-                  <p className="card-text fw-bold">Kakkanad, Kochi, India</p>
+                  <p className="card-text fw-bold text-center" style={{ fontSize: '24px', lineHeight: '36px' }}>Kakkanad, Kochi, India</p>
                 </div>
                 
               </div>
-              <div className="card card1 pt-4 fixed-card">
+              <div className="card card1 pt-4 fixed-card sm:w-[410px] h-[230px] p-[30px]" >
                  <div className="icon">
                    <i className="fa-solid fa-phone icon-color"></i> 
                  </div>
                
                 <div className="card-body flex flex-col justify-center items-center">
-                  <h6 className="card-title">Phone</h6>
+                  <h6 className="card-title text-lg leading-tight" style={{ fontSize: '20px' }}>Phone</h6>
                   <br/>
-                  <p className="card-text fw-bold">+91 8078179646</p>
+                  <p className="card-text fw-bold text-center" style={{ fontSize: '24px', lineHeight: '36px' }}>+91 8078179646</p>
                 </div>
               
               </div>
-              <div className="card card1 pt-4 fixed-card">
+              <div className="card card1 pt-4 fixed-card sm:w-[410px] h-[230px] p-[30px]" >
                   <div className="icon">
                      <i className="fa-solid fa-envelope icon-color"></i> 
                   </div>
                
                 <div className="card-body flex flex-col justify-center items-center">
-                  <h6 className="card-title">E-mail</h6>
+                  <h6 className="card-title text-lg leading-tight" style={{ fontSize: '20px' }}>E-mail</h6>
                   <br/>
-                  <p className="card-text fw-bold">trackpi@gmail.com</p>
+                  <p className="card-text fw-bold text-center" style={{ fontSize: '24px', lineHeight: '36px' }}>trackpi@gmail.com</p>
                 </div>
     
           </div>

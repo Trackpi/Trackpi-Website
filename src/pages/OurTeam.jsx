@@ -148,7 +148,9 @@ function OurTeam() {
                   touch with them, please email{' '}
                   <span className="underline">hr@trackpi.in.</span>
                 </p>
-                <Button className="bg-white mt-4 py-2 px-4 sm:py-3 sm:px-6 md:py-4 md:px-8 lg:py-5 lg:px-10 rounded-pill fw-bold text-black text-sm sm:text-base md:text-lg lg:text-xl ff   ">
+                <Button className="bg-transparent mt-4 px-4 py-3 text-sm 
+                                   md:px-6 md:py-3 md:text-base lg:px-8 lg:py-8 lg:text-xl xl:px-10 xl:py-5 xl:text-xl 
+                                   2xl:px-12 2xl:py-6 2xl:text-2xl rounded-pill fw-bold text-black  ff   ">
                   JOIN OUR TEAM <i className="fa-arrow-right fa-solid "></i>
                 </Button>
               </motion.div>
