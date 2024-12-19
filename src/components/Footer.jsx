@@ -169,7 +169,7 @@ function Footer() {
             </Container>
 
 
-            <footer className="px-6 py-10 text-dark  mx-auto lg:px-20">
+            <footer className="px-6  text-dark py-2 mx-auto lg:px-20">
                 <Row>
                     <Col md={6} lg={4} sm={12}>
                         <Row>
@@ -182,7 +182,7 @@ function Footer() {
                                 />
                             </Col>
                             <Col sm={12}>
-                            <p className="mt-3 text-lg text-justify font-medium max-w-[423px]">
+                            <p className="mt-3 text-xl text-justify font-medium">
                   Empowering businesses to succeed through expert guidance and
                   personalized solutions. Unlocking potential and achieving
                   success.
@@ -191,7 +191,7 @@ function Footer() {
                             <Col sm={12}>
                                 <Row className=" mb-3">
                                     <Col>
-                                        <h5 className="mb-3 font-semibold text-2xl">Follow Us</h5>
+                                        <h5 className="mb-3 font-semibold text-3xl">Follow Us</h5>
                                         <div className="d-flex gap-6 flex-row ">
                                             <Link to={"#"}>
                                                 <img src={fbIcon} alt="" />
@@ -220,62 +220,62 @@ function Footer() {
                             </Col>
                         </Row>
                     </Col>
-                    <Col style={{width:"max-content"}} md={6} lg={2} sm={12} className="mx-auto">
-                    <h5 className='mb-3 font-bold text-2xl'>Resources</h5>
-              <ul className="list-unstyled font-medium">
+                    <Col style={{width:"max-content"}} md={6} lg={2} sm={12} className="mx-auto ">
+                    <h5 className='mb-3 font-bold text-3xl'>Resources</h5>
+              <ul className="list-unstyled font-medium text-xl">
                 <li className='mb-2'>
                   <a href="/about" className="text-dark text-decoration-none text-lg" >
                     About
                   </a>
                 </li>
-                <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                <li className='mb-2 '>
+                  <a href="#" className="text-dark text-decoration-none ">
                     Blogs
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  <a href="#" className="text-dark text-decoration-none ">
                     Careers
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  <a href="#" className="text-dark text-decoration-none">
                     Help Center
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  <a href="#" className="text-dark text-decoration-none">
                     Terms & Conditions
                   </a>
                 </li>
               </ul>
                     </Col>
                     
-                    <Col style={{width:"max-content"}} md={6} lg={2} sm={12} className="mx-auto ">
+                    <Col style={{width:"max-content"}} md={6} lg={2} sm={12} className="mx-auto text-xl">
                     <h5 className='mb-3 font-bold text-2xl'>Services</h5>
-              <ul className="list-unstyled font-medium">
+              <ul className="list-unstyled font-medium text-xl">
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  <a href="#" className="text-dark text-decoration-none">
                     Business consulting
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  <a href="#" className="text-dark text-decoration-none">
                     Sales outsourcing
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  <a href="#" className="text-dark text-decoration-none">
                     Software development
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  <a href="#" className="text-dark text-decoration-none">
                     Sales training
                   </a>
                 </li>
                 <li className='mb-2'>
-                  <a href="#" className="text-dark text-decoration-none text-lg">
+                  <a href="#" className="text-dark text-decoration-none">
                   Operations training
                   </a>
                 </li>
@@ -284,29 +284,29 @@ function Footer() {
 
                     <Col md={6} lg={3} sm={12}>
                     <div style={{width:"max-content"}}className='m-auto'>
-                        <h5 className="mb-3 font-bold text-2xl">Join With Us</h5>
+                        <h5 className="mb-3 font-bold text-3xl">Join With Us</h5>
                         <InputGroup className="w-100 max-w-[250px]">
                             <Form.Control type="email" placeholder="Your Email Address" className="border-warning" />
                             <Button variant="warning" className="text-white gradient-button hover:scale-105 transition-transform duration-300" type="submit">
                                 <span className='text-sm '>Submit</span>
                             </Button>
                         </InputGroup>
-                        <h5 className="mt-5 mb-3 font-bold  text-2xl">Contact</h5>
-                        <div className="d-flex my-4">
+                        <h5 className="mt-5 mb-3 font-bold  text-3xl">Contact</h5>
+                        <div className="d-flex my-4 text-xl">
                             <img src={phoneIcon} alt="" />
-                            <span className="ms-3 font-semibold  text-lg ">+91 9538610745</span>
+                            <span className="ms-3 font-semibold">+91 9538610745</span>
                         </div>
-                        <div className="d-flex my-4">
+                        <div className="d-flex my-4 text-xl">
                             <img src={mailIcon} alt="" />
-                            <span className="ms-3 font-semibold  text-lg">
-                                TrackPi@gmail.com <br />
+                            <span className="ms-3 font-semibold">
+                                TrackPi@gmail.com
                             </span>
                         </div>
                         </div>
                     </Col>
                 </Row>
             </footer>
-            <hr />
+            <hr className='m-0'/>
             <Row>
                 <Col className="text-center font-medium text-sm mb-3">&copy; 2024 TrackPi Private Limited. All rights reserved.</Col>
             </Row>
