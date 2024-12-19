@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 function Details() {
   return (
     <div className="w-full mx-auto px-4">
-    <Form className="flex flex-col max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto  ">
+    <Form  className="flex flex-col max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto  ">
     
       <FloatingLabel controlId="floatingInput" label="Full Name" r className="mb-3">
         <Form.Control

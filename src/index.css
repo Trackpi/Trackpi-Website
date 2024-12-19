@@ -85,7 +85,7 @@ h1 {
 #navlink + .dropdown-menu .dropdown-toggle:first-of-type,#navlink + .dropdown-menu .dropdown-item  {
   color: black; 
   font-weight: 500;
-
+}
 #navlink + .dropdown-menu .dropdown-toggle:first-of-type,
 #navlink + .dropdown-menu .dropdown-item {
   color: black;
@@ -152,7 +152,7 @@ h1 {
 .dropdown-menu .nav-link.active {
   color: #FFC100;
   font-weight: bold; /* Optional */
-
+}
 #navlink:hover::before {
   transform: scaleX(1);
 }

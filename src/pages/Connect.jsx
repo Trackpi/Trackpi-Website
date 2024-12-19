@@ -59,7 +59,7 @@ function Connect() {
         </div>
       </div>
       </div>
-      <section className=" w-full ">
+      <section className=" w-full px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto ">
         <Container fluid className="text-center">
           <Row className="mt-5">
               <h1 className="mb-3 text-7xl fw-bold connect-text-Color ">
