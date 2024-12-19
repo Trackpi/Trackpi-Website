@@ -180,7 +180,7 @@ function EmployeeVerification() {
                         
                         <form className="my-10" style={{}}>
                         {/* Employee ID */}
-                        <div style={{fontWeight:"600", minWidth:'75vw'}} className="mb-4 fs-3 g-5">
+                        <div style={{fontWeight:"600", minWidth:'40vw'}} className="mb-4 lg:text-xl text-lg g-5">
                             <label className="block my-2 text-left text-light" htmlFor="employeeId">
                                 Employee ID
                             </label>
@@ -190,9 +190,8 @@ function EmployeeVerification() {
                                 aria-label="Enter Employee ID"
                                 value={formData.employeeId}
                                 onChange={handleTouched}
-                                className="border-black p-3 font-normal fs-4  rounded-md w-full"
-                                placeholder="Enter Employee ID"
-                                style={{border:'1px black solid'}}
+                                className=" p-3 font-bold lg:text-xl text-base  rounded-md w-full"
+                                style={{border:'2px black solid',outline:"none"}}
                             />
                         </div>
 
@@ -202,7 +201,7 @@ function EmployeeVerification() {
                                 type="submit"
                                 onClick={handleSubmit}
                                 disabled={loading} // Disable button when loading
-                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-300 to-orange-400 p-[12px] px-[30px]  rounded-md font-semibold text-2xl text-black"
+                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-300 to-orange-400  py-2 px-6 rounded-md font-semibold lg:text-xl text-base text-black"
                             >
                                 {loading ? "Verifying..." : "Verify Employee"}
                             </button>
