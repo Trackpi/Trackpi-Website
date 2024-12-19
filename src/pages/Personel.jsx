@@ -30,7 +30,7 @@ function Personel({ show, onHide, member }) {
               width: "30px",
               height: "30px",
               cursor: "pointer",
-              fontSize: "18px",
+              fontSize: "30px",
             }}
           >
             &times;
@@ -42,10 +42,10 @@ function Personel({ show, onHide, member }) {
             className="rounded-md w-52 h-52 personnelimg object-cover"
           />
       </Modal.Header>
-      <Modal.Body className="p-2 py-4 flex gap-50 ">
+      <Modal.Body className="px-2  py-4 flex gap-50 ">
         <div>
          
-          <div className="flex flex-col ">
+          <div className="  px-8 flex flex-col justify-center items-center ">
             
             <p className="mt-4 font-medium"><br/><br/><br/>
             <span className="font-bold underline">SELF INTRODUCTION:</span>
