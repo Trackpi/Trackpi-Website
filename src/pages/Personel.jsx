@@ -52,7 +52,7 @@ function Personel({ show, onHide, member }) {
             &nbsp;
             {member.selfIntroduction}</p>
           </div>
-          <div className="flex justify-evenly gap-20 mt-6">
+          <div className=" flex justify-evenly gap-20 mt-6 px-8">
           <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
           <SlSocialYoutube size={35} className="text-yellow-500 cursor-pointer" />
           <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />
