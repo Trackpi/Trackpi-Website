@@ -119,13 +119,13 @@ function Clients (){
               {clients.slice().map(card => (
                 <div
                   key={card.id}
-                  className="lg:w-[10%] xl:w-[10%] md:w-[40%] sm:w-[100%] h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px] lg:text-xl flex flex-col justify-center items-center lg:gap-4 gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
+                  className="lg:w-[10%] xl:w-[10%] md:w-[40%] sm:w-[100%] h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px]  lg:text-xl flex flex-col justify-center items-center lg:gap-4 gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
                 >
                   <img src={card.logo} height="200px"width="200px" alt="" className="mx-auto" />
-                  <h3 className="text-lg text-center font-bold text-black mt-4 md:text-xl lg:text-3xl ">
+                  <h3 className=" text-center font-bold text-black mt-4 text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl xl-leading-7 2xl:leading-10 2xl:text-3xl ">
                     {card.name}
                   </h3>
-                  <p className="text-black text-left mt-2 md:text-lg lg:text-2xl ">{card.description}</p>
+                  <p className=" text-black font-medium text-left mt-2 text-lg sm:text-lg md:text-lg lg:text-xl xl:text-xl xl-leading-7 2xl:leading-10 2xl:text-2xl ">{card.description}</p>
                 </div>
                   ))}
                   </div>
