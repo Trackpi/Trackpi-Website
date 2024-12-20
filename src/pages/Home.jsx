@@ -175,7 +175,7 @@ function Home() {
     <>
       <HeaderBanner
         titleTwo="People's Interest, Our Interest"
-        description="TrackPi is a future-of-work consultancy committed to changing how the world works from business as usual to brave new work."
+        description="Trackpi is your business's growth partner, turning insights into action. With tailored strategies and expert guidance, we help you navigate challenges, streamline operations, and unlock new opportunities for success."
         brochure
         learn
         classname="bgOne"
@@ -187,7 +187,7 @@ function Home() {
             Real-Time Business News Updates?
           </h1>
         </div>
-        <div className="relative bg-gradient-to-r from-[#FFC100]  to-[#FF9D00]">
+        <div className="relative  bg-gradient-to-r from-[#FFC100]  to-[#FF9D00]">
           {/* Carousel */}
           <div className="overflow-x-auto md:overflow-hidden touch-pan-x">
             <Carousel
@@ -211,7 +211,7 @@ function Home() {
                         key={card.id}
                         className={`flex-shrink-0 w-full 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
                           cardIndex === bulgingCard
-                            ? 'md:scale-110'
+                            ? 'scale-110 2xl:scale-105 '
                             : 'scale-100'
                         }`}
                       >
@@ -310,29 +310,31 @@ function Home() {
       <section className="mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1">
         <motion.div
           className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isInView1 ? 1 : 0, y: isInView1 ? 0 : 50 }}
-          transition={{ duration: 1 }}
+          animate={{ y: isInView1 ? 10 : 0 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
-          {/* Text and Image Content */}
           <div className="md:w-1/2">
             <motion.h1
-              className="font-bold text-[#FFC100] text-3xl xl:text-5xl 2xl:text-6xl pb-2"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: isInView1 ? 1 : 0, x: isInView1 ? 0 : -50 }}
-              transition={{ duration: 1 }}
+              className="font-bold text-[#FFC100] text-3xl xl:text-5xl 2xl:text-6xl pb-3"
+              animate={{ x: isInView1 ? 10 : 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               We see the challenge
             </motion.h1>
             <motion.p
               className="text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-3xl text-[#0A0A0A]"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: isInView1 ? 1 : 0, x: isInView1 ? 0 : -50 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              animate={{ x: isInView1 ? 5 : 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              We’re all wrestling with complexity. Every company, work function,
-              and team now faces a tall order: to be more adaptive, strategic,
-              effective, human, and equitable amidst growing uncertainty.
+              Without a consultant, businesses often face challenges like
+              inefficient operations, poor decision making, and missed
+              opportunities. Limited expertise can lead to stagnant growth and
+              difficulty adapting to market changes. Teams may lack clear
+              direction, and risks or compliance issues can go unnoticed,
+              resulting in costly mistakes. A consultant’s guidance will help a
+              businesses to overcome these obstacles and unlock their full
+              potential. we are here for you Trackpi is the best Business
+              Consulting Firms in Kerala. contact us
             </motion.p>
           </div>
           <div className="md:w-1/2 flex justify-end">
@@ -340,12 +342,8 @@ function Home() {
               src={home1}
               alt="Strategic Procurement"
               className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[690px] object-cover"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{
-                opacity: isInView1 ? 1 : 0,
-                scale: isInView1 ? 1 : 0.9,
-              }}
-              transition={{ duration: 1 }}
+              animate={{ scale: isInView1 ? 1.02 : 1 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
           </div>
         </motion.div>
@@ -354,54 +352,85 @@ function Home() {
       <section className="mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-20 bg-[#FFC100] text-black bg2 section2">
         <motion.div
           className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: isInView2 ? 1 : 0, x: isInView2 ? 0 : 50 }}
-          transition={{ duration: 1 }}
+          animate={{ x: isInView2 ? 10 : 0 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
-          {/* Image and Text Content */}
           <div className="md:w-1/2 flex justify-start">
             <motion.img
               src={home1}
               alt="Strategic Procurement"
               className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[690px] object-cover"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{
-                opacity: isInView2 ? 1 : 0,
-                scale: isInView2 ? 1 : 0.9,
-              }}
-              transition={{ duration: 1 }}
+              animate={{ scale: isInView2 ? 1.02 : 1 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
           </div>
           <div className="md:w-1/2">
             <motion.h1
-              className="font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-2"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: isInView2 ? 1 : 0, x: isInView2 ? 0 : 50 }}
-              transition={{ duration: 1 }}
+              className="font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-3"
+              animate={{ y: isInView2 ? 10 : 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               We need to shift our thinking
             </motion.h1>
             <motion.p
               className="text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-3xl text-[#0A0A0A]"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: isInView2 ? 1 : 0, x: isInView2 ? 0 : 50 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              animate={{ y: isInView2 ? 5 : 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              Organizations are human systems full of potential to navigate
-              complexity, design human processes, and make meaningful change.
-              But tapping into that potential requires a mindset shift, one that
-              accepts that organizations aren't machines. It requires having the
-              courage to say no to the status quo and yes to building
-              future-ready capabilities.
+              Business are always made up of people, with a wealth ofideas,
+              potential to address issues,find new ways and make genuine
+              headway. But unlocking that potential requires new thinking.
+              Businesses are not machines; they are living systen that grow and
+              evolve. That’s where it’s so vital to have a consultant. A
+              consultant adds new perspectives, supports your stepping outside
+              of old patterns, and assists you in creating capacities and
+              capabilities for the future. Properly done, your business will
+              emerge stronger, more innovative, and prepared for anything{' '}
             </motion.p>
           </div>
         </motion.div>
       </section>
-
-
       <section className="relative z-20"></section>
-
       <section className="px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3">
+        <motion.h1
+          className="font-bold text-[#FFC100] text-5xl 2xl:text-7xl"
+          animate={{ y: isInView3 ? 5 : 0 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+        >
+          The old ways of working aren’t the <br /> only ways of working
+        </motion.h1>
+        <motion.div
+          className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-start"
+          animate={{ y: isInView3 ? 10 : 0 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+        >
+          <div className="flex flex-col w-full md:w-1/2">
+            <motion.p
+              className="text-base md:text-xl 2xl:text-3xl mt-8 mb-3"
+              animate={{ x: isInView3 ? 5 : 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
+            >
+              The old ways of working are the only ways of working Transform
+              from the outdated business strategies and step into the cutting
+              edge Business era has changed rapidly, get updated with the
+              futuristic strategies One solution for all to tailored one to one
+              business strategies to success Business strategy at your
+              fingertips with TrackPi’ expert panel of consultants{' '}
+            </motion.p>
+          </div>
+          <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+            <motion.img
+              src={home2}
+              alt="Strategic Procurement"
+              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[690px] object-cover"
+              animate={{ scale: isInView3 ? 1.02 : 1 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
+            />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* <section className="px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3">
       <motion.h1
         className="font-bold text-[#FFC100] text-5xl 2xl:text-7xl"
         initial={{ opacity: 0, y: -50 }}
@@ -417,7 +446,6 @@ function Home() {
         animate={{ opacity: isInView3 ? 1 : 0, y: isInView3 ? 0 : 50 }}
         transition={{ duration: 1 }}
       >
-        {/* Text Content */}
         <div className="flex flex-col w-full md:w-1/2">
           <motion.p
             className="font-bold text-lg md:text-2xl 2xl:text-4xl mb-4"
@@ -479,7 +507,6 @@ function Home() {
           </motion.p>
         </div>
 
-        {/* Image Content */}
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
           <motion.img
             src={home2}
@@ -491,8 +518,7 @@ function Home() {
           />
         </div>
       </motion.div>
-    </section>
-
+    </section> */}
       <div className="shadow-bottom">
         <section className="flex justify-center px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-16 h-full w-full relative mt-20 mb-12 bg-[#FFC100] bg3">
           <div className="flex flex-col gap-2 justify-center items-center text-center">
@@ -500,21 +526,19 @@ function Home() {
               We're Ready to Help
             </h1>
             <p className="text-center text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-3xl text-black">
-              How we work is broken, dehumanizing, and held back by bureaucracy.
-              But it can be reinvented in service of human flourishing even joy.
-              These changes aren't at the expense of business outcomes. Instead,
-              they're fuel for even greater ambitions. The Ready helps
-              organizations accelerate that change as fast, far, and wide as
-              possible.
+              At Trackpi, we’re committed to your success. Our expert solutions
+              and strategies are designed to drive growth, enhance efficiency,
+              and help your business thrive in a competitive world. Let’s
+              achieve your goals together.
             </p>
             <Link to="/our-services">
               <button
-                className="bg-black no-underline text-white font-semibold mt-3 px-4 py-2 text-sm 
-        md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4 lg:text-lg xl:px-10 xl:py-5 xl:text-xl 
-        2xl:px-12 2xl:py-6 2xl:text-2xl rounded-full shadow-lg hover:bg-gray-800 
-        transition duration-300"
+                className=" mt-3 bg-white no-underline text-black font-semibold  rounded-full shadow-lg hover:bg-gray-800 
+                 px-8 py-2 md:px-10 md:py-3 lg:py-4   xl:py-12 2xl:px-12   
+                  text-sm  md:text-lg  lg:text-xl  xl:text-xl  2xl:text-2xl 
+                   transition duration-300"
               >
-                OUR SERVICES
+                Our Services
               </button>
             </Link>
           </div>

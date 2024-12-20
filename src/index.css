@@ -567,6 +567,7 @@ h1 {
   font-size: 1em;
 }
 
+
 /* section 1  styling*/
 .bgOne, .bgTwo , .bgThree, .bgFour, .bgFive{
   clip-path: polygon(
@@ -914,8 +915,8 @@ h1 {
   border-radius: 20px !important;
   font-weight: 600px !important ;
   padding:14px 20px !important ;
-
 }
+
 @media screen and (max-width: 768px) {
   .ff{
     font-size: 24px !important;
@@ -927,8 +928,7 @@ h1 {
     font-size: 12px !important;
     padding: 10px 14px !important;
   }
-} 
-
+}
   
 /* Our services */
 
@@ -1096,3 +1096,7 @@ gap: 50px !important;
 .border-black{
   border-color:none!important;
 }
+
+
+
+
