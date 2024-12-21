@@ -11,6 +11,7 @@ function HeaderBanner({
   learn,
   classname,
   titleTwo,
+  noButton
 }) {
   const [currentTitle, setCurrentTitle] = useState(title);
 
@@ -25,17 +26,18 @@ function HeaderBanner({
   return (
     <>
       <section className={`w-full h-screen home_section relative ${classname}`}>
-        <div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
+        {noButton?null:<div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
           {brochure ? (
-            <Link to="/new-project-form" className='no-underline'>
-              <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg py-2 px-6 mx-3 font-bold flex items-center space-x-2">
-                <LuCirclePlus />
-                <span>Submit New Project</span>
-              </button>
+                        <Link to="/new-project-form" className='no-underline'>
+
+            <button className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  text-white rounded-lg py-2 px-6 mx-3 font-bold flex items-center space-x-2">
+              <LuCirclePlus />
+              <span>Submit New Project</span>
+            </button>
             </Link>
           ) : null}
-          <Brochure />
-        </div>
+          {<Brochure />}
+        </div>}
 
         <div className="flex justify-center items-center h-screen ">
           <div
