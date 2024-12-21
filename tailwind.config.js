@@ -22,5 +22,16 @@ export default {
      
     },
   },
+
+    theme: {
+      extend: {
+        colors: {
+          amberCustom: 'rgba(255, 179, 0, 1)',
+        },
+      },
+    },
+    plugins: [],
+
+  
   plugins: [],
 }
