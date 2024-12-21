@@ -204,7 +204,7 @@ function Home() {
                       cardsPerGroup === 1
                         ? 'grid-cols-1'
                         : 'grid-cols-1 md:grid-cols-4'
-                    } place-content-center gap-12 py-3 px-10  `}
+                    } place-content-center gap-10 py-3 px-20`}
                   >
                     {group.map((card, cardIndex) => (
                       <div
@@ -212,7 +212,7 @@ function Home() {
                         className={`flex-shrink-0 w-full 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
                           cardIndex === bulgingCard
                             ? 'scale-110 2xl:scale-105 '
-                            : 'scale-100'
+                            : 'scale-95'
                         }`}
                       >
                         {/* Inner wrapper for scaling contents */}
@@ -280,7 +280,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="w-full h-full mt-20">
+      <section className="w-full h-full mt-16">
         <Row className="mt-5 text-center">
           <h1 className="text-[#FFC100] font-extrabold">OUR CLIENTS</h1>
           <h4 className="fw-bold text-[#0A0A0A]">
@@ -322,7 +322,7 @@ function Home() {
               We see the challenge
             </motion.h1>
             <motion.p
-              className="text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-3xl text-[#0A0A0A]"
+              className="text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-2xl text-[#0A0A0A]"
               animate={{ x: isInView1 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -373,7 +373,7 @@ function Home() {
               We need to shift our thinking
             </motion.h1>
             <motion.p
-              className="text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-3xl text-[#0A0A0A]"
+              className="text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-2xl text-[#0A0A0A]"
               animate={{ y: isInView2 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -392,21 +392,21 @@ function Home() {
       </section>
       <section className="relative z-20"></section>
       <section className="px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3">
-        <motion.h1
-          className="font-bold text-[#FFC100] text-5xl 2xl:text-7xl"
-          animate={{ y: isInView3 ? 5 : 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-        >
-          The old ways of working aren’t the <br /> only ways of working
-        </motion.h1>
         <motion.div
-          className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-start"
+          className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView3 ? 10 : 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
           <div className="flex flex-col w-full md:w-1/2">
+            <motion.h1
+              className="font-bold text-[#FFC100] text-5xl 2xl:text-7xl"
+              animate={{ y: isInView3 ? 5 : 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
+            >
+              The old ways of working aren’t the only ways of working
+            </motion.h1>
             <motion.p
-              className="text-base md:text-xl 2xl:text-3xl mt-8 mb-3"
+              className="text-base md:text-xl 2xl:text-2xl mt-8 mb-3 text-justify"
               animate={{ x: isInView3 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -520,7 +520,7 @@ function Home() {
       </motion.div>
     </section> */}
       <div className="shadow-bottom">
-        <section className="flex justify-center px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-16 h-full w-full relative mt-20 mb-12 bg-[#FFC100] bg3">
+        <section className="flex justify-center px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto pt-24 pb-16 h-full w-full relative mt-20 mb-12 bg-[#FFC100] bgSection">
           <div className="flex flex-col gap-2 justify-center items-center text-center">
             <h1 className="text-black font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-2">
               We're Ready to Help
