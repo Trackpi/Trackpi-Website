@@ -32,7 +32,7 @@ function Header() {
             if (section) {
                 section.scrollIntoView({ behavior: "smooth" });
             }
-        }, 0);
+        }, 100);
     };
 
     const isActive = (path) => location.pathname === path;
@@ -74,6 +74,12 @@ function Header() {
                                 id="navlink"
                                 className={`me-2.5 ${isActive("/our-services") ? "active" : ""}`}
                             >
+                                <NavDropdown.Item
+                                    onClick={() => handleNavigation("/our-services", "#sales-outsourcing")}
+                                    className="me-1 dropdown-sales"
+                                >
+                                    Sales Outsourcing
+                                </NavDropdown.Item>
                                 <NavDropdown title="Business Consulting" className="custom-dropdown  " drop="end">
                                     <NavDropdown.Item
                                         className="me-3"
@@ -85,7 +91,7 @@ function Header() {
                                         className="me-3"
                                         onClick={() => handleNavigation("/our-services", "#sales-training")}
                                     >
-                                        Sales Training & Strategies
+                                        Sales Training Strategies
                                     </NavDropdown.Item>
                                     <NavDropdown.Item
                                         className="me-3"
@@ -101,17 +107,29 @@ function Header() {
                                     </NavDropdown.Item>
                                     <NavDropdown.Item
                                         className="me-3"
-                                        onClick={() => handleNavigation("/our-services", "#procurement")}
+                                        onClick={() => handleNavigation("/our-services", "#risk-management")}
                                     >
-                                        Procurement & Risk Management
+                                        Risk Management
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item
+                                        className="me-3"
+                                        onClick={() => handleNavigation("/our-services", "#financial-consulting")}
+                                    >
+                                        Financial Consulting
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item
+                                        className="me-3"
+                                        onClick={() => handleNavigation("/our-services", "#asset-management")}
+                                    >
+                                        Asset Management
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item
+                                        className="me-3"
+                                        onClick={() => handleNavigation("/our-services", "#it-services")}
+                                    >
+                                        IT Services
                                     </NavDropdown.Item>
                                 </NavDropdown>
-                                <NavDropdown.Item
-                                    onClick={() => handleNavigation("/our-services", "#sales-outsourcing")}
-                                    className="me-1 dropdown-sales"
-                                >
-                                    Sales Outsourcing
-                                </NavDropdown.Item>
                             </NavDropdown>
 
                             <Nav.Link
