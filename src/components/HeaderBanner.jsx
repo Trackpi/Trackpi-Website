@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { LuCirclePlus } from 'react-icons/lu';
 import Brochure from './Brochure';
+import { Link } from 'react-router-dom';
+
 
 function HeaderBanner({
   title,
@@ -25,10 +27,12 @@ function HeaderBanner({
       <section className={`w-full h-screen home_section relative ${classname}`}>
         <div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
           {brochure ? (
-            <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg py-2 px-6 mx-3 font-bold flex items-center space-x-2">
-              <LuCirclePlus />
-              <span>Submit New Project</span>
-            </button>
+            <Link to="/new-project-form" className='no-underline'>
+              <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg py-2 px-6 mx-3 font-bold flex items-center space-x-2">
+                <LuCirclePlus />
+                <span>Submit New Project</span>
+              </button>
+            </Link>
           ) : null}
           <Brochure />
         </div>
