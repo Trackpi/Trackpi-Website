@@ -169,7 +169,7 @@ function EmployeeVerification() {
                 </div>
 
                 <div className="flex justify-center items-center h-screen ">
-                    <div className={`flex flex-col max-w-[846px] text-center items-center z-2 `}>
+                    <div style={{ width:"max-content"}} className={`flex flex-col max-w-[846px] text-center items-center gap-10 z-2 `}>
                         <h1 className="text-yellow-400 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[62px]">
                         Employee Verification
                         </h1>
@@ -178,19 +178,19 @@ function EmployeeVerification() {
                         Verify employee credentials and details securely and efficiently.
                         </p> */}
                         
-                        <form className="my-10" style={{}}>
+                        <form className="my-10 w-100">
                         {/* Employee ID */}
-                        <div style={{fontWeight:"600", minWidth:'40vw'}} className="mb-4 lg:text-xl text-lg g-5">
-                            <label className="block my-2 text-left text-light" htmlFor="employeeId">
+                        <div style={{fontWeight:"600", width:"80%"}} className="mb-4 mx-auto lg:text-xl text-lg g-5">
+                            {/* <label className="block my-2 text-left text-light" htmlFor="employeeId">
                                 Employee ID
-                            </label>
+                            </label> */}
                             <input
                                 type="text"
                                 id="employeeId"
                                 aria-label="Enter Employee ID"
                                 value={formData.employeeId}
                                 onChange={handleTouched}
-                                placeholder="Enter you Employee ID"
+                                placeholder="Enter Your Employee ID"
                                 className=" p-3 font-bold lg:text-xl text-base  rounded-md w-full"
                                 style={{border:'2px black solid',outline:"none"}}
                             />
@@ -262,8 +262,8 @@ function EmployeeVerification() {
                 </Modal.Body>
             </Modal>
 
-            <section className="flex flex-col items-center gap-10 w-full h-full">
-                <div className="flex flex-col items-center p-3">
+            <section className="flex flex-col items-center gap-20 w-full h-full">
+                <div className="flex flex-col items-center p-3 gap-[20px]">
                     <h1 className="text-2xl md:text-4xl lg:text-5xl text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
                     <div style={{ maxWidth: "1126px" }}className="fw-normal text-black text-base md:text-xl lg:text-2xl px-3 text-justify lg:text-center">
                         Ensuring that employee information is accurate helps maintain a trustworthy workplace environment
