@@ -190,6 +190,7 @@ function EmployeeVerification() {
                                 aria-label="Enter Employee ID"
                                 value={formData.employeeId}
                                 onChange={handleTouched}
+                                placeholder="Enter you Employee ID"
                                 className=" p-3 font-bold lg:text-xl text-base  rounded-md w-full"
                                 style={{border:'2px black solid',outline:"none"}}
                             />
