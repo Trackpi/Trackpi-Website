@@ -280,7 +280,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="w-full h-full mt-16">
+      <section className="w-full h-full mt-20">
         <Row className="mt-5 text-center">
           <h1 className="text-[#FFC100] font-extrabold">OUR CLIENTS</h1>
           <h4 className="fw-bold text-[#0A0A0A]">
@@ -291,11 +291,15 @@ function Home() {
         {/* Client Logos Section */}
         <Row
           className="flex justify-center items-center bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] py-2"
-          style={{ marginTop: '3rem' }}
+          style={{
+            marginTop: '3rem',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+          }}
         >
-          <div className="flex  animate-scroll">
-            {clients.map((client, index) => (
-              <Col xs={6} md={2} key={client.id}>
+          <div className="flex animate-scroll">
+            {clients.concat(clients).map((client, index) => (
+              <Col xs={6} md={2} key={index}>
                 <img
                   className="sm:w-50 w-full h-[85px] object-contain"
                   src={client.logo}
@@ -341,7 +345,7 @@ function Home() {
             <motion.img
               src={home1}
               alt="Strategic Procurement"
-              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[690px] object-cover"
+              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[490px] object-cover"
               animate={{ scale: isInView1 ? 1.02 : 1 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
@@ -359,7 +363,7 @@ function Home() {
             <motion.img
               src={home1}
               alt="Strategic Procurement"
-              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[690px] object-cover"
+              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[490px] object-cover"
               animate={{ scale: isInView2 ? 1.02 : 1 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
@@ -422,7 +426,7 @@ function Home() {
             <motion.img
               src={home2}
               alt="Strategic Procurement"
-              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[690px] object-cover"
+              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[490px] object-cover"
               animate={{ scale: isInView3 ? 1.02 : 1 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
