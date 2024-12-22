@@ -46,10 +46,10 @@ function Connect() {
                 <div className="icon text-lg lg:text-xl text-amberCustom mb-4">
                   <i className={`fa-solid ${card.icon}`}></i>
                 </div>
-                <h6 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium">
+                <h6 className="text-lg md:text-xl lg:text-2xl xl:text-2xl font-medium">
                   {card.title}
                 </h6>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl font-bold">
                   {card.text}
                 </p>
                 </div>
@@ -63,11 +63,11 @@ function Connect() {
         <Container fluid className="text-center">
           <Row className="mt-5">
             
-            <h1 className="mb-3 text-xl sm:text-xl md:text-xl lg:text-xl xl:text-9xl font-bold connect-text-Color ">
-              You’re ready to  take the next step
+            <h1 className="mb-3 text-xl sm:text-xl md:text-xl lg:text-3xl xl:text-7xl font-bold connect-text-Color ">
+              You’re ready to <br/> take the next step
             </h1>
             
-            <p className="mb-5 text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 xl:leading-10 font-medium">
+            <p className="mb-5 text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-2xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 xl:leading-10 font-medium">
 
               We’re all wrestling with complexity. Every company, work function,
               and team now faces a tall order: to be more adaptive, strategic,
