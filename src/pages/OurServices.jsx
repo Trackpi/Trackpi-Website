@@ -29,7 +29,7 @@ function OurServices() {
                 />
 
                 {/* Content Sections */}
-                <section id="sales-outsourcing" className=" mt-5 w-full">
+                <section id="sales-outsourcing" className=" w-full">
                     <ServicesSub
                         heading="Sales Outsourcing"
                         classname="bg_common"
@@ -42,10 +42,9 @@ Outsourcing Solutions"
                         img2={financeImg2}
                     />
                 </section>
-                <section id="hiring" className="mt-5 w-full">
+                <section id="hiring" className=" w-full">
                     <ServicesSub
                         heading="Hiring & Retention"
-                        classname=""
                         title1="Our Hiring Process"
                         description1="We experiment with our own hiring practice to attract and choose people based on demonstrable skills rather than experience, identity, or connections. We want to minimize bias as much as possible, which is why we won’t ask for your resume. Instead, we anonymously review answers to a series of application questions and our interviews are designed as experiential working sessions—rather than performative Q&As—to give insight into what working with The Ready might actually feel like."
                         img1={hiring}
@@ -54,7 +53,7 @@ Outsourcing Solutions"
                         img2={consult}
                     />
                 </section>
-                <section id="sales-training" className="mt-5 w-full">
+                <section id="sales-training" className="w-full">
                     <ServicesSub
                         heading="Sales Training Strategies"
                         subHeading="Our sales training strategies are designed to equip your team with the skills and insights they need to succeed in a competitive market. With expert guidance and interactive sessions, we focus on practical solutions and growth-oriented techniques."
@@ -70,7 +69,7 @@ Outsourcing Solutions"
                         img3={strategyImg3}
                     />
                 </section>
-                <section id="operations-training" className="mt-5 w-full">
+                <section id="operations-training" className="w-full">
                 <ServicesSub
                         heading="Operations Training & Strategies" subHeading='Transform your operations with our tailored strategies. Our training programs focus on optimizing processes, enhancing efficiency, and empowering your team to excel in dynamic environments.'
                         classname=""
@@ -83,7 +82,7 @@ Outsourcing Solutions"
                 <section>
                   <KeyBenefitServices/>
                 </section>
-                <section id="market-positioning" className="mt-5 w-full">
+                <section id="market-positioning" className=" w-full">
                     <MarketPositioning />
                 </section>
 
@@ -101,7 +100,7 @@ Outsourcing Solutions"
                     />
                 </section>
                 {/* Financial Consulting */}
-                <section id="financial-consulting" className="mt-5 w-full">
+                <section id="financial-consulting" className="w-full">
                     <ServicesSub
                         heading="Financial Consulting"
                         classname="bg_common"
@@ -114,7 +113,7 @@ Outsourcing Solutions"
                     />
                 </section>
                 {/* Asset Management */}
-                <section id="asset-management" className="mt-5 w-full">
+                <section id="asset-management" className="w-full">
                     <ServicesSub
                         heading="Asset Management"
                         classname=""

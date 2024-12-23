@@ -191,9 +191,7 @@ body, html {
 }
 @media screen and (max-width: 576px) {
   .headerbuttons{
-    font-size: 8px;
-    top: 100px;
-    justify-content: center;
+    font-size: 10px;
   }
 }
 
