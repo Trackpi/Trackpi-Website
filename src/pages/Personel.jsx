@@ -47,14 +47,14 @@ function Personel({ show, onHide, member }) {
          
           <div className="  px-8 flex flex-col justify-center items-center ">
             
-            <p className="mt-4 font-medium"><br/><br/><br/>
+            <p className="mt-4 font-medium text-justify"><br/><br/><br/>
             <span className="font-bold underline">SELF INTRODUCTION:</span>
             &nbsp;
             {member.selfIntroduction}</p>
           </div>
-          <div className=" flex justify-evenly gap-20 mt-6 px-8">
+          <div className=" flex justify-evenly gap-20 mt-6 px-10">
           <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
-          <SlSocialYoutube size={35} className="text-yellow-500 cursor-pointer" />
+          {/* <SlSocialYoutube size={35} className="text-yellow-500 cursor-pointer" /> */}
           <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />
           <TbBrandLinkedin size={35} className="text-yellow-500 cursor-pointer" />
         </div>

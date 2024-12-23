@@ -895,10 +895,16 @@ body, html {
 }
 .ff{
   border: 1px solid #FFC100 !important;
-  font-size: 20px !important ;
+  font-size: 24px !important ;
   border-radius: 20px !important;
+
+  font-weight: 700px !important ;
+  padding:12px 18px !important ;
+}
+
   font-weight: 600px !important ;
   padding:14px 20px !important ;
+
 
 }
 @media screen and (max-width: 768px) {
@@ -992,6 +998,22 @@ gap: 50px !important;
   align-items: center;
 }
 
+/* Details.css */
+::placeholder {
+  color: black !important;
+  font-size: 20px !important;
+}
+
+select:placeholder-shown {
+  color: black !important;
+}
+
+.bg-transparent::placeholder {
+  color: black !important;
+}
+input, textarea, select {
+  border: 1px solid black !important;
+}
 
 
 
