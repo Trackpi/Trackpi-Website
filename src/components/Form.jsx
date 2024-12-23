@@ -12,7 +12,7 @@ function Details() {
           style={{
                         outline: 'none',
                         border: '2px solidrgb(187, 190, 192)',
-                        boxShadow: '0 0 4px #dee2e6',
+                        
                       }}
                       onFocus={e => {
                         e.target.style.borderColor = '#FF9D00';
@@ -36,7 +36,7 @@ function Details() {
            style={{
             outline: 'none',
             border: '2px solidrgb(187, 190, 192)',
-            boxShadow: '0 0 4px #dee2e6',
+            
           }}
           onFocus={e => {
             e.target.style.borderColor = '#FF9D00';
@@ -61,7 +61,7 @@ function Details() {
            style={{
             outline: 'none',
             border: '2px solidrgb(187, 190, 192)',
-            boxShadow: '0 0 4px #dee2e6',
+            
           }}
           onFocus={e => {
             e.target.style.borderColor = '#FF9D00';
@@ -85,7 +85,7 @@ function Details() {
            style={{
             outline: 'none',
             border: '2px solidrgb(187, 190, 192)',
-            boxShadow: '0 0 4px #dee2e6',
+            
           }}
           onFocus={e => {
             e.target.style.borderColor = '#FF9D00';
@@ -114,7 +114,7 @@ function Details() {
               borderRadius: "0.35rem",
               outline: 'none',
              border: '2px solidrgb(187, 190, 192)',
-             boxShadow: '0 0 4px #dee2e6',
+             
              
               appearance: "none",
               WebkitAppearance: "none",
@@ -146,7 +146,7 @@ function Details() {
            style={{
             outline: 'none',
             border: '2px solidrgb(187, 190, 192)',
-            boxShadow: '0 0 4px #dee2e6',
+            
             height: '150px'
           }}
           onFocus={e => {
