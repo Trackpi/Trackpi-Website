@@ -2,21 +2,23 @@ import Form from 'react-bootstrap/Form';
 
 function Details() {
   return (
-    <div className="w-full mx-auto px-4">
-      <Form className="flex flex-col max-w-full sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
+    <div className=" w-full mx-auto px-4">
+      <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
         
-        <div className="mb-3">
+        <div className="mb-3  flex justify-center  items-center">
           
           <Form.Control
            
           style={{
-                        outline: 'none',
-                        border: '2px solidrgb(187, 190, 192)',
+                 outline: 'rgb(187, 190, 192)',
+                 border: '2px solid black',
+                 width: '100%',
+                 maxWidth: '712px',
                         
                       }}
                       onFocus={e => {
                         e.target.style.borderColor = '#FF9D00';
-                        e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                        e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
                       }}
                       onBlur={e => {
                         e.target.style.borderColor = '#ced4da'; // Default border color on blur
@@ -25,22 +27,25 @@ function Details() {
             type="text"
             id="fullname"
             placeholder="Full Name"
-            className="bg-transparent border border-black text-black placeholder-black p-3 "
+            className="bg-white  border-[  #0A0A0ACC] text-black placeholder-black p-3 place"
             required
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 flex justify-center items-center">
           
           <Form.Control
            style={{
-            outline: 'none',
-            border: '2px solidrgb(187, 190, 192)',
+            outline: 'rgb(187, 190, 192)',
+                border: '2px solid black',
+                width: '100%',
+                maxWidth: '712px',
+            
             
           }}
           onFocus={e => {
             e.target.style.borderColor = '#FF9D00';
-            e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+            e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
           }}
           onBlur={e => {
             e.target.style.borderColor = '#ced4da'; // Default border color on blur
@@ -50,22 +55,24 @@ function Details() {
             id="contactnumber"
             placeholder="Contact Number"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            className="bg-transparent border border-black text-black placeholder-black p-3"
+            className="bg-white  border-black text-black placeholder-black p-3 place"
             required
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 flex justify-center items-center">
           
           <Form.Control
            style={{
-            outline: 'none',
-            border: '2px solidrgb(187, 190, 192)',
+            outline: 'rgb(187, 190, 192)',
+                border: '2px solid black',
+                width: '100%',
+                maxWidth: '712px',
             
           }}
           onFocus={e => {
             e.target.style.borderColor = '#FF9D00';
-            e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+            e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
           }}
           onBlur={e => {
             e.target.style.borderColor = '#ced4da'; // Default border color on blur
@@ -74,46 +81,50 @@ function Details() {
             type="email"
             id="email"
             placeholder="Email"
-            className="bg-transparent border border-black text-black placeholder-black p-3"
+            className="bg-white  border-black text-black placeholder-black p-3 place"
             required
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 flex justify-center items-center">
           
           <Form.Control
            style={{
-            outline: 'none',
-            border: '2px solidrgb(187, 190, 192)',
+            outline: 'rgb(187, 190, 192)',
+            border: '2px solid black',
+            width: '100%',
+            maxWidth: '712px',
             
           }}
           onFocus={e => {
             e.target.style.borderColor = '#FF9D00';
-            e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+            e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
           }}
           onBlur={e => {
             e.target.style.borderColor = '#ced4da'; // Default border color on blur
-            e.target.style.boxShadow = 'none';
+                e.target.style.boxShadow = 'none';
           }}
             type="text"
             id="location"
             placeholder="Where Are You Located?"
-            className="bg-transparent border border-black text-black placeholder-black p-3"
+            className="bg-white border-black text-black placeholder-black p-3 place"
             required
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 flex justify-center items-center">
           
           <Form.Select
             id="howDidYouHear"
-            className="bg-transparent border border-black text-black placeholder-black p-3"
+            className="bg-white  border-black text-black placeholder-black p-3 place"
             
             style={{
               fontSize: "20px",
               borderRadius: "0.35rem",
-              outline: 'none',
-             border: '2px solidrgb(187, 190, 192)',
+              outline: 'rgb(187, 190, 192)',
+                border: '2px solid black',
+                width: '100%',
+                maxWidth: '712px',
              
              
               appearance: "none",
@@ -122,7 +133,7 @@ function Details() {
             }}
             onFocus={e => {
               e.target.style.borderColor = '#FF9D00';
-              e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+              e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
             }}
             onBlur={e => {
               e.target.style.borderColor = '#ced4da'; // Default border color on blur
@@ -140,29 +151,31 @@ function Details() {
           </Form.Select>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 flex justify-center items-center">
           
           <Form.Control
            style={{
-            outline: 'none',
-            border: '2px solidrgb(187, 190, 192)',
+            outline: 'rgb(187, 190, 192)',
+                border: '2px solid black',
+                width: '100%',
+                maxWidth: '712px',
             
             height: '150px'
           }}
           onFocus={e => {
             e.target.style.borderColor = '#FF9D00';
-            e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+            e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
           }}
           onBlur={e => {
             e.target.style.borderColor = '#ced4da'; // Default border color on blur
-            e.target.style.boxShadow = 'none';
+                e.target.style.boxShadow = 'none';
 
           }}
             as="textarea"
             id="message"
             placeholder="Message"
             
-            className="bg-transparent border border-black text-black placeholder-black p-3"
+            className="bg-white  border-black text-black placeholder-black p-3 place"
           />
         </div>
 

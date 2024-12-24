@@ -125,7 +125,7 @@ function Clients (){
                   <h3 className=" text-center font-bold text-black mt-4 text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl xl-leading-7 2xl:leading-10 2xl:text-3xl ">
                     {card.name}
                   </h3>
-                  <p className=" text-black font-medium text-left mt-2 text-lg sm:text-lg md:text-lg lg:text-xl xl:text-xl xl-leading-7 2xl:leading-10 2xl:text-2xl ">{card.description}</p>
+                  <p className=" text-black font-medium text-justify mt-2 text-lg sm:text-lg md:text-lg lg:text-xl xl:text-xl xl-leading-7 2xl:leading-10 2xl:text-2xl ">{card.description}</p>
                 </div>
                   ))}
                   </div>
