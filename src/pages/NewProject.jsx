@@ -13,9 +13,11 @@ const NewProject = () => {
         noButton={true}
       />
       <section className=" w-full px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto my-8">
-     
         <Container className="flex flex-col items-center">
-          <div className="w-full md:w-3/4 bg-white py-3 px-20 rounded ">
+          <div className="w-full rounded ">
+            <div>
+              <h1 className="text-center mb-8  font-bold text-[#FFC100] md:text-5xl">Enter the Details</h1>
+            </div>
             <FormNewProject />
           </div>
         </Container>
