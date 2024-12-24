@@ -275,7 +275,7 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="m-max">
+                            <div className="w-max">
                                 <div style={{ width: "max-content" }} className="grid gap-4">
                                     <div className="grid gap-2">
                                         <h5 className="font-bold text-2xl">Join With Us</h5>
@@ -283,7 +283,7 @@ function Footer() {
                                             <Form.Control
                                                 type="email"
                                                 placeholder="Your Email Address"
-                                                className="border-warning"
+                                                className=" border-warning !text-sm"
                                             />
                                             <Button
                                                 variant="warning"

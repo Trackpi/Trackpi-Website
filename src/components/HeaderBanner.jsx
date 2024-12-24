@@ -59,18 +59,16 @@ function HeaderBanner({
 
             {learn ? (
               <div className="flex justify-center items-center">
-                <Link to={'/our-services'} className='text-black'>               
+                <Link to={'/our-services'} className='text-white'>               
                 <button className="header_button">Learn How We Can Help</button>
                 </Link>
               </div>
             ) : null}
-            {brochureMain ? (
-                <a href={pdfPath} download="Technical_Round_Assignment.pdf" style={{ textDecoration: "none" ,color:"black"}}> 
-                                <button className="header_button flex items-center space-x-2">
-                                    <span>Company Brochure</span>
-                                    <RiDownload2Fill />
-                                </button>
-                            </a>
+            {brochureMain ? (<div className="mt-10">
+
+              <Brochure/>
+            </div>
+               
             ) : null}
           </div>
         </div>
