@@ -16,6 +16,8 @@ import NotFound from './pages/NotFound';
 import ScrollUp from './components/ScrollUp';
 import Loader from './components/Loader';
 import NewProject from './pages/NewProject';
+import EmployeeSales from './pages/EmployeeSales';
+import EmployeeInternship from './pages/EmployeeInternship';
 
 
 
@@ -59,6 +61,8 @@ function App() {
             <Route path="/connect-us" element={<Connect />} />
             <Route path="/personnel" element={<Personel />} />
             <Route path="/new-project-form" element={<NewProject />} />
+            <Route path="/employeesales" element={<EmployeeSales />} />
+            <Route path="/employeeinternship" element={<EmployeeInternship />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
