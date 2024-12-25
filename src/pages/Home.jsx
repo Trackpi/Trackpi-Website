@@ -135,21 +135,47 @@ function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [bulgingCard, setBulgingCard] = useState(0);
   const [groupedCards, setGroupedCards] = useState([]);
-  const cardsPerGroup = window.innerWidth < 768 ? 1 : 4; // Responsive: 1 card for mobile, 4 for desktop
-  useEffect(() => {
+  const [cardsPerGroup, setCardsPerGroup] = useState(
+    window.innerWidth < 768 ? 1 : 4
+  );
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Function to group cards based on the current cardsPerGroup value
+  const groupCards = () => {
     const groups = [];
     for (let i = 0; i < cards.length; i += cardsPerGroup) {
       groups.push(cards.slice(i, i + cardsPerGroup));
     }
     setGroupedCards(groups);
-  }, []);
+  };
 
+  // Initial grouping and on resize update
   useEffect(() => {
+    groupCards(); // Initial grouping
+  }, [cards, cardsPerGroup]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      const newCardsPerGroup = window.innerWidth < 768 ? 1 : 4;
+      if (newCardsPerGroup !== cardsPerGroup) {
+        setCardsPerGroup(newCardsPerGroup);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [cardsPerGroup]);
+
+  // Bulge interval logic
+  useEffect(() => {
+    if (isPaused) return; // Pause interval when hovering
+
     const bulgeInterval = setInterval(() => {
-      setBulgingCard(prev => {
+      setBulgingCard((prev) => {
         if (prev === cardsPerGroup - 1) {
           // Move to the next slide after the last card bulges
-          setCurrentIndex(prevIndex =>
+          setCurrentIndex((prevIndex) =>
             prevIndex === groupedCards.length - 1 ? 0 : prevIndex + 1
           );
           return 0;
@@ -159,16 +185,30 @@ function Home() {
     }, 2000); // Bulge interval (2 seconds)
 
     return () => clearInterval(bulgeInterval);
-  }, [groupedCards.length, cardsPerGroup]);
+  }, [groupedCards.length, cardsPerGroup, isPaused]);
 
   const handleNextSlide = () => {
-    setCurrentIndex(prev => (prev === groupedCards.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === groupedCards.length - 1 ? 0 : prev + 1));
     setBulgingCard(0);
   };
 
-  const handleDotClick = index => {
+  const handleDotClick = (index) => {
     setCurrentIndex(index);
     setBulgingCard(0); // Reset bulging card on dot click
+  };
+
+  const handleMouseEnter = (cardIndex) => {
+    setBulgingCard(cardIndex);
+    setIsPaused(true); // Pause the interval on hover
+  };
+
+  const handleMouseLeave = () => {
+    setBulgingCard(0);
+    setIsPaused(false); // Resume the interval
+  };
+
+  const handleTouchStart = (cardIndex) => {
+    setBulgingCard(cardIndex); // Mimic hover on touch devices
   };
 
   return (
@@ -187,92 +227,91 @@ function Home() {
             Real-Time Business News Updates?
           </h1>
         </div>
-        <div className="relative  bg-gradient-to-r from-[#FFC100]  to-[#FF9D00]">
-          {/* Carousel */}
-          <div className="overflow-x-auto md:overflow-hidden touch-pan-x">
-            <Carousel
-              interval={null}
-              indicators={false}
-              controls={false}
-              activeIndex={currentIndex}
-              onSelect={() => {}} // No-op to prevent React-Bootstrap interference
-            >
-              {groupedCards.map((group, slideIndex) => (
-                <Carousel.Item key={slideIndex}>
+
+        <div className="relative bg-gradient-to-r from-[#FFC100] to-[#FF9D00]">
+      {/* Carousel */}
+      <div className="overflow-x-auto md:overflow-hidden touch-pan-x">
+        <Carousel
+          interval={null} // Disable auto-scroll as we control it manually
+          indicators={false}
+          controls={false}
+          activeIndex={currentIndex}
+          onSelect={() => {}}
+        >
+          {groupedCards.map((group, slideIndex) => (
+            <Carousel.Item key={slideIndex}>
+              <div
+                className={`grid ${
+                  cardsPerGroup === 1
+                    ? "grid-cols-1"
+                    : "grid-cols-1 md:grid-cols-4"
+                } place-content-center gap-10 py-3 px-20`}
+              >
+                {group.map((card, cardIndex) => (
                   <div
-                    className={`grid ${
-                      cardsPerGroup === 1
-                        ? 'grid-cols-1'
-                        : 'grid-cols-1 md:grid-cols-4'
-                    } place-content-center gap-10 py-3 px-20`}
+                    key={card.id}
+                    className={`flex-shrink-0 w-full 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
+                      cardIndex === bulgingCard
+                        ? "scale-110 2xl:scale-105"
+                        : "scale-95"
+                    }`}
+                    onMouseEnter={() => handleMouseEnter(cardIndex)}
+                    onMouseLeave={handleMouseLeave}
+                    onTouchStart={() => handleTouchStart(cardIndex)}
                   >
-                    {group.map((card, cardIndex) => (
-                      <div
-                        key={card.id}
-                        className={`flex-shrink-0 w-full 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
+                    {/* Inner wrapper for scaling contents */}
+                    <div
+                      className={`transform transition-transform duration-500 ${
+                        cardIndex === bulgingCard
+                          ? "md:scale-105"
+                          : "scale-100"
+                      }`}
+                    >
+                      <img
+                        src={card.logo}
+                        alt="Card_logo"
+                        className={`mx-auto transition-transform ${
                           cardIndex === bulgingCard
-                            ? 'scale-110 2xl:scale-105 '
-                            : 'scale-95'
+                            ? "md:scale-110"
+                            : "scale-100"
+                        }`}
+                      />
+                      <h3
+                        className={`mt-4 font-bold text-amber-500 transition-transform ${
+                          cardIndex === bulgingCard ? "md:text-xl" : "text-lg"
                         }`}
                       >
-                        {/* Inner wrapper for scaling contents */}
-                        <div
-                          className={`transform transition-transform duration-500 ${
-                            cardIndex === bulgingCard
-                              ? 'md:scale-105 '
-                              : 'scale-100 '
-                          }`}
-                        >
-                          <img
-                            src={card.logo}
-                            alt="Card_logo"
-                            className={`mx-auto transition-transform ${
-                              cardIndex === bulgingCard
-                                ? 'md:scale-110'
-                                : 'scale-100'
-                            }`}
-                          />
-                          <h3
-                            className={`mt-4 font-bold text-amber-500 transition-transform ${
-                              cardIndex === bulgingCard
-                                ? 'md:text-xl '
-                                : 'text-lg'
-                            }`}
-                          >
-                            {card.title}
-                          </h3>
-                          <p
-                            className={`mt-2 text-white transition-transform ${
-                              cardIndex === bulgingCard
-                                ? 'md:text-base'
-                                : 'text-sm'
-                            }`}
-                          >
-                            {card.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                        {card.title}
+                      </h3>
+                      <p
+                        className={`mt-2 text-white transition-transform ${
+                          cardIndex === bulgingCard ? "md:text-base" : "text-sm"
+                        }`}
+                      >
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </div>
+                ))}
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </div>
 
-          {/* Slide Dots */}
-          <div className="absolute top-[110%] left-1/2 transform -translate-x-1/2 hidden md:flex justify-center items-center space-x-2">
-            {groupedCards.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handleDotClick(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  currentIndex === index ? 'bg-yellow-500 w-4' : 'bg-gray-400'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-
+      {/* Slide Dots */}
+      <div className="absolute top-[110%] left-1/2 transform -translate-x-1/2 hidden md:flex justify-center items-center space-x-2">
+        {groupedCards.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handleDotClick(index)}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              currentIndex === index ? "bg-yellow-500 w-4" : "bg-gray-400"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
         <div className="text-right sm:text-right mt-4 mx-8">
           <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
             View More
