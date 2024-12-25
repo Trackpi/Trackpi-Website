@@ -15,9 +15,7 @@ export default {
       animation: {
         scroll: 'scroll 20s linear infinite',
       },
-      colors: {
-        'custom-light-yellow': 'rgba(255, 245, 194, 0.2)', // 20% opacity
-      },
+     
 
      
     },
