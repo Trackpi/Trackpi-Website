@@ -173,17 +173,13 @@ function EmployeeVerification() {
                         <h1 className="text-yellow-400 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[62px]">
                         Employee Verification
                         </h1>
-
-                        {/* <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[26px] sm:p-5 text-white text-center">
-                        Verify employee credentials and details securely and efficiently.
-                        </p> */}
                         
                         <form className="my-10 w-100">
                         {/* Employee ID */}
                         <div style={{fontWeight:"600", width:"80%"}} className="mb-4 mx-auto lg:text-xl text-lg g-5">
-                            {/* <label className="block my-2 text-left text-light" htmlFor="employeeId">
+                            <label className="block my-2 text-left text-light" htmlFor="employeeId">
                                 Employee ID
-                            </label> */}
+                            </label>
                             <input
                                 type="text"
                                 id="employeeId"
@@ -191,7 +187,7 @@ function EmployeeVerification() {
                                 value={formData.employeeId}
                                 onChange={handleTouched}
                                 placeholder="Enter Your Employee ID"
-                                className=" p-3 font-bold lg:text-xl text-base  rounded-md w-full"
+                                className=" p-3  text-base  rounded-md w-full"
                                 style={{border:'2px black solid',outline:"none"}}
                             />
                         </div>

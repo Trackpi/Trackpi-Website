@@ -26,12 +26,10 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    const loaderShown = sessionStorage.getItem("loaderShown");
-    if (location.pathname === "/" && !loaderShown) {
+    if (location.pathname === "/" ) {
         setLoading(true);
         const timeout = setTimeout(() => {
             setLoading(false);
-            sessionStorage.setItem("loaderShown", "true");
         }, 2250);
 
         return () => clearTimeout(timeout);

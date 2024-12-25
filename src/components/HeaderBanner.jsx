@@ -4,6 +4,7 @@ import Brochure from './Brochure';
 import { Link } from 'react-router-dom';
 import { RiDownload2Fill } from 'react-icons/ri';
 
+
 function HeaderBanner({
   title,
   description,
@@ -12,11 +13,11 @@ function HeaderBanner({
   classname,
   titleTwo,
   noButton,
-  brochureMain,
+  brochureMain
 }) {
   const [currentTitle, setCurrentTitle] = useState(title);
 
-  const pdfPath = '/images/Technical_Round_Assignment.pdf';
+  const pdfPath = "/images/Technical_Round_Assignment.pdf"; 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,19 +30,18 @@ function HeaderBanner({
   return (
     <>
       <section className={`w-full h-screen home_section relative ${classname}`}>
-        {noButton ? null : (
-          <div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
-            {brochure ? (
-              <Link to="/new-project-form" className="no-underline">
-                <button className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  text-white rounded-lg py-2 px-6 mx-3 font-bold flex items-center space-x-2">
-                  <LuCirclePlus />
-                  <span>Submit New Project</span>
-                </button>
-              </Link>
-            ) : null}
-            {<Brochure />}
-          </div>
-        )}
+        {noButton?null:<div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
+          {brochure ? (
+                        <Link to="/new-project-form" className='no-underline'>
+
+            <button className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  text-white rounded-lg py-2 px-6 mx-3 font-bold flex items-center space-x-2">
+              <LuCirclePlus />
+              <span>Submit New Project</span>
+            </button>
+            </Link>
+          ) : null}
+          {<Brochure />}
+        </div>}
 
         <div className="flex justify-center items-center h-screen ">
           <div
@@ -59,24 +59,16 @@ function HeaderBanner({
 
             {learn ? (
               <div className="flex justify-center items-center">
-                <Link to={'/our-services'} className="text-black">
-                  <button className="header_button">
-                    Learn How We Can Help
-                  </button>
+                <Link to={'/our-services'} className='text-white'>               
+                <button className="header_button">Learn How We Can Help</button>
                 </Link>
               </div>
             ) : null}
-            {brochureMain ? (
-              <a
-                href={pdfPath}
-                download="Technical_Round_Assignment.pdf"
-                style={{ textDecoration: 'none', color: 'black' }}
-              >
-                <button className="header_button flex items-center space-x-2">
-                  <span>Company Brochure</span>
-                  <RiDownload2Fill />
-                </button>
-              </a>
+            {brochureMain ? (<div className="mt-10">
+
+              <Brochure/>
+            </div>
+               
             ) : null}
           </div>
         </div>

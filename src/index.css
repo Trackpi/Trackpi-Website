@@ -20,8 +20,14 @@
 body, html {
   overflow-x: hidden;
   scroll-behavior: smooth;
-
+  scroll-padding-top: 70px;
 }
+@media (max-width: 768px) {
+  html {
+      scroll-padding-top: 100px; 
+  }
+}
+
 
 /* Navbar base styles */
 .navbar {
@@ -1126,7 +1132,11 @@ select.place:placeholder-shown {
 .animate-scroll > * {
   flex-shrink: 0;
 }
-
+/* footer social medias */
+#fb-footer,#medium-footer,#insta-footer,#blogger-footer,#youtube-footer,#quora-footer,#linkedin-footer{
+  background-color: #FFC100;
+  color: white !important;
+}
 
 
 
