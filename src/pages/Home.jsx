@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 import home1 from '../images/home1.png';
 import home2 from '../images/home2.png';
 import ConnectButtons from '../components/ConnectButtons';
-
 import logo from '../images/trackpi_logo.png';
 import { Carousel } from 'react-bootstrap';
 import clientLogo1 from '../images/growthfactor.png';
 import clientLogo2 from '../images/trademax.png';
 import HeaderBanner from '../components/HeaderBanner';
+import './CSS/Home.css';
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });
@@ -152,7 +152,7 @@ function Home() {
   // Initial grouping and on resize update
   useEffect(() => {
     groupCards(); // Initial grouping
-  }, [cards, cardsPerGroup]);
+  }, []);
 
   // Handle window resize
   useEffect(() => {
@@ -163,8 +163,8 @@ function Home() {
       }
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [cardsPerGroup]);
 
   // Bulge interval logic
@@ -172,10 +172,10 @@ function Home() {
     if (isPaused) return; // Pause interval when hovering
 
     const bulgeInterval = setInterval(() => {
-      setBulgingCard((prev) => {
+      setBulgingCard(prev => {
         if (prev === cardsPerGroup - 1) {
           // Move to the next slide after the last card bulges
-          setCurrentIndex((prevIndex) =>
+          setCurrentIndex(prevIndex =>
             prevIndex === groupedCards.length - 1 ? 0 : prevIndex + 1
           );
           return 0;
@@ -188,16 +188,16 @@ function Home() {
   }, [groupedCards.length, cardsPerGroup, isPaused]);
 
   const handleNextSlide = () => {
-    setCurrentIndex((prev) => (prev === groupedCards.length - 1 ? 0 : prev + 1));
+    setCurrentIndex(prev => (prev === groupedCards.length - 1 ? 0 : prev + 1));
     setBulgingCard(0);
   };
 
-  const handleDotClick = (index) => {
+  const handleDotClick = index => {
     setCurrentIndex(index);
     setBulgingCard(0); // Reset bulging card on dot click
   };
 
-  const handleMouseEnter = (cardIndex) => {
+  const handleMouseEnter = cardIndex => {
     setBulgingCard(cardIndex);
     setIsPaused(true); // Pause the interval on hover
   };
@@ -207,7 +207,7 @@ function Home() {
     setIsPaused(false); // Resume the interval
   };
 
-  const handleTouchStart = (cardIndex) => {
+  const handleTouchStart = cardIndex => {
     setBulgingCard(cardIndex); // Mimic hover on touch devices
   };
 
@@ -229,89 +229,80 @@ function Home() {
         </div>
 
         <div className="relative bg-gradient-to-r from-[#FFC100] to-[#FF9D00]">
-      {/* Carousel */}
-      <div className="overflow-x-auto md:overflow-hidden touch-pan-x">
-        <Carousel
-          interval={null} // Disable auto-scroll as we control it manually
-          indicators={false}
-          controls={false}
-          activeIndex={currentIndex}
-          onSelect={() => {}}
-        >
-          {groupedCards.map((group, slideIndex) => (
-            <Carousel.Item key={slideIndex}>
+  {/* Carousel */}
+  <div className="overflow-x-auto md:overflow-hidden touch-pan-x carousel-container">
+    <Carousel
+      interval={null} // Disable auto-scroll as we control it manually
+      indicators={false}
+      controls={false}
+      activeIndex={currentIndex}
+      onSelect={() => {}}
+    >
+      {groupedCards.map((group, slideIndex) => (
+        <Carousel.Item key={slideIndex}>
+          <div
+            className={`grid carousel-grid ${cardsPerGroup === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-4'} place-content-center gap-10 py-3 px-20`}
+          >
+            {group.map((card, cardIndex) => (
               <div
-                className={`grid ${
-                  cardsPerGroup === 1
-                    ? "grid-cols-1"
-                    : "grid-cols-1 md:grid-cols-4"
-                } place-content-center gap-10 py-3 px-20`}
+                key={card.id}
+                className={`carousel-card flex-shrink-0 w-full 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
+                  cardIndex === bulgingCard ? 'scale-110 2xl:scale-105' : 'scale-95'
+                }`}
+                onMouseEnter={() => handleMouseEnter(cardIndex)}
+                onMouseLeave={handleMouseLeave}
+                onTouchStart={() => handleTouchStart(cardIndex)}
               >
-                {group.map((card, cardIndex) => (
-                  <div
-                    key={card.id}
-                    className={`flex-shrink-0 w-full 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
-                      cardIndex === bulgingCard
-                        ? "scale-110 2xl:scale-105"
-                        : "scale-95"
+                {/* Inner wrapper for scaling contents */}
+                <div
+                  className={`transform transition-transform duration-500 ${
+                    cardIndex === bulgingCard ? 'md:scale-105' : 'scale-100'
+                  }`}
+                >
+                  <img
+                    src={card.logo}
+                    alt="Card_logo"
+                    className={`mx-auto transition-transform ${
+                      cardIndex === bulgingCard ? 'md:scale-110' : 'scale-100'
                     }`}
-                    onMouseEnter={() => handleMouseEnter(cardIndex)}
-                    onMouseLeave={handleMouseLeave}
-                    onTouchStart={() => handleTouchStart(cardIndex)}
+                  />
+                  <h3
+                    className={`mt-4 font-bold text-amber-500 transition-transform ${
+                      cardIndex === bulgingCard ? 'md:text-xl' : 'text-lg'
+                    }`}
                   >
-                    {/* Inner wrapper for scaling contents */}
-                    <div
-                      className={`transform transition-transform duration-500 ${
-                        cardIndex === bulgingCard
-                          ? "md:scale-105"
-                          : "scale-100"
-                      }`}
-                    >
-                      <img
-                        src={card.logo}
-                        alt="Card_logo"
-                        className={`mx-auto transition-transform ${
-                          cardIndex === bulgingCard
-                            ? "md:scale-110"
-                            : "scale-100"
-                        }`}
-                      />
-                      <h3
-                        className={`mt-4 font-bold text-amber-500 transition-transform ${
-                          cardIndex === bulgingCard ? "md:text-xl" : "text-lg"
-                        }`}
-                      >
-                        {card.title}
-                      </h3>
-                      <p
-                        className={`mt-2 text-white transition-transform ${
-                          cardIndex === bulgingCard ? "md:text-base" : "text-sm"
-                        }`}
-                      >
-                        {card.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                    {card.title}
+                  </h3>
+                  <p
+                    className={`mt-2 text-white transition-transform ${
+                      cardIndex === bulgingCard ? 'md:text-base' : 'text-sm'
+                    }`}
+                  >
+                    {card.description}
+                  </p>
+                </div>
               </div>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </div>
+            ))}
+          </div>
+        </Carousel.Item>
+      ))}
+    </Carousel>
+  </div>
 
-      {/* Slide Dots */}
-      <div className="absolute top-[110%] left-1/2 transform -translate-x-1/2 hidden md:flex justify-center items-center space-x-2">
-        {groupedCards.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index)}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              currentIndex === index ? "bg-yellow-500 w-4" : "bg-gray-400"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
+  {/* Slide Dots */}
+  <div className="absolute top-[110%] left-1/2 transform -translate-x-1/2 hidden md:flex justify-center items-center space-x-2">
+    {groupedCards.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => handleDotClick(index)}
+        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+          currentIndex === index ? 'bg-yellow-500 w-4' : 'bg-gray-400'
+        }`}
+      />
+    ))}
+  </div>
+</div>
+
         <div className="text-right sm:text-right mt-4 mx-8">
           <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
             View More

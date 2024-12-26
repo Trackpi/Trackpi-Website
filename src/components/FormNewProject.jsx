@@ -272,35 +272,43 @@ const FormNewProject = () => {
     // </div>
     <>
       <div className="bg-white  py-3 ">
-        <Form className="flex flex-col mx-auto max-w-full sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
-          <div className="mb-4">
+        <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
+          <div className="mb-4  flex justify-center  items-center">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                // e.target.style.borderColor = '#0A0A0A';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#ced4da'; // Default border color on blur
-                e.target.style.boxShadow = '2px 2px 4px 4px  #0A0A0A33';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow = 'none';
               }}
               type="text"
               id="fullname"
               placeholder="Full Name"
-              className="rounded-lg placeholder-black p-3 "
+              className="rounded-lg placeholder-black p-3"
               required
             />
           </div>
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#FF9D00';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#ced4da'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               type="tel"
@@ -314,13 +322,17 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#FF9D00';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#ced4da'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               type="email"
@@ -333,45 +345,49 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <div className="flex px-2 gap-40 ">
-              <label className="flex items-center space-x-2 text-black">
+              <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
                 <input
                   type="radio"
                   name="options"
                   value="Student"
                   className="form-radio  h-5 w-5 "
                 />
-                <span>Student</span>
+                <span className="text-sm ">Student</span>
               </label>
-              <label className="flex items-center space-x-2 text-black">
+              <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
                 <input
                   type="radio"
                   name="options"
                   value="Fresher"
-                  className="form-radio  h-5 w-5 text-black"
+                  className="form-radio  h-5 w-5"
                 />
-                <span>Fresher</span>
+                <span className="text-sm ">Fresher</span>
               </label>
-              <label className="flex items-center space-x-2 text-black">
+              <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
                 <input
                   type="radio"
                   name="options"
                   value="Working"
                   className="form-radio h-5 w-5"
                 />
-                <span>Working</span>
+                <span className="text-sm ">Working</span>
               </label>
             </div>
           </div>
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#FF9D00';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#ced4da'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
@@ -397,11 +413,12 @@ const FormNewProject = () => {
                 MozAppearance: 'none',
               }}
               onFocus={e => {
-                e.target.style.borderColor = '#FF9D00';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#ced4da'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               required
@@ -419,13 +436,17 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#0A0A0A';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#0A0A0A'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
@@ -437,13 +458,17 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#0A0A0A';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#0A0A0A'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
@@ -455,13 +480,17 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#0A0A0A';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#0A0A0A'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
@@ -473,13 +502,17 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#0A0A0A';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#0A0A0A'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
@@ -491,13 +524,17 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#0A0A0A';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#0A0A0A'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
@@ -509,13 +546,17 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <Form.Control
-              style={{ borderRadius: '11.55px' }}
+              style={{
+                borderRadius: '11.55px',
+                border: '0.2px solid rgba(10, 10, 10, 0.82)',
+              }}
               onFocus={e => {
-                e.target.style.borderColor = '#0A0A0A';
-                e.target.style.boxShadow = '0 0 10px rgb(131, 133, 134)';
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
               }}
               onBlur={e => {
-                e.target.style.borderColor = '#0A0A0A'; // Default border color on blur
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
               as="textarea"
