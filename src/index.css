@@ -1002,20 +1002,19 @@ gap: 50px !important;
 
 /* Details.css */
 .place::placeholder {
-  color: black !important;
-  font-size: 20px !important;
+  color: rgba(0, 0, 0, 0.768) !important;
+  
 }
 
 select.place:placeholder-shown {
-  color: black !important;
+  color:rgba(0, 0, 0, 0.768) !important;
 }
 
 .place.bg-transparent::placeholder {
-  color: black !important;
+  color: rgba(0, 0, 0, 0.768)!important;
 }
-.place.input, textarea, select {
-  border: 1px solid black !important;
-}
+
+
 
 
 

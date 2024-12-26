@@ -1,5 +1,6 @@
 import Form from 'react-bootstrap/Form';
 
+
 function Details() {
   return (
 
@@ -12,24 +13,25 @@ function Details() {
            
           style={{
                  outline: 'rgb(187, 190, 192)',
-                 border: '2px solid black',
+                 border: '0.89px solid  #0A0A0ACC',
+                 height:'53.4px',
                  width: '100%',
                  maxWidth: '712px',
                         
                       }}
                       onFocus={e => {
-                        e.target.style.borderColor = '#FF9D00';
-                        e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
+                        e.target.style.borderColor = 'black';
+                        e.target.style.boxShadow = '0 0 1px black';
                       }}
                       onBlur={e => {
-                        e.target.style.borderColor = '#ced4da'; // Default border color on blur
+                        e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
                         e.target.style.boxShadow = 'none';
                       }}
 
             type="text"
             id="fullname"
             placeholder="Full Name"
-            className="bg-white  border-[  #0A0A0ACC] text-black placeholder-black p-3 place"
+            className="bg-white   text-black placeholder-black p-3 place"
             required
           />
         </div>
@@ -40,18 +42,19 @@ function Details() {
           <Form.Control
            style={{
             outline: 'rgb(187, 190, 192)',
-                border: '2px solid black',
+            height:'53.4px',
+             border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
             
             
           }}
           onFocus={e => {
-            e.target.style.borderColor = '#FF9D00';
-            e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
+            e.target.style.borderColor = 'black';
+            e.target.style.boxShadow = '0 0 1px black';
           }}
           onBlur={e => {
-            e.target.style.borderColor = '#ced4da'; // Default border color on blur
+            e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
             e.target.style.boxShadow = 'none';
           }}
 
@@ -59,7 +62,7 @@ function Details() {
             id="contactnumber"
             placeholder="Contact Number"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            className="bg-white  border-black text-black placeholder-black p-3 place"
+            className="bg-white   text-black placeholder-black p-3 place"
             required
           />
         </div>
@@ -70,24 +73,25 @@ function Details() {
           <Form.Control
            style={{
             outline: 'rgb(187, 190, 192)',
-                border: '2px solid black',
+            height:'53.4px',
+            border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
             
           }}
           onFocus={e => {
-            e.target.style.borderColor = '#FF9D00';
-            e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
+            e.target.style.borderColor = 'black';
+            e.target.style.boxShadow = '0 0 1px black';
           }}
           onBlur={e => {
-            e.target.style.borderColor = '#ced4da'; // Default border color on blur
+            e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
             e.target.style.boxShadow = 'none';
           }}
 
             type="email"
             id="email"
             placeholder="Email"
-            className="bg-white  border-black text-black placeholder-black p-3 place"
+            className="bg-white   text-black placeholder-black p-3 place"
             required
           />
         </div>
@@ -98,24 +102,25 @@ function Details() {
           <Form.Control
            style={{
             outline: 'rgb(187, 190, 192)',
-            border: '2px solid black',
+            height:'53.4px',
+            border: '0.89px solid  #0A0A0ACC',
             width: '100%',
             maxWidth: '712px',
             
           }}
           onFocus={e => {
-            e.target.style.borderColor = '#FF9D00';
-            e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
+            e.target.style.borderColor = 'black';
+            e.target.style.boxShadow = '0 0 1px black';
           }}
           onBlur={e => {
-            e.target.style.borderColor = '#ced4da'; // Default border color on blur
+            e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
                 e.target.style.boxShadow = 'none';
           }}
 
             type="text"
             id="location"
             placeholder="Where Are You Located?"
-            className="bg-white border-black text-black placeholder-black p-3 place"
+            className="bg-white text-black placeholder-black p-3 place"
             required
           />
         </div>
@@ -125,13 +130,14 @@ function Details() {
           
           <Form.Select
             id="howDidYouHear"
-            className="bg-white  border-black text-black placeholder-black p-3 place"
+            className="bg-white   text-black placeholder-black p-3 place"
             
             style={{
-              fontSize: "20px",
+              
               borderRadius: "0.35rem",
               outline: 'rgb(187, 190, 192)',
-                border: '2px solid black',
+              height:'53.4px',
+                border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
              
@@ -142,17 +148,17 @@ function Details() {
 
             }}
             onFocus={e => {
-              e.target.style.borderColor = '#FF9D00';
-              e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
+              e.target.style.borderColor = 'black';
+              e.target.style.boxShadow = '0 0 1px black';
             }}
             onBlur={e => {
-              e.target.style.borderColor = '#ced4da'; // Default border color on blur
+              e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
               e.target.style.boxShadow = 'none';
             }}
             required
           >
-            <option value="" disabled selected>
-              How Did You Hear About Us?
+            <option value="" disabled selected hidden >
+            How Did You Hear About Us?
             </option>
             <option value="socialMedia">Social Media</option>
             <option value="searchEngine">Search Engine</option>
@@ -168,18 +174,19 @@ function Details() {
           <Form.Control
            style={{
             outline: 'rgb(187, 190, 192)',
-                border: '2px solid black',
+            border: '0.89px solid  #0A0A0ACC',
+               
                 width: '100%',
                 maxWidth: '712px',
             
             height: '150px'
           }}
           onFocus={e => {
-            e.target.style.borderColor = '#FF9D00';
-            e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
+            e.target.style.borderColor = 'black';
+            e.target.style.boxShadow = '0 0 1px black';
           }}
           onBlur={e => {
-            e.target.style.borderColor = '#ced4da'; // Default border color on blur
+            e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
                 e.target.style.boxShadow = 'none';
 
             }}
@@ -188,7 +195,7 @@ function Details() {
             placeholder="Message"
 
             
-            className="bg-white  border-black text-black placeholder-black p-3 place"
+            className="bg-white   text-black placeholder-black p-3 place"
 
         
 
