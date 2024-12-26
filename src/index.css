@@ -29,177 +29,7 @@ body, html {
 }
 
 
-/* Navbar base styles */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background:black;
-  /* background: #595252; #feee9e; */
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  transition: transform 2s ease, opacity 2s ease;
-}
 
-
-/* Hidden state */
-.navbar.hidden {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-
-/* Visible state */
-.navbar.visible {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.custom-dropdown .dropdown-menu {
-  background-color: white;
-  box-shadow: none;
-  margin: 0;
-}
-
-.custom-dropdown .dropdown-item {
-  font-weight: 600;
-  color: #000;
-}
-
-.custom-dropdown .dropdown-item:hover {
-  background-color: #FFC100;
-}
-
-
-
-#navlink + .dropdown-menu .dropdown-toggle:first-of-type,#navlink + .dropdown-menu .dropdown-item  {
-  color: black; 
-  font-weight: 500;
-}
-#navlink + .dropdown-menu .dropdown-toggle:first-of-type,
-#navlink + .dropdown-menu .dropdown-item {
-  color: black;
-  font-weight: 600;
-
-  text-align: center;
-}
-
-#navlink + .dropdown-menu .dropdown-toggle:first-of-type:hover,#navlink + .dropdown-menu .dropdown-item:hover  {
-  background-color: #FFC107; 
-  color: #000;
-}
-
-
-/* Navbar animation  */
-#navlink {
-  position: relative;
-  text-decoration: none;
-  transition: transform 0.3s ease, font-size 0.3s ease;
-  color: white;
-}
-
-#navlink:hover {
-  color: #FFC100;
-}
-
-#navlink::before {
-  content: '';
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #f5cf10;
-  transform: scaleX(0);
-  transition: transform 0.5s ease;
-}
-
-/* Ensure underline appears when hovering */
-#navlink:hover::before {
-  transform: scaleX(1);
-}
-
-#navlink.active, .dropdown.active {
-  color: #FFC100;
-  font-weight: bold; 
-}
-
-
-#navlink.active::before, .dropdown.active::before {
-  transform: scaleX(1); 
-}
-
-.dropdown-menu .nav-link {
-  color: inherit; 
-  transition: color 0.3s ease, font-size 0.3s ease;
-}
-
-.dropdown-menu .nav-link:hover {
-  color: #FFC100; /* Hover color for dropdown items */
-}
-
-.dropdown-menu .nav-link.active {
-  color: #FFC100;
-  font-weight: bold; /* Optional */
-}
-#navlink:hover::before {
-  transform: scaleX(1);
-}
-
-#navlink.active, .dropdown.active, .active #navlink {
-  color: #FFC100  ; 
-  font-weight: bold; 
-}
-
-#navlink.active::before, .dropdown.active::before, .active #navlink::before{
-  transform: scaleX(1); 
-
-}
-
-
-/* header button */
-.header_button{
-    background: linear-gradient(to right, #FFC100,#FF9D00);
-    border-radius: 10px;
-    font-weight: 600 ;
-    font-size: 22px ;
-    padding: 20px 24px;
-    border: none;
-  }
-  @media screen and (max-width: 768px) {
-    .header_button{
-      font-size: 18px;
-      padding: 12px 16px;
-    }
-  }
-  @media screen and (max-width: 576px) {
-    .header_button{
-      font-size: 12px;
-      padding: 10px 14px;
-    }
-  } 
-.headerbuttons{
-  position: relative;
-  height: 0;
-  color: white;
-  z-index: 3;
-  top: 135px;
-  font-size: 14px;
-}
-.headerbuttons svg{
-  scale: 1.4;
-}
-.headerbuttons div{
-  cursor: pointer;
-}
-@media screen and (max-width: 576px) {
-  .headerbuttons{
-    font-size: 10px;
-  }
-}
 
 /* section 1  styling*/
 .bg1 {
@@ -558,147 +388,6 @@ body, html {
 }
 
 
-/* section 1  styling*/
-.bgOne, .bgTwo , .bgThree, .bgFour, .bgFive{
-  clip-path: polygon(
-    100% 0%,
-    0% 0%,
-    0% 59.79%,
-    1% 60.59%,
-    2% 61.4%,
-    3% 62.24%,
-    4% 63.09%,
-    5% 63.97%,
-    6% 64.85%,
-    7% 65.76%,
-    8% 66.67%,
-    9% 67.6%,
-    10% 68.53%,
-    11% 69.48%,
-    12% 70.42%,
-    13% 71.38%,
-    14% 72.33%,
-    15% 73.28%,
-    16% 74.23%,
-    17% 75.18%,
-    18% 76.12%,
-    19% 77.05%,
-    20% 77.98%,
-    21% 78.89%,
-    22% 79.79%,
-    23% 80.67%,
-    24% 81.54%,
-    25% 82.39%,
-    26% 83.23%,
-    27% 84.04%,
-    28% 84.82%,
-    29% 85.59%,
-    30% 86.32%,
-    31% 87.03%,
-    32% 87.71%,
-    33% 88.36%,
-    34% 88.98%,
-    35% 89.57%,
-    36% 90.13%,
-    37% 90.64%,
-    38% 91.13%,
-    39% 91.58%,
-    40% 91.98%,
-    41% 92.36%,
-    42% 92.69%,
-    43% 92.98%,
-    44% 93.23%,
-    45% 93.45%,
-    46% 93.62%,
-    47% 93.75%,
-    48% 93.84%,
-    49% 93.88%,
-    50% 93.89%,
-    51% 93.85%,
-    52% 93.77%,
-    53% 93.65%,
-    54% 93.49%,
-    55% 93.28%,
-    56% 93.04%,
-    57% 92.75%,
-    58% 92.43%,
-    59% 92.06%,
-    60% 91.66%,
-    61% 91.22%,
-    62% 90.75%,
-    63% 90.24%,
-    64% 89.69%,
-    65% 89.11%,
-    66% 88.49%,
-    67% 87.85%,
-    68% 87.17%,
-    69% 86.47%,
-    70% 85.74%,
-    71% 84.98%,
-    72% 84.2%,
-    73% 83.39%,
-    74% 82.57%,
-    75% 81.72%,
-    76% 80.85%,
-    77% 79.97%,
-    78% 79.08%,
-    79% 78.17%,
-    80% 77.24%,
-    81% 76.31%,
-    82% 75.37%,
-    83% 74.43%,
-    84% 73.48%,
-    85% 72.52%,
-    86% 71.57%,
-    87% 70.62%,
-    88% 69.67%,
-    89% 68.73%,
-    90% 67.79%,
-    91% 66.86%,
-    92% 65.95%,
-    93% 65.04%,
-    94% 64.15%,
-    95% 63.27%,
-    96% 62.41%,
-    97% 61.57%,
-    98% 60.75%,
-    99% 59.96%,
-    100% 59.18%
-  );
-  overflow: visible;
-  position: relative;
-  background-size: cover;
-  background-position: center ;
-  background-repeat: no-repeat;
-}
-.bgOne ,.bgTwo{
-  background-image: url('./images/team.jpg');
-}
-.bgThree{
-  background-image: url('./images/team.jpg');
-}
-.bgFour{
-  background-image: url('./images/employ.jpg');
-}
-.bgFive{
-  background-image: url('./images/connect.jpg');
-}
-
-
-
-.bgOne::before,.bgTwo::before, .bgThree::before, .bgFour::before, .bgFive::before {
-  content: ''; /* Creates the pseudo-element */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #231a00;
-  opacity: 0.75; /* Adjust opacity of background */
-  z-index: 1; /* Ensures it is below the content */
-  pointer-events: none; /* Allows interaction with the content */
-}
-
 .bgg11{
   width: 100%;
   height: fit-content;
@@ -924,9 +613,6 @@ body, html {
   
 /* Our services */
 
-.bg_yellow {
-  background-color: rgba(253, 223, 71, .6);
-}
 .redSelect{
   background-color: #f5cf10;
 }
@@ -1000,42 +686,7 @@ gap: 50px !important;
   align-items: center;
 }
 
-/* Details.css */
-.place::placeholder {
-  color: black !important;
-  font-size: 20px !important;
-}
 
-select.place:placeholder-shown {
-  color: black !important;
-}
-
-.place.bg-transparent::placeholder {
-  color: black !important;
-}
-.place.input, textarea, select {
-  border: 1px solid black !important;
-}
-
-
-
-
-/* Employee Verification Section */
-.employ_section::before {
-  content: ''; /* Creates the pseudo-element */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('./images/employ.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5; /* Adjust opacity of background */
-  z-index: 1; /* Ensures it is below the content */
-  pointer-events: none; /* Allows interaction with the content */
-}
 
 /* Scroll bar */
 
@@ -1058,59 +709,9 @@ select.place:placeholder-shown {
   scrollbar-width: thin;
   scrollbar-color: #e4be03 #f3f3f3;
 }
-/* spinner  loader*/
-.spinner {
-  border: 4px solid #fde047;
-  border-top: 4px solid black;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
-}
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.personel_section {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden; /* Prevents content overflow */
-}
-
-.personel_section::before {
-  content: ''; /* Creates the pseudo-element */
-  position: absolute; 
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('./images/personalBg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.7; /* Adjust opacity of background */
-  z-index: 1; /* Ensures it is below the content */
-  pointer-events: none; /* Allows interaction with the content */
-}
 .border-black{
   border-color:none!important;
-}
-
-/* service page */
-.bg_common{
-  background-color: #FFC100;
-}
-.bgSection {
-  background: url('./images/bgservices.svg') no-repeat ;
-  background-size: cover; 
-  width: 100%;
-  height: 100%; 
 }
 
 
@@ -1131,11 +732,6 @@ select.place:placeholder-shown {
 
 .animate-scroll > * {
   flex-shrink: 0;
-}
-/* footer social medias */
-#fb-footer,#medium-footer,#insta-footer,#blogger-footer,#youtube-footer,#quora-footer,#linkedin-footer{
-  background-color: #FFC100;
-  color: white !important;
 }
 
 
