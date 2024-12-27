@@ -36,7 +36,9 @@ function App() {
     } else {
         setLoading(false);
     }
-  }, [location]);
+  }, [location.pathname]);
+
+  const showHeaderFooterSocialMedia = ["/", "/about","/our-services","/connect-us","/employee-verification","/new-project-form","/employeesales","/employeeinternship"].includes(location.pathname);
 
   return (
     <>
@@ -45,8 +47,8 @@ function App() {
         <Loader />
       ) : (
         <>
-          <Header />
-          <Sidebar />
+           {showHeaderFooterSocialMedia && <Header />}
+           {showHeaderFooterSocialMedia && <Sidebar />}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -63,8 +65,8 @@ function App() {
             <Route path="/employeeinternship" element={<EmployeeInternship />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
-        </>
+          {showHeaderFooterSocialMedia && <Footer />}
+          </>
       )}
     </>
   );

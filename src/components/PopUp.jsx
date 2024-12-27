@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import "./popup.css";
-import fbIcon from "../images/fb.svg";
-import quoraIcon from "../images/quora.svg";
-import youtubeIcon from "../images/yout.svg";
-import linkedinIcon from "../images/linkedin.svg";
-import bloggerIcon from "../images/blogger.svg";
-import mediumIcon from "../images/medium.svg";
-import instagramIcon from "../images/insta.svg";
+import fbIcon from "../images/fb2.svg";
+import quoraIcon from "../images/quora2.svg";
+import youtubeIcon from "../images/yout2.svg";
+import linkedinIcon from "../images/linkedin2.svg";
+import bloggerIcon from "../images/blogger2.svg";
+import mediumIcon from "../images/medium2.svg";
+import instagramIcon from "../images/insta2.svg";
 import { Link } from "react-router-dom";
 
 function PopUp() {
@@ -18,7 +18,7 @@ function PopUp() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(true);
-        }, 1000);
+        }, 60000);
         return () => clearTimeout(timer);
     }, []);
 

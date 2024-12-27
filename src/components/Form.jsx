@@ -117,12 +117,20 @@ function Details() {
               WebkitAppearance: 'none',
               MozAppearance: 'none',
             }}
+            // style={{
+            //   border: '0.2px solid rgba(10, 10, 10, 0.82)',
+            //   borderRadius: '0.35rem',
+            //   color: 'rgba(170, 167, 167, 0.82)',
+            //   width: '100%',
+            //   maxWidth: '712px',
+            // }}
             onFocus={e => {
-              e.target.style.borderColor = '#FF9D00';
-              e.target.style.boxShadow = '0 0 4px rgb(20, 20, 20)';
+              e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+              e.target.style.boxShadow =
+                '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
             }}
             onBlur={e => {
-              e.target.style.borderColor = '#ced4da'; // Default border color on blur
+              e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
               e.target.style.boxShadow = 'none';
             }}
             required
