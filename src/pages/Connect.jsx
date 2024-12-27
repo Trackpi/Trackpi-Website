@@ -25,17 +25,17 @@ function Connect() {
             {[
               {
                 icon: "fa-location-dot",
-                title: "Our Office Location",
+                title: "Office Location",
                 text: "Kakkanad, Kochi, India",
               },
               {
                 icon: "fa-phone",
-                title: "Phone",
+                title: "Phone Number",
                 text: "+91 8078179646",
               },
               {
                 icon: "fa-envelope",
-                title: "E-mail",
+                title: "E-mail Id",
                 text: "trackpi@gmail.com",
               },
             ].map((card, index) => (
@@ -43,7 +43,7 @@ function Connect() {
                 key={index}
                 className="card card1 pt-4 rounded-2xl fixed-card sm:w-[410px] h-[230px] p-[30px] flex flex-col justify-between items-center gap-5 text-center shadow-lg"
               >
-                <div className="flex flex-col items-center gap-1 space-y-2.5 space-y-2.5 sm:space-y-3 md:space-y-4 lg:space-y-5">
+                <div className="flex flex-col items-center gap-1 space-y-2.5 space-y-2.5 sm:space-y-3 md:space-y-3 lg:space-y-5">
                 <div className="icon mt-2 text-lg lg:text-4xl text-amberCustom mb-4">
                   <i className={`fa-solid ${card.icon}`}></i>
                 </div>

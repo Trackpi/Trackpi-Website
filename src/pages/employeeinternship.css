@@ -1,62 +1,12 @@
-@media (max-width: 768px) {
-    /* General container adjustments */
-    .mt-20 {
-      margin-top: 10px;
-    }
-    .w-full {
-      padding: 10px;
-    }
-    .py-10 {
-      padding: 20px 0;
-    }
-    .px-10{
-        padding: 20px 0;
-    }
-  
-    /* Employee details section */
-    .custom-height {
-      height: auto;
-    }
-    .flex.flex-row {
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-    .custom-height {
-      height: auto;
-    }
-  
-    /* Personal information section */
-    .gap-20 {
-      gap: 10px;
-    }
-    .flex-row.justify-between {
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-      /* Buttons and icons */
-      button {
-        width: 100%;
-        font-size: 1rem;
-        padding: 5px;
-      }
-      .text-yellow-500 {
-        font-size: 30px;
-      }
-  
-    /* Feedback and certificate sections */
-    .grid-cols-1 {
-      grid-template-columns: 1fr;
-    }
-    .gap-12 {
-      gap: 20px;
-    }
-    .custom-height {
-      height: 250px;
-    }
-    .bg-yellow-400 {
-      padding: 10px;
-    }
+@media (max-width: 640px) {
+  .pad{
+    height: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .feed{
+    line-height: normal;
+    
+  }
   }
   
