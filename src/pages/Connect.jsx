@@ -12,6 +12,7 @@ function Connect() {
         description="Reach out to us for any inquiries or support — we are here to help."
         brochure
         classname="bgFive"
+        noButton={true}
       />
 
       <div className="bb">

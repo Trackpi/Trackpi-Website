@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LuCirclePlus } from 'react-icons/lu';
 import Brochure from './Brochure';
 import { Link } from 'react-router-dom';
-import { RiDownload2Fill } from 'react-icons/ri';
-
+import './headerbanner.css'
 
 function HeaderBanner({
   title,
@@ -17,7 +16,6 @@ function HeaderBanner({
 }) {
   const [currentTitle, setCurrentTitle] = useState(title);
 
-  const pdfPath = "/images/Technical_Round_Assignment.pdf"; 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,6 +65,19 @@ function HeaderBanner({
             {brochureMain ? (<div className="mt-10">
 
               <Brochure/>
+            </div>
+               
+            ) : null}
+            { classname=="bgFive"? (<div className="mt-10 flex justify-between items-center space-x-5 ">
+
+                        <Link to="/new-project-form" className='no-underline'>
+
+            <button className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  text-white rounded-lg py-2 px-6  font-bold flex  space-x-2">
+              <LuCirclePlus />
+              <span>Submit New Project</span>
+            </button>
+            </Link>
+          <Brochure />
             </div>
                
             ) : null}
