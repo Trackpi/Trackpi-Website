@@ -152,7 +152,7 @@ function Home() {
   // Initial grouping and on resize update
   useEffect(() => {
     groupCards(); // Initial grouping
-  }, []);
+  }, [cardsPerGroup]);
 
   // Handle window resize
   useEffect(() => {

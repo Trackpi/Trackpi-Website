@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import HeaderBanner from "../components/HeaderBanner";
 import Brochure from "../components/Brochure";
+import './employverification.css'
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({
