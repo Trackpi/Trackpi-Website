@@ -12,7 +12,7 @@ import { Carousel } from 'react-bootstrap';
 import clientLogo1 from '../images/growthfactor.png';
 import clientLogo2 from '../images/trademax.png';
 import HeaderBanner from '../components/HeaderBanner';
-import './CSS/Home.css';
+import '../CSS/Home.css';
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });

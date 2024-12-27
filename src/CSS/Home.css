@@ -16,6 +16,7 @@ white-space: no-wrap;
     {
         width:340px;
         height: 180px;
+        padding: 0px;
     }
     /* Adjust Carousel Container */
     .carousel-container {

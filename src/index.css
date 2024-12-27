@@ -688,6 +688,31 @@ gap: 50px !important;
 
 
 
+
+
+
+
+
+/* Employee Verification Section */
+.employ_section::before {
+  content: ''; /* Creates the pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/employ.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Adjust opacity of background */
+  z-index: 1; /* Ensures it is below the content */
+  pointer-events: none; /* Allows interaction with the content */
+}
+
+
+
+
 /* Scroll bar */
 
 .custom-scrollbar::-webkit-scrollbar {

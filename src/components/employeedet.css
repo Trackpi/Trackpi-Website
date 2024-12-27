@@ -1,0 +1,35 @@
+@media (max-width: 768px) {
+    /* General container adjustments */
+    .mt-20 {
+      margin-top: 10px;
+    }
+    .w-full {
+      padding: 10px;
+    }
+    .py-10 {
+      padding: 20px 0;
+    }
+  
+    /* Employee details section */
+    .custom-height {
+      height: auto;
+    }
+    .flex.flex-row {
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+    .custom-height {
+      height: auto;
+    }
+    /* Buttons and icons */
+    button {
+        width: 100%;
+        font-size: 1rem;
+        padding: 5px;
+      }
+      .text-yellow-500 {
+        font-size: 30px;
+      }
+
+}
