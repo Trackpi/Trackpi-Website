@@ -24,35 +24,41 @@ function Connect() {
           <div className="card-group w-full flex flex-wrap justify-between gap-10">
             {[
               {
-                icon: 'fa-location-dot',
-                title: 'Our Office Location',
-                text: 'Kakkanad, Kochi, India',
+
+                icon: "fa-location-dot",
+                title: "Office Location",
+                text: "Kakkanad, Kochi, India",
               },
               {
-                icon: 'fa-phone',
-                title: 'Phone',
-                text: '+91 8078179646',
+                icon: "fa-phone",
+                title: "Phone Number",
+                text: "+91 8078179646",
               },
               {
-                icon: 'fa-envelope',
-                title: 'E-mail',
-                text: 'trackpi@gmail.com',
+                icon: "fa-envelope",
+                title: "E-mail Id",
+                text: "trackpi@gmail.com",
+
               },
             ].map((card, index) => (
               <div
                 key={index}
                 className="card card1 pt-4 rounded-2xl fixed-card sm:w-[410px] h-[230px] p-[30px] flex flex-col justify-between items-center gap-5 text-center shadow-lg"
               >
-                <div className="flex flex-col items-center gap-1 space-y-2.5 space-y-2.5 sm:space-y-3 md:space-y-4 lg:space-y-5">
-                  <div className="icon mt-2 text-lg lg:text-4xl text-amberCustom mb-4">
-                    <i className={`fa-solid ${card.icon}`}></i>
-                  </div>
-                  <h6 className="text-sm md:text-xl lg:text-2xl xl:text-2xl font-medium">
-                    {card.title}
-                  </h6>
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl font-bold">
-                    {card.text}
-                  </p>
+
+                <div className="flex flex-col items-center gap-1 space-y-2.5 space-y-2.5 sm:space-y-3 md:space-y-3 lg:space-y-5">
+                <div className="icon mt-2 text-lg lg:text-4xl text-amberCustom mb-4">
+                  <i className={`fa-solid ${card.icon}`}></i>
+                </div>
+                <h6 className="text-sm md:text-xl lg:text-2xl xl:text-2xl font-medium">
+                  {card.title}
+                </h6>
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl font-bold">
+                  {card.text}
+                </p>
+
+               
+
                 </div>
               </div>
             ))}

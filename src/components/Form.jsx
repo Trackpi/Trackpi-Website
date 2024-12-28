@@ -104,6 +104,7 @@ function Details() {
             border: '0.89px solid  #0A0A0ACC',
             width: '100%',
             maxWidth: '712px',
+            color:'rgba(0, 0, 0, 0.74)',
             
           }}
           onFocus={e => {
@@ -115,7 +116,7 @@ function Details() {
                 e.target.style.boxShadow = 'none';
           }}
 
-
+            
             type="text"
             id="location"
             placeholder="Where Are You Located?"
@@ -127,8 +128,8 @@ function Details() {
         <div className="mb-3 flex justify-center items-center">
           <Form.Select
             id="howDidYouHear"
-
-            className="bg-white   text-black placeholder-black p-3 place"
+           
+            className="bg-white   placeholder-black p-3 place"
             
             style={{
               
@@ -138,17 +139,8 @@ function Details() {
                 border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
-             
-             
-              appearance: "none",
-              WebkitAppearance: "none",
-              MozAppearance: "none",
- maxWidth: '712px',
-
-
-              appearance: 'none',
-              WebkitAppearance: 'none',
-              MozAppearance: 'none',
+              color:'rgba(0, 0, 0, 0.74)',
+    
             }}
             // style={{
             //   border: '0.2px solid rgba(10, 10, 10, 0.82)',
@@ -167,10 +159,10 @@ function Details() {
             }}
             required
           >
-            <option value="" disabled selected hidden >
+            <option value="" disabled selected hidden style={{color:'red'}}>
             How Did You Hear About Us?
             </option>
-            <option value="socialMedia">Social Media</option>
+            <option value="socialMedia" >Social Media</option>
             <option value="searchEngine">Search Engine</option>
             <option value="friendFamily">Friend or Family</option>
             <option value="advertisement">Advertisement</option>
