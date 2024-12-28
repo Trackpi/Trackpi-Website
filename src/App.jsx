@@ -15,37 +15,44 @@ import Sidebar from './components/Sidebar';
 import NotFound from './pages/NotFound';
 import ScrollUp from './components/ScrollUp';
 import Loader from './components/Loader';
-
-
-
+import NewProject from './pages/NewProject';
+import EmployeeSales from './pages/EmployeeSales';
+import EmployeeInternship from './pages/EmployeeInternship';
+import FormManagement from'./pages/FormManagement';
+import FooterManagement from'./pages/FooterManagement';
+import PartnershipManagement from'./pages/PartnershipManagement';
+import NewsManagement from'./pages/NewsManagement';
+import EmployeeManagement from'./pages/EmployeeManagement';
+import AdminManagement from'./pages/AdminManagement';
+import AdminLogin from'./pages/AdminLogin';
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/') {
-      setLoading(true);
-      const timeout = setTimeout(() => setLoading(false), 2250);
+    if (location.pathname === "/" ) {
+        setLoading(true);
+        const timeout = setTimeout(() => {
+            setLoading(false);
+        }, 2250);
 
-      return () => clearTimeout(timeout); 
+        return () => clearTimeout(timeout);
     } else {
-      setLoading(false); 
+        setLoading(false);
     }
-  }, [location]);
+  }, [location.pathname]);
+
+  const showHeaderFooterSocialMedia = ["/", "/about","/our-services","/connect-us","/employee-verification","/new-project-form","/employeesales","/employeeinternship"].includes(location.pathname);
 
   return (
     <>
-    
       <ScrollUp />
       {loading ? (
         <Loader />
       ) : (
         <>
-         <Routes>
-              
-          </Routes>
-          <Header />
-          <Sidebar />
+           {showHeaderFooterSocialMedia && <Header />}
+           {showHeaderFooterSocialMedia && <Sidebar />}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -57,14 +64,25 @@ function App() {
             />
             <Route path="/connect-us" element={<Connect />} />
             <Route path="/personnel" element={<Personel />} />
+            <Route path="/new-project-form" element={<NewProject />} />
+            <Route path="/employeesales" element={<EmployeeSales />} />
+            <Route path="/employeeinternship" element={<EmployeeInternship />} />
+
+            <Route path="/admin/admin-login" element={<AdminLogin/>} />
+            <Route path="/admin/admin-management" element={<AdminManagement/>} />
+            <Route path="/admin/form-management" element={<FormManagement/>} />
+            <Route path="/admin/partnership-management" element={<PartnershipManagement/>} />
+            <Route path="/admin/news-management" element={<NewsManagement/>} />
+            <Route path="/admin/employee-management" element={<EmployeeManagement/>} />
+            <Route path="/admin/footer-management" element={<FooterManagement/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
-          
-        </>
+          {showHeaderFooterSocialMedia && <Footer />}
+          </>
       )}
     </>
   );
 }
+
 
 export default App;

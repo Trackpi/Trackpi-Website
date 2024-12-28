@@ -1,0 +1,83 @@
+.clientLogos
+{
+margin-top: 3rem;
+overflow: hidden;
+white-space: no-wrap;
+}
+
+  
+/* Mobile Specific Adjustments */
+@media (max-width: 640px) {
+    .clientLogos
+    {
+        margin-top: 1rem;
+    }
+    .homeImg
+    {
+        width:340px;
+        height: 180px;
+        padding: 0px;
+    }
+    /* Adjust Carousel Container */
+    .carousel-container {
+      padding: 0 10px; /* Slight padding on sides */
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+  
+    /* Adjust Grid for Mobile */
+    .carousel-grid {
+      grid-template-columns: repeat(1, 1fr); /* Show one card per row for full width */
+      gap: 15px; /* Spacing between cards */
+      padding-left: 2rem;
+      padding-right: 2rem;
+
+    }
+  
+    /* Adjust Individual Cards for Mobile */
+    .carousel-card {
+      width: 100%; /* Use most of the screen width */
+      height: auto; /* Allow flexible height */
+      margin: 15px auto 15px; /* Center the card and add spacing below */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
+      border-radius: 8px; /* Rounded corners */
+    }
+  
+    /* Adjust Card Text */
+    .carousel-card h3 {
+      font-size: 18px; /* Larger heading */
+      margin-bottom: 10px;
+      text-align: center; /* Center-align text */
+    }
+  
+    .carousel-card p {
+      font-size: 16px; /* Larger paragraph text */
+      line-height: 1.5; /* Better line spacing */
+      text-align: justify; /* Align text for a clean look */
+    }
+  
+    /* Adjust News Headline */
+    .newsHead
+    {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+
+    }
+    .newsHead h1 {
+       /* Larger and more prominent headline */
+      text-align: center; /* Center-align for focus */
+    }
+  
+    /* Image Adjustments */
+    .carousel-card img {
+      max-width: 100%; /* Ensure images fit within the card */
+      height: auto; /* Maintain aspect ratio */
+      margin-bottom: 10px; /* Add spacing below images */
+    }
+  
+    /* Buttons and Call to Action */
+    .view-more-btn {
+      text-align: center;
+      
+    }
+  }
+  

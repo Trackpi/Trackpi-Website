@@ -26,7 +26,7 @@ const Brochure = () => {
     return (
         <>
             <a href={pdfPath} download="Technical_Round_Assignment.pdf" style={{ textDecoration: "none" }}>
-                <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg py-2 px-6 font-bold flex items-center space-x-2">
+                <button className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  text-white rounded-lg py-2 px-6 font-bold flex items-center space-x-2">
                     <span>Company Brochure</span>
                     <RiDownload2Fill />
                 </button>

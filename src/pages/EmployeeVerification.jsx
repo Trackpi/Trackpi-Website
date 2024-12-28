@@ -4,7 +4,8 @@ import "react-puzzle-captcha/dist/react-puzzle-captcha.css";
 import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
-import HeaderBanner from "../components/HeaderBanner";
+import Brochure from "../components/Brochure";
+import '../CSS/employverification.css'
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({
@@ -155,22 +156,22 @@ function EmployeeVerification() {
     ];
 
     return (
-        <>
-            {/* Hero Section */}
-            <HeaderBanner
-                title="Employee Verification"
-                description="Verify employee credentials and details securely and efficiently."
-                classname="bgFour"
-            />
+        <div className="employee_reg_page">
+             <section className={`w-full h-screen home_section relative bgFour`}>
+                <div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
+                     <Brochure />
+                </div>
 
-            {/* Verification Form Section */}
-            <section className=" px-6 py-16">
-                <div style={{maxWidth:'1100px'}} className="bg-white shadow-lg mx-auto p-8 rounded-lg max-w-3xl">
-                    <h2 className="m-6 font-bold text-5xl text-amber-400 text-center">Employee Verification</h2>
-                    <form>
+                <div className="flex justify-center items-center h-screen ">
+                    <div style={{ width:"max-content"}} className={`flex flex-col max-w-[846px] text-center items-center gap-10 z-2 `}>
+                        <h1 className="text-yellow-400 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[62px]">
+                        Employee Verification
+                        </h1>
+                        
+                        <form className="my-10 w-100">
                         {/* Employee ID */}
-                        <div style={{fontWeight:"600"}} className="mb-4 fs-4">
-                            <label className="block my-2 text-dark" htmlFor="employeeId">
+                        <div style={{fontWeight:"600", width:"80%"}} className="mb-4 mx-auto lg:text-xl text-lg g-5">
+                            <label className="block my-2 text-left text-light" htmlFor="employeeId">
                                 Employee ID
                             </label>
                             <input
@@ -179,8 +180,9 @@ function EmployeeVerification() {
                                 aria-label="Enter Employee ID"
                                 value={formData.employeeId}
                                 onChange={handleTouched}
-                                className="border-gray-300 p-2 font-normal border rounded-md w-full"
-                                placeholder="Enter Employee ID"
+                                placeholder="Enter Your Employee ID"
+                                className=" p-3  text-base  rounded-md w-full"
+                                style={{border:'2px black solid',outline:"none"}}
                             />
                         </div>
 
@@ -190,7 +192,43 @@ function EmployeeVerification() {
                                 type="submit"
                                 onClick={handleSubmit}
                                 disabled={loading} // Disable button when loading
-                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-400 to-orange-500  px-6 py-2 rounded-md font-semibold fs-3 text-black"
+                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  py-2 px-6 rounded-md font-semibold lg:text-xl text-base text-white"
+                            >
+                                {loading ? "Verifying..." : "Verify Employee"}
+                            </button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </section>
+
+            {/* Verification Form Section */}
+            <section className=" p-[1rem] mb-14 w-100 employ_form_two">
+                <div style={{maxWidth:'90%'}} className="bg-white shadow-lg mx-auto p-4 rounded-lg ">
+                    <h2 className="font-bold  text-amber-400 text-center">Employee Verification</h2>
+                    <form>
+                        <div style={{fontWeight:"600"}} className="mb-4 g-5">
+                            <label className="block my-2 text-xs text-dark" htmlFor="employeeId">
+                                Employee ID
+                            </label>
+                            <input
+                                type="text"
+                                id="employeeId"
+                                aria-label="Enter Employee ID"
+                                value={formData.employeeId}
+                                onChange={handleTouched}
+                                className=" p-[.3rem] font-normal  text-[.625rem] rounded-md w-full employInput"
+                                placeholder="Enter Employee ID"
+                                style={{border:'.32px #0A0A0A80 solid'}}
+                            />
+                        </div>
+
+                        <div className="text-center">
+                            <button
+                                type="submit"
+                                onClick={handleSubmit}
+                                disabled={loading} // Disable button when loading
+                                className="w-[92.17px] transform hover:scale-105 bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  py-[3.84px] px-[9.58px]  rounded-md font-semibold text-[10px] text-white"
                             >
                                 {loading ? "Verifying..." : "Verify Employee"}
                             </button>
@@ -214,37 +252,33 @@ function EmployeeVerification() {
                 </Modal.Body>
             </Modal>
 
-            <section className="flex flex-col items-center gap-10 w-full h-full">
-                <div className="flex flex-col items-center p-3">
-                    <h1 className="text-5xl md:text-5xl text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
-                    <h5 style={{ maxWidth: "1126px" }}className="fw-normal text-black fs-4 px-3 text-justify lg:text-center">
+            <section className="flex flex-col items-center gap-20 w-full h-full">
+                <div className="flex flex-col items-center p-3 gap-[20px]">
+                    <h1 className="text-[3.125rem] text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
+                    <div style={{ maxWidth: "1126px" }}className="font-semibold text-black  text-[1.5rem] px-3 text-center">
                         Ensuring that employee information is accurate helps maintain a trustworthy workplace environment
                         and reduces the risk of fraudulent activities.
-                    </h5>
+                    </div>
                 </div>
-                <div className="pb-8 w-100 row mx-auto g-4 d-flex align-items-stretch justify-content-center">
+               <div className=" px-5 lg:px-20 pb-20 w-full mx-auto grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center">
     {clients.map((card) => (
         <div
             key={card.id}
-            className="col-lg-4 col-md-6 col-12 p-4 d-flex h-100"
+            className=" px-10 py-7 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] rounded-lg shadow-lg text-center cursor-pointer flex flex-col  h-full"
         >
-            <div className="w-100 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 hover:scale-110 cursor-pointer d-flex flex-column justify-between h-100">
-            <h3 className=" text-center text-black mt-4 font-bold text-3xl ">
-    {card.name}
-</h3>
-
-<p className="text-black text-center mt-2 text-xl sm:xs sm:p-1">
-    {card.description}
-</p>
-
-            </div>
+            <h3 className="text-black mt-4 font-bold text-3xl">
+                {card.name}
+            </h3>
+            <p className="text-black font-semibold mt-2 text-[1.375rem]">
+                {card.description}
+            </p>
         </div>
     ))}
 </div>
             </section>
 
             <ToastContainer />
-        </>
+        </div>
     );
 }
 

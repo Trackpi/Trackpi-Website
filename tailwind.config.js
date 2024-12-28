@@ -15,9 +15,21 @@ export default {
       animation: {
         scroll: 'scroll 20s linear infinite',
       },
+     
 
      
     },
   },
+
+    theme: {
+      extend: {
+        colors: {
+          amberCustom: 'rgba(255, 179, 0, 1)',
+        },
+      },
+    },
+    plugins: [],
+
+  
   plugins: [],
 }
