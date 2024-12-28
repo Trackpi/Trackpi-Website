@@ -1,6 +1,7 @@
 
 /* section 1  styling*/
 .bgOne, .bgTwo , .bgThree, .bgFour, .bgFive{
+  height: 100vh;
     clip-path: polygon(
       100% 0%,
       0% 0%,
@@ -113,16 +114,16 @@
     background-repeat: no-repeat;
   }
   .bgOne ,.bgTwo{
-    background-image: url('../images/team.jpg');
+    background-image: url('../../images/team.jpg');
   }
   .bgThree{
-    background-image: url('../images/team.jpg');
+    background-image: url('../../images/team.jpg');
   }
   .bgFour{
-    background-image: url('../images/employ.jpg');
+    background-image: url('../../images/employ.jpg');
   }
   .bgFive{
-    background-image: url('../images/connect.jpg');
+    background-image: url('../../images/connect.jpg');
   }
   
   
@@ -175,8 +176,17 @@
 .headerbuttons div{
   cursor: pointer;
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 640px) {
   .headerbuttons{
-    font-size: 10px;
+    display: none;
   }
+}
+@media (max-width: 640px) {
+
+.bgOne::before,.bgTwo::before, .bgThree::before, .bgFour::before, .bgFive::before {
+  height: 332px;
+}
+.bgOne, .bgTwo , .bgThree, .bgFour, .bgFive{
+  height: 332px;
+}
 }

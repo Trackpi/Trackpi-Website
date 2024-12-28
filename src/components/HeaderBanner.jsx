@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LuCirclePlus } from 'react-icons/lu';
 import Brochure from './Brochure';
 import { Link } from 'react-router-dom';
-import './headerbanner.css'
+import '../pages/CSS/headerbanner.css'
 
 function HeaderBanner({
   title,
@@ -27,7 +27,7 @@ function HeaderBanner({
 
   return (
     <>
-      <section className={`w-full h-screen home_section relative ${classname}`}>
+      <section className={`w-full  relative ${classname}`}>
         {noButton?null:<div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
           {brochure ? (
                         <Link to="/new-project-form" className='no-underline'>
@@ -41,14 +41,14 @@ function HeaderBanner({
           {<Brochure />}
         </div>}
 
-        <div className="flex justify-center items-center h-screen ">
+        <div className="flex justify-center items-center h-100">
           <div
             className={`flex flex-col max-w-[846px] text-center items-center z-2 ${
               learn ? '' : 'mb-16'
             }`}
           >
             <h1 className="text-yellow-400 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[62px]">
-              {titleTwo ? currentTitle : title}
+            {titleTwo ? currentTitle : title}
             </h1>
 
             <p className="text-sm  md:text-lg lg:text-xl xl:text-[20px]  leading-8 sm:p-5 text-white ">
