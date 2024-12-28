@@ -150,6 +150,13 @@ function Details() {
               WebkitAppearance: 'none',
               MozAppearance: 'none',
             }}
+            // style={{
+            //   border: '0.2px solid rgba(10, 10, 10, 0.82)',
+            //   borderRadius: '0.35rem',
+            //   color: 'rgba(170, 167, 167, 0.82)',
+            //   width: '100%',
+            //   maxWidth: '712px',
+            // }}
             onFocus={e => {
               e.target.style.borderColor = 'black';
               e.target.style.boxShadow = '0 0 1px black';
