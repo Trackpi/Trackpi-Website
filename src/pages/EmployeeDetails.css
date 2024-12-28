@@ -1,0 +1,179 @@
+/* Base Styles */
+.main {
+    margin: 20px auto;
+    max-width: 90%;
+  }
+  
+  .profile {
+    position: relative;
+  }
+  
+  .user {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-right: 100px;
+  }
+  
+  .user .flex-grow {
+    margin-bottom: 10px;
+  }
+  
+  input, textarea {
+    border-radius: 10px;
+    width: 100%;
+  }
+  
+  .vertical-line {
+    width: 1px;
+    height: 100%;
+    background-color: rgb(17, 16, 16);
+    margin: 0px auto;
+  }
+  
+  .desc {
+    border: 1px solid black; /* Ensures the border is 1px and black */
+    border-radius: 10px;
+  }
+  
+  
+  .srow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 50px;
+    margin-left: 60px;
+  }
+  
+  .ins{
+    padding: 4px 40px;
+  }
+  
+  .plat{
+    padding: 4px 40px;
+    width: 55%;
+  }
+  .cancel {
+    background-color: rgb(245, 137, 22);
+    padding: 7px 60px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+  
+  /* Input and Textarea Styling */
+  .main input,
+  .main textarea {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .main input:focus,
+  .main textarea:focus {
+    outline: none;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    border-color: #000000;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .main {
+      padding: 10px;
+      max-width: 95%;
+    }
+  
+    .profile {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .user {
+      flex-wrap: wrap;
+      margin-right: 0;
+      gap: 10px;
+    }
+  
+    .srow {
+      grid-template-columns: 1fr; /* Stacks description and social links vertically */
+      gap: 20px;
+    }
+  
+    .vertical-line {
+      display: none;
+    }
+  
+    .desc textarea {
+      height: 150px;
+    }
+  
+    .cancel {
+      width: 100%;
+      text-align: center;
+      margin: 10px 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    label {
+      font-size: 0.9rem;
+    }
+  
+    .cancel {
+      font-size: 0.9rem;
+      padding: 8px 10px;
+    }
+  
+    input,
+    textarea {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+  }
+  
+  
+  
+  .profile {
+    width: 130px;
+    height: 110px;
+    border: 2px solid black;
+    border-radius: 10%;
+    background-color: #f0f0f0;
+    margin-left: 40px;
+    margin-right: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .profile label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: #f58a16;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile label img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .profile label:hover {
+    background-color: #d97614;
+  }
+  
+  .profile input[type="file"] {
+    display: none;
+  }
+  
