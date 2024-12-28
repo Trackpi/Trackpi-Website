@@ -354,9 +354,9 @@ function Home() {
         >
           <div className="flex animate-scroll">
             {clients.concat(clients).map((client, index) => (
-              <Col xs={6} md={2} key={index}>
+              <Col xs={3} md={2} key={index}>
                 <img
-                  className="sm:w-50 w-full h-[85px] object-contain"
+                  className="w-[85px] h-[50px]  lg:w-full lg:h-[85px] object-contain"
                   src={client.logo}
                   alt={`Client ${index + 1}`}
                 />
@@ -366,14 +366,14 @@ function Home() {
         </Row>
       </section>
 
-      <section className="mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1">
+      <section className="mt-12 lg:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1 ">
         <motion.div
           className="flex flex-col-reverse md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView1 ? 10 : 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
           {/* Text Section */}
-          <div className="md:w-1/2">
+          <div className="w-full">
             <motion.h1
               className="font-bold text-[#FFC100] text-3xl xl:text-5xl 2xl:text-6xl pb-3 hidden sm:block"
               animate={{ x: isInView1 ? 10 : 0 }}
@@ -397,33 +397,36 @@ function Home() {
               Consulting Firms in Kerala. contact us
             </motion.p>
           </div>
-
+         
           {/* Image Section */}
-          <div className="md:w-1/2 ">
-            <h1
-              className="font-bold text-[#FFC100] text-3xl xl:text-5xl 2xl:text-6xl pb-3 block sm:hidden text-center"
-             
-            >
+          <div className="w-full">
+            <h1 className="font-bold text-[#FFC100] text-3xl xl:text-5xl 2xl:text-6xl pb-3 text-center  block sm:hidden">
               We see the challenge
             </h1>
-            <motion.img
-              src={home1}
-              alt="Strategic Procurement"
-              className="shadow-lg rounded-lg w-full  h-[300px] md:h-[390px] 2xl:h-[490px] object-cover homeImg"
-              animate={{ scale: isInView1 ? 1.02 : 1 }}
-              transition={{ duration: 0.8, ease: 'easeInOut' }}
-            />
+            <div className="homeImg w-full">
+              <motion.img
+                src={home1}
+                alt="Strategic Procurement"
+                className="shadow-lg rounded-lg w-full h-[280px] md:h-[390px] 2xl:h-[490px] object-cover"
+                animate={{ scale: isInView1 ? 1.02 : 1 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+              />
+            </div>
           </div>
         </motion.div>
       </section>
 
-      <section className="mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-20 bg-[#FFC100] text-black bg2 section2">
+      <section className="mt-12 lg:mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-20 bg-[#FFC100] text-black bg2 section2">
         <motion.div
           className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ x: isInView2 ? 10 : 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
-          <div className="md:w-1/2 flex justify-start">
+          <div className="md:w-1/2 ">
+            <h1 className="font-bold text-black text-3xl xl:text-5xl 2xl:text-6xl pb-3 block  sm:hidden text-center">
+              We need to shift our thinking
+            </h1>
+            <div className='homeImg1'>
             <motion.img
               src={home1}
               alt="Strategic Procurement"
@@ -431,10 +434,12 @@ function Home() {
               animate={{ scale: isInView2 ? 1.02 : 1 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
+            </div>
+          
           </div>
           <div className="md:w-1/2">
             <motion.h1
-              className="font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-3"
+              className="font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-3  hidden sm:block"
               animate={{ y: isInView2 ? 10 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -459,22 +464,22 @@ function Home() {
         </motion.div>
       </section>
       <section className="relative z-20"></section>
-      <section className="px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3">
+      <section className=" mt-12 lg:mt-28 px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full section3">
         <motion.div
-          className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
+          className="flex flex-col-reverse md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView3 ? 10 : 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
-          <div className="flex flex-col w-full md:w-1/2">
+          <div className="flex flex-col w-full md:w-1/2 ">
             <motion.h1
-              className="font-bold text-[#FFC100] text-5xl 2xl:text-7xl"
+              className="font-bold text-[#FFC100] text-5xl xl:text-5xl 2xl:text-6xl  text-start sm:text-center  hidden sm:block"
               animate={{ y: isInView3 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               The old ways of working aren’t the only ways of working
             </motion.h1>
             <motion.p
-              className="text-base md:text-xl 2xl:text-2xl mt-8 mb-3 text-justify"
+              className="text-base md:text-xl 2xl:text-2xl sm:mt-0 lg:mt-8 mb-3 text-justify"
               animate={{ x: isInView3 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -486,7 +491,11 @@ function Home() {
               fingertips with TrackPi’ expert panel of consultants{' '}
             </motion.p>
           </div>
-          <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+          <div className="w-full md:w-1/2 flex flex-col justify-center md:justify-end">
+            <h1 className="font-bold text-[#FFC100] text-3xl 2xl:text-7xl block sm:hidden">
+              The old ways of working aren’t the only ways of working
+            </h1>
+            <div className='mt-3 homeImg w-full '>
             <motion.img
               src={home2}
               alt="Strategic Procurement"
@@ -495,6 +504,8 @@ function Home() {
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
           </div>
+            </div>
+           
         </motion.div>
       </section>
 
@@ -588,7 +599,7 @@ function Home() {
       </motion.div>
     </section> */}
       <div className="shadow-bottom">
-        <section className="flex justify-center px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto pt-24 pb-16 h-full w-full relative mt-20 mb-12 bg-[#FFC100] bgSection">
+        <section className="flex justify-center px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto  pt-24  pb-16 h-full w-full relative sm:mt-12 lg:mt-20 mb-12 bg-[#FFC100] bgSection">
           <div className="flex flex-col gap-2 justify-center items-center text-center">
             <h1 className="text-black font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-2">
               We're Ready to Help
