@@ -1,0 +1,26 @@
+@media (max-width: 640px) {
+    .contact{
+        color:  #FF9D00;
+        ;
+    }
+    .letter{
+        font-size: 25px;
+    }
+    .letters{
+        font-size: 22px;
+        
+    }
+    .ready{
+        font-size: 35px;
+    }
+    .sub{
+        font-size: 18px;
+    }
+    .but{
+        color: white;
+        font-size: 18px;
+    }
+    .team{
+        font-size: 16px;
+    }
+}

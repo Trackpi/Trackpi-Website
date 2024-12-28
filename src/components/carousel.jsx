@@ -2,10 +2,12 @@
 import React, { useState,useEffect } from 'react';
 // import { FaAngleRight } from 'react-icons/fa6';
 // import { FaAngleLeft } from 'react-icons/fa6';
-
+import "../pages/ourTeam.css";
 function Clients (){
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false); // Track hover state
+    const [cardsPerSlide, setCardsPerSlide] = useState(3);
+    
     const clients = [
         {
           id: 1,
@@ -28,40 +30,40 @@ function Clients (){
           logo: '/src/images/growthfactor.png',
         },
         {
-          id: 4,
+          id: 1,
           name: 'Growth Father',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
 
           logo: '/src/images/growthfactor.png',
         },
         {
-          id: 5,
+          id: 2,
           name: 'Trade Max Academy',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
           logo: '/src/images/trademax.png',
         },
         {
-          id: 6,
+          id: 3,
           name: 'Growth Father',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
 
           logo: '/src/images/growthfactor.png',
         },
         {
-          id: 7,
+          id: 1,
           name: 'Growth Father',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
 
           logo: '/src/images/growthfactor.png',
         },
         {
-          id: 8,
+          id: 2,
           name: 'Trade Max Academy',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
           logo: '/src/images/trademax.png',
         },
         {
-          id: 9,
+          id: 3,
           name: 'Growth Father',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
 
@@ -72,7 +74,7 @@ function Clients (){
       
     
       
-      const cardsPerSlide = 3;
+      
       const totalSlides = Math.ceil(clients.length / cardsPerSlide);
       // const handlePrev = () => {
       //   setCurrentIndex(prevIndex =>
@@ -98,6 +100,19 @@ function Clients (){
     
         return () => clearInterval(interval); // Cleanup interval on unmount or hover
       }, [isHovered, totalSlides]); // Re-run effect when hover state changes
+      useEffect(() => {
+        const updateCardsPerSlide = () => {
+          if (window.innerWidth < 768) {
+            setCardsPerSlide(1); // Show 1 card on mobile
+          } else {
+            setCardsPerSlide(3); // Show 3 cards on larger screens
+          }
+        };
+    
+        updateCardsPerSlide();
+        window.addEventListener("resize", updateCardsPerSlide);
+        return () => window.removeEventListener("resize", updateCardsPerSlide);
+      }, []);
 
     return(
         <>
@@ -108,7 +123,7 @@ function Clients (){
           
             <div
               className="flex transition-transform duration-500 flex justify-evenly gap-1"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` ,width: `${totalSlides * 100}%`,}}
+              style={{ transform: `translateX(-${currentIndex * 100}%)` ,width: `${totalSlides * 100}%`, }}
             >
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                   <div
@@ -119,7 +134,7 @@ function Clients (){
               {clients.slice().map(card => (
                 <div
                   key={card.id}
-                  className="lg:w-[10%] xl:w-[10%] md:w-[40%] sm:w-[100%] h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px]  lg:text-xl flex flex-col justify-center items-center lg:gap-4 gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
+                  className="lg:w-[10%] xl:w-[10%] md:w-[40%] sm:w-[100%] h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px]  lg:text-xl flex flex-col justify-center items-center  lg:gap-4 gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
                 >
                   <img src={card.logo} height="200px"width="200px" alt="" className="mx-auto" />
                   <h3 className=" text-center font-bold text-black mt-4 text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl xl-leading-7 2xl:leading-10 2xl:text-3xl ">
