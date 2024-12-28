@@ -15,7 +15,7 @@ import strategyImg2 from "../images/strategy2.png";
 import strategyImg3 from "../images/strategy3.png";
 import hiringImg1 from "../images/sale.jpg";
 import KeyBenefitServices from "../components/KeyBenefitServices";
-import './ourservices.css'
+import './CSS/ourservices.css'
 
 function OurServices() {
     return (

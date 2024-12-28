@@ -18,9 +18,13 @@ import Loader from './components/Loader';
 import NewProject from './pages/NewProject';
 import EmployeeSales from './pages/EmployeeSales';
 import EmployeeInternship from './pages/EmployeeInternship';
-
-
-
+import FormManagement from'./pages/FormManagement';
+import FooterManagement from'./pages/FooterManagement';
+import PartnershipManagement from'./pages/PartnershipManagement';
+import NewsManagement from'./pages/NewsManagement';
+import EmployeeManagement from'./pages/EmployeeManagement';
+import AdminManagement from'./pages/AdminManagement';
+import AdminLogin from'./pages/FormManagement';
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
@@ -63,6 +67,14 @@ function App() {
             <Route path="/new-project-form" element={<NewProject />} />
             <Route path="/employeesales" element={<EmployeeSales />} />
             <Route path="/employeeinternship" element={<EmployeeInternship />} />
+
+            <Route path="/admin/admin-login" element={<AdminLogin/>} />
+            <Route path="/admin/admin-management" element={<AdminManagement/>} />
+            <Route path="/admin/form-management" element={<FormManagement/>} />
+            <Route path="/admin/partnership-management" element={<PartnershipManagement/>} />
+            <Route path="/admin/news-management" element={<NewsManagement/>} />
+            <Route path="/admin/employee-management" element={<EmployeeManagement/>} />
+            <Route path="/admin/footer-management" element={<FooterManagement/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           {showHeaderFooterSocialMedia && <Footer />}

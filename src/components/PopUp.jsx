@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import "./popup.css";
+import "../pages/CSS/popup.css";
 import fbIcon from "../images/fb2.svg";
 import quoraIcon from "../images/quora2.svg";
 import youtubeIcon from "../images/yout2.svg";
@@ -18,7 +18,7 @@ function PopUp() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(true);
-        }, 60000);
+        }, 30000);
         return () => clearTimeout(timer);
     }, []);
 

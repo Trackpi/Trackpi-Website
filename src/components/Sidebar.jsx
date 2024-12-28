@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './sidebar.css';
+import '../pages/CSS/sidebar.css';
 import { NavLink } from 'react-router-dom';
 import { SiMedium } from 'react-icons/si';
 
