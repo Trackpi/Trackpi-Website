@@ -1,6 +1,13 @@
-function AdminManagement() {
-    return(
-        <div>helo</div>
-    )
+
+import React from 'react'
+
+const AdminManagement = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
-export default AdminManagement;
+
+export default AdminManagement
+

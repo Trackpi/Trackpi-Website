@@ -1,6 +1,13 @@
-function NewsManagement() {
-    return(
-        <div>helo</div>
-    )
+
+import React from 'react'
+
+const NewsManagement = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
-export default NewsManagement;
+
+export default NewsManagement
+

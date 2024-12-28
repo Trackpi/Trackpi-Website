@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import Brochure from "../components/Brochure";
-import './CSS/employverification.css'
+import '../CSS/employverification.css'
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({

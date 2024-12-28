@@ -1,6 +1,6 @@
 import React, {  useRef } from 'react';
 import trackpiLogo from '../images/trackpi_logo_one.png'; 
-import '../pages/CSS/loader.css'
+import '../CSS/loader.css'
 
 function Loader() {
   const imageRef = useRef(null);

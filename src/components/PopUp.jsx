@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import "../pages/CSS/popup.css";
+import "../CSS/popup.css";
 import fbIcon from "../images/fb2.svg";
 import quoraIcon from "../images/quora2.svg";
 import youtubeIcon from "../images/yout2.svg";

@@ -1,6 +1,13 @@
-function EmployeeManagement() {
-    return(
-        <div>helo</div>
-    )
+
+import React from 'react'
+
+const EmployeeManagement = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
-export default EmployeeManagement;
+
+export default EmployeeManagement
+

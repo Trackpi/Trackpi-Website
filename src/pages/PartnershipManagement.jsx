@@ -1,6 +1,13 @@
-function PartnershipManagement() {
-    return(
-        <div>helo</div>
-    )
+
+import React from 'react'
+
+const PartnershipManagement = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
-export default PartnershipManagement;
+
+export default PartnershipManagement
+
