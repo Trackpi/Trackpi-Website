@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Form, Button, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./footer.css";
+import "../pages/CSS/footer.css";
 import fbIcon from "../images/fb.svg";
 import quoraIcon from "../images/quora.svg";
 import youtubeIcon from "../images/yout.svg";

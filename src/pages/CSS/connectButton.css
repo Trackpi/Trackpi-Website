@@ -79,3 +79,8 @@
         width: 30px;
     }
 }
+@media (max-width: 640px) {
+  .wrapper{
+    display: none;
+  }
+}

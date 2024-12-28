@@ -16,5 +16,18 @@
       transform: rotate(360deg);
     }
   }
-
+.employ_form_two{
+  display:none ;
+}
+@media (max-width: 640px) {
+  .employ_form_one{
+    display:none ;
+  }
   
+  .employ_form_two{
+    display:block ;
+  }
+}
+.employInput:focus{
+border: #fde047 !important;
+}

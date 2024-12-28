@@ -4,9 +4,8 @@ import "react-puzzle-captcha/dist/react-puzzle-captcha.css";
 import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
-import HeaderBanner from "../components/HeaderBanner";
 import Brochure from "../components/Brochure";
-import './employverification.css'
+import './CSS/employverification.css'
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({
@@ -157,13 +156,7 @@ function EmployeeVerification() {
     ];
 
     return (
-        <>
-            {/* Hero Section */}
-            {/* <HeaderBanner
-                title="Employee Verification"
-                description="Verify employee credentials and details securely and efficiently."
-                classname="bgFour"
-            /> */}
+        <div className="employee_reg_page">
              <section className={`w-full h-screen home_section relative bgFour`}>
                 <div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
                      <Brochure />
@@ -199,7 +192,7 @@ function EmployeeVerification() {
                                 type="submit"
                                 onClick={handleSubmit}
                                 disabled={loading} // Disable button when loading
-                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-300 to-orange-400  py-2 px-6 rounded-md font-semibold lg:text-xl text-base text-black"
+                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  py-2 px-6 rounded-md font-semibold lg:text-xl text-base text-white"
                             >
                                 {loading ? "Verifying..." : "Verify Employee"}
                             </button>
@@ -210,12 +203,12 @@ function EmployeeVerification() {
             </section>
 
             {/* Verification Form Section */}
-            {/* <section className=" py-16 px-3 w-100">
-                <div style={{maxWidth:'1100px'}} className="bg-white shadow-lg mx-auto p-8 rounded-lg ">
-                    <h2 className="m-6 font-bold text-5xl text-amber-400 text-center">Employee Verification</h2>
+            <section className=" p-[1rem] mb-14 w-100 employ_form_two">
+                <div style={{maxWidth:'90%'}} className="bg-white shadow-lg mx-auto p-4 rounded-lg ">
+                    <h2 className="font-bold  text-amber-400 text-center">Employee Verification</h2>
                     <form>
-                        <div style={{fontWeight:"600"}} className="mb-4 fs-3 g-5">
-                            <label className="block my-2 text-dark" htmlFor="employeeId">
+                        <div style={{fontWeight:"600"}} className="mb-4 g-5">
+                            <label className="block my-2 text-xs text-dark" htmlFor="employeeId">
                                 Employee ID
                             </label>
                             <input
@@ -224,9 +217,9 @@ function EmployeeVerification() {
                                 aria-label="Enter Employee ID"
                                 value={formData.employeeId}
                                 onChange={handleTouched}
-                                className="border-black p-3 font-normal fs-4  rounded-md w-full"
+                                className=" p-[.3rem] font-normal  text-[.625rem] rounded-md w-full employInput"
                                 placeholder="Enter Employee ID"
-                                style={{border:'1px black solid'}}
+                                style={{border:'.32px #0A0A0A80 solid'}}
                             />
                         </div>
 
@@ -235,14 +228,14 @@ function EmployeeVerification() {
                                 type="submit"
                                 onClick={handleSubmit}
                                 disabled={loading} // Disable button when loading
-                                className="mt-3 transform hover:scale-105 bg-gradient-to-r from-yellow-300 to-orange-400 p-[12px] px-[30px]  rounded-md font-semibold text-2xl text-black"
+                                className="w-[92.17px] transform hover:scale-105 bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  py-[3.84px] px-[9.58px]  rounded-md font-semibold text-[10px] text-white"
                             >
                                 {loading ? "Verifying..." : "Verify Employee"}
                             </button>
                         </div>
                     </form>
                 </div>
-            </section> */}
+            </section>
             {loading && (
                 <div className="flex justify-center items-center fixed inset-0 bg-opacity-50 bg-yellow-500 z-50">
                     <div className="spinner"></div> {/* Show the loader spinner */}
@@ -261,8 +254,8 @@ function EmployeeVerification() {
 
             <section className="flex flex-col items-center gap-20 w-full h-full">
                 <div className="flex flex-col items-center p-3 gap-[20px]">
-                    <h1 className="text-2xl md:text-4xl lg:text-5xl text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
-                    <div style={{ maxWidth: "1126px" }}className="fw-normal text-black text-base md:text-xl lg:text-2xl px-3 text-justify lg:text-center">
+                    <h1 className="text-[3.125rem] text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
+                    <div style={{ maxWidth: "1126px" }}className="font-semibold text-black  text-[1.5rem] px-3 text-center">
                         Ensuring that employee information is accurate helps maintain a trustworthy workplace environment
                         and reduces the risk of fraudulent activities.
                     </div>
@@ -273,10 +266,10 @@ function EmployeeVerification() {
             key={card.id}
             className=" px-10 py-7 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] rounded-lg shadow-lg text-center cursor-pointer flex flex-col  h-full"
         >
-            <h3 className="text-black mt-4 font-bold text-base md:text-xl lg:text-2xl">
+            <h3 className="text-black mt-4 font-bold text-3xl">
                 {card.name}
             </h3>
-            <p className="text-black font-medium mt-2 text-base md:text-xl lg:text-2xl">
+            <p className="text-black font-semibold mt-2 text-[1.375rem]">
                 {card.description}
             </p>
         </div>
@@ -285,7 +278,7 @@ function EmployeeVerification() {
             </section>
 
             <ToastContainer />
-        </>
+        </div>
     );
 }
 
