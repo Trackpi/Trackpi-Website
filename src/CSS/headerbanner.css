@@ -114,16 +114,16 @@
     background-repeat: no-repeat;
   }
   .bgOne ,.bgTwo{
-    background-image: url('../../images/team.jpg');
+    background-image: url('../images/team.jpg');
   }
   .bgThree{
-    background-image: url('../../images/team.jpg');
+    background-image: url('../images/team.jpg');
   }
   .bgFour{
-    background-image: url('../../images/employ.jpg');
+    background-image: url('../images/employ.jpg');
   }
   .bgFive{
-    background-image: url('../../images/connect.jpg');
+    background-image: url('../images/connect.jpg');
   }
   
   

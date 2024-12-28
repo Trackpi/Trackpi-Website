@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LuCirclePlus } from 'react-icons/lu';
 import Brochure from './Brochure';
 import { Link } from 'react-router-dom';
-import '../pages/CSS/headerbanner.css'
+import '../CSS/headerbanner.css'
 
 function HeaderBanner({
   title,
