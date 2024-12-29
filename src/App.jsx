@@ -24,7 +24,7 @@ import PartnershipManagement from'./pages/PartnershipManagement';
 import NewsManagement from'./pages/NewsManagement';
 import EmployeeManagement from'./pages/EmployeeManagement';
 import AdminManagement from'./pages/AdminManagement';
-import AdminLogin from'./pages/FormManagement';
+import AdminLogin from'./pages/AdminLogin';
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
