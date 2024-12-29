@@ -172,7 +172,7 @@ function OurTeam() {
               src="https://cdn.prod.website-files.com/63f64214650d1272fb21690d/64495b2e1589c13e25e8db88_image_OurTeamForeground%402x-p-1080.webp"
 
                 alt=""
-              className="rounded-lg w-full h-[180px] md:h-[390px] 2xl:h-[490px] object-cover"
+              className="rounded-lg w-full h-[180px] md:h-[390px] 2xl:h-[490px] md:hidden object-cover"
 
            
 
