@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import Modal from 'react-bootstrap/Modal';
 import { addAdmin, deleteAdmin, editAdminData, getAdmins } from '../Api Services/adminManagement';
@@ -246,8 +246,3 @@ function AdminManagement() {
 }
 
 export default AdminManagement
-
-
-
-
-
