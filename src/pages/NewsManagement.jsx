@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const NewsManagement = () => {
@@ -9,3 +10,4 @@ const NewsManagement = () => {
 }
 
 export default NewsManagement
+

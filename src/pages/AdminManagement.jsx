@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const AdminManagement = () => {
@@ -9,3 +10,4 @@ const AdminManagement = () => {
 }
 
 export default AdminManagement
+

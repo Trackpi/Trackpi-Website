@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const FooterManagement = () => {
@@ -9,3 +10,4 @@ const FooterManagement = () => {
 }
 
 export default FooterManagement
+

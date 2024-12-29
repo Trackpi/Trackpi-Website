@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const PartnershipManagement = () => {
@@ -9,3 +10,4 @@ const PartnershipManagement = () => {
 }
 
 export default PartnershipManagement
+

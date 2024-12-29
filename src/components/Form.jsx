@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-
+import "../pages/connect.css";
 
 function Details() {
   return (
@@ -139,7 +139,7 @@ function Details() {
                 border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
-              color:'rgba(0, 0, 0, 0.74)',
+                color: 'rgba(10, 10, 10, 0.82)',
     
             }}
             // style={{
@@ -159,7 +159,7 @@ function Details() {
             }}
             required
           >
-            <option value="" disabled selected hidden style={{color:'red'}}>
+            <option value="" disabled selected hidden >
             How Did You Hear About Us?
             </option>
             <option value="socialMedia" >Social Media</option>
@@ -208,15 +208,15 @@ function Details() {
         <div className="text-center">
           <button
             type="submit"
-            className="mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] px-8 py-2 rounded-md font-semibold text-black"
+            className="but mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] px-8 py-2 rounded-md md:font-semibold md:text-black"
           >
             Submit
           </button>
         </div>
 
         <div className="pt-3 mb-5">
-          <h6 className="text-center text-sm sm:text-lg md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
-            Or email hello@trackpi.com to get in touch with our team.
+          <h6 className="team text-center text-sm sm:text-lg md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
+            Or email <span className='connect-text-Color'>hello@trackpi.com </span> to get in touch with our team.
           </h6>
         </div>
       </Form>

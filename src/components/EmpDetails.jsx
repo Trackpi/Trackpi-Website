@@ -42,7 +42,7 @@ function EmpDetails() {
                 <p className="font-bold text-xl" style={{ margin: 0 }} >Church Street, Jude Town, Evasteen, 31562</p>
                 </div>
 
-                <div className="flex flex-col gap-3 md:flex-row justify-between">
+                <div className="flex flex-col  gap-3 md:flex-row justify-between">
                     <div  className="phone" style={{ lineHeight: '1px' }}>
                         <p className="text-xl" style={{ margin: 0 }}>Gender</p>
                         <p className="font-bold text-xl" style={{ margin: 0 }} >Male</p>
@@ -65,27 +65,28 @@ function EmpDetails() {
 
         <div className=" div4  w-full h-[604px] flex flex-col gap-3">
                 <h2 className="connect-text-Color font-medium">Employement Overview</h2>
+               
+                        <div  className="phone " style={{ lineHeight: '1px' }}>
+                            <p className="text-xl" style={{ margin: 0 }}>Date Of Joining</p>
+                            <p className="font-bold text-xl"style={{ margin: 0 }} >01/12/20124</p>
+                        </div>
+
+                        <div  className="phone" style={{ lineHeight: '1px' }}>
+                        <p className="text-xl" style={{ margin: 0 }}>Job Role</p>
+                        <p className="font-bold text-xl" style={{ margin: 0 }}>Sales Manager</p>
+                        </div>
+               
+               
+                   <div  className="phone" style={{ lineHeight: '1px' }}>
+                    <p className="text-xl"style={{ margin: 0 }}>Employement Status</p>
+                    <p className="font-bold text-xl" style={{ margin: 0 }}>Full Time</p>
+                    </div>
                 
-                <div  className="phone" style={{ lineHeight: '1px' }}>
-                    <p className="text-xl" style={{ margin: 0 }}>Date Of Joining</p>
-                    <p className="font-bold text-xl"style={{ margin: 0 }} >01/12/20124</p>
-                </div>
-
-                <div  className="phone" style={{ lineHeight: '1px' }}>
-                <p className="text-xl" style={{ margin: 0 }}>Job Role</p>
-                <p className="font-bold text-xl" style={{ margin: 0 }}>Sales Manager</p>
-                </div>
-
-
-                <div  className="phone" style={{ lineHeight: '1px' }}>
-                <p className="text-xl"style={{ margin: 0 }}>Employement Status</p>
-                <p className="font-bold text-xl" style={{ margin: 0 }}>Full Time</p>
-                </div>
-            
-                <div  className="phone" style={{ lineHeight: '1px' }}>
-                <p className="text-xl"style={{ margin: 0 }}>Job Level</p>
-                <p className="font-bold text-xl" style={{ margin: 0 }}>Manager Level</p>
-                </div>
+                    <div  className="phone" style={{ lineHeight: '1px' }}>
+                    <p className="text-xl"style={{ margin: 0 }}>Job Level</p>
+                    <p className="font-bold text-xl" style={{ margin: 0 }}>Entry Level</p>
+                    </div>
+             
         </div>
    
   </div>
