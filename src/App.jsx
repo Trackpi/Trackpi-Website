@@ -18,7 +18,7 @@ import Loader from './components/Loader';
 import NewProject from './pages/NewProject';
 import EmployeeSales from './pages/EmployeeSales';
 import EmployeeInternship from './pages/EmployeeInternship';
-import EmployeeDetails from './pages/EmployeeDetails'; 
+
 
 
 
@@ -64,7 +64,6 @@ function App() {
             <Route path="/personnel" element={<Personel />} />
             <Route path="/" element={<Personel />} />
             <Route path="/new-project-form" element={<NewProject />} />
-            <Route path="/employee-details" element={<EmployeeDetails />} />
             <Route path="/employeesales" element={<EmployeeSales />} />
             <Route path="/employeeinternship" element={<EmployeeInternship />} />
             <Route path="*" element={<NotFound />} />
