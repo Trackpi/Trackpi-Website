@@ -47,7 +47,7 @@ function Connect() {
               >
 
                 <div className="flex flex-col items-center gap-1 space-y-2.5 space-y-2.5 sm:space-y-3 md:space-y-3 lg:space-y-5">
-                <div className="letter icon mt-2 text-lg lg:text-4xl text-amberCustom mb-4">
+                <div className="letter icon mt-2 text-lg lg:text-4xl text-amberCustom mb-2">
                   <i className={`fa-solid ${card.icon}`}></i>
                 </div>
                 <h6 className="letters text-sm md:text-xl lg:text-2xl xl:text-2xl font-medium">

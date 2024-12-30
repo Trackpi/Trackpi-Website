@@ -15,15 +15,18 @@ function Details() {
                  height:'53.4px',
                  width: '100%',
                  maxWidth: '712px',
+                 color:'rgba(0, 0, 0, 0.74)',
                         
                       }}
                       onFocus={e => {
                         e.target.style.borderColor = 'black';
                         e.target.style.boxShadow = '0 0 1px black';
+                      
                       }}
                       onBlur={e => {
                         e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
                         e.target.style.boxShadow = 'none';
+                        
                       }}
 
 
@@ -44,6 +47,7 @@ function Details() {
              border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
+                color:'rgba(0, 0, 0, 0.74)',
             
             
           }}
@@ -75,6 +79,7 @@ function Details() {
             border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
+                color:'rgba(0, 0, 0, 0.74)',
             
           }}
           onFocus={e => {
@@ -152,6 +157,7 @@ function Details() {
             onFocus={e => {
               e.target.style.borderColor = 'black';
               e.target.style.boxShadow = '0 0 1px black';
+
             }}
             onBlur={e => {
               e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
@@ -170,7 +176,7 @@ function Details() {
           </Form.Select>
         </div>
 
-        <div className="mb-3 flex justify-center items-center">
+        <div className="mb-3 flex justify-center items-center ">
           <Form.Control
 
            style={{
@@ -179,7 +185,7 @@ function Details() {
                
                 width: '100%',
                 maxWidth: '712px',
-            
+                color:'rgba(0, 0, 0, 0.74)',
             height: '150px'
           }}
           onFocus={e => {
@@ -215,7 +221,7 @@ function Details() {
         </div>
 
         <div className="pt-3 mb-5">
-          <h6 className="team text-center text-sm sm:text-lg md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
+          <h6 className="team text-center text-sm  md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
             Or email <span className='connect-text-Color'>hello@trackpi.com </span> to get in touch with our team.
           </h6>
         </div>
