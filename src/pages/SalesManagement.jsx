@@ -1,5 +1,4 @@
 
-
 function SalesManagement ()  {
     return (
       <div>
@@ -9,3 +8,4 @@ function SalesManagement ()  {
   }
   
   export default SalesManagement ;
+

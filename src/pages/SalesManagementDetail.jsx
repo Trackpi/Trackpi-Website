@@ -1,6 +1,4 @@
 
-
-
 function SalesManagementDetail ()  {
     return (
       <div>
@@ -10,3 +8,4 @@ function SalesManagementDetail ()  {
   }
   
   export default SalesManagementDetail ;
+

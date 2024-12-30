@@ -1,6 +1,5 @@
 
 
-
 function ProjectManagementDetail ()  {
     return (
       <div>
@@ -10,3 +9,4 @@ function ProjectManagementDetail ()  {
   }
   
   export default ProjectManagementDetail ;
+
