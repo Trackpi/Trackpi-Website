@@ -4,6 +4,7 @@ import  { useEffect, useState } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import Modal from 'react-bootstrap/Modal';
 import { addAdmin, deleteAdmin, editAdminData, getAdmins } from '../Api Services/adminManagement';
+import AdminNavbar from '../components/AdminNavbar';
 
 const adminid = localStorage.getItem('admin')
 
@@ -81,7 +82,9 @@ function AdminManagement() {
 
     return (
         <div className='p-5 bg-white'>
-            <h4 className='font-bold'>Admin Management</h4>
+            
+            <AdminNavbar></AdminNavbar>
+            <h4 className='font-bold mt-4'>Admin Management</h4>
             <table className="table table-bordered border-2 border-dark    rounded-md my-5 align-middle mb-0 bg-white rounded-5 ">
                 <thead className="bg-dark text-center" >
                     <tr>
