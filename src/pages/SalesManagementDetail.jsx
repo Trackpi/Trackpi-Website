@@ -1,9 +1,13 @@
-function SalesManagementDetails () {
 
 
+function SalesManagementDetail ()  {
     return (
-     <div></div>
-    );
+      <div>
+        
+      </div>
+    )
   }
   
-  export default SalesManagementDetails;
+  export default SalesManagementDetail ;
+
+

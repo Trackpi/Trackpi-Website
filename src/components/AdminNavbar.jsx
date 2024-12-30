@@ -2,7 +2,7 @@ import React from "react";
 
 function AdminNavbar() {
   return (
-    <header className="bg-white shadow-md px-4 py-3 md:px-8">
+    <header className="bg-white shadow-md px-4 py-1 md:px-8">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
         {/* Left Section */}
         <div className="flex items-center space-x-4">

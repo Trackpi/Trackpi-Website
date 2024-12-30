@@ -1,9 +1,13 @@
-function SalesManagement () {
 
 
+function SalesManagement ()  {
     return (
-     <div></div>
-    );
+      <div>
+        
+      </div>
+    )
   }
   
-  export default SalesManagement;
+  export default SalesManagement ;
+
+

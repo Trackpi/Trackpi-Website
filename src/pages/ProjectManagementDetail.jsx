@@ -1,9 +1,14 @@
-function ProjectManagementDetails () {
 
 
+
+function ProjectManagementDetail ()  {
     return (
-     <div></div>
-    );
+      <div>
+        
+      </div>
+    )
   }
   
-  export default ProjectManagementDetails;
+  export default ProjectManagementDetail ;
+
+

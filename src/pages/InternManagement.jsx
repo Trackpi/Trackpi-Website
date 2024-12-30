@@ -1,9 +1,14 @@
-function InternManagement () {
 
 
+
+
+function InternManagement ()  {
     return (
-     <div></div>
-    );
+      <div>
+        
+      </div>
+    )
   }
   
-  export default InternManagement;
+  export default InternManagement 
+
