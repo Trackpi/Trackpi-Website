@@ -157,20 +157,29 @@ function EmployeeVerification() {
 
     return (
         <div className="employee_reg_page">
-             <section className={`w-full h-screen home_section relative bgFour`}>
-                <div className="headerbuttons flex justify-end items-center space-x-5 relative px-4">
-                     <Brochure />
-                </div>
+            <section className="bgFour w-full  relative ">
+             <div className={`headerbuttons flex sm:justify-end  items-center space-x-0 sm:space-x-5 relative px-[15px] sm:px-[22.5px] lg:px-[30px] justify-end `}>
+          
+          {<Brochure />}
+        </div>
 
-                <div className="flex justify-center items-center h-screen ">
-                    <div style={{ width:"max-content"}} className={`flex flex-col max-w-[846px] text-center items-center gap-10 z-2 `}>
-                        <h1 className="text-yellow-400 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[62px]">
-                        Employee Verification
-                        </h1>
+        <div className="flex justify-center  items-center  h-100">
+          <div
+            className={`flex flex-col w-max text-center items-center z-2 `}
+          >
+            <h1 className="text-yellow-400 font-bold text-[20px] sm:text-[26px] md:text-[36px] lg:text-[48px] xl:text-[56px] 2xl:text-[62px]">
+            Employee Verification
+            </h1>
+
+            <p className="text-[12px] sm:text-[16px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px] leading-[14.4px] sm:leading-[18px] md:leading-[22px] lg:leading-[26px] xl:leading-[28px] 2xl:leading-[31.2px] text-white block md:hidden ">
+            Verify employee credentials and details securely
+            and efficiently.            </p>
+
+    
                         
-                        <form className="my-10 w-100">
+                        <form className=" w-100 mt-[20px] lg:mt-[30px] xl:mt-[40px] 2xl:mt-[50px] hidden md:block">
                         {/* Employee ID */}
-                        <div style={{fontWeight:"600", width:"80%"}} className="mb-4 mx-auto lg:text-xl text-lg g-5">
+                        <div style={{fontWeight:"600", width:"90%"}} className="mb-4 mx-auto lg:text-xl text-lg g-5">
                             <label className="block my-2 text-left text-light" htmlFor="employeeId">
                                 Employee ID
                             </label>
@@ -201,11 +210,11 @@ function EmployeeVerification() {
                     </div>
                 </div>
             </section>
-
+<div className="p-[20px] sm:p-[30px] md:p-[40px] lg:p-[50px] xl:p-[65px]">
             {/* Verification Form Section */}
-            <section className=" p-[1rem] mb-14 w-100 employ_form_two">
+            <section className=" mb-14 w-100 block md:hidden">
                 <div style={{maxWidth:'90%'}} className="bg-white shadow-lg mx-auto p-4 rounded-lg ">
-                    <h2 className="font-bold  text-amber-400 text-center">Employee Verification</h2>
+                    <div className="font-bold text-[18px] sm:text-[22px] text-amber-400 text-center">Employee Verification</div>
                     <form>
                         <div style={{fontWeight:"600"}} className="mb-4 g-5">
                             <label className="block my-2 text-xs text-dark" htmlFor="employeeId">
@@ -242,8 +251,32 @@ function EmployeeVerification() {
                 </div>
             )}
 
-            {/* Modal for Captcha  */}
-            <Modal size="sm" aria-labelledby="captcha-modal" centered show={modalShow} onHide={() => setModalShow(false)}>
+           
+            <section className="flex flex-col items-center gap-[15px] sm:gap-[20px] md:gap-[25px] lg:gap-[35px] xl:gap-[50px]  2xl:gap-[60px] w-full h-full">
+                <div className="flex flex-col items-center gap-[10px] sm:gap-[13px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px] 2xl:gap-[25px]">
+                    <div className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[32px] xl:text-[50px] 2xl:text-[60px] text-amber-400 fw-bolder text-center ">Why Verify Employees?</div>
+                    <div style={{ maxWidth: "1126px" }}className="font-normal md:font-semibold text-black text-[12px] sm:text-[15px] md:text-[18px] lg:text-[21px] xl:text-[24px] 2xl:text-[30px] px-3 justify_para">
+                        Ensuring that employee information is accurate helps maintain a trustworthy workplace environment
+                        and reduces the risk of fraudulent activities.
+                    </div>
+                </div>
+               <div className=" flex flex-wrap gap-2.5 sm:gap-5 lg:gap-10  justify-center lg:justify-between">
+    {clients.map((card) => (
+        <div
+            key={card.id}
+            className=" bg-gradient-to-r from-[#FFD152] via-[#FFC100] to-[#FFD152] w-full sm:w-[calc(50%-20px)] lg:w-[calc(30%)]   text-center rounded md:w-[410px] w-[280px] p-10 grid lg:gap-[20px] md:gap-[15px] gap-[10px] "
+        >
+            <h3 className="font-bold text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] xl:text-[28px] 2xl:text-[30px]">
+                {card.name}
+            </h3>
+            <p className="font-medium text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]">
+                {card.description}
+            </p>
+        </div>
+    ))}
+</div>
+ {/* Modal for Captcha  */}
+ <Modal size="sm" aria-labelledby="captcha-modal" centered show={modalShow} onHide={() => setModalShow(false)}>
                 <Modal.Header className="text-center">
                     <h5 className="w-100 text-black font-semibold m-0">Are you a robot?</h5>
                 </Modal.Header>
@@ -252,31 +285,8 @@ function EmployeeVerification() {
                 </Modal.Body>
             </Modal>
 
-            <section className="flex flex-col items-center gap-20 w-full h-full">
-                <div className="flex flex-col items-center p-3 gap-[20px]">
-                    <h1 className="text-[3.125rem] text-amber-400 fw-bolder text-center ">Why Verify Employees?</h1>
-                    <div style={{ maxWidth: "1126px" }}className="font-semibold text-black  text-[1.5rem] px-3 text-center">
-                        Ensuring that employee information is accurate helps maintain a trustworthy workplace environment
-                        and reduces the risk of fraudulent activities.
-                    </div>
-                </div>
-               <div className=" px-5 lg:px-20 pb-20 w-full mx-auto grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center">
-    {clients.map((card) => (
-        <div
-            key={card.id}
-            className=" px-10 py-7 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] rounded-lg shadow-lg text-center cursor-pointer flex flex-col  h-full"
-        >
-            <h3 className="text-black mt-4 font-bold text-3xl">
-                {card.name}
-            </h3>
-            <p className="text-black font-semibold mt-2 text-[1.375rem]">
-                {card.description}
-            </p>
-        </div>
-    ))}
-</div>
             </section>
-
+            </div>
             <ToastContainer />
         </div>
     );

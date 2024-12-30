@@ -88,7 +88,7 @@ Outsourcing Solutions"
                 </section>
 
                 {/* Risk Management*/}
-                <section id="risk-management" className="mt-5 w-full">
+                <section id="risk-management" className=" w-full">
                     <ServicesSub
                         heading="Risk Management"
                         classname=""
