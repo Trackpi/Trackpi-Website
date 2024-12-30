@@ -15,7 +15,11 @@ export default {
       animation: {
         scroll: 'scroll 20s linear infinite',
       },
-     
+      fontSize: {
+        mainHeading: '46px', // Main heading
+        subHeading: '34px',  // Subheading
+        content: '20px',     // Content
+      },
 
      
     },
