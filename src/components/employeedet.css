@@ -1,35 +1,62 @@
-@media (max-width: 768px) {
-    /* General container adjustments */
-    .mt-20 {
-      margin-top: 10px;
-    }
-    .w-full {
-      padding: 10px;
-    }
-    .py-10 {
-      padding: 20px 0;
-    }
+@media (max-width: 640px) {
+   
+  .empimg{
+    height: 150px !important;
+    width: 150px !important;
+    border-radius: 200px !important;
+  }
+  /* .div-frame{
+   
   
+  } */
+  .horizontal{
+    display: none;
+  }
+  /* .newdiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+  } */
+  .email{
+    display: none;
+  }
+  .active{
+   
+    padding-top: 1px !important;
+    font-size: 1rem !important;
+  }
     /* Employee details section */
     .custom-height {
+      
+      height: auto ;
+    }
+    .vertical-line {
+      display: none; /* Hide the vertical line on mobile screens */
+    }
+    .custom-height2{
       height: auto;
     }
-    .flex.flex-row {
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
+    /* .div1{
+      
+     
+    } */
+    .div2{
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 6px !important;
+      
     }
-    .custom-height {
+    .div3{
+      
       height: auto;
     }
-    /* Buttons and icons */
-    button {
-        width: 100%;
-        font-size: 1rem;
-        padding: 5px;
-      }
-      .text-yellow-500 {
-        font-size: 30px;
-      }
+    .div4{
+      
+      padding-top: 20px;
+      height: auto;
+    }
+    
+    
 
 }

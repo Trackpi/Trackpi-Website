@@ -3,14 +3,14 @@ import React from "react";
 
 
 import EmpDetails from "../components/EmpDetails";
-
+import "./employeeinternship.css";
 function EmployeeSales() {
 
 
   return (
-    <div className="mt-20 w-full py-10 px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto ">
+    <div className="pad  mt-20 w-full py-10 px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto ">
        <EmpDetails/>
-       <div className=" container text-center flex justify-center mt-20 ">
+       <div className=" container text-center flex justify-center mt-19 ">
                   
 
                     <div

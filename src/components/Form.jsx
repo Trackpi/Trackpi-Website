@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-
+import "../pages/connect.css";
 
 function Details() {
   return (
@@ -104,6 +104,7 @@ function Details() {
             border: '0.89px solid  #0A0A0ACC',
             width: '100%',
             maxWidth: '712px',
+            color:'rgba(0, 0, 0, 0.74)',
             
           }}
           onFocus={e => {
@@ -115,7 +116,7 @@ function Details() {
                 e.target.style.boxShadow = 'none';
           }}
 
-
+            
             type="text"
             id="location"
             placeholder="Where Are You Located?"
@@ -127,8 +128,8 @@ function Details() {
         <div className="mb-3 flex justify-center items-center">
           <Form.Select
             id="howDidYouHear"
-
-            className="bg-white   text-black placeholder-black p-3 place"
+           
+            className="bg-white   placeholder-black p-3 place"
             
             style={{
               
@@ -138,18 +139,16 @@ function Details() {
                 border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
-             
-             
-              appearance: "none",
-              WebkitAppearance: "none",
-              MozAppearance: "none",
- maxWidth: '712px',
-
-
-              appearance: 'none',
-              WebkitAppearance: 'none',
-              MozAppearance: 'none',
+                color: 'rgba(10, 10, 10, 0.82)',
+    
             }}
+            // style={{
+            //   border: '0.2px solid rgba(10, 10, 10, 0.82)',
+            //   borderRadius: '0.35rem',
+            //   color: 'rgba(170, 167, 167, 0.82)',
+            //   width: '100%',
+            //   maxWidth: '712px',
+            // }}
             onFocus={e => {
               e.target.style.borderColor = 'black';
               e.target.style.boxShadow = '0 0 1px black';
@@ -163,7 +162,7 @@ function Details() {
             <option value="" disabled selected hidden >
             How Did You Hear About Us?
             </option>
-            <option value="socialMedia">Social Media</option>
+            <option value="socialMedia" >Social Media</option>
             <option value="searchEngine">Search Engine</option>
             <option value="friendFamily">Friend or Family</option>
             <option value="advertisement">Advertisement</option>
@@ -209,15 +208,15 @@ function Details() {
         <div className="text-center">
           <button
             type="submit"
-            className="mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] px-8 py-2 rounded-md font-semibold text-black"
+            className="but mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] px-8 py-2 rounded-md md:font-semibold md:text-black"
           >
             Submit
           </button>
         </div>
 
         <div className="pt-3 mb-5">
-          <h6 className="text-center text-sm sm:text-lg md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
-            Or email hello@trackpi.com to get in touch with our team.
+          <h6 className="team text-center text-sm sm:text-lg md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
+            Or email <span className='connect-text-Color'>hello@trackpi.com </span> to get in touch with our team.
           </h6>
         </div>
       </Form>

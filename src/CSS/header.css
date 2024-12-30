@@ -69,8 +69,11 @@
     text-decoration: none;
     transition: transform 0.3s ease, font-size 0.3s ease;
     color: white;
+    width: max-content;
+    padding: auto;
+    margin: 4px  ;
   }
-  
+    
   #navlink:hover {
     color: #FFC100;
   }

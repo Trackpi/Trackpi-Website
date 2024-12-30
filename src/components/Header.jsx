@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import './header.css'
+import '../CSS/header.css'
 
 function Header() {
     const [showNavbar, setShowNavbar] = useState(false);

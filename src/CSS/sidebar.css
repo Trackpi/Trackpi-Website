@@ -126,3 +126,8 @@ ul li:hover a span {
   visibility: hidden;
   opacity: 0;
 }
+@media (max-width: 640px) {
+  .sidebar{
+    display: none;
+  }
+}

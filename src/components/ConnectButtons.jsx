@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './connectButton.css';
+import '../CSS/connectButton.css';
 import Whatsapp from '../images/whatsapp.svg';
 import signal from '../images/signal.svg';
 import hand from '../images/hand.svg';
