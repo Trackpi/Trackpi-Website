@@ -1,9 +1,11 @@
-import React from 'react'
 
-function SalesManagementDetail() {
-  return (
-    <div>SalesManagementDetail</div>
-  )
-}
+function SalesManagementDetail ()  {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+  
+  export default SalesManagementDetail ;
 
-export default SalesManagementDetail

@@ -1,9 +1,13 @@
+
+
 import React from 'react'
 
-function AddEmployee() {
+function AddEmployee ()  {
   return (
-    <div>AddEmployee</div>
+    <div>
+      
+    </div>
   )
 }
 
-export default AddEmployee
+export default AddEmployee;

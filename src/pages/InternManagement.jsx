@@ -1,9 +1,12 @@
-import React from 'react'
 
-function InternManagement() {
-  return (
-    <div>InternManagement</div>
-  )
-}
 
-export default InternManagement
+
+function InternManagement ()  {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+  
+  export default InternManagement 

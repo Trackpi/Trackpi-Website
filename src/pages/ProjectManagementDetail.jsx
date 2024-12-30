@@ -1,9 +1,12 @@
-import React from 'react'
 
-function ProjectManagementDetail() {
-  return (
-    <div>ProjectManagementDetail</div>
-  )
-}
 
-export default ProjectManagementDetail
+function ProjectManagementDetail ()  {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+  
+  export default ProjectManagementDetail ;
+
