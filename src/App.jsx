@@ -65,6 +65,7 @@ function App() {
             <Route path="/" element={<Personel />} />
             <Route path="/new-project-form" element={<NewProject />} />
             <Route path="/employeesales" element={<EmployeeSales />} />
+            
             <Route path="/employeeinternship" element={<EmployeeInternship />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
