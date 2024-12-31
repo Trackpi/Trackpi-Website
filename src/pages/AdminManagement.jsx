@@ -160,6 +160,8 @@ function AdminManagement() {
                                     className='form-control form-control-lg border-light drop-shadow-lg my-2'
                                     placeholder="user name"
                                     onChange={e => setAddAdminData({ ...addAminData, username: e.target.value })}
+                                    style={{ fontSize: '16px' }}  // Adjust the font size of the input text
+
 
                                 />
                             </Col>
@@ -171,6 +173,8 @@ function AdminManagement() {
                                     className='form-control form-control-lg border-light drop-shadow-lg my-2'
                                     placeholder="password"
                                     onChange={e => setAddAdminData({ ...addAminData, password: e.target.value })}
+                                    style={{ fontSize: '16px' }}  // Adjust the font size of the input text
+
                                 />
                             </Col>
                             <Col sm={3}></Col>
@@ -182,6 +186,8 @@ function AdminManagement() {
                                     aria-label="Default select example"
                                     id="password"
                                     onChange={e => setAddAdminData({ ...addAminData, adminType: e.target.value })}
+                                    style={{ fontSize: '16px' }}  // Adjust the font size of the input text
+
                                 >
                                     <option defaultValue disabled>Admin Type</option>
                                     <option value="admin">admin</option>

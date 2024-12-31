@@ -43,7 +43,7 @@ function HeaderBanner({
 
         <div className="flex justify-center pt-[100px] items-center  h-100">
           <div
-            className={`flex flex-col w-[275px] sm:w-[400px] md:w-[600px] lg:w-[750px] xl:w-[800px] 2xl:w-[827px] text-center items-center z-2 ${
+            className={`flex flex-col w-[275px] sm:w-[400px] md:w-[600px] lg:w-[750px] xl:w-[827px] 2xl:w-[950px] text-center items-center z-2 ${
               learn ? '' : 'mb-16'
             }`}
           >
