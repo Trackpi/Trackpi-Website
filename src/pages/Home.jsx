@@ -126,7 +126,7 @@ function Home() {
   const [bulgingCard, setBulgingCard] = useState(0);
   const [groupedCards, setGroupedCards] = useState([]);
   const [cardsPerGroup, setCardsPerGroup] = useState(
-    window.innerWidth < 768 ? 1 : 4
+    window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 4 // Initial value based on screen size
   );
   const [isPaused, setIsPaused] = useState(false);
 
@@ -142,12 +142,19 @@ function Home() {
   // Initial grouping and on resize update
   useEffect(() => {
     groupCards(); // Initial grouping
-  }, [cardsPerGroup]);
+  }, [cardsPerGroup]); // Trigger grouping when cardsPerGroup changes
 
   // Handle window resize
   useEffect(() => {
     const handleResize = () => {
-      const newCardsPerGroup = window.innerWidth < 768 ? 1 : 4;
+      let newCardsPerGroup = 4; // Default to 4 cards for large screens
+
+      if (window.innerWidth < 640) {
+        newCardsPerGroup = 1; // Only 1 card for small screens
+      } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
+        newCardsPerGroup = 2; // 2 cards for medium screens
+      }
+
       if (newCardsPerGroup !== cardsPerGroup) {
         setCardsPerGroup(newCardsPerGroup);
       }
@@ -177,11 +184,6 @@ function Home() {
 
     return () => clearInterval(bulgeInterval);
   }, [groupedCards.length, cardsPerGroup, isPaused]);
-
-  // const handleNextSlide = () => {
-  //   setCurrentIndex(prev => (prev === groupedCards.length - 1 ? 0 : prev + 1));
-  //   setBulgingCard(0);
-  // };
 
   const handleDotClick = index => {
     setCurrentIndex(index);
@@ -233,8 +235,8 @@ function Home() {
         title="Your Strategic Growth Partner"
       />
       <section>
-        <div className="text-center py-12  animate-fade-in newsHead">
-          <h1 className="text-3xl xl:text-5xl 2xl:text-6xl  font-bold text-[#FFC100] ">
+        <div className="text-center lg:pb-12 pt-8 sm:pb-3 px-2">
+          <h1 className="text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl  font-bold text-[#FFC100] ">
             Real-Time Business News Updates?
           </h1>
         </div>
@@ -256,12 +258,12 @@ function Home() {
                       cardsPerGroup === 1
                         ? 'grid-cols-1'
                         : 'grid-cols-1 md:grid-cols-4'
-                    } place-content-center gap-10 py-3 px-20`}
+                    } place-content-center gap-10 py-0 lg:px-20 px-16`}
                   >
                     {group.map((card, cardIndex) => (
                       <div
                         key={cardIndex}
-                        className={`carousel-card flex-shrink-0 w-full 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
+                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
                           cardIndex === bulgingCard
                             ? 'scale-110 2xl:scale-105'
                             : 'scale-95'
@@ -272,7 +274,7 @@ function Home() {
                       >
                         {/* Inner wrapper for scaling contents */}
                         <div
-                          className={`transform transition-transform duration-500 ${
+                          className={`transform transition-transform  duration-500 ${
                             cardIndex === bulgingCard
                               ? 'md:scale-105'
                               : 'scale-100'
@@ -281,14 +283,14 @@ function Home() {
                           <img
                             src={card.logo}
                             alt="Card_logo"
-                            className={`mx-auto transition-transform ${
+                            className={`mx-auto lg:h-auto h-[100px] transition-transform ${
                               cardIndex === bulgingCard
                                 ? 'md:scale-110'
                                 : 'scale-100'
                             }`}
                           />
                           <h3
-                            className={`mt-4 font-bold text-amber-500 transition-transform ${
+                            className={`mt-0 lg:mt-4 font-bold text-[#FFC100] transition-transform ${
                               cardIndex === bulgingCard
                                 ? 'md:text-xl'
                                 : 'text-lg'
@@ -315,21 +317,24 @@ function Home() {
           </div>
 
           {/* Slide Dots */}
-          <div className="absolute top-[110%] left-1/2 transform -translate-x-1/2 hidden md:flex justify-center items-center space-x-2">
-            {groupedCards.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handleDotClick(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  currentIndex === index ? 'bg-yellow-500 w-4' : 'bg-gray-400'
-                }`}
-              />
-            ))}
-          </div>
+          <div
+  className={`absolute top-[110%] left-4 transform md:left-1/2 md:-translate-x-1/2 flex justify-start md:justify-center items-center space-x-1 slideDots`}
+>
+  {groupedCards.slice(0, 4).map((_, index) => (
+    <button
+      key={index}
+      onClick={() => handleDotClick(index)}
+      className={`w-2 h-2 rounded-full transition-all duration-300 md:w-3 md:h-3 ${
+        currentIndex === index ? 'bg-yellow-500 w-3 md:w-4' : 'bg-gray-400'
+      }`}
+    />
+  ))}
+</div>
+
         </div>
 
-        <div className="text-right sm:text-right mt-4 mx-8 view-more-btn">
-          <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300">
+        <div className="text-right sm:text-right mt-4 mx-16  view-more-btn">
+          <button className="bg-black text-white py-1 px-3 lg:py-2 lg:px-4  xl:py-4 xl:py-8  2xl:px-8 2xl:py-12 rounded-lg hover:bg-amber-400 transition duration-300">
             View More
           </button>
         </div>
@@ -337,20 +342,22 @@ function Home() {
 
       <section className="w-full h-full mt-12 xl:mt-20 2xl:mt-24">
         <Row className="mt-5 text-center">
-          <h1 className="text-[#FFC100] font-extrabold">OUR CLIENTS</h1>
-          <h4 className="fw-bold text-[#0A0A0A]">
+          <h1 className="text-[#FFC100] font-extrabold text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl">
+            OUR CLIENTS
+          </h1>
+          <h4 className="fw-bold text-[#0A0A0A] text-xs md:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl">
             We’re fortunate to work with the best
           </h4>
         </Row>
 
         {/* Client Logos Section */}
-        <Row
-          className="flex justify-center items-center bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] py-2 "
-          style={{
-            marginTop: '3rem',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-          }}
+        <div
+          className="flex justify-center md:mt-8 lg:mt-12 sm:mt-2 items-center bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] py-2 "
+          // style={{
+          //   marginTop: '3rem',
+          //   overflow: 'hidden',
+          //   whiteSpace: 'nowrap',
+          // }}
         >
           <div className="flex animate-scroll">
             {clients.concat(clients).map((client, index) => (
@@ -363,26 +370,26 @@ function Home() {
               </Col>
             ))}
           </div>
-        </Row>
+        </div>
       </section>
 
-      <section className="mt-12 lg:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1 ">
+      <section className="mt-4 md:mt-24 lg:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1 ">
         <motion.div
-          className="flex flex-col-reverse md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
+          className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView1 ? 10 : 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
           {/* Text Section */}
           <div className="w-full">
             <motion.h1
-              className="font-bold text-[#FFC100] text-3xl xl:text-5xl 2xl:text-6xl pb-3 hidden sm:block"
+              className="font-bold text-[#FFC100] text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl   pb-3 hidden sm:block"
               animate={{ x: isInView1 ? 10 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               We see the challenge
             </motion.h1>
             <motion.p
-              className="text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-2xl text-[#0A0A0A]"
+              className="text-justify text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  text-[#0A0A0A]"
               animate={{ x: isInView1 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -397,10 +404,10 @@ function Home() {
               Consulting Firms in Kerala. contact us
             </motion.p>
           </div>
-         
+
           {/* Image Section */}
           <div className="w-full">
-            <h1 className="font-bold text-[#FFC100] text-3xl xl:text-5xl 2xl:text-6xl pb-3 text-center  block sm:hidden">
+            <h1 className="font-bold text-[#FFC100] text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl pb-3 text-center  block sm:hidden">
               We see the challenge
             </h1>
             <div className="homeImg w-full">
@@ -416,37 +423,36 @@ function Home() {
         </motion.div>
       </section>
 
-      <section className="mt-12 lg:mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-20 bg-[#FFC100] text-black bg2 section2">
+      <section className="mt-4 md:mt-24 lg:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-16 lg:py-20 bg-[#FFC100] text-black bg2 section2">
         <motion.div
-          className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
+          className="flex flex-col lg:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ x: isInView2 ? 10 : 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
-          <div className="md:w-1/2 ">
-            <h1 className="font-bold text-black text-3xl xl:text-5xl 2xl:text-6xl pb-3 block  sm:hidden text-center">
+          <div className="w-full">
+            <h1 className="font-bold text-black text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl pb-3 block  sm:hidden text-center">
               We need to shift our thinking
             </h1>
-            <div className='homeImg1'>
-            <motion.img
-              src={home1}
-              alt="Strategic Procurement"
-              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[490px] object-cover"
-              animate={{ scale: isInView2 ? 1.02 : 1 }}
-              transition={{ duration: 0.8, ease: 'easeInOut' }}
-            />
+            <div className="homeImg1 w-full">
+              <motion.img
+                src={home1}
+                alt="Strategic Procurement"
+                className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[490px] object-cover"
+                animate={{ scale: isInView2 ? 1.02 : 1 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+              />
             </div>
-          
           </div>
-          <div className="md:w-1/2">
+          <div className="w-full">
             <motion.h1
-              className="font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-3  hidden sm:block"
+              className="font-bold text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl  pb-3  hidden sm:block"
               animate={{ y: isInView2 ? 10 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               We need to shift our thinking
             </motion.h1>
             <motion.p
-              className="text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-2xl text-[#0A0A0A]"
+              className="text-justify text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  text-[#0A0A0A]"
               animate={{ y: isInView2 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -464,22 +470,22 @@ function Home() {
         </motion.div>
       </section>
       <section className="relative z-20"></section>
-      <section className=" mt-12 lg:mt-28 px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full section3">
+      <section className=" mt-4 md:mt-24 lg:mt-28 px-10 lg:px-20 xl:px-24 2xl:px-32  mx-auto w-full h-full section3">
         <motion.div
-          className="flex flex-col-reverse md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
+          className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView3 ? 10 : 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
-          <div className="flex flex-col w-full md:w-1/2 ">
+          <div className="flex flex-col w-full">
             <motion.h1
-              className="font-bold text-[#FFC100] text-5xl xl:text-5xl 2xl:text-6xl  text-start sm:text-center  hidden sm:block"
+              className="font-bold text-[#FFC100] text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl   text-start sm:text-center  hidden sm:block"
               animate={{ y: isInView3 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               The old ways of working aren’t the only ways of working
             </motion.h1>
             <motion.p
-              className="text-base md:text-xl 2xl:text-2xl sm:mt-0 lg:mt-8 mb-3 text-justify"
+              className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  sm:mt-0 lg:mt-8 mb-3 text-justify"
               animate={{ x: isInView3 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -491,120 +497,30 @@ function Home() {
               fingertips with TrackPi’ expert panel of consultants{' '}
             </motion.p>
           </div>
-          <div className="w-full md:w-1/2 flex flex-col justify-center md:justify-end">
-            <h1 className="font-bold text-[#FFC100] text-3xl 2xl:text-7xl block sm:hidden">
+          <div className="w-full  flex flex-col justify-center md:justify-end">
+            <h1 className="font-bold text-[#FFC100]  text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl  text-center block sm:hidden">
               The old ways of working aren’t the only ways of working
             </h1>
-            <div className='mt-3 homeImg w-full '>
-            <motion.img
-              src={home2}
-              alt="Strategic Procurement"
-              className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[490px] object-cover"
-              animate={{ scale: isInView3 ? 1.02 : 1 }}
-              transition={{ duration: 0.8, ease: 'easeInOut' }}
-            />
-          </div>
+            <div className="mt-3 homeImg w-full ">
+              <motion.img
+                src={home2}
+                alt="Strategic Procurement"
+                className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[490px] object-cover"
+                animate={{ scale: isInView3 ? 1.02 : 1 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+              />
             </div>
-           
+          </div>
         </motion.div>
       </section>
 
-      {/* <section className="px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3">
-      <motion.h1
-        className="font-bold text-[#FFC100] text-5xl 2xl:text-7xl"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: isInView3 ? 1 : 0, y: isInView3 ? 0 : -50 }}
-        transition={{ duration: 1 }}
-      >
-        The old ways of working aren’t the <br /> only ways of working
-      </motion.h1>
-
-      <motion.div
-        className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: isInView3 ? 1 : 0, y: isInView3 ? 0 : 50 }}
-        transition={{ duration: 1 }}
-      >
-        <div className="flex flex-col w-full md:w-1/2">
-          <motion.p
-            className="font-bold text-lg md:text-2xl 2xl:text-4xl mb-4"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isInView3 ? 1 : 0, x: isInView3 ? 0 : -50 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            We help organizations evolve new practices:
-          </motion.p>
-
-          <motion.p
-            className="text-base md:text-xl 2xl:text-3xl mb-3"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isInView3 ? 1 : 0, x: isInView3 ? 0 : -50 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            From struggling to attract and retain top talent To giving
-            everyone a voice in shaping the organization
-          </motion.p>
-
-          <motion.p
-            className="text-base md:text-xl 2xl:text-3xl mb-3"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isInView3 ? 1 : 0, x: isInView3 ? 0 : -50 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-            From hoarding information To making nearly all information
-            transparent and accessible
-          </motion.p>
-
-          <motion.p
-            className="text-base md:text-xl 2xl:text-3xl mb-3"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isInView3 ? 1 : 0, x: isInView3 ? 0 : -50 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
-            From being bombarded with meetings and email To shedding status
-            meetings and bureaucratic theater
-          </motion.p>
-
-          <motion.p
-            className="text-base md:text-xl 2xl:text-3xl mb-3"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isInView3 ? 1 : 0, x: isInView3 ? 0 : -50 }}
-            transition={{ duration: 1, delay: 1 }}
-          >
-            From hitting bottlenecks in decision-making To enabling
-            safe-to-try decisions at the edge
-          </motion.p>
-
-          <motion.p
-            className="text-base md:text-xl 2xl:text-3xl mb-3"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isInView3 ? 1 : 0, x: isInView3 ? 0 : -50 }}
-            transition={{ duration: 1, delay: 1.2 }}
-          >
-            From obsessing over short-term results To choosing strategic
-            priorities and explicit tradeoffs
-          </motion.p>
-        </div>
-
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-          <motion.img
-            src={home2}
-            alt="Strategic Procurement"
-            className="shadow-lg rounded-lg w-full h-[300px] md:h-[390px] 2xl:h-[690px] object-cover"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: isInView3 ? 1 : 0, scale: isInView3 ? 1 : 0.9 }}
-            transition={{ duration: 1 }}
-          />
-        </div>
-      </motion.div>
-    </section> */}
       <div className="shadow-bottom">
-        <section className="flex justify-center px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto  pt-24  pb-16 h-full w-full relative sm:mt-12 lg:mt-20 mb-12 bg-[#FFC100] bgSection">
+        <section className="flex justify-center px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto  2xl:pt-28 xl:pt-24 md:pt-20 pt-8 lg:pb-16  md:pb-12 pb-8 h-full w-full relative sm:mt-12 lg:mt-20 mb-12 bg-[#FFC100] bgSection">
           <div className="flex flex-col gap-2 justify-center items-center text-center">
-            <h1 className="text-black font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-2">
+            <h1 className="text-black font-bold  xl:leading-tight  pb-2  text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl ">
               We're Ready to Help
             </h1>
-            <p className="text-center text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-3xl text-black">
+            <p className="text-center text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  text-black">
               At Trackpi, we’re committed to your success. Our expert solutions
               and strategies are designed to drive growth, enhance efficiency,
               and help your business thrive in a competitive world. Let’s
