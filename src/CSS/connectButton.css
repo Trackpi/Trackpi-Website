@@ -5,7 +5,8 @@
   position: fixed;
   bottom: 50px;
   right: 10px;
-  gap: 5px; /* Adds space between buttons */
+  gap: 5px; 
+  z-index: 3;
 }
 
 .wrapper .button {
