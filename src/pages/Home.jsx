@@ -223,6 +223,8 @@ function Home() {
   const handleTouchStart = cardIndex => {
     setBulgingCard(cardIndex); // Mimic hover on touch devices
   };
+  const dotsToRender =
+    window.innerWidth < 640 ? groupedCards.slice(0, 4) : groupedCards;
 
   return (
     <>
@@ -263,7 +265,7 @@ function Home() {
                     {group.map((card, cardIndex) => (
                       <div
                         key={cardIndex}
-                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto 2xl:h-[490px] bg-black p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
+                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto 2xl:h-[490px] bg-black p-6 2xl:px-20 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
                           cardIndex === bulgingCard
                             ? 'scale-110 2xl:scale-105'
                             : 'scale-95'
@@ -299,9 +301,9 @@ function Home() {
                             {card.title}
                           </h3>
                           <p
-                            className={`mt-2 text-white transition-transform ${
+                            className={`mt-2 text-white  transition-transform ${
                               cardIndex === bulgingCard
-                                ? 'md:text-base'
+                                ? 'md:text-base '
                                 : 'text-sm'
                             }`}
                           >
@@ -317,26 +319,32 @@ function Home() {
           </div>
 
           {/* Slide Dots */}
-          <div
-  className={`absolute top-[110%] left-4 transform md:left-1/2 md:-translate-x-1/2 flex justify-start md:justify-center items-center space-x-1 slideDots`}
->
-  {groupedCards.slice(0, 4).map((_, index) => (
-    <button
-      key={index}
-      onClick={() => handleDotClick(index)}
-      className={`w-2 h-2 rounded-full transition-all duration-300 md:w-3 md:h-3 ${
-        currentIndex === index ? 'bg-yellow-500 w-3 md:w-4' : 'bg-gray-400'
-      }`}
-    />
-  ))}
-</div>
-
+          <div className="absolute top-[110%] md:left-1/2 left-1/4 transform -translate-x-1/2 md:flex justify-center items-center space-x-2">
+            {dotsToRender.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleDotClick(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  currentIndex === index ? 'bg-yellow-500 w-4' : 'bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="text-right sm:text-right mt-4 mx-16  view-more-btn">
-          <button className="bg-black text-white py-1 px-3 lg:py-2 lg:px-4  xl:py-4 xl:py-8  2xl:px-8 2xl:py-12 rounded-lg hover:bg-amber-400 transition duration-300">
-            View More
-          </button>
+        <div className="text-right mt-4 mx-16 view-more-btn px-4">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noopener noreferrer" // Security reason when using target="_blank"
+          >
+            <button
+              className="bg-[#0A0A0A] text-white py-1 px-3 
+ rounded-lg hover:bg-amber-400 transition duration-300 text-[14px] 2xl:text-[20px] font-trebuchet font-medium"
+            >
+              View More
+            </button>
+          </a>
         </div>
       </section>
 
@@ -373,7 +381,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mt-4 md:mt-24 lg:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1 ">
+      <section className="sm:mt-8 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1 ">
         <motion.div
           className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView1 ? 10 : 0 }}
@@ -383,14 +391,14 @@ function Home() {
           <div className="w-full">
             <motion.h1
               className="font-bold text-[#FFC100] text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl   pb-3 hidden sm:block"
-              animate={{ x: isInView1 ? 10 : 0 }}
+              animate={{ y: isInView1 ? 10 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               We see the challenge
             </motion.h1>
             <motion.p
-              className="text-justify text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  text-[#0A0A0A]"
-              animate={{ x: isInView1 ? 5 : 0 }}
+              className="text-justify text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[26px] xl:leading-7 2xl:leading-10  text-[#0A0A0A]"
+              animate={{ y: isInView1 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               Without a consultant, businesses often face challenges like
@@ -423,10 +431,10 @@ function Home() {
         </motion.div>
       </section>
 
-      <section className="mt-4 md:mt-24 lg:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-16 lg:py-20 bg-[#FFC100] text-black bg2 section2">
+      <section className="sm:mt-8 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-16 lg:py-20 bg-[#FFC100] text-black bg2 section2">
         <motion.div
           className="flex flex-col lg:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
-          animate={{ x: isInView2 ? 10 : 0 }}
+          animate={{ y: isInView2 ? 10 : 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
           <div className="w-full">
@@ -452,7 +460,7 @@ function Home() {
               We need to shift our thinking
             </motion.h1>
             <motion.p
-              className="text-justify text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  text-[#0A0A0A]"
+              className="text-justify text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[26px] xl:leading-7 2xl:leading-10  text-[#0A0A0A]"
               animate={{ y: isInView2 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
@@ -485,8 +493,8 @@ function Home() {
               The old ways of working aren’t the only ways of working
             </motion.h1>
             <motion.p
-              className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  sm:mt-0 lg:mt-8 mb-3 text-justify"
-              animate={{ x: isInView3 ? 5 : 0 }}
+              className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[26px] xl:leading-7 2xl:leading-10  sm:mt-0 lg:mt-8 mb-3 text-justify"
+              animate={{ y: isInView3 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               The old ways of working are the only ways of working Transform
@@ -520,7 +528,7 @@ function Home() {
             <h1 className="text-black font-bold  xl:leading-tight  pb-2  text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl ">
               We're Ready to Help
             </h1>
-            <p className="text-center text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  text-black">
+            <p className="text-center text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[26px] xl:leading-7 2xl:leading-10  text-black">
               At Trackpi, we’re committed to your success. Our expert solutions
               and strategies are designed to drive growth, enhance efficiency,
               and help your business thrive in a competitive world. Let’s

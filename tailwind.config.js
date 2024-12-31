@@ -20,7 +20,9 @@ export default {
         subHeading: '34px',  // Subheading
         content: '20px',     // Content
       },
-
+      fontFamily: {
+        trebuchet: ['"Trebuchet MS"', 'sans-serif'], // Define your custom font family
+      },
      
     },
   },
