@@ -1,7 +1,6 @@
 
 
 
-
 function InternManagementDetail ()  {
     return (
       <div>
@@ -11,3 +10,5 @@ function InternManagementDetail ()  {
   }
   
   export default InternManagementDetail ;
+
+

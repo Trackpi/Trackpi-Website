@@ -1,13 +1,9 @@
-
 import React from 'react'
 
-const EmployeeManagement = () => {
+function EmployeeManagement() {
   return (
-    <div>
-      
-    </div>
+    <div>EmployeeManagement</div>
   )
 }
 
 export default EmployeeManagement
-

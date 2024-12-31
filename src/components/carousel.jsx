@@ -122,19 +122,19 @@ function Clients (){
          >
           
             <div
-              className="flex transition-transform duration-500 flex justify-evenly gap-1"
+              className="flex transition-transform duration-500 flex justify-evenly gap-4 md:gap-1"
               style={{ transform: `translateX(-${currentIndex * 100}%)` ,width: `${totalSlides * 100}%`, }}
             >
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                   <div
                   key={slideIndex}
-                  className="flex justify-evenly gap-6 w-full"
+                  className="flex gap-4 md:gap-4 justify-evenly w-full px-2"
                   style={{ flex: "0 0 100%" }}
                 >
               {clients.slice().map(card => (
                 <div
                   key={card.id}
-                  className="lg:w-[10%] xl:w-[10%] md:w-[40%] sm:w-[100%] h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px]  lg:text-xl flex flex-col justify-center items-center  lg:gap-4 gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
+                  className="lg:w-[10%] xl:w-[10%] w-[500px] md:w-[40%] h-[300px] md:h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px]  lg:text-xl flex flex-col justify-center items-center  gap-2 lg:gap-4 md:gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-4 md:p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
                 >
                   <img src={card.logo} height="200px"width="200px" alt="" className="mx-auto" />
                   <h3 className=" text-center font-bold text-black mt-4 text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl xl-leading-7 2xl:leading-10 2xl:text-3xl ">

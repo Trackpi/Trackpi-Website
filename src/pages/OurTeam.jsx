@@ -77,7 +77,7 @@ function OurTeam() {
           </div>
         </motion.div>
       </section>
-      <section className="section3 md:mt-20 flex flex-col items-center gap-10 w-full h-full">
+      <section className="section3 md:mt-20 flex flex-col items-center md:gap-10 w-full h-full">
         <div className="flex flex-col items-center ">
           <h1 className="fw-bold text-3xl lg:text-5xl xl:text-5xl 2xl:text-6xl text-amber-500  hiring_heading">
             OUR CLIENTS
@@ -91,7 +91,7 @@ function OurTeam() {
 
       <section
         ref={refSecondSection}
-        className="mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-20 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] text-black bgg11 section2"
+        className="md:mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-20 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] text-black bgg11 section2"
       >
         <motion.div
           className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
@@ -154,7 +154,7 @@ function OurTeam() {
         className="section4 px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3"
       >
         <motion.div
-          className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
+          className=" flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           initial={{ opacity: 0, x: -50 }}
           animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8 }}
@@ -181,7 +181,7 @@ function OurTeam() {
               transition={{ duration: 0.8 }}
             />
             <motion.p
-              className="firstp text-base md:text-xl 2xl:text-2xl mt-8 mb-3 text-justify"
+              className="firstp text-base md:text-xl 2xl:text-2xl mt-8 md:mb-3 text-justify"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -197,7 +197,7 @@ function OurTeam() {
               </span>
             </motion.p>
             <motion.p
-              className="secondp text-base md:text-xl 2xl:text-2xl mt-8 mb-3 text-justify"
+              className="secondp text-base md:text-xl 2xl:text-2xl md:mt-8 mb-3 text-justify"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -235,7 +235,7 @@ function OurTeam() {
           </div>
         </motion.div>
       </section>
-      <section className="section4 md:mt-5 mb-5 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto">
+      <section className="section4 md:mt-5 mb-5 w-full px-2 md:px-6 lg:px-20 xl:px-24 2xl:px-32 md:py-8 mx-auto">
         <Container fluid>
           <Row>
             <h1 className="fw-bold text-center text-amber-500 text-3xl lg:text-5xl xl:text-5xl 2xl:text-6xl pb-2  flex justify-center">

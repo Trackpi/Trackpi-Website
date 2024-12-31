@@ -1,11 +1,15 @@
 
 
-function EmployeeManagementDetail () {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
-  
-  export default EmployeeManagementDetail;
+import React from 'react'
+
+function EmployeeManagementDetail() {
+  return (
+    <div>EmployeeManagementDetail</div>
+  )
+}
+
+export default EmployeeManagementDetail
+
+
+
+
