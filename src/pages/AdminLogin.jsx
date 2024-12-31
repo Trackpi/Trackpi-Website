@@ -28,7 +28,7 @@ function AdminLogin() {
           <img src={logo} alt="logo" className='img-fluid' width={200} />
         </Col>
         <Col sm={12}>
-          <h3 className='font-bold text-center my-5'>Login</h3>
+          <h3 className='font-bold text-center mt-5 mb-4'>Login</h3>
         </Col>
         <Col sm={12} className='d-flex justify-content-center'>
           <Row>
@@ -37,10 +37,12 @@ function AdminLogin() {
               <input
                 type="text"
                 id="username"
-                className='form-control form-control-lg border-light drop-shadow-lg my-2'
-                placeholder="Enter your user name"
+                className='form-control form-control-lg border-gray-500  my-2 border-2   shadow-md'
+                placeholder="Username"
                 value={data.username}
                 onChange={e => setData({ ...data, username: e.target.value })}
+                style={{ fontSize: '16px' }}  // Adjust the font size of the input text
+
               />
             </Col>
             <Col sm={12} className='mb-3'>
@@ -48,10 +50,12 @@ function AdminLogin() {
               <input
                 type="password"
                 id="password"
-                className='form-control form-control-lg border-light drop-shadow-lg my-2'
-                placeholder="Enter your password"
+                className='form-control form-control-lg border-gray-500  my-2 border-2   shadow-md'
+                placeholder="Password"
                 value={data.password}
                 onChange={e => setData({ ...data, password: e.target.value })}
+                style={{ fontSize: '16px' }}  // Adjust the font size of the input text
+
               />
             </Col>
             <Col sm={12} className="d-flex justify-content-center mt-3">
