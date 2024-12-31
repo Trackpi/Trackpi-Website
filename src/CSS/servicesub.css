@@ -1,0 +1,33 @@
+.title_heading {
+    text-align: start;
+}
+@media (max-width: 768px) {
+    .title_heading {
+        text-align: center;
+        width: 60%;
+        margin: auto;
+    }
+}
+.justify_para {
+    text-align: justify;
+    margin: 0 auto;
+    text-align-last: center;
+}
+.img_marketing {
+    height: 30px;
+}
+@media (min-width: 1536px) {
+    .img_marketing {
+        height: 90px;
+    }
+}
+@media (min-width: 768px) {
+    .img_marketing {
+        height: 50px;
+    }
+}
+@media (min-width: 1024px) {
+    .img_marketing {
+        height: 80px;
+    }
+}
