@@ -44,7 +44,7 @@ function Header() {
                 <Container fluid>
                     <Navbar.Brand href="" className="ms-md-3">
                         <Link to={"/"} className="flex items-center text-decoration-none p-1">
-                            <img src="src/images/trackpi_logo_one.png" alt="TrackPi Logo" style={{ width: "110px" }} />
+                            <img src="src/images/trackpi_logo_one.png" alt="TrackPi Logo" />
                         </Link>
                     </Navbar.Brand>
 

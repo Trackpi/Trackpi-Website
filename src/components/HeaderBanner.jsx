@@ -51,14 +51,14 @@ function HeaderBanner({
             {titleTwo ? currentTitle : title}
             </h1>
 
-            <p className="text-[12px] sm:text-[16px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px] leading-[14.4px] sm:leading-[18px] md:leading-[22px] lg:leading-[26px] xl:leading-[28px] 2xl:leading-[31.2px] sm:p-5 text-white ">
+            <p className="text-[12px] sm:text-[16px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px] leading-[14.4px] sm:leading-[18px] md:leading-[22px] lg:leading-[26px] xl:leading-[28px] 2xl:leading-[31.2px] sm:p-5 text-white justify_banner">
               {description}
             </p>
 
             {learn ? (
               <div className="flex justify-center items-center">
                 <Link to={'/our-services'} className='text-white'>               
-                <button className="header_button text-[10px] sm:text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] px-[10px] py-[7px] sm:px-[12px] sm:py-[8px] md:px-[16px] md:py-[10px] lg:px-[20px] lg:py-[14px] xl:px-[22px] xl:py-[18px] 2xl:px-[24px] 2xl:py-[20px] lg:rounded-[10px]  sm:rounded-[7.5px] rounded-[5px]">Learn How We Can Help</button>
+                <button className="header_button text-[10px] sm:text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] px-[10px] py-[7px] sm:px-[12px] sm:py-[8px] md:px-[16px] md:py-[10px] lg:px-[20px] lg:py-[14px] xl:px-[22px] xl:py-[18px] 2xl:px-[24px] 2xl:py-[20px] lg:rounded-[10px]  md:rounded-[7.5px]   sm:rounded-[5px] rounded-[3.5px]">Learn How We Can Help</button>
                 </Link>
               </div>
             ) : null}

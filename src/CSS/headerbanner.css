@@ -144,24 +144,9 @@
   /* header button */
 .header_button{
     background: linear-gradient(to right, #FFC100,#FF9D00);
-    border-radius: 10px;
     font-weight: 600 ;
-    font-size: 22px ;
-    padding: 20px 24px;
     border: none;
   }
-  @media screen and (max-width: 768px) {
-    .header_button{
-      font-size: 18px;
-      padding: 12px 16px;
-    }
-  }
-  @media screen and (max-width: 576px) {
-    .header_button{
-      font-size: 12px;
-      padding: 10px 14px;
-    }
-  } 
 .headerbuttons{
   position: relative;
   height: 0;
@@ -184,9 +169,32 @@
 @media (max-width: 640px) {
 
 .bgOne::before,.bgTwo::before, .bgThree::before, .bgFour::before, .bgFive::before {
-  height: 332px;
+  height: 440px;
 }
 .bgOne, .bgTwo , .bgThree, .bgFour, .bgFive{
-  height: 332px;
+  height: 440px;
 }
+}
+.justify_banner {
+  text-align: justify;
+  text-align-last: center;
+}
+.custom-shape-divider-bottom-1735630760 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1735630760 svg {
+  position: relative;
+  display: block;
+  width: calc(275% + 1.3px);
+  height: 500px;
+}
+
+.custom-shape-divider-bottom-1735630760 .shape-fill {
+  fill: #FFFFFF;
 }

@@ -177,7 +177,7 @@ function EmployeeVerification() {
 
     
                         
-                        <form className=" w-100 mt-[20px] lg:mt-[30px] xl:mt-[40px] 2xl:mt-[50px] hidden md:block">
+                        <form className=" w-100 mt-[3vh] lg:mt-[4vh] xl:mt-[5vh] 2xl:mt-[7vh]  hidden md:block">
                         {/* Employee ID */}
                         <div style={{fontWeight:"600", width:"90%"}} className="mb-4 mx-auto lg:text-xl text-lg g-5">
                             <label className="block my-2 text-left text-light" htmlFor="employeeId">
@@ -264,12 +264,12 @@ function EmployeeVerification() {
     {clients.map((card) => (
         <div
             key={card.id}
-            className=" bg-gradient-to-r from-[#FFD152] via-[#FFC100] to-[#FFD152] w-full sm:w-[calc(50%-20px)] lg:w-[calc(30%)]   text-center rounded md:w-[410px] w-[280px] p-10 grid lg:gap-[20px] md:gap-[15px] gap-[10px] "
+            className=" bg-gradient-to-r from-[#FFD152] via-[#FFC100] to-[#FFD152] sm:w-[calc(50%-20px)] lg:w-[calc(30%)]   text-center rounded md:w-[410px] w-[280px] py-[24px] px-[18px] sm:px-[21px] sm:py-[28px] md:px-[24px] md:py-[32px] lg:px-[27px] lg:py-[36px] xl:px-[30px] xl:py-[40px]  2xl:px-[33px] 2xl:py-[45px] grid lg:gap-[20px] md:gap-[15px] gap-[10px] "
         >
             <h3 className="font-bold text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] xl:text-[28px] 2xl:text-[30px]">
                 {card.name}
             </h3>
-            <p className="font-medium text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]">
+            <p className="font-medium text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] ">
                 {card.description}
             </p>
         </div>

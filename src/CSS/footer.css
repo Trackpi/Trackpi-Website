@@ -21,7 +21,29 @@
     border-color: #ffc107;
     box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
   }
-  
+  .footerForm button{
+    border-radius: 0 10px 10px 0;
+  }
+  .footerForm input::placeholder{
+    color: #0A0A0A80;
+  }
+  @media (max-width: 640px) {
+    .footerForm button{
+      border-radius: 10px  ;
+     padding: 7.5px 15px !important;
+     font-size: 10px;
+     margin-top: 10px;
+     margin: auto;
+    }
+    .footerForm input{
+      border-radius: 10px;
+      height: 30px;
+      font-size: 10px;
+    }
+    .footerForm input::placeholder{
+      color: #0A0A0A80;
+    }
+  }
 
 
 .slogen{
@@ -31,4 +53,20 @@
 #fb-footer,#medium-footer,#insta-footer,#blogger-footer,#youtube-footer,#quora-footer,#linkedin-footer{
   background-color: #FFC100;
   color: white !important;
+}
+.footer_smedia img{
+  height:30px;
+  width: 30px;
+}
+@media (max-width: 640px) {
+  .footer_smedia img{
+    height:24px;
+    width: 24px;
+  }
+}
+@media (max-width: 1024px) {
+  .footer_smedia img{
+    height:27px;
+    width: 27px;
+  }
 }
