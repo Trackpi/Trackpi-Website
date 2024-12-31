@@ -2,8 +2,10 @@
 import EmployeeSales from "../pages/EmployeeSales";
 import Personel from "../pages/personel";
 import MemberCard from "./memberCard";
-import { useState } from "react";
-
+import { useState,useRef} from "react";
+import { FaAngleRight } from 'react-icons/fa6';
+import { FaAngleLeft } from 'react-icons/fa6';
+import "./teamListMember.css";
 
 
 const memberList = [
@@ -74,23 +76,63 @@ const memberList = [
     
     const [showModal, setShowModal] = useState(false);
     const [selectedMember, setSelectedMember] = useState(null);
+    const scrollRef = useRef(null);
+    
   
     const handleCardClick = (member) => {
       setSelectedMember(member); // Set the clicked member's data
       setShowModal(true);        // Open the modal
     };
     
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: -scrollRef.current.offsetWidth, // Scroll by container width
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: scrollRef.current.offsetWidth, // Scroll by container width
+        behavior: "smooth",
+      });
+    }
+  };
     
    
     return (
-        <div className="w-full px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 ">
+        <div className=" w-full px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 ">
             <div>
-                <div className="max-w-full mx-auto px-4 sm:px-8 md:px-10 lg:px-16 xl:px-20 2xl:px-24">
-                   
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {memberList.map((item, index) => (
-                     <MemberCard key={index} member={item} onCardClick={() => handleCardClick(item)} />
-                         ))}
+                <div className=" max-w-full mx-auto md:px-10 md:px-10 lg:px-16 xl:px-20 2xl:px-24">
+                   <div className="relative">
+                        <div 
+                            ref={scrollRef}
+                            className="flex overflow-x-auto  space-x-0 scroll-snap-x scroll-snap-mandatory  md:grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-8">
+                            {memberList.map((item, index) => (
+                                <div className="min-w-[full] md:min-w-0 flex-shrink-0 scroll-snap-align-start">
+                                <MemberCard key={index}  member={item} onCardClick={() => handleCardClick(item)} />
+                                </div>
+                                ))}
+                        </div>
+                         {/* Scroll Buttons (Only for Mobile Screens) */}
+                        <div className="md:hidden flex justify-between items-center mt-4">
+                        <button
+                            onClick={scrollLeft}
+                            className="bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] text-white px-4 py-2 rounded-lg"
+                        >
+                            <FaAngleLeft size={18} />
+                        </button>
+                        <button
+                            onClick={scrollRight}
+                            className="bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] text-white px-4 py-2 rounded-lg"
+                        >
+                           <FaAngleRight size={18} />
+                        </button>
+                        </div>
+
                     </div>
                 </div>
             </div>

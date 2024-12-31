@@ -1,4 +1,5 @@
 
+
 import React from 'react'
 
 function EmployeeManagementDetail() {
@@ -8,6 +9,7 @@ function EmployeeManagementDetail() {
 }
 
 export default EmployeeManagementDetail
+
 
 
 

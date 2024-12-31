@@ -6,6 +6,7 @@ const ProjectManagement = () => {
   const [tableData, setTableData] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null); // State to hold selected project for viewing details
 
+
   // Simulating data fetch
   useEffect(() => {
     const fetchData = async () => {
@@ -100,3 +101,4 @@ const ProjectManagement = () => {
 };
 
 export default ProjectManagement;
+
