@@ -15,10 +15,12 @@
     .section4{
         margin-top: 20px;
     }
+    
     .paras{
         font-size: 18px;
     }
     .our{
-     
+        margin-top: 40px !important;
     }
+   
 }

@@ -7,6 +7,7 @@ function Clients (){
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false); // Track hover state
     const [cardsPerSlide, setCardsPerSlide] = useState(3);
+    const [filteredClients, setFilteredClients] = useState([]);
     
     const clients = [
         {
@@ -30,40 +31,40 @@ function Clients (){
           logo: '/src/images/growthfactor.png',
         },
         {
-          id: 1,
+          id: 4,
           name: 'Growth Father',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
 
           logo: '/src/images/growthfactor.png',
         },
         {
-          id: 2,
+          id: 5,
           name: 'Trade Max Academy',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
           logo: '/src/images/trademax.png',
         },
         {
-          id: 3,
+          id: 6,
           name: 'Growth Father',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
 
           logo: '/src/images/growthfactor.png',
         },
         {
-          id: 1,
+          id: 7,
           name: 'Growth Father',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
 
           logo: '/src/images/growthfactor.png',
         },
         {
-          id: 2,
+          id: 8,
           name: 'Trade Max Academy',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
           logo: '/src/images/trademax.png',
         },
         {
-          id: 3,
+          id: 9,
           name: 'Growth Father',
           description:'credentials and background details Verify the authenticity of employee credentials and background details.',
 
@@ -75,7 +76,7 @@ function Clients (){
     
       
       
-      const totalSlides = Math.ceil(clients.length / cardsPerSlide);
+      const totalSlides = Math.ceil(filteredClients.length / cardsPerSlide);
       // const handlePrev = () => {
       //   setCurrentIndex(prevIndex =>
       //     prevIndex > 0 ? prevIndex - 1 : Math.floor(clients.length / cardsPerSlide)
@@ -100,12 +101,16 @@ function Clients (){
     
         return () => clearInterval(interval); // Cleanup interval on unmount or hover
       }, [isHovered, totalSlides]); // Re-run effect when hover state changes
+
+      
       useEffect(() => {
         const updateCardsPerSlide = () => {
           if (window.innerWidth < 768) {
             setCardsPerSlide(1); // Show 1 card on mobile
+            setFilteredClients(clients.filter(client => client.id === 1 || client.id === 2));
           } else {
             setCardsPerSlide(3); // Show 3 cards on larger screens
+            setFilteredClients(clients); // Show all clients
           }
         };
     
@@ -116,14 +121,14 @@ function Clients (){
 
     return(
         <>
-         <section className=' py-8 px-9 w-full '
+         <section className=' py-7 px-2 md:px-9 w-full '
          onMouseEnter={() => setIsHovered(true)} // Stop auto-sliding
          onMouseLeave={() => setIsHovered(false)} // Resume auto-sliding
          >
           
             <div
-              className="flex transition-transform duration-500 flex justify-evenly gap-4 md:gap-1"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` ,width: `${totalSlides * 100}%`, }}
+              className="flex transition-transform duration-500 flex justify-evenly gap-100 md:gap-1"
+              style={{ transform: `translateX(-${currentIndex  * (100 / totalSlides)}%)` ,width: `${totalSlides * 100}%`, }}
             >
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                   <div
@@ -131,16 +136,16 @@ function Clients (){
                   className="flex gap-4 md:gap-4 justify-evenly w-full px-2"
                   style={{ flex: "0 0 100%" }}
                 >
-              {clients.slice().map(card => (
+              {filteredClients.slice().map(card => (
                 <div
                   key={card.id}
                   className="lg:w-[10%] xl:w-[10%] w-[500px] md:w-[40%] h-[300px] md:h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px]  lg:text-xl flex flex-col justify-center items-center  gap-2 lg:gap-4 md:gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-4 md:p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
                 >
-                  <img src={card.logo} height="200px"width="200px" alt="" className="mx-auto" />
+                  <img src={card.logo}  alt="" className="h-[150px] w-[150px] md:h-[130px] md:w-[200px] lg:h-[130px] lg:w-[200px] 2xl:h-[130px] 2xl:w-[200px] mx-auto" />
                   <h3 className=" text-center font-bold text-black mt-4 text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl xl-leading-7 2xl:leading-10 2xl:text-3xl ">
                     {card.name}
                   </h3>
-                  <p className=" text-black font-medium text-justify mt-2 text-lg sm:text-lg md:text-lg lg:text-xl xl:text-xl xl-leading-7 2xl:leading-10 2xl:text-2xl ">{card.description}</p>
+                  <p className="text-black font-medium text-justify mt-2 text-lg sm:text-lg md:text-lg lg:text-xl xl:text-xl xl-leading-7 2xl:leading-10 2xl:text-2xl ">{card.description}</p>
                 </div>
                   ))}
                   </div>

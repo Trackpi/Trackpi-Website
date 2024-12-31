@@ -613,78 +613,12 @@ body, html {
   
 /* Our services */
 
-.redSelect{
-  background-color: #f5cf10;
-}
 
-.first{
-  display: flex;
-  flex-direction: column;
- 
-}
-.bb{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.aa{
-  
-padding: 50px;
-
-width: 100%;
-display: flex !important;
-justify-content: center;
-gap: 50px !important;
-
-}
-.cards{
-  
-  width: 100%;
-  display: flex;
- border-radius: 7px !important;
-  gap: 20px;
-}
-.icon-color{
-  color: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
-}
-.card1{
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  background: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
-
-  color: black !important;
-  border-radius: 7px !important;
-}
-/* .connect-text-Color{
-
-  color: black !important;
-  border-radius: 7px !important;
-} */
-.fixed-card {
-  color:  linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
-  background: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
-  width: 410px !important;    /* Fixed width */
-  height: 230px !important;   /* Fixed height */
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 1px !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for better visual separation */
-}
 
 .connect-text-Color {
   color: rgb(245, 158, 11);
 }
-.icon{
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
-  background-color:white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 
 

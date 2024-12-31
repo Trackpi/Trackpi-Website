@@ -104,7 +104,7 @@ const memberList = [
     
    
     return (
-        <div className=" w-full px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 ">
+        <div className="md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10 w-full px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 ">
             <div>
                 <div className=" max-w-full mx-auto md:px-10 md:px-10 lg:px-16 xl:px-20 2xl:px-24">
                    <div className="relative">
@@ -121,13 +121,13 @@ const memberList = [
                         <div className="md:hidden flex justify-between items-center mt-4">
                         <button
                             onClick={scrollLeft}
-                            className="bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] text-white px-4 py-2 rounded-lg"
+                            className=" text-[#FF9D00] px-4 py-2 rounded-lg"
                         >
                             <FaAngleLeft size={18} />
                         </button>
                         <button
                             onClick={scrollRight}
-                            className="bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] text-white px-4 py-2 rounded-lg"
+                            className=" text-[#FF9D00] px-4 py-2 rounded-lg"
                         >
                            <FaAngleRight size={18} />
                         </button>
