@@ -1,7 +1,7 @@
-
-
 import React, { useState, useRef } from "react";
-import '../CSS/addsales.css'
+import '../CSS/addsales.css';
+import { toast } from "react-toastify";
+import { addInternEmployee } from "../Api Services/internsManagementApi";
 
 function AddInterns() {
   const [formData, setFormData] = useState({
@@ -21,16 +21,13 @@ function AddInterns() {
     linkedin: "",
     twitter: "",
     feedback: "",
-    profileImage: null,
-    certificate: null,
   });
   
-  const [uploadedImage, setUploadedImage] = useState(null);
-  const [uploadedCertificate, setUploadedCertificate] = useState(null);
-  
+  const [profileImage, setProfileImage] = useState(null);
+  const [certificate, setCertificate] = useState(null);
+
   const certificateInputRef = useRef(null);
   const fileInputRef = useRef(null);
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,22 +35,48 @@ function AddInterns() {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setUploadedImage(URL.createObjectURL(file))
-    }
+    setProfileImage(e.target.files[0]);
   };
 
   const handleCertificateFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setUploadedCertificate(URL.createObjectURL(file));
-    }
+    setCertificate(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+
+    const formDataObj = new FormData();
+
+    // Append form data
+    for (const key in formData) {
+      formDataObj.append(key, formData[key]);
+    }
+
+    // Append files
+    if (profileImage) {
+      formDataObj.append("profileImage", profileImage);
+    }
+
+    if (certificate) {
+      formDataObj.append("Certificate", certificate);
+    }
+    const header = {
+      "content-Type": "multipart/form-data",
+      Authorization: `Token ${sessionStorage.getItem("token")}`,
+    };
+
+
+    try {
+      const response = await addInternEmployee(formDataObj, header);
+      if (response.status === 200) {
+        toast.success("Intern added successfully!");
+      } else {
+        toast.error("Failed to add intern.");
+      }
+    } catch (error) {
+      console.error("Error adding intern:", error);
+      toast.error("An error occurred while adding the intern.");
+    }
   };
 
   return (
@@ -70,9 +93,9 @@ function AddInterns() {
                 position: "relative",
               }}
             >
-              {uploadedImage ? (
+              {profileImage ? (
                 <img
-                  src={uploadedImage}
+                  src={URL.createObjectURL(profileImage)}
                   alt="Uploaded"
                   style={{
                     width: "100px",
@@ -142,52 +165,80 @@ function AddInterns() {
             </div>
           </div>
         </div>
-
-        <div className="col-md-4 border-en">
+        
+            {/* Personal Information Section */}
+            <div className="col-md-4 border-en">
           <h4>Personal Information</h4>
           <div className="mb-3">
-            <label className="form-label">Phone Number</label>
+            <label className="form-label" htmlFor="phone">
+              Phone Number
+            </label>
             <input
               type="text"
-              name="phoneNumber"
+              id="phone"
+              name="phone"
               className="form-control"
-              placeholder="Number"
+              placeholder="Phone Number"
               onChange={handleInputChange}
+              // value={formData.phone}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Full Address</label>
+            <label className="form-label" htmlFor="address">
+              Full Address
+            </label>
             <input
               type="text"
-              name="fullAddress"
+              id="address"
+              name="address"
               className="form-control"
-              placeholder="House name, city, district"
+              placeholder="Address"
               onChange={handleInputChange}
+              // value={formData.address}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Gender</label>
-            <select name="gender" className="form-select" onChange={handleInputChange}>
-              <option value="">Gender</option>
+            <label className="form-label" htmlFor="gender">
+              Gender
+            </label>
+            <select
+              id="gender"
+              name="gender"
+              className="form-select"
+              onChange={handleInputChange}
+              // value={formData.gender}
+            >
+              <option value="">Select Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
             </select>
           </div>
           <div className="mb-3">
-            <label className="form-label">Date of Birth</label>
+            <label className="form-label" htmlFor="dob">
+              Date of Birth
+            </label>
             <input
               type="date"
+              id="dob"
               name="dob"
               className="form-control"
-              placeholder="MM/DD/YYYY"
               onChange={handleInputChange}
+              // value={formData.dob}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Blood Group</label>
-            <select name="bloodGroup" className="form-select"  onChange={handleInputChange}>
-              <option value="">A+</option>
+            <label className="form-label" htmlFor="bloodgroup">
+              Blood Group
+            </label>
+            <select
+              id="bloodgroup"
+              name="bloodgroup"
+              className="form-select"
+              onChange={handleInputChange}
+              // value={formData.bloodgroup}
+            >
+              <option value="A+">A+</option>
               <option value="A-">A-</option>
               <option value="B+">B+</option>
               <option value="B-">B-</option>
@@ -199,37 +250,72 @@ function AddInterns() {
           </div>
         </div>
 
+        {/* Employment Overview Section */}
         <div className="col-md-4 border-en">
           <h4>Employment Overview</h4>
           <div className="mb-3">
-            <label className="form-label">Date of Joining</label>
+            <label className="form-label" htmlFor="doj">
+              Date of Joining
+            </label>
             <input
               type="date"
-              name="dateOfJoining"
+              id="doj"
+              name="doj"
               className="form-control"
-              placeholder="MM/DD/YYYY"
               onChange={handleInputChange}
+              // value={formData.doj}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Job Role</label>
-            <select name="jobRole" className="form-select"  onChange={handleInputChange}>
-              <option value="">Business Development Executive</option>
-              <option value="Deleveopment Manager">Business Development Manager</option>
-              <option value="Business Manger">Area Business Manager</option>
+            <label className="form-label" htmlFor="jobrole">
+              Job Role
+            </label>
+            <select
+              id="jobrole"
+              name="jobrole"
+              className="form-select"
+              onChange={handleInputChange}
+              // value={formData.jobrole}
+            >
+              <option value="Business Development Executive">
+                Business Development Executive
+              </option>
+              <option value="Business Development Manager">
+                Business Development Manager
+              </option>
+              <option value="Area Business Manager">
+                Area Business Manager
+              </option>
             </select>
           </div>
           <div className="mb-3">
-            <label className="form-label">Employee Status</label>
-            <select name="employeeStatus" className="form-select" onChange={handleInputChange}>
-              <option value="">Full time</option>
+            <label className="form-label" htmlFor="empsatus">
+              Employee Status
+            </label>
+            <select
+              id="empsatus"
+              name="empsatus"
+              className="form-select"
+              onChange={handleInputChange}
+              // value={formData.empsatus}
+            >
+              <option value="Full time">Full time</option>
               <option value="Part time">Part time</option>
+              <option value="Freelancer">Freelancer (Work from home)</option>
             </select>
           </div>
           <div className="mb-3">
-            <label className="form-label">Job Level</label>
-            <select name="jobLevel" className="form-select" onChange={handleInputChange}>
-              <option value="">Manager Level</option>
+            <label className="form-label" htmlFor="joblevel">
+              Job Level
+            </label>
+            <select
+              id="joblevel"
+              name="joblevel"
+              className="form-select"
+              onChange={handleInputChange}
+              // value={formData.joblevel}
+            >
+              <option value="Manager Level">Manager Level</option>
               <option value="Executive Level">Executive Level</option>
             </select>
           </div>
@@ -247,6 +333,7 @@ function AddInterns() {
               className="form-control"
               placeholder="Instagram URL"
               onChange={handleInputChange}
+              // value={formData.instagram}
             />
           </div>
           <div className="mb-3">
@@ -258,6 +345,7 @@ function AddInterns() {
               className="form-control"
               placeholder="LinkedIn URL"
               onChange={handleInputChange}
+              // value={formData.linkedin}
             />
           </div>
           <div className="mb-3">
@@ -269,6 +357,7 @@ function AddInterns() {
               className="form-control"
               placeholder="Twitter URL"
               onChange={handleInputChange}
+              // value={formData.twitter}
             />
           </div>
         </div>
@@ -280,9 +369,10 @@ function AddInterns() {
             placeholder="Enter here"
             rows="4"
             onChange={handleInputChange}
+            // value={formData.feedback}
           ></textarea>
         </div>
-
+        
         <div className="col-md-6">
           <h4>Internship Certificate</h4>
           <div
@@ -293,9 +383,9 @@ function AddInterns() {
               overflow: "hidden",
             }}
           >
-            {uploadedCertificate ? (
+            {certificate ? (
               <img
-                src={uploadedCertificate}
+                src={URL.createObjectURL(certificate)}
                 alt="Uploaded Certificate"
                 style={{
                   width: "100%",
@@ -340,4 +430,3 @@ function AddInterns() {
 }
 
 export default AddInterns;
-
