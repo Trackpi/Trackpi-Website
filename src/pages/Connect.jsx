@@ -16,12 +16,12 @@ function Connect() {
       />
 
       <div className="bb">
-        <h1 className="contact text-center text-4xl sm:text-5xl md:text-5xl font-bold md:mb-8">
+        <h1 className="text-[#FF9D00] text-center text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl font-bold  md:mb-8">
           Contact Us
         </h1>
 
-        <div className="aa grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-16">
-          <div className="card-group w-full flex flex-wrap justify-between gap-10">
+        <div className="  aa w-full flex justify-center px-16 mt-2 md:mt-5 mb-2 md:mb-8">
+          <div className="card-group  w-full flex flex-wrap justify-between gap-10">
             {[
               {
 
@@ -43,17 +43,17 @@ function Connect() {
             ].map((card, index) => (
               <div
                 key={index}
-                className="card card1  md:pt-4 rounded-2xl fixed-card h-[230px] p-[30px] flex flex-col justify-between items-center gap-5  text-center shadow-lg"
+                className="card card1  md:pt-4 rounded-2xl fixed-card  w-[280px] sm:w-[calc(50%-20px)] lg:w-[calc(30%)] md:w-[410px] h-[140px] md:h-[230px] p-[30px] flex flex-col justify-between items-center gap-5  text-center shadow-lg"
               >
 
-                <div className=" flex flex-col items-center gap-1 space-y-2.5 space-y-2.5 sm:space-y-3 md:space-y-3 lg:space-y-5">
-                <div className="letter icon mt-2 text-lg lg:text-4xl text-amberCustom mb-2">
+                <div className=" flex flex-col items-center gap-3 ">
+                <div className="h-[30px] w-[30px] md:h-[50px] md:w-[50px] bg-white rounded-full flex justify-center items-center text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] xl:text-[28px] 2xl:text-[30px]   md:mt-2 text-amberCustom md:mb-2">
                   <i className={`fa-solid ${card.icon}`}></i>
                 </div>
-                <h6 className="letters text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]font-medium">
+                <h6 className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]  font-medium">
                   {card.title}
                 </h6>
-                <p className="letters text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] font-bold space-y-3">
+                <p className="text-[15px] sm:text-[17px] md:text-[21px] lg:text-[25px] xl:text-[27px] 2xl:text-[29px] font-bold space-y-3">
                   {card.text}
                 </p>
 
@@ -68,12 +68,12 @@ function Connect() {
 
       <section className="sectionn w-full  md:px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto">
         <Container fluid className="text-center">
-          <Row className="rw md:mt-3">
-            <h1 className="ready mb-3   md:text-xl lg:text-3xl xl:text-6xl  font-bold connect-text-Color ">
+          <Row className=" md:mt-5">
+            <h1 className="ready mb-3   text-2xl md:text-4xl lg:text-5xl xl:text-[mainHeading] 2xl:text-6xl   font-bold connect-text-Color ">
               You’re ready to <br /> take the next step
             </h1>
 
-            <p className="sub mb-5   md:text-xl lg:text-2xl xl:text-2xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 xl:leading-10 font-medium">
+            <p className=" mb-5  text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 xl:leading-10 font-medium">
               We’re all wrestling with complexity. Every company, work function,
               and team now faces a tall order: to be more adaptive, strategic,
               effective, human, and equitable amidst growing uncertainty.

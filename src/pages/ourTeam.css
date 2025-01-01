@@ -3,12 +3,12 @@
        text-align: center;
     }
     .firstp{
-        font-size: 17px;
+        /* font-size: 17px; */
         margin-top: 20px;
     }
-    .secondp{
+    /* .secondp{
         font-size: 17px;
-    }
+    } */
     .section3{
         margin-top: 5px;
     }
@@ -16,9 +16,9 @@
         margin-top: 20px;
     }
     
-    .paras{
+    /* .paras{
         font-size: 18px;
-    }
+    } */
     .our{
         margin-top: 40px !important;
     }

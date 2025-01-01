@@ -6,28 +6,17 @@
     .letter{
         font-size: 25px;
     }
-    .letters{
-        font-size: 22px;
-        
-    }
-    .ready{
-        font-size: 30px;
-    }
-    .sub{
-        font-size: 16px;
-    }
+    
     .but{
         color: white;
-        font-size: 12px !important;
+     
         border-radius: 10px;
     }
     .place{
         border-radius: 20px !important;
         border-color: 0px solid gray !important;
     }
-    .team{
-        font-size: 15px;
-    }
+    
     .card1{
         height: 140px !important;
         width: 300px;
@@ -49,20 +38,19 @@
    }
    
 }
-@media (max-width: 1024px){
+/* @media (max-width: 1024px){
     .letters{
-        font-size: 10px !important;
+        font-size: 12px !important;
     }
 
-}
+} */
 .fixed-card {
     color:  linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
     background: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FF9D00 100%) !important;
-    width: 410px !important;    /* Fixed width */
-    height: 230px !important;   /* Fixed height */
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1px !important;
+   
+       
+    
+    
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for better visual separation */
   }
 .icon{
@@ -91,12 +79,12 @@
   }
   .aa{
     
-  padding: 50px;
+  /* padding: 50px;
   
   width: 100%;
   display: flex !important;
   justify-content: center;
-  gap: 50px !important;
+  gap: 50px !important; */
   
   }
   .cards{
