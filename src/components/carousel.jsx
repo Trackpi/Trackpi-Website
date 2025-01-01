@@ -139,13 +139,13 @@ function Clients (){
               {filteredClients.slice().map(card => (
                 <div
                   key={card.id}
-                  className="lg:w-[10%] xl:w-[10%] w-[500px] md:w-[40%] h-[300px] md:h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px]  lg:text-xl flex flex-col justify-center items-center  gap-2 lg:gap-4 md:gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] p-4 md:p-6 rounded-lg shadow-lg text-center transform transition-all duration-300 lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
+                  className="lg:w-[10%] xl:w-[10%] w-[300px] md:w-[40%] h-[200px] md:h-[384px] lg:h-[500px] xl:h-[400px] 2xl:h-[420px]  lg:text-xl flex flex-col justify-center items-center  gap-1 lg:gap-4 md:gap-3 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00]  p-6 rounded-lg shadow-lg text-center transform transition-all duration-300  lg:mx-2 md:mx-4 hover:scale-110 hover:shadow-[0_10px_30px_rgba(255,100,0,0.7)] hover:shadow-4xl cursor-pointer car "
                 >
-                  <img src={card.logo}  alt="" className="h-[150px] w-[150px] md:h-[130px] md:w-[200px] lg:h-[130px] lg:w-[200px] 2xl:h-[130px] 2xl:w-[200px] mx-auto" />
-                  <h3 className=" text-center font-bold text-black mt-4 text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl xl-leading-7 2xl:leading-10 2xl:text-3xl ">
+                  <img src={card.logo}  alt="" className="h-[55px] w-[120px] md:h-[130px] md:w-[200px] lg:h-[130px] lg:w-[200px] 2xl:h-[130px] 2xl:w-[200px] mx-auto" />
+                  <h3 className=" text-center font-bold text-black mt-2 md:mt-4 text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] xl:text-[28px] 2xl:text-[30px] ">
                     {card.name}
                   </h3>
-                  <p className="text-black font-medium text-justify mt-2 text-lg sm:text-lg md:text-lg lg:text-xl xl:text-xl xl-leading-7 2xl:leading-10 2xl:text-2xl ">{card.description}</p>
+                  <p className="text-black font-medium text-justify md:mt-2 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]  ">{card.description}</p>
                 </div>
                   ))}
                   </div>

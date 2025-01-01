@@ -214,7 +214,7 @@ function Details() {
         <div className="text-center">
           <button
             type="submit"
-            className="but mt-3 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] px-8 py-2 rounded-md md:font-semibold md:text-black"
+            className=" mt-3 text-white transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] px-8 py-2 rounded-md md:font-semibold md:text-black"
           >
             Submit
           </button>
