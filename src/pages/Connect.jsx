@@ -16,7 +16,7 @@ function Connect() {
       />
 
       <div className="bb">
-        <h1 className="contact text-center text-4xl sm:text-5xl md:text-6xl font-bold mb-8">
+        <h1 className="contact text-center text-4xl sm:text-5xl md:text-5xl font-bold md:mb-8">
           Contact Us
         </h1>
 
@@ -43,17 +43,17 @@ function Connect() {
             ].map((card, index) => (
               <div
                 key={index}
-                className="card card1 pt-4 rounded-2xl fixed-card sm:w-[410px] h-[230px] p-[30px] flex flex-col justify-between items-center gap-5 text-center shadow-lg"
+                className="card card1  md:pt-4 rounded-2xl fixed-card h-[230px] p-[30px] flex flex-col justify-between items-center gap-5  text-center shadow-lg"
               >
 
-                <div className="flex flex-col items-center gap-1 space-y-2.5 space-y-2.5 sm:space-y-3 md:space-y-3 lg:space-y-5">
+                <div className=" flex flex-col items-center gap-1 space-y-2.5 space-y-2.5 sm:space-y-3 md:space-y-3 lg:space-y-5">
                 <div className="letter icon mt-2 text-lg lg:text-4xl text-amberCustom mb-2">
                   <i className={`fa-solid ${card.icon}`}></i>
                 </div>
-                <h6 className="letters text-sm md:text-xl lg:text-2xl xl:text-2xl font-medium">
+                <h6 className="letters text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]font-medium">
                   {card.title}
                 </h6>
-                <p className="letters text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl font-bold space-y-3">
+                <p className="letters text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] font-bold space-y-3">
                   {card.text}
                 </p>
 
@@ -66,14 +66,14 @@ function Connect() {
         </div>
       </div>
 
-      <section className="w-full px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto">
+      <section className="sectionn w-full  md:px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto">
         <Container fluid className="text-center">
-          <Row className="mt-3">
-            <h1 className="ready mb-3 text-xl sm:text-xl md:text-xl lg:text-3xl xl:text-7xl font-bold connect-text-Color ">
+          <Row className="rw md:mt-3">
+            <h1 className="ready mb-3   md:text-xl lg:text-3xl xl:text-6xl  font-bold connect-text-Color ">
               You’re ready to <br /> take the next step
             </h1>
 
-            <p className="sub mb-5 text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-2xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 xl:leading-10 font-medium">
+            <p className="sub mb-5   md:text-xl lg:text-2xl xl:text-2xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 xl:leading-10 font-medium">
               We’re all wrestling with complexity. Every company, work function,
               and team now faces a tall order: to be more adaptive, strategic,
               effective, human, and equitable amidst growing uncertainty.

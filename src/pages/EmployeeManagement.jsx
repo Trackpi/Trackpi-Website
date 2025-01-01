@@ -1,8 +1,14 @@
 import React from 'react'
+import AddSales from './AddSales'
+import AddIntern from './AddInterns'
 
 function EmployeeManagement() {
   return (
-    <div>EmployeeManagement</div>
+    <div>
+      {/* <AddSales /> */}
+      {/* <AddIntern /> */}
+      
+      </div>
   )
 }
 

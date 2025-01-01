@@ -1,8 +1,9 @@
 @media (max-width: 640px) {
-   
+
   .empimg{
-    height: 150px !important;
-    width: 150px !important;
+    height: 100px !important;
+    width: 100px !important;
+    margin-left: 30px;
     border-radius: 200px !important;
   }
   /* .div-frame{
@@ -23,8 +24,9 @@
   }
   .active{
    
-    padding-top: 1px !important;
-    font-size: 1rem !important;
+   height: 30px;
+   
+   
   }
     /* Employee details section */
     .custom-height {
@@ -38,17 +40,36 @@
       height: auto;
     }
     /* .div1{
-      
      
+     background-color: aqua;
     } */
-     .div-frame{
+     /* .div-emp{
+      display: flex;
+      flex-direction: row;
+      gap: 145px; 
+     } */
+   .div1{
+   
+   }
+     .div22{
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 9px !important;
+      margin-top: 20px;
       
+    }
+    .div-1{
+      margin-top: 5px;
      }
     .div2{
+      
       display: flex !important;
       flex-direction: row !important;
       gap: 6px !important;
       
+    }
+    .div-2{
+      margin-top: 1px;
     }
     .div3{
       
@@ -59,7 +80,11 @@
       padding-top: 20px;
       height: auto;
     }
-    
+    /* .gender{
+      display: flex;
+      flex-direction: row;
+      gap: 190px;
+    } */
     
 
 }

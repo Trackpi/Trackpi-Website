@@ -3,7 +3,7 @@ import "../pages/connect.css";
 
 function Details() {
   return (
-    <div className=" w-full mx-auto px-4">
+    <div className=" w-full mx-auto md:px-4">
       <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
         <div className="mb-3  flex justify-center  items-center">
           <Form.Control

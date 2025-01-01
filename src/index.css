@@ -595,6 +595,7 @@ html {
 
 /* Our services */
 
+<<<<<<< HEAD
 .redSelect {
   background-color: #f5cf10;
 }
@@ -670,10 +671,14 @@ html {
   gap: 1px !important;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for better visual separation */
 }
+=======
+
+>>>>>>> f28aeec1509684208f9b6994e37d6444ef69bad6
 
 .connect-text-Color {
   color: rgb(245, 158, 11);
 }
+<<<<<<< HEAD
 .icon {
   height: 50px;
   width: 50px;
@@ -683,6 +688,9 @@ html {
   justify-content: center;
   align-items: center;
 }
+=======
+
+>>>>>>> f28aeec1509684208f9b6994e37d6444ef69bad6
 
 /* Employee Verification Section */
 .employ_section::before {
