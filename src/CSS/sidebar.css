@@ -33,7 +33,7 @@
   position: relative;
 }
 
-nav ul li a {
+.sidebar  ul li a {
   color: white;
   display: flex;
   align-items: center;  /* Vertically center the icon and text */
@@ -93,7 +93,7 @@ nav ul li a {
   transition-delay: 0.3s; 
 }
 
-ul li:hover a span {
+.sidebar  li:hover a span {
   display: block;
   transition-delay: 0s; 
 }
@@ -118,7 +118,7 @@ ul li:hover a span {
     font-size: 15px;
     top: 10px;
   }
-  ul li:hover a span {
+  .sidebar ul li:hover a span {
     display: none;
   }
 }

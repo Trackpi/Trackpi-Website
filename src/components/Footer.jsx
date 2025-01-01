@@ -14,6 +14,7 @@ import mediumIcon from "../images/medium.svg";
 import instagramIcon from "../images/insta.svg";
 import phoneIcon from "../images/phone.svg";
 import mailIcon from "../images/mail.svg";
+import footerBanner from "../images/footerbanner.jpg";
 
 function Footer() {
     const videoRefs = useRef([]);
@@ -153,8 +154,12 @@ function Footer() {
                         ))}
                     </Row>
                 </div>
-                <div className="container text-center ">
-                    <h1 className="slogen text-5xl mb-5" style={{ fontWeight: "600", color: "#ffc100" }}>
+                <div className=" text-center container-fluid">
+                     <h1 className="slogen text-5xl mb-5" style={{ fontWeight: "600", color: "#ffc100" }}>
+                        Want To Learn More
+                    </h1>
+                    <img src={footerBanner} className="w-100 " alt="banner" />
+                    {/* <h1 className="slogen text-5xl mb-5" style={{ fontWeight: "600", color: "#ffc100" }}>
                         Want To Learn More
                     </h1>
 
@@ -166,29 +171,28 @@ function Footer() {
                             Coming Soon! Unlock proven strategies, sharpen your skills, and take your career to new heights
                             stay tuned for launch updates and early bird registration!
                         </h4>
-                    </div>
+                    </div> */}
                 </div>
                 <h1> ‎ </h1>
             </Container>
 
-            <footer className="px-6  text-dark py-6 mx-auto lg:px-20">
-                <div className="row gap-20 flex">
-                    <div className="col-lg-4 max-w-[423px] grid gap-10">
-                        <div>
+            <footer className="px-6  text-dark pt-1 mx-auto lg:px-[25px] lg:pt-[50px] ">
+                <div className="row flex gap-[25px] sm:gap-[32px] md:gap-[38px] lg:gap-[42px] xl:gap-[50px] ">
+                    <div className=" xl:!max-w-[423px] grid gap-[25px]">
+                        <div className="">
                             <img
-                                src="src/images/trackpi_logo_one.png"
+                                src="src/images/trackpi_logo.png"
                                 alt="TrackPi Logo"
-                                style={{ width: "150px" }}
-                                className="img-fluid mx-auto"
+                                className="img-fluid mx-auto w-[195px] sm:w-[215px] md:w-[235px] lg:w-[252px] xl:w-[270px] 2xl:w-[290px]"
                             />
-                            <p className="mt-3 text-xl text-justify font-medium">
+                            <p className="text-[12px] sm:text-[13.5px] md:text-[15px] lg:text-[16.5px] xl:text-[18px] 2xl:text-[20px] text-justify font-medium">
                                 Empowering businesses to succeed through expert guidance and personalized solutions.
                                 Unlocking potential and achieving success.
                             </p>
                         </div>
-                        <div className="gap-6">
-                            <h5 className=" font-semibold text-2xl">Follow Us</h5>
-                            <div className="d-flex my-auto gap-6 flex-row ">
+                        <div className="grid gap-[15px] sm:gap-[18px] md:gap-[20px] lg:22px] xl:gap-[25px]">
+                            <h5 className=" font-semibold text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px]">Follow Us</h5>
+                            <div className="flex my-auto gap-[25px] flex-row footer_smedia">
                                 <Link to={"#"}>
                                     <img src={fbIcon} alt="" />
                                 </Link>
@@ -215,92 +219,89 @@ function Footer() {
                     </div>
                     <div className="col my-auto h-max w-full">
                         <div className=" flex flex-wrap  justify-between items-center" >
-                            <div className="m-max">
-                                <h5 className="mb-3 font-bold text-2xl">Resources</h5>
-                                <ul className="list-unstyled font-medium text-xl">
-                                    <li className="mb-2">
-                                        <a href="/about" className="text-dark text-decoration-none text-lg">
+                            <div className="w-max  mb-0  grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
+                                <h5 className=" font-bold  text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px] mb-0">Resources</h5>
+                                <ul className="list-unstyled font-medium  text-[12px] sm:text-[13.5px] md:text-[15px] lg:text-[16.5px] xl:text-[18px] 2xl:text-[20px] grid gap-[14px] mb-0">
+                                    <li>
+                                        <a href="/about" className="text-dark text-decoration-none">
                                             About
                                         </a>
                                     </li>
-                                    <li className="mb-2 ">
+                                    <li >
                                         <a href="#" className="text-dark text-decoration-none ">
                                             Blogs
                                         </a>
                                     </li>
-                                    <li className="mb-2">
+                                    <li>
                                         <a href="#" className="text-dark text-decoration-none ">
                                             Careers
                                         </a>
                                     </li>
-                                    <li className="mb-2">
+                                    <li>
                                         <a href="#" className="text-dark text-decoration-none">
                                             Help Center
                                         </a>
                                     </li>
-                                    <li className="mb-2">
+                                    <li>
                                         <a href="#" className="text-dark text-decoration-none">
                                             Terms & Conditions
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            <div className="m-max">
-                                <h5 className="mb-3 font-bold text-2xl">Services</h5>
-                                <ul className="list-unstyled font-medium text-xl">
-                                    <li className="mb-2">
-                                        <a href="#" className="text-dark text-decoration-none">
-                                            Business consulting
-                                        </a>
-                                    </li>
-                                    <li className="mb-2">
-                                        <a href="#" className="text-dark text-decoration-none">
-                                            Sales outsourcing
-                                        </a>
-                                    </li>
-                                    <li className="mb-2">
-                                        <a href="#" className="text-dark text-decoration-none">
-                                            Software development
-                                        </a>
-                                    </li>
-                                    <li className="mb-2">
-                                        <a href="#" className="text-dark text-decoration-none">
-                                            Sales training
-                                        </a>
-                                    </li>
-                                    <li className="mb-2">
-                                        <a href="#" className="text-dark text-decoration-none">
-                                            Operations training
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div className="sm:w-max w-[140px] mb-0 grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px] mb-auto">
+                                <h5 className=" font-bold text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px]  mb-0 lg:text-center text-left">Services</h5>
+                                <ul className="list-unstyled font-medium text-[12px] sm:text-[13.5px] md:text-[15px] lg:text-[16.5px] xl:text-[18px] 2xl:text-[20px] grid gap-[14px] mb-0 lg:grid-cols-2">
+    <li>
+        <a href="/about" className="text-dark text-decoration-none">Software development</a>
+    </li>
+    <li>
+        <a href="#" className="text-dark text-decoration-none">Sales training</a>
+    </li>
+    <li>
+        <a href="#" className="text-dark text-decoration-none">Operations training</a>
+    </li>
+    <li>
+        <a href="#" className="text-dark text-decoration-none">Business consulting</a>
+    </li>
+    <li>
+        <a href="#" className="text-dark text-decoration-none">Sales outsourcing </a>
+    </li>
+    <li>
+        <a href="/about" className="text-dark text-decoration-none">Market Positioning</a>
+    </li>
+</ul>
+
                             </div>
-                            <div className="w-max">
-                                <div style={{ width: "max-content" }} className="grid gap-4">
-                                    <div className="grid gap-2">
-                                        <h5 className="font-bold text-2xl">Join With Us</h5>
-                                        <InputGroup className="w-100 max-w-[250px]">
-                                            <Form.Control
-                                                type="email"
-                                                placeholder="Your Email Address"
-                                                className=" border-warning !text-sm"
-                                            />
-                                            <Button
-                                                variant="warning"
-                                                className="text-white gradient-button hover:scale-105 transition-transform duration-300"
-                                                type="submit"
-                                            >
-                                                <span className="text-sm ">Submit</span>
-                                            </Button>
-                                        </InputGroup>
+                            <div className="w-full lg:w-[250px] sm:w-max sm:mt-0 mt-[25px]">
+                                <div  className="sm:grid sm:gap-[25px] md:gap-[50px] flex justify-between" >
+                                    <div className="grid gap-2 sm:w-max w-50">
+                                        <h5 className="font-bold text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px]">Join With Us</h5>
+                                        <div>
+    <div class="sm:flex hidden rounded-lg shadow-sm sm:w-[250px] w-[180px] footerForm ">
+      <input placeholder="Your Email Address" type="text" style={{border:"1px solid #FFC100 ", outline:"none"}} className="px-2 block w-full border-[#FFC100] shadow-sm rounded-s-lg text-sm text-[10px] lg:text-[11px] xl:text-[12px] 2xl:text-[14px]"/>
+      <button type="button" className="text-white gradient-button hover:scale-105  duration-300 px-[10px] py-[10px] text-[14px] !font-normal ">
+        Submit
+      </button>
+    </div>
+    <div class="sm:hidden block rounded-lg   footerForm ">
+        <div>
+      <input placeholder="Your Email Address" type="text" style={{border:"1px solid #FFC100 ", outline:"none"}} className=" px-2 block w-full border-[#FFC100] shadow-sm rounded-s-lg text-sm text-[10px] lg:text-[11px] xl:text-[12px] 2xl:text-[14px]"/></div>
+      <div className="text-center mt-2">
+      <button type="button" className="text-white gradient-button hover:scale-105  duration-300 px-[10px] py-[10px] text-[14px] !font-normal ">
+        Submit
+      </button></div>
+    </div>
+  </div>
+                                    
                                     </div>
-                                    <div className="grid gap-2">
-                                        <h5 className=" font-bold  text-2xl">Contact</h5>
-                                        <div className="d-flex  text-xl">
+                                    <div className="grid gap-2 sm:w-max w-[140px] text-[12px] sm:text-[13.5px] md:text-[15px] lg:text-[16.5px] xl:text-[18px] 2xl:text-[20px]">
+                                        <h5 className=" font-bold text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px]">Contact</h5>
+                                        <div className="d-flex footer_smedia">
                                             <img src={phoneIcon} alt="" />
                                             <span className="ms-3 font-medium">+91 9538610745</span>
                                         </div>
-                                        <div className="d-flex text-xl">
+                                        <div className="d-flex">
                                             <img src={mailIcon} alt="" />
                                             <span className="ms-3 font-medium">TrackPi@gmail.com</span>
                                         </div>
@@ -311,10 +312,10 @@ function Footer() {
                     </div>
                 </div>
             </footer>
-            <hr className="m-0" />
-            <Row>
-                <Col className="text-center font-medium text-sm my-3">
-                    &copy; 2024 TrackPi Private Limited. All rights reserved.
+            <hr  />
+            <Row className=" my-[10px] sm:my-[12px] md:my-[13px] lg:my-[14px] xl:my-[15px]">
+                <Col className="text-center font-medium text-[8px] sm:text-[10px] md:text-[12px] lg:text-[14px]">
+                © 2024 TrackPi Private Limited. All rights reserved.
                 </Col>
             </Row>
         </div>
