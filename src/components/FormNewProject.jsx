@@ -22,7 +22,7 @@ const FormNewProject = () => {
 
   return (
     <>
-      <div className="bg-white  py-3 ">
+      <div className="bg-white  px-8 md:px-16 lg:px-0 py-3 ">
         <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
           <div className="mb-4  flex justify-center  items-center">
             <Form.Control
@@ -95,7 +95,7 @@ const FormNewProject = () => {
           </div>
 
           <div className="mb-4">
-            <div className="flex px-2 gap-40 ">
+            <div className="flex px-2 justify-between mr-0 lg:mr-96">
               <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
                 <input
                   type="radio"
@@ -157,10 +157,10 @@ const FormNewProject = () => {
             </Form.Select>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 overflow-x-auto">
             <Form.Select
               id="institute_company"
-              className="bg-transparent p-3"
+              className="bg-transparent p-3 max-w-full"
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
@@ -320,7 +320,7 @@ const FormNewProject = () => {
             />
           </div>
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center mediaUploadDiv">
             <input
               type="file"
               id="fileInput"
@@ -329,7 +329,7 @@ const FormNewProject = () => {
             />
             <label
               htmlFor="fileInput"
-              className="flex items-center justify-center text-[#FF9D00] rounded-lg px-4 py-3 cursor-pointer  xl:text-lg"
+              className="flex items-center justify-center text-[#FF9D00] rounded-lg px-2 py-3 cursor-pointer xl:text-lg custom-file-label"
               style={{ border: '1px solid #FF9D00' }}
             >
               {fileName ? (
@@ -350,6 +350,7 @@ const FormNewProject = () => {
               )}
             </label>
           </div>
+
           <div className="flex justify-center items-center mt-3">
             <input
               type="checkbox"
@@ -362,9 +363,9 @@ const FormNewProject = () => {
                 to="#"
                 className="text-[#212529] items-center text-[14px] no-underline mx-2 cursor-pointor"
               >
-                Agreement to Terms & Conditions 
+                Agreement to Terms & Conditions
               </Link>
-              <span className='text-[12px]'>Learn more</span>
+              <span className="text-[12px] learnMore">Learn more</span>
             </label>
           </div>
           <div className="text-center">
