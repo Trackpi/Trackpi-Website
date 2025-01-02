@@ -1,3 +1,5 @@
+
+
 @media (max-width: 640px) {
 
   .empimg{
@@ -22,7 +24,7 @@
   .email{
     display: none;
   }
-  .active{
+  .act{
    
    height: 30px;
    
@@ -48,9 +50,7 @@
       flex-direction: row;
       gap: 145px; 
      } */
-   .div1{
-   
-   }
+  
      .div22{
       display: flex !important;
       flex-direction: row !important;
@@ -61,16 +61,15 @@
     .div-1{
       margin-top: 5px;
      }
-    .div2{
+     
+    /* .div2{
       
       display: flex !important;
       flex-direction: row !important;
       gap: 6px !important;
       
-    }
-    .div-2{
-      margin-top: 1px;
-    }
+    } */
+   
     .div3{
       
       height: auto;
