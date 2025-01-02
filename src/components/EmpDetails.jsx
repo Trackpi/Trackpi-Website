@@ -7,26 +7,47 @@ function EmpDetails() {
     return(
         <>
         <div className=" custom-height h-[135px] py-2 flex flex-col md:flex-row justify-between items-center sm:text-lg md:text-2xl xl:text-xl xl:leading-5 2xl:leading-5 2xl:text-2xl  ">
-                <div className=" div1  w-full flex flex-row  items-center gap-4 md:gap-5  ">
+                <div className="  w-full flex flex-row justify-center items-center gap-4 md:gap-5  ">
                     <img src="src/images/personnel-3-400x310.jpg" height={200} width={180} className="empimg" style={{borderRadius:'30px'}}/>
-                    <div className="div-frame w-full   flex flex-col justify-between items-start md:flex-row lg:flex-row md:text-2xl xl:text-xl leading-2 xl:leading-5 2xl:leading-5 2xl:text-2xl ">
-                            <div className="div22   " style={{ lineHeight: '1px' }}>
+                    <div className="hidden md:block w-full">
+                    <div className="  flex flex-row justify-between items-center text-2xl xl:text-xl w-full ">
+                            <div>
+                                <p className="font-bold  text-2xl" >Paul Walker</p>
+                            
+                                <button style={{backgroundColor:" #019304",color:"white"}} className=" act rounded-pill px-3 py-1 flex flex-row justify-center items-center md:gap-1 text-xs md:text-sm "> <GoDotFill size={8}/>Active</button>
+                            </div>
+                   
+                            <div >
+                                <p className="text-sm md:text-lg" >Employee ID</p>
+                               
+                                <p className="font-bold text-sm md:text-lg" >#123456</p>
+                            </div>
+                            <div >
+                                <p className="email text-sm md:text-lg" >Email</p>
+                                <p className="font-bold text-sm md:text-lg" >paulwalker@gmail.com</p>
+                            </div> 
+                    
+                    </div>
+                    </div>
+                    <div className="md:hidden w-full   flex flex-col justify-between items-start  md:flex-row lg:flex-row md:text-2xl xl:text-xl  ">
+                            <div className="flex flex-row gap-3  " style={{ lineHeight: '1px' }}>
                                 <h5 className="font-bold  " >Paul Walker</h5>
                             
                                 <button style={{backgroundColor:" #019304",color:"white"}} className=" active rounded-pill px-3 py-1 flex flex-row justify-center items-center md:gap-1 text-xs md:text-sm "> <GoDotFill size={8}/>Active</button>
                             </div>
                    
-                            <div className="div-1 div2 " style={{ lineHeight: '1px' }}>
-                                <p className="text-sm md:text-lg" >Employee ID</p>
+                            <div className="div-1 flex flex-row md:flex-col lg:flex-col  gap-2  " style={{ lineHeight: '1px' }}>
+                                <p className="text-sm md:text-lg"  style={{ margin: 0 }}>Employee ID</p>
                                
-                                <p className="font-bold text-sm md:text-lg" >#123456</p>
+                                <p className="font-bold text-sm md:text-lg"  style={{ margin: 0 }}>#123456</p>
                             </div>
-                            <div className="div-2 div2" style={{ lineHeight: '1px' }}>
-                                <p className="email text-sm md:text-lg">Email</p>
-                                <p className="font-bold text-sm md:text-lg" >paulwalker@gmail.com</p>
+                            <div className=" flex flex-row md:flex-col" style={{ lineHeight: '1px' }}>
+                                <p className="email text-sm md:text-lg" style={{ margin: 0 }}>Email</p>
+                                <p className="font-bold text-sm md:text-lg"  style={{ margin: 0 }}>paulwalker@gmail.com</p>
                             </div> 
                     
                     </div>
+                  
                 </div>
                
        </div>
@@ -44,7 +65,7 @@ function EmpDetails() {
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }} >Church Street, Jude Town, Evasteen, 31562</p>
                 </div>
                  <div className="hidden md:block">
-                <div className="flex flex-row justify-between  ">
+                <div className="flex flex-row justify-between   ">
                     <div  className="phone" style={{ lineHeight: '1px' }}>
                         <p className="text-lg" style={{ margin: 0 }}>Gender</p>
                         <p className="font-bold text-lg" style={{ margin: 0 }} >Male</p>
@@ -55,13 +76,13 @@ function EmpDetails() {
                     </div>
                     </div>
                 </div>
-                <div className="flex flex-row gap-48 md:hidden  ">
+                <div className="flex flex-row justify-between  md:hidden  ">
                 <div  className="phone " style={{ lineHeight: '1px' }}>
                         <p className="text-sm " style={{ margin: 0 }}>Date Of Birth</p>
                         <p className="font-bold text-sm" style={{ margin: 0 }} >10/03/2000</p>
                     </div>
                     <div  className="phone" style={{ lineHeight: '1px' }}>
-                        <p className="text-sm" style={{ margin: 0 }}>Gender</p>
+                        <p className="text-sm" style={{ margin: 0 }}>Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                         <p className="font-bold text-sm" style={{ margin: 0 }} >Male</p>
                     </div>
                 </div>
@@ -99,7 +120,7 @@ function EmpDetails() {
                     <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>Entry Level</p>
                     </div>
                 </div>
-                <div className="md:hidden flex flex-row gap-36">
+                <div className="md:hidden flex flex-row justify-between">
                     <div >
                         <div  className="phone " style={{ lineHeight: '1px' }}>
                             <p className="text-sm md:text-lg" style={{ margin: 0 }}>Date Of Joining</p>
