@@ -34,10 +34,9 @@ import AddEmployee from'./pages/AddEmployee';
 import AddInterns from'./pages/AddInterns';
 import EmployeeManagementDetail from'./pages/EmployeeManagementDetail';
 
-
-
 import ProjectManagement from'./pages/ProjectManagement';
 import ProjectManagementDetail from'./pages/ProjectManagementDetail';
+
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
@@ -87,7 +86,7 @@ function App() {
             <Route path="/admin/partnership-management" element={<PartnershipManagement/>} />
             <Route path="/admin/news-management" element={<NewsManagement/>} />
             <Route path="/admin/project-management" element={<ProjectManagement/>} />
-            <Route path="/admin/project-management-detail" element={<ProjectManagementDetail/>} />
+            <Route path="/admin/project-details/:projectId" element={<ProjectManagementDetail/>} />
             <Route path="/admin/employee-management" element={<EmployeeManagement/>} />
             <Route path="/admin/employeeManagement-addEmployee" element={<AddEmployee/>} />
             <Route path="/admin/employeeManagement-detail" element={<EmployeeManagementDetail/>} />
