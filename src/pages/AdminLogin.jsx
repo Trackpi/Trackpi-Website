@@ -33,12 +33,12 @@ function AdminLogin() {
         <Col sm={12} className='d-flex justify-content-center'>
           <Row>
             <Col sm={12} className='mb-3'>
-              <label htmlFor="username" className="d-block font-semibold">User Name</label>
+              <label htmlFor="username" className="d-block font-semibold">User Name/ Email id</label>
               <input
                 type="text"
                 id="username"
                 className='form-control form-control-lg border-gray-500  my-2 border-2   shadow-md'
-                placeholder="Username"
+                placeholder="Userame/Email"
                 value={data.username}
                 onChange={e => setData({ ...data, username: e.target.value })}
                 style={{ fontSize: '16px' }}  // Adjust the font size of the input text
