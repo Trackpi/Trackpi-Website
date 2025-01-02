@@ -10,7 +10,7 @@ function EmployeeSales() {
   return (
     <div className="pad  mt-20 w-full py-5 md:py-10 md:px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto ">
        <EmpDetails/>
-       <div className="  text-center flex justify-center mt-19 ">
+       <div className="  text-center flex justify-center mt-19 md:mt-19 2xl:mt-8 ">
                   
 
                     <div
