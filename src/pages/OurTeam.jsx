@@ -17,16 +17,16 @@ function OurTeam() {
   return (
     <>
 
-      <section className="flex justify-center items-center  h-full w-full px-4 py-8">
+      <section className="flex justify-center items-center  h-full w-full px-4 md:py-8">
         <div className="  flex flex-col items-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl text-[#FF9D00] hiring_heading">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl text-[#FF9D00] hiring_heading">
             Who We Are?
           </h1>
         </div>
       </section>
       <section
         ref={refFirstSection}
-        className="md:mt-20 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1"
+        className="md:mt-20 w-full px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1"
       >
         <motion.div
           className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
@@ -36,7 +36,7 @@ function OurTeam() {
         >
           <div className="md:w-1/2">
             <motion.h1
-              className="firsth1 fw-bold text-[#FFC100] text-3xl xl:text-5xl 2xl:text-6xl pb-3"
+              className="firsth1 fw-bold text-[#FFC100] text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl pb-3"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -54,7 +54,7 @@ function OurTeam() {
             />
             </div>
             <motion.p
-              className="firstp text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-2xl text-[#0A0A0A]"
+              className="firstp text-justify text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  text-[#0A0A0A]"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -82,10 +82,10 @@ function OurTeam() {
       </section>
       <section className="section3 md:mt-20 flex flex-col items-center  md:gap-10 md:w-full h-full">
         <div className="flex flex-col items-center ">
-          <h1 className="fw-bold text-3xl lg:text-5xl xl:text-5xl 2xl:text-6xl text-amber-500  hiring_heading">
+          <h1 className="fw-bold text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl text-amber-500  hiring_heading">
             OUR CLIENTS
           </h1>
-          <h5 className="paras text-bold text-black text-sm sm:text-lg md:text-2xl xl:text-xl xl-leading-7 2xl:leading-10 2xl:text-3xl ">
+          <h5 className="paras text-bold text-black text-xs md:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl xl-leading-7 2xl:leading-10  ">
             We're fortunate to work with the best!
           </h5>
         </div>
@@ -95,7 +95,7 @@ function OurTeam() {
 
       <section
         ref={refSecondSection}
-        className="md:mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-6 md:py-20 bg-gradient-to-r from-[#FFC100] via-[#FFC100] to-[#FFC100] text-black bgg11 section2"
+        className="md:mt-28 w-full px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-6 md:py-20 bg-gradient-to-r from-[#FFC100] via-[#FFC100] to-[#FFC100] text-black bgg11 section2"
       >
         <motion.div
           className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
@@ -116,7 +116,7 @@ function OurTeam() {
           </div>
           <div className="md:w-1/2">
             <motion.h1
-              className="firsth1 our font-bold text-3xl xl:leading-tight xl:text-5xl 2xl:text-6xl pb-3"
+              className="firsth1 our font-bold text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl pb-3"
               initial={{ opacity: 0, x:  -50 }}
               animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -136,7 +136,7 @@ function OurTeam() {
             />
             </div>
             <motion.p
-              className="firstp text-justify text-sm sm:text-lg md:text-2xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-2xl text-[#0A0A0A]"
+              className="firstp text-justify text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  text-[#0A0A0A]"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -156,7 +156,7 @@ function OurTeam() {
 
       <section
         ref={refThirdSection}
-        className="section4 px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3"
+        className="section4 px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3"
       >
         <motion.div
           className=" flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
@@ -166,7 +166,7 @@ function OurTeam() {
         >
           <div className="flex flex-col w-full md:w-1/2">
             <motion.h1
-              className="firsth1 fw-bold text-yellow-500 text-3xl lg:text-5xl xl:text-5xl 2xl:text-6xl"
+              className="firsth1 fw-bold text-yellow-500 text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -188,7 +188,7 @@ function OurTeam() {
             />
             </div>
             <motion.p
-              className="firstp text-base md:text-xl 2xl:text-2xl mt-8 md:mb-3 text-justify"
+              className="firstp text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  mt-8 md:mb-3 text-justify"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -204,7 +204,7 @@ function OurTeam() {
               </span>
             </motion.p>
             <motion.p
-              className="secondp text-base md:text-xl 2xl:text-2xl md:mt-8 mb-3 text-justify"
+              className="secondp text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  md:mt-8 mb-3 text-justify"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -217,7 +217,7 @@ function OurTeam() {
               <div className='flex justify-center md:justify-start'>
               <Button
                 className=" mt-4 bg-transparent  text-black fw-bold  rounded-pill  hover:bg-gray-800 
-                 px-8 py-2 md:px-10 md:py-3 lg:py-4   xl:py-12 2xl:px-12   
+                 px-10 py-2 md:px-12 md:py-3 lg:py-4   xl:py-14 2xl:px-12   
                   text-sm  md:text-lg  lg:text-xl  xl:text-xl  2xl:text-2xl 
                    transition duration-300  ff  "
               >
@@ -245,7 +245,7 @@ function OurTeam() {
       <section className="section4 md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10 md:mb-5  w-full px-2 md:px-6 lg:px-20 xl:px-24 2xl:px-32 md:py-8 mx-auto">
         <Container fluid>
           <Row>
-            <h1 className="fw-bold text-center text-amber-500 text-3xl lg:text-5xl xl:text-5xl 2xl:text-6xl pb-2   flex justify-center">
+            <h1 className="fw-bold text-center text-amber-500 text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl pb-2   flex justify-center">
               The Ready from A–Z
             </h1>
           </Row>

@@ -12,12 +12,12 @@ const NewProject = () => {
         classname="bgOne"
         noButton={true}
       />
-      <section className=" w-full px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto my-8">
-        <Container className="flex flex-col items-center">
+      <section className=" w-full px-2 sm:px-4 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto ">
+        <Container  className="flex flex-col ">
           <div className="w-full rounded ">
-            <div>
+            {/* <div>
               <h1 className="text-center mb-8  font-bold text-[#FFC100] md:text-5xl">Enter the Details</h1>
-            </div>
+            </div> */}
             <FormNewProject />
           </div>
         </Container>

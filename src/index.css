@@ -532,7 +532,9 @@ html {
 /* .personnel-designation {
   color: black;
 } */
-
+.connect-text-Color{
+ color: rgb(245,158,11);
+}
 .personnelimg {
   position: absolute;
   top: calc(230px - 110px); /* 50% of the image in orange and 50% in white */
@@ -573,13 +575,13 @@ html {
 }
 .ff {
   border: 1px solid #ffc100 !important;
-  font-size: 24px !important ;
+  /* font-size: 24px !important ; */
   border-radius: 20px !important;
 
-  font-weight: 700px !important ;
-  padding: 12px 18px !important ;
+  /* font-weight: 700px !important ;
+  padding: 12px 18px !important ; */
 }
-
+/* 
 @media screen and (max-width: 768px) {
   .ff {
     font-size: 24px !important;
@@ -591,7 +593,7 @@ html {
     font-size: 12px !important;
     padding: 10px 14px !important;
   }
-}
+} */
 
 /* Our services */
 
@@ -667,7 +669,11 @@ html {
     padding: 0.5rem; /* Adjust padding for smaller screen */
   }
   .mediaUploadDiv {
-    align-items: normal; /* Center align text */
+    align-items: center; /* Center align text */
+  }
+  .learnMore
+  {
+    display: none;
   }
 }
 @media (max-width: 344px) {
