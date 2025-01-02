@@ -13,6 +13,7 @@ const AdminSidebar = () => {
     { name: 'Project Management', route: '/admin/project-management' },
     { name: 'News Management', route: '/admin/news-management' },
     { name: 'Footer Management', route: '/admin/footer-management' },
+    { name: 'Partnership Management', route: '/admin/partnership-management' }
   ];
 
   return (
