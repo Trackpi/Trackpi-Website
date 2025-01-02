@@ -16,11 +16,11 @@ function Connect() {
       />
 
       <div className="bb">
-        <h1 className="text-[#FF9D00] text-center text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl font-bold  md:mb-8">
+        <h1 className="text-[#FF9D00] text-center text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl font-bold mb-2 md:mb-8">
           Contact Us
         </h1>
 
-        <div className="  aa w-full flex justify-center px-16 mt-2 md:mt-5 mb-2 md:mb-8">
+        <div className=" py-0   w-full flex justify-center px-16   mt-4 md:mt-8 mb-2 md:mb-8">
           <div className="card-group  w-full flex flex-wrap justify-between gap-10">
             {[
               {
@@ -68,7 +68,7 @@ function Connect() {
 
       <section className="sectionn w-full  md:px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto">
         <Container fluid className="text-center">
-          <Row className=" md:mt-5">
+          <Row className="mt-2 md:mt-5">
             <h1 className="ready mb-3   text-2xl md:text-4xl lg:text-5xl xl:text-[mainHeading] 2xl:text-6xl   font-bold connect-text-Color ">
               You’re ready to <br /> take the next step
             </h1>
