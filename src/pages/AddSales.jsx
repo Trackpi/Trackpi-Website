@@ -67,39 +67,44 @@ function AddSales() {
     e.preventDefault();
 
     if (
-      Object.values(formData).some((value) => !value) ||
-      !image ||
-      !businessCard
+        Object.values(formData).some((value) => !value.trim()) ||
+        !image ||
+        !businessCard
     ) {
-      toast.warning("Please fill all the fields!");
-      return;
+        toast.warning("Please fill all the fields!");
+        return;
     }
 
     const fd = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      fd.append(key, value);
-    });
+    for (const [key, value] of Object.entries(formData)) {
+        fd.append(key, value.trim());
+    }
     fd.append("image", image);
     fd.append("businessCard", businessCard);
 
     const header = {
-      "content-Type": "multipart/form-data",
-      Authorization: `Token ${sessionStorage.getItem("token")}`,
+        Authorization: `token ${localStorage.getItem("admin")}`,
     };
 
+    // console.log("FormData Entries:");
+    // for (const pair of fd.entries()) {
+    //     console.log(`${pair[0]}: ${pair[1]}`);
+    // }
+
     try {
-      const res = await addSalesEmployee(fd, header);
-      if (res.status === 200 || res.status === 201) {
-        toast.success("Sales Employee Added Successfully");
-        handleClose();
-      } else {
-        toast.error("Failed to Add Sales Employee");
-      }
+        const res = await addSalesEmployee(fd, header);
+        if (res.status === 200 || res.status === 201) {
+            toast.success("Sales Employee Added Successfully");
+            handleClose();
+        } else {
+            toast.error("Failed to Add Sales Employee");
+        }
     } catch (error) {
-      console.error("Error adding sales employee:", error);
-      toast.error("Something went wrong! Please try again.");
+        console.error("Error adding sales employee:", error);
+        toast.error("Something went wrong! Please try again.");
     }
-  };
+};
+
 
   return (
     <div className="container mx-auto my-5 p-5 bg-white shadow rounded-md">
@@ -155,7 +160,7 @@ function AddSales() {
                 name="username"
                 className="form-control"
                 onChange={handleInputChange}
-                value={formData.username}
+                value={formData.username }
               />
             </div>
             <div className="col-md-4">
