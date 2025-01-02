@@ -53,7 +53,7 @@ function EmpDetails() {
        </div>
   <hr className="horizontal" />
   <div className=" custom-height2  h-[300px] mt-3 md:mt-10 flex flex-col md:flex-row md:gap-20 sm:gap-3">
-        <div className=" div3 w-full h-[300px] flex flex-col gap-1 md:gap-3">
+        <div className=" div3 w-full h-[300px] flex flex-col gap-2 md:gap-4">
                 <h5 className=" connect-text-Color font-medium ">Personal Information</h5>
                 <div className="phone" style={{ lineHeight: '1px' }}>
                     <p className=" text-sm md:text-lg" style={{ margin: 0 }}>Phone</p>
@@ -96,9 +96,10 @@ function EmpDetails() {
         <div className=" vertical-line w-[1px] h-[300px] bg-gray-400"></div>   {/* vertical line gap */}
 
 
-        <div className=" div4  w-full h-[300px] flex flex-col gap-1 md:gap-3">
+        <div className=" div4  w-full h-[300px] flex flex-col gap-2 md:gap-4">
                 <h5 className="connect-text-Color font-medium  ">Employement Overview</h5>
-               <div className="hidden md:block">
+               <div className="hidden md:block ">
+                <div className="flex flex-col gap-2">
                         <div  className="phone " style={{ lineHeight: '1px' }}>
                             <p className="text-sm md:text-lg" style={{ margin: 0 }}>Date Of Joining</p>
                             <p className="font-bold text-sm md:text-lg"style={{ margin: 0 }} >01/12/20124</p>
@@ -119,9 +120,10 @@ function EmpDetails() {
                     <p className="text-sm md:text-lg"style={{ margin: 0 }}>Job Level</p>
                     <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>Entry Level</p>
                     </div>
+                    </div>
                 </div>
                 <div className="md:hidden flex flex-row justify-between">
-                    <div >
+                    <div className="flex flex-col gap-2" >
                         <div  className="phone " style={{ lineHeight: '1px' }}>
                             <p className="text-sm md:text-lg" style={{ margin: 0 }}>Date Of Joining</p>
                             <p className="font-bold text-sm md:text-lg"style={{ margin: 0 }} >01/12/20124</p>
@@ -131,7 +133,7 @@ function EmpDetails() {
                             <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>Full Time</p>
                        </div>
                     </div>
-                    <div >
+                    <div className="flex flex-col gap-2">
                         <div  className="phone " style={{ lineHeight: '1px' }}>
                         <p className="text-sm md:text-lg" style={{ margin: 0 }}>Job Role</p>
                         <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>Sales Manager</p>
