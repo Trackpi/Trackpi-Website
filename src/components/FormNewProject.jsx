@@ -22,7 +22,7 @@ const FormNewProject = () => {
 
   return (
     <>
-      <div className="bg-white  px-8 md:px-16 lg:px-0 py-3 ">
+      <div className=" bg-white px-2 md:px-16 lg:px-0 py-3 ">
         <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
           <div className="mb-4  flex justify-center  items-center">
             <Form.Control
