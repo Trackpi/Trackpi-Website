@@ -11,7 +11,7 @@ function EmpDetails() {
                     <img src="src/images/personnel-3-400x310.jpg" height={200} width={180} className="empimg" style={{borderRadius:'30px'}}/>
                     <div className="hidden md:block w-full">
                     <div className="  flex flex-row justify-between items-center text-2xl xl:text-xl w-full ">
-                            <div>
+                            <div className="">
                                 <p className="font-bold  text-2xl" >Paul Walker</p>
                             
                                 <button style={{backgroundColor:" #019304",color:"white"}} className=" act rounded-pill px-3 py-1 flex flex-row justify-center items-center md:gap-1 text-xs md:text-sm "> <GoDotFill size={8}/>Active</button>
@@ -30,10 +30,10 @@ function EmpDetails() {
                     </div>
                     </div>
                     <div className="md:hidden w-full   flex flex-col justify-between items-start  md:flex-row lg:flex-row md:text-2xl xl:text-xl  ">
-                            <div className="flex flex-row gap-3  " style={{ lineHeight: '1px' }}>
+                            <div className="flex flex-row justify-center item-center gap-3  " style={{ lineHeight: '1px' }}>
                                 <h5 className="font-bold  " >Paul Walker</h5>
                             
-                                <button style={{backgroundColor:" #019304",color:"white"}} className=" active rounded-pill px-3 py-1 flex flex-row justify-center items-center md:gap-1 text-xs md:text-sm "> <GoDotFill size={8}/>Active</button>
+                                <button style={{backgroundColor:" #019304",color:"white"}} className=" active rounded-pill px-3 py-1 sm:py-0 sm:px-0 flex flex-row justify-center items-center md:gap-1 text-xs sm:text-xs md:text-sm "> <GoDotFill size={8}/>Active</button>
                             </div>
                    
                             <div className="div-1 flex flex-row md:flex-col lg:flex-col  gap-2  " style={{ lineHeight: '1px' }}>
@@ -147,7 +147,7 @@ function EmpDetails() {
         </div>
    
   </div>
-    <div className="flex justify-center gap-20 mt-8 md:mt-3 px-10 py-2 md:py-0 mb-3 md:mb-3 lg:mb-3 xl:mb-2 2xl:mb-3">
+    <div className="flex justify-center gap-20 mt-8 md:mt-3 2xl:mt-8 px-10 py-2 md:py-0 mb-3 md:mb-3 lg:mb-3 xl:mb-2 2xl:mb-4">
                 <RiFacebookCircleLine  className="text-yellow-500  text-2xl md:text-3xl lg:text-4xl cursor-pointer" />
                 
                 <IoLogoInstagram  className="text-yellow-500 text-2xl md:text-3xl lg:text-4xl cursor-pointer" />

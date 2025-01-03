@@ -242,7 +242,7 @@ function OurTeam() {
           </div>
         </motion.div>
       </section>
-      <section className="section4 md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10 md:mb-5  w-full px-2 md:px-6 lg:px-20 xl:px-24 2xl:px-32 md:py-8 mx-auto">
+      <section className="section4  md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10 md:mb-5  w-full px-2 md:px-6 lg:px-20 xl:px-24 2xl:px-32 md:py-8 mx-auto">
         <Container fluid>
           <Row>
             <h1 className="fw-bold text-center text-amber-500 text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl pb-2   flex justify-center">

@@ -1,17 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-
-
 .gradient-button {
     background: linear-gradient(90deg, #ffc107, #ff8c00);
     border: none;
     font-weight: bold;
 
   }
-  footer{
-    font-family: "Urbanist", sans-serif;
-  }
-
-  
   .border-warning {
     border-color: #ffc107 !important;
     box-shadow: none;
@@ -40,15 +32,7 @@
       height: 30px;
       font-size: 10px;
     }
-    .footerForm input::placeholder{
-      color: #0A0A0A80;
-    }
   }
-
-
-.slogen{
-    font-family: "Urbanist", sans-serif;
-}
 /* footer social medias */
 #fb-footer,#medium-footer,#insta-footer,#blogger-footer,#youtube-footer,#quora-footer,#linkedin-footer{
   background-color: #FFC100;
@@ -69,4 +53,69 @@
     height:27px;
     width: 27px;
   }
+}
+.footerParagraph{
+  text-align: justify;
+}
+@media (max-width: 1280px) {
+  .footerParagraph{
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .footerParagraph{
+    text-align: justify;
+    text-align-last: center;
+  }
+}
+.follow_us_footer , .follow_us_footer h5{
+  margin: 0;
+}
+@media (max-width: 1280px) {
+  .follow_us_footer , .follow_us_footer h5{
+    margin: auto;
+  }
+}
+@media (min-width: 1280px) and (max-width: 1310px) {
+  .join_us_div{
+    width: 100% !important;
+  }
+  .join_us_div .joinInput{
+    margin-top: 30px;
+    display: flex;
+  }
+  .footerInput1 {
+      display: none;
+  }
+  .footerInput2 {
+      display: block;
+  }
+  .footerForm button{
+    border-radius: 10px  ;
+   padding: 7.5px 15px !important;
+   font-size: 14px;
+   margin-top: 10px;
+   margin: auto;
+  }
+  .footerForm input{
+    border-radius: 10px;
+    height: 30px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+
+.follow_us_footer, .follow_us_footer h5 {
+  margin: 0;
+}
+}
+.join_footer_btn {
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background-image: linear-gradient(black, black), linear-gradient(90deg, #FFDF41, #FF8800);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: white;
+  cursor: pointer;
+  font-weight: 400;
 }
