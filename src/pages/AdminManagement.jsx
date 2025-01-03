@@ -2,7 +2,9 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import { FaEdit } from "react-icons/fa";
+import { FaRegEdit } from 'react-icons/fa';
+import { RiFileCopyLine } from 'react-icons/ri';
+
 import {
   addAdmin,
   deleteAdmin,
@@ -13,114 +15,6 @@ import AdminNavbar from '../components/AdminNavbar';
 import Table from '../components/Table';
 const adminid = localStorage.getItem('admin');
 
-const columns = [
-  { header: 'Sl No', accessor: 'sl_no' },
-  { header: 'Username', accessor: 'username' },
-  { header: 'Email ID', accessor: 'email' },
-  { header: 'Password', accessor: 'password' },
-  { header: 'Admin Type', accessor: 'admin_type' },
-  { header: 'Edit', accessor: 'edit' },
-  { header: 'Status', accessor: 'status' },
-];
-
-const data = [
-  {
-    sl_no: 1,
-    username: 'Name',
-    email: 'email@gmail.com',
-    password: 'Password',
-    admin_type: 'Admin Type',
-    edit: <FaEdit />,
-    status: (
-      <>
-        <button
-          style={{
-            color: 'white',
-            backgroundColor: '#FF8C00',
-            marginRight: '5px',
-          }}
-        >
-          Activate
-        </button>
-        <button style={{ color: 'white', backgroundColor: '#FF6347' }}>
-          Deactivate
-        </button>
-      </>
-    ),
-  },
-  {
-    sl_no: 2,
-    username: 'Name',
-    email: 'email@gmail.com',
-    password: 'Password',
-    admin_type: 'Admin Type',
-    edit: <FaEdit />,
-    status: (
-      <>
-        <button
-          style={{
-            color: 'white',
-            backgroundColor: '#FF8C00',
-            marginRight: '5px',
-          }}
-        >
-          Activate
-        </button>
-        <button style={{ color: 'white', backgroundColor: '#FF6347' }}>
-          Deactivate
-        </button>
-      </>
-    ),
-  },
-  {
-    sl_no: 3,
-    username: 'Name',
-    email: 'email@gmail.com',
-    password: 'Password',
-    admin_type: 'Admin Type',
-    edit: <FaEdit />,
-    status: (
-      <>
-        <button
-          style={{
-            color: 'white',
-            backgroundColor: '#FF8C00',
-            marginRight: '5px',
-          }}
-        >
-          Activate
-        </button>
-        <button style={{ color: 'white', backgroundColor: '#FF6347' }}>
-          Deactivate
-        </button>
-      </>
-    ),
-  },
-  {
-    sl_no: 4,
-    username: 'Name',
-    email: 'email@gmail.com',
-    password: 'Password',
-    admin_type: 'Admin Type',
-    edit: <FaEdit />,
-    status: (
-      <>
-        <button
-          style={{
-            color: 'white',
-            backgroundColor: '#FF8C00',
-            marginRight: '5px',
-          }}
-        >
-          Activate
-        </button>
-        <button style={{ color: 'white', backgroundColor: '#FF6347' }}>
-          Deactivate
-        </button>
-      </>
-    ),
-  },
-];
 
 function AdminManagement() {
   const [admins, setAdmins] = useState([]);
@@ -194,7 +88,204 @@ function AdminManagement() {
         console.log(err);
       });
   };
+  const [isActive, setIsActive] = useState(false);
 
+  const toggleStatus = () => {
+    setIsActive(!isActive);
+  };
+  const columns = [
+    { header: 'Sl No', accessor: 'sl_no' },
+    { header: 'Username', accessor: 'username' },
+    { header: 'Email ID', accessor: 'email' },
+    { header: 'Password', accessor: 'password' },
+    { header: 'Admin Type', accessor: 'admin_type' },
+    { header: 'Edit', accessor: 'edit' },
+    { header: 'Status', accessor: 'status' },
+  ];
+  
+  const data = [
+    {
+      sl_no: 1,
+      username: 'Name',
+      email: 'email@gmail.com',
+      password: (
+        <div className="flex justify-center items-center space-x-2">
+          <span>Password</span>
+          <RiFileCopyLine />
+        </div>
+      ),
+      admin_type: 'Admin Type',
+      edit: <FaRegEdit size={15} />,
+      status: (
+        <div className="flex justify-center gap-2.5">
+          <button
+            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
+            className={`${
+              isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'
+            } ${
+              isActive ? 'py-1 px-2.5' : 'py-1 px-9'
+            } rounded-full cursor-pointer relative text-xs font-bold ${
+              isActive ? 'z-10' : 'z-0'
+            } mr-[-30px]`}
+            style={{ border: isActive ? 'none' : '1px solid black' }}
+          >
+            Activate
+          </button>
+          <button
+            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
+            className={`${
+              isActive
+                ? 'bg-white text-black border border-black'
+                : 'bg-orange-500 text-white border-orange-500'
+            } ${
+              isActive ? 'py-1 px-9' : 'py-1 px-2.5'
+            } rounded-full cursor-pointer relative text-xs font-bold ${
+              isActive ? 'z-0' : 'z-10'
+            }`}
+            style={{ border: isActive ? '1px solid black' : 'none' }}
+          >
+            Deactivate
+          </button>
+        </div>
+      ),
+    },
+    {
+      sl_no: 2,
+      username: 'Name',
+      email: 'email@gmail.com',
+      password: (
+        <div className="flex justify-center items-center space-x-2">
+          <span>Password</span>
+          <RiFileCopyLine />
+        </div>
+      ),
+      admin_type: 'Admin Type',
+      edit: <FaRegEdit size={15} />,
+      status: (
+        <div className="flex justify-center gap-2.5">
+          <button
+            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
+            className={`${
+              isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'
+            } ${
+              isActive ? 'py-1 px-2.5' : 'py-1 px-9'
+            } rounded-full cursor-pointer relative text-xs font-bold ${
+              isActive ? 'z-10' : 'z-0'
+            } mr-[-30px]`}
+            style={{ border: isActive ? 'none' : '1px solid black' }}
+          >
+            Activate
+          </button>
+          <button
+            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
+            className={`${
+              isActive
+                ? 'bg-white text-black border border-black'
+                : 'bg-orange-500 text-white border-orange-500'
+            } ${
+              isActive ? 'py-1 px-9' : 'py-1 px-2.5'
+            } rounded-full cursor-pointer relative text-xs font-bold ${
+              isActive ? 'z-0' : 'z-10'
+            }`}
+            style={{ border: isActive ? '1px solid black' : 'none' }}
+          >
+            Deactivate
+          </button>
+        </div>
+      ),
+    },
+    {
+      sl_no: 3,
+      username: 'Name',
+      email: 'email@gmail.com',
+      password: (
+        <div className="flex justify-center items-center space-x-2">
+          <span>Password</span>
+          <RiFileCopyLine />
+        </div>
+      ),
+      admin_type: 'Admin Type',
+      edit: <FaRegEdit size={15} />,
+      status: (
+        <div className="flex justify-center gap-2.5">
+          <button
+            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
+            className={`${
+              isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'
+            } ${
+              isActive ? 'py-1 px-2.5' : 'py-1 px-9'
+            } rounded-full cursor-pointer relative text-xs font-bold ${
+              isActive ? 'z-10' : 'z-0'
+            } mr-[-30px]`}
+            style={{ border: isActive ? 'none' : '1px solid black' }}
+          >
+            Activate
+          </button>
+          <button
+            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
+            className={`${
+              isActive
+                ? 'bg-white text-black border border-black'
+                : 'bg-orange-500 text-white border-orange-500'
+            } ${
+              isActive ? 'py-1 px-9' : 'py-1 px-2.5'
+            } rounded-full cursor-pointer relative text-xs font-bold ${
+              isActive ? 'z-0' : 'z-10'
+            }`}
+            style={{ border: isActive ? '1px solid black' : 'none' }}
+          >
+            Deactivate
+          </button>
+        </div>
+      ),
+    },
+    {
+      sl_no: 4,
+      username: 'Name',
+      email: 'email@gmail.com',
+      password: (
+        <div className="flex justify-center items-center space-x-2">
+          <span>Password</span>
+          <RiFileCopyLine />
+        </div>
+      ),
+      admin_type: 'Admin Type',
+      edit: <FaRegEdit size={15} />,
+      status: (
+        <div className="flex justify-center gap-2.5">
+          <button
+            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
+            className={`${
+              isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'
+            } ${
+              isActive ? 'py-1 px-2.5' : 'py-1 px-9'
+            } rounded-full cursor-pointer relative text-xs font-bold ${
+              isActive ? 'z-10' : 'z-0'
+            } mr-[-30px]`}
+            style={{ border: isActive ? 'none' : '1px solid black' }}
+          >
+            Activate
+          </button>
+          <button
+            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
+            className={`${
+              isActive
+                ? 'bg-white text-black border border-black'
+                : 'bg-orange-500 text-white border-orange-500'
+            } ${
+              isActive ? 'py-1 px-9' : 'py-1 px-2.5'
+            } rounded-full cursor-pointer relative text-xs font-bold ${
+              isActive ? 'z-0' : 'z-10'
+            }`}
+            style={{ border: isActive ? '1px solid black' : 'none' }}
+          >
+            Deactivate
+          </button>
+        </div>
+      ),
+    },
+  ];
+  
   return (
     <div className=" bg-white">
       <AdminNavbar />
@@ -326,6 +417,35 @@ function AdminManagement() {
           </table> */}
           <Table columns={columns} data={data} />
         </div>
+        {/* <div className="flex justify-center gap-2.5">
+          <button
+            onClick={toggleStatus}
+            className={`
+      ${isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'} 
+      ${isActive ? 'py-1 px-2.5' : 'py-1 px-9'}
+      rounded-full cursor-pointer relative
+      text-xs font-bold
+      ${isActive ? 'z-10' : 'z-0'}
+      mr-[-30px]
+    `}
+            style={{ border: isActive ? 'none' : '1px solid black' }}
+          >
+            Activate
+          </button>
+          <button
+            onClick={toggleStatus}
+            className={`
+      ${isActive ? 'bg-white text-black' : 'bg-orange-500 text-white '} 
+      ${isActive ? 'py-1 px-9' : 'py-1 px-2.5'}
+      rounded-full cursor-pointer relative
+      text-xs font-bold
+      ${isActive ? 'z-0' : 'z-10'}
+    `}
+            style={{ border: isActive ? '1px solid black' : 'none' }}
+          >
+            Deactivate
+          </button>
+        </div> */}
 
         <div className="d-flex justify-content-center align-items-center my-5 ">
           <div className="border  m-5 shadow rounded-4">
