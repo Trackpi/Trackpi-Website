@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import Brochure from "../components/Brochure";
 import '../CSS/employverification.css'
+import image from '../images/employ.png'
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({
@@ -157,27 +158,25 @@ function EmployeeVerification() {
 
     return (
         <div className="employee_reg_page">
-            <section className="bgFour w-full  relative ">
-             <div className={`headerbuttons flex sm:justify-end  items-center space-x-0 sm:space-x-5 relative px-[15px] sm:px-[22.5px] lg:px-[30px] justify-end `}>
+            <section className="headerbannerMain">
+       <div className={`headerbuttons flex sm:justify-end  items-center space-x-0 sm:space-x-5 relative px-[15px] sm:px-[22.5px] lg:px-[30px] justify-end `}>
           
           {<Brochure />}
         </div>
+  <div className='h-full absolute headerbanner1'>
 
-        <div className="flex justify-center  items-center  h-100">
+        <div className="flex justify-center items-center h-100">
           <div
-            className={`flex flex-col w-max text-center items-center z-2 `}
+            className={`flex flex-col w-max text-center items-center z-2 headerContent`}
           >
-            <h1 className="text-yellow-400 font-bold text-[20px] sm:text-[26px] md:text-[36px] lg:text-[48px] xl:text-[56px] 2xl:text-[62px]">
+            <h1 className="text-yellow-400 font-bold text-[20px] sm:text-[26px] md:text-[36px] lg:text-[48px] xl:text-[56px] 2xl:text-[62px] headerBannerHeading">
             Employee Verification
-            </h1>
 
-            <p className="text-[12px] sm:text-[16px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px] leading-[14.4px] sm:leading-[18px] md:leading-[22px] lg:leading-[26px] xl:leading-[28px] 2xl:leading-[31.2px] text-white block md:hidden ">
+            </h1>
+            <p className="text-[12px] sm:text-[16px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px] leading-[14.4px] sm:leading-[18px] md:leading-[22px] lg:leading-[26px] xl:leading-[28px] 2xl:leading-[31.2px] text-white block md:hidden headerBannerPara">
             Verify employee credentials and details securely
             and efficiently.            </p>
-
-    
-                        
-                        <form className=" w-100 mt-[3vh] lg:mt-[4vh] xl:mt-[5vh] 2xl:mt-[7vh]  hidden md:block">
+            <form className=" w-100 mt-[3vh] lg:mt-[4vh] xl:mt-[5vh] 2xl:mt-[7vh]  hidden md:block">
                         {/* Employee ID */}
                         <div style={{fontWeight:"600", width:"90%"}} className="mb-4 mx-auto lg:text-xl text-lg g-5">
                             <label className="block my-2 text-left text-light" htmlFor="employeeId">
@@ -186,7 +185,7 @@ function EmployeeVerification() {
                             <input
                                 type="text"
                                 id="employeeId"
-                                aria-label="Enter Employee ID"
+                                aria-label="Enter Your Employee ID"
                                 value={formData.employeeId}
                                 onChange={handleTouched}
                                 placeholder="Enter Your Employee ID"
@@ -207,9 +206,17 @@ function EmployeeVerification() {
                             </button>
                         </div>
                     </form>
-                    </div>
-                </div>
-            </section>
+
+            
+           
+            
+          </div>
+        </div>
+        </div>
+  <div className='h-full headerbanner2'>
+      <img src={image} alt="" />
+  </div>
+</section>
 <div className="p-[20px] sm:p-[30px] md:p-[40px] lg:p-[50px] xl:p-[65px]">
             {/* Verification Form Section */}
             <section className=" mb-14 w-100 block md:hidden">

@@ -13,6 +13,7 @@ import clientLogo1 from '../images/growthfactor.png';
 import clientLogo2 from '../images/trademax.png';
 import HeaderBanner from '../components/HeaderBanner';
 import '../CSS/Home.css';
+import img1 from '../images/team.png'
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });
@@ -233,10 +234,11 @@ function Home() {
         brochure
         learn
         classname="bgOne"
+        image={img1}
         title="Your Strategic Growth Partner"
       />
       <section>
-        <div className="text-center lg:pb-12 pt-8 sm:pb-3 px-2">
+        <div className="text-center lg:pb-12  sm:pb-3 px-2">
           <h1 className="text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl  font-bold text-[#FFC100] ">
             Real-Time Business News Updates?
           </h1>

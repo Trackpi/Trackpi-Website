@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+.adminsidebarMain, .adminsidebarMain li {
+    font-family: "Lato", serif;
+}
+.tabSideMain::-webkit-scrollbar {
+    display: none ;
+  }
+.tabSideMain {
+    box-shadow: 2px 0 4px 0 #0A0A0A33;
+    width: 300px;
+    max-height: max-content;
+    min-height: 100vh;
+    overflow-y: scroll;
+    gap: 30px;
+}
+
+.tab-item {
+    transition: background-color 0.3s, font-weight 0.3s;
+    font-weight: 500;
+}
+
+.tab-item:hover {
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    
+}
+.active-tab, .active-tab:hover {
+    background-color: #FF9D00;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+}
+.secondDivAdminsidebar{
+    min-height: 80vh;
+    gap: 40px;
+}
+.adminHeader{
+    width: calc(100vw - 300px);
+    height: 80px;
+}
+.adminInput input{
+    border: 1px solid #0A0A0A;
+    border-radius: 30px;
+    width: 330px;
+    height: 40px;
+    padding: 8px 12px 8px 20px;
+    font-size: 14px;
+    outline: 0;
+}
