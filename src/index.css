@@ -598,17 +598,9 @@ html {
 /* Our services */
 
 
-
-
-
-  
-/* .connect-text-Color{
-
-  color: black !important;
-  border-radius: 7px !important;
-} */
-
-  
+.connect-text-Color {
+  color: rgb(245, 158, 11);
+}
 
 /* Employee Verification Section */
 .employ_section::before {
@@ -677,7 +669,11 @@ html {
     padding: 0.5rem; /* Adjust padding for smaller screen */
   }
   .mediaUploadDiv {
-    align-items: normal; /* Center align text */
+    align-items: center; /* Center align text */
+  }
+  .learnMore
+  {
+    display: none;
   }
 }
 @media (max-width: 344px) {
