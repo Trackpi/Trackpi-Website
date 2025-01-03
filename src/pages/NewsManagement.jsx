@@ -6,7 +6,6 @@ const NewsManagement = () => {
   return (
     <div>
       <AdminSidebar />
-      <p>News Management</p>
     </div>
   )
 }
