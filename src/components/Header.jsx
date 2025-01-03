@@ -40,7 +40,7 @@ function Header() {
 
     return (
         <>
-            <Navbar expand="lg" className={`navbar px-md-5 font-bold text-base navbar-dark`} fixed="top">
+            <Navbar expand="lg" className={`navbar px-md-5 font-bold text-base navbar-dark`} fixed="top" id='navbar'>
                 <Container fluid>
                     <Navbar.Brand href="" className="ms-md-3">
                         <Link to={"/"} className="flex items-center text-decoration-none p-1">

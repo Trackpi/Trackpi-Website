@@ -1,14 +1,23 @@
-import React from "react";
 
+import React, { useEffect, useState } from "react";
 
 
 import EmpDetails from "../components/EmpDetails";
-import "./employeeinternship.css";
+import "../CSS/employeeinternship.css";
 function EmployeeInternship() {
-
+  const [headerHeight, setHeaderHeight] = useState(0);
+  useEffect(() => {
+    
+    const header = document.querySelector(".navbar"); 
+  
+    if (header) {
+      setHeaderHeight(header.offsetHeight + 30); 
+    }
+  }, []);
 
   return (
-    <div className="pad mt-20 w-full py-6 md:py-10 md:px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto ">
+    <div className="pad w-full py-6 md:py-10 md:px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto "
+    style={{ paddingTop: headerHeight }} >
        <EmpDetails/>
        <div className=" grid grid-cols-1 md:grid-cols-2 md:gap-12 sm:text-lg md:text-xl xl:text-xl xl:leading-7 2xl:leading-7 2xl:text-2xl md:mt-4 2xl:mt-8 ">
                   <div>
