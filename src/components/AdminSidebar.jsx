@@ -32,7 +32,7 @@ const AdminSidebar = () => {
     { name: 'Footer Management', route: '/admin/footer-management' },
     { name: 'Heading Management', route: '' },
     { name: 'Content Management', route: '' },
-    { name: 'Partnership Management', route: '' },
+    { name: 'Partnership Management', route: '/admin/partnership-management' }
   ];
 
   return (
@@ -94,6 +94,9 @@ const AdminSidebar = () => {
             <img src={notifyImg} alt="" />
           </div>
         </div>
+      </div>
+      <div>
+        
       </div>
     </div>
   );

@@ -22,13 +22,15 @@ const FormNewProject = () => {
 
   return (
     <>
-      <div className="bg-white  px-8 md:px-16 lg:px-0 py-3 ">
+      <div className=" bg-white md:px-12 lg:px-0 py-3 ">
         <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
           <div className="mb-4  flex justify-center  items-center">
             <Form.Control
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -52,6 +54,8 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -66,7 +70,7 @@ const FormNewProject = () => {
               id="contactnumber"
               placeholder="Contact Number"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              className="bg-transparent  border-black text-black placeholder-black p-3"
+              className="border-black text-black placeholder-black p-3"
               required
             />
           </div>
@@ -76,6 +80,8 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -89,7 +95,7 @@ const FormNewProject = () => {
               type="email"
               id="email"
               placeholder="Email Address"
-              className="bg-transparent  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3"
               required
             />
           </div>
@@ -129,11 +135,13 @@ const FormNewProject = () => {
           <div className="mb-4">
             <Form.Select
               id="qualification"
-              className="bg-transparent p-3"
+              className=" p-3"
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
                 color: 'rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -160,11 +168,13 @@ const FormNewProject = () => {
           <div className="mb-4 overflow-x-auto">
             <Form.Select
               id="institute_company"
-              className="bg-transparent p-3 max-w-full"
+              className=" p-3 max-w-full"
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
                 color: 'rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -193,6 +203,8 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -206,7 +218,7 @@ const FormNewProject = () => {
               type="text"
               id="project_idea"
               placeholder="Project/Idea Name"
-              className="bg-transparent  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3"
             />
           </div>
 
@@ -215,6 +227,8 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -228,7 +242,7 @@ const FormNewProject = () => {
               type="text"
               id="problem_solve"
               placeholder="What problem does your Idea Solve?"
-              className="bg-transparent  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3"
             />
           </div>
 
@@ -237,6 +251,8 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -250,7 +266,7 @@ const FormNewProject = () => {
               type="text"
               id="benefit_idea"
               placeholder="Who would benefit from this idea?"
-              className="bg-transparent  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3"
             />
           </div>
 
@@ -259,6 +275,8 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -272,7 +290,7 @@ const FormNewProject = () => {
               type="text"
               id="idea_success"
               placeholder="Why do you think this idea will succeed?"
-              className="bg-transparent  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3"
             />
           </div>
 
@@ -281,6 +299,8 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -294,7 +314,7 @@ const FormNewProject = () => {
               type="text"
               id="message"
               placeholder="Do you have any business or teachnical skills?"
-              className="bg-transparent  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3"
             />
           </div>
 
@@ -303,6 +323,8 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                height:'53.4px',
+
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -316,7 +338,7 @@ const FormNewProject = () => {
               as="textarea"
               id="summarize"
               placeholder="Summarize your project Ideas"
-              className="bg-transparent  border-red text-black placeholder-black p-3 h-48"
+              className="  border-red text-black placeholder-black p-3 h-48"
             />
           </div>
 

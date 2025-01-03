@@ -26,7 +26,7 @@ function OurTeam() {
       </section>
       <section
         ref={refFirstSection}
-        className="md:mt-20 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1"
+        className="md:mt-20 w-full px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1"
       >
         <motion.div
           className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
@@ -95,7 +95,7 @@ function OurTeam() {
 
       <section
         ref={refSecondSection}
-        className="md:mt-28 w-full px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-6 md:py-20 bg-gradient-to-r from-[#FFC100] via-[#FFC100] to-[#FFC100] text-black bgg11 section2"
+        className="md:mt-28 w-full px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-6 md:py-20 bg-gradient-to-r from-[#FFC100] via-[#FFC100] to-[#FFC100] text-black bgg11 section2"
       >
         <motion.div
           className="flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
@@ -156,7 +156,7 @@ function OurTeam() {
 
       <section
         ref={refThirdSection}
-        className="section4 px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3"
+        className="section4 px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto w-full h-full mt-28 section3"
       >
         <motion.div
           className=" flex flex-col md:flex-row gap-12 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
@@ -217,7 +217,7 @@ function OurTeam() {
               <div className='flex justify-center md:justify-start'>
               <Button
                 className=" mt-4 bg-transparent  text-black fw-bold  rounded-pill  hover:bg-gray-800 
-                 px-8 py-2 md:px-10 md:py-3 lg:py-4   xl:py-12 2xl:px-12   
+                 px-10 py-2 md:px-12 md:py-3 lg:py-4   xl:py-14 2xl:px-12   
                   text-sm  md:text-lg  lg:text-xl  xl:text-xl  2xl:text-2xl 
                    transition duration-300  ff  "
               >
@@ -242,7 +242,7 @@ function OurTeam() {
           </div>
         </motion.div>
       </section>
-      <section className="section4 md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10 md:mb-5  w-full px-2 md:px-6 lg:px-20 xl:px-24 2xl:px-32 md:py-8 mx-auto">
+      <section className="section4  md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10 md:mb-5  w-full px-2 md:px-6 lg:px-20 xl:px-24 2xl:px-32 md:py-8 mx-auto">
         <Container fluid>
           <Row>
             <h1 className="fw-bold text-center text-amber-500 text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl pb-2   flex justify-center">

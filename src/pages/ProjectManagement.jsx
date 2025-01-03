@@ -1,104 +1,155 @@
 
+
 import React, { useState, useEffect } from "react";
-import { AiFillDelete } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import AdminNavbar from "../components/AdminNavbar"; // Adjust path based on your structure
 
-const ProjectManagement = () => {
-  const [tableData, setTableData] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(null); // State to hold selected project for viewing details
+function ProjectManagement() {
+  const [projects, setProjects] = useState([]);
+  const navigate = useNavigate();
 
-
-  // Simulating data fetch
+  // Mock data fetching
   useEffect(() => {
-    const fetchData = async () => {
-      const userData = [
-        { id: 1, name: "John Doe", email: "john.doe@gmail.com", qualification: "BTech", projectIdea: "AI-Powered Chatbot" },
-        { id: 2, name: "Jane Smith", email: "jane.smith@gmail.com", qualification: "MTech", projectIdea: "Blockchain Voting System" },
-        { id: 3, name: "Alice Johnson", email: "alice.j@gmail.com", qualification: "BSc", projectIdea: "E-Learning Platform" },
-        { id: 4, name: "Bob Brown", email: "bob.b@gmail.com", qualification: "MBA", projectIdea: "SaaS CRM Tool" },
+    const fetchProjects = async () => {
+      // Replace with API call
+      const mockData = [
+        { id: 1, name: "John Doe", email: "john@example.com", phone: "1234567890", project: "E-commerce Website", date: "2025-01-02" },
+        { id: 2, name: "Jane Smith", email: "jane@example.com", phone: "0987654321", project: "Mobile App Idea", date: "2025-01-01" },
       ];
-      setTableData(userData);
+      setProjects(mockData);
     };
 
-    fetchData();
+    fetchProjects();
   }, []);
 
-  const handleDelete = (id) => {
-    setTableData(tableData.filter((data) => data.id !== id));
-  };
-
-  const handleViewDetails = (project) => {
-    setSelectedProject(project); // Set the selected project for viewing details
-  };
-
-  const handleBack = () => {
-    setSelectedProject(null); // Clear the selected project to go back to the table
+  const handleViewDetails = (projectId) => {
+    navigate(`/admin/project-details/${projectId}`);
   };
 
   return (
-    <div className="container mx-auto my-10 p-5 border border-gray-300 rounded-lg shadow-md bg-yellow-50">
-      {/* Conditional Rendering: Show project details or table */}
-      {selectedProject ? (
-        <div>
-          <h2 className="text-xl font-bold mb-4">Project Details</h2>
-          <p><strong>Name:</strong> {selectedProject.name}</p>
-          <p><strong>Email:</strong> {selectedProject.email}</p>
-          <p><strong>Qualification:</strong> {selectedProject.qualification}</p>
-          <p><strong>Project Idea:</strong> {selectedProject.projectIdea}</p>
-          <button
-            onClick={handleBack}
-            className="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-          >
-            Back to Table
-          </button>
+    <div className="bg-white">
+      <AdminNavbar />
+      <div className="p-5">
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h4 className="font-bold my-0">Project Management</h4>
         </div>
-      ) : (
-        <div>
-          {/* Move the heading to the left */}
-          <h1 className="text-left text-2xl font-bold mb-5 text-yellow-600" style={{ marginLeft: "220px" }}>
-            Project Management
-          </h1>
-          <table className="w-full max-w-[calc(100%-450px)] mx-auto border-collapse border border-gray-300">
-            <thead>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg border-dark border-2">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
               <tr>
-                <th className="border border-gray-300 px-3 py-2">Name</th>
-                <th className="border border-gray-300 px-3 py-2">Email</th>
-                <th className="border border-gray-300 px-3 py-2">Qualification</th>
-                <th className="border border-gray-300 px-3 py-2">Project Idea</th>
-                <th className="border border-gray-300 px-3 py-2">View</th>
-                <th className="border border-gray-300 px-3 py-2">Delete</th>
+                <th className="px-6 py-3 border-r-2 text-center">SI NO</th>
+                <th className="px-6 py-3 border-r-2 text-center">Name</th>
+                <th className="px-6 py-3 border-r-2 text-center">Email ID</th>
+                <th className="px-6 py-3 border-r-2 text-center">Phone</th>
+                <th className="px-6 py-3 border-r-2 text-center">Project/Idea</th>
+                <th className="px-6 py-3 border-r-2 text-center">Date</th>
+                <th className="px-6 py-3 text-center">View</th>
               </tr>
             </thead>
             <tbody>
-              {tableData.map((data) => (
-                <tr key={data.id} className="text-center hover:bg-gray-100">
-                  <td className="border border-gray-300 px-4 py-2">{data.name}</td>
-                  <td className="border border-gray-300 px-4 py-2">{data.email}</td>
-                  <td className="border border-gray-300 px-4 py-2">{data.qualification}</td>
-                  <td className="border border-gray-300 px-4 py-2">{data.projectIdea}</td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    <a
-                      href="#"
-                      onClick={() => handleViewDetails(data)}
-                      className="text-yellow-700 underline hover:text-gray-900"
+              {projects.map((project, index) => (
+                <tr key={project.id} className="bg-white text-md font-semibold text-black hover:bg-gray-50">
+                  <td className="px-6 py-4 border-r-2 text-center">{index + 1}</td>
+                  <td className="px-6 py-4 border-r-2 text-center">{project.name}</td>
+                  <td className="px-6 py-4 border-r-2 text-center">{project.email}</td>
+                  <td className="px-6 py-4 border-r-2 text-center">{project.phone}</td>
+                  <td className="px-6 py-4 border-r-2 text-center">{project.project}</td>
+                  <td className="px-6 py-4 border-r-2 text-center">{project.date}</td>
+                  <td className="px-6 py-4 text-center">
+                    <span
+                      style={{ color: "#FF9D00", cursor: "pointer" }}
+                      className="fw-bold"
+                      onClick={() => handleViewDetails(project.id)}
                     >
-                      Full Details
-                    </a>
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    <AiFillDelete
-                      onClick={() => handleDelete(data.id)}
-                      className="text-black-700 mx-auto text-xl cursor-pointer hover:text-red-600"
-                    />
+                      View Details
+                    </span>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      )}
+      </div>
     </div>
   );
-};
+}
 
 export default ProjectManagement;
+
+// import React, { useState, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import AdminNavbar from "../components/AdminNavbar"; // Adjust path based on your structure
+
+// function ProjectManagement() {
+//   const [projects, setProjects] = useState([]);
+//   const navigate = useNavigate();
+
+//   // Mock data fetching
+//   useEffect(() => {
+//     const fetchProjects = async () => {
+//       // Replace with API call
+//       const mockData = [
+//         { id: 1, name: "John Doe", email: "john@example.com", phone: "1234567890", project: "E-commerce Website", date: "2025-01-02" },
+//         { id: 2, name: "Jane Smith", email: "jane@example.com", phone: "0987654321", project: "Mobile App Idea", date: "2025-01-01" },
+//       ];
+//       setProjects(mockData);
+//     };
+
+//     fetchProjects();
+//   }, []);
+
+//   const handleViewDetails = (projectId) => {
+//     navigate(`/admin/project-details/${projectId}`);
+//   };
+
+//   return (
+//     <div className="bg-white">
+//       <AdminNavbar />
+//       <div className="p-5">
+//         <div className="d-flex justify-content-between align-items-center mb-3">
+//           <h4 className="font-bold my-0">Project Management</h4>
+//         </div>
+//         <div className="relative overflow-x-auto shadow-md sm:rounded-lg border-dark border-2">
+//           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+//             <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
+//               <tr>
+//                 <th className="px-6 py-3 border-r-2 text-center">SI NO</th>
+//                 <th className="px-6 py-3 border-r-2 text-center">Name</th>
+//                 <th className="px-6 py-3 border-r-2 text-center">Email ID</th>
+//                 <th className="px-6 py-3 border-r-2 text-center">Phone</th>
+//                 <th className="px-6 py-3 border-r-2 text-center">Project/Idea</th>
+//                 <th className="px-6 py-3 border-r-2 text-center">Date</th>
+//                 <th className="px-6 py-3 text-center">View</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {projects.map((project, index) => (
+//                 <tr key={project.id} className="bg-white text-md font-semibold text-black hover:bg-gray-50">
+//                   <td className="px-6 py-4 border-r-2 text-center">{index + 1}</td>
+//                   <td className="px-6 py-4 border-r-2 text-center">{project.name}</td>
+//                   <td className="px-6 py-4 border-r-2 text-center">{project.email}</td>
+//                   <td className="px-6 py-4 border-r-2 text-center">{project.phone}</td>
+//                   <td className="px-6 py-4 border-r-2 text-center">{project.project}</td>
+//                   <td className="px-6 py-4 border-r-2 text-center">{project.date}</td>
+//                   <td className="px-6 py-4 text-center">
+//                     <span
+//                       style={{ color: "#FF9D00", cursor: "pointer" }}
+//                       className="fw-bold"
+//                       onClick={() => handleViewDetails(project.id)}
+//                     >
+//                       View Details
+//                     </span>
+//                   </td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default ProjectManagement;
+
 

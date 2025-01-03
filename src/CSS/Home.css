@@ -40,6 +40,7 @@
   margin: 15px auto 15px; /* Center the card and add spacing below */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
   border-radius: 8px; /* Rounded corners */
+  
 }
 /* Adjust Card Text */
 .carousel-card h3 {

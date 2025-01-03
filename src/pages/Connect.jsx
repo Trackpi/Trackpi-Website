@@ -49,14 +49,14 @@ function Connect() {
                 className="card card1  md:pt-4 rounded-2xl fixed-card  w-[280px] sm:w-[calc(50%-20px)] lg:w-[calc(30%)] md:w-[410px] h-[140px] md:h-[230px] p-[30px] flex flex-col justify-between items-center gap-5  text-center shadow-lg"
               >
 
-                <div className=" flex flex-col items-center gap-3 ">
-                <div className="h-[30px] w-[30px] md:h-[50px] md:w-[50px] bg-white rounded-full flex justify-center items-center text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] xl:text-[28px] 2xl:text-[30px]   md:mt-2 text-amberCustom md:mb-2">
+                <div className=" flex flex-col items-center gap-2 ">
+                <div className="h-[30px] w-[30px] md:h-[50px] md:w-[50px] bg-white rounded-full flex justify-center items-center text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] xl:text-[28px] 2xl:text-[30px]    text-amberCustom md:mb-2">
                   <i className={`fa-solid ${card.icon}`}></i>
                 </div>
-                <h6 className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]  font-medium">
+                <h6 className="text-[13px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]  font-medium">
                   {card.title}
                 </h6>
-                <p className="text-[15px] sm:text-[17px] md:text-[21px] lg:text-[25px] xl:text-[27px] 2xl:text-[29px] font-bold space-y-3">
+                <p className="text-[15px] sm:text-[17px] md:text-[21px] lg:text-[25px] xl:text-[25px] 2xl:text-[25px] font-bold ">
                   {card.text}
                 </p>
 
