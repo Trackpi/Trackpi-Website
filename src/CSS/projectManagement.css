@@ -1,0 +1,36 @@
+.projectManagement table {
+    border: 1px solid #0A0A0A;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border-collapse: separate;
+  }
+  .projectManagement table td,  .projectManagement table th{
+    padding: 10px 0 ;
+    border-right: 1px  solid #0A0A0A;
+  }
+.projectManagement table td:last-child, 
+.projectManagement table th:last-child {
+    padding: 10px 0;
+    border-right: 0;
+}
+
+ .projectManagement table th {
+    padding: 10px 0 ;
+    border-bottom: 1px  solid #0A0A0A;
+  }
+  .projectManagement table th{
+    font-size: 18px;
+  }
+  .projectManagement table td{
+    font-size: 16px;
+  }  
+  .projectDetailsBorderDiv{
+    border: 0.5px solid #0A0A0A;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .projectDetailsDocument{
+    border-radius: 10px ;
+    overflow: hidden;
+  }

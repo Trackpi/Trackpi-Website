@@ -4,8 +4,6 @@ import logo from '../images/tpl.png';
 import settingsImg from '../images/settings.svg';
 import logoutImg from '../images/logout.svg';
 import helpImg from '../images/help.svg';
-import notifyImg from '../images/notify.svg';
-import profileImg from '../images/profile.png';
 import '../CSS/adminsidebar.css';
 
 const Tab = ({ name, route, isActive, onClick }) => (
@@ -75,7 +73,7 @@ const AdminSidebar = () => {
           </div>
         </div>
       </div>
-      <div className='adminHeader flex mx-auto justify-between items-center px-10'>
+      {/* <div className='adminHeader flex mx-auto justify-between items-center px-10'>
         <div className="h-[60px] flex gap-[20px] items-center justify-between adminProfilePic">
           <div>
           <img src={profileImg} className=' w-[60px] h-[60px] rounded-[40px] object-cover' alt="" />
@@ -94,7 +92,7 @@ const AdminSidebar = () => {
             <img src={notifyImg} alt="" />
           </div>
         </div>
-      </div>
+      </div> */}
       <div>
         
       </div>
