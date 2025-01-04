@@ -532,8 +532,8 @@ html {
 /* .personnel-designation {
   color: black;
 } */
-.connect-text-Color{
- color: rgb(245,158,11);
+.connect-text-Color {
+  color: rgb(245, 158, 11);
 }
 .personnelimg {
   position: absolute;
@@ -596,7 +596,6 @@ html {
 } */
 
 /* Our services */
-
 
 .connect-text-Color {
   color: rgb(245, 158, 11);
@@ -671,8 +670,7 @@ html {
   .mediaUploadDiv {
     align-items: center; /* Center align text */
   }
-  .learnMore
-  {
+  .learnMore {
     display: none;
   }
 }
@@ -684,12 +682,10 @@ html {
   .mediaUploadDiv {
     align-items: normal; /* Center align text */
   }
-  .learnMore
-  {
+  .learnMore {
     display: none;
   }
 }
-
 
 /* Admin panel Table css */
 /* Remove alternating row background (striped effect) */
@@ -710,7 +706,7 @@ tbody tr:hover {
 
 .custom-table th,
 .custom-table td {
-  border-right: 1px solid #0c0c0c; /* Light gray border for vertical lines */
+  border-right: 2px solid #0c0c0c; /* Light gray border for vertical lines */
   text-align: center; /* Optional: Center align text */
 }
 
@@ -734,7 +730,7 @@ tbody tr:hover {
 .custom-table tbody tr:hover {
   background-color: #f8f9fa; /* Light gray hover effect */
 }
-
-
-
-
+.btnBorder
+{
+  border: 1px solid #FF9D00 !important;
+}

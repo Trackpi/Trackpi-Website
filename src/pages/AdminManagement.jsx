@@ -2,19 +2,52 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import { FaRegEdit } from 'react-icons/fa';
-import { RiFileCopyLine } from 'react-icons/ri';
-
 import {
   addAdmin,
   deleteAdmin,
   editAdminData,
   getAdmins,
 } from '../Api Services/adminManagement';
-import AdminNavbar from '../components/AdminNavbar';
-import Table from '../components/Table';
+// import AdminNavbar from '../components/AdminNavbar';
+import { FaRegEdit } from 'react-icons/fa';
+import { RiFileCopyLine } from 'react-icons/ri';
+
 const adminid = localStorage.getItem('admin');
 
+const data = [
+  {
+    sl_no: 1,
+    username: 'Name',
+    email: 'email@gmail.com',
+    password: 'Password',
+    admin_type: 'Admin Type',
+    isActive: false,
+  },
+  {
+    sl_no: 2,
+    username: 'Name',
+    email: 'email@gmail.com',
+    password: 'Password',
+    admin_type: 'Admin Type',
+    isActive: false,
+  },
+  {
+    sl_no: 3,
+    username: 'Name',
+    email: 'email@gmail.com',
+    password: 'Password',
+    admin_type: 'Admin Type',
+    isActive: false,
+  },
+  {
+    sl_no: 4,
+    username: 'Name',
+    email: 'email@gmail.com',
+    password: 'Password',
+    admin_type: 'Admin Type',
+    isActive: false,
+  },
+];
 
 function AdminManagement() {
   const [admins, setAdmins] = useState([]);
@@ -24,7 +57,8 @@ function AdminManagement() {
     adminType: '',
   });
   const [editModalData, setEditModalData] = useState({});
-
+  const [rows, setRows] = useState(data);
+  const [editIndex, setEditIndex] = useState(null);
   //modal handeler
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -88,364 +122,138 @@ function AdminManagement() {
         console.log(err);
       });
   };
-  const [isActive, setIsActive] = useState(false);
 
-  const toggleStatus = () => {
-    setIsActive(!isActive);
+  const toggleStatus = index => {
+    console.log('Toggling row:', index);
+    setRows(prevRows =>
+      prevRows.map((row, rowIndex) =>
+        rowIndex === index ? { ...row, isActive: !row.isActive } : row
+      )
+    );
   };
-  const columns = [
-    { header: 'Sl No', accessor: 'sl_no' },
-    { header: 'Username', accessor: 'username' },
-    { header: 'Email ID', accessor: 'email' },
-    { header: 'Password', accessor: 'password' },
-    { header: 'Admin Type', accessor: 'admin_type' },
-    { header: 'Edit', accessor: 'edit' },
-    { header: 'Status', accessor: 'status' },
-  ];
-  
-  const data = [
-    {
-      sl_no: 1,
-      username: 'Name',
-      email: 'email@gmail.com',
-      password: (
-        <div className="flex justify-center items-center space-x-2">
-          <span>Password</span>
-          <RiFileCopyLine />
-        </div>
-      ),
-      admin_type: 'Admin Type',
-      edit: <FaRegEdit size={15} />,
-      status: (
-        <div className="flex justify-center gap-2.5">
-          <button
-            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
-            className={`${
-              isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'
-            } ${
-              isActive ? 'py-1 px-2.5' : 'py-1 px-9'
-            } rounded-full cursor-pointer relative text-xs font-bold ${
-              isActive ? 'z-10' : 'z-0'
-            } mr-[-30px]`}
-            style={{ border: isActive ? 'none' : '1px solid black' }}
-          >
-            Activate
-          </button>
-          <button
-            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
-            className={`${
-              isActive
-                ? 'bg-white text-black border border-black'
-                : 'bg-orange-500 text-white border-orange-500'
-            } ${
-              isActive ? 'py-1 px-9' : 'py-1 px-2.5'
-            } rounded-full cursor-pointer relative text-xs font-bold ${
-              isActive ? 'z-0' : 'z-10'
-            }`}
-            style={{ border: isActive ? '1px solid black' : 'none' }}
-          >
-            Deactivate
-          </button>
-        </div>
-      ),
-    },
-    {
-      sl_no: 2,
-      username: 'Name',
-      email: 'email@gmail.com',
-      password: (
-        <div className="flex justify-center items-center space-x-2">
-          <span>Password</span>
-          <RiFileCopyLine />
-        </div>
-      ),
-      admin_type: 'Admin Type',
-      edit: <FaRegEdit size={15} />,
-      status: (
-        <div className="flex justify-center gap-2.5">
-          <button
-            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
-            className={`${
-              isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'
-            } ${
-              isActive ? 'py-1 px-2.5' : 'py-1 px-9'
-            } rounded-full cursor-pointer relative text-xs font-bold ${
-              isActive ? 'z-10' : 'z-0'
-            } mr-[-30px]`}
-            style={{ border: isActive ? 'none' : '1px solid black' }}
-          >
-            Activate
-          </button>
-          <button
-            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
-            className={`${
-              isActive
-                ? 'bg-white text-black border border-black'
-                : 'bg-orange-500 text-white border-orange-500'
-            } ${
-              isActive ? 'py-1 px-9' : 'py-1 px-2.5'
-            } rounded-full cursor-pointer relative text-xs font-bold ${
-              isActive ? 'z-0' : 'z-10'
-            }`}
-            style={{ border: isActive ? '1px solid black' : 'none' }}
-          >
-            Deactivate
-          </button>
-        </div>
-      ),
-    },
-    {
-      sl_no: 3,
-      username: 'Name',
-      email: 'email@gmail.com',
-      password: (
-        <div className="flex justify-center items-center space-x-2">
-          <span>Password</span>
-          <RiFileCopyLine />
-        </div>
-      ),
-      admin_type: 'Admin Type',
-      edit: <FaRegEdit size={15} />,
-      status: (
-        <div className="flex justify-center gap-2.5">
-          <button
-            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
-            className={`${
-              isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'
-            } ${
-              isActive ? 'py-1 px-2.5' : 'py-1 px-9'
-            } rounded-full cursor-pointer relative text-xs font-bold ${
-              isActive ? 'z-10' : 'z-0'
-            } mr-[-30px]`}
-            style={{ border: isActive ? 'none' : '1px solid black' }}
-          >
-            Activate
-          </button>
-          <button
-            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
-            className={`${
-              isActive
-                ? 'bg-white text-black border border-black'
-                : 'bg-orange-500 text-white border-orange-500'
-            } ${
-              isActive ? 'py-1 px-9' : 'py-1 px-2.5'
-            } rounded-full cursor-pointer relative text-xs font-bold ${
-              isActive ? 'z-0' : 'z-10'
-            }`}
-            style={{ border: isActive ? '1px solid black' : 'none' }}
-          >
-            Deactivate
-          </button>
-        </div>
-      ),
-    },
-    {
-      sl_no: 4,
-      username: 'Name',
-      email: 'email@gmail.com',
-      password: (
-        <div className="flex justify-center items-center space-x-2">
-          <span>Password</span>
-          <RiFileCopyLine />
-        </div>
-      ),
-      admin_type: 'Admin Type',
-      edit: <FaRegEdit size={15} />,
-      status: (
-        <div className="flex justify-center gap-2.5">
-          <button
-            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
-            className={`${
-              isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'
-            } ${
-              isActive ? 'py-1 px-2.5' : 'py-1 px-9'
-            } rounded-full cursor-pointer relative text-xs font-bold ${
-              isActive ? 'z-10' : 'z-0'
-            } mr-[-30px]`}
-            style={{ border: isActive ? 'none' : '1px solid black' }}
-          >
-            Activate
-          </button>
-          <button
-            onClick={toggleStatus} // Add toggleStatus function to handle button clicks
-            className={`${
-              isActive
-                ? 'bg-white text-black border border-black'
-                : 'bg-orange-500 text-white border-orange-500'
-            } ${
-              isActive ? 'py-1 px-9' : 'py-1 px-2.5'
-            } rounded-full cursor-pointer relative text-xs font-bold ${
-              isActive ? 'z-0' : 'z-10'
-            }`}
-            style={{ border: isActive ? '1px solid black' : 'none' }}
-          >
-            Deactivate
-          </button>
-        </div>
-      ),
-    },
-  ];
-  
+  const handleEditClick = index => {
+    console.log(index);
+    setEditIndex(index);
+    // Perform any additional logic (e.g., open an edit modal, show a form, etc.)
+  };
+
   return (
-    <div className=" bg-white">
-      <AdminNavbar />
+    <div className="w-full bg-white">
+      {/* <AdminNavbar /> */}
       <div className="p-5">
         <h4 className="font-bold my-4">Admin Management</h4>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-2">
-          {/* <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
-            <thead className="text-md font-bold text-black uppercase border-b-2 border-dark ">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
               <tr>
-                <th scope="col" className="px-6 py-3 border-r-2  text-center">
+                <th scope="col" className="px-1 py-3 border-r-2 text-center">
+                  SL No.
+                </th>
+                <th scope="col" className="px-6 py-3 border-r-2 text-center">
                   Username
                 </th>
-                <th scope="col" className="px-6 py-3 border-r-2  text-center">
+                <th scope="col" className="px-6 py-3 border-r-2 text-center">
+                  Email ID
+                </th>
+                <th scope="col" className="px-6 py-3 border-r-2 text-center">
                   Password
                 </th>
-                <th scope="col" className="px-6 py-3 border-r-2  text-center">
+                <th scope="col" className="px-6 py-3 border-r-2 text-center">
                   Admin Type
                 </th>
-                <th scope="col" className="px-6 py-3 border-r-2  text-center">
+                <th scope="col" className="px-3 py-3 border-r-2 text-center">
                   Edit
                 </th>
-                <th scope="col" className="px-6 py-3 border-r-2  text-center">
-                  Delete
-                </th>
-                <th scope="col" className="px-6 py-3  text-center">
+                <th scope="col" className="px-10 py-3 border-r-2 text-center">
                   Status
                 </th>
               </tr>
             </thead>
             <tbody>
-              {admins.map((obj, key) => (
+              {rows.map((row, rowIndex) => (
                 <tr
-                  key={key}
-                  className="bg-white text-md  font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 "
+                  key={rowIndex}
+                  className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
                 >
-                  <td className="px-6 py-4  border-r-2   text-center">
-                    {obj?.username}
-                  </td>
-                  <td className="px-6 py-4 border-r-2  text-center">
-                    {obj?.password}
-                  </td>
-                  <td className="px-6 py-4 border-r-2  text-center">
-                    {obj?.adminType}
-                  </td>
-                  <td className="px-6 py-4 border-r-2  text-center">
-                    <i
-                      className="fa-regular fa-pen-to-square fa-xl text-dark"
-                      onClick={() => {
-                        handelEdit(obj);
-                      }}
-                    ></i>
-                  </td>
-                  <td className="px-6 py-4 border-r-2  text-center">
-                    <i
-                      className="fa-regular fa-trash-can fa-xl text-dark"
-                      onClick={() => {
-                        handeldelete(obj._id);
-                      }}
-                    ></i>
-                  </td>
-                  <td className="  text-center">
-                    <div className="d-flex justify-content-center ">
-                      {obj?.isActive ? (
-                        <div
-                          className=" d-flex  border-slate-950 border-1 shadow rounded-2xl "
-                          style={{ maxWidth: 'max-content' }}
+                  <>
+                    <td
+                      key={rowIndex}
+                      className="px-3 py-3 border-r-2  text-center"
+                    >
+                      {row.sl_no}
+                    </td>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                      {row.username}
+                    </td>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                      {row.email}
+                    </td>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                      <div className="flex justify-center items-center gap-2 ">
+                        {row.password} <RiFileCopyLine />{' '}
+                      </div>
+                    </td>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                      {row.admin_type}
+                    </td>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                      {/* {row.edit} */}
+                      <div className="flex justify-center items-center">
+                        <FaRegEdit
+                          size={15}
+                          onClick={() => handleEditClick(rowIndex)}
+                        />
+                      </div>
+                    </td>
+
+                    <td>
+                      <div className="flex justify-center gap-2.5">
+                        <button
+                          onClick={() => toggleStatus(rowIndex)}
+                          className={`${
+                            row.isActive
+                              ? 'bg-[#FF9D00] text-white'
+                              : 'bg-white text-black'
+                          } ${
+                            row.isActive ? 'py-1 px-2' : 'py-1 pr-7 pl-2'
+                          } rounded-full cursor-pointer relative text-xs font-bold ${
+                            row.isActive ? 'z-10' : 'z-0'
+                          } mr-[-30px]`}
+                          style={{
+                            border: row.isActive ? 'none' : '1px solid black',
+                          }}
                         >
-                          <div
-                            className="bg-dark text-light  px-2 py-1 rounded-2xl  text-xs font-medium text-center"
-                            style={{
-                              maxWidth: 'max-content',
-                              cursor: 'pointer',
-                            }}
-                            onClick={() =>
-                              handelActiveStatus({ ...obj, isActive: true })
-                            }
-                          >
-                            Activate
-                          </div>
-                          <div
-                            className="bg-white   text-xs px-2 py-1 rounded-2xl font-medium"
-                            style={{
-                              maxWidth: 'max-content',
-                              cursor: 'pointer',
-                            }}
-                            onClick={() =>
-                              handelActiveStatus({ ...obj, isActive: false })
-                            }
-                          >
-                            Deactivate
-                          </div>
-                        </div>
-                      ) : (
-                        <div
-                          className=" d-flex  border-slate-950 border-1 shadow rounded-2xl "
-                          style={{ maxWidth: 'max-content' }}
+                          Activate
+                        </button>
+                        <button
+                          onClick={() => toggleStatus(rowIndex)}
+                          className={`${
+                            row.isActive
+                              ? 'bg-white text-black'
+                              : 'bg-[#FF9D00] text-white'
+                          } 
+                          ${row.isActive ? 'py-1 pr-2 pl-7' : 'py-1 px-2'}
+                           rounded-full cursor-pointer relative text-xs font-bold ${
+                             row.isActive ? 'z-0' : 'z-10'
+                           }`}
+                          style={{
+                            border: row.isActive ? '1px solid black' : 'none',
+                            display: 'flex',
+                            justifyContent: row.isActive
+                              ? 'flex-end'
+                              : 'center',
+                          }}
                         >
-                          <div
-                            className="bg-white   text-xs px-2 py-1 rounded-2xl font-medium"
-                            style={{
-                              maxWidth: 'max-content',
-                              cursor: 'pointer',
-                            }}
-                            onClick={() =>
-                              handelActiveStatus({ ...obj, isActive: true })
-                            }
-                          >
-                            Activate
-                          </div>
-                          <div
-                            className="bg-dark text-light  px-2 py-1 rounded-2xl  text-xs font-medium text-center"
-                            style={{
-                              maxWidth: 'max-content',
-                              cursor: 'pointer',
-                            }}
-                            onClick={() =>
-                              handelActiveStatus({ ...obj, isActive: false })
-                            }
-                          >
-                            Deactivate
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </td>
+                          Deactivate
+                        </button>
+                      </div>
+                    </td>
+                  </>
                 </tr>
               ))}
             </tbody>
-          </table> */}
-          <Table columns={columns} data={data} />
+          </table>
         </div>
-        {/* <div className="flex justify-center gap-2.5">
-          <button
-            onClick={toggleStatus}
-            className={`
-      ${isActive ? 'bg-orange-500 text-white ' : 'bg-white text-black'} 
-      ${isActive ? 'py-1 px-2.5' : 'py-1 px-9'}
-      rounded-full cursor-pointer relative
-      text-xs font-bold
-      ${isActive ? 'z-10' : 'z-0'}
-      mr-[-30px]
-    `}
-            style={{ border: isActive ? 'none' : '1px solid black' }}
-          >
-            Activate
-          </button>
-          <button
-            onClick={toggleStatus}
-            className={`
-      ${isActive ? 'bg-white text-black' : 'bg-orange-500 text-white '} 
-      ${isActive ? 'py-1 px-9' : 'py-1 px-2.5'}
-      rounded-full cursor-pointer relative
-      text-xs font-bold
-      ${isActive ? 'z-0' : 'z-10'}
-    `}
-            style={{ border: isActive ? '1px solid black' : 'none' }}
-          >
-            Deactivate
-          </button>
-        </div> */}
 
         <div className="d-flex justify-content-center align-items-center my-5 ">
           <div className="border  m-5 shadow rounded-4">

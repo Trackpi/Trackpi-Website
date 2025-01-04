@@ -474,7 +474,7 @@ function Home() {
         </motion.div>
       </section>
       <section className="relative z-20"></section>
-      <section className=" mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 px-10 lg:px-20 xl:px-24 2xl:px-32  mx-auto w-full h-full section">
+      <section className=" mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 px-10 lg:px-20 xl:px-24 2xl:px-32  mx-auto w-full h-full section3">
         <motion.div
           className="flex flex-col-reverse lg:flex-row gap-[1rem] sm:gap-4 md:gap-8 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView3 ? 10 : 0 }}
