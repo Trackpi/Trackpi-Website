@@ -13,7 +13,7 @@ function About() {
                 <section >
                     <OurTeam />  
                 </section>
-            <section className="mb-28"></section>
+            <section className="mb-5"></section>
             <ConnectButtons />
         </>
     );
