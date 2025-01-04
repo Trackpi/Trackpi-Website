@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 import TeamListMemberCrd from '../components/teamListMemberCrd';
-import "./ourTeam.css";
+import "../CSS/ourTeam.css";
 import Clients from '../components/carousel';
 function OurTeam() {
   const options = { threshold: 0.1 };

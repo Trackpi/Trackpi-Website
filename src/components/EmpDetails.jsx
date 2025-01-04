@@ -2,13 +2,14 @@ import { GoDotFill } from "react-icons/go";
 import { IoLogoInstagram } from "react-icons/io5";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
-import "./employeedet.css";
+import "../CSS/employeedet.css";
 function EmpDetails() {
     return(
         <>
         <div className=" custom-height h-[135px] py-2 flex flex-col md:flex-row justify-between items-center sm:text-lg md:text-2xl xl:text-xl xl:leading-5 2xl:leading-5 2xl:text-2xl  ">
-                <div className="  w-full flex flex-row justify-center items-center gap-4 md:gap-5  ">
-                    <img src="src/images/personnel-3-400x310.jpg" height={200} width={180} className="empimg" style={{borderRadius:'30px'}}/>
+                <div className="  w-full flex flex-row  justify-center items-center gap-4 md:gap-5  ">
+                    
+                    <img src="src/images/personnel-3-400x310.jpg" alt="employee image" height={200} width={180} className="empimg " style={{borderRadius:'30px'}}/>
                     <div className="hidden md:block w-full">
                     <div className="  flex flex-row justify-between items-center text-2xl xl:text-xl w-full ">
                             <div className="">
@@ -30,10 +31,10 @@ function EmpDetails() {
                     </div>
                     </div>
                     <div className="md:hidden w-full   flex flex-col justify-between items-start  md:flex-row lg:flex-row md:text-2xl xl:text-xl  ">
-                            <div className="flex flex-row justify-center item-center gap-3  " style={{ lineHeight: '1px' }}>
-                                <h5 className="font-bold  " >Paul Walker</h5>
+                            <div className="flex flex-row items-center gap-3   " style={{ lineHeight: '1px' }}>
+                                <p className="font-bold " style={{ margin: 0 }}>Paul Walker</p>
                             
-                                <button style={{backgroundColor:" #019304",color:"white"}} className=" active rounded-pill px-3 py-1 sm:py-0 sm:px-0 flex flex-row justify-center items-center md:gap-1 text-xs sm:text-xs md:text-sm "> <GoDotFill size={8}/>Active</button>
+                                <button style={{backgroundColor:" #019304",color:"white",margin:'0px'}} className=" active rounded-pill px-3 py-1 sm:py-0 sm:px-0 flex flex-row justify-center items-center md:gap-1 text-xs sm:text-xs md:text-sm "> <GoDotFill size={8}/>Active</button>
                             </div>
                    
                             <div className="div-1 flex flex-row md:flex-col lg:flex-col  gap-2  " style={{ lineHeight: '1px' }}>

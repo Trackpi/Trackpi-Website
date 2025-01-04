@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-import "../pages/connect.css";
+import "../CSS/connect.css";
 
 function Details() {
   return (

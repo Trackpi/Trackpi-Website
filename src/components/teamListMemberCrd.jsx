@@ -6,6 +6,7 @@ import { useState,useRef} from "react";
 import { FaAngleRight } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
 import "./teamListMember.css";
+import EmployeeManagementDetail from "../pages/EmployeeManagementDetail";
 
 
 const memberList = [
@@ -116,6 +117,8 @@ const memberList = [
                                 <MemberCard key={index}  member={item} onCardClick={() => handleCardClick(item)} />
                                 </div>
                                 ))}
+                                 
+                                
                         </div>
                          {/* Scroll Buttons (Only for Mobile Screens) */}
                         <div className="md:hidden flex justify-between items-center mt-4">
@@ -147,6 +150,7 @@ const memberList = [
         />
       )}
       
+    
         </div>
     );
 }

@@ -3,8 +3,9 @@ import Details from '../components/Form';
 import { Container, Row } from 'react-bootstrap';
 import ConnectButtons from '../components/ConnectButtons';
 import HeaderBanner from '../components/HeaderBanner';
-import "./connect.css";
-import img2 from '../images/connect.png'
+
+import "../CSS/connect.css";
+
 
 function Connect() {
   return (

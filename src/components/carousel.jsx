@@ -2,7 +2,7 @@
 import React, { useState,useEffect } from 'react';
 // import { FaAngleRight } from 'react-icons/fa6';
 // import { FaAngleLeft } from 'react-icons/fa6';
-import "../pages/ourTeam.css";
+import "../CSS/ourTeam.css";
 function Clients (){
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false); // Track hover state

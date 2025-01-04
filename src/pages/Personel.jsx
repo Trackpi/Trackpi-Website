@@ -3,7 +3,7 @@ import React from "react";
 // import Col from 'react-bootstrap/Col';
 
 import { IoLogoInstagram } from "react-icons/io5";
-import { SlSocialYoutube } from "react-icons/sl";
+// import { SlSocialYoutube } from "react-icons/sl";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
 // import { IoMdClose } from "react-icons/io";
