@@ -1,7 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import '../CSS/addsales.css';
 import { toast } from "react-toastify";
-import { addInternEmployee } from "../Api Services/internsManagementApi";
+import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
+import { useNavigate, useParams } from "react-router-dom";
+import { RiImageAddLine } from "react-icons/ri";
+import { BsBoxArrowUp } from "react-icons/bs";
 
 function AddInterns() {
   const [formData, setFormData] = useState({
@@ -28,6 +31,38 @@ function AddInterns() {
 
   const certificateInputRef = useRef(null);
   const fileInputRef = useRef(null);
+
+  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+  const navigate = useNavigate();
+
+   // Fetch existing intern data for editing
+   useEffect(() => {
+    if (id) {
+       // Fetch intern data if editing
+       getInternEmployeeById(id)
+       .then((data) => {
+         setFormData({
+           userName: data.userName || "",
+           employeeId: data.employeeId || "",
+           email: data.email || "",
+           phoneNumber: data.phoneNumber || "",
+           fullAddress: data.fullAddress || "",
+           gender: data.gender || "",
+           dob: data.dob || "",
+           bloodGroup: data.bloodGroup || "",
+           dateOfJoining: data.dateOfJoining || "",
+           jobRole: data.jobRole || "",
+           employeeStatus: data.employeeStatus || "",
+           jobLevel: data.jobLevel || "",
+           instagram: data.instagram || "",
+           linkedin: data.linkedin || "",
+           twitter: data.twitter || "",
+           feedback: data.feedback || "",
+         });
+       })
+       .catch((error) => toast.error("Failed to fetch intern details"));
+    }
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -65,31 +100,41 @@ function AddInterns() {
       Authorization: `Token ${sessionStorage.getItem("token")}`,
     };
 
-
-    try {
-      const response = await addInternEmployee(formDataObj, header);
+    const handleResponse = (response) => {
       if (response.status === 200) {
-        toast.success("Intern added successfully!");
+        toast.success(id ? "Intern updated successfully!" : "Intern added successfully!");
+        navigate("/admin/intern-management");  // Redirect to intern management page
       } else {
-        toast.error("Failed to add intern.");
+        toast.error("Something went wrong!");
       }
-    } catch (error) {
-      console.error("Error adding intern:", error);
-      toast.error("An error occurred while adding the intern.");
+    };
+
+   
+    if (id) {
+      // Edit intern
+      updateInternEmployee(id, formDataObj, header)
+        .then(handleResponse)
+        .catch((error) => toast.error("Failed to update intern"));
+    } else {
+      // Add new intern
+      addInternEmployee(formDataObj, header)
+        .then(handleResponse)
+        .catch((error) => toast.error("Failed to add intern"));
     }
   };
 
   return (
     <div className="container mx-auto my-5 p-5 bg-white shadow rounded-md">
       <form className="row g-4" onSubmit={handleSubmit}>
-        <div className="col-12 d-flex align-items-center mb-4">
-          <div className="me-4">
-            <h2>Intern Details</h2>
+        <div className="col-12 d-flex align-items-center gap-4 mb-4 ">
+          <div className="me-4  ">
+            <h2 className="mb-4">{id ? "Edit Intern" : "Add Intern"}</h2>
             <div
-              className="d-flex justify-content-center align-items-center border rounded-circle"
+              className="d-flex justify-content-center align-items-center  border rounded-2xl"
               style={{
-                width: "100px",
-                height: "100px",
+               
+                width: "150px",
+                height: "120px",
                 position: "relative",
               }}
             >
@@ -98,8 +143,8 @@ function AddInterns() {
                   src={URL.createObjectURL(profileImage)}
                   alt="Uploaded"
                   style={{
-                    width: "100px",
-                    height: "100px",
+                    width: "150px",
+                    height: "120px",
                     borderRadius: "50%",
                     objectFit: "cover",
                   }}
@@ -111,16 +156,16 @@ function AddInterns() {
                 ></i>
               )}
               <div
-                className="position-absolute bottom-0 end-0 bg-warning rounded-circle d-flex justify-content-center align-items-center"
+                className="position-absolute bottom-2 end-2 bg-warning rounded-circle d-flex justify-content-center align-items-center"
                 style={{ width: "25px", height: "25px" }}
               >
                 <button
                   type="button"
                   onClick={() => fileInputRef.current.click()}
-                  className="btn btn-sm p-0"
+                  className="btn btn-sm p-0 text-white"
                   style={{ background: "none", border: "none" }}
                 >
-                  <i className="fa-solid fa-arrow-up-from-bracket" />
+                  <RiImageAddLine />
                 </button>
               </div>
             </div>
@@ -132,34 +177,37 @@ function AddInterns() {
               onChange={handleFileChange}
             />
           </div>
-          <div className="flex-grow-1 row g-3">
+          <div className="mt-4 flex-grow-1 row g-5">
             <div className="col-md-4">
-              <label className="form-label">User Name</label>
+              <label className="form-label font-bold">Name</label>
               <input
                 type="text"
-                name="userName"
-                className="form-control"
-                placeholder="Username"
+                name="Name"
+                className="form-control rounded-2xl"
+                placeholder="Name"
+                value={formData.userName}
                 onChange={handleInputChange}
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label">Employee Id</label>
+              <label className="form-label  font-bold">Employee Id</label>
               <input
                 type="text"
                 name="employeeId"
-                className="form-control"
+                className="form-control rounded-2xl"
                 placeholder="Employee Id"
+                value={formData.employeeId}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="col-md-4">
-              <label className="form-label">Email</label>
+            <div className="col-md-4 ">
+              <label className="form-label  font-bold">Email Id</label>
               <input
                 type="email"
                 name="email"
-                className="form-control"
-                placeholder="Email"
+                className="form-control rounded-2xl"
+                placeholder="Email-Id"
+                value={formData.email}
                 onChange={handleInputChange}
               />
             </div>
@@ -167,8 +215,9 @@ function AddInterns() {
         </div>
         
             {/* Personal Information Section */}
-            <div className="col-md-4 border-en">
-          <h4>Personal Information</h4>
+    <div className="flex justify-between">
+          <div className=" flex flex-col w-[310px]">
+          <h4 className="mb-3">Personal Information</h4>
           <div className="mb-3">
             <label className="form-label" htmlFor="phone">
               Phone Number
@@ -179,8 +228,9 @@ function AddInterns() {
               name="phone"
               className="form-control"
               placeholder="Phone Number"
+
               onChange={handleInputChange}
-              // value={formData.phone}
+              value={formData.phone}
             />
           </div>
           <div className="mb-3">
@@ -194,9 +244,10 @@ function AddInterns() {
               className="form-control"
               placeholder="Address"
               onChange={handleInputChange}
-              // value={formData.address}
+              value={formData.address}
             />
           </div>
+          <div className="flex gap-5">
           <div className="mb-3">
             <label className="form-label" htmlFor="gender">
               Gender
@@ -204,11 +255,12 @@ function AddInterns() {
             <select
               id="gender"
               name="gender"
-              className="form-select"
+              className="form-select rounded-lg"
               onChange={handleInputChange}
-              // value={formData.gender}
+              
+              value={formData.gender}
             >
-              <option value="">Select Gender</option>
+              <option value="">Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
@@ -222,10 +274,12 @@ function AddInterns() {
               type="date"
               id="dob"
               name="dob"
-              className="form-control"
+              className="form-control rounded-lg"
               onChange={handleInputChange}
-              // value={formData.dob}
+              value={formData.dob}
+              
             />
+          </div>
           </div>
           <div className="mb-3">
             <label className="form-label" htmlFor="bloodgroup">
@@ -236,7 +290,7 @@ function AddInterns() {
               name="bloodgroup"
               className="form-select"
               onChange={handleInputChange}
-              // value={formData.bloodgroup}
+              value={formData.bloodgroup}
             >
               <option value="A+">A+</option>
               <option value="A-">A-</option>
@@ -249,10 +303,10 @@ function AddInterns() {
             </select>
           </div>
         </div>
-
+        <div className="vertical-line w-[1px] h-[400px] bg-gray-400"></div>
         {/* Employment Overview Section */}
-        <div className="col-md-4 border-en">
-          <h4>Employment Overview</h4>
+        <div className="flex flex-col w-[310px]">
+          <h4 className="mb-3">Employment Overview</h4>
           <div className="mb-3">
             <label className="form-label" htmlFor="doj">
               Date of Joining
@@ -263,7 +317,7 @@ function AddInterns() {
               name="doj"
               className="form-control"
               onChange={handleInputChange}
-              // value={formData.doj}
+              value={formData.doj}
             />
           </div>
           <div className="mb-3">
@@ -275,7 +329,7 @@ function AddInterns() {
               name="jobrole"
               className="form-select"
               onChange={handleInputChange}
-              // value={formData.jobrole}
+              value={formData.jobrole}
             >
               <option value="Business Development Executive">
                 Business Development Executive
@@ -297,7 +351,7 @@ function AddInterns() {
               name="empsatus"
               className="form-select"
               onChange={handleInputChange}
-              // value={formData.empsatus}
+              value={formData.empsatus}
             >
               <option value="Full time">Full time</option>
               <option value="Part time">Part time</option>
@@ -313,73 +367,195 @@ function AddInterns() {
               name="joblevel"
               className="form-select"
               onChange={handleInputChange}
-              // value={formData.joblevel}
+              value={formData.joblevel}
             >
               <option value="Manager Level">Manager Level</option>
               <option value="Executive Level">Executive Level</option>
             </select>
           </div>
         </div>
-
+        <div className="vertical-line w-[1px] h-[400px] bg-gray-400"></div>
         {/* Social Media Section */}
-        <div className="col-md-4">
-          <h4>Social Media</h4>
-          <div className="mb-3">
-            <label htmlFor="instagram">Instagram</label>
-            <input
-              type="url"
-              id="instagram"
-              name="instagram"
-              className="form-control"
-              placeholder="Instagram URL"
-              onChange={handleInputChange}
-              // value={formData.instagram}
-            />
+        <div className="flex flex-col">
+          <h4 className="mb-3">Social Media</h4>
+          <div className="flex gap-5">
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="gender">
+                    Select Platform 1
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="form-select rounded-lg"
+                    onChange={handleInputChange}
+                    
+                    // value={formData.gender}
+                  >
+                    <option value="">Instagram</option>
+                    <option value="">Facebook</option>
+                    <option value="">LinkedIn</option>
+                    <option value="">Twitter</option>
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="gender">
+                  Platform 1 Link
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="form-select rounded-lg"
+                    onChange={handleInputChange}
+                    
+                    // value={formData.gender}
+                  >
+                      <option value="">URL Link</option>
+                    <option value="">URL LInk</option>
+                    <option value="">URL Link</option>
+                    <option value="">URL Link</option>
+                    <option value="">URL Link</option>
+                  </select>
+                </div>
           </div>
-          <div className="mb-3">
-            <label htmlFor="linkedin">LinkedIn</label>
-            <input
-              type="url"
-              id="linkedin"
-              name="linkedin"
-              className="form-control"
-              placeholder="LinkedIn URL"
-              onChange={handleInputChange}
-              // value={formData.linkedin}
-            />
+          <div className="flex gap-5">
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="gender">
+                  Select Platform 2
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="form-select rounded-lg"
+                    onChange={handleInputChange}
+                    
+                    // value={formData.gender}
+                  >
+                   <option value="">Instagram</option>
+                    <option value="">Facebook</option>
+                    <option value="">LinkedIn</option>
+                    <option value="">Twitter</option>
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="gender">
+                  Platform 1 Link
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="form-select rounded-lg"
+                    onChange={handleInputChange}
+                    
+                    // value={formData.gender}
+                  >
+                    <option value="">URL Link</option>
+                    <option value="">URL LInk</option>
+                    <option value="">URL Link</option>
+                    <option value="">URL Link</option>
+                    <option value="">URL Link</option>
+                  </select>
+                </div>
           </div>
-          <div className="mb-3">
-            <label htmlFor="twitter">Twitter</label>
-            <input
-              type="url"
-              id="twitter"
-              name="twitter"
-              className="form-control"
-              placeholder="Twitter URL"
-              onChange={handleInputChange}
-              // value={formData.twitter}
-            />
+          <div className="flex gap-5">
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="gender">
+                  Select Platform 3
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="form-select rounded-lg"
+                    onChange={handleInputChange}
+                    
+                    // value={formData.gender}
+                  >
+                  <option value="">Instagram</option>
+                    <option value="">Facebook</option>
+                    <option value="">LinkedIn</option>
+                    <option value="">Twitter</option>
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="gender">
+                  Platform 1 Link
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="form-select rounded-lg"
+                    onChange={handleInputChange}
+                    
+                    // value={formData.gender}
+                  >
+                      <option value="">URL Link</option>
+                    <option value="">URL LInk</option>
+                    <option value="">URL Link</option>
+                    <option value="">URL Link</option>
+                    <option value="">URL Link</option>
+                  </select>
+                </div>
+          </div>
+          <div className="flex gap-5">
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="gender">
+                  Select Platform 4
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="form-select rounded-lg"
+                    onChange={handleInputChange}
+                    
+                    // value={formData.gender}
+                  >
+                 <option value="">Instagram</option>
+                    <option value="">Facebook</option>
+                    <option value="">LinkedIn</option>
+                    <option value="">Twitter</option>
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="gender">
+                    Platform 1 Link
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="form-select rounded-lg"
+                    onChange={handleInputChange}
+                    
+                    // value={formData.gender}
+                  >
+                    <option value="">URL Link</option>
+                    <option value="">URL LInk</option>
+                    <option value="">URL Link</option>
+                    <option value="">URL Link</option>
+                    <option value="">URL Link</option>
+                  </select>
+                </div>
           </div>
         </div>
-
-        <div className="col-md-6">
+        
+        </div>
+        <div className="mt-5 flex justify-between">
+        <div className="  w-[660px] h-[150px] ">
           <h4>Feedback</h4>
           <textarea
-            className="form-control"
+            className="form-control w-[660px] h-[150px]"
             placeholder="Enter here"
             rows="4"
             onChange={handleInputChange}
-            // value={formData.feedback}
+            value={formData.feedback}
           ></textarea>
         </div>
         
-        <div className="col-md-6">
+        <div className="">
           <h4>Internship Certificate</h4>
           <div
             className="border border-secondary rounded p-4 text-center position-relative"
             style={{
-              width: "100%",
-              height: "200px",
+              width: "330px",
+              height: "150px",
               overflow: "hidden",
             }}
           >
@@ -398,13 +574,10 @@ function AddInterns() {
             )}
             <button
               onClick={() => certificateInputRef.current.click()}
-              className="btn btn-link"
+              className="btn btn-link text-black "
               aria-label="Upload Internship Certificate"
             >
-              <i
-                className="fa-solid fa-arrow-up-from-bracket"
-                style={{ fontSize: "50px", color: "black" }}
-              />
+             <BsBoxArrowUp />
             </button>
           </div>
           <input
@@ -415,12 +588,12 @@ function AddInterns() {
             onChange={handleCertificateFileChange}
           />
         </div>
-
-        <div className="col-12 d-flex justify-content-end mt-4">
-          <button type="submit" className="btn btn-warning me-3">
-            Save
+        </div>
+        <div className=" flex justify-center gap-4 mt-4">
+          <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+          {id ? "Update" : "Save"}
           </button>
-          <button type="button" className="btn btn-secondary">
+          <button type="button" className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
             Cancel
           </button>
         </div>

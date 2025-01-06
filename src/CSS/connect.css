@@ -106,3 +106,8 @@
     color: black !important;
     border-radius: 7px !important;
   }
+  .place::placeholder,
+  .place::placeholder,
+  .place::placeholder {
+    color: rgba(0, 0, 0, 0.762) !important;
+  }

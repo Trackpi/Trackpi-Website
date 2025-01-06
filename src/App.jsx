@@ -102,8 +102,8 @@ function App() {
                 <Route path="/admin/salesManagement-add" element={<AddSales />} />
                 <Route path="/admin/salesManagement-detail" element={<SalesManagementDetail />} />
                 <Route path="/admin/intern-management" element={<InternManagement />} />
-                <Route path="/admin/intern-management-add" element={<AddInterns />} />
-                <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
+                <Route path="/admin/intern-management-add/:id" element={<AddInterns />} />
+                <Route path="/admin/intern-management-detail/:id" element={<InternManagementDetail />} />
                 <Route path="/admin/footer-management" element={<FooterManagement />} />
 
                 {/* 404 Not Found */}
