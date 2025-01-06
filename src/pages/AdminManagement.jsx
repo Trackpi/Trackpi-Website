@@ -941,5 +941,4 @@ function AdminManagement() {
     </div>
   );
 }
-
 export default AdminManagement;
