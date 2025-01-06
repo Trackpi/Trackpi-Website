@@ -141,7 +141,6 @@ function AdminManagement() {
     <div className="w-full bg-white">
       {/* <AdminNavbar /> */}
       <div className="p-5">
-        <div>
         <h4 className="font-bold my-4">Admin Management</h4>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-2">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -417,7 +416,6 @@ function AdminManagement() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
     </div>
   );
 }
