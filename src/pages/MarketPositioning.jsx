@@ -7,7 +7,7 @@ import maketingImg3 from '../images/marketPositioning3.svg'
 
 const MarketPositioning = () => {
 
-      const options = { threshold: 0.1, triggerOnce: true };
+      const options = { threshold: 0.1 };
   
       const [refMainHeading, inViewMainHeading] = useInView(options);
       const [refFirstSection, inViewFirstSection] = useInView(options);

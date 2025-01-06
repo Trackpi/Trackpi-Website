@@ -18,7 +18,7 @@ function ServicesSub({
     img3,
     isPointWise,
 }) {
-    const options = { threshold: 0.1, triggerOnce: true };
+    const options = { threshold: 0.1};
 
     const [refMainHeading, inViewMainHeading] = useInView(options);
     const [refFirstSection, inViewFirstSection] = useInView(options);

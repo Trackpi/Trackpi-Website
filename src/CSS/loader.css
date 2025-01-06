@@ -10,7 +10,7 @@
   .image-animation {
     animation: loadFromLeft 1.5s ease-in-out forwards; /* Apply animation */
     display: block;
-    height: 125px ; /* Adjust the width as needed */
+    height: 250px ; 
   }
   .loader_main{
     display: flex ;
@@ -32,8 +32,18 @@
     width: 50;
     animation: loadingText 1.5s ease-in-out forwards;
   }
-    .img-overlay{
+  @media (max-width: 1024px) {
+    .image-animation {
+      height: 200px ; 
+    }
+  }
+  @media (max-width: 640px) {
+    .image-animation {
+      height: 150px ; 
+    }
+  }
+    /* .img-overlay{
       position: absolute;
       height: 125px; 
       opacity: .075;
-    }
+    } */

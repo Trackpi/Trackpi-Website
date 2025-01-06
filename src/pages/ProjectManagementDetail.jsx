@@ -1,29 +1,11 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import projectManageBack from '../images/projectManageBack.svg'
 
 function ProjectManagementDetail() {
-  const { projectId } = useParams();
-  const navigate = useNavigate();
 
-  // Replace with API call to fetch project details by projectId
-  const mockData = {
-    id: projectId,
-    name: "Paul Walker",
-    contact: "9876543210",
-    email: "paulwalker@gmail.com",
-    status: "Student",
-    qualification: "Bachelor’s Degree",
-    institute: "Name of the Institute",
-    projectName: "Project/Idea Name",
-    problem: "Lorem ipsum dolor sit amet, consectetur adiseru piscing. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    skills: "Lorem ipsum dolor sit amet, consectetur adiserus.",
-    success: "Lorem ipsum dolor sit amet, consectetur adiseru piscing. Lorem ipsum dolor sit amet, consectetur adipiscing elit.A",
-    benefit: "Who would benefit from this idea?",
-    summary: "Lorem ipsum dolor sit amet, consectetur adiseru piscing. Lorem ipsum dolor sit lakud erfswa amet, consectetur adipiscing elit.",
-    documents: ["Document 1", "Document 2"],
-    date: "01/01/2025",
-  };
+   const location = useLocation();
+      const mockData = location.state; 
 
   return (
     <div className="bg-white w-full">
@@ -48,7 +30,7 @@ function ProjectManagementDetail() {
               </div>
               <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv 2xl:grow">
                 <div className="text-[18px]">Contact</div>
-                <div className="text-[20x] font-bold">{mockData.contact}</div>
+                <div className="text-[20x] font-bold">{mockData.phone}</div>
               </div>
               <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv 2xl:grow">
                 <div className="text-[18px]">Email</div>
@@ -73,7 +55,7 @@ function ProjectManagementDetail() {
               <div className="grid gap-[15px] w-100">
                 <div className="projectDetailsBorderDiv min-h-[110px]">
                   <div className="text-[18px]">Project/Idea Name</div>
-                  <div className="text-[20px] font-bold">{mockData.projectName}</div>
+                  <div className="text-[20px] font-bold">{mockData.project}</div>
                 </div>
                 <div className="projectDetailsBorderDiv min-h-[180px]">
                   <div className="text-[18px]">What Problem Does Your Idea Solve?</div>
@@ -99,11 +81,11 @@ function ProjectManagementDetail() {
                 </div>
               </div>
             </div>
-            <div className="flex gap-[55px] justify-around ">
-              <div className="w-[500px] h-[230px] grid text-white projectDetailsDocument">
+            <div className="flex justify-center ">
+              {/* <div className="w-[500px] h-[230px] grid text-white projectDetailsDocument">
                 <div className="bg-[#0A0A0A] h-[200px] flex justify-center items-center my-auto text-[22px]">Document</div>
                 <div className="h-[30px] bg-[#FF9D00] text-[12px] px-[7px] font-semi-bold flex items-center">Document Name</div>
-              </div>
+              </div> */}
               <div className="w-[500px] h-[230px] grid text-white projectDetailsDocument">
                 <div className="bg-[#0A0A0A] h-[200px] flex justify-center items-center text-center my-auto text-[22px]">Document</div>
                 <div className="h-[30px] bg-[#FF9D00] text-[12px] px-[7px] font-semi-bold flex items-center">Document Name</div>

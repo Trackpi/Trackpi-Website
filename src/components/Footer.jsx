@@ -101,7 +101,7 @@ function Footer() {
                                 <h5 className=" font-bold text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px]  mb-0 lg:text-center text-left">
                                     Services
                                 </h5>
-                                <ul className="list-unstyled font-medium text-[12px] sm:text-[13.5px] md:text-[15px] lg:text-[16.5px] xl:text-[18px] 2xl:text-[20px] grid gap-[14px] mb-0 lg:grid-cols-2">
+                                <ul className="list-unstyled font-medium text-[12px] sm:text-[13.5px] md:text-[15px] lg:text-[16.5px] xl:text-[18px] 2xl:text-[20px] grid gap-y-[14px] gap-x-[30px]   mb-0 lg:grid-cols-2 ">
                                     <li>
                                         <a href="/about" className="text-dark text-decoration-none">
                                             Software development

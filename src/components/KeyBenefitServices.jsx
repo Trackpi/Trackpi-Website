@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 function KeyBenefitServices() {
 
-    const options = { threshold: 0.1, triggerOnce: true };
+    const options = { threshold: 0.1};
     const [refFirstSection, inViewFirstSection] = useInView(options);
 
     const features = [

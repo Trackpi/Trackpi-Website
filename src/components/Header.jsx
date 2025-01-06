@@ -4,10 +4,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import '../CSS/header.css'
+import '../CSS/header.css';
 
 function Header() {
     const [showNavbar, setShowNavbar] = useState(false);
+    const [expanded, setExpanded] = useState(false); 
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -27,6 +28,7 @@ function Header() {
     }, []);
 
     const handleNavigation = (path, hash) => {
+        setExpanded(false);
         navigate(path);
         setTimeout(() => {
             const section = document.querySelector(hash);
@@ -40,7 +42,14 @@ function Header() {
 
     return (
         <>
-            <Navbar expand="lg" className={`navbar px-md-5 font-bold text-base navbar-dark`} fixed="top" id='navbar'>
+            <Navbar
+                expand="lg"
+                className={`navbar px-md-2 font-bold text-base navbar-dark`}
+                fixed="top"
+                id="navbar"
+                expanded={expanded} 
+                onToggle={(isExpanded) => setExpanded(isExpanded)}
+            >
                 <Container fluid>
                     <Navbar.Brand href="" className="ms-md-3">
                         <Link to={"/"} className="flex items-center text-decoration-none p-1">
@@ -57,6 +66,7 @@ function Header() {
                                     to="/"
                                     className={`me-2.5 ${isActive("/") ? "active" : ""}`}
                                     id="navlink"
+                                    onClick={() => setExpanded(false)} 
                                 >
                                     HOME
                                 </Nav.Link>
@@ -66,6 +76,7 @@ function Header() {
                                 to="/about"
                                 className={`me-2.5 ${isActive("/about") ? "active" : ""}`}
                                 id="navlink"
+                                onClick={() => setExpanded(false)} 
                             >
                                 ABOUT
                             </Nav.Link>
@@ -81,7 +92,7 @@ function Header() {
                                 >
                                     Sales Outsourcing
                                 </NavDropdown.Item>
-                                <NavDropdown title="Business Consulting" className="custom-dropdown  " drop="end">
+                                <NavDropdown title="Business Consulting" className="custom-dropdown" drop="end">
                                     <NavDropdown.Item
                                         className="me-3"
                                         onClick={() => handleNavigation("/our-services", "#hiring")}
@@ -139,6 +150,7 @@ function Header() {
                                 id="navlink"
                                 to="/employee-verification"
                                 target="_blank"
+                                onClick={() => setExpanded(false)} 
                             >
                                 EMPLOYEE VERIFICATION
                                 <i className="fa-arrow-up-right-from-square fa-solid ms-1"></i>
@@ -148,6 +160,7 @@ function Header() {
                                 id="navlink"
                                 to="/connect-us"
                                 className={`${isActive("/connect-us") ? "active" : ""}`}
+                                onClick={() => setExpanded(false)} 
                             >
                                 CONNECT US
                             </Nav.Link>
