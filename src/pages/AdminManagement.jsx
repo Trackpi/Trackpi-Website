@@ -182,21 +182,21 @@ function AdminManagement() {
                     >
                       {row.sl_no}
                     </td>
-                    <td className={px-6 py-3 border-r-2 text-center}>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
                       {row.username}
                     </td>
-                    <td className={px-6 py-3 border-r-2 text-center}>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
                       {row.email}
                     </td>
-                    <td className={px-6 py-3 border-r-2 text-center}>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
                       <div className="flex justify-center items-center gap-2 ">
                         {row.password} <RiFileCopyLine />{' '}
                       </div>
                     </td>
-                    <td className={px-6 py-3 border-r-2 text-center}>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
                       {row.admin_type}
                     </td>
-                    <td className={px-6 py-3 border-r-2 text-center}>
+                    <td className={`px-6 py-3 border-r-2 text-center`}>
                       {/* {row.edit} */}
                       <div className="flex justify-center items-center">
                         <FaRegEdit
