@@ -1,126 +1,69 @@
+import React,{useState} from 'react';
+import AdminNavbar from '../components/AdminNavbar';
+import { MdAdd } from 'react-icons/md';
+import { BsUpload } from 'react-icons/bs';
+import { BsDownload } from 'react-icons/bs';
+import TableIntern from '../components/TableIntern';
+import TableSales from '../components/TableSales';
+import TableEmployee from '../components/TableEmployee';
 
-import React,{useState} from "react"
 
+const InternManagement = () => {
+  const [activeTab, setActiveTab] = useState('Employee'); // Default tab
 
-function InternManagement ()  {
-
-   const [employees, setEmployees] = useState([
-      {
-        id: 1,
-        name: "John Doe",
-        employeeId: "E12345",
-        email: "john.doe@example.com",
-        phone: "1234567890",
-      },
-      {
-        id: 2,
-        name: "Jane Smith",
-        employeeId: "E54321",
-        email: "jane.smith@example.com",
-        phone: "0987654321",
-      },
-      {
-        id: 3,
-        name: "Samuel Green",
-        employeeId: "E67890",
-        email: "samuel.green@example.com",
-        phone: "5678901234",
-      },
-    ]);
-  
-    // Delete handler for an employee
-    const handleDelete = (id) => {
-      if (window.confirm("Are you sure you want to delete this employee?")) {
-        setEmployees(employees.filter((employee) => employee.id !== id));
-      }
-    };
-
-    return (
-      <div>
-           <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
-      <h3 className="mb-4">Sales Management</h3>
-      <div
-        style={{
-          marginBottom: "15px",
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-        }}
-      >
+  const handleTabChange = (tabName) => {
+    setActiveTab(tabName);
+  };
+  return (
+    <div className="w-full bg-white">
+      <AdminNavbar />
+      <div className="flex justify-center gap-[5rem] py-3">
         <button
-          className="btn btn-warning me-2"
-          onClick={() => alert("Download feature coming soon!")}
+          className={`px-8 py-1 rounded-md ${
+            activeTab === 'Employee' ? 'bg-[#FF9D00] text-white' : 'text-[#FF9D00] btnBorder'
+          }`}
+          onClick={() => handleTabChange('Employee')}
         >
-          <i
-            className="fa-solid fa-file-arrow-down"
-            style={{ color: "#050505" }}
-          />
+          Employee
         </button>
         <button
-          className="btn btn-warning me-2"
-          onClick={() => alert("Upload feature coming soon!")}
+          className={`px-8 py-1 rounded-md ${
+            activeTab === 'Sales' ? 'bg-[#FF9D00] text-white' : 'text-[#FF9D00] btnBorder'
+          }`}
+          onClick={() => handleTabChange('Sales')}
         >
-          <i
-            className="fa-solid fa-file-arrow-up"
-            style={{ color: "#050505" }}
-          />
+          Sales
         </button>
         <button
-          className="btn btn-warning"
-          onClick={() => alert("Add Employee feature coming soon!")}
+          className={`px-8 py-1 rounded-md ${
+            activeTab === 'Intern' ? 'bg-[#FF9D00] text-white' : 'text-[#FF9D00] btnBorder'
+          }`}
+          onClick={() => handleTabChange('Intern')}
         >
-          + Add Employee
+          Intern
         </button>
       </div>
-      <Table bordered hover responsive>
-        <thead style={{  fontWeight: "bold" }}>
-          <tr>
-            <th>Sl No</th>
-            <th>Name</th>
-            <th>Employee ID</th>
-            <th>Email ID</th>
-            <th>Phone</th>
-            <th>View</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee, index) => (
-            <tr key={employee.id}>
-              <td>{index + 1}</td>
-              <td>{employee.name}</td>
-              <td>{employee.employeeId}</td>
-              <td>{employee.email}</td>
-              <td>{employee.phone}</td>
-              <td>
-                <button
-                  className="btn btn-outline-warning"
-                  onClick={() =>
-                    alert(`Viewing details for ${employee.name}`)
-                  }
-                >
-                  View Details
-                </button>
-              </td>
-              <td>
-                <button
-                  className="btn"
-                  onClick={() => handleDelete(employee.id)}
-                >
-                  <i
-                    className="fa-solid fa-trash"
-                    style={{ color: "#df0727" }}
-                  />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <div className="p-1">
+        <div className="flex items-center justify-between">
+          <h4 className="font-bold my-4">Employee Management</h4>
+          <div className="flex gap-2">
+            <div className="px-4 py-1 rounded-md bg-[#FF9D00] text-white flex items-center gap-2">
+              <BsUpload color="white" className="font-bold" /> |{' '}
+              <BsDownload color="white" />
+            </div>
+            <div className="px-4 py-1 rounded-md bg-[#FF9D00] text-white flex items-center gap-2">
+              <MdAdd color="white" />
+              Add Employee
+            </div>
+          </div>
+        </div>
+        {/* Render the table based on the active tab */}
+        {activeTab === 'Employee' && <TableEmployee />}
+        {activeTab === 'Sales' && <TableSales />}
+        {activeTab === 'Intern' && <TableIntern />}
+      </div>
     </div>
-      </div>
-    )
-  }
-  
-  export default InternManagement 
+  );
+};
 
+export default InternManagement;
