@@ -6,10 +6,7 @@ const NewsManagement = () => {
 
   return (
     <div className="flex h-screen">
-      
-      <div className="sticky top-0 h-screen">
-        <AdminSidebar />
-      </div>
+    
 
       
       <main className="flex-1 p-6 bg-gray-50 overflow-y-auto">
