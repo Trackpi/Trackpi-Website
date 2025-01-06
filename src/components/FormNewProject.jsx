@@ -57,15 +57,15 @@ const FormNewProject = () => {
                 height:'53.4px',
 
               }}
-              onFocus={e => {
-                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
-                e.target.style.boxShadow =
-                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
-              }}
-              onBlur={e => {
-                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
-                e.target.style.boxShadow = 'none';
-              }}
+              // onFocus={e => {
+              //   e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+              //   e.target.style.boxShadow =
+              //     '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
+              // }}
+              // onBlur={e => {
+              //   e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+              //   e.target.style.boxShadow = 'none';
+              // }}
               type="tel"
               id="contactnumber"
               placeholder="Contact Number"
@@ -95,7 +95,7 @@ const FormNewProject = () => {
               type="email"
               id="email"
               placeholder="Email Address"
-              className="  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-[#0A0A0A] p-3"
               required
             />
           </div>
