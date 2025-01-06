@@ -141,7 +141,6 @@ function AdminManagement() {
     <div className="w-full bg-white">
       {/* <AdminNavbar /> */}
       <div className="p-5">
-        <div>
         <h4 className="font-bold my-4">Admin Management</h4>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-2">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -183,21 +182,21 @@ function AdminManagement() {
                     >
                       {row.sl_no}
                     </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                    <td className={px-6 py-3 border-r-2 text-center}>
                       {row.username}
                     </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                    <td className={px-6 py-3 border-r-2 text-center}>
                       {row.email}
                     </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                    <td className={px-6 py-3 border-r-2 text-center}>
                       <div className="flex justify-center items-center gap-2 ">
                         {row.password} <RiFileCopyLine />{' '}
                       </div>
                     </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                    <td className={px-6 py-3 border-r-2 text-center}>
                       {row.admin_type}
                     </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                    <td className={px-6 py-3 border-r-2 text-center}>
                       {/* {row.edit} */}
                       <div className="flex justify-center items-center">
                         <FaRegEdit
@@ -417,7 +416,6 @@ function AdminManagement() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
     </div>
   );
 }
