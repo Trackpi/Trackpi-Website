@@ -41,36 +41,36 @@ function ProjectManagementDetail() {
                   </button>
               </div>
             </div>
-            <div className="pt-[10px] flex flex-wrap justify-between items-center w-100 gap-[20px]">
-              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv">
+            <div className="pt-[10px] flex flex-wrap justify-between items-center w-100 gap-[20px] 2xl:gap-[90px]">
+              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv 2xl:grow">
                 <div className="text-[18px]">Name</div>
                 <div className="text-[20px] font-bold">{mockData.name}</div>
               </div>
-              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv">
+              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv 2xl:grow">
                 <div className="text-[18px]">Contact</div>
                 <div className="text-[20x] font-bold">{mockData.contact}</div>
               </div>
-              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv">
+              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv 2xl:grow">
                 <div className="text-[18px]">Email</div>
                 <div className="text-[20x] font-bold">{mockData.email}</div>
               </div>
             </div>
-            <div className="flex flex-wrap justify-between items-center w-100 gap-[20px]">
-              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv">
+            <div className="flex flex-wrap justify-between items-center w-100 gap-[20px] 2xl:gap-[90px]">
+              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv 2xl:grow ">
                 <div className="text-[18px]">Current Status</div>
                 <div className="text-[20px] font-bold">{mockData.status}</div>
               </div>
-              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv">
+              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv 2xl:grow ">
                 <div className="text-[18px]">Qualification</div>
                 <div className="text-[20px] font-bold">{mockData.qualification}</div>
               </div>
-              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv">
+              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv 2xl:grow ">
                 <div className="text-[18px]">Institute Name</div>
                 <div className="text-[20px] font-bold">{mockData.institute}</div>
               </div>
             </div>
-            <div className="flex gap-[40px] justify-between">
-              <div className="grid gap-[15px]">
+            <div className="flex gap-[40px] justify-between ">
+              <div className="grid gap-[15px] w-100">
                 <div className="projectDetailsBorderDiv min-h-[110px]">
                   <div className="text-[18px]">Project/Idea Name</div>
                   <div className="text-[20px] font-bold">{mockData.projectName}</div>
@@ -84,7 +84,7 @@ function ProjectManagementDetail() {
                   <div className="text-[20px] font-bold">{mockData.benefit}</div>
                 </div>
               </div>
-              <div className="grid gap-[15px]">
+              <div className="grid gap-[15px] w-100">
               <div className="projectDetailsBorderDiv min-h-[110px]">
                   <div className="text-[18px]">Do You Have Any Business or Technical Skills?</div>
                   <div className="text-[20px] font-bold">{mockData.skills}</div>
