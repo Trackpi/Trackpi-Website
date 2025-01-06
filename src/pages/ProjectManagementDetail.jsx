@@ -1,8 +1,6 @@
-
-
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import AdminNavbar from "../components/AdminNavbar"; // Adjust path based on your structure
+import projectManageBack from '../images/projectManageBack.svg'
 
 function ProjectManagementDetail() {
   const { projectId } = useParams();
@@ -18,152 +16,102 @@ function ProjectManagementDetail() {
     qualification: "Bachelor’s Degree",
     institute: "Name of the Institute",
     projectName: "Project/Idea Name",
-    problem: "What Problem Does Your Idea Solve?",
+    problem: "Lorem ipsum dolor sit amet, consectetur adiseru piscing. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     skills: "Lorem ipsum dolor sit amet, consectetur adiserus.",
-    success: "Lorem ipsum dolor sit amet, consectetur adiserus.",
+    success: "Lorem ipsum dolor sit amet, consectetur adiseru piscing. Lorem ipsum dolor sit amet, consectetur adipiscing elit.A",
     benefit: "Who would benefit from this idea?",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    summary: "Lorem ipsum dolor sit amet, consectetur adiseru piscing. Lorem ipsum dolor sit lakud erfswa amet, consectetur adipiscing elit.",
     documents: ["Document 1", "Document 2"],
     date: "01/01/2025",
   };
 
   return (
-    <div
-      className="bg-white"
-      style={{
-        maxWidth: "1200px", // Increased width to align with the back button
-        margin: "0 auto",
-      }}
-    >
-      <AdminNavbar />
-      <div className="p-4">
-        {/* Header */}
-        <div className="d-flex justify-content-between align-items-center flex-wrap">
-          <h4 className="font-bold my-0 text-lg md:text-xl">Project Management</h4>
-          <div className="d-flex align-items-center gap-2">
-            <span className="text-sm text-gray-500">{mockData.date}</span>
-            <button 
-              className="btn btn-warning text-white mt-2 md:mt-0 " style={{ backgroundColor: "#FF9D00" }}
-              onClick={() => navigate(-1)} 
-            >
-              &larr; Back
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-2">
-          {/* Row for Name, Contact, and Email */}
-          <div className="row g-5">
-            {[ 
-              { label: "Name", value: mockData.name },
-              { label: "Contact", value: mockData.contact },
-              { label: "Email", value: mockData.email },
-            ].map((item, index) => (
-              <div key={index} className="col-12 col-md-4">
-                <div className="border-2 border-gray-400 p-3 rounded">
-                  <label className="font-semibold text-gray-700 d-block">{item.label}</label>
-                  <div className="text-gray-900">{item.value}</div> {/* Brighter content */}
-                </div>
+    <div className="bg-white w-full">
+          <div className="py-[40px] px-[30px] grid gap-[40px]">
+            <div className="flex justify-between">
+              <div className="text-[24px] font-bold">
+              Project Management
               </div>
-            ))}
-          </div>
-
-          {/* Row for Current Status, Qualification, and Institute Name */}
-          <div className="row g-5 mt-0">
-            {[ 
-              { label: "Current Status", value: mockData.status },
-              { label: "Qualification", value: mockData.qualification },
-              { label: "Institute Name", value: mockData.institute },
-            ].map((item, index) => (
-              <div key={index} className="col-12 col-md-4">
-                <div className="border-2 border-gray-400 p-3 rounded">
-                  <label className="font-semibold text-gray-700 d-block">{item.label}</label>
-                  <div className="text-gray-900">{item.value}</div> {/* Brighter content */}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Horizontal Line */}
-          <hr className="my-5" style={{ borderTop: "2px solid #000" }} />
-
-          {/* Rows for Project/Idea Details */}
-          <div className="row g-3">
-            {[ 
-              { label: "Project/Idea Name", value: mockData.projectName },
-              { label: "Do You Have Any Business or Technical Skills?", value: mockData.skills },
-            ].map((item, index) => (
-              <div key={index} className="col-12 col-md-6">
-                <div className="border-2 border-gray-400 p-4 rounded">
-                  <label className="font-semibold text-gray-700 d-block">{item.label}</label>
-                  <div className="text-gray-900">{item.value}</div> {/* Brighter content */}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="row g-3 mt-3">
-            {[ 
-              { label: "What Problem Does Your Idea Solve?", value: mockData.problem },
-              { label: "Why Do You Think This Idea Will Succeed?", value: mockData.success },
-            ].map((item, index) => (
-              <div key={index} className="col-12 col-md-6">
-                <div className="border-2 border-gray-400 p-4 rounded" style={{ height: "180px" }}>
-                  <label className="font-semibold text-gray-700 d-block">{item.label}</label>
-                  <div className="text-gray-900">{item.value}</div> {/* Brighter content */}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="row g-3 mt-3">
-            {[ 
-              { label: "Who Would Benefit From This Idea?", value: mockData.benefit },
-              { label: "Summarize Your Project Ideas", value: mockData.summary },
-            ].map((item, index) => (
-              <div key={index} className="col-12 col-md-6">
-                <div className="border-2 border-gray-400 p-4 rounded" style={{ height: "180px" }}> {/* Increased height */}
-                  <label className="font-semibold text-gray-700 d-block">{item.label}</label>
-                  <div className="text-gray-900">{item.value}</div> {/* Brighter content */}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Documents Section */}
-          <div className="row g-3 mt-3">
-            {mockData.documents.map((doc, index) => (
-              <div key={index} className="col-12 col-md-6">
-                <div
-                  className="bg-black rounded d-flex flex-column align-items-center"
-                  style={{
-                    borderRadius: "6px",
-                    position: "relative",
-                    padding: "80px 8px",
-                    height: "200px", // Increased height
-                  }}
-                >
-                  <h5 className="text-white mb-3">Documents</h5>
-                  <div
-                    className="d-flex justify-content-between align-items-center bg-yellow-400 text-center p-2"
-                    style={{
-                      backgroundColor: "#FF9D00",
-                      position: "absolute",
-                      bottom: 0,
-                      width: "100%",
-                      height: "40px",
-                      borderRadius: "0 0 5px 5px",
-                    }}
-                  >
-                    <span className="text-white ms-1">Document Name</span>
+              <div className="">
+                <button className="w-[120px] h-[40px] rounded-[10px] text-white bg-[#FF9D00] flex gap-[10px] justify-center items-center">
+                  <div>
+                  <img className="m-auto" src={projectManageBack} alt="" />
                   </div>
+                  <div className="text-[18px] font-semibold">Back</div>
+                  </button>
+              </div>
+            </div>
+            <div className="pt-[10px] flex flex-wrap justify-between items-center w-100 gap-[20px]">
+              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv">
+                <div className="text-[18px]">Name</div>
+                <div className="text-[20px] font-bold">{mockData.name}</div>
+              </div>
+              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv">
+                <div className="text-[18px]">Contact</div>
+                <div className="text-[20x] font-bold">{mockData.contact}</div>
+              </div>
+              <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv">
+                <div className="text-[18px]">Email</div>
+                <div className="text-[20x] font-bold">{mockData.email}</div>
+              </div>
+            </div>
+            <div className="flex flex-wrap justify-between items-center w-100 gap-[20px]">
+              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv">
+                <div className="text-[18px]">Current Status</div>
+                <div className="text-[20px] font-bold">{mockData.status}</div>
+              </div>
+              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv">
+                <div className="text-[18px]">Qualification</div>
+                <div className="text-[20px] font-bold">{mockData.qualification}</div>
+              </div>
+              <div className="grid gap-[15px] min-w-[300px] projectDetailsBorderDiv">
+                <div className="text-[18px]">Institute Name</div>
+                <div className="text-[20px] font-bold">{mockData.institute}</div>
+              </div>
+            </div>
+            <div className="flex gap-[40px] justify-between">
+              <div className="grid gap-[15px]">
+                <div className="projectDetailsBorderDiv min-h-[110px]">
+                  <div className="text-[18px]">Project/Idea Name</div>
+                  <div className="text-[20px] font-bold">{mockData.projectName}</div>
+                </div>
+                <div className="projectDetailsBorderDiv min-h-[180px]">
+                  <div className="text-[18px]">What Problem Does Your Idea Solve?</div>
+                  <div className="text-[20px] font-bold">{mockData.problem}</div>
+                </div>
+                <div className="projectDetailsBorderDiv min-h-[180px]">
+                  <div className="text-[18px]">Who would benefit from this idea?</div>
+                  <div className="text-[20px] font-bold">{mockData.benefit}</div>
                 </div>
               </div>
-            ))}
+              <div className="grid gap-[15px]">
+              <div className="projectDetailsBorderDiv min-h-[110px]">
+                  <div className="text-[18px]">Do You Have Any Business or Technical Skills?</div>
+                  <div className="text-[20px] font-bold">{mockData.skills}</div>
+                </div>
+                <div className="projectDetailsBorderDiv min-h-[180px]">
+                  <div className="text-[18px]">Why Do You Think This Idea Will Succeed?</div>
+                  <div className="text-[20px] font-bold">{mockData.success}</div>
+                </div>
+                <div className="projectDetailsBorderDiv min-h-[180px]">
+                  <div className="text-[18px]">Summarize your project ideas.</div>
+                  <div className="text-[20px] font-bold">{mockData.summary}</div>
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-[55px] justify-around ">
+              <div className="w-[500px] h-[230px] grid text-white projectDetailsDocument">
+                <div className="bg-[#0A0A0A] h-[200px] flex justify-center items-center my-auto text-[22px]">Document</div>
+                <div className="h-[30px] bg-[#FF9D00] text-[12px] px-[7px] font-semi-bold flex items-center">Document Name</div>
+              </div>
+              <div className="w-[500px] h-[230px] grid text-white projectDetailsDocument">
+                <div className="bg-[#0A0A0A] h-[200px] flex justify-center items-center text-center my-auto text-[22px]">Document</div>
+                <div className="h-[30px] bg-[#FF9D00] text-[12px] px-[7px] font-semi-bold flex items-center">Document Name</div>
+              </div>
+            </div>
+    
           </div>
         </div>
-      </div>
-    </div>
   );
 }
 
