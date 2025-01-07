@@ -1,0 +1,29 @@
+.partnerInput , .partnerContainer{
+    box-shadow: -2px 2px 4px 0 #0A0A0A26, 2px 1px 4px 0 #0A0A0A26;
+}
+.uploadBtn{
+    border: 2px #FF9D00 solid;
+}
+.partnerInput{
+    outline: none;
+}
+.partnerContainer textarea{
+    resize: none;
+}
+
+/* news page */
+.newsBtn{
+    border: 2px #0A0A0A solid;
+    width: max-content;
+    color: #0A0A0A;
+
+}
+.newsBtnActive{
+    background-color: #FF9D00;
+    color: white;
+}
+.newsBtnInactive{
+    background-color: white;
+    color: #FF9D00;
+    border: 2px #FF9D00 solid;
+}

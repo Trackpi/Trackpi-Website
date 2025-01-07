@@ -8,12 +8,31 @@ import linkedinIcon from "../images/linkedin2.svg";
 import bloggerIcon from "../images/blogger2.svg";
 import mediumIcon from "../images/medium2.svg";
 import instagramIcon from "../images/insta2.svg";
+import closeImg from "../images/closePopup.svg";
 import { Link } from "react-router-dom";
 
 function PopUp() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('');
+    const options = [
+      { value: 'socialMedia', label: 'Social Media' },
+      { value: 'searchEngine', label: 'Search Engine' },
+      { value: 'friendFamily', label: 'Friend or Family' },
+      { value: 'advertisement', label: 'Advertisement' },
+      { value: 'other', label: 'Other' }
+    ];
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+      };
+    
+      const handleOptionClick = (option) => {
+        setSelectedOption(option);
+        setIsOpen(false); // Close dropdown after selecting
+      };
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -24,66 +43,79 @@ function PopUp() {
 
     return (
         <div>
-            <Modal backdrop='static' dialogClassName="custom-modal" show={show} onHide={handleClose} size="lg" centered>
-                <div className="grid gap-8 pb-8">
-                    <div>
-                        <Modal.Header className="px-5  mx-auto" closeButton style={{ borderBottom: "none" }}>
-                            <Modal.Title className="w-100 text-center">
-                                <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#FF9D00]">Connect With Us</span>
-                            </Modal.Title>
-                        </Modal.Header>
+            <Modal backdrop='static' dialogClassName="custom-modal " show={show} onHide={handleClose} size="lg" centered>
+                <div className="grid gap-[20px] md:gap-[25px] xl:gap-[30px] p-[10px]  sm:p-[15px] md:p-[20px]  lg:p-[25px] xl:p-[30px]">
+                    <div className="flex justify-between ">
+                        <div className="h-[20px] sm:h-[25px] md:h-[30px] lg:h-[35px] xl:h-[40px]"></div>
+                        <div className="ext-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] xl:text-[34px] font-bold text-[#FF9D00]">Connect With Us</div>
+                        <div className="cursor-pointer" onClick={handleClose}>
+                            <img className="h-[20px] sm:h-[25px] md:h-[30px] lg:h-[35px] xl:h-[40px] " src={closeImg} alt="" />
+                        </div>
                     </div>
                     <div className="popupForm">
-                        <form className=" grid gap-4">
-                            <input required type="text" placeholder="Name" />
-                            <input required type="email" placeholder="Email" />
-                            <input required type="number" placeholder="Contact Number" />
-                            <input required type="text" placeholder="Where are you located?" />
-                            <select required name="" id="">
-                                <option disabled selected hidden>
-                                    How Did You Hear About Us?
-                                </option>
-                                <option value="socialMedia">Social Media</option>
-                                <option value="searchEngine">Search Engine</option>
-                                <option value="friendFamily">Friend or Family</option>
-                                <option value="advertisement">Advertisement</option>
-                                <option value="other">Other</option>
-                            </select>
-                            <textarea required name="" placeholder="Message"></textarea>
+                        <form className=" grid gap-[10px] sm:gap-[12px] md:gap-[14px] lg:gap-[16px] xl:gap-[18px]">
+                            <input className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px]" required type="text" placeholder="Name" />
+                            <input className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px]" required type="email" placeholder="Email" />
+                            <input className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px]" required type="number" placeholder="Contact Number" />
+                            <input className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px]" required type="text" placeholder="Where are you located?" />
+
+      <div className="relative selectForPopup text-center ">
+        {/* Button to toggle dropdown */}
+        <button type="button"
+          className="w-full text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px] border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-left mx-auto"
+          onClick={toggleDropdown}>
+          {selectedOption || 'How Did You Hear About Us?'}
+        </button>
+
+        {/* Dropdown menu with <ul> */}
+        {isOpen && (
+          <ul className=" w-[90%]  absolute left-[5%]  mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+            {options.map((option) => (
+              <li 
+                key={option.value} 
+                className=" text-[10px]  w-100 sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px] relative   mx-auto hover:bg-[#FF9D00] hover:text-black hover:rounded-lg text-left cursor-pointer dropdownList"
+                onClick={() => handleOptionClick(option.label)}>
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+                          <textarea className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px]" required name="" placeholder="Message"></textarea>
                             <div className="max-w-[244px] mx-auto">
-                                <button className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00] font-bold text-2xl text-white rounded-lg py-3.5 px-20  font-bold">
+                                <button className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00] font-bold text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] text-white rounded-lg px-[15px] sm:px-[20px] md:px-[30px] lg:px-[40px] xl:px-[55px] h-[30px] sm:h-[35px] md:h-[40px] lg:h-[50px] xl:h-[55px] font-bold ">
                                     <span>Submit</span>
                                 </button>
                             </div>
                         </form>
                     </div>
-                    <div className="px-4 text-center mx-auto text-xl">
+                    <div className="px-4 text-center mx-auto text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px]">
                         {" "}
                         Or email <span className="text-[#FF9D00] font-bold">hello@trackpi.com</span> to get in touch with
                         our team.
                     </div>
-                    <div className="px-4  mx-auto">
-                        <div className="flex gap-12  flex-row popupIcons">
+                    <div className="w-full px-[10px]  mx-auto">
+                        <div className="flex justify-between  flex-row popupIcons">
                             <Link to={"#"}>
-                                <img src={fbIcon} alt="" />
+                                <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={fbIcon} alt="" />
                             </Link>
                             <Link to={"#"}>
-                                <img src={youtubeIcon} alt="" />
+                                <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={youtubeIcon} alt="" />
                             </Link>
                             <Link to={"#"}>
-                                <img src={instagramIcon} alt="" />
+                                <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={instagramIcon} alt="" />
                             </Link>
                             <Link to={"#"}>
-                                <img src={mediumIcon} alt="" />
+                                <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={mediumIcon} alt="" />
                             </Link>
                             <Link to={"#"}>
-                                <img src={linkedinIcon} alt="" />
+                                <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={linkedinIcon} alt="" />
                             </Link>
                             <Link to={"#"}>
-                                <img src={quoraIcon} alt="" />
+                                <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={quoraIcon} alt="" />
                             </Link>
                             <Link to={"#"}>
-                                <img src={bloggerIcon} alt="" />
+                                <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={bloggerIcon} alt="" />
                             </Link>
                         </div>
                     </div>
