@@ -3,18 +3,21 @@ import { FaRegEdit } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useLocation, useNavigate } from 'react-router-dom';
 import EmpDetails from '../components/EmpDetails';
-
-function InternManagementDetail() {
+import axios from 'axios';
+const InternManagementDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    const internId = "someInternId"; // Replace this with the actual intern's ID
-    navigate(`/admin/intern-management-add/${internId}`);
+    const internId = location.state?.rowDatas?.empID; // Replace this with the actual intern's ID
+   
+    if (internId) {
+      navigate(`/admin/intern-management-add/${internId}`); // Navigate to the edit page with the internId
+    }
   };
   // Retrieve employeeData passed via navigate
   const employeeData  = location.state.rowDatas || {};
-console.log(employeeData,"empDataaaa")
+
   // Handle Back button functionality
   const handleBack = () => {
     navigate(-1); // Go back to previous page

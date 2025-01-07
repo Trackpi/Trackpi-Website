@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
 import { BsBoxArrowUp } from "react-icons/bs";
 
+
 function AddInterns() {
   const [formData, setFormData] = useState({
     userName: "",
@@ -34,13 +35,15 @@ function AddInterns() {
 
   const { id } = useParams();  // For editing, we'll get the intern ID from URL params
   const navigate = useNavigate();
-
+  
    // Fetch existing intern data for editing
    useEffect(() => {
     if (id) {
        // Fetch intern data if editing
        getInternEmployeeById(id)
        .then((data) => {
+        console.log("Fetched Data:", data); 
+       
          setFormData({
            userName: data.userName || "",
            empID: data.empID || "",
@@ -59,8 +62,13 @@ function AddInterns() {
            twitter: data.twitter || "",
            feedback: data.feedback || "",
          });
+         // Prefill the image and certificate if available
+         if (data.profileImage) setProfileImage(data.profileImage);
+         if (data.certificate) setCertificate(data.certificate);
        })
        .catch((error) => toast.error("Failed to fetch intern details"));
+   
+       
     }
   }, [id]);
 
@@ -122,15 +130,15 @@ function AddInterns() {
         .catch((error) => toast.error("Failed to add intern"));
     }
   };
-
+ 
   return (
     <div className="container mx-auto my-5 p-5 bg-white shadow rounded-md">
       <form className="row g-4" onSubmit={handleSubmit}>
         <div className="col-12 d-flex align-items-center gap-4 mb-4 ">
           <div className="me-4  ">
-            <h2 className="mb-4">{id ? "Edit Intern" : "Add Intern"}</h2>
+            <h2 className="mb-4 text-[22px]">{id ? "Edit Intern" : "Add Intern"}</h2>
             <div
-              className="d-flex justify-content-center align-items-center  border rounded-2xl"
+              className="d-flex justify-content-center align-items-center  border border-secondary rounded-2xl"
               style={{
                
                 width: "150px",
@@ -138,6 +146,7 @@ function AddInterns() {
                 position: "relative",
               }}
             >
+                
               {profileImage ? (
                 <img
                   src={URL.createObjectURL(profileImage)}
@@ -145,6 +154,7 @@ function AddInterns() {
                   style={{
                     width: "150px",
                     height: "120px",
+                    
                     borderRadius: "50%",
                     objectFit: "cover",
                   }}
@@ -179,36 +189,72 @@ function AddInterns() {
           </div>
           <div className="mt-4 flex-grow-1 row g-5">
             <div className="col-md-4">
-              <label className="form-label font-bold">Name</label>
+              <label className="form-label font-bold text-[15px]">Name</label>
               <input
                 type="text"
-                name="Name"
-                className="form-control rounded-2xl"
+                name="userName"
+                className="form-control rounded-2xl plac"
                 placeholder="Name"
                 value={formData.userName}
                 onChange={handleInputChange}
+                
+                style={{fontSize: '12px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                
+
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label  font-bold">Employee Id</label>
+              <label className="form-label  font-bold text-[15px]">Employee Id</label>
               <input
                 type="text"
-                name="employeeId"
-                className="form-control rounded-2xl"
+                name="empID"
+                className="form-control rounded-2xl plac"
                 placeholder="Employee Id"
-                value={formData.employeeId}
+                value={formData.empID}
                 onChange={handleInputChange}
+                style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
               />
             </div>
             <div className="col-md-4 ">
-              <label className="form-label  font-bold">Email Id</label>
+              <label className="form-label  font-bold text-[15px]">Email Id</label>
               <input
                 type="email"
                 name="email"
-                className="form-control rounded-2xl"
+                className="form-control rounded-2xl plac"
                 placeholder="Email-Id"
                 value={formData.email}
                 onChange={handleInputChange}
+                style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
               />
             </div>
           </div>
@@ -217,47 +263,79 @@ function AddInterns() {
             {/* Personal Information Section */}
     <div className="flex justify-between">
           <div className=" flex flex-col w-[310px]">
-          <h4 className="mb-3">Personal Information</h4>
+          <h4 className="mb-4 text-[22px]">Personal Information</h4>
           <div className="mb-3">
-            <label className="form-label" htmlFor="phone">
+            <label className="form-label text-[15px] font-md text-[15px]" htmlFor="phone">
               Phone Number
             </label>
             <input
               type="text"
               id="phone"
-              name="phone"
-              className="form-control"
+              name="phoneNumber"
+              className="form-control plac"
               placeholder="Phone Number"
 
               onChange={handleInputChange}
-              value={formData.phone}
+              value={formData.phoneNumber}
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="address">
+            <label className="form-label text-[15px]" htmlFor="address">
               Full Address
             </label>
             <input
               type="text"
               id="address"
-              name="address"
-              className="form-control"
+              name="fullAddress"
+              className="form-control plac"
               placeholder="Address"
               onChange={handleInputChange}
-              value={formData.address}
+              value={formData.fullAddress}
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
             />
           </div>
           <div className="flex gap-5">
           <div className="mb-3">
-            <label className="form-label" htmlFor="gender">
+            <label className="form-label text-[15px]" htmlFor="gender">
               Gender
             </label>
             <select
               id="gender"
               name="gender"
-              className="form-select rounded-lg"
+              className="form-select rounded-lg plac"
               onChange={handleInputChange}
-              
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
               value={formData.gender}
             >
               <option value="">Gender</option>
@@ -267,14 +345,25 @@ function AddInterns() {
             </select>
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="dob">
+            <label className="form-label text-[15px]" htmlFor="dob">
               Date of Birth
             </label>
             <input
               type="date"
               id="dob"
               name="dob"
-              className="form-control rounded-lg"
+              className="form-control rounded-lg plac"
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
               onChange={handleInputChange}
               value={formData.dob}
               
@@ -282,15 +371,26 @@ function AddInterns() {
           </div>
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="bloodgroup">
+            <label className="form-label text-[15px]" htmlFor="bloodgroup">
               Blood Group
             </label>
             <select
               id="bloodgroup"
-              name="bloodgroup"
-              className="form-select"
+              name="bloodGroup"
+              className="form-select plac"
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
               onChange={handleInputChange}
-              value={formData.bloodgroup}
+              value={formData.bloodGroup}
             >
               <option value="A+">A+</option>
               <option value="A-">A-</option>
@@ -306,30 +406,52 @@ function AddInterns() {
         <div className="vertical-line w-[1px] h-[400px] bg-gray-400"></div>
         {/* Employment Overview Section */}
         <div className="flex flex-col w-[310px]">
-          <h4 className="mb-3">Employment Overview</h4>
+          <h4 className="mb-4 text-[22px]">Employment Overview</h4>
           <div className="mb-3">
-            <label className="form-label" htmlFor="doj">
+            <label className="form-label text-[15px]" htmlFor="doj">
               Date of Joining
             </label>
             <input
               type="date"
               id="doj"
-              name="doj"
-              className="form-control"
+              name="dateOfJoining"
+              className="form-control plac"
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
               onChange={handleInputChange}
-              value={formData.doj}
+              value={formData.dateOfJoining}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="jobrole">
+            <label className="form-label text-[15px]" htmlFor="jobrole">
               Job Role
             </label>
             <select
               id="jobrole"
-              name="jobrole"
-              className="form-select"
+              name="jobRole"
+              className="form-select plac"
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
               onChange={handleInputChange}
-              value={formData.jobrole}
+              value={formData.jobRole}
             >
               <option value="Business Development Executive">
                 Business Development Executive
@@ -343,15 +465,26 @@ function AddInterns() {
             </select>
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="empsatus">
+            <label className="form-label text-[15px]" htmlFor="empsatus">
               Employee Status
             </label>
             <select
               id="empsatus"
-              name="empsatus"
-              className="form-select"
+              name="employeeStatus"
+              className="form-select plac"
               onChange={handleInputChange}
-              value={formData.empsatus}
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              value={formData.employeeStatus}
             >
               <option value="Full time">Full time</option>
               <option value="Part time">Part time</option>
@@ -359,15 +492,26 @@ function AddInterns() {
             </select>
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="joblevel">
+            <label className="form-label text-[15px]" htmlFor="joblevel">
               Job Level
             </label>
             <select
               id="joblevel"
               name="joblevel"
-              className="form-select"
+              className="form-select plac"
               onChange={handleInputChange}
-              value={formData.joblevel}
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              value={formData.jobLevel}
             >
               <option value="Manager Level">Manager Level</option>
               <option value="Executive Level">Executive Level</option>
@@ -377,16 +521,27 @@ function AddInterns() {
         <div className="vertical-line w-[1px] h-[400px] bg-gray-400"></div>
         {/* Social Media Section */}
         <div className="flex flex-col">
-          <h4 className="mb-3">Social Media</h4>
+          <h4 className="mb-4 text-[22px]">Social Media</h4>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="gender">
                     Select Platform 1
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="form-select rounded-lg"
+                    className="form-select rounded-lg plac"
+                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    onFocus={ e => {
+                      
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
+                    onBlur={e => {
+                  
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
                     onChange={handleInputChange}
                     
                     // value={formData.gender}
@@ -398,13 +553,24 @@ function AddInterns() {
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="gender">
                   Platform 1 Link
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="form-select rounded-lg"
+                    className="form-select rounded-lg plac"
+                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    onFocus={ e => {
+                      
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
+                    onBlur={e => {
+                  
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
                     onChange={handleInputChange}
                     
                     // value={formData.gender}
@@ -419,13 +585,24 @@ function AddInterns() {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="gender">
                   Select Platform 2
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="form-select rounded-lg"
+                    className="form-select rounded-lg plac"
+                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    onFocus={ e => {
+                      
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
+                    onBlur={e => {
+                  
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
                     onChange={handleInputChange}
                     
                     // value={formData.gender}
@@ -437,13 +614,24 @@ function AddInterns() {
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="gender">
                   Platform 1 Link
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="form-select rounded-lg"
+                    className="form-select rounded-lg plac"
+                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    onFocus={ e => {
+                      
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
+                    onBlur={e => {
+                  
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
                     onChange={handleInputChange}
                     
                     // value={formData.gender}
@@ -458,13 +646,24 @@ function AddInterns() {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="gender">
                   Select Platform 3
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="form-select rounded-lg"
+                    className="form-select rounded-lg plac"
+                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    onFocus={ e => {
+                      
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
+                    onBlur={e => {
+                  
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
                     onChange={handleInputChange}
                     
                     // value={formData.gender}
@@ -476,13 +675,24 @@ function AddInterns() {
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="gender">
                   Platform 1 Link
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="form-select rounded-lg"
+                    className="form-select rounded-lg plac"
+                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    onFocus={ e => {
+                      
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
+                    onBlur={e => {
+                  
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
                     onChange={handleInputChange}
                     
                     // value={formData.gender}
@@ -497,13 +707,24 @@ function AddInterns() {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="gender">
                   Select Platform 4
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="form-select rounded-lg"
+                    className="form-select rounded-lg plac"
+                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    onFocus={ e => {
+                      
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
+                    onBlur={e => {
+                  
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
                     onChange={handleInputChange}
                     
                     // value={formData.gender}
@@ -515,13 +736,24 @@ function AddInterns() {
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="gender">
                     Platform 1 Link
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="form-select rounded-lg"
+                    className="form-select rounded-lg plac"
+                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    onFocus={ e => {
+                      
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
+                    onBlur={e => {
+                  
+                      e.target.style.borderColor = 'white';
+                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                    }}
                     onChange={handleInputChange}
                     
                     // value={formData.gender}
@@ -537,67 +769,78 @@ function AddInterns() {
         </div>
         
         </div>
-        <div className="mt-5 flex justify-between">
-        <div className="  w-[660px] h-[150px] ">
-          <h4>Feedback</h4>
-          <textarea
-            className="form-control w-[660px] h-[150px]"
-            placeholder="Enter here"
-            rows="4"
-            onChange={handleInputChange}
-            value={formData.feedback}
-          ></textarea>
-        </div>
-        
-        <div className="">
-          <h4>Internship Certificate</h4>
-          <div
-            className="border border-secondary rounded p-4 text-center position-relative"
-            style={{
-              width: "330px",
-              height: "150px",
-              overflow: "hidden",
-            }}
-          >
-            {certificate ? (
-              <img
-                src={URL.createObjectURL(certificate)}
-                alt="Uploaded Certificate"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                }}
-              />
-            ) : (
-              <p>Upload the file</p>
-            )}
-            <button
-              onClick={() => certificateInputRef.current.click()}
-              className="btn btn-link text-black "
-              aria-label="Upload Internship Certificate"
-            >
-             <BsBoxArrowUp />
-            </button>
-          </div>
-          <input
-            type="file"
-            ref={certificateInputRef}
-            style={{ display: "none" }}
-            accept="image/*"
-            onChange={handleCertificateFileChange}
-          />
-        </div>
-        </div>
-        <div className=" flex justify-center gap-4 mt-4">
-          <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
-          {id ? "Update" : "Save"}
-          </button>
-          <button type="button" className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
-            Cancel
-          </button>
-        </div>
-      </form>
+                    <div className="mt-5 flex justify-between">
+                              <div className="  w-[660px] h-[150px] ">
+                                            <h4 className="text-[22px]">Feedback</h4>
+                                            <textarea
+                                              className="form-control w-[660px] h-[150px] plac"
+                                              placeholder="Enter here"
+                                              rows="4"
+                                              onChange={handleInputChange}
+                                              style={{border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                                                      onFocus={ e => {
+                                                        
+                                                        e.target.style.borderColor = 'white';
+                                                        e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                                                      }}
+                                                      onBlur={e => {
+                                                    
+                                                        e.target.style.borderColor = 'white';
+                                                        e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                                                      }}
+                                              value={formData.feedback}
+                                            ></textarea>
+                              </div>
+                    
+                              <div className="">
+                                              <h4 className="text-[22px]">Internship Certificate</h4>
+                                              <div
+                                                    className="border border-secondary rounded p-4 text-center position-relative"
+                                                    style={{
+                                                      width: "330px",
+                                                      height: "150px",
+                                                      overflow: "hidden",
+                                                    }}
+                                                  >
+                                                    {certificate ? (
+                                                      <img
+                                                        src={URL.createObjectURL(certificate)}
+                                                        alt="Uploaded Certificate"
+                                                        style={{
+                                                          width: "100%",
+                                                          height: "100%",
+                                                          objectFit: "contain",
+                                                        }}
+                                                      />
+                                                    ) : (
+                                                      <p>Upload the file</p>
+                                                    )}
+                                                    <button
+                                                      onClick={() => certificateInputRef.current.click()}
+                                                      className="btn btn-link text-black "
+                                                      aria-label="Upload Internship Certificate"
+                                                    >
+                                                    <BsBoxArrowUp />
+                                                    </button>
+                                             </div>
+                                            <input
+                                            type="file"
+                                            ref={certificateInputRef}
+                                            style={{ display: "none" }}
+                                            accept="image/*"
+                                            onChange={handleCertificateFileChange}
+                                          />
+                               </div>
+                          </div>
+                      <div className=" flex justify-center gap-4 mt-4">
+                                    <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+                                    {id ? "Update" : "Save"}
+                                    </button>
+                                    <button type="button" className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
+                                      Cancel
+                                    </button>
+                      </div>
+         </form>
     </div>
   );
 }

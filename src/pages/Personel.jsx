@@ -8,12 +8,14 @@ import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
 // import { IoMdClose } from "react-icons/io";
 import { Modal } from "react-bootstrap";
+
+import "../CSS/personnel.css";
 // import { useLocation, useNavigate } from "react-router-dom";
 
 function Personel({ show, onHide, member }) {
   
   return (
-    <Modal show={show} onHide={onHide} centered size="md">
+    <Modal show={show} onHide={onHide} centered size="md" >
       <Modal.Header className="bg-white px-1 py-1 text-center text-black" >
         <Modal.Title className="personnelfirst" >
           <h2>{member.title}</h2>
@@ -42,7 +44,7 @@ function Personel({ show, onHide, member }) {
             className="rounded-md w-52 h-52 personnelimg object-cover"
           />
       </Modal.Header>
-      <Modal.Body className="px-2  py-4 flex gap-50 ">
+      <Modal.Body className="px-2  py-4 flex gap-50  ">
         <div>
          
           <div className="  px-8 flex flex-col justify-center items-center ">
@@ -52,7 +54,7 @@ function Personel({ show, onHide, member }) {
             &nbsp;
             {member.selfIntroduction}</p>
           </div>
-          <div className=" flex justify-evenly gap-20 mt-6 px-10">
+          <div className=" flex justify-evenly gap-20 md:mt-6 px-10">
           <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
           {/* <SlSocialYoutube size={35} className="text-yellow-500 cursor-pointer" /> */}
           <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />

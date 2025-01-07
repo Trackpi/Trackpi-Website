@@ -22,7 +22,7 @@ const EmpDetails = ({ employeeData }) => {
           <div className="hidden md:block w-full">
             <div className="flex flex-row justify-between items-center text-2xl xl:text-xl w-full">
               <div>
-                <p className="font-bold text-2xl">{employeeData.name}</p>
+                <p className="font-bold text-2xl">{employeeData.name || "Paul Walker"} </p>
                 <button
                   style={{ backgroundColor: "#019304", color: "white" }}
                   className="act rounded-pill px-3 py-1 flex flex-row justify-center items-center md:gap-1 text-xs md:text-sm"
@@ -34,18 +34,18 @@ const EmpDetails = ({ employeeData }) => {
 
               <div>
                 <p className="text-sm md:text-lg">Employee ID</p>
-                <p className="font-bold text-sm md:text-lg">{employeeData.employeeId}</p>
+                <p className="font-bold text-sm md:text-lg">{employeeData.employeeId || "EMP001"}</p>
               </div>
               <div>
                 <p className="email text-sm md:text-lg">Email</p>
-                <p className="font-bold text-sm md:text-lg">{employeeData.email}</p>
+                <p className="font-bold text-sm md:text-lg">{employeeData.email || "paulwalker@gmail.com"}</p>
               </div>
             </div>
           </div>
           <div className="md:hidden w-full flex flex-col justify-between items-start md:flex-row lg:flex-row md:text-2xl xl:text-xl">
             <div className="flex flex-row items-center gap-3" style={{ lineHeight: "1px" }}>
               <p className="font-bold" style={{ margin: 0 }}>
-                {employeeData.name}
+                {employeeData.name || "Paul Walker"}
               </p>
               <button
                 style={{ backgroundColor: "#019304", color: "white", margin: "0px" }}
@@ -61,7 +61,7 @@ const EmpDetails = ({ employeeData }) => {
                 Employee ID
               </p>
               <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                {employeeData.employeeId}
+                {employeeData.employeeId || "EMP001" }
               </p>
             </div>
             <div className="flex flex-row md:flex-col" style={{ lineHeight: "1px" }}>
@@ -69,7 +69,7 @@ const EmpDetails = ({ employeeData }) => {
                 Email
               </p>
               <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                {employeeData.email}
+                {employeeData.email ||"paulwalker@gmail.com" }
               </p>
             </div>
           </div>
@@ -84,7 +84,7 @@ const EmpDetails = ({ employeeData }) => {
               Phone
             </p>
             <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-              {employeeData.phone}
+              {employeeData.phone || "9876543210"}
             </p>
           </div>
 
@@ -93,7 +93,7 @@ const EmpDetails = ({ employeeData }) => {
               Address
             </p>
             <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-              {employeeData.address}
+              {employeeData.address || "Church Street, Jude Town, Evasteen, 31562"}
             </p>
           </div>
 
@@ -104,7 +104,7 @@ const EmpDetails = ({ employeeData }) => {
                   Gender
                 </p>
                 <p className="font-bold text-lg" style={{ margin: 0 }}>
-                  {employeeData.gender}
+                  {employeeData.gender || "Male"}
                 </p>
               </div>
               <div className="phone" style={{ lineHeight: "1px" }}>
@@ -112,7 +112,7 @@ const EmpDetails = ({ employeeData }) => {
                   Date Of Birth
                 </p>
                 <p className="font-bold text-lg" style={{ margin: 0 }}>
-                  {employeeData.dob}
+                  {employeeData.dob || "10/03/2000"}
                 </p>
               </div>
             </div>
@@ -124,15 +124,15 @@ const EmpDetails = ({ employeeData }) => {
                 Date Of Birth
               </p>
               <p className="font-bold text-sm" style={{ margin: 0 }}>
-                {employeeData.dob}
+                {employeeData.dob || "10/03/2000"}
               </p>
             </div>
             <div className="phone" style={{ lineHeight: "1px" }}>
               <p className="text-sm" style={{ margin: 0 }}>
-                Gender
+                Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </p>
               <p className="font-bold text-sm" style={{ margin: 0 }}>
-                {employeeData.gender}
+                {employeeData.gender  || "Male"}
               </p>
             </div>
           </div>
@@ -142,7 +142,7 @@ const EmpDetails = ({ employeeData }) => {
               Blood Group
             </p>
             <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-              {employeeData.bloodGroup}
+              {employeeData.bloodGroup || "A+"}
             </p>
           </div>
         </div>
@@ -158,7 +158,7 @@ const EmpDetails = ({ employeeData }) => {
                   Date Of Joining
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.doj}
+                  {employeeData.doj || "1/12/20124"}
                 </p>
               </div>
 
@@ -167,7 +167,7 @@ const EmpDetails = ({ employeeData }) => {
                   Job Role
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.jobRole}
+                  {employeeData.jobRole || "Sales Manager"}
                 </p>
               </div>
 
@@ -176,7 +176,7 @@ const EmpDetails = ({ employeeData }) => {
                   Employment Status
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.employmentStatus}
+                  {employeeData.employmentStatus || "Full Time"}
                 </p>
               </div>
 
@@ -185,7 +185,7 @@ const EmpDetails = ({ employeeData }) => {
                   Job Level
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.jobLevel}
+                  {employeeData.jobLevel || "Entry Level"}
                 </p>
               </div>
             </div>
@@ -198,7 +198,7 @@ const EmpDetails = ({ employeeData }) => {
                   Date Of Joining
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.doj}
+                  {employeeData.doj ||"1/12/20124"}
                 </p>
               </div>
               <div className="phone" style={{ lineHeight: "1px" }}>
@@ -206,7 +206,7 @@ const EmpDetails = ({ employeeData }) => {
                   Employment Status
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.employmentStatus}
+                  {employeeData.employmentStatus || "Full Time"}
                 </p>
               </div>
             </div>
@@ -216,7 +216,7 @@ const EmpDetails = ({ employeeData }) => {
                   Job Role
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.jobRole}
+                  {employeeData.jobRole || "Sales Manager"}
                 </p>
               </div>
               <div className="phone" style={{ lineHeight: "1px" }}>
@@ -224,7 +224,7 @@ const EmpDetails = ({ employeeData }) => {
                   Job Level
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.jobLevel}
+                  {employeeData.jobLevel || "Entry Level"}
                 </p>
               </div>
             </div>
