@@ -1,16 +1,17 @@
 
-import React, { useEffect, useState } from "react";
 
+import { useLocation } from "react-router-dom";
 
 import EmpDetails from "../components/EmpDetails";
 import "../CSS/employeeinternship.css";
 function EmployeeInternship() {
-  
+  const location = useLocation();
+  const employeeData = location.state?.rowDatas || {};
 
   return (
     <div className="pad mt-20 w-full py-6 md:py-10 md:px-6 lg:px-20 xl:px-24 2xl:px-32 mx-auto "
      >
-       <EmpDetails/>
+       <EmpDetails employeeData={employeeData}/>
        <div className=" grid grid-cols-1 md:grid-cols-2 md:gap-12 sm:text-lg md:text-xl xl:text-xl xl:leading-7 2xl:leading-7 2xl:text-2xl md:mt-4 2xl:mt-8 ">
                   <div>
                     <h5 className="connect-text-Color font-medium ">Feedback</h5>

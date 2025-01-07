@@ -567,6 +567,15 @@ body, html {
     top: calc(230px - 110px); /* Even more space for extra-large screens */
   }
 }
+.personnelimg1 {
+  position: absolute;
+  top: calc(300px - 10px); /* 50% of the image in orange and 50% in white */
+  left: 50%;
+  transform: translate(5%, 0%);
+  height: 200px;
+  width: 270px;
+  z-index: 1;
+}
 
 /* Apply grayscale by default */
 .team-img {

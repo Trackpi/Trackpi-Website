@@ -3,55 +3,74 @@ import React from "react";
 
 
 import { IoLogoInstagram } from "react-icons/io5";
-
+import { FaRegEdit } from 'react-icons/fa';
+import { IoMdArrowBack } from 'react-icons/io';
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
+import { useLocation,useNavigate } from "react-router-dom";
 
 
 
 
+function EmployeeManagementDetail() {
+    const location = useLocation();
+    const navigate = useNavigate();
 
-function EmployeeManagementDetail({member}) {
-  if (!member) {
+    const employeeData  = location.state.rowDatas || {};
+  if (!employeeData) {
     return <div>Loading...</div>; // Optionally, show a loading state if member is not available
   }
  
   return (
-    <div>
-     
-            <div className="bg-white px-1 py-1 text-center text-black" >
-              <div className="personnelfirst" >
-                <h2>{member.title}</h2>
-                <p className="text-2xl font-normal">{member.designation}</p>
-                
-              
+    <div className="bg-white"> 
+          <div className="bg-white w-full py-4 px-6 mx-auto flex justify-end items-end gap-3">
+                <button 
+                // onClick={handleEdit} 
+                className="px-4 py-2 text-white bg-[#FF9D00] rounded-lg flex justify-center items-center">
+                  <FaRegEdit /> &nbsp; Edit
+                </button>
+                <button 
+                  // onClick={handleBack} 
+                  className="px-4 py-2 text-white bg-[#FF9D00] rounded-lg flex justify-center items-center"
+                >
+                  <IoMdArrowBack /> &nbsp; Back
+                </button>
+          </div>
+          <div className="flex justify-center items-center">
+          <div className="w-[750px] border rounded-xl">
+                <div className="mt-30 bg-white px-1 py-1 text-center text-black" >
+                      <div className="personnelfirst" >
+                          <h2>{employeeData.name}</h2>
+                          <p className="text-2xl font-normal">{employeeData.desig}</p>
+                          
+                      
+                        </div>
+                        <img
+                          src={employeeData.image}
+                          alt={employeeData.title}
+                          className="rounded-md w-52 h-52 personnelimg1 object-cover"
+                        />
                 </div>
-                <img
-                  src={member.image}
-                  alt={member.title}
-                  className="rounded-md w-52 h-52 personnelimg object-cover"
-                />
-            </div>
-            <div className="px-2  py-4 flex gap-50 ">
-              <div>
-               
-                <div className="  px-8 flex flex-col justify-center items-center ">
-                  
-                  <p className="mt-4 font-medium text-justify"><br/><br/><br/>
-                  <span className="font-bold underline">SELF INTRODUCTION:</span>
-                  &nbsp;
-                  {member.selfIntroduction}</p>
+                <div className="  py-4 flex justify-center gap-50 ">
+                      <div className="  ">
+                      
+                                <div className="  px-8 flex flex-col justify-center items-center ">
+                                  
+                                      <p className="mt-4 font-medium text-justify"><br/><br/><br/>
+                                      <span className="font-bold underline">SELF INTRODUCTION:</span>
+                                      &nbsp;
+                                      {employeeData.selfIntroduction}</p>
+                                </div>
+                                <div className=" flex justify-evenly gap-20 mt-6 px-10">
+                                      <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
+                                    
+                                      <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />
+                                      <TbBrandLinkedin size={35} className="text-yellow-500 cursor-pointer" />
+                              </div>
+                      </div>
                 </div>
-                <div className=" flex justify-evenly gap-20 mt-6 px-10">
-                <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
-               
-                <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />
-                <TbBrandLinkedin size={35} className="text-yellow-500 cursor-pointer" />
-              </div>
-              </div>
+            </div> 
             </div>
-            
-     
      
     </div>
   )

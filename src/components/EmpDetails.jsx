@@ -232,19 +232,19 @@ const EmpDetails = ({ employeeData }) => {
         </div>
       </div>
 
-      <div className="flex justify-center gap-20 mt-8 md:mt-3 2xl:mt-8 px-10 py-2 md:py-0 mb-3 md:mb-3 lg:mb-3 xl:mb-0 sm:gap-3">
+      <div className="flex justify-center gap-20 mt-8 md:mt-3 2xl:mt-8 px-10 py-2 md:py-0 mb-3 md:mb-3 lg:mb-3 xl:mb-0 ">
         <a
           href={employeeData.instagram}
           target="_blank"
-          className="social-link"
+          className="social-link text-yellow-500  text-2xl md:text-3xl lg:text-4xl cursor-pointer"
         >
-          <IoLogoInstagram size={25} />
+          <IoLogoInstagram />
         </a>
-        <a href={employeeData.linkedin} target="_blank" className="social-link">
-          <TbBrandLinkedin size={25} />
+        <a href={employeeData.linkedin} target="_blank" className="social-link text-yellow-500  text-2xl md:text-3xl lg:text-4xl cursor-pointer">
+          <TbBrandLinkedin  />
         </a>
-        <a href={employeeData.facebook} target="_blank" className="social-link">
-          <RiFacebookCircleLine size={25} />
+        <a href={employeeData.facebook} target="_blank" className="social-link text-yellow-500  text-2xl md:text-3xl lg:text-4xl cursor-pointer">
+          <RiFacebookCircleLine />
         </a>
       </div>
     </>

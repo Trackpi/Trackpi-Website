@@ -80,6 +80,7 @@ const TableIntern = () => {
   const handleViewProfile = (rowDatas) => {
     console.log(rowDatas,"rowDatas")
     navigate('/admin/intern-management-detail/:id', { state: { rowDatas } });
+    
   };
   return (
     <div>
