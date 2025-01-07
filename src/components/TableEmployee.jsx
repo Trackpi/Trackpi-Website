@@ -2,6 +2,12 @@ import React from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
+import imagepersonnel1 from '../images/personnel-1-400x286.jpg'
+import imagepersonnel2 from '../images/personnel-2-400x286.jpg'
+import imagepersonnel3 from '../images/personnel-3-400x310.jpg'
+import imagepersonnel4 from '../images/personnel-4-400x310.jpg'
+import imagepersonnel5 from '../images/personnel-5-400x310.jpg'
+import imagepersonnel6 from '../images/personnel-6-400x310.jpg'
 
 const data = [
   {
@@ -9,60 +15,91 @@ const data = [
     name: 'Ava Thompson',
     email: 'ava.thompson@gmail.com',
     desig: 'Software Engineer',
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+    image:imagepersonnel1,
+    title:'employee image',
   },
   {
     sl_no: 2,
     name: 'Liam Anderson',
     email: 'liam.anderson@yahoo.com',
     desig: 'Product Manager',
+    image:imagepersonnel2,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
   },
   {
     sl_no: 3,
     name: 'Noah Clark',
     email: 'noah.clark@hotmail.com',
     desig: 'UX Designer',
+    image:imagepersonnel3,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
   },
   {
     sl_no: 4,
     name: 'Emma Moore',
     email: 'emma.moore@gmail.com',
     desig: 'Data Scientist',
+    image:imagepersonnel4,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
   },
   {
     sl_no: 5,
     name: 'Mason Hall',
     email: 'mason.hall@outlook.com',
     desig: 'Marketing Specialist',
+    image:imagepersonnel5,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
   },
   {
     sl_no: 6,
     name: 'Isabella Wright',
     email: 'isabella.wright@domain.com',
     desig: 'Business Analyst',
+    image:imagepersonnel6,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
   },
   {
     sl_no: 7,
     name: 'Elijah King',
     email: 'elijah.king@company.com',
     desig: 'DevOps Engineer',
+    image:imagepersonnel1,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
   },
   {
     sl_no: 8,
     name: 'Sophia Turner',
     email: 'sophia.turner@gmail.com',
     desig: 'Quality Assurance',
+    image:imagepersonnel2,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
   },
   {
     sl_no: 9,
     name: 'James Baker',
     email: 'james.baker@domain.com',
     desig: 'HR Manager',
+    image:imagepersonnel3,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
   },
   {
     sl_no: 10,
     name: 'Charlotte Adams',
     email: 'charlotte.adams@website.com',
     desig: 'Finance Executive',
+    image:imagepersonnel4,
+    selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor.',
+
+
   },
 ];
 

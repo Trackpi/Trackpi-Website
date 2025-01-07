@@ -2,6 +2,12 @@ import React from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
+import imagepersonnel1 from '../images/personnel-1-400x286.jpg'
+import imagepersonnel2 from '../images/personnel-2-400x286.jpg'
+import imagepersonnel3 from '../images/personnel-3-400x310.jpg'
+import imagepersonnel4 from '../images/personnel-4-400x310.jpg'
+import imagepersonnel5 from '../images/personnel-5-400x310.jpg'
+import imagepersonnel6 from '../images/personnel-6-400x310.jpg'
 
 const data = [
   {
@@ -10,6 +16,7 @@ const data = [
     empID: 'EMP1234',
     email: 'johndoe@gmail.com',
     phone: 9876543210,
+    image:imagepersonnel1,
   },
   {
     sl_no: 2,
@@ -17,6 +24,7 @@ const data = [
     empID: 'EMP5678',
     email: 'janesmith@yahoo.com',
     phone: 9123456789,
+    image:imagepersonnel2,
   },
   {
     sl_no: 3,
@@ -24,6 +32,7 @@ const data = [
     empID: 'EMP9101',
     email: 'robert.brown@hotmail.com',
     phone: 8765432109,
+    image:imagepersonnel3,
   },
   {
     sl_no: 4,
@@ -31,6 +40,7 @@ const data = [
     empID: 'EMP1122',
     email: 'emily.davis@gmail.com',
     phone: 9876123456,
+    image:imagepersonnel4,
   },
   {
     sl_no: 5,
@@ -38,6 +48,7 @@ const data = [
     empID: 'EMP3344',
     email: 'michael.wilson@outlook.com',
     phone: 9123678945,
+    image:imagepersonnel5,
   },
   {
     sl_no: 6,
@@ -45,6 +56,7 @@ const data = [
     empID: 'EMP5566',
     email: 'sarah.johnson@domain.com',
     phone: 8765432190,
+    image:imagepersonnel6,
   },
   {
     sl_no: 7,
@@ -52,6 +64,7 @@ const data = [
     empID: 'EMP7788',
     email: 'chris.lee@company.com',
     phone: 9876541230,
+    image:imagepersonnel1,
   },
   {
     sl_no: 8,
@@ -59,6 +72,7 @@ const data = [
     empID: 'EMP9900',
     email: 'sophia.martin@gmail.com',
     phone: 9234567891,
+    image:imagepersonnel2,
   },
   {
     sl_no: 9,
@@ -66,6 +80,7 @@ const data = [
     empID: 'EMP2233',
     email: 'david.taylor@domain.com',
     phone: 8543217890,
+    image:imagepersonnel3,
   },
   {
     sl_no: 10,
@@ -73,6 +88,7 @@ const data = [
     empID: 'EMP4455',
     email: 'olivia.white@website.com',
     phone: 9123456780,
+    image:imagepersonnel4,
   },
 ];
 const TableSales = () => {
