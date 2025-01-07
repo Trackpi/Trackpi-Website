@@ -12,7 +12,7 @@ const EmpDetails = ({ employeeData }) => {
       <div className="custom-height h-[135px] py-2 flex flex-col md:flex-row justify-between items-center sm:text-lg md:text-2xl xl:text-xl xl:leading-5 2xl:leading-5 2xl:text-2xl">
         <div className="w-full flex flex-row justify-center items-center gap-4 md:gap-5">
           <img
-            src={imagepersonnel1}
+            src={employeeData.image || imagepersonnel1}
             alt="employee image"
             height={200}
             width={180}
