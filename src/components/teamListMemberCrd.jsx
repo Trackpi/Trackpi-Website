@@ -77,12 +77,14 @@ const memberList = [
     
     const [showModal, setShowModal] = useState(false);
     const [selectedMember, setSelectedMember] = useState(null);
-    const scrollRef = useRef(null);
     
+    const scrollRef = useRef(null);
+   
   
     const handleCardClick = (member) => {
       setSelectedMember(member); // Set the clicked member's data
       setShowModal(true);        // Open the modal
+    
     };
     
   const scrollLeft = () => {
@@ -139,7 +141,7 @@ const memberList = [
                     </div>
                 </div>
             </div>
-        
+             
       
     {/* Render modal */}
       {selectedMember && (
@@ -148,8 +150,14 @@ const memberList = [
           onHide={() => setShowModal(false)}
           member={selectedMember}
         />
+         
       )}
-      
+
+
+        <div className="mt-10">
+          <EmployeeManagementDetail member={selectedMember} />
+        </div>
+     
     
         </div>
     );

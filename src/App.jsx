@@ -98,6 +98,7 @@ function App() {
                                     <Route path="/employeesales" element={<EmployeeSales />} />
                                     <Route path="/employeeinternship" element={<EmployeeInternship />} />
 
+
                                     {/* Admin Routes */}
                                     <Route path="/admin/admin-login" element={<AdminLogin />} />
                                     <Route path="/admin/dashboard" element={<Dashboard />} />
@@ -115,9 +116,10 @@ function App() {
                                     <Route path="/admin/salesManagement-add" element={<AddSales />} />
                                     <Route path="/admin/salesManagement-detail" element={<SalesManagementDetail />} />
                                     <Route path="/admin/intern-management" element={<InternManagement />} />
-                                    <Route path="/admin/intern-management-add" element={<AddInterns />} />
-                                    <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
+                                   <Route path="/admin/intern-management-add/:id" element={<AddInterns />} />
+                                   <Route path="/admin/intern-management-detail/:id" element={<InternManagementDetail />} />
                                     <Route path="/admin/footer-management" element={<FooterManagement />} />
+
 
                                     {/* 404 Not Found */}
                                     <Route path="/*" element={<Navigate to={"/not-found"} />} />

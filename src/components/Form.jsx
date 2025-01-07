@@ -1,99 +1,233 @@
-import React from 'react';
-import Details from '../components/Form';
-import { Container, Row } from 'react-bootstrap';
-import ConnectButtons from '../components/ConnectButtons';
-import HeaderBanner from '../components/HeaderBanner';
-import img2 from '../images/connect.png'
-
+import Form from 'react-bootstrap/Form';
 import "../CSS/connect.css";
 
-
-function Connect() {
+function Details() {
   return (
-    <>
-      <HeaderBanner
-        title="Connect Us"
-        description="Reach out to us for any inquiries or support — we are here to help."
-        brochure
-        classname="bgFive"
-        noButton={true}
-        image={img2}
-      />
+    <div className=" w-full mx-auto md:px-4">
+      <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
+        <div className="mb-3  flex justify-center  items-center">
+          <Form.Control
 
-      <div className="bb">
-        <h1 className="text-[#FF9D00] text-center text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl font-bold mb-2 md:mb-8">
-          Contact Us
-        </h1>
+           
+          style={{
+                 outline: 'rgb(187, 190, 192)',
+                 border: '0.89px solid  #0A0A0ACC',
+                 height:'53.4px',
+                 width: '100%',
+                 maxWidth: '712px',
+                 color:'rgba(0, 0, 0, 0.74)',
+                        
+                      }}
+                      onFocus={e => {
+                        e.target.style.borderColor = 'black';
+                        e.target.style.boxShadow = '0 0 1px black';
+                      
+                      }}
+                      onBlur={e => {
+                        e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
+                        e.target.style.boxShadow = 'none';
+                        
+                      }}
 
-        <div className=" py-0   w-full flex justify-center px-16   mt-4 md:mt-8 mb-2 md:mb-8">
-          <div className="card-group  w-full flex flex-wrap justify-between gap-10">
-            {[
-              {
 
-                icon: "fa-location-dot",
-                title: "Office Location",
-                text: "Kakkanad, Kochi, India",
-              },
-              {
-                icon: "fa-phone",
-                title: "Phone Number",
-                text: "+91 8078179646",
-              },
-              {
-                icon: "fa-envelope",
-                title: "E-mail Id",
-                text: "trackpi@gmail.com",
-
-              },
-            ].map((card, index) => (
-              <div
-                key={index}
-                className="card card1  md:pt-4 rounded-2xl fixed-card  w-[280px] sm:w-[calc(50%-20px)] lg:w-[calc(30%)] md:w-[410px] h-[140px] md:h-[230px] p-[30px] flex flex-col justify-between items-center gap-5  text-center shadow-lg"
-              >
-
-                <div className=" flex flex-col items-center gap-2 ">
-                <div className="h-[30px] w-[30px] md:h-[50px] md:w-[50px] bg-white rounded-full flex justify-center items-center text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] xl:text-[28px] 2xl:text-[30px]    text-amberCustom md:mb-2">
-                  <i className={`fa-solid ${card.icon}`}></i>
-                </div>
-                <h6 className="text-[13px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]  font-medium">
-                  {card.title}
-                </h6>
-                <p className="text-[15px] sm:text-[17px] md:text-[21px] lg:text-[25px] xl:text-[25px] 2xl:text-[25px] font-bold ">
-                  {card.text}
-                </p>
-
-               
-
-                </div>
-              </div>
-            ))}
-          </div>
+            type="text"
+            id="fullname"
+            placeholder="Full Name"
+            className="bg-white  place text-black placeholder-black p-3 "
+            required
+          />
         </div>
-      </div>
 
-      <section className="sectionn w-full  md:px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto">
-        <Container fluid className="text-center">
-          <Row className="mt-2 md:mt-5">
-            <h1 className="ready mb-3   text-2xl md:text-4xl lg:text-5xl xl:text-[mainHeading] 2xl:text-6xl   font-bold connect-text-Color ">
-              You’re ready to <br /> take the next step
-            </h1>
+        <div className="mb-3 flex justify-center items-center">
+          <Form.Control
 
-            <p className=" mb-5  text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 xl:leading-10 font-medium">
-              We’re all wrestling with complexity. Every company, work function,
-              and team now faces a tall order: to be more adaptive, strategic,
-              effective, human, and equitable amidst growing uncertainty.
-            </p>
-          </Row>
-        </Container>
-        <Container className="flex flex-col items-center">
-          <div className="w-full ">
-            <Details />
-          </div>
-        </Container>
-      </section>
-      <ConnectButtons />
-    </>
+           style={{
+            outline: 'rgb(187, 190, 192)',
+            height:'53.4px',
+             border: '0.89px solid  #0A0A0ACC',
+                width: '100%',
+                maxWidth: '712px',
+                color:'rgba(0, 0, 0, 0.74)',
+            
+            
+          }}
+          onFocus={e => {
+            e.target.style.borderColor = 'black';
+            e.target.style.boxShadow = '0 0 1px black';
+          }}
+          onBlur={e => {
+            e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
+            e.target.style.boxShadow = 'none';
+          }}
+
+
+            type="tel"
+            id="contactnumber"
+            placeholder="Contact Number"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            className="bg-white   text-black placeholder-black p-3 place"
+            required
+          />
+        </div>
+
+        <div className="mb-3 flex justify-center items-center">
+          <Form.Control
+
+           style={{
+            outline: 'rgb(187, 190, 192)',
+            height:'53.4px',
+            border: '0.89px solid  #0A0A0ACC',
+                width: '100%',
+                maxWidth: '712px',
+                color:'rgba(0, 0, 0, 0.74)',
+            
+          }}
+          onFocus={e => {
+            e.target.style.borderColor = 'black';
+            e.target.style.boxShadow = '0 0 1px black';
+          }}
+          onBlur={e => {
+            e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
+            e.target.style.boxShadow = 'none';
+          }}
+
+
+            type="email"
+            id="email"
+            placeholder="Email-Id"
+            className="bg-white   text-black placeholder-black p-3 place"
+            required
+          />
+        </div>
+
+        <div className="mb-3 flex justify-center items-center">
+          <Form.Control
+
+           style={{
+            outline: 'rgb(187, 190, 192)',
+            height:'53.4px',
+            border: '0.89px solid  #0A0A0ACC',
+            width: '100%',
+            maxWidth: '712px',
+            color:'rgba(0, 0, 0, 0.74)',
+            
+          }}
+          onFocus={e => {
+            e.target.style.borderColor = 'black';
+            e.target.style.boxShadow = '0 0 1px black';
+          }}
+          onBlur={e => {
+            e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
+                e.target.style.boxShadow = 'none';
+          }}
+
+            
+            type="text"
+            id="location"
+            placeholder="Where Are You Located?"
+            className="bg-white text-black placeholder-black p-3 place"
+            required
+          />
+        </div>
+
+        <div className="mb-3 flex justify-center items-center">
+          <Form.Select
+            id="howDidYouHear"
+           
+            className="bg-white   placeholder-black p-3 place"
+            
+            style={{
+              
+              borderRadius: "0.35rem",
+              outline: 'rgb(187, 190, 192)',
+              height:'53.4px',
+                border: '0.89px solid  #0A0A0ACC',
+                width: '100%',
+                maxWidth: '712px',
+                color: 'rgba(10, 10, 10, 0.88)',
+    
+            }}
+            // style={{
+            //   border: '0.2px solid rgba(10, 10, 10, 0.82)',
+            //   borderRadius: '0.35rem',
+            //   color: 'rgba(170, 167, 167, 0.82)',
+            //   width: '100%',
+            //   maxWidth: '712px',
+            // }}
+            onFocus={e => {
+              e.target.style.borderColor = 'black';
+              e.target.style.boxShadow = '0 0 1px black';
+
+            }}
+            onBlur={e => {
+              e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
+              e.target.style.boxShadow = 'none';
+            }}
+            required
+          >
+            <option value="" disabled selected hidden >
+            How Did You Hear About Us?
+            </option>
+            <option value="socialMedia" >Social Media</option>
+            <option value="searchEngine">Search Engine</option>
+            <option value="friendFamily">Friend or Family</option>
+            <option value="advertisement">Advertisement</option>
+            <option value="other">Other</option>
+          </Form.Select>
+        </div>
+
+        <div className="mb-3 flex justify-center items-center ">
+          <Form.Control
+
+           style={{
+            outline: 'rgb(187, 190, 192)',
+            border: '0.89px solid  #0A0A0ACC',
+               
+                width: '100%',
+                maxWidth: '712px',
+                color:'rgba(0, 0, 0, 0.74)',
+            height: '150px'
+          }}
+          onFocus={e => {
+            e.target.style.borderColor = 'black';
+            e.target.style.boxShadow = '0 0 1px black';
+          }}
+          onBlur={e => {
+            e.target.style.borderColor = '#0A0A0ACC'; // Default border color on blur
+                e.target.style.boxShadow = 'none';
+
+            }}
+            as="textarea"
+            id="message"
+            placeholder="Message"
+
+
+            
+            className="bg-white   text-black placeholder-black p-3 place"
+
+        
+
+
+          />
+        </div>
+
+        <div className="text-center">
+          <button
+            type="submit"
+            className=" mt-3 text-white transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] px-8 py-2 rounded-md md:font-semibold md:text-black"
+          >
+            Submit
+          </button>
+        </div>
+
+        <div className="pt-3 mb-5">
+          <h6 className="team text-center text-sm  md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
+            Or email <span className='connect-text-Color'>hello@trackpi.com </span> to get in touch with our team.
+          </h6>
+        </div>
+      </Form>
+    </div>
   );
 }
 
-export default Connect;
+export default Details;

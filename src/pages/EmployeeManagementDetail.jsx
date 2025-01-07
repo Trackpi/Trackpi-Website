@@ -7,44 +7,32 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
 
-import { Modal } from "react-bootstrap";
 
 
 
-function EmployeeManagementDetail() {
+
+function EmployeeManagementDetail({member}) {
+  if (!member) {
+    return <div>Loading...</div>; // Optionally, show a loading state if member is not available
+  }
  
   return (
     <div>
-      <Modal show={show} onHide={onHide} centered size="md">
-            <Modal.Header className="bg-white px-1 py-1 text-center text-black" >
-              <Modal.Title className="personnelfirst" >
+     
+            <div className="bg-white px-1 py-1 text-center text-black" >
+              <div className="personnelfirst" >
                 <h2>{member.title}</h2>
                 <p className="text-2xl font-normal">{member.designation}</p>
-                <button
-                  onClick={onHide}
-                  style={{
-                    position: "absolute",
-                    top: "10px",
-                    right: "10px",
-                    border: "none",
-                    borderRadius: "50%",
-                    color: "black",
-                    width: "30px",
-                    height: "30px",
-                    cursor: "pointer",
-                    fontSize: "30px",
-                  }}
-                >
-                  &times;
-                </button>
-                </Modal.Title>
+                
+              
+                </div>
                 <img
                   src={member.image}
                   alt={member.title}
                   className="rounded-md w-52 h-52 personnelimg object-cover"
                 />
-            </Modal.Header>
-            <Modal.Body className="px-2  py-4 flex gap-50 ">
+            </div>
+            <div className="px-2  py-4 flex gap-50 ">
               <div>
                
                 <div className="  px-8 flex flex-col justify-center items-center ">
@@ -61,9 +49,9 @@ function EmployeeManagementDetail() {
                 <TbBrandLinkedin size={35} className="text-yellow-500 cursor-pointer" />
               </div>
               </div>
-            </Modal.Body>
+            </div>
             
-          </Modal>
+     
      
     </div>
   )
