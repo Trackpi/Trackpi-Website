@@ -27,7 +27,7 @@ import NewsManagement from "./pages/NewsManagement";
 import EmployeeManagement from "./pages/EmployeeManagement";
 import AdminManagement from "./pages/AdminManagement";
 import AdminLogin from "./pages/AdminLogin";
-import InternManagement from "./pages/InternManagement";
+import InternManagement from "./pages/EmployeeManagement";
 import InternManagementDetail from "./pages/InternManagementDetail";
 import SalesManagement from "./pages/SalesManagement";
 import SalesManagementDetail from "./pages/SalesManagementDetail";

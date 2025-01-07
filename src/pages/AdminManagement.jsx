@@ -65,76 +65,131 @@ function AdminManagement() {
   const handleShow = () => setShow(true);
   const [refresh, setRefresh] = useState(true);
 
-  useEffect(() => {
-    getAdmins(adminid)
-      .then(res => {
-        setAdmins(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [refresh]);
+  //   useEffect(() => {
+  //     getAdmins(adminid)
+  //       .then(res => {
+  //         setAdmins(res.data);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   }, [refresh]);
 
-  const handelEdit = data => {
-    setEditModalData(data);
-    handleShow();
-  };
-  const handelUpdateAdmin = () => {
-    editAdminData(editModalData, adminid)
-      .then(res => {
-        console.log(res.data);
-        setEditModalData({});
-        setRefresh(!refresh);
-        handleClose();
-      })
-      .catch(err => {
-        setEditModalData({});
-        handleClose();
-        console.log(err);
-      });
-  };
-  const handelActiveStatus = data => {
-    editAdminData(data, adminid)
-      .then(res => {
-        setRefresh(!refresh);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  //   const handelEdit = data => {
+  //     setEditModalData(data);
+  //     handleShow();
+  //   };
+  //   const handelUpdateAdmin = () => {
+  //     editAdminData(editModalData, adminid)
+  //       .then(res => {
+  //         console.log(res.data);
+  //         setEditModalData({});
+  //         setRefresh(!refresh);
+  //         handleClose();
+  //       })
+  //       .catch(err => {
+  //         setEditModalData({});
+  //         handleClose();
+  //         console.log(err);
+  //       });
+  //   };
+  //   const handelActiveStatus = data => {
+  //     editAdminData(data, adminid)
+  //       .then(res => {
+  //         setRefresh(!refresh);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   };
 
-  const handeldelete = data => {
-    deleteAdmin(data, adminid)
-      .then(res => {
-        setRefresh(!refresh);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  const handelAdminAdd = () => {
-    addAdmin(addAminData, adminid)
-      .then(res => {
-        setRefresh(!refresh);
-        setAddAdminData({ username: '', password: '', adminType: '' });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  //   const handeldelete = data => {
+  //     deleteAdmin(data, adminid)
+  //       .then(res => {
+  //         setRefresh(!refresh);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   };
+  //   const handelAdminAdd = () => {
+  //     addAdmin(addAminData, adminid)
+  //       .then(res => {
+  //         setRefresh(!refresh);
+  //         setAddAdminData({ username: '', password: '', adminType: '' });
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   };
 
   const toggleStatus = index => {
-    console.log('Toggling row:', index);
+    console.log('Toggling row:', index); // This logs the index of the row being toggled
     setRows(prevRows =>
-      prevRows.map((row, rowIndex) =>
-        rowIndex === index ? { ...row, isActive: !row.isActive } : row
-      )
+      prevRows.map((row, rowIndex) => {
+        if (rowIndex === index) {
+          // Log the current status before toggling
+          console.log(
+            `Current status of admin at index ${index}:`,
+            row.isActive ? 'DeActivate' : 'Activate'
+          );
+
+          // Toggle the status
+          return { ...row, isActive: !row.isActive };
+        }
+        return row;
+      })
     );
   };
+
+  //   // Handle adding admin
+  //   const handelAdminAdd = () => {
+  //     // Add admin logic here
+  //     setRefresh(!refresh);
+  //     setAddAdminData({ username: '', password: '', adminType: '' });
+  //     handleClose(); // Close modal after adding
+  //   };
+  //     // Handle editing admin
+  //     const handelUpdateAdmin = () => {
+  //         // Update admin logic here
+  //         setRefresh(!refresh);
+  //         handleClose();
+  //       };
+
+  //   const handleEditClick = index => {
+  //     console.log(index,"row_edit");
+  //     setEditIndex(index);
+  //     setEditModalData(data);
+  //     handleShow();
+  //     // Perform any additional logic (e.g., open an edit modal, show a form, etc.)
+  //   };
+
+  const handelAdminAdd = () => {
+    // Add admin logic here
+    const newAdmin = {
+      sl_no: rows.length + 1, // Generate a unique sl_no
+      ...addAdminData,
+      isActive: false, // Set default status
+    };
+    setRows([...rows, newAdmin]); // Add the new admin to the table
+    setAddAdminData({ username: '', password: '', adminType: '' });
+    handleClose(); // Close modal after adding
+  };
+
   const handleEditClick = index => {
-    console.log(index);
+    const adminData = rows[index]; // Get the admin data to edit
+    setEditModalData(adminData);
+    handleShow(); // Open modal in edit mode
     setEditIndex(index);
-    // Perform any additional logic (e.g., open an edit modal, show a form, etc.)
+  };
+
+  const handelUpdateAdmin = () => {
+    // Update admin logic here
+    const updatedRows = [...rows];
+    updatedRows[editIndex] = { ...updatedRows[editIndex], ...editModalData };
+    setRows(updatedRows); // Update the rows state with the updated data
+    setEditModalData({});
+    handleClose(); // Close modal after update
   };
 
   return (
@@ -259,68 +314,85 @@ function AdminManagement() {
           <div className="border  m-5 shadow rounded-4">
             <h3 className="text-center m-5 font-bold">Add Admin</h3>
             <Row className="m-5">
-              <Col sm={6} className="mb-3">
+              <Col sm={6} className="mb-5">
                 <label htmlFor="username" className="d-block font-semibold">
                   User Name
                 </label>
                 <input
                   type="text"
                   id="username"
-                  className="form-control form-control-lg border-light drop-shadow-lg my-2"
+                  className="form-control form-control-lg border-gray-500  my-2 border-2   shadow-md"
                   placeholder="user name"
+                  value={editModalData.username || ''}
                   onChange={e =>
-                    setAddAdminData({
-                      ...addAminData,
+                    setEditModalData({
+                      ...editModalData,
                       username: e.target.value,
                     })
                   }
                   style={{ fontSize: '16px' }} // Adjust the font size of the input text
                 />
               </Col>
-              <Col sm={6} className="mb-3">
+
+              <Col sm={6} className="mb-5">
+                <label htmlFor="emailid" className="d-block font-semibold">
+                  Email ID
+                </label>
+                <input
+                  type="email"
+                  id="emailid"
+                  className="form-control form-control-lg border-gray-500  my-2 border-2   shadow-md"
+                  placeholder="Email ID"
+                  value={editModalData.email || ''}
+                  onChange={e =>
+                    setEditModalData({
+                      ...editModalData,
+                      email: e.target.value,
+                    })
+                  }
+                  style={{ fontSize: '16px' }} // Adjust the font size of the input text
+                />
+              </Col>
+
+              <Col sm={6} className="mb-5">
                 <label htmlFor="password" className="d-block font-semibold">
                   Password
                 </label>
                 <input
                   type="password"
                   id="password"
-                  className="form-control form-control-lg border-light drop-shadow-lg my-2"
+                  className="form-control form-control-lg border-gray-500  my-2 border-2   shadow-md"
                   placeholder="password"
+                  value={editModalData.password || ''}
                   onChange={e =>
-                    setAddAdminData({
-                      ...addAminData,
+                    setEditModalData({
+                      ...editModalData,
                       password: e.target.value,
                     })
                   }
                   style={{ fontSize: '16px' }} // Adjust the font size of the input text
                 />
               </Col>
-              <Col sm={3}></Col>
 
-              <Col sm={6} className="mb-3 ">
+              <Col sm={6} className="mb-5">
                 <label htmlFor="adminType" className="d-block font-semibold">
                   admin Type
                 </label>
                 <select
-                  className="form-select form-select-lg  border-light drop-shadow-lg my-2"
+                  className="form-select form-select-lg  border-gray-500  my-2 border-2   shadow-md"
                   aria-label="Default select example"
                   id="password"
-                  onChange={e =>
-                    setAddAdminData({
-                      ...addAminData,
-                      adminType: e.target.value,
-                    })
-                  }
+                  value={editModalData.adminType || ''}
+                  onChange={e => setEditModalData({ ...editModalData, adminType: e.target.value })}
                   style={{ fontSize: '16px' }} // Adjust the font size of the input text
                 >
-                  <option defaultValue disabled>
+                  <option defaultChecked value={null}>
                     Admin Type
                   </option>
                   <option value="admin">admin</option>
                   <option value="superadmin">Superadmin</option>
                 </select>
               </Col>
-              <Col sm={3}></Col>
 
               <Col sm={12} className="d-flex justify-content-center mt-3">
                 <Button
@@ -339,13 +411,17 @@ function AdminManagement() {
 
       {/* edit modal */}
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Admin</Modal.Title>
-        </Modal.Header>
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={show}
+        onHide={handleClose}
+      >
         <Modal.Body>
+          <h4 className="text-center m-5 font-bold">Admin Details</h4>
           <Row className="mx-3 my-2">
-            <Col sm={12} className="mb-3">
+            <Col sm={6} className="mb-4">
               <label htmlFor="username" className="d-block font-semibold">
                 User Name
               </label>
@@ -361,9 +437,26 @@ function AdminManagement() {
                     username: e.target.value,
                   })
                 }
+                style={{ fontSize: '16px' }} // Adjust the font size of the input text
               />
             </Col>
-            <Col sm={12} className="mb-3">
+            <Col sm={6} className="mb-4">
+              <label htmlFor="emailid" className="d-block font-semibold">
+                Email ID
+              </label>
+              <input
+                type="text"
+                id="emailid"
+                className="form-control form-control-lg border-gray-500  my-2 border-2   shadow-md"
+                placeholder="Email ID"
+                defaultValue={editModalData.email}
+                onChange={e =>
+                  setEditModalData({ ...editModalData, email: e.target.value })
+                }
+                style={{ fontSize: '16px' }} // Adjust the font size of the input text
+              />
+            </Col>
+            <Col sm={6} className="mb-4">
               <label htmlFor="password" className="d-block font-semibold">
                 Password
               </label>
@@ -379,10 +472,11 @@ function AdminManagement() {
                     password: e.target.value,
                   })
                 }
+                style={{ fontSize: '16px' }} // Adjust the font size of the input text
               />
             </Col>
 
-            <Col sm={12} className="mb-3 ">
+            <Col sm={6} className="mb-4">
               <label htmlFor="admintype" className="d-block font-semibold">
                 Admin Type
               </label>
@@ -397,6 +491,7 @@ function AdminManagement() {
                     adminType: e.target.value,
                   })
                 }
+                style={{ fontSize: '16px' }} // Adjust the font size of the input text
               >
                 <option defaultValue disabled>
                   Admin Type
@@ -405,16 +500,18 @@ function AdminManagement() {
                 <option value="superadmin">Superadmin</option>
               </select>
             </Col>
+            <Col sm={12} className="d-flex justify-content-center my-4">
+              <Button
+                variant="dark"
+                className="w-25 py-2 rounded-3"
+                style={{ fontWeight: 'bolder' }}
+                onClick={handelUpdateAdmin}
+              >
+                Submit
+              </Button>
+            </Col>
           </Row>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="dark" onClick={handelUpdateAdmin}>
-            Update Admin
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );
