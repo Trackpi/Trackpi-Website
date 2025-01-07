@@ -9,7 +9,7 @@ function Loader() {
     <>
          <div className="text-center  loader_main">
       <div className=''>
-        <img src={trackpiLogo} alt="TrackPi Logo Blured" className='img-overlay' />
+        {/* <img src={trackpiLogo} alt="TrackPi Logo Blured" className='img-overlay' /> */}
         <img
           src={trackpiLogo}
           ref={imageRef}

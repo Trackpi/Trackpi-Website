@@ -14,18 +14,25 @@ function HeaderBanner({
   noButton,
   brochureMain,
   submit,
+  titleThree,
   image
 }) {
   const [currentTitle, setCurrentTitle] = useState(title);
+  const titleArray = [title, titleTwo, titleThree];
+
 
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTitle(prevTitle => (prevTitle === title ? titleTwo : title));
+      setCurrentTitle(prevTitle => {
+        const currentIndex = titleArray.indexOf(prevTitle);
+        const nextIndex = (currentIndex + 1) % titleArray.length; 
+        return titleArray[nextIndex];
+      });
     }, 10000);
 
-    return () => clearInterval(interval); // Cleanup the interval on component unmount
-  }, [title, titleTwo]);
+    return () => clearInterval(interval);
+  }, [titleArray]); 
 
   return (
     <>
@@ -47,7 +54,7 @@ function HeaderBanner({
 
         <div className="flex justify-center items-center h-100">
           <div
-            className={`flex flex-col w-[400px] sm:w-[600px] md:w-[600px] lg:w-[750px] xl:w-[827px] 2xl:w-[950px] text-center items-center z-2 headerContent`}
+            className={`flex flex-col w-[400px] sm:w-[600px] md:w-[600px] lg:w-[80%] xl:w-[80%] 2xl:w-[80%] text-center items-center z-2 headerContent`}
           >
             <h1 className="text-yellow-400 font-bold text-[20px] sm:text-[26px] md:text-[36px] lg:text-[48px] xl:text-[56px] 2xl:text-[62px] headerBannerHeading">
             {titleTwo ? currentTitle : title}

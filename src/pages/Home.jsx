@@ -230,6 +230,7 @@ function Home() {
     <>
       <HeaderBanner
         titleTwo="People's Interest, Our Interest"
+        titleThree="The Best Business Consulting Firm in Kerala"
         description="Trackpi is your business's growth partner, turning insights into action. With tailored strategies and expert guidance, we help you navigate challenges, streamline operations, and unlock new opportunities for success."
         brochure
         learn

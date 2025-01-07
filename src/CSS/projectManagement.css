@@ -34,3 +34,27 @@
     border-radius: 10px ;
     overflow: hidden;
   }
+  .projectManagement tbody{
+    border: 1px black solid;    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border-collapse: separate;
+  }
+  .projectManagement table tbody td:first-child,  .projectManagement table tbody th:first-child{
+    width: calc(100% - 93% ) !important;
+  }
+  .projectManagement table tbody td:nth-child(2), 
+  .projectManagement table tbody td:nth-child(3), 
+  .projectManagement table tbody td:nth-child(4), 
+  .projectManagement table tbody td:nth-child(5), 
+  .projectManagement table tbody td:nth-child(6), 
+  .projectManagement table thead th:nth-child(2), 
+  .projectManagement table thead th:nth-child(3), 
+  .projectManagement table thead th:nth-child(4), 
+  .projectManagement table thead th:nth-child(5), 
+  .projectManagement table thead th:nth-child(6)
+   {
+    width: calc(100% - 84.5% ) !important;
+    
+  }
+  

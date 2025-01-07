@@ -40,6 +40,7 @@ import ProjectManagementDetail from "./pages/ProjectManagementDetail";
 import NotFound from "./pages/NotFound";
 import AdminNavbar from "./components/AdminNavbar";
 import Dashboard from "./components/Dashboard";
+import FormManagementDetails from "./pages/FormManagementDetails";
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -102,6 +103,7 @@ function App() {
                                     <Route path="/admin/dashboard" element={<Dashboard />} />
                                     <Route path="/admin/admin-management" element={<AdminManagement />} />
                                     <Route path="/admin/form-management" element={<FormManagement />} />
+                                    <Route path="/admin/form-details/:formId" element={<FormManagementDetails />} />
                                     <Route path="/admin/partnership-management" element={<PartnershipManagement />} />
                                     <Route path="/admin/news-management" element={<NewsManagement />} />
                                     <Route path="/admin/project-management" element={<ProjectManagement />} />
