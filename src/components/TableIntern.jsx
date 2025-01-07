@@ -2,12 +2,19 @@ import React from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
+import imagepersonnel1 from '../images/personnel-1-400x286.jpg'
+import imagepersonnel2 from '../images/personnel-2-400x286.jpg'
+import imagepersonnel3 from '../images/personnel-3-400x310.jpg'
+import imagepersonnel4 from '../images/personnel-4-400x310.jpg'
+import imagepersonnel5 from '../images/personnel-5-400x310.jpg'
+import imagepersonnel6 from '../images/personnel-6-400x310.jpg'
 const data = [
   {
     sl_no: 1,
     name: 'Arjun Menon',
     empID: 'EMP001',
     email: 'arjun.menon@gmail.com',
+    image:imagepersonnel1,
     phone: 9876543210,
   },
   {
@@ -15,6 +22,7 @@ const data = [
     name: 'Meera Nair',
     empID: 'EMP002',
     email: 'meera.nair@yahoo.com',
+    image:imagepersonnel2,
     phone: 9123456789,
   },
   {
@@ -22,6 +30,7 @@ const data = [
     name: 'Ravi Krishnan',
     empID: 'EMP003',
     email: 'ravi.krishnan@domain.com',
+    image:imagepersonnel3,
     phone: 8765432190,
   },
   {
@@ -29,6 +38,7 @@ const data = [
     name: 'Divya Rajan',
     empID: 'EMP004',
     email: 'divya.rajan@gmail.com',
+    image:imagepersonnel4,
     phone: 9234567812,
   },
   {
@@ -36,6 +46,7 @@ const data = [
     name: 'Vikram Reddy',
     empID: 'EMP005',
     email: 'vikram.reddy@outlook.com',
+    image:imagepersonnel5,
     phone: 9876123456,
   },
   {
@@ -43,6 +54,7 @@ const data = [
     name: 'Anjali Mohan',
     empID: 'EMP006',
     email: 'anjali.mohan@domain.com',
+    image:imagepersonnel6,
     phone: 9345678123,
   },
   {
@@ -50,6 +62,7 @@ const data = [
     name: 'Karthik Iyer',
     empID: 'EMP007',
     email: 'karthik.iyer@company.com',
+    image:imagepersonnel1,
     phone: 9987654321,
   },
   {
@@ -57,6 +70,7 @@ const data = [
     name: 'Lakshmi Priya',
     empID: 'EMP008',
     email: 'lakshmi.priya@gmail.com',
+    image:imagepersonnel2,
     phone: 8765432109,
   },
   {
@@ -64,6 +78,7 @@ const data = [
     name: 'Manoj Pillai',
     empID: 'EMP009',
     email: 'manoj.pillai@domain.com',
+    image:imagepersonnel3,
     phone: 9123678945,
   },
   {
@@ -71,6 +86,7 @@ const data = [
     name: 'Sharanya Das',
     empID: 'EMP010',
     email: 'sharanya.das@website.com',
+    image:imagepersonnel4,
     phone: 8543217890,
   },
 ];

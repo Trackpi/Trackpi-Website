@@ -22,7 +22,7 @@ function EmployeeManagementDetail() {
   }
  
   return (
-    <div className="bg-white"> 
+    <div className="bg-white h-[auto]"> 
           <div className="bg-white w-full py-4 px-6 mx-auto flex justify-end items-end gap-3">
                 <button 
                 // onClick={handleEdit} 
@@ -37,12 +37,13 @@ function EmployeeManagementDetail() {
                 </button>
           </div>
           <div className="flex justify-center items-center">
-          <div className="w-[750px] border rounded-xl">
-                <div className="mt-30 bg-white px-1 py-1 text-center text-black" >
+          <div className="w-[750px] border rounded-xl shadow-[0px 4px 4px 0px rgba(0, 0, 0, 0.58)]">
+                <div className="mt-30 bg-white px-0 py-0 text-center text-black" >
                       <div className="personnelfirst" >
                           <h2>{employeeData.name}</h2>
                           <p className="text-2xl font-normal">{employeeData.desig}</p>
                           
+
                       
                         </div>
                         <img
