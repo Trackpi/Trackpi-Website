@@ -144,7 +144,7 @@ function Details() {
                 border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
-                color: 'rgba(10, 10, 10, 0.88)',
+                color: 'rgba(0, 0, 0, 0.762)',
     
             }}
             // style={{
