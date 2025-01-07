@@ -9,7 +9,7 @@ import { BsBoxArrowUp } from "react-icons/bs";
 function AddInterns() {
   const [formData, setFormData] = useState({
     userName: "",
-    employeeId: "",
+    empID: "",
     email: "",
     phoneNumber: "",
     fullAddress: "",
@@ -43,7 +43,7 @@ function AddInterns() {
        .then((data) => {
          setFormData({
            userName: data.userName || "",
-           employeeId: data.employeeId || "",
+           empID: data.empID || "",
            email: data.email || "",
            phoneNumber: data.phoneNumber || "",
            fullAddress: data.fullAddress || "",

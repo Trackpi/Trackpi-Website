@@ -154,9 +154,7 @@ const memberList = [
       )}
 
 
-        <div className="mt-10">
-          <EmployeeManagementDetail member={selectedMember} />
-        </div>
+       
      
     
         </div>
