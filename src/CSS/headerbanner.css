@@ -161,3 +161,14 @@
   font-size: 8px;
 }
 }
+#submit-tooltip{
+    color: white !important;
+    background-color: black;
+    font-size: 12px;
+    font-weight: 400;
+}
+@media screen and (max-width: 640px) {
+    #submit-tooltip{
+        display: none;
+    }
+}
