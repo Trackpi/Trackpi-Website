@@ -15,6 +15,9 @@ import { useLocation,useNavigate } from "react-router-dom";
 function EmployeeManagementDetail() {
     const location = useLocation();
     const navigate = useNavigate();
+    const handleBack = () => {
+      navigate(-1); // Go back to previous page
+    };
 
     const employeeData  = location.state.rowDatas || {};
   if (!employeeData) {
@@ -30,7 +33,7 @@ function EmployeeManagementDetail() {
                   <FaRegEdit /> &nbsp; Edit
                 </button>
                 <button 
-                  // onClick={handleBack} 
+                  onClick={handleBack} 
                   className="px-4 py-2 text-white bg-[#FF9D00] rounded-lg flex justify-center items-center"
                 >
                   <IoMdArrowBack /> &nbsp; Back
