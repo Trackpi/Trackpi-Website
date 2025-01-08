@@ -2,18 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
-import { useInView } from '../components/UseInView';
+import { useInView } from '../../components/User/UseInView';
 import { Link } from 'react-router-dom';
-import home1 from '../images/home1.png';
-import home2 from '../images/home2.png';
-import ConnectButtons from '../components/ConnectButtons';
-import logo from '../images/trackpi_logo.png';
+import home1 from '../../images/home1.png';
+import home2 from '../../images/home2.png';
+import ConnectButtons from '../../components/ConnectButtons';
+import logo from '../../images/trackpi_logo.png';
 import { Carousel } from 'react-bootstrap';
-import clientLogo1 from '../images/growthfactor.png';
-import clientLogo2 from '../images/trademax.png';
-import HeaderBanner from '../components/HeaderBanner';
-import '../CSS/Home.css';
-import img1 from '../images/team.png'
+import clientLogo1 from '../../images/growthfactor.png';
+import clientLogo2 from '../../images/trademax.png';
+import HeaderBanner from '../../components/HeaderBanner';
+import '../../CSS/User/Home.css';
+import img1 from '../../images/team.png'
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });

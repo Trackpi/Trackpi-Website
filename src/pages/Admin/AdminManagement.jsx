@@ -7,12 +7,12 @@ import {
   deleteAdmin,
   editAdminData,
   getAdmins,
-} from '../Api Services/adminManagement';
+} from '../../Api Services/adminManagement';
 // import AdminNavbar from '../components/AdminNavbar';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiFileCopyLine } from 'react-icons/ri';
 
-const adminid = localStorage.getItem('admin');
+const adminid = localStorage.getItem('adminId');
 
 const data = [
   {
