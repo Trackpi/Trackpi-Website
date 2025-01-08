@@ -14,14 +14,20 @@ function SalesManagementDetail() {
   const handleBack = () => {
     navigate(-1); // Go back to previous page
   };
-
+  const handleEdit = () => {
+    const salesId = "someid"; // Replace this with the actual intern's ID
+   
+    if (salesId) {
+      navigate(`/admin/salesManagement-add/${salesId}`); // Navigate to the edit page with the internId
+    }
+  };
   if (!employeeData) {
     return <div>No employee data found.</div>;
   }
   return (
     <div>
       <div className="bg-white  w-full py-4 px-6 mx-auto flex justify-end items-end gap-3">
-        <button className="px-4 py-2 text-white bg-[#FF9D00] rounded-lg flex justify-center items-center">
+        <button onClick={handleEdit} className="px-4 py-2 text-white bg-[#FF9D00] rounded-lg flex justify-center items-center">
           <FaRegEdit /> &nbsp; Edit
         </button>
         <button

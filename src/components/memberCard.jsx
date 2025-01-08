@@ -1,5 +1,5 @@
 // import { useNavigate } from "react-router-dom";
-import "./teamListMember.css";
+import "../CSS/teamListMember.css";
 function MemberCard({ member, onCardClick }) {
   // const navigate = useNavigate();
 

@@ -24,3 +24,13 @@
     }
    
 }
+.car {
+    box-shadow: 0 0 10px 3px rgba(255, 223, 65, 0.7),
+      /* Yellow glow */ 0 0 20px 6px rgba(255, 136, 0, 0.6) !important; /* Orange glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  }
+  .car:hover {
+    transform: scale(1.1) !important; /* Slightly enlarge the icon on hover */
+    box-shadow: 0 0 15px 5px rgba(255, 223, 65, 0.259),
+      0 0 25px 8px rgba(255, 136, 0, 0.241) !important; /* Enhanced glow on hover */
+  }

@@ -110,14 +110,14 @@ function App() {
                                     <Route path="/admin/project-management" element={<ProjectManagement />} />
                                     <Route path="/admin/project-details/:projectId" element={<ProjectManagementDetail />} />
                                     <Route path="/admin/employee-management" element={<EmployeeManagement />} />
-                                    <Route path="/admin/employeeManagement-addEmployee" element={<AddEmployee />} />
+                                    <Route path="/admin/employeeManagement-addEmployee/:id" element={<AddEmployee />} />
                                     <Route path="/admin/employeeManagement-detail" element={<EmployeeManagementDetail />} />
                                     <Route path="/admin/sales-management" element={<SalesManagement />} />
-                                    <Route path="/admin/salesManagement-add" element={<AddSales />} />
+                                    <Route path="/admin/salesManagement-add/:id" element={<AddSales />} />
                                     <Route path="/admin/salesManagement-detail" element={<SalesManagementDetail />} />
                                     <Route path="/admin/intern-management" element={<InternManagement />} />
                                    <Route path="/admin/intern-management-add/:id" element={<AddInterns />} />
-                                   <Route path="/admin/intern-management-detail/:id" element={<InternManagementDetail />} />
+                                   <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
                                     <Route path="/admin/footer-management" element={<FooterManagement />} />
 
 

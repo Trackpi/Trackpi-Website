@@ -5,7 +5,7 @@ import MemberCard from "./memberCard";
 import { useState,useRef} from "react";
 import { FaAngleRight } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
-import "./teamListMember.css";
+import "../CSS/teamListMember.css";
 import EmployeeManagementDetail from "../pages/EmployeeManagementDetail";
 
 
@@ -107,13 +107,13 @@ const memberList = [
     
    
     return (
-        <div className="md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10 w-full px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 ">
+        <div className="md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10 w-full   ">
             <div>
-                <div className=" max-w-full mx-auto md:px-10 md:px-10 lg:px-16 xl:px-20 2xl:px-24">
+                <div className=" max-w-full mx-auto  md:px-10 md:px-10 lg:px-16 xl:px-20 2xl:px-24">
                    <div className="relative">
                         <div 
                             ref={scrollRef}
-                            className="flex overflow-x-auto  space-x-0 scroll-snap-x scroll-snap-mandatory  md:grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-8">
+                            className="flex overflow-x-auto  space-x-0  scroll-snap-x scroll-snap-mandatory  md:grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-8">
                             {memberList.map((item, index) => (
                                 <div className="min-w-[full] md:min-w-0 flex-shrink-0 scroll-snap-align-start">
                                 <MemberCard key={index}  member={item} onCardClick={() => handleCardClick(item)} />
