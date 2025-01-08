@@ -666,6 +666,6 @@ tbody tr:hover {
 {
   border: 1px solid #FF9D00 !important;
 }
-.plac::placeholder {
-  font-size: 12px; /* Adjust the size to your preference */
+.place::placeholder {
+  color: rgba(0, 0, 0, 0.762) !important;
 }
