@@ -1,8 +1,8 @@
 import React from 'react';
-import HeaderBanner from '../components/HeaderBanner';
+import HeaderBanner from '../../components/HeaderBanner';
 import { Container, Row } from 'react-bootstrap';
-import FormNewProject from '../components/FormNewProject';
-import img1 from '../images/team.png'
+import FormNewProject from '../../components/User/FormNewProject';
+import img1 from '../../images/team.png';
 
 const NewProject = () => {
   return (
@@ -13,10 +13,9 @@ const NewProject = () => {
         classname="bgOne"
         noButton={true}
         image={img1}
-
       />
       <section className=" w-full px-2 sm:px-4 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto ">
-        <Container  className="flex flex-col ">
+        <Container className="flex flex-col ">
           <div className="w-full rounded ">
             {/* <div>
               <h1 className="text-center mb-8  font-bold text-[#FFC100] md:text-5xl">Enter the Details</h1>

@@ -44,7 +44,7 @@ const FormNewProject = () => {
               type="text"
               id="fullname"
               placeholder="Full Name"
-              className="rounded-lg placeholder-black p-3"
+              className="rounded-lg placeholder-black p-3 place"
               required
             />
           </div>
@@ -70,7 +70,7 @@ const FormNewProject = () => {
               id="contactnumber"
               placeholder="Contact Number"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              className="border-black text-black placeholder-black p-3"
+              className="border-black text-black placeholder-black p-3 place"
               required
             />
           </div>
@@ -95,7 +95,7 @@ const FormNewProject = () => {
               type="email"
               id="email"
               placeholder="Email Address"
-              className="  border-black text-black placeholder-[#0A0A0A] p-3"
+              className="  border-black text-black placeholder-[#0A0A0A] p-3 place"
               required
             />
           </div>
@@ -135,7 +135,7 @@ const FormNewProject = () => {
           <div className="mb-4">
             <Form.Select
               id="qualification"
-              className=" p-3"
+              className=" p-3  placeholder-black place"
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
@@ -168,7 +168,7 @@ const FormNewProject = () => {
           <div className="mb-4 overflow-x-auto">
             <Form.Select
               id="institute_company"
-              className=" p-3 max-w-full"
+              className=" p-3 max-w-full  placeholder-black place"
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
@@ -218,7 +218,7 @@ const FormNewProject = () => {
               type="text"
               id="project_idea"
               placeholder="Project/Idea Name"
-              className="  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3 place"
             />
           </div>
 
@@ -242,7 +242,7 @@ const FormNewProject = () => {
               type="text"
               id="problem_solve"
               placeholder="What problem does your Idea Solve?"
-              className="  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3 place"
             />
           </div>
 
@@ -266,7 +266,7 @@ const FormNewProject = () => {
               type="text"
               id="benefit_idea"
               placeholder="Who would benefit from this idea?"
-              className="  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3 place"
             />
           </div>
 
@@ -290,7 +290,7 @@ const FormNewProject = () => {
               type="text"
               id="idea_success"
               placeholder="Why do you think this idea will succeed?"
-              className="  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3 place"
             />
           </div>
 
@@ -314,7 +314,7 @@ const FormNewProject = () => {
               type="text"
               id="message"
               placeholder="Do you have any business or teachnical skills?"
-              className="  border-black text-black placeholder-black p-3"
+              className="  border-black text-black placeholder-black p-3 place"
             />
           </div>
 
@@ -338,7 +338,7 @@ const FormNewProject = () => {
               as="textarea"
               id="summarize"
               placeholder="Summarize your project Ideas"
-              className="  border-red text-black placeholder-black p-3 h-48"
+              className="  border-red text-black placeholder-black p-3 h-48 place"
             />
           </div>
 

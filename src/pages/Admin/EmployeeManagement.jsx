@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs';
 import { BsDownload } from 'react-icons/bs';
-import TableIntern from '../components/TableIntern';
-import TableSales from '../components/TableSales';
-import TableEmployee from '../components/TableEmployee';
+import TableIntern from '../../components/Admin/TableIntern';
+import TableSales from '../../components/Admin/TableSales';
+import TableEmployee from '../../components/Admin/TableEmployee';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const EmployeeManagement = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   // Get the active tab from the URL search params
   const queryParams = new URLSearchParams(location.search);
   const initialTab = queryParams.get('tab') || 'Employee'; // Default to 'Employee'
@@ -18,7 +18,7 @@ const EmployeeManagement = () => {
   const [activeTab, setActiveTab] = useState(initialTab);
 
   // Update the URL when the tab changes
-  const handleTabChange = (tabName) => {
+  const handleTabChange = tabName => {
     setActiveTab(tabName);
     navigate(`?tab=${tabName}`); // Update the query parameter in the URL
   };

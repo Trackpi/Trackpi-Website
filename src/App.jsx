@@ -10,24 +10,23 @@ import ScrollUp from "./components/ScrollUp";
 import Loader from "./components/Loader";
 
 // Page Imports
-import Home from "./pages/Home";
+import Home from "./pages/User/Home";
 import About from "./pages/About";
 import OurServices from "./pages/OurServices";
 import OurTeam from "./pages/OurTeam";
 import EmployeeVerification from "./pages/EmployeeVerification";
 import Connect from "./pages/Connect";
 import Personel from "./pages/personel";
-import NewProject from "./pages/NewProject";
+import NewProject from "./pages/User/NewProject";
 import EmployeeSales from "./pages/EmployeeSales";
 import EmployeeInternship from "./pages/EmployeeInternship";
 import FormManagement from "./pages/FormManagement";
 import FooterManagement from "./pages/FooterManagement";
 import PartnershipManagement from "./pages/PartnershipManagement";
 import NewsManagement from "./pages/NewsManagement";
-import EmployeeManagement from "./pages/EmployeeManagement";
-import AdminManagement from "./pages/AdminManagement";
-import AdminLogin from "./pages/AdminLogin";
-import InternManagement from "./pages/EmployeeManagement";
+import EmployeeManagement from "./pages/Admin/EmployeeManagement";
+import AdminManagement from "./pages/Admin/AdminManagement";
+import AdminLogin from "./pages/Admin/AdminLogin";
 import InternManagementDetail from "./pages/InternManagementDetail";
 import SalesManagement from "./pages/SalesManagement";
 import SalesManagementDetail from "./pages/SalesManagementDetail";
@@ -115,7 +114,6 @@ function App() {
                                     <Route path="/admin/sales-management" element={<SalesManagement />} />
                                     <Route path="/admin/salesManagement-add/:id" element={<AddSales />} />
                                     <Route path="/admin/salesManagement-detail" element={<SalesManagementDetail />} />
-                                    <Route path="/admin/intern-management" element={<InternManagement />} />
                                    <Route path="/admin/intern-management-add/:id" element={<AddInterns />} />
                                    <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
                                     <Route path="/admin/footer-management" element={<FooterManagement />} />

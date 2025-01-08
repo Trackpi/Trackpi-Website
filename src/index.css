@@ -631,37 +631,37 @@ tbody tr:hover {
   background-color: #f8f9fa; /* Light gray or any color for hover */
 }
 
-/* Add vertical column lines */
 .custom-table {
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
+  table-layout: fixed; /* Ensures columns are evenly distributed */
+  width: 100%; /* Makes the table span the full width of its container */
 }
 
 .custom-table th,
 .custom-table td {
-  border-right: 2px solid #0c0c0c; /* Light gray border for vertical lines */
-  text-align: center; /* Optional: Center align text */
+  border-right: 2px solid #0c0c0c; /* Border for vertical lines */
+  text-align: center; /* Center align text */
+  /* background-color: rebeccapurple; */
+  /* Remove width: 100%; to avoid overflow issues */
 }
 
-/* Remove the last column's vertical border */
 .custom-table th:last-child,
 .custom-table td:last-child {
-  border-right: none;
+  border-right: none; /* Remove border for the last column */
 }
 
-/* Optional: Add a horizontal border between header and body */
 .custom-table thead th {
-  border-bottom: 2px solid #0c0c0c; /* Slightly thicker bottom border for header */
+  border-bottom: 2px solid #0c0c0c; /* Add border between header and body */
 }
 
-/* Remove striped row styling */
 .custom-table tbody tr {
-  background-color: transparent !important;
+  background-color: transparent !important; /* Reset background for rows */
 }
 
-/* Optional: Customize hover effect */
 .custom-table tbody tr:hover {
-  background-color: #f8f9fa; /* Light gray hover effect */
+  background-color: #f8f9fa; /* Optional hover effect */
 }
+
 .btnBorder
 {
   border: 1px solid #FF9D00 !important;

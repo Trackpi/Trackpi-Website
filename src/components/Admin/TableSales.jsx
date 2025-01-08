@@ -2,12 +2,12 @@ import React from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
-import imagepersonnel1 from '../images/personnel-1-400x286.jpg'
-import imagepersonnel2 from '../images/personnel-2-400x286.jpg'
-import imagepersonnel3 from '../images/personnel-3-400x310.jpg'
-import imagepersonnel4 from '../images/personnel-4-400x310.jpg'
-import imagepersonnel5 from '../images/personnel-5-400x310.jpg'
-import imagepersonnel6 from '../images/personnel-6-400x310.jpg'
+import imagepersonnel1 from '../../images/personnel-1-400x286.jpg'
+import imagepersonnel2 from '../../images/personnel-2-400x286.jpg'
+import imagepersonnel3 from '../../images/personnel-3-400x310.jpg'
+import imagepersonnel4 from '../../images/personnel-4-400x310.jpg'
+import imagepersonnel5 from '../../images/personnel-5-400x310.jpg'
+import imagepersonnel6 from '../../images/personnel-6-400x310.jpg'
 
 const data = [
   {
