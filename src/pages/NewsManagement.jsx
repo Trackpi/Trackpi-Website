@@ -1,154 +1,96 @@
-import React, { useState } from "react";
-import AdminSidebar from "../components/AdminSidebar"; // Import your existing sidebar component
+import React, { useEffect, useState } from "react";
+import editImg from "../images/editbtn.svg";
+import logoImg from "../images/trackpi_logo.png";
+import { useNavigate, useLocation } from 'react-router-dom';
+import EditNews from "../components/EditNews";
+import AddNews from "../components/AddNews";
 
 const NewsManagement = () => {
-  const [isEditMode, setIsEditMode] = useState(false); // Track whether we're in Edit mode
+    const [isEditMode, setIsEditMode] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const queryParams = new URLSearchParams(location.search);
+  const initialTab = queryParams.get('tab') || 'add';
 
-  return (
-    <div className="flex h-screen">
-    
+  const [activeTab, setActiveTab] = useState(initialTab);
 
-      
-      <main className="flex-1 p-6 bg-gray-50 overflow-y-auto">
-      
-        <header className="flex items-center justify-between mb-6">
-          <div className="flex items-center">
-            <img
-              src="path-to-user-image.png"
-              alt="User Avatar"
-              className="w-12 h-12 rounded-full mr-4"
-            />
-            <div>
-              <h1 className="text-xl font-semibold">Paul Walker</h1>
-              <p className="text-gray-500">Managing Director</p>
+  const handleTabChange = (tabName) => {
+    setActiveTab(tabName);
+    navigate(`?tab=${tabName}`);
+  };
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const tabFromUrl = queryParams.get('tab');
+    if (tabFromUrl) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [location.search]);
+    return (
+        <div className="bg-white w-full">
+            <div className="py-[40px] px-[30px] grid gap-[40px]">
+                <div className="text-[24px] font-bold mb-4">News Management</div>
+                <div className="grid gap-[50px]">
+                    <div className=" grid gap-[10px]">
+                        <label className="block text-[14px] font-semibold">Heading</label>
+                        <div className="flex items-center gap-[20px]">
+                            <input
+                                type="text"
+                                defaultValue="Real-Time Business News Updates?"
+                                className="border partnerInput rounded-lg px-[15px] py-[12px] w-3/5 text-[20px] font-bold"
+                            />
+                            <button className="bg-[#FF9D00] p-[10px] rounded-[8px]">
+                                <img src={editImg} alt="" />
+                            </button>
+                        </div>
+                    </div>
+                    <div className="grid partnerContainer border rounded-[20px] gap-[40px] p-[30px]">
+                    <div className="flex justify-center gap-[70px] py-1">
+        <button
+          className={`px-[30px] py-[10px] rounded-[10px] font-bold ${
+            activeTab === 'add'
+              ? 'newsBtnActive'
+              : 'newsBtnInactive'
+          }`}
+          onClick={() => handleTabChange('add')}
+        >
+          Add News
+        </button>
+        <button
+          className={`px-[30px] py-[10px] rounded-[10px] font-bold ${
+            activeTab === 'edit'
+              ? 'newsBtnActive'
+              : 'newsBtnInactive'
+          }`}
+          onClick={() => handleTabChange('edit')}
+        >
+          Edit News
+        </button>
+      </div>
+      {activeTab === 'add' && <AddNews />}
+      {activeTab === 'edit' && <EditNews />}
+                    </div>
+                </div> <section className="grid grid-cols-3 justify-between gap-[20px] w-full">
+                    {Array.from({ length: 6 }, (_, index) => (
+                      <div className="grid gap-[10px] mx-auto">
+                        <div className="text-[18px font-bold max-w-[300px]">News {index+1}</div>
+                        <div key={index} className="p-[20px] grid gap-[16px] max-w-[300px] aspect-[28/30] mx-auto  bg-black text-white rounded-[6px] ">
+                            <img src={logoImg} alt="News Logo" className=" mx-auto h-[60px]" />
+                            <div className="text-[20px] text-[#FF9D00] font-bold">We See The Challenge</div>
+                            <div className="text-[16px]">
+                                We’re all wrestling with complexity. Every company, work function, and team now faces a tall
+                                order.
+                            </div>
+                        </div>
+                        </div>
+                    ))}
+                </section>
             </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <p className="text-sm text-gray-500">06 December 2024</p>
-            <input
-              type="text"
-              placeholder="Search here"
-              className="px-4 py-2 border rounded-lg focus:outline-none"
-            />
-            <button className="p-2 bg-gray-200 rounded-full">
-              <i className="fas fa-bell"></i>
-            </button>
-          </div>
-        </header>
-
-        {/* News Heading */}
-        <section className="mb-8">
-          <div className="flex items-center justify-center space-x-4">
-            <input
-              type="text"
-              value="Real-Time Business News Updates?"
-              className="w-1/2 max-w-screen-md p-3 border border-gray-300 rounded-lg shadow-md form-control focus:outline-none"
-              readOnly
-            />
-            <button className="px-4 py-2 text-white bg-yellow-400 rounded-lg">
-              Edit
-            </button>
-          </div>
-        </section>
-
-        {/* News Form */}
-        <section className="p-6 mb-10 bg-white rounded-lg shadow-md">
-        
-          <div className="flex justify-center items-center space-x-4 mb-6">
-            <button
-              onClick={() => setIsEditMode(false)}
-              className={`px-6 py-2 ${!isEditMode ? "bg-yellow-400 text-white" : "bg-transparent text-yellow-400 border border-yellow-400"} rounded-lg`}
-            >
-              Add News
-            </button>
-
-            <button
-              onClick={() => setIsEditMode(true)}
-              className={`px-6 py-2 ${isEditMode ? "bg-yellow-400 text-white" : "bg-transparent text-yellow-400 border border-yellow-400"} rounded-lg`}
-            >
-              Edit News
-            </button>
-          </div>
-
-         
-          <div className="flex justify-center items-center mb-6">
-            <span className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg mr-auto">
-              News 1
-            </span>
-            {isEditMode && (
-              <button className="px-4 py-2 bg-red-500 text-white rounded-lg">
-                Delete
-              </button>
-            )}
-          </div>
-
-         
-          <div className="flex space-x-4">
-            <div className="w-3/10">
-              <label className="block text-gray-600">News Headline</label>
-              <input
-                type="text"
-                placeholder="Headline"
-                className="w-full p-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="block text-gray-600">News Link</label>
-              <input
-                type="text"
-                placeholder="Link"
-                className="w-full p-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-
-        
-          <div className="mt-6 flex justify-center">
-            <label className="text-center block">
-              <input
-                type="file"
-                className="hidden"
-              />
-              <button className="px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-400">
-                Upload Image
-              </button>
-            </label>
-          </div>
-
-         
-          <div className="mt-6 flex justify-center space-x-4">
-            <button className="px-6 py-2 text-white bg-yellow-400 rounded-lg">
-              Submit
-            </button>
-            <button className="px-6 py-2 text-gray-600 border border-gray-300 rounded-lg">
-              Cancel
-            </button>
-          </div>
-        </section>
-
-        {/* news */}
-        <section className="grid grid-cols-3 gap-6">
-          {Array.from({ length: 6 }, (_, index) => (
-            <div
-              key={index}
-              className="p-4 bg-black text-white rounded-lg shadow-md"
-            >
-              <img
-                src="path-to-logo.png"
-                alt="News Logo"
-                className="mb-4 mx-auto w-12"
-              />
-              <h3 className="text-lg font-bold mb-2">We See The Challenge</h3>
-              <p className="text-sm">
-                We’re all wrestling with complexity. Every company, work
-                function, and team now faces a tall order.
-              </p>
-            </div>
-          ))}
-        </section>
-      </main>
-    </div>
-  );
+                {/* news */}
+               
+        </div>
+    );
 };
 
 export default NewsManagement;

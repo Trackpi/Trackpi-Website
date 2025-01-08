@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation, Link } from "react-router-dom";
 import projectManageBack from '../images/projectManageBack.svg'
 
 function ProjectManagementDetail() {
@@ -15,12 +15,14 @@ function ProjectManagementDetail() {
               Project Management
               </div>
               <div className="">
+                <Link className="text-decoration-none" to={"/admin/project-management"}>
                 <button className="w-[120px] h-[40px] rounded-[10px] text-white bg-[#FF9D00] flex gap-[10px] justify-center items-center">
                   <div>
                   <img className="m-auto" src={projectManageBack} alt="" />
                   </div>
                   <div className="text-[18px] font-semibold">Back</div>
                   </button>
+                  </Link>
               </div>
             </div>
             <div className="pt-[10px] flex flex-wrap justify-between items-center w-100 gap-[20px] 2xl:gap-[90px]">

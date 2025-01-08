@@ -229,14 +229,14 @@ function Home() {
   return (
     <>
       <HeaderBanner
-        titleTwo="People's Interest, Our Interest"
-        titleThree="The Best Business Consulting Firm in Kerala"
+        title="The Best Business Consulting Firm in Kerala"
+        titleTwo="Your Strategic Growth Partner"
+        titleThree="People's Interest, Our Interest"
         description="Trackpi is your business's growth partner, turning insights into action. With tailored strategies and expert guidance, we help you navigate challenges, streamline operations, and unlock new opportunities for success."
         brochure
         learn
         classname="bgOne"
         image={img1}
-        title="Your Strategic Growth Partner"
       />
       <section>
         <div className="text-center lg:pb-12  sm:pb-3 px-2">
