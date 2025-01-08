@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import projectManageBack from '../images/projectManageBack.svg'
 
 function FormManagementDetails() {
@@ -15,12 +15,12 @@ function FormManagementDetails() {
                  Form Management
                  </div>
                  <div className="">
-                   <button className="w-[120px] h-[40px] rounded-[10px] text-white bg-[#FF9D00] flex gap-[10px] justify-center items-center">
+                   <Link to={'/admin/form-management'} className='text-decoration-none'><button className="w-[120px] h-[40px] rounded-[10px] text-white bg-[#FF9D00] flex gap-[10px] justify-center items-center">
                      <div>
                      <img className="m-auto" src={projectManageBack} alt="" />
                      </div>
                      <div className="text-[18px] font-semibold">Back</div>
-                     </button>
+                     </button></Link>
                  </div>
                </div>
                <div className="pt-[10px] flex flex-wrap justify-between items-center w-100 gap-[50px]">

@@ -18,7 +18,13 @@ function EmployeeManagementDetail() {
     const handleBack = () => {
       navigate(-1); // Go back to previous page
     };
-
+    const handleEdit = () => {
+      const employeeId = "someid"; // Replace this with the actual intern's ID
+     
+      if (employeeId) {
+        navigate(`/admin/employeeManagement-addEmployee/${employeeId}`); // Navigate to the edit page with the internId
+      }
+    };
     const employeeData  = location.state.rowDatas || {};
   if (!employeeData) {
     return <div>Loading...</div>; // Optionally, show a loading state if member is not available
@@ -28,7 +34,7 @@ function EmployeeManagementDetail() {
     <div className="bg-white h-[auto]"> 
           <div className="bg-white w-full py-4 px-6 mx-auto flex justify-end items-end gap-3">
                 <button 
-                // onClick={handleEdit} 
+                onClick={handleEdit} 
                 className="px-4 py-2 text-white bg-[#FF9D00] rounded-lg flex justify-center items-center">
                   <FaRegEdit /> &nbsp; Edit
                 </button>
@@ -46,14 +52,14 @@ function EmployeeManagementDetail() {
                           <h2>{employeeData.name}</h2>
                           <p className="text-2xl font-normal">{employeeData.desig}</p>
                           
-
-                      
-                        </div>
-                        <img
+                          <img
                           src={employeeData.image}
                           alt={employeeData.title}
                           className="rounded-md w-52 h-52 personnelimg1 object-cover"
                         />
+                      
+                        </div>
+                       
                 </div>
                 <div className="  py-4 flex justify-center gap-50 ">
                       <div className="  ">

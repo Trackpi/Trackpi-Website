@@ -13,7 +13,7 @@ import clientLogo1 from '../../images/growthfactor.png';
 import clientLogo2 from '../../images/trademax.png';
 import HeaderBanner from '../../components/HeaderBanner';
 import '../../CSS/User/Home.css';
-import img1 from '../../images/team.png'
+import img1 from '../../images/team.png';
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });
@@ -170,12 +170,12 @@ function Home() {
     if (isPaused) return; // Pause interval when hovering
 
     const bulgeInterval = setInterval(() => {
-      setBulgingCard((prev) => {
+      setBulgingCard(prev => {
         const isLastCardInSlide = prev === cardsPerGroup - 1;
 
         if (isLastCardInSlide) {
           // Move to the next slide after the last card
-          setCurrentIndex((prevIndex) =>
+          setCurrentIndex(prevIndex =>
             prevIndex === groupedCards.length - 1 ? 0 : prevIndex + 1
           );
           return 0; // Reset to first card of the next slide
@@ -187,20 +187,19 @@ function Home() {
     return () => clearInterval(bulgeInterval);
   }, [groupedCards.length, cardsPerGroup, isPaused]);
 
-
-  const handleDotClick = (index) => {
+  const handleDotClick = index => {
     setCurrentIndex(index);
     setBulgingCard(0); // Reset bulging card on dot click
   };
 
-  const handleMouseEnter = (cardIndex) => {
+  const handleMouseEnter = cardIndex => {
     setBulgingCard(cardIndex);
     setIsPaused(true); // Pause the interval on hover
   };
 
   const handleMouseLeave = () => {
     setIsPaused(false); // Resume autoplay
-    setCurrentIndex((prevIndex) => {
+    setCurrentIndex(prevIndex => {
       const isLastCardInSlide = bulgingCard === cardsPerGroup - 1;
 
       if (isLastCardInSlide) {
@@ -209,7 +208,7 @@ function Home() {
       return prevIndex;
     });
 
-    setBulgingCard((prevBulgingCard) => {
+    setBulgingCard(prevBulgingCard => {
       const isLastCardInSlide = prevBulgingCard === cardsPerGroup - 1;
 
       if (isLastCardInSlide) {
@@ -219,7 +218,7 @@ function Home() {
     });
   };
 
-  const handleTouchStart = (cardIndex) => {
+  const handleTouchStart = cardIndex => {
     setBulgingCard(cardIndex); // Mimic hover on touch devices
   };
 
@@ -229,14 +228,14 @@ function Home() {
   return (
     <>
       <HeaderBanner
-        titleTwo="People's Interest, Our Interest"
-        titleThree="The Best Business Consulting Firm in Kerala"
-        description="Trackpi is your business's growth partner, turning insights into action. With tailored strategies and expert guidance, we help you navigate challenges, streamline operations, and unlock new opportunities for success."
+        title="The Best Business Consulting Firm in Kerala"
+        titleTwo="Your Strategic Growth Partner"
+        titleThree="People's Interest, Our Interest"
+        description="Trackpi your trusted business consulting firm helps you turn insights into actions. Our team will design strategies and assists you with decision making and other challenges you may face resulting in streamlining your processes and increasing your chances of success with us."
         brochure
         learn
         classname="bgOne"
         image={img1}
-        title="Your Strategic Growth Partner"
       />
       <section>
         <div className="text-center lg:pb-12  sm:pb-3 px-2">
@@ -400,15 +399,18 @@ function Home() {
               animate={{ y: isInView1 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              Without a consultant, businesses often face challenges like
-              inefficient operations, poor decision making, and missed
-              opportunities. Limited expertise can lead to stagnant growth and
-              difficulty adapting to market changes. Teams may lack clear
-              direction, and risks or compliance issues can go unnoticed,
-              resulting in costly mistakes. A consultant’s guidance will help a
-              businesses to overcome these obstacles and unlock their full
-              potential. we are here for you Trackpi is the best Business
-              Consulting Firms in Kerala. contact us
+              Occasionally, without expert advice in business operations,
+              companies can run into issues such as actions that aren’t really
+              necessary, poor planning, and lost potential. Such issues as
+              maintaining expansion, changing with the trends, and being in
+              perfect competition can sometimes become very hard. The
+              opportunity to become a consultant in a company can reveal
+              compliance issues or risks leading to higher expenses without
+              trusted consultants in the business. At Trackpi, we are aware
+              about these challenges since we are one of the most preferred
+              business consultant in Kerala and handle multiple clients. We have
+              expert solutions that include detailed strategy planning. Looking
+              to evolve your business? Why wait, Contact us today.
             </motion.p>
           </div>
 
@@ -463,15 +465,16 @@ function Home() {
               animate={{ y: isInView2 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              Business are always made up of people, with a wealth ofideas,
-              potential to address issues,find new ways and make genuine
-              headway. But unlocking that potential requires new thinking.
-              Businesses are not machines; they are living systen that grow and
-              evolve. That’s where it’s so vital to have a consultant. A
-              consultant adds new perspectives, supports your stepping outside
-              of old patterns, and assists you in creating capacities and
-              capabilities for the future. Properly done, your business will
-              emerge stronger, more innovative, and prepared for anything{' '}
+              Every business has latent strengths and great potential to grab
+              opportunities and contribute to growth. Succeeding in unlocking
+              such potential call for innovative ideas, creative strategies.
+              Businesses are not stiff structures — they are living and
+              breathing ecosystems. With a capable business development
+              consultant, you start looking at things differently and get out of
+              the old habits. As Trackpi, we assist companies in Kerala develop
+              future-ready capacities, so that they are more resilient,
+              innovative and successful. Let's help you in considering a
+              different way of doing things.
             </motion.p>
           </div>
         </motion.div>
@@ -489,24 +492,26 @@ function Home() {
               animate={{ y: isInView3 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              The old ways of working aren’t the only ways of working
+              Outdated Practices Won’t Drive Future Success
             </motion.h1>
             <motion.p
               className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[26px] xl:leading-7 2xl:leading-10  sm:mt-0 lg:mt-8 mb-3 text-justify"
               animate={{ y: isInView3 ? 5 : 0 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              The old ways of working are the only ways of working Transform
-              from the outdated business strategies and step into the cutting
-              edge Business era has changed rapidly, get updated with the
-              futuristic strategies One solution for all to tailored one to one
-              business strategies to success Business strategy at your
-              fingertips with TrackPi’ expert panel of consultants{' '}
+              The 21st century is a fast changing one and adhering to old
+              methods may impede your career progress. It is necessary to adopt
+              new and revolutionary focused methods that fit the market today.
+              At Trackpi, we develop tailor-made business ideas that will enable
+              you to. We will ensure you are proactive – designing sometimes
+              futuristic strategies to ensure your business is forward-looking,
+              and growing. Don’t be stuck in the yesteryear patterns —
+              collaborate with Trackpi and bring your full potential to light.
             </motion.p>
           </div>
           <div className="w-full  flex flex-col justify-center md:justify-end">
             <h1 className="font-bold text-[#FFC100]  text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl  text-center  block lg:hidden">
-              The old ways of working aren’t the only ways of working
+              Outdated Practices Won’t Drive Future Success
             </h1>
             <div className="mt-3 w-full ">
               <motion.img
@@ -528,10 +533,11 @@ function Home() {
               We're Ready to Help
             </h1>
             <p className="text-center text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[26px] xl:leading-7 2xl:leading-10  text-black">
-              At Trackpi, we’re committed to your success. Our expert solutions
-              and strategies are designed to drive growth, enhance efficiency,
-              and help your business thrive in a competitive world. Let’s
-              achieve your goals together.
+              Trackpi places a premium on your success. Being one of the best
+              business consultants in Karela, we recommend strategic measures
+              that can enhance the growth of the business, foster efficiency,
+              and allow the business to outperform competition within the
+              industries.
             </p>
             <Link to="/our-services">
               <button

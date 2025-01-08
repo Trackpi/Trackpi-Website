@@ -15,7 +15,6 @@ function HeaderBanner({
   titleTwo,
   noButton,
   brochureMain,
-  submit,
   titleThree,
   image
 }) {
@@ -28,13 +27,13 @@ function HeaderBanner({
     const interval = setInterval(() => {
       setCurrentTitle(prevTitle => {
         const currentIndex = titleArray.indexOf(prevTitle);
-        const nextIndex = (currentIndex + 1) % titleArray.length; 
+        const nextIndex = (currentIndex + 1) % titleArray.length;
         return titleArray[nextIndex];
       });
     }, 10000);
 
     return () => clearInterval(interval);
-  }, [titleArray]); 
+  }, [title, titleTwo, titleThree]);
 
   return (
     <>
@@ -45,7 +44,6 @@ function HeaderBanner({
                         <Link to="/new-project-form" className='no-underline'>
 
             <button data-tooltip-id="submit-tooltip"
-          data-tooltip-content="Submit Your New Project Ideas"
           data-tooltip-place="bottom" className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  text-white lg:rounded-[10px]  sm:rounded-[7.5px] rounded-[5px] px-[10px] py-[5px] sm:px-[12px] sm:py-[6px] md:px-[14px] md:py-[7px] lg:px-[16px] lg:py-[8px] xl:px-[18px] xl:py-[9px] 2xl:px-[20px] 2xl:py-[10px] font-bold flex items-center space-x-2 text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[14px]">
               <LuCirclePlus className='hidden sm:block'/>
               <span>Submit New Project</span>
@@ -58,7 +56,7 @@ function HeaderBanner({
 
         <div className="flex justify-center items-center h-100">
           <div
-            className={`flex flex-col w-[400px] sm:w-[600px] md:w-[600px] lg:w-[80%] xl:w-[80%] 2xl:w-[80%] text-center items-center z-2 headerContent`}
+            className={`flex flex-col w-[400px] sm:w-[600px] md:w-[600px] lg:w-[80%] xl:w-[75%] 2xl:w-[75%] text-center items-center z-2 headerContent`}
           >
             <h1 className="text-yellow-400 font-bold text-[20px] sm:text-[26px] md:text-[36px] lg:text-[48px] xl:text-[56px] 2xl:text-[62px] headerBannerHeading">
             {titleTwo ? currentTitle : title}
@@ -162,7 +160,11 @@ function HeaderBanner({
           <img src={img} alt="" />
         </div>
       </section> */}
-      <Tooltip id='submit-tooltip'/>
+      <Tooltip id='submit-tooltip'>
+        <div>Have a Business Idea? </div>
+        <div>
+        This feature lets you submit your business ideas, even if you’re unsure how to start. Share your concept, and our team will evaluate its potential to bring it to life. It’s an easy way to turn your innovative ideas into reality with expert guidance!</div>
+      </Tooltip>
     </>
   );
 }

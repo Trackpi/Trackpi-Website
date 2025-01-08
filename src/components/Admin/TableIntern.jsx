@@ -10,84 +10,85 @@ import imagepersonnel5 from '../../images/personnel-5-400x310.jpg'
 import imagepersonnel6 from '../../images/personnel-6-400x310.jpg'
 const data = [
   {
+    
     sl_no: 1,
-    name: 'Arjun Menon',
+    userName: 'Arjun Menon',
     empID: 'EMP001',
     email: 'arjun.menon@gmail.com',
     image:imagepersonnel1,
-    phone: 9876543210,
+    phoneNumber: 9876543210,
   },
   {
     sl_no: 2,
-    name: 'Meera Nair',
+    userName: 'Meera Nair',
     empID: 'EMP002',
     email: 'meera.nair@yahoo.com',
     image:imagepersonnel2,
-    phone: 9123456789,
+    phoneNumber: 9123456789,
   },
   {
     sl_no: 3,
-    name: 'Ravi Krishnan',
+    userName: 'Ravi Krishnan',
     empID: 'EMP003',
     email: 'ravi.krishnan@domain.com',
     image:imagepersonnel3,
-    phone: 8765432190,
+    phoneNumber: 8765432190,
   },
   {
     sl_no: 4,
-    name: 'Divya Rajan',
+    userName: 'Divya Rajan',
     empID: 'EMP004',
     email: 'divya.rajan@gmail.com',
     image:imagepersonnel4,
-    phone: 9234567812,
+    phoneNumber: 9234567812,
   },
   {
     sl_no: 5,
-    name: 'Vikram Reddy',
+    userName: 'Vikram Reddy',
     empID: 'EMP005',
     email: 'vikram.reddy@outlook.com',
     image:imagepersonnel5,
-    phone: 9876123456,
+    phoneNumber: 9876123456,
   },
   {
     sl_no: 6,
-    name: 'Anjali Mohan',
+    userName: 'Anjali Mohan',
     empID: 'EMP006',
     email: 'anjali.mohan@domain.com',
     image:imagepersonnel6,
-    phone: 9345678123,
+    phoneNumber: 9345678123,
   },
   {
     sl_no: 7,
-    name: 'Karthik Iyer',
+    userName: 'Karthik Iyer',
     empID: 'EMP007',
     email: 'karthik.iyer@company.com',
     image:imagepersonnel1,
-    phone: 9987654321,
+    phoneNumber: 9987654321,
   },
   {
     sl_no: 8,
-    name: 'Lakshmi Priya',
+    userName: 'Lakshmi Priya',
     empID: 'EMP008',
     email: 'lakshmi.priya@gmail.com',
     image:imagepersonnel2,
-    phone: 8765432109,
+    phoneNumber: 8765432109,
   },
   {
     sl_no: 9,
-    name: 'Manoj Pillai',
+    userName: 'Manoj Pillai',
     empID: 'EMP009',
     email: 'manoj.pillai@domain.com',
     image:imagepersonnel3,
-    phone: 9123678945,
+    phoneNumber: 9123678945,
   },
   {
     sl_no: 10,
-    name: 'Sharanya Das',
+    userName: 'Sharanya Das',
     empID: 'EMP010',
     email: 'sharanya.das@website.com',
     image:imagepersonnel4,
-    phone: 8543217890,
+    phoneNumber: 8543217890,
   },
 ];
 
@@ -95,7 +96,7 @@ const TableIntern = () => {
   const navigate = useNavigate();
   const handleViewProfile = (rowDatas) => {
     console.log(rowDatas,"rowDatas")
-    navigate('/admin/intern-management-detail/:id', { state: { rowDatas } });
+    navigate('/admin/intern-management-detail', { state: { rowDatas } });
     
   };
   return (
@@ -138,7 +139,7 @@ const TableIntern = () => {
                     {row.sl_no}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    {row.name}
+                    {row.userName}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
                     {row.empID}
@@ -149,7 +150,7 @@ const TableIntern = () => {
                     {/* </div> */}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    {row.phone}
+                    {row.phoneNumber}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
                     <div className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer"  onClick={() => handleViewProfile(row)}>

@@ -1,22 +1,26 @@
 .popupForm input,.popupForm select, .popupForm textarea{
     margin: auto;
-    width: 90%;
+    width: 100%;
     box-shadow: 2px 2px 4px 0 #0A0A0A33, -2px 1px 4px 0 #0A0A0A33;
-    padding: 1.125rem 1.25rem;
-    border-radius: 11.55px;
+    border-radius: 10px;
     outline: none;
     resize: none;
     color: black;
 }
+.popupForm .selectForPopup button{
+    width: 100%;
+    box-shadow: 2px 2px 4px 0 #0A0A0A33, -2px 1px 4px 0 #0A0A0A33;
+
+}
 .popupForm input::placeholder, .popupForm textarea::placeholder{
     color: #0A0A0ACC;
     font-weight: 400;
-    font-size: 1rem;
 }
 /* Custom CSS */
 .custom-modal .modal-content {
     border-radius: 20px !important; /* Adjust the value as needed */
     max-height: 100vh;
+    max-width: 780px;
     overflow-y: auto;
     margin: 0 !important;
   }
@@ -33,3 +37,24 @@
     -webkit-appearance: none;
     margin: 0;
 }
+.popupForm  select option{
+    width: 200px !important;
+}
+@media (max-width: 576px) {
+    .custom-modal{
+        width: 85% !important;
+        margin: auto !important;
+    }
+}
+ul {
+    margin: 0 ;
+    padding: 0 !important;
+    list-style: none ; /* Optional: removes bullet points */
+  }
+  
+  li {
+    margin: 0 ;
+    padding: 0 ;
+  }
+
+  

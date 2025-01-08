@@ -165,7 +165,9 @@
     color: white !important;
     background-color: black;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 500;
+    max-width: 360px;
+    z-index: 10;
 }
 @media screen and (max-width: 640px) {
     #submit-tooltip{

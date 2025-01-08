@@ -1,120 +1,187 @@
-import React from 'react';
-import AdminSidebar from '../components/AdminSidebar'; // Updated to import AdminSidebar component
+import React from "react";
+import editImg from "../images/editbtn.svg";
+import uploadImg from "../images/uploadimg.svg";
+import deleteImg from "../images/deleteimg.svg";
+import "../CSS/partnershipAdmin.css";
 
 const PartnershipManagement = () => {
-  return (
-    <div className="flex h-screen bg-gray-100">
-
-      <aside className="w-1/6 bg-white shadow-md sticky top-0 h-screen">
-        <AdminSidebar />
-      </aside>
-
-      <div className="flex-1 overflow-y-auto p-6">
-        
-        <header className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-4">
-            <img src="/path/to/profile.jpg" alt="User Profile" className="w-12 h-12 rounded-full" />
-            <div>
-              <h1 className="text-xl font-semibold">Paul Walker</h1>
-              <span className="text-gray-500">Managing Director</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-gray-500">06 December 2024</span>
-            <input type="text" placeholder="Search here" className="border border-gray-300 rounded-lg px-4 py-2" />
-            <button className="text-gray-600">
-              <i className="fas fa-bell"></i>
-            </button>
-          </div>
-        </header>
-
-   
-        <div>
-          
-          <h2 className="text-2xl font-bold mb-4">Partnership Management</h2>
-          <div className="mb-6">
-            <label className="block text-sm font-medium">Heading</label>
-            <div className="flex items-center gap-2">
-              <input type="text" defaultValue="OUR CLIENTS" className="border border-gray-300 rounded-lg px-4 py-2 w-1/2" />
-              <button className="text-yellow-500">
-                <i className="fas fa-pen"></i>
-              </button>
-            </div>
-          </div>
-          <div className="mb-6">
-            <label className="block text-sm font-medium">Sub Heading</label>
-            <div className="flex items-center gap-2">
-              <input type="text" defaultValue="We're fortunate to work with the best!" className="border border-gray-300 rounded-lg px-4 py-2 w-1/2" />
-              <button className="text-yellow-500">
-                <i className="fas fa-pen"></i>
-              </button>
-            </div>
-          </div>
-
-          {/* Add Client Form */}
-          <div className="bg-white shadow rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-4">Add Client</h3>
-            <form className="grid grid-cols-2 gap-4">
-              <input type="text" placeholder="Company Name" className="border border-gray-300 rounded-lg px-4 py-2" />
-              <input type="text" placeholder="Description" className="border border-gray-300 rounded-lg px-4 py-2" />
-              <div className="col-span-2">
-                <button type="button" className="border border-gray-300 rounded-lg px-4 py-2 bg-gray-100">Upload Image</button>
-              </div>
-              <div className="col-span-2 flex justify-center gap-4">
-                <button type="submit" className="bg-yellow-500 text-white px-4 py-2 rounded-lg">Submit</button>
-                <button type="button" className="bg-gray-300 px-4 py-2 rounded-lg">Cancel</button>
-              </div>
-            </form>
-          </div>
-
-          {/* Clients Details */}
-          <div className='mb-6'>
-            <h3 className="text-lg font-semibold mb-4">Clients Details (10 Clients)</h3>
-
-            {/* Client 1 */}
-            <div className="bg-white shadow rounded-lg p-6 mb-4">
-              <form className="grid grid-cols-2 gap-4">
-                <input type="text" placeholder="Company Name" className="border border-gray-300 rounded-lg px-4 py-2" />
-                <input type="text" placeholder="Description" className="border border-gray-300 rounded-lg px-4 py-2" />
-                <div className="col-span-2">
-                  <button type="button" className="border border-gray-300 rounded-lg px-4 py-2 bg-gray-100">Upload Image</button>
+    return (
+        <div className="bg-white w-full">
+            <div className="py-[40px] px-[30px] grid gap-[40px]">
+                <div className="text-[24px] font-bold mb-4">Partnership Management</div>
+                <div className="grid gap-[30px]">
+                    <div className=" grid gap-[10px]">
+                        <label className="block text-[14px] font-semibold">Heading</label>
+                        <div className="flex items-center gap-[20px]">
+                            <input
+                                type="text"
+                                defaultValue="OUR CLIENTS"
+                                className="border partnerInput rounded-lg px-[15px] py-[12px] w-3/5 text-[20px] font-bold"
+                            />
+                            <button className="bg-[#FF9D00] p-[10px] rounded-[8px]">
+                                <img src={editImg} alt="" />
+                            </button>
+                        </div>
+                    </div>
+                    <div className=" grid gap-[10px]">
+                        <label className="block text-[14px] font-semibold">Sub Heading</label>
+                        <div className="flex items-center gap-[20px]">
+                            <input
+                                type="text"
+                                defaultValue="We're fortunate to work with the best!"
+                                className="border partnerInput rounded-lg px-[15px] py-[12px] w-3/5 text-[20px] font-semibold"
+                            />
+                            <button className="bg-[#FF9D00] p-[10px] rounded-[8px]">
+                                <img src={editImg} alt="" />
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-span-2 flex justify-end gap-4">
-                  <button type="button" className="text-yellow-500">
-                    <i className="fas fa-pen"></i>
-                  </button>
-                  <button type="button" className="text-red-500">
-                    <i className="fas fa-trash"></i>
-                  </button>
+                {/* Add Client Form */}
+                <div className="bg-white partnerContainer border rounded-lg grid p-[40px] gap-[40px]">
+                    <h3 className="font-semibold text-[24px] text-center">Add Client</h3>
+                    <form className="flex gap-[40px]">
+                        <div className="grid w-1/3 gap-[30px]">
+                            <div className="grid gap-[10px]">
+                                <label className="block text-[14px] font-semibold">Company Name</label>
+                                <input
+                                    type="text"
+                                    placeholder="Company Name"
+                                    className="border rounded-[10px] px-[20px] py-[10px] text-[14px] partnerInput"
+                                />
+                            </div>
+                            <div className="relative">
+                                <input type="file" id="fileInput" className="hidden" />
+                                <label
+                                    htmlFor="fileInput"
+                                    className="uploadBtn flex items-center justify-center gap-[15px] px-[20px] py-[10px] rounded-[10px] text-[#FF9D00] cursor-pointer"
+                                >
+                                    <div>Upload Image</div>
+                                    <img src={uploadImg} alt="Upload Icon" />
+                                </label>
+                            </div>
+                        </div>
+                        <div className="flex flex-col w-2/3 gap-[10px]">
+                            <div className="text-[14px] font-semibold">Description</div>
+                            <textarea
+                                type="text"
+                                placeholder="Description"
+                                className="h-100 text-[16px] partnerInput border px-[15px] py-[10px] rounded-[10px]"
+                                value={"Verify the authenticity of employee credentials and background details."}
+                            />
+                        </div>
+                    </form>
+                    <div className=" flex justify-center gap-[30px]">
+                        <button
+                            type="submit"
+                            className="p-[10px] w-[200px] bg-[#FF9D00] rounded-[10px] font-bold text-white"
+                        >
+                            Submit
+                        </button>
+                        <button
+                            type="button"
+                            className="p-[10px] w-[200px] bg-[#FF9D00] rounded-[10px] font-bold text-white"
+                        >
+                            Cancel
+                        </button>
+                    </div>
                 </div>
-              </form>
-            </div>
 
-            {/* Client 2 */}
-            <div className="bg-white shadow rounded-lg p-6 mb-4">
-              <form className="grid grid-cols-2 gap-4">
-                <input type="text" placeholder="Company Name" className="border border-gray-300 rounded-lg px-4 py-2" />
-                <input type="text" placeholder="Description" className="border border-gray-300 rounded-lg px-4 py-2" />
-                <div className="col-span-2">
-                  <button type="button" className="border border-gray-300 rounded-lg px-4 py-2 bg-gray-100">Upload Image</button>
-                </div>
-                <div className="col-span-2 flex justify-end gap-4">
-                  <button type="button" className="text-yellow-300">
-                    <i className="fas fa-pen"></i>
-                  </button>
-                  <button type="button" className="text-red-500">
-                    <i className="fas fa-trash"></i>
-                  </button>
-                </div>
-              </form>
-            </div>
+                {/* Clients Details */}
+                <div className="grid gap-[30px]">
+                    <div className="flex items-center justify-between">
+                        <div className="text-[24px] font-bold ">Clients Details</div>
+                        <div className="font-semibold text-[#FF9D00] text-[20px]">(10 Clients)</div>
+                    </div>
 
-            {/* Repeat more clients as needed */}
-          </div>
+                    <div className="grid gap-[30px]">
+                        <div className="bg-white border partnerContainer rounded-lg  p-[20px] ">
+                            <form className="flex gap-[25px]">
+                                <div className="grid w-1/3 gap-[30px]">
+                                    <div className="grid gap-[10px]">
+                                        <label className="block text-[14px] font-semibold">Company Name</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Company Name"
+                                            className="border rounded-[10px] px-[20px] py-[10px] text-[14px] partnerInput"
+                                        />
+                                    </div>
+                                    <div className="relative">
+                                        <input type="file" id="fileInput" className="hidden" />
+                                        <label
+                                            htmlFor="fileInput"
+                                            className="uploadBtn flex items-center justify-center gap-[15px] px-[20px] py-[10px] rounded-[10px] text-[#FF9D00] cursor-pointer"
+                                        >
+                                            <div>Upload Image</div>
+                                            <img src={uploadImg} alt="Upload Icon" />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col w-2/3 gap-[10px]">
+                                    <div className="text-[14px] font-semibold">Description</div>
+                                    <textarea
+                                        type="text"
+                                        placeholder="Description"
+                                        className="h-100 text-[16px] partnerInput border px-[15px] py-[10px] rounded-[10px]"
+                                        value={"Verify the authenticity of employee credentials and background details."}
+                                    />
+                                </div>
+                                <div className="grid gap-[40px]">
+                                    <button className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
+                                        <img src={editImg} alt="" />
+                                    </button>
+                                    <button className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
+                                        <img src={deleteImg} alt="" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="bg-white border partnerContainer rounded-lg  p-[20px] ">
+                            <form className="flex gap-[25px]">
+                                <div className="grid w-1/3 gap-[30px]">
+                                    <div className="grid gap-[10px]">
+                                        <label className="block text-[14px] font-semibold">Company Name</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Company Name"
+                                            className="border rounded-[10px] px-[20px] py-[10px] text-[14px] partnerInput"
+                                        />
+                                    </div>
+                                    <div className="relative">
+                                        <input type="file" id="fileInput" className="hidden" />
+                                        <label
+                                            htmlFor="fileInput"
+                                            className="uploadBtn flex items-center justify-center gap-[15px] px-[20px] py-[10px] rounded-[10px] text-[#FF9D00] cursor-pointer"
+                                        >
+                                            <div>Upload Image</div>
+                                            <img src={uploadImg} alt="Upload Icon" />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col w-2/3 gap-[10px]">
+                                    <div className="text-[14px] font-semibold">Description</div>
+                                    <textarea
+                                        type="text"
+                                        placeholder="Description"
+                                        className="h-100 text-[16px] partnerInput border px-[15px] py-[10px] rounded-[10px]"
+                                        value={"Verify the authenticity of employee credentials and background details."}
+                                    />
+                                </div>
+                                <div className="grid gap-[40px]">
+                                    <button className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
+                                        <img src={editImg} alt="" />
+                                    </button>
+                                    <button className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
+                                        <img src={deleteImg} alt="" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default PartnershipManagement;
