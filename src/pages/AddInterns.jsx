@@ -1,7 +1,7 @@
 import React, { useState, useRef,useEffect } from "react";
 import '../CSS/addsales.css';
 import { toast } from "react-toastify";
-import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
+// import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
 import { BsBoxArrowUp } from "react-icons/bs";

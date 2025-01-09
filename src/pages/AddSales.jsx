@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "../CSS/addsales.css";
-import { addSalesEmployee } from "../Api Services/salesManagemntApi";
+// import { addSalesEmployee } from "../Api Services/salesManagemntApi";
 import { toast } from "react-toastify";
 
 function AddSales() {
