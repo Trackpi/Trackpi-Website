@@ -1,4 +1,4 @@
-.partnerInput , .partnerContainer{
+.partnerInput , .partnerContainer , .footerBanner{
     box-shadow: -2px 2px 4px 0 #0A0A0A26, 2px 1px 4px 0 #0A0A0A26;
 }
 .uploadBtn{
@@ -11,7 +11,7 @@
     resize: none;
 }
 
-/* news page */
+/* news management */
 .newsBtn{
     border: 2px #0A0A0A solid;
     width: max-content;
@@ -26,4 +26,13 @@
     background-color: white;
     color: #FF9D00;
     border: 2px #FF9D00 solid;
+}
+
+/* footer management */
+.videoBtn{
+    padding: 10px 20px;
+    border: 2px black solid;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
 }

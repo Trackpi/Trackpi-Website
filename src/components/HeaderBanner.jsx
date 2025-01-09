@@ -16,7 +16,6 @@ function HeaderBanner({
   noButton,
   brochureMain,
   titleThree,
-  image
 }) {
   const [currentTitle, setCurrentTitle] = useState(title);
   const titleArray = [title, titleTwo, titleThree];
@@ -38,7 +37,7 @@ function HeaderBanner({
   return (
     <>
 
-<section className="headerbannerMain">
+<section className={`${classname}`}>
         {noButton?null:<div className={`headerbuttons flex sm:justify-end  items-center space-x-0 sm:space-x-5 relative px-[15px] sm:px-[22.5px] lg:px-[30px] ${!brochure ? 'justify-end' : 'justify-between'} `}>
           {brochure ? (
                         <Link to="/new-project-form" className='no-underline'>
@@ -55,21 +54,22 @@ function HeaderBanner({
   <div className='h-full absolute headerbanner1'>
 
         <div className="flex justify-center items-center h-100">
+          
           <div
-            className={`flex flex-col w-[400px] sm:w-[600px] md:w-[600px] lg:w-[80%] xl:w-[75%] 2xl:w-[75%] text-center items-center z-2 headerContent`}
+            className={`flex flex-col w-100 text-center items-center z-2 headerContent gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px] `}
           >
-            <h1 className="text-yellow-400 font-bold text-[20px] sm:text-[26px] md:text-[36px] lg:text-[48px] xl:text-[56px] 2xl:text-[62px] headerBannerHeading">
+            <div className="text-yellow-400 font-bold text-[20px] sm:text-[24px] md:text-[36px] lg:text-[48px] xl:text-[56px] 2xl:text-[62px] headerBannerHeading w-100">
             {titleTwo ? currentTitle : title}
-            </h1>
+            </div>
 
-            <p className="text-[12px] sm:text-[16px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px] leading-[14.4px] sm:leading-[18px] md:leading-[22px] lg:leading-[26px] xl:leading-[28px] 2xl:leading-[31.2px] sm:p-5 text-white justify_banner headerBannerPara">
+            <div className="text-[12px] sm:text-[14px] md:text-[20px] lg:text-[22px] xl:text-[24px] 2xl:text-[26px] leading-[14.4px] sm:leading-[14px] md:leading-[22px] lg:leading-[26px] xl:leading-[28px] 2xl:leading-[31.2px]  text-white justify_banner headerBannerPara max-w-[300px] sm:max-w-[400px] md:max-w-[520px] lg:max-w-[600px] xl:max-w-[70%] 2xl:w-[70%]">
               {description}
-            </p>
+            </div>
 
             {learn ? (
               <div className="flex justify-center items-center">
                 <Link to={'/our-services'} className='text-white'>               
-                <button className="header_button text-[10px] sm:text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] px-[10px] py-[7px] sm:px-[12px] sm:py-[8px] md:px-[16px] md:py-[10px] lg:px-[20px] lg:py-[14px] xl:px-[22px] xl:py-[18px] 2xl:px-[24px] 2xl:py-[20px] lg:rounded-[10px]  md:rounded-[7.5px]   sm:rounded-[5px] rounded-[3.5px]">Learn How We Can Help</button>
+                <button className="header_button text-[10px] sm:text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] px-[10px] py-[7px] sm:px-[12px] sm:py-[8px] md:px-[16px] md:py-[10px] lg:px-[20px] lg:py-[14px] xl:px-[22px] xl:py-[18px] 2xl:px-[24px] 2xl:py-[20px] lg:rounded-[10px]  md:rounded-[7.5px]   sm:rounded-[5px] rounded-[3.5px] font-semibold">Learn How We Can Help</button>
                 </Link>
               </div>
             ) : null}
@@ -95,9 +95,6 @@ function HeaderBanner({
           </div>
         </div>
         </div>
-  <div className='h-full headerbanner2'>
-      <img src={image} alt="" />
-  </div>
 </section>
       {/* <section className={`w-full h-full`}>
        

@@ -134,7 +134,7 @@ function AddInterns() {
   return (
     <div className="container mx-auto my-5 p-5 bg-white shadow rounded-md">
       <form className="row g-4" onSubmit={handleSubmit}>
-        <div className="col-12 d-flex align-items-center gap-4 mb-4 ">
+        <div className="d-flex align-items-center  mb-4 ">
           <div className="me-4  ">
             <h2 className="mb-4 text-[22px]">{id ? "Edit Intern" : "Add Intern"}</h2>
             <div
@@ -187,7 +187,7 @@ function AddInterns() {
               onChange={handleFileChange}
             />
           </div>
-          <div className="mt-4 flex-grow-1 row g-5">
+          <div className="mt-4 flex-grow-1 row justify-evenly">
             <div className="col-md-4">
               <label className="form-label font-bold text-[15px]">Name</label>
               <input
@@ -261,7 +261,7 @@ function AddInterns() {
         </div>
         
             {/* Personal Information Section */}
-    <div className="flex justify-between">
+    <div className="flex justify-between ">
           <div className=" flex flex-col w-[310px]">
           <h4 className="mb-4 text-[22px]">Personal Information</h4>
           <div className="mb-3">
@@ -316,7 +316,7 @@ function AddInterns() {
             />
           </div>
           <div className="flex gap-5">
-          <div className="mb-3">
+          <div className="mb-3 w-[100px]">
             <label className="form-label text-[15px]" htmlFor="gender">
               Gender
             </label>
@@ -344,7 +344,7 @@ function AddInterns() {
               <option value="Other">Other</option>
             </select>
           </div>
-          <div className="mb-3">
+          <div className="mb-3 w-[170px]">
             <label className="form-label text-[15px]" htmlFor="dob">
               Date of Birth
             </label>
@@ -370,14 +370,14 @@ function AddInterns() {
             />
           </div>
           </div>
-          <div className="mb-3">
+          <div className="mb-3 w-[100px]">
             <label className="form-label text-[15px]" htmlFor="bloodgroup">
               Blood Group
             </label>
             <select
               id="bloodgroup"
               name="bloodGroup"
-              className="form-select plac"
+              className="form-select  plac"
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
