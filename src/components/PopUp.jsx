@@ -9,6 +9,7 @@ import bloggerIcon from "../images/blogger2.svg";
 import mediumIcon from "../images/medium2.svg";
 import instagramIcon from "../images/insta2.svg";
 import closeImg from "../images/closePopup.svg";
+import dropdownImg from "../images/dropdownImg.svg";
 import { Link } from "react-router-dom";
 
 function PopUp() {
@@ -44,7 +45,7 @@ function PopUp() {
     return (
         <div>
             <Modal backdrop='static' dialogClassName="custom-modal " show={show} onHide={handleClose} size="lg" centered>
-                <div className="grid gap-[20px] md:gap-[25px] xl:gap-[30px] p-[10px]  sm:p-[15px] md:p-[20px]  lg:p-[25px] xl:p-[30px]">
+                <div className="grid gap-[10px] sm:gap-[20px] md:gap-[25px] xl:gap-[30px] p-[10px]  sm:p-[15px] md:p-[20px]  lg:p-[25px] xl:p-[30px]">
                     <div className="flex justify-between ">
                         <div className="h-[20px] sm:h-[25px] md:h-[30px] lg:h-[35px] xl:h-[40px]"></div>
                         <div className="ext-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] xl:text-[34px] font-bold text-[#FF9D00]">Connect With Us</div>
@@ -59,12 +60,13 @@ function PopUp() {
                             <input className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px]" required type="number" placeholder="Contact Number" />
                             <input className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px]" required type="text" placeholder="Where are you located?" />
 
-      <div className="relative selectForPopup text-center ">
+      <div className="relative selectForPopup text-center  ">
         {/* Button to toggle dropdown */}
         <button type="button"
-          className="w-full text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px] border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-left mx-auto"
+          className="w-full text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] xl:px-[20px] xl:py-[18px] border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-left mx-auto flex justify-between items-center"
           onClick={toggleDropdown}>
-          {selectedOption || 'How Did You Hear About Us?'}
+            <div>{selectedOption || 'How Did You Hear About Us?'}</div>
+          {selectedOption?null:<img className="h-[10px] sm:h-[12px] md:h-[14px] lg:h-[16px] xl:h-[18px]" src={dropdownImg} alt="" />}
         </button>
 
         {/* Dropdown menu with <ul> */}
@@ -89,13 +91,13 @@ function PopUp() {
                             </div>
                         </form>
                     </div>
-                    <div className="px-4 text-center mx-auto text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px]">
+                    <div className="text-center mx-auto text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px]">
                         {" "}
                         Or email <span className="text-[#FF9D00] font-bold">hello@trackpi.com</span> to get in touch with
                         our team.
                     </div>
-                    <div className="w-full px-[10px]  mx-auto">
-                        <div className="flex justify-between  flex-row popupIcons">
+                    <div className="w-full   mx-auto">
+                        <div className="flex justify-around  flex-row popupIcons">
                             <Link to={"#"}>
                                 <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={fbIcon} alt="" />
                             </Link>

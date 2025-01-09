@@ -27,6 +27,7 @@ const NewsManagement = () => {
       setActiveTab(tabFromUrl);
     }
   }, [location.search]);
+  
     return (
         <div className="bg-white w-full">
             <div className="py-[40px] px-[30px] grid gap-[40px]">

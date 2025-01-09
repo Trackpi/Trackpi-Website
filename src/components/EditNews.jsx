@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import uploadImg from "../images/uploadimg.svg";
 import deleteImg from "../images/deletenews.svg";
 
 function EditNews() {
+
+        const [fileName, setFileName] = useState("");
+
+            const handleFileChange = (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                setFileName(file.name);
+            }
+        };
+    
+        const handleRemoveFile = () => {
+            setFileName(null);
+            document.getElementById("fileInput").value = ""; 
+        };
+
   return (
-   <div className='grid gap-[40px]'>
+   <form className='grid gap-[40px]'>
     <div className='flex justify-between'>
         <div className='w-[125px]'></div>
         <div className="px-[20px] py-[10px] text-[18px] font-bold rounded-[10px]  newsBtn">
@@ -41,13 +56,24 @@ function EditNews() {
                            </div>
    
                            <div className="relative w-[250px] mx-auto">
-                               <input type="file" id="fileInput" className="hidden" />
+                               <input type="file" id="fileInput" className="hidden" onChange={handleFileChange}  />
                                <label
                                    htmlFor="fileInput"
                                    className="uploadBtn flex items-center justify-center gap-[15px] px-[20px] py-[10px] rounded-[10px] text-[#FF9D00] cursor-pointer"
                                >
-                                   <div>Upload Image</div>
-                                   <img src={uploadImg} alt="Upload Icon" />
+                                   {fileName ? (
+                                                          <>
+                                                              <span>{fileName.length > 15 ? `${fileName.substring(0, 15)}...` : fileName}</span>
+                                                              <button onClick={handleRemoveFile} className="ml-2 text-red-500 hover:text-red-700">
+                                                                  ✕
+                                                              </button>
+                                                          </>
+                                                      ) : (
+                                                          <>
+                                                              <div>Upload Image</div>
+                                                              <img src={uploadImg} alt="Upload Icon" />
+                                                          </>
+                                                      )}
                                </label>
                            </div>
                            <div className=" flex justify-center gap-[30px]">
@@ -64,7 +90,7 @@ function EditNews() {
                                    Cancel
                                </button>
                            </div>
-       </div>
+       </form>
   )
 }
 

@@ -10,7 +10,7 @@ const NewProject = () => {
       <HeaderBanner
         title="Submit New Project Here"
         description="Trackpi is your business's growth partner, turning insights into action. With tailored strategies and expert guidance, we help you navigate challenges, streamline operations, and unlock new opportunities for success."
-        classname="bgOne"
+        classname="bgSix"
         noButton={true}
         image={img1}
       />

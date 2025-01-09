@@ -1,6 +1,7 @@
 import React from "react";
 import notifyImg from '../images/notify.svg';
 import profileImg from '../images/profile.png';
+import searchImg from '../images/searchnav.svg';
 
 function AdminNavbar() {
   return (
@@ -16,9 +17,10 @@ function AdminNavbar() {
         </div>
         <div className="h-[40px] flex gap-[40px] items-center justify-between ">
           <div className="text-[18px]">06 December 2024</div>
-          <div className="adminInput">
+          <form className="adminInput flex items-center ">
             <input type="text" placeholder='Search here...' />
-          </div>
+            <button className="ms-[290px] absolute" type="submit"><img src={searchImg} alt="" /></button>
+          </form>
           <div className="">
             <img src={notifyImg} alt="" />
           </div>

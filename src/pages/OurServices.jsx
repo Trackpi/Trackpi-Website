@@ -16,7 +16,6 @@ import strategyImg3 from "../images/strategy3.png";
 import hiringImg1 from "../images/sale.jpg";
 import KeyBenefitServices from "../components/KeyBenefitServices";
 import '../CSS/ourservices.css'
-import img1 from '../images/team.png'
 
 function OurServices() {
     return (
@@ -28,7 +27,6 @@ function OurServices() {
                     title="Working Together"
                     description="We help organizations navigate and thrive in the face of complexity."
                     classname="bgThree"
-                    image={img1}
                 />
 
                 {/* Content Sections */}

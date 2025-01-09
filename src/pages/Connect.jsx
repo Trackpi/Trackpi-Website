@@ -3,7 +3,6 @@ import Details from '../components/Form';
 import { Container, Row } from 'react-bootstrap';
 import ConnectButtons from '../components/ConnectButtons';
 import HeaderBanner from '../components/HeaderBanner';
-import img2 from '../images/connect.png'
 
 import "../CSS/connect.css";
 
@@ -17,7 +16,6 @@ function Connect() {
         brochure
         classname="bgFive"
         noButton={true}
-        image={img2}
       />
 
       <div className="bb">
