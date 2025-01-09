@@ -115,7 +115,7 @@ const memberList = [
                             ref={scrollRef}
                             className="flex overflow-x-auto  space-x-0  scroll-snap-x scroll-snap-mandatory  md:grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-8">
                             {memberList.map((item, index) => (
-                                <div className="min-w-[full] md:min-w-0 flex-shrink-0 scroll-snap-align-start">
+                                <div className="min-w-[full] md:min-w-0 flex-shrink-0   scroll-snap-align-start">
                                 <MemberCard key={index}  member={item} onCardClick={() => handleCardClick(item)} />
                                 </div>
                                 ))}

@@ -19,14 +19,14 @@ function EmployeeManagementDetail() {
       navigate(-1); // Go back to previous page
     };
     const handleEdit = () => {
-      const employeeId = "someid"; // Replace this with the actual intern's ID
+      const employeeId =employeeData.sl_no; // Replace this with the actual intern's ID
      
       if (employeeId) {
-        navigate(`/admin/employeeManagement-addEmployee/${employeeId}`); // Navigate to the edit page with the internId
+        navigate(`/admin/employeeManagement-addEmployee/${employeeId}`, { state: { employeeData } }); // Navigate to the edit page with the internId
       }
     };
     const employeeData  = location.state.rowDatas || {};
-  if (!employeeData) {
+  if (!location.state?.rowDatas) {
     return <div>Loading...</div>; // Optionally, show a loading state if member is not available
   }
  
