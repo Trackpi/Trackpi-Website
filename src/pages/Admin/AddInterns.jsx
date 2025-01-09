@@ -1,30 +1,32 @@
 import React, { useState, useRef,useEffect } from "react";
-import '../CSS/addsales.css';
+import '../../CSS/addsales.css';
 import { toast } from "react-toastify";
-import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../../Api Services/internsManagementApi";
+import { useNavigate, useParams ,useLocation} from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
 import { BsBoxArrowUp } from "react-icons/bs";
 
 
 function AddInterns() {
+  const location = useLocation();
+  const { employeeData } = location.state || { employeeData: {} }
   const [formData, setFormData] = useState({
-    userName: "",
-    empID: "",
-    email: "",
-    phoneNumber: "",
-    fullAddress: "",
-    gender: "",
-    dob: "",
-    bloodGroup: "",
-    dateOfJoining: "",
-    jobRole: "",
-    employeeStatus: "",
-    jobLevel: "",
-    instagram: "",
-    linkedin: "",
-    twitter: "",
-    feedback: "",
+    name: employeeData.name || "",
+    empID: employeeData.empID ||  "",
+    email:employeeData.email || "",
+    phoneNumber:employeeData.phoneNumber ||  "",
+    fullAddress:employeeData.fullAddress ||  "",
+    gender:employeeData.gender||  "",
+    dob:employeeData.dob||  "",
+    bloodGroup:employeeData.bloodGroup||  "",
+    dateOfJoining:employeeData.dateOfJoining||  "",
+    jobRole:employeeData.jobRole||  "",
+    employeeStatus: employeeData.employeeStatus|| "",
+    jobLevel:employeeData.jobLevel||  "",
+    instagram:employeeData.instagram ||  "",
+    linkedin:employeeData.linkedin || "",
+    twitter: employeeData.twitter || "",
+    feedback:employeeData.feedback || "",
   });
   
   const [profileImage, setProfileImage] = useState(null);
@@ -35,42 +37,43 @@ function AddInterns() {
 
   const { id } = useParams();  // For editing, we'll get the intern ID from URL params
   const navigate = useNavigate();
-  
-   // Fetch existing intern data for editing
-   useEffect(() => {
-    if (id) {
-       // Fetch intern data if editing
-       getInternEmployeeById(id)
-       .then((data) => {
-        console.log("Fetched Data:", data); 
-       
-         setFormData({
-           userName: data.userName || "",
-           empID: data.empID || "",
-           email: data.email || "",
-           phoneNumber: data.phoneNumber || "",
-           fullAddress: data.fullAddress || "",
-           gender: data.gender || "",
-           dob: data.dob || "",
-           bloodGroup: data.bloodGroup || "",
-           dateOfJoining: data.dateOfJoining || "",
-           jobRole: data.jobRole || "",
-           employeeStatus: data.employeeStatus || "",
-           jobLevel: data.jobLevel || "",
-           instagram: data.instagram || "",
-           linkedin: data.linkedin || "",
-           twitter: data.twitter || "",
-           feedback: data.feedback || "",
-         });
-         // Prefill the image and certificate if available
-         if (data.profileImage) setProfileImage(data.profileImage);
-         if (data.certificate) setCertificate(data.certificate);
-       })
-       .catch((error) => toast.error("Failed to fetch intern details"));
-   
-       
-    }
-  }, [id]);
+   // Update form data when employeeData changes
+    useEffect(() => {
+      setFormData({
+        name: employeeData.name || "",
+        empID: employeeData.empID ||  "",
+        email:employeeData.email || "",
+        phoneNumber:employeeData.phoneNumber ||  "",
+        fullAddress:employeeData.fullAddress ||  "",
+        gender:employeeData.gender||  "",
+        dob:employeeData.dob||  "",
+        bloodGroup:employeeData.bloodGroup||  "",
+        dateOfJoining:employeeData.dateOfJoining||  "",
+        jobRole:employeeData.jobRole||  "",
+        employeeStatus: employeeData.employeeStatus|| "",
+        jobLevel:employeeData.jobLevel||  "",
+        instagram:employeeData.instagram ||  "",
+        linkedin:employeeData.linkedin || "",
+        twitter: employeeData.twitter || "",
+        feedback:employeeData.feedback || "",
+      });
+     
+    }, [employeeData]);
+    useEffect(() => {
+      // Fetch the image and convert it to a File object
+      if (employeeData.image) {
+        fetch(employeeData.image)
+          .then((res) => res.blob())
+          .then((blob) => {
+            const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+            setProfileImage(file);
+          })
+          .catch((error) => console.error("Failed to fetch image:", error));
+      }
+    }, [employeeData.image]);
+      
+ 
+      
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -107,30 +110,35 @@ function AddInterns() {
       "content-Type": "multipart/form-data",
       Authorization: `Token ${sessionStorage.getItem("token")}`,
     };
-
+ 
     const handleResponse = (response) => {
       if (response.status === 200) {
         toast.success(id ? "Intern updated successfully!" : "Intern added successfully!");
-        navigate("/admin/intern-management");  // Redirect to intern management page
+        navigate(`/admin/intern-management-detail/${id}`);  // Redirect to udated page using id
       } else {
         toast.error("Something went wrong!");
       }
     };
 
    
-    if (id) {
-      // Edit intern
-      updateInternEmployee(id, formDataObj, header)
-        .then(handleResponse)
-        .catch((error) => toast.error("Failed to update intern"));
-    } else {
-      // Add new intern
-      addInternEmployee(formDataObj, header)
-        .then(handleResponse)
-        .catch((error) => toast.error("Failed to add intern"));
-    }
+    try {
+      if (id) {
+          // Edit intern
+          const response = await updateInternEmployee(id, formDataObj, header);
+          handleResponse(response);
+      } else {
+          // Add new intern
+          const response = await addInternEmployee(formDataObj, header);
+          handleResponse(response);
+      }
+  } catch (error) {
+      console.error("Error during API call:", error);
+      toast.error("Failed to update intern");
+  }
   };
- 
+  const handleCancel = () => {
+    navigate(-1); // Navigate back to the previous page
+  }
   return (
     <div className="container mx-auto my-5 p-5 bg-white shadow rounded-md">
       <form className="row g-4" onSubmit={handleSubmit}>
@@ -146,25 +154,18 @@ function AddInterns() {
                 position: "relative",
               }}
             >
-                
-              {profileImage ? (
-                <img
-                  src={URL.createObjectURL(profileImage)}
-                  alt="Uploaded"
-                  style={{
-                    width: "150px",
-                    height: "120px",
-                    
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              ) : (
-                <i
-                  className="bi bi-person-circle"
-                  style={{ fontSize: "50px", color: "#ffc107" }}
-                ></i>
-              )}
+             {profileImage instanceof File && (
+  <img
+    src={URL.createObjectURL(profileImage)}
+    alt="Uploaded"
+    style={{
+      width: "150px",
+      height: "120px",
+      borderRadius: "12%",
+      objectFit: "cover",
+    }}
+  />
+)}
               <div
                 className="position-absolute bottom-2 end-2 bg-warning rounded-circle d-flex justify-content-center align-items-center"
                 style={{ width: "25px", height: "25px" }}
@@ -192,10 +193,10 @@ function AddInterns() {
               <label className="form-label font-bold text-[15px]">Name</label>
               <input
                 type="text"
-                name="userName"
+                name="name"
                 className="form-control rounded-2xl plac"
                 placeholder="Name"
-                value={formData.userName}
+                value={formData.name}
                 onChange={handleInputChange}
                 
                 style={{fontSize: '12px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
@@ -773,6 +774,7 @@ function AddInterns() {
                               <div className="  w-[660px] h-[150px] ">
                                             <h4 className="text-[22px]">Feedback</h4>
                                             <textarea
+                                            name="feedback"
                                               className="form-control w-[660px] h-[150px] plac"
                                               placeholder="Enter here"
                                               rows="4"
@@ -791,10 +793,11 @@ function AddInterns() {
                                               value={formData.feedback}
                                             ></textarea>
                               </div>
-                    
+                             
+
                               <div className="">
                                               <h4 className="text-[22px]">Internship Certificate</h4>
-                                              <div
+                                              <div 
                                                     className="border border-secondary rounded p-4 text-center position-relative"
                                                     style={{
                                                       width: "330px",
@@ -809,7 +812,7 @@ function AddInterns() {
                                                         style={{
                                                           width: "100%",
                                                           height: "100%",
-                                                          objectFit: "contain",
+                                                          objectFit: "cover",
                                                         }}
                                                       />
                                                     ) : (
@@ -836,7 +839,7 @@ function AddInterns() {
                                     <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
                                     {id ? "Update" : "Save"}
                                     </button>
-                                    <button type="button" className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
+                                    <button type="button"onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
                                       Cancel
                                     </button>
                       </div>

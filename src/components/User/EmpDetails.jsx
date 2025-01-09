@@ -2,8 +2,9 @@ import { GoDotFill } from "react-icons/go";
 import { IoLogoInstagram } from "react-icons/io5";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
-import "../CSS/employeedet.css";
-import imagepersonnel1 from '../images/personnel-1-400x286.jpg'
+
+import "../../CSS/employeedet.css";
+import imagepersonnel1 from '../../images/personnel-1-400x286.jpg'
 const EmpDetails = ({ employeeData }) => {
   if (!employeeData) return <div>Loading...</div>;
 

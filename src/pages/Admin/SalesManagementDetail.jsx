@@ -1,8 +1,8 @@
-import '../CSS/employeeinternship.css';
+import '../../CSS/employeeinternship.css';
 import { FaRegEdit } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useLocation, useNavigate } from 'react-router-dom';
-import EmpDetails from '../components/EmpDetails';
+import EmpDetails from '../../components/User/EmpDetails';
 
 function SalesManagementDetail() {
   const location = useLocation();
@@ -15,10 +15,10 @@ function SalesManagementDetail() {
     navigate(-1); // Go back to previous page
   };
   const handleEdit = () => {
-    const salesId = "someid"; // Replace this with the actual intern's ID
+    const salesId = location.state?.rowDatas?.empID;// Replace this with the actual intern's ID
    
     if (salesId) {
-      navigate(`/admin/salesManagement-add/${salesId}`); // Navigate to the edit page with the internId
+      navigate(`/admin/salesManagement-add/${salesId}`, { state: { employeeData: location.state.rowDatas } }); // Navigate to the edit page with the internId
     }
   };
   if (!employeeData) {
@@ -37,7 +37,7 @@ function SalesManagementDetail() {
           <IoMdArrowBack /> &nbsp; Back
         </button>
       </div>
-      <div className="bg-white w-full py-2 px-6 mx-auto ">
+      <div className="bg-white w-full py-2 px-14 lg:px-16 xl:px-18 2xl:px-18 mx-auto ">
         <EmpDetails employeeData={employeeData} />
         <div className="  text-center flex justify-center mt-19 md:mt-19 2xl:mt-8 ">
           <div

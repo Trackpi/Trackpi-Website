@@ -667,5 +667,5 @@ tbody tr:hover {
   border: 1px solid #FF9D00 !important;
 }
 .place::placeholder {
-  color: rgba(0, 0, 0, 0.762) !important;
+  color: rgba(0, 0, 0, 0.985) !important;
 }

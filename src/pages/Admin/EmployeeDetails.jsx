@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './EmployeeDetails.css';
-import UploadProfile from "../components/UploadProfile";
+import UploadProfile from "../../components/UploadProfile";
 
 const EmployeeDetails = () => {
   const [userName, setUserName] = useState("");

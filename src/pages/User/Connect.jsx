@@ -1,10 +1,10 @@
 import React from 'react';
-import Details from '../components/Form';
+import Details from '../../components/User/Form';
 import { Container, Row } from 'react-bootstrap';
-import ConnectButtons from '../components/ConnectButtons';
-import HeaderBanner from '../components/HeaderBanner';
+import ConnectButtons from '../../components/ConnectButtons';
+import HeaderBanner from '../../components/HeaderBanner';
 
-import "../CSS/connect.css";
+import "../../CSS/connect.css";
 
 
 function Connect() {

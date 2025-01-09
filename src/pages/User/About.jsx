@@ -1,8 +1,8 @@
 //import React from 'react';
 import OurTeam from "./OurTeam";
-import PopUp from "../components/PopUp";
-import ConnectButtons from "../components/ConnectButtons";
-import HeaderBanner from "../components/HeaderBanner";
+import PopUp from "../../components/PopUp";
+import ConnectButtons from "../../components/ConnectButtons";
+import HeaderBanner from "../../components/HeaderBanner";
 
 function About() {
     return (

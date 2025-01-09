@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useLocation } from "react-router-dom";
-import EmpDetails from "../components/EmpDetails";
-import "../CSS/employeeinternship.css";
+import EmpDetails from "../../components/User/EmpDetails";
+import "../../CSS/employeeinternship.css";
 function EmployeeSales() {
   const location = useLocation();
   const employeeData = location.state?.rowDatas || {};

@@ -1,18 +1,68 @@
-import '../CSS/employeeinternship.css';
+import '../../CSS/employeeinternship.css';
 import { FaRegEdit } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useLocation, useNavigate } from 'react-router-dom';
-import EmpDetails from '../components/EmpDetails';
-import axios from 'axios';
+import EmpDetails from '../../components/User/EmpDetails';
+import { useEffect } from 'react';
 const InternManagementDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  
+
+  const useScreenshotPrevention = () => {
+    useEffect(() => {
+      // Block context menu
+      const handleContextMenu = (e) => {
+        e.preventDefault();
+        alert('Right-click is disabled.');
+      };
+  
+         // Block keydown events
+    const handleKeyDown = (e) => {
+      // Prevent PrintScreen and Ctrl+P
+      if (e.key ==='prt sc' || e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) {
+        e.preventDefault();
+        alert('Screenshots and printing are disabled.');
+      }
+    };
+       // Block copy and paste
+       const handleCopyPaste = (e) => {
+        e.preventDefault();
+        alert('Copying and pasting are disabled.');
+      };
+         // Block share menu (on mobile)
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      e.returnValue = '';
+      alert('Sharing is disabled.');
+    };
+  
+      // Attach event listeners
+      document.addEventListener('contextmenu', handleContextMenu);
+      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('copy', handleCopyPaste);
+    document.addEventListener('paste', handleCopyPaste);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+  
+      // Cleanup on component unmount
+      return () => {
+        document.removeEventListener('contextmenu', handleContextMenu);
+        document.removeEventListener('keydown', handleKeyDown);
+        document.removeEventListener('copy', handleCopyPaste);
+        document.removeEventListener('paste', handleCopyPaste);
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }, []);
+  };
+  
+
 
   const handleEdit = () => {
     const internId = location.state?.rowDatas?.empID; // Replace this with the actual intern's ID
    
     if (internId) {
-      navigate(`/admin/intern-management-add/${internId}`); // Navigate to the edit page with the internId
+      navigate(`/admin/intern-management-add/${internId}`, { state: { employeeData: location.state.rowDatas } }); // Navigate to the edit page with the internId
     }
   };
   // Retrieve employeeData passed via navigate
@@ -26,8 +76,9 @@ const InternManagementDetail = () => {
   if (!employeeData) {
     return <div>No employee data found.</div>;
   }
-
+  useScreenshotPrevention();
   return (
+   
     <div>
       <div className="bg-white w-full py-4 px-6 mx-auto flex justify-end items-end gap-3">
         <button onClick={handleEdit} className="px-4 py-2 text-white bg-[#FF9D00] rounded-lg flex justify-center items-center">
@@ -41,7 +92,7 @@ const InternManagementDetail = () => {
         </button>
       </div>
 
-      <div className="bg-white w-full py-2 px-6 mx-auto">
+      <div className="bg-white w-full py-2 px-14 lg:px-16 xl:px-18 2xl:px-18 mx-auto">
         <EmpDetails employeeData={employeeData} /> {/* Pass data to EmpDetails component */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12 sm:text-lg md:text-xl xl:text-xl xl:leading-7 2xl:leading-7 2xl:text-2xl md:mt-4 2xl:mt-8">
@@ -60,11 +111,28 @@ const InternManagementDetail = () => {
               </li>
             </ul>
           </div>
-          <div className="flex flex-col justify-center items-center">
+          <div  className="relative flex flex-col justify-center items-center">
+           
             <div className="custom-height3 w-[326px] md:w-full h-[138px] md:h-[310px] xl:h-[320px] flex justify-center items-center rounded-t-md" style={{ backgroundColor: '#2A2A2A' }}>
+              
               <h6 className="text-white text-center container w-50">
                 Internship Certificate
               </h6>
+               {/* Dynamic Watermark */}
+               <div
+      className="absolute text-gray-500 opacity-30 text-[14px] sm:text-[19px] md:text-[21px] lg:text-[24px] font-bold"
+      style={{
+        transform: "rotate(-45deg)",
+        top: "50%",
+        left: "50%",
+        transformOrigin: "center",
+        transform: "translate(-50%, -50%) rotate(-45deg)",
+        whiteSpace: "nowrap", // Prevent line breaks
+        pointerEvents: "none", // Ensure it doesn't block user interactions
+      }}
+    >
+      {employeeData.name} | {new Date().toLocaleString()}
+    </div>
             </div>
             <div className="w-[326px] md:w-full h-[22px] md:h-[29px] xl:h-[39px] bg-yellow-400 flex items-center justify-start rounded-b-md">
               <p className="text-white px-4 mt-3 text-sm sm:text-lg md:text-xl xl:text-xl xl:leading-7 2xl:leading-10 2xl:text-xl">

@@ -5,7 +5,7 @@ import React, { useState, useRef,useEffect } from "react";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
 import { useNavigate, useParams,useLocation } from "react-router-dom";
-import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
+import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../../Api Services/internsManagementApi";
 
 
 function AddEmployee ()  {
@@ -33,8 +33,20 @@ function AddEmployee ()  {
       twitter: employeeData.twitter || "",
       feedback: employeeData.feedback || "",
     });
-  }, [employeeData]);
    
+  }, [employeeData]);
+  useEffect(() => {
+    // Fetch the image and convert it to a File object
+    if (employeeData.image) {
+      fetch(employeeData.image)
+        .then((res) => res.blob())
+        .then((blob) => {
+          const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+          setProfileImage(file);
+        })
+        .catch((error) => console.error("Failed to fetch image:", error));
+    }
+  }, [employeeData.image]);
     
       const [profileImage, setProfileImage] = useState(null);
       
@@ -126,6 +138,9 @@ function AddEmployee ()  {
             .catch((error) => toast.error("Failed to add employee"));
         }
       };
+      const handleCancel = () => {
+        navigate(-1); // Navigate back to the previous page
+      }
   return (
     <div className="container mx-auto my-5 py-5 bg-white shadow rounded-md">
        <form className="row g-4" onSubmit={handleSubmit}>
@@ -142,24 +157,18 @@ function AddEmployee ()  {
                           }}
                         >
                             
-                          {profileImage ? (
-                            <img
-                              src={URL.createObjectURL(profileImage)}
-                              alt="Uploaded"
-                              style={{
-                                width: "150px",
-                                height: "120px",
-                                
-                                borderRadius: "50%",
-                                objectFit: "cover",
-                              }}
-                            />
-                          ) : (
-                            <i
-                              className="bi bi-person-circle"
-                              style={{ fontSize: "50px", color: "#ffc107" }}
-                            ></i>
-                          )}
+                            {profileImage instanceof File && (
+  <img
+    src={URL.createObjectURL(profileImage)}
+    alt="Uploaded"
+    style={{
+      width: "150px",
+      height: "120px",
+      borderRadius: "12%",
+      objectFit: "cover",
+    }}
+  />
+)}
                           <div
                             className="position-absolute bottom-2 end-2 bg-warning rounded-circle d-flex justify-content-center align-items-center"
                             style={{ width: "25px", height: "25px" }}
@@ -517,7 +526,7 @@ function AddEmployee ()  {
                                     <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
                                     {id ? "Update" : "Save"}
                                     </button>
-                                    <button type="button" className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
+                                    <button type="button" onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
                                       Cancel
                                     </button>
                       </div>

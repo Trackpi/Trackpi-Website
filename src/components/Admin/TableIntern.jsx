@@ -12,7 +12,7 @@ const data = [
   {
     
     sl_no: 1,
-    userName: 'Arjun Menon',
+    name: 'Arjun Menon',
     empID: 'EMP001',
     email: 'arjun.menon@gmail.com',
     image:imagepersonnel1,
@@ -20,7 +20,7 @@ const data = [
   },
   {
     sl_no: 2,
-    userName: 'Meera Nair',
+    name: 'Meera Nair',
     empID: 'EMP002',
     email: 'meera.nair@yahoo.com',
     image:imagepersonnel2,
@@ -28,7 +28,7 @@ const data = [
   },
   {
     sl_no: 3,
-    userName: 'Ravi Krishnan',
+    name: 'Ravi Krishnan',
     empID: 'EMP003',
     email: 'ravi.krishnan@domain.com',
     image:imagepersonnel3,
@@ -36,7 +36,7 @@ const data = [
   },
   {
     sl_no: 4,
-    userName: 'Divya Rajan',
+    name: 'Divya Rajan',
     empID: 'EMP004',
     email: 'divya.rajan@gmail.com',
     image:imagepersonnel4,
@@ -44,7 +44,7 @@ const data = [
   },
   {
     sl_no: 5,
-    userName: 'Vikram Reddy',
+   name: 'Vikram Reddy',
     empID: 'EMP005',
     email: 'vikram.reddy@outlook.com',
     image:imagepersonnel5,
@@ -52,7 +52,7 @@ const data = [
   },
   {
     sl_no: 6,
-    userName: 'Anjali Mohan',
+    name: 'Anjali Mohan',
     empID: 'EMP006',
     email: 'anjali.mohan@domain.com',
     image:imagepersonnel6,
@@ -60,7 +60,7 @@ const data = [
   },
   {
     sl_no: 7,
-    userName: 'Karthik Iyer',
+    name: 'Karthik Iyer',
     empID: 'EMP007',
     email: 'karthik.iyer@company.com',
     image:imagepersonnel1,
@@ -68,7 +68,7 @@ const data = [
   },
   {
     sl_no: 8,
-    userName: 'Lakshmi Priya',
+    name: 'Lakshmi Priya',
     empID: 'EMP008',
     email: 'lakshmi.priya@gmail.com',
     image:imagepersonnel2,
@@ -76,7 +76,7 @@ const data = [
   },
   {
     sl_no: 9,
-    userName: 'Manoj Pillai',
+    name: 'Manoj Pillai',
     empID: 'EMP009',
     email: 'manoj.pillai@domain.com',
     image:imagepersonnel3,
@@ -84,7 +84,7 @@ const data = [
   },
   {
     sl_no: 10,
-    userName: 'Sharanya Das',
+    name: 'Sharanya Das',
     empID: 'EMP010',
     email: 'sharanya.das@website.com',
     image:imagepersonnel4,
@@ -139,7 +139,7 @@ const TableIntern = () => {
                     {row.sl_no}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    {row.userName}
+                    {row.name}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
                     {row.empID}
