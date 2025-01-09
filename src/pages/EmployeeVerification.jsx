@@ -6,7 +6,6 @@ import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import Brochure from "../components/Brochure";
 import '../CSS/employverification.css'
-import image from '../images/employ.png'
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({
@@ -158,7 +157,7 @@ function EmployeeVerification() {
 
     return (
         <div className="employee_reg_page">
-            <section className="headerbannerMain">
+            <section className="bgFour">
        <div className={`headerbuttons flex sm:justify-end  items-center space-x-0 sm:space-x-5 relative px-[15px] sm:px-[22.5px] lg:px-[30px] justify-end `}>
           
           {<Brochure />}
@@ -213,9 +212,6 @@ function EmployeeVerification() {
           </div>
         </div>
         </div>
-  <div className='h-full headerbanner2'>
-      <img src={image} alt="" />
-  </div>
 </section>
 <div className="p-[20px] sm:p-[30px] md:p-[40px] lg:p-[50px] xl:p-[65px]">
             {/* Verification Form Section */}
