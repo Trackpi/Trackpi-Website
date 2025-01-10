@@ -111,14 +111,14 @@ function AddInterns() {
       Authorization: `Token ${sessionStorage.getItem("token")}`,
     };
  
-    const handleResponse = (response) => {
-      if (response.status === 200) {
-        toast.success(id ? "Intern updated successfully!" : "Intern added successfully!");
-        navigate(`/admin/intern-management-detail/${id}`);  // Redirect to udated page using id
-      } else {
-        toast.error("Something went wrong!");
-      }
-    };
+    // const handleResponse = (response) => {
+    //   if (response.status === 200) {
+    //     toast.success(id ? "Intern updated successfully!" : "Intern added successfully!");
+    //     navigate(`/admin/intern-management-detail/${id}`);  // Redirect to udated page using id
+    //   } else {
+    //     toast.error("Something went wrong!");
+    //   }
+    // };
 
    
   //   try {
