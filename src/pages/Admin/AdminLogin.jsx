@@ -1,38 +1,47 @@
 import React, { useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import logo from '../../images/trackpi_logo_one.png';
-import { adminLogin } from '../../Api Services/adminManagement';
 import { useNavigate } from 'react-router-dom';
+import baseURL from '../../Api Services/baseURL';
+import { jwtDecode } from 'jwt-decode';
 
 function AdminLogin() {
   const [data, setData] = useState({ username: '', password: '' });
   const navigate = useNavigate();
 
-  const login = e => {
-    e.preventDefault(); // Prevent the default form submission behavior
+  const onLogin = async () => {
+    if (!data.username || !data.password) {
+      alert('Please fill in both fields.');
+      return;
+    }
+    try {
+      const response = await baseURL.post('/adminlogin', data);
+      console.log(response, 'responseLogin');
 
-    adminLogin(data)
-      .then(res => {
-        console.log(res.data, 'response');
+      // Extract the token from the response
+      const token = response.data.Token;
+      console.log(token, 'token');
 
-        // Assuming the token is in res.data
-        const Token = res.data.token;
-        const AdminId = res.data.Id;
+      // Decode the token to get the user ID
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken, 'decodedToken');
+      const adminId = decodedToken._id; // Adjust based on the token structure
 
-        // Log token and adminId to ensure they are correct
-        console.log('Token:', Token);
-        console.log('AdminId:', AdminId);
+      // Save token and adminId to localStorage
+      localStorage.setItem('adminToken', token);
+      localStorage.setItem('adminId', adminId);
 
-        // Save token and adminId to localStorage
-        localStorage.setItem('adminToken', Token);
-        localStorage.setItem('adminId', AdminId);
-
-        // Navigate to the admin dashboard
-        navigate('/admin/admin-management');
-      })
-      .catch(err => {
-        console.error(err);
+      console.log('Token and Admin ID saved to localStorage:', {
+        token,
+        adminId,
       });
+
+      // Navigate to the admin dashboard
+      navigate('/admin/admin-management');
+    } catch (e) {
+      console.error(e);
+      alert('Login failed. Please check your credentials.');
+    }
   };
 
   return (
@@ -48,9 +57,12 @@ function AdminLogin() {
           <h3 className="font-bold text-center mt-5 mb-4">Login</h3>
         </Col>
         <Col sm={12} className="d-flex justify-content-center">
-          <form onSubmit={login}>
-            {' '}
-            {/* Wrapping inputs in a form */}
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              onLogin();
+            }}
+          >
             <Row>
               <Col sm={12} className="mb-3">
                 <label htmlFor="username" className="d-block font-semibold">
@@ -93,8 +105,7 @@ function AdminLogin() {
                 </Button>
               </Col>
             </Row>
-          </form>{' '}
-          {/* End of the form */}
+          </form>
         </Col>
       </Row>
     </div>

@@ -24,13 +24,12 @@ const FormNewProject = () => {
     <>
       <div className=" bg-white md:px-12 lg:px-0 py-3 ">
         <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
-          <div className="mb-4  flex justify-center  items-center">
+          <div className="mb-4">
             <Form.Control
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -54,18 +53,17 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '53.4px',
               }}
-              // onFocus={e => {
-              //   e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
-              //   e.target.style.boxShadow =
-              //     '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
-              // }}
-              // onBlur={e => {
-              //   e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
-              //   e.target.style.boxShadow = 'none';
-              // }}
+              onFocus={e => {
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow =
+                  '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
+              }}
+              onBlur={e => {
+                e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                e.target.style.boxShadow = 'none';
+              }}
               type="tel"
               id="contactnumber"
               placeholder="Contact Number"
@@ -80,8 +78,7 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -107,9 +104,9 @@ const FormNewProject = () => {
                   type="radio"
                   name="options"
                   value="Student"
-                  className="form-radio  h-5 w-5 "
+                  className="form-radio text-[#0A0A0A] h-5 w-5 "
                 />
-                <span className="text-sm ">Student</span>
+                <span className="text-sm text-[#0A0A0A]">Student</span>
               </label>
               <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
                 <input
@@ -118,7 +115,7 @@ const FormNewProject = () => {
                   value="Fresher"
                   className="form-radio  h-5 w-5"
                 />
-                <span className="text-sm ">Fresher</span>
+                <span className="text-sm text-[#0A0A0A]">Fresher</span>
               </label>
               <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
                 <input
@@ -127,7 +124,7 @@ const FormNewProject = () => {
                   value="Working"
                   className="form-radio h-5 w-5"
                 />
-                <span className="text-sm ">Working</span>
+                <span className="text-sm text-[#0A0A0A] ">Working</span>
               </label>
             </div>
           </div>
@@ -139,9 +136,8 @@ const FormNewProject = () => {
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
-                color: 'rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                color: 'rgba(0, 0, 0, 0.985)',
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -172,9 +168,8 @@ const FormNewProject = () => {
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
-                color: 'rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                color: 'rgba(0, 0, 0, 0.985)',
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -203,8 +198,7 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -227,8 +221,7 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -251,8 +244,7 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -275,8 +267,7 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -299,8 +290,7 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '53.4px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -323,8 +313,7 @@ const FormNewProject = () => {
               style={{
                 borderRadius: '11.55px',
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
-                height:'53.4px',
-
+                height: '150px',
               }}
               onFocus={e => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
@@ -338,9 +327,11 @@ const FormNewProject = () => {
               as="textarea"
               id="summarize"
               placeholder="Summarize your project Ideas"
-              className="  border-red text-black placeholder-black p-3 h-48 place"
+              className="  border-red text-black placeholder-black p-3 place"
             />
           </div>
+
+          
 
           <div className="flex flex-col items-center mediaUploadDiv">
             <input

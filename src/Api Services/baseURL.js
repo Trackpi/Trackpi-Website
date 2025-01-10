@@ -1,6 +1,10 @@
-const baseUrl=`http://localhost:3001/`
+import axios from 'axios';
 
-
-
-
-export default baseUrl
+const instance = axios.create({
+  baseURL: 'http://localhost:3001/',
+  timeout: 3000,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+});
+export default instance;

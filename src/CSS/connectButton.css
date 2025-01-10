@@ -70,6 +70,82 @@
 }
 
 
+
+/* Chatbox Styles */
+.chatbox {
+  position: fixed;
+  bottom: 30px;
+  right: 95px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  padding: 16px;
+  z-index: 1000;
+}
+
+
+
+.chatbox::before {
+  content: '';
+  position: absolute;
+  bottom: 5px; /* Adjust the position of the tail */
+  left: 96%; /* Adjust this to move the tail horizontally */
+  width: 20px;
+  height: 20px;
+  background-color: white; /* Same as the chatbox background */
+  transform: rotate(45deg); /* Rotate to make it look like a triangle */
+  z-index: -1; /* Place the tail behind the chatbox */
+}
+
+.chatbox h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.chatbox p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Wrapper for buttons */
+.wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+/* Icon Button */
+.button {
+  width: 60px;
+  height: 60px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+/* Icon Image */
+.icons img {
+  width: 30px;
+  height: 30px;
+}
+
+
 @media screen and (max-width: 1280px) {
     .wrapper .button .icons  {
         height: 27px;

@@ -231,7 +231,26 @@ function Home() {
         title="The Best Business Consulting Firm in Kerala"
         titleTwo="Your Strategic Growth Partner"
         titleThree="People's Interest, Our Interest"
-        description="Trackpi your trusted business consulting firm helps you turn insights into actions. Our team will design strategies and assists you with decision making and other challenges you may face resulting in streamlining your processes and increasing your chances of success with us."
+        description={
+          <>
+            Trackpi your{' '}
+            <a
+              href="/about"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: 'inherit',
+                textDecorationColor: ' #FF9D00',
+              }}
+            >
+              trusted business consulting firm
+            </a>{' '}
+            helps you turn insights into actions. Our team will design
+            strategies and assists you with decision making and other challenges
+            you may face resulting in streamlining your processes and increasing
+            your chances of success with us.
+          </>
+        }
         brochure
         learn
         classname="bgOne"
@@ -409,8 +428,32 @@ function Home() {
               trusted consultants in the business. At Trackpi, we are aware
               about these challenges since we are one of the most preferred
               business consultant in Kerala and handle multiple clients. We have
-              expert solutions that include detailed strategy planning. Looking
-              to evolve your business? Why wait, Contact us today.
+              &nbsp;
+              <a
+                href="/our-services"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'inherit',
+                  textDecorationColor: ' #FF9D00',
+                }}
+              >
+                expert solutions{' '}
+              </a>{' '}
+              that include detailed strategy planning. Looking to evolve your
+              business? Why wait,{' '}
+              <a
+                href="/our-services"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'inherit',
+                  textDecorationColor: ' #FF9D00',
+                }}
+              >
+                Contact us{' '}
+              </a>{' '}
+              today.
             </motion.p>
           </div>
 

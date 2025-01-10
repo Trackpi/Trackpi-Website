@@ -2,12 +2,12 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import {
-  addAdmin,
-  deleteAdmin,
-  editAdminData,
-  getAdmins,
-} from '../../Api Services/adminManagement';
+// import {
+//   addAdmin,
+//   deleteAdmin,
+//   editAdminData,
+//   getAdmins,
+// } from '../../Api Services/adminManagement';
 // import AdminNavbar from '../components/AdminNavbar';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiFileCopyLine } from 'react-icons/ri';
