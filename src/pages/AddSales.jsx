@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "../CSS/addsales.css";
-import { addSalesEmployee } from "../Api Services/salesManagemntApi";
+// import { addSalesEmployee } from "../Api Services/salesManagemntApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";

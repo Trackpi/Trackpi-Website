@@ -5,7 +5,7 @@ import React, { useState, useRef,useEffect } from "react";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
 import { useNavigate, useParams,useLocation } from "react-router-dom";
-import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
+// import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
 
 
 function AddEmployee ()  {
