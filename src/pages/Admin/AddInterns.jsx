@@ -110,41 +110,35 @@ function AddInterns() {
       "content-Type": "multipart/form-data",
       Authorization: `Token ${sessionStorage.getItem("token")}`,
     };
- 
-    // const handleResponse = (response) => {
-    //   if (response.status === 200) {
-    //     toast.success(id ? "Intern updated successfully!" : "Intern added successfully!");
-    //     navigate(`/admin/intern-management-detail/${id}`);  // Redirect to udated page using id
-    //   } else {
-    //     toast.error("Something went wrong!");
-    //   }
-    // };
+     try {
+         if (id) {
+           // Update logic
+           // Example: const res = await updateSalesEmployee(fd, header);
+           console.log("Updating employee with ID:", id);
+           toast.success("Intern Employee updated successfully!");
+         } else {
+           // Add logic
+           // Example: const res = await addSalesEmployee(fd, header);
+           console.log("Adding new intern Employee");
+           toast.success("intern Employee added successfully!");
+         }
+         navigate(`/admin/intern-management-detail/${id || "new"}`);
+       } catch (error) {
+         console.error(id ? "Error updating employee" : "Error adding employee:", error);
+         toast.error("Something went wrong! Please try again.");
+       }
 
-   
-  //   try {
-  //     if (id) {
-  //         // Edit intern
-  //         const response = await updateInternEmployee(id, formDataObj, header);
-  //         handleResponse(response);
-  //     } else {
-  //         // Add new intern
-  //         const response = await addInternEmployee(formDataObj, header);
-  //         handleResponse(response);
-  //     }
-  // } catch (error) {
-  //     console.error("Error during API call:", error);
-  //     toast.error("Failed to update intern");
-  // }
+  
   };
   const handleCancel = () => {
     navigate(-1); // Navigate back to the previous page
   }
   return (
-    <div className="container mx-auto my-5 p-5 bg-white shadow rounded-md">
+    <div className="container mx-auto mt-0  my-5 px-5 pb-5 bg-white shadow rounded-md">
       <form className="row g-4" onSubmit={handleSubmit}>
         <div className="d-flex align-items-center  mb-4 ">
-          <div className="me-4  ">
-            <h2 className="mb-4 text-[22px]">{id ? "Edit Intern" : "Add Intern"}</h2>
+          <div className="me-4 pt-10 ">
+            <h2 className="mb-4 text-[22px]">{id ? "Edit Intern Details" : "Add Intern Details"}</h2>
             <div
               className="d-flex justify-content-center align-items-center  border border-secondary rounded-2xl"
               style={{

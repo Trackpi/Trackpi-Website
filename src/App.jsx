@@ -16,7 +16,7 @@ import OurServices from "./pages/OurServices";
 import OurTeam from "./pages/User/OurTeam";
 import EmployeeVerification from "./pages/EmployeeVerification";
 import Connect from "./pages/User/Connect";
-import Personel from "./pages/User/personel";
+import Personel from "./pages/User/Personel";
 import NewProject from "./pages/User/NewProject";
 import EmployeeSales from "./pages/User/EmployeeSales";
 import EmployeeInternship from "./pages/User/EmployeeInternship";
@@ -109,12 +109,15 @@ function App() {
                                     <Route path="/admin/project-management" element={<ProjectManagement />} />
                                     <Route path="/admin/project-details/:projectId" element={<ProjectManagementDetail />} />
                                     <Route path="/admin/employee-management" element={<EmployeeManagement />} />
-                                    <Route path="/admin/employeeManagement-addEmployee/:id" element={<AddEmployee />} />
+                                    <Route path="/admin/employeeManagement-addEmployee/" element={<AddEmployee />} />  {/* For Add employee */}
+                                    <Route path="/admin/employeeManagement-addEmployee/:id" element={<AddEmployee />} />  {/* For update employee */}
                                     <Route path="/admin/employeeManagement-detail" element={<EmployeeManagementDetail />} />
                                     <Route path="/admin/sales-management" element={<SalesManagement />} />
-                                    <Route path="/admin/salesManagement-add/:id" element={<AddSales />} />
+                                    <Route path="/admin/salesManagement-add/" element={<AddSales />} /> {/* For Add Sales */}
+                                    <Route path="/admin/salesManagement-add/:id" element={<AddSales />} /> {/* For update Sales */}
                                     <Route path="/admin/salesManagement-detail" element={<SalesManagementDetail />} />
-                                   <Route path="/admin/intern-management-add/:id" element={<AddInterns />} />
+                                   <Route path="/admin/intern-management-add/" element={<AddInterns />} />  {/* For Add Intern  */}
+                                   <Route path="/admin/intern-management-add/:id" element={<AddInterns />} /> {/* For update Intern */}
                                    <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
                                     <Route path="/admin/footer-management" element={<FooterManagement />} />
 

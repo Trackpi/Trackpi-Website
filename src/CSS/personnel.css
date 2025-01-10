@@ -47,26 +47,27 @@
 @media (max-width: 640px) {
     .modal-content {
         width: 50%; /* Reduce modal width */
-        max-width: 350px;
-        height: 437px; /* Total modal height */
+        max-width: 300px;
+        height: 400px; /* Total modal height */
         margin: auto;
         padding-top: 3px;
         
       }
     
     .personnelfirst{
-        height: 160px;
+        height: 130px;
         padding: 10px;
        
     }
     .personnelimg {
       top: calc(230px - 140px); /* Adjust top positioning */
-      height: 140px; /* Adjust image height */
-      width: 200px; /* Adjust image width */
+      height: 100px; /* Adjust image height */
+      width: 150px; /* Adjust image width */
     }
   
     .personnelfirst h2 {
-      font-size: 18px; /* Adjust title font size */
+      font-size: 18px;
+      font-weight: 300px; /* Adjust title font size */
     }
   
     .personnelfirst p {
@@ -80,7 +81,7 @@
     }
   
     .modal-header {
-      height: 160px; /* Adjust modal header height */
+      height: 130px; /* Adjust modal header height */
       padding: 10px;
      
     }
@@ -95,6 +96,7 @@
   
     .modal-body p {
       font-size: 12px; /* Smaller font for self-introduction text */
+      line-height: 14.4px;
     }
   
     .modal-body .flex {
@@ -104,6 +106,7 @@
     .modal-body .flex svg {
       width: 25px; /* Adjust icon size */
       height: 25px;
+     padding-bottom: 5px;
     }
   }
   

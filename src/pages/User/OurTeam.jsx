@@ -41,7 +41,7 @@ function OurTeam() {
               animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              We’re The Ready
+              We are Trackpi
             </motion.h1>
             <div className='flex justify-center'>
             <motion.img
@@ -59,13 +59,12 @@ function OurTeam() {
               animate={inViewFirstSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              We’re here to change how the world works—from business as usual to
-              brave new work. It takes an unusual person to disrupt decades of
-              tradition and guide hundreds or thousands of people through an
-              experience that demands their bravery, vulnerability, and
-              curiosity. It takes conviction to join a decentralized,
-              self-managing, public benefit corporation where reputation matters
-              more than position.
+              Trackpi is a leading consulting firm in Kerala that assists clients in fulfilling their objectives.
+               Based in Kochi, our team is highly experienced in developing strategies that promote growth and development.
+                With the help of our invaluable commercial development consulting services, 
+                we help businesses thrive in a competitive environment.
+                 Among business consultants in Kerala, 
+                 we confidently introduce ourselves as the best-qualified firm to excel in this field.
             </motion.p>
           </div>
           <div className="md:w-1/2 flex md:justify-end hidden md:block">
@@ -141,14 +140,13 @@ function OurTeam() {
               animate={inViewSecondSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              The people who make up The Ready are specialists in the ways of
-              organizational culture and transformation. Yet within that world
-              we are generalists drawing freely from the principles and
-              practices of dozens of theories and hundreds of iconoclastic
-              firms. We are coaches, facilitators, academics, psychologists,
-              technologists, and corporate veterans who have found each other in
-              our quest to make work better. Our backgrounds are varied but our
-              ambition is united.
+             Everyone on the Trackpi team contributes their dedication and expertise to ensure the success of the brand.
+              Their extensive experience positions them to assist in growing your business effectively.
+               We offer a wide range of skill sets and ideas tailored to your business needs. 
+               Our teams collaborate to achieve excellent results for your company,
+                helping you reach your goals and expand your operations.
+              With a highly qualified team,
+               we work together to ensure success and make significant strides toward excellence.
             </motion.p>
           </div>
         </motion.div>
@@ -171,7 +169,7 @@ function OurTeam() {
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              Join our team
+              Join Us – The Largest Freelancers Community in Kerala
             </motion.h1>
             <div className='flex justify-center'>
             <motion.img
@@ -188,20 +186,16 @@ function OurTeam() {
             />
             </div>
             <motion.p
-              className="firstp text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  mt-8 md:mb-3 text-justify"
+              className="firstp text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  mt-8 md:mb-2 text-justify"
               initial={{ opacity: 0, x: -50 }}
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              We are always on the lookout for our next stunning colleague. If
-              you either have experience working closely with organizations to
-              help them think and act differently or are hoping to apply your
-              unique skillset toward changing how the world works and
-              participating in a self-managing environment,{' '}
-              <span className="underline">
-                please learn about our hiring process and consider applying with
-                us!
-              </span>
+             Trackpi is excited to offer you an opportunity to join us,
+              even without prior experience.
+               If you're looking to earn additional income, 
+               look no further-Trackpi provides the perfect platform to get started.
+                All you need is passion and skills to embark on your journey.
             </motion.p>
             <motion.p
               className="secondp text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px] xl:leading-7 2xl:leading-10  md:mt-8 mb-3 text-justify"
@@ -209,10 +203,12 @@ function OurTeam() {
               animate={inViewThirdSection ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              The Trackpi's hiring team reviews all applications anonymously and
-              will be in touch if there is a fit. If you need to get in touch
-              with them, please email{' '}
-              <span className="underline">hr@trackpi.in.</span>
+             
+            Trackpi welcomes freelancers at various stages of life-students, 
+            working professionals, 
+            and even senior citizens seeking self-enhancement and accomplishment.
+             Work from home and potentially earn more while being part of a thriving freelance community.
+            Join us today to take advantage of opportunities that foster your growth and development while contributing to a diverse and dynamic community.
               <br />
               <div className='flex justify-center md:justify-start'>
               <Button
