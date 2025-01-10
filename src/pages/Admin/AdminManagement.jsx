@@ -72,50 +72,50 @@ function AdminManagement() {
 
   const [refresh, setRefresh] = useState(true);
 
-  // const toggleStatus = index => {
-  //   console.log('Toggling row:', index); // This logs the index of the row being toggled
-  //   setRows(prevRows =>
-  //     prevRows.map((row, rowIndex) => {
-  //       if (rowIndex === index) {
-  //         // Log the current status before toggling
-  //         console.log(
-  //           `Current status of admin at index ${index}:`,
-  //           row.isActive ? 'DeActivate' : 'Activate'
-  //         );
+  const toggleStatus = index => {
+    console.log('Toggling row:', index); // This logs the index of the row being toggled
+    setAdmins(prevRows =>
+      prevRows.map((row, rowIndex) => {
+        if (rowIndex === index) {
+          // Log the current status before toggling
+          console.log(
+            `Current status of admin at index ${index}:`,
+            row.isActive ? 'DeActivate' : 'Activate'
+          );
 
-  //         // Toggle the status
-  //         return { ...row, isActive: !row.isActive };
-  //       }
-  //       return row;
-  //     })
-  //   );
-  // };
-
-  const toggleStatus = async rowIndex => {
-    const updatedAdmins = [...admins];
-    const admin = updatedAdmins[rowIndex];
-    admin.isActive = !admin.isActive;
-
-    setAdmins(updatedAdmins);
-
-    try {
-      // Send the token in the headers
-      await baseURL.patch(
-        `updateStatus/${adminId}`,
-        { isActive: admin.isActive },
-        {
-          headers: {
-            Authorization: `Bearer ${adminToken}`, // Include the token here
-          },
+          // Toggle the status
+          return { ...row, isActive: !row.isActive };
         }
-      );
-      setRefresh(!refresh);
-    } catch (error) {
-      console.error('Error updating admin status:', error);
-      admin.isActive = !admin.isActive; // Revert the status if there's an error
-      setAdmins(updatedAdmins);
-    }
+        return row;
+      })
+    );
   };
+
+  // const toggleStatus = async rowIndex => {
+  //   const updatedAdmins = [...admins];
+  //   const admin = updatedAdmins[rowIndex];
+  //   admin.isActive = !admin.isActive;
+
+  //   setAdmins(updatedAdmins);
+
+  //   try {
+  //     // Send the token in the headers
+  //     await baseURL.patch(
+  //       `updateStatus/${adminId}`,
+  //       { isActive: admin.isActive },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${adminToken}`, // Include the token here
+  //         },
+  //       }
+  //     );
+  //     setRefresh(!refresh);
+  //   } catch (error) {
+  //     console.error('Error updating admin status:', error);
+  //     admin.isActive = !admin.isActive; // Revert the status if there's an error
+  //     setAdmins(updatedAdmins);
+  //   }
+  // };
   const handleAdminAdd = async () => {
     // Basic validation to ensure no empty fields
     if (
