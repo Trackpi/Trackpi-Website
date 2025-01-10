@@ -48,7 +48,7 @@ function App() {
     useEffect(() => {
         if (location.pathname === "/") {
             setLoading(true);
-            const timeout = setTimeout(() => setLoading(false), 2250);
+            const timeout = setTimeout(() => setLoading(false), 1050);
             return () => clearTimeout(timeout);
         } else {
             setLoading(false);
@@ -81,7 +81,7 @@ function App() {
                     {!isAdminRoute && !isNotFoundRoute && location.pathname !== "/admin/admin-login" && <Sidebar />}
                     <div style={isAdminRoute ? { display: "flex" } : {}}>
                         {isAdminRoute && !isNotFoundRoute && <AdminSidebar />}
-                        <div style={isAdminRoute ? { paddingInline: "4px", overflowY: "scroll", height: "100%" } : {}}>
+                        <div style={isAdminRoute ? { width:"100%", overflowY: "scroll", height: "100%" } : {}}>
                             {isAdminRouted && !isNotFoundRoute && <AdminNavbar />}
                             <div style={isAdminRoute ? styles.content : null}>
                                 <Routes>

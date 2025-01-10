@@ -158,8 +158,8 @@ function HeaderBanner({
         </div>
       </section> */}
       <Tooltip id='submit-tooltip'>
-        <div>Have a Business Idea? </div>
-        <div>
+        <div className='text-center'>Have a Business Idea? </div>
+        <div className='text-justify'>
         This feature lets you submit your business ideas, even if you’re unsure how to start. Share your concept, and our team will evaluate its potential to bring it to life. It’s an easy way to turn your innovative ideas into reality with expert guidance!</div>
       </Tooltip>
     </>

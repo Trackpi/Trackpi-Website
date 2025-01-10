@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
-import footerBanner from "../images/footerbanner.jpg";
+import footerBanner from "../images/footerbanner1.jpg";
 import "../CSS/footer.css";
 import { Link } from "react-router-dom";
+import { link } from "framer-motion/client";
 
 function FooterSecondary() {
      const videoRefs = useRef([]); 
@@ -11,21 +12,26 @@ function FooterSecondary() {
                 platform: "YouTube",
                 previewUrl: "https://www.youtube.com/embed/Z2jiF9w-srU",
                 isYouTube: true,
+                link:"https://youtube.com/playlist?list=PLooudDpkO1P_3QSsRvL2ujchiryjLHtB_&si=7C3DQ8aY8gLfK5pa"
             },
             {
                 platform: "YouTube",
                 previewUrl: "https://www.youtube.com/embed/Z2jiF9w-srU",
                 isYouTube: true,
+                link:"https://www.instagram.com/trackpi_official?igsh=YmwyaHpzYXBueWJz"
             },
             {
                 platform: "YouTube",
                 previewUrl: "https://www.youtube.com/embed/Z2jiF9w-srU",
                 isYouTube: true,
+                link:"https://www.facebook.com/profile.php?id=61565947096778"
             },
         ];
     
         const platformURLs = {
-            youtube: "https://www.youtube.com/@trackpi/featured",
+            youtube: "https://youtube.com/playlist?list=PLooudDpkO1P_3QSsRvL2ujchiryjLHtB_&si=7C3DQ8aY8gLfK5pa",
+            youtube: "https://www.instagram.com/trackpi_official?igsh=YmwyaHpzYXBueWJz",
+            youtube: "https://www.facebook.com/profile.php?id=61565947096778",
         };
     
         const handleHover = (index) => {
@@ -108,10 +114,10 @@ function FooterSecondary() {
                                         </div>
         
                                         <a
-                                            href={platformURLs[video.platform.toLowerCase()]}
+                                            href={video.link}
                                             target="_blank"
                                             className="slogen pb-2   rounded-none text-warning border-bottom border-warning "
-                                            style={{ textDecoration: "none", fontSize: "24px" }} // Removed text decoration
+                                            style={{ textDecoration: "none", fontSize: "24px" }} 
                                         >
                                             View More
                                         </a>
