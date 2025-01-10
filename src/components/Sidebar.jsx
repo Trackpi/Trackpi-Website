@@ -82,7 +82,7 @@ function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={() => window.open('', '_blank')}>
+            <NavLink onClick={() => window.open('https://medium.com/@trackpi', '_blank')}>
               <i>
                 <SiMedium style={{ color: 'black', background: 'white', borderRadius: '50px', border: 'none', scale: '1.3' }} />
               </i>

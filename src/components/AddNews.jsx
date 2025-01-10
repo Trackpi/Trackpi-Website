@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import uploadImg from "../images/uploadimg.svg";
 
-function AddNews() {
+function AddNews({newsData}) {
     const [fileName, setFileName] = useState("");
 
     // Handle file selection
@@ -20,7 +20,7 @@ function AddNews() {
 
     return (
         <form className="grid gap-[40px]">
-            <div className="px-[20px] py-[10px] text-[18px] font-bold rounded-[10px] mx-auto newsBtn">News 1</div>
+            <div className="px-[20px] py-[10px] text-[18px] font-bold rounded-[10px] mx-auto newsBtn">News {(newsData.length)+1}</div>
             <div className="flex gap-[50px]">
                 <div className="w-2/5">
                     <div className="grid gap-[10px]">

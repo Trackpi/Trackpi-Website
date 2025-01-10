@@ -22,14 +22,15 @@
     max-height: 100vh;
     max-width: 780px;
     overflow-y: auto;
-    margin: 0 !important;
+    margin: auto !important;
   }
   .custom-modal .modal-content::-webkit-scrollbar {
     display: none;
 }
 .custom-modal {
-    margin-top: auto !important;
     scroll-behavior: smooth;
+    margin: auto !important;
+    height: 100vh;
 }
 
 .popupForm input::-webkit-outer-spin-button,

@@ -57,7 +57,7 @@ const FooterManagement = () => {
 
     return (
         <div className="bg-white w-full">
-            <div className="py-[40px] px-[30px] grid gap-[40px]">
+            <div className="py-[40px] px-[30px] grid gap-[40px] w-full">
                 <div className="text-[24px] font-bold mb-4">Footer Management</div>
                 <div className="bg-white partnerContainer border rounded-lg grid p-[30px] gap-[30px]">
                     <form className="grid gap-[30px] py-[20px]">

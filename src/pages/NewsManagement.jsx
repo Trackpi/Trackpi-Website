@@ -13,6 +13,46 @@ const NewsManagement = () => {
   const queryParams = new URLSearchParams(location.search);
   const initialTab = queryParams.get('tab') || 'add';
 
+  const[newDatas,setNewDatas]=useState("")
+  const mockData = [
+    {
+      id: 1,
+      img: logoImg,
+      title: "Empowering  to Overcome Complexity",
+      description: "Every team now faces unique challenges. We empower organizations to navigate complexities effectively."
+    },
+    {
+      id: 2,
+      img: logoImg,
+      title: "Innovate for Growth",
+      description: "In a rapidly changing world, innovation is key. We help businesses unlock new growth opportunities."
+    },
+    {
+      id: 3,
+      img: logoImg,
+      title: "Achieving Excellence Together",
+      description: "Collaborating together to achieve excellence, one project at a time."
+    },
+    {
+      id: 4,
+      img: logoImg,
+      title: "Future-Ready Solutions",
+      description: "Future-proof your business with solutions that keep you ahead of the curve."
+    },
+    {
+      id: 5,
+      img: logoImg,
+      title: "Sustainability in Action",
+      description: "Driving sustainable change that benefits both business and the environment."
+    },
+    {
+      id: 6,
+      img: logoImg,
+      title: "Transforming Ideas into Reality",
+      description: "Bringing ideas to life with actionable strategies and creative solutions."
+    }
+  ];
+  
   const [activeTab, setActiveTab] = useState(initialTab);
 
   const handleTabChange = (tabName) => {
@@ -28,6 +68,23 @@ const NewsManagement = () => {
     }
   }, [location.search]);
   
+
+  const editNewsFile = (newsData, tabName) => {
+    setActiveTab(tabName);
+    navigate(`?tab=${tabName}`);
+    // Scroll to the section with id "editNewsContent"
+    const element = document.getElementById("editNewsContent");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+   setNewDatas(newsData.news);
+   
+   
+  };
+  
+  
+  
+
     return (
         <div className="bg-white w-full">
             <div className="py-[40px] px-[30px] grid gap-[40px]">
@@ -49,46 +106,52 @@ const NewsManagement = () => {
                     <div className="grid partnerContainer border rounded-[20px] gap-[40px] p-[30px]">
                     <div className="flex justify-center gap-[70px] py-1">
         <button
+          className={`px-[30px] py-[10px] rounded-[10px] font-bold newsBtnActive`}
+          // onClick={() => handleTabChange('add')}
+        >
+                  {activeTab=== "add" ? "Add News" :activeTab==="edit" ? "Edit News": null}
+                  
+        </button>
+        {activeTab=== "add" ? null: <button
           className={`px-[30px] py-[10px] rounded-[10px] font-bold ${
-            activeTab === 'add'
-              ? 'newsBtnActive'
-              : 'newsBtnInactive'
+            activeTab === 'edit'
+              ? 'newsBtnInactive'
+              : 'display-none'
           }`}
           onClick={() => handleTabChange('add')}
         >
           Add News
-        </button>
-        <button
-          className={`px-[30px] py-[10px] rounded-[10px] font-bold ${
-            activeTab === 'edit'
-              ? 'newsBtnActive'
-              : 'newsBtnInactive'
-          }`}
-          onClick={() => handleTabChange('edit')}
-        >
-          Edit News
-        </button>
+        </button>}
       </div>
-      {activeTab === 'add' && <AddNews />}
-      {activeTab === 'edit' && <EditNews />}
+      <div id="editNewsContent">
+        {activeTab=== "add"?<AddNews newsData={mockData}/> :activeTab==="edit"? <EditNews  newsData={newDatas}/>: null}
+      {/* {activeTab === 'add' && }
+      {activeTab === 'edit' && } */}
+      </div>
                     </div>
                 </div> <section className="grid grid-cols-3 justify-between gap-[20px] w-full">
-                    {Array.from({ length: 6 }, (_, index) => (
-                      <div className="grid gap-[10px] mx-auto">
-                        <div className="text-[18px font-bold max-w-[300px]">News {index+1}</div>
-                        <div key={index} className="p-[20px] grid gap-[16px] max-w-[300px] aspect-[28/30] mx-auto  bg-black text-white rounded-[6px] ">
-                            <img src={logoImg} alt="News Logo" className=" mx-auto h-[60px]" />
-                            <div className="text-[20px] text-[#FF9D00] font-bold">We See The Challenge</div>
-                            <div className="text-[16px]">
-                                We’re all wrestling with complexity. Every company, work function, and team now faces a tall
-                                order.
+
+
+                    {mockData.map((news,index)=> (
+                      <div className="grid gap-[10px] mx-auto"  key={index}> 
+                        <div className="text-[18px] font-bold max-w-[300px]">News {news.id}</div>
+                        <div className="relative p-[20px] grid gap-[16px] w-[300px] aspect-[28/30] mx-auto  bg-black text-white rounded-[6px] ">
+                        <div className="absolute w-[300px] aspect-[28/30] flex items-center justify-center rounded-[6px] bg-[#FF9D00]  opacity-[0] hover:opacity-[.9] transition-opacity duration-300 cursor-pointer" onClick={() => editNewsFile({ news }, "edit")}> 
+                        <div className="flex flex-col items-center">
+                        <img className="h-[50px]" src={editImg} alt="" />
+                        <div className="font-bold text-[20px]">Edit</div>
+                        </div>
+                        </div>
+                            <img src={news.img} alt="News Logo" className=" mx-auto h-[60px]" />
+                            <div className="text-[20px] text-[#FF9D00] font-bold">{news.title}</div>
+                            <div className="text-[16px] text-justify">
+                                {news.description}
                             </div>
                         </div>
                         </div>
                     ))}
                 </section>
             </div>
-                {/* news */}
                
         </div>
     );

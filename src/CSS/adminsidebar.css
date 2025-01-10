@@ -17,7 +17,7 @@
 }
 
 .tab-item {
-    transition: background-color 0.3s, font-weight 0.3s;
+    transition: background-color 0.3s, font-weight 0.1s;
     font-weight: 500;
 }
 
@@ -38,7 +38,7 @@
     gap: 40px;
 }
 .adminHeader{
-    width: calc(100vw - 300px);
+    width: calc(100vw - 304px);
     height: 80px;
 }
 .adminInput input{
