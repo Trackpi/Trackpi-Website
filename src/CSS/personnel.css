@@ -26,6 +26,7 @@
   
   /* Responsive Design Adjustments */
   @media (min-width: 768px) {
+   
     .personnelimg {
       top: calc(230px - 110px); /* More space for larger screens */
     }
@@ -45,14 +46,17 @@
   /* For mobile screens */
 @media (max-width: 640px) {
     .modal-content {
-        width: 60%; /* Reduce modal width */
+        width: 50%; /* Reduce modal width */
         max-width: 350px;
         height: 437px; /* Total modal height */
         margin: auto;
+        padding-top: 3px;
+        
       }
     
     .personnelfirst{
         height: 160px;
+        padding: 10px;
        
     }
     .personnelimg {
@@ -78,7 +82,7 @@
     .modal-header {
       height: 160px; /* Adjust modal header height */
       padding: 10px;
-      
+     
     }
   
     .modal-body {

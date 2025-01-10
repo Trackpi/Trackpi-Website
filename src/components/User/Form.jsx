@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-import "../CSS/connect.css";
+import "../../CSS/connect.css";
 
 function Details() {
   return (
@@ -144,7 +144,7 @@ function Details() {
                 border: '0.89px solid  #0A0A0ACC',
                 width: '100%',
                 maxWidth: '712px',
-                color: 'rgba(0, 0, 0, 0.762)',
+                color: 'rgba(0, 0, 0, 0.985)',
     
             }}
             // style={{

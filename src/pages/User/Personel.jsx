@@ -9,7 +9,7 @@ import { TbBrandLinkedin } from "react-icons/tb";
 // import { IoMdClose } from "react-icons/io";
 import { Modal } from "react-bootstrap";
 
-import "../CSS/personnel.css";
+import "../../CSS/personnel.css";
 // import { useLocation, useNavigate } from "react-router-dom";
 
 function Personel({ show, onHide, member }) {

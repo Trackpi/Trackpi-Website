@@ -4,9 +4,9 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-import TeamListMemberCrd from '../components/teamListMemberCrd';
-import "../CSS/ourTeam.css";
-import Clients from '../components/carousel';
+import TeamListMemberCrd from '../../components/User/teamListMemberCrd';
+import "../../CSS/ourTeam.css";
+import Clients from '../../components/User/carousel';
 function OurTeam() {
   const options = { threshold: 0.1 };
 

@@ -1,12 +1,12 @@
 
-import EmployeeSales from "../pages/EmployeeSales";
-import Personel from "../pages/personel";
+import EmployeeSales from "../../pages/User/EmployeeSales";
+import Personel from "../../pages/User/Personel";
 import MemberCard from "./memberCard";
 import { useState,useRef} from "react";
 import { FaAngleRight } from 'react-icons/fa6';
 import { FaAngleLeft } from 'react-icons/fa6';
-import "../CSS/teamListMember.css";
-import EmployeeManagementDetail from "../pages/EmployeeManagementDetail";
+import "../../CSS/teamListMember.css";
+import EmployeeManagementDetail from "../../pages/Admin/EmployeeManagementDetail";
 
 
 const memberList = [
