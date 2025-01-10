@@ -8,7 +8,7 @@
   }
   
   .image-animation {
-    animation: loadFromLeft 1.5s ease-in-out forwards; /* Apply animation */
+    animation: loadFromLeft 1s ease-in-out forwards; /* Apply animation */
     display: block;
     height: 250px ; 
   }
@@ -21,16 +21,6 @@
     background-image: linear-gradient( to right, #FFC100, #FF9D00);
     position: relative;
     z-index: 2 ;
-  }
-  .loading-text {
-    display: inline-block;
-    font-size: .8rem;
-    font-weight: 600;
-    color: #000000 !important;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 50;
-    animation: loadingText 1.5s ease-in-out forwards;
   }
   @media (max-width: 1024px) {
     .image-animation {

@@ -52,21 +52,18 @@ const AdminSidebar = () => {
             ))}
           </div>
           <div className="flex flex-col justify-between items-center font-semibold">
-            <div
+            {/* <div
               className="flex gap-[5px] px-[30px] py-[13px] cursor-pointer"
-              // onClick={() => alert('Settings page coming soon!')}
             >
               <img src={settingsImg} alt="Settings" /> Settings
             </div>
             <div
               className="flex gap-[5px] px-[30px] py-[13px] cursor-pointer"
-              // onClick={() => window.open('https://help.website.com', '_blank')}
             >
               <img src={helpImg} alt="Help" /> Help
-            </div>
+            </div> */}
             <div
               className="flex gap-[5px] px-[30px] py-[13px] cursor-pointer"
-              // onClick={() => alert('Logging out...')}
             >
               <img src={logoutImg} alt="Logout" /> Logout
             </div>

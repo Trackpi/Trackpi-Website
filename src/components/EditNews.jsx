@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import uploadImg from "../images/uploadimg.svg";
 import deleteImg from "../images/deletenews.svg";
 
-function EditNews() {
+function EditNews({newsData}) {
 
         const [fileName, setFileName] = useState("");
 
@@ -23,9 +23,9 @@ function EditNews() {
     <div className='flex justify-between'>
         <div className='w-[125px]'></div>
         <div className="px-[20px] py-[10px] text-[18px] font-bold rounded-[10px]  newsBtn">
-                           News 1
+                           News {newsData.id}
                          </div>
-                         <div className="flex items-center justify-center px-[25px] gap-[10px] py-[8px] rounded-[10px] w-[125px] border-[2px] border-[#FF9D00] ">
+                         <div className="flex items-center justify-center cursor-pointer px-[25px] gap-[10px] py-[8px] rounded-[10px] w-[125px] border-[2px] border-[#FF9D00] ">
                             <img className='h-[22px] w-[22px]' src={deleteImg} alt="" />
                             <div className='text-[18px] font-semibold text-[#FF9D00]'>Delete</div>
                          </div>
@@ -37,7 +37,7 @@ function EditNews() {
                                    <div className="grid gap-[10px]">
                                        <label className="block text-[14px] font-semibold">News Headline</label>
                                        <input
-                                           type="text"
+                                           type="text" value={newsData.title}
                                            placeholder="Headline"
                                            className="border rounded-[10px] px-[20px] py-[10px] text-[14px] partnerInput"
                                        />

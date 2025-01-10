@@ -42,7 +42,7 @@
   height:30px;
   width: 30px;
 }
-@media (max-width: 640px) {
+@media (max-width: 1280) {
   .footer_smedia img{
     height:24px;
     width: 24px;
@@ -76,33 +76,7 @@
     margin: auto;
   }
 }
-@media (min-width: 1280px) and (max-width: 1310px) {
-  .join_us_div{
-    width: 100% !important;
-  }
-  .join_us_div .joinInput{
-    margin-top: 30px;
-    display: flex;
-  }
-  .footerInput1 {
-      display: none;
-  }
-  .footerInput2 {
-      display: block;
-  }
-  .footerForm button{
-    border-radius: 10px  ;
-   padding: 7.5px 15px !important;
-   font-size: 14px;
-   margin-top: 10px;
-   margin: auto;
-  }
-  .footerForm input{
-    border-radius: 10px;
-    height: 30px;
-    font-size: 14px;
-  }
-}
+
 @media (max-width: 480px) {
 
 .follow_us_footer, .follow_us_footer h5 {
