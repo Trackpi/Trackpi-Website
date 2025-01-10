@@ -28,7 +28,7 @@ import EmployeeManagement from "./pages/Admin/EmployeeManagement";
 import AdminManagement from "./pages/Admin/AdminManagement";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import InternManagementDetail from "./pages/Admin/InternManagementDetail";
-import SalesManagement from "./pages/Admin/SalesManagement";
+import SalesManagement from "./pages/SalesManagement";
 import SalesManagementDetail from "./pages/Admin/SalesManagementDetail";
 import AddSales from "./pages/Admin/AddSales";
 import AddEmployee from "./pages/Admin/AddEmployee";
