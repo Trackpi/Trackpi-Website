@@ -14,6 +14,7 @@ import clientLogo2 from '../../images/trademax.png';
 import HeaderBanner from '../../components/HeaderBanner';
 import '../../CSS/User/Home.css';
 import img1 from '../../images/team.png';
+import PopUp from '../../components/PopUp';
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });
@@ -227,6 +228,7 @@ function Home() {
 
   return (
     <>
+      <PopUp />
       <HeaderBanner
         title="The Best Business Consulting Firm in Kerala"
         titleTwo="Your Strategic Growth Partner"

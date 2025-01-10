@@ -1,0 +1,16 @@
+@keyframes slideInInside {
+    from {
+      transform: translateX(100%); /* Start from the right edge of the chatbox */
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0); /* Slide into place inside the box */
+      opacity: 1;
+    }
+  }
+
+  
+  .slide-in-inside {
+    animation: slideInInside 1.5s ease-in-out forwards; /* Slow animation */
+  }
+  
