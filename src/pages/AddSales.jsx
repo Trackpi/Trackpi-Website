@@ -1,35 +1,39 @@
-import React, { useState, useRef } from "react";
-import "../CSS/addsales.css";
-// import { addSalesEmployee } from "../Api Services/salesManagemntApi";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useRef,useEffect } from "react";
+import "../../CSS/addsales.css";
+// import { addSalesEmployee,updateSalesEmployee } from "../../Api Services/salesManagemntApi";
+import { useNavigate, useParams,useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
 function AddSales() {
-   const [formData, setFormData] = useState({
-      userName: "",
-      empID: "",
-      email: "",
-      phoneNumber: "",
-      fullAddress: "",
-      gender: "",
-      dob: "",
-      bloodGroup: "",
-      dateOfJoining: "",
-      jobRole: "",
-      employeeStatus: "",
-      jobLevel: "",
-      instagram: "",
-      linkedin: "",
-      twitter: "",
-      feedback: "",
-    });
+const location = useLocation();
+  const { employeeData } = location.state || { employeeData: {} }
+  const [formData, setFormData] = useState({
+    name: employeeData.name || "",
+    empID: employeeData.empID ||  "",
+    email:employeeData.email || "",
+    phoneNumber:employeeData.phoneNumber ||  "",
+    fullAddress:employeeData.fullAddress ||  "",
+    gender:employeeData.gender||  "",
+    dob:employeeData.dob||  "",
+    bloodGroup:employeeData.bloodGroup||  "",
+    dateOfJoining:employeeData.dateOfJoining||  "",
+    jobRole:employeeData.jobRole||  "",
+    employeeStatus: employeeData.employeeStatus|| "",
+    jobLevel:employeeData.jobLevel||  "",
+    instagram:employeeData.instagram ||  "",
+    linkedin:employeeData.linkedin || "",
+    twitter: employeeData.twitter || "",
+    feedback:employeeData.feedback || "",
+  });
 
-  const [image, setImage] = useState(null);
+const [profileImage, setProfileImage] = useState(null);
   
 
   const fileInputRef = useRef(null);
   const [businessCard, setBusinessCard] = useState(null);
 const businessCardInputRef = useRef(null);
+  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+  const navigate = useNavigate();
 
 const handleBusinessCardFileChange = (e) => {
     setBusinessCard(e.target.files[0]);
@@ -44,37 +48,49 @@ const handleBusinessCardFileChange = (e) => {
     setImage(e.target.files[0]);
   };
 
+// Update form data when employeeData changes
+    useEffect(() => {
+      setFormData({
+        name: employeeData.name || "",
+        empID: employeeData.empID ||  "",
+        email:employeeData.email || "",
+        phoneNumber:employeeData.phoneNumber ||  "",
+        fullAddress:employeeData.fullAddress ||  "",
+        gender:employeeData.gender||  "",
+        dob:employeeData.dob||  "",
+        bloodGroup:employeeData.bloodGroup||  "",
+        dateOfJoining:employeeData.dateOfJoining||  "",
+        jobRole:employeeData.jobRole||  "",
+        employeeStatus: employeeData.employeeStatus|| "",
+        jobLevel:employeeData.jobLevel||  "",
+        instagram:employeeData.instagram ||  "",
+        linkedin:employeeData.linkedin || "",
+        twitter: employeeData.twitter || "",
+        feedback:employeeData.feedback || "",
+      });
+     
+    }, [employeeData]);
+    useEffect(() => {
+      // Fetch the image and convert it to a File object
+      if (employeeData.image) {
+        fetch(employeeData.image)
+          .then((res) => res.blob())
+          .then((blob) => {
+            const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+            setProfileImage(file);
+          })
+          .catch((error) => console.error("Failed to fetch image:", error));
+      }
+    }, [employeeData.image]);
 
-
-  const handleClose = () => {
-    setFormData({
-      userName: "",
-      empID: "",
-      email: "",
-      phoneNumber: "",
-      fullAddress: "",
-      gender: "",
-      dob: "",
-      bloodGroup: "",
-      dateOfJoining: "",
-      jobRole: "",
-      employeeStatus: "",
-      jobLevel: "",
-      instagram: "",
-      linkedin: "",
-      twitter: "",
-      feedback: "",
-    });
-    setImage(null);
-    setBusinessCard(null);
-  };
+ 
 
   const handleAddSales = async (e) => {
     e.preventDefault();
 
     if (
         Object.values(formData).some((value) => !value.trim()) ||
-        !image ||
+        !profileImage ||
         !businessCard
     ) {
         toast.warning("Please fill all the fields!");
@@ -85,7 +101,7 @@ const handleBusinessCardFileChange = (e) => {
     for (const [key, value] of Object.entries(formData)) {
         fd.append(key, value.trim());
     }
-    fd.append("image", image);
+    fd.append("image",profileImage);
     fd.append("businessCard", businessCard);
 
     const header = {
@@ -99,20 +115,23 @@ const handleBusinessCardFileChange = (e) => {
 
     
 
-    try {
-        const res = await addSalesEmployee(fd, header);
-        if (res.status === 200 || res.status === 201) {
-            toast.success("Sales Employee Added Successfully");
-            handleClose();
-        } else {
-            toast.error("Failed to Add Sales Employee");
-        }
-    } catch (error) {
-        console.error("Error adding sales employee:", error);
-        toast.error("Something went wrong! Please try again.");
-    }
+  //   try {
+  //     const res = id ? await updateSalesEmployee(fd, header) : await addSalesEmployee(fd, header);
+  //     if (res.status === 200 || res.status === 201) {
+  //         toast.success(id ? "Sales Employee updated successfully!" : "Sales Employee added successfully!");
+  //         navigate(`/admin/intern-management-detail/${id || res.data.empID}`); // Navigate to the detail page of the employee
+  //     } else {
+  //         toast.error(id ? "Failed to update Sales Employee" : "Failed to add Sales Employee");
+  //     }
+  // } catch (error) {
+  //     console.error(id ? "Error updating sales employee" : "Error adding sales employee:", error);
+  //     toast.error("Something went wrong! Please try again.");
+  // }
 };
 
+const handleCancel = () => {
+  navigate(-1); // Navigate back to the previous page
+}
 
   return (
     <div className="container mx-auto my-5 p-5 bg-white shadow rounded-md">
@@ -125,23 +144,18 @@ const handleBusinessCardFileChange = (e) => {
               className="d-flex justify-content-center align-items-center border border-secondary rounded-2xl position-relative"
               style={{ width: "150px", height: "120px" }}
             >
-              {image ? (
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt="Profile Preview"
-                  style={{
-                    width: "150px",
-                    height: "120px",
-                    objectFit: "cover",
-                    borderRadius: "50%",
-                  }}
-                />
-              ) : (
-                <i
-                  className="bi bi-person-circle"
-                  style={{ fontSize: "50px", color: "#ffc107" }}
-                ></i>
-              )}
+                  {profileImage instanceof File && (
+  <img
+    src={URL.createObjectURL(profileImage)}
+    alt="Uploaded"
+    style={{
+      width: "150px",
+      height: "120px",
+      borderRadius: "12%",
+      objectFit: "cover",
+    }}
+  />
+)}
                <div
                 className="position-absolute bottom-2 end-2 bg-warning rounded-circle d-flex justify-content-center align-items-center"
                 style={{ width: "25px", height: "25px" }}
@@ -170,10 +184,10 @@ const handleBusinessCardFileChange = (e) => {
               <label className="form-label font-bold text-[15px]">Name</label>
               <input
                 type="text"
-                name="userName"
+                name="name"
                  placeholder="Name"
                 className="form-control rounded-2xl plac"
-                value={formData.userName}
+                value={formData.name}
                 onChange={handleInputChange}
                 style={{fontSize: '12px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -797,13 +811,13 @@ const handleBusinessCardFileChange = (e) => {
 
         {/* Submit and Cancel Buttons */}
         <div className=" flex justify-center gap-4 mt-4">
-               <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
-                  save
-                  </button>
-                  <button type="button" className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
-                   Cancel
-                  </button>
-          </div>
+                                    <button type="submit"  className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+                                    {id ? "Update" : "Save"}
+                                    </button>
+                                    <button type="button"  onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
+                                      Cancel
+                                    </button>
+                      </div>
       </form>
     </div>
   );
