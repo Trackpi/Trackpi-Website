@@ -680,8 +680,8 @@ function AddInterns() {
                   Platform 1 Link
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="instagram"
+                    name="instagram"
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -702,7 +702,7 @@ function AddInterns() {
                     <option value="">URL LInk</option>
                     <option value="">URL Link</option>
                     <option value="">URL Link</option>
-                    <option value="">URL Link</option>
+                    
                   </select>
                 </div>
           </div>
