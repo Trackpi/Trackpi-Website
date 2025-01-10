@@ -40,7 +40,7 @@ function Connect() {
               {
                 icon: "fa-envelope",
                 title: "E-mail Id",
-                text: "trackpi@gmail.com",
+                text: "operations@trackpi.in",
 
               },
             ].map((card, index) => (

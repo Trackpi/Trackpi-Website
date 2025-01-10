@@ -25,8 +25,8 @@ function SalesManagementDetail() {
     return <div>No employee data found.</div>;
   }
   return (
-    <div>
-      <div className="bg-white  w-full py-4 px-6 mx-auto flex justify-end items-end gap-3">
+    <div >
+      <div className="bg-white   w-full py-4 px-6 mx-auto flex justify-end items-end gap-3">
         <button onClick={handleEdit} className="px-4 py-2 text-white bg-[#FF9D00] rounded-lg flex justify-center items-center">
           <FaRegEdit /> &nbsp; Edit
         </button>

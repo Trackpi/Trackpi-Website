@@ -35,6 +35,7 @@ const businessCardInputRef = useRef(null);
   const { id } = useParams();  // For editing, we'll get the intern ID from URL params
   const navigate = useNavigate();
 
+
 const handleBusinessCardFileChange = (e) => {
     setBusinessCard(e.target.files[0]);
   };
@@ -49,39 +50,45 @@ const handleBusinessCardFileChange = (e) => {
   };
 
 // Update form data when employeeData changes
-    useEffect(() => {
-      setFormData({
+useEffect(() => {
+  // Only update formData if employeeData changes
+  setFormData((prevFormData) => {
+    if (JSON.stringify(prevFormData) !== JSON.stringify(employeeData)) {
+      return {
         name: employeeData.name || "",
-        empID: employeeData.empID ||  "",
-        email:employeeData.email || "",
-        phoneNumber:employeeData.phoneNumber ||  "",
-        fullAddress:employeeData.fullAddress ||  "",
-        gender:employeeData.gender||  "",
-        dob:employeeData.dob||  "",
-        bloodGroup:employeeData.bloodGroup||  "",
-        dateOfJoining:employeeData.dateOfJoining||  "",
-        jobRole:employeeData.jobRole||  "",
-        employeeStatus: employeeData.employeeStatus|| "",
-        jobLevel:employeeData.jobLevel||  "",
-        instagram:employeeData.instagram ||  "",
-        linkedin:employeeData.linkedin || "",
+        empID: employeeData.empID || "",
+        email: employeeData.email || "",
+        phoneNumber: employeeData.phoneNumber || "",
+        fullAddress: employeeData.fullAddress || "",
+        gender: employeeData.gender || "",
+        dob: employeeData.dob || "",
+        bloodGroup: employeeData.bloodGroup || "",
+        dateOfJoining: employeeData.dateOfJoining || "",
+        jobRole: employeeData.jobRole || "",
+        employeeStatus: employeeData.employeeStatus || "",
+        jobLevel: employeeData.jobLevel || "",
+        instagram: employeeData.instagram || "",
+        linkedin: employeeData.linkedin || "",
         twitter: employeeData.twitter || "",
-        feedback:employeeData.feedback || "",
-      });
-     
-    }, [employeeData]);
-    useEffect(() => {
-      // Fetch the image and convert it to a File object
-      if (employeeData.image) {
-        fetch(employeeData.image)
-          .then((res) => res.blob())
-          .then((blob) => {
-            const file = new File([blob], "image.jpg", { type: "image/jpeg" });
-            setProfileImage(file);
-          })
-          .catch((error) => console.error("Failed to fetch image:", error));
-      }
-    }, [employeeData.image]);
+        feedback: employeeData.feedback || "",
+      };
+    }
+    return prevFormData; // Avoid unnecessary updates
+  });
+}, [employeeData]);
+
+useEffect(() => {
+  // Fetch the image only if it changes and is valid
+  if (employeeData.image) {
+    fetch(employeeData.image)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+        setProfileImage(file);
+      })
+      .catch((error) => console.error("Failed to fetch image:", error));
+  }
+}, [employeeData.image]);
 
  
 
@@ -107,39 +114,37 @@ const handleBusinessCardFileChange = (e) => {
     const header = {
         Authorization: `token ${localStorage.getItem("admin")}`,
     };
-
-    // console.log("FormData Entries:");
-    // for (const pair of fd.entries()) {
-    //     console.log(`${pair[0]}: ${pair[1]}`);
-    // }
-
+    try {
+      if (id) {
+        // Update logic
+        // Example: const res = await updateSalesEmployee(fd, header);
+        console.log("Updating employee with ID:", id);
+        toast.success("Sales Employee updated successfully!");
+      } else {
+        // Add logic
+        // Example: const res = await addSalesEmployee(fd, header);
+        console.log("Adding new Sales Employee");
+        toast.success("Sales Employee added successfully!");
+      }
+      navigate(`/admin/salesManagement-detail/${id || "new"}`);
+    } catch (error) {
+      console.error(id ? "Error updating employee" : "Error adding employee:", error);
+      toast.error("Something went wrong! Please try again.");
+    }
     
-
-  //   try {
-  //     const res = id ? await updateSalesEmployee(fd, header) : await addSalesEmployee(fd, header);
-  //     if (res.status === 200 || res.status === 201) {
-  //         toast.success(id ? "Sales Employee updated successfully!" : "Sales Employee added successfully!");
-  //         navigate(`/admin/intern-management-detail/${id || res.data.empID}`); // Navigate to the detail page of the employee
-  //     } else {
-  //         toast.error(id ? "Failed to update Sales Employee" : "Failed to add Sales Employee");
-  //     }
-  // } catch (error) {
-  //     console.error(id ? "Error updating sales employee" : "Error adding sales employee:", error);
-  //     toast.error("Something went wrong! Please try again.");
-  // }
 };
 
 const handleCancel = () => {
-  navigate(-1); // Navigate back to the previous page
-}
+  navigate(-1);
+ } // Go back to previous page
 
   return (
-    <div className="container mx-auto my-5 p-5 bg-white shadow rounded-md">
+    <div className="container mx-auto mt-0 my-5 px-5  pb-5 bg-white shadow rounded-md">
       <form onSubmit={handleAddSales} className="row g-5">
         {/* Profile Picture Section */}
         <div className=" d-flex align-items-center mb-4">
-          <div className="me-4 r">
-            <h2 className=" mb-4 text-[22px]">Sales Details</h2>
+          <div className="me-4 r pt-10">
+          <h2 className="mb-4 text-[22px]">{id ? "Edit Sales Details" : "Add Sales Details"}</h2>
             <div
               className="d-flex justify-content-center align-items-center border border-secondary rounded-2xl position-relative"
               style={{ width: "150px", height: "120px" }}

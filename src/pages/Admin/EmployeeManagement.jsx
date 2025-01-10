@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MdAdd } from 'react-icons/md';
-import { BsUpload } from 'react-icons/bs';
-import { BsDownload } from 'react-icons/bs';
+
 import TableIntern from '../../components/Admin/TableIntern';
 import TableSales from '../../components/Admin/TableSales';
 import TableEmployee from '../../components/Admin/TableEmployee';
@@ -18,25 +16,25 @@ const EmployeeManagement = () => {
   const [activeTab, setActiveTab] = useState(initialTab);
 
   // Update the URL when the tab changes
-  const handleTabChange = tabName => {
+  const handleTabChange = (tabName) => {
     setActiveTab(tabName);
     navigate(`?tab=${tabName}`); // Update the query parameter in the URL
   };
 
   useEffect(() => {
-    // Set the tab state based on the query params when the component mounts
+    // Whenever the URL changes, update the active tab based on the query param
     const queryParams = new URLSearchParams(location.search);
     const tabFromUrl = queryParams.get('tab');
     if (tabFromUrl) {
-      setActiveTab(tabFromUrl);
+      setActiveTab(tabFromUrl); // Update state based on the URL
     }
-  }, [location.search]); // Re-run effect when URL changes
+  }, [location.search]); // Re-run effect when the URL's search params change
 
   return (
     <div className="w-full bg-white">
-      <div className="flex justify-center gap-[5rem] py-1">
+      <div className="pt-5 flex justify-center gap-[5rem] py-1">
         <button
-          className={`px-8 py-1 rounded-md ${
+          className={`px-8 py-1  rounded-md ${
             activeTab === 'Employee'
               ? 'bg-[#FF9D00] text-white'
               : 'text-[#FF9D00] btnBorder'
@@ -67,19 +65,7 @@ const EmployeeManagement = () => {
         </button>
       </div>
       <div className="p-4">
-        <div className="flex items-center justify-between">
-          <h4 className="font-bold my-4">Employee Management</h4>
-          <div className="flex gap-2">
-            <div className="px-4 py-1 rounded-md bg-[#FF9D00] text-white flex items-center gap-2">
-              <BsUpload color="white" className="font-bold" /> |{' '}
-              <BsDownload color="white" />
-            </div>
-            <div className="px-4 py-1 rounded-md bg-[#FF9D00] text-white flex items-center gap-2">
-              <MdAdd color="white" />
-              Add Employee
-            </div>
-          </div>
-        </div>
+       
         {/* Render the table based on the active tab */}
         {activeTab === 'Employee' && <TableEmployee />}
         {activeTab === 'Sales' && <TableSales />}

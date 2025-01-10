@@ -222,7 +222,7 @@ function Details() {
 
         <div className="pt-3 mb-5">
           <h6 className="team text-center text-sm  md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
-            Or email <span className='connect-text-Color'>hello@trackpi.com </span> to get in touch with our team.
+            Or email <span className='connect-text-Color'>operations@trackpi.in </span> to get in touch with our team.
           </h6>
         </div>
       </Form>
