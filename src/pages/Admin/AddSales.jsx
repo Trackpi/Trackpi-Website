@@ -1,6 +1,6 @@
 import React, { useState, useRef,useEffect } from "react";
 import "../../CSS/addsales.css";
-import { addSalesEmployee,updateSalesEmployee } from "../../Api Services/salesManagemntApi";
+
 import { useNavigate, useParams,useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
@@ -115,18 +115,18 @@ const handleBusinessCardFileChange = (e) => {
 
     
 
-    try {
-      const res = id ? await updateSalesEmployee(fd, header) : await addSalesEmployee(fd, header);
-      if (res.status === 200 || res.status === 201) {
-          toast.success(id ? "Sales Employee updated successfully!" : "Sales Employee added successfully!");
-          navigate(`/admin/intern-management-detail/${id || res.data.empID}`); // Navigate to the detail page of the employee
-      } else {
-          toast.error(id ? "Failed to update Sales Employee" : "Failed to add Sales Employee");
-      }
-  } catch (error) {
-      console.error(id ? "Error updating sales employee" : "Error adding sales employee:", error);
-      toast.error("Something went wrong! Please try again.");
-  }
+  //   try {
+  //     const res = id ? await updateSalesEmployee(fd, header) : await addSalesEmployee(fd, header);
+  //     if (res.status === 200 || res.status === 201) {
+  //         toast.success(id ? "Sales Employee updated successfully!" : "Sales Employee added successfully!");
+  //         navigate(`/admin/intern-management-detail/${id || res.data.empID}`); // Navigate to the detail page of the employee
+  //     } else {
+  //         toast.error(id ? "Failed to update Sales Employee" : "Failed to add Sales Employee");
+  //     }
+  // } catch (error) {
+  //     console.error(id ? "Error updating sales employee" : "Error adding sales employee:", error);
+  //     toast.error("Something went wrong! Please try again.");
+  // }
 };
 
 const handleCancel = () => {

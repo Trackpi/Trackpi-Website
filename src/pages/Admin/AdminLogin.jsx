@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import logo from '../../images/trackpi_logo_one.png';
-import { adminLogin } from '../../Api Services/adminManagement';
+// import { adminLogin } from '../../Api Services/adminManagement';
 import { useNavigate } from 'react-router-dom';
 
 function AdminLogin() {

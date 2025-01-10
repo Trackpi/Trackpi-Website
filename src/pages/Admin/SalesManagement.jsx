@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { getAllSalesEmployee, deleteSalesEmployee } from "../../Api Services/salesManagemntApi";
+
 
 function SalesManagement() {
   const [employees, setEmployees] = useState([]);
@@ -11,16 +11,16 @@ function SalesManagement() {
   // Fetch all employees from API
   useEffect(() => {
     const fetchEmployees = async () => {
-      try {
-        const response = await getAllSalesEmployee();  // Add headers if needed
-        setEmployees(response.data);
-        toast.success("Employees loaded successfully!");
-      } catch (error) {
-        setError("Failed to load employees");
-        toast.error("Failed to load employees!");
-      } finally {
-        setLoading(false);
-      }
+      // try {
+      //   const response = await getAllSalesEmployee();  // Add headers if needed
+      //   setEmployees(response.data);
+      //   toast.success("Employees loaded successfully!");
+      // } catch (error) {
+      //   setError("Failed to load employees");
+      //   toast.error("Failed to load employees!");
+      // } finally {
+      //   setLoading(false);
+      // }
     };
     fetchEmployees();
   }, []);

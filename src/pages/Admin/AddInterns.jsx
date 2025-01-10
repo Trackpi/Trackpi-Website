@@ -1,7 +1,7 @@
 import React, { useState, useRef,useEffect } from "react";
 import '../../CSS/addsales.css';
 import { toast } from "react-toastify";
-import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../../Api Services/internsManagementApi";
+
 import { useNavigate, useParams ,useLocation} from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
 import { BsBoxArrowUp } from "react-icons/bs";
@@ -121,20 +121,20 @@ function AddInterns() {
     };
 
    
-    try {
-      if (id) {
-          // Edit intern
-          const response = await updateInternEmployee(id, formDataObj, header);
-          handleResponse(response);
-      } else {
-          // Add new intern
-          const response = await addInternEmployee(formDataObj, header);
-          handleResponse(response);
-      }
-  } catch (error) {
-      console.error("Error during API call:", error);
-      toast.error("Failed to update intern");
-  }
+  //   try {
+  //     if (id) {
+  //         // Edit intern
+  //         const response = await updateInternEmployee(id, formDataObj, header);
+  //         handleResponse(response);
+  //     } else {
+  //         // Add new intern
+  //         const response = await addInternEmployee(formDataObj, header);
+  //         handleResponse(response);
+  //     }
+  // } catch (error) {
+  //     console.error("Error during API call:", error);
+  //     toast.error("Failed to update intern");
+  // }
   };
   const handleCancel = () => {
     navigate(-1); // Navigate back to the previous page

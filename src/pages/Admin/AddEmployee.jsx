@@ -5,7 +5,7 @@ import React, { useState, useRef,useEffect } from "react";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
 import { useNavigate, useParams,useLocation } from "react-router-dom";
-import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../../Api Services/internsManagementApi";
+
 
 
 function AddEmployee ()  {
@@ -126,17 +126,17 @@ function AddEmployee ()  {
         };
     
        
-        if (id) {
-          // Edit intern
-          updateInternEmployee(id, formDataObj, header)
-            .then(handleResponse)
-            .catch((error) => toast.error("Failed to update employee"));
-        } else {
-          // Add new intern
-          addInternEmployee(formDataObj, header)
-            .then(handleResponse)
-            .catch((error) => toast.error("Failed to add employee"));
-        }
+        // if (id) {
+        //   // Edit intern
+        //   updateInternEmployee(id, formDataObj, header)
+        //     .then(handleResponse)
+        //     .catch((error) => toast.error("Failed to update employee"));
+        // } else {
+        //   // Add new intern
+        //   addInternEmployee(formDataObj, header)
+        //     .then(handleResponse)
+        //     .catch((error) => toast.error("Failed to add employee"));
+        // }
       };
       const handleCancel = () => {
         navigate(-1); // Navigate back to the previous page
