@@ -8,22 +8,22 @@ function SalesManagement() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all employees from API
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const response = await getAllSalesEmployee();  // Add headers if needed
-        setEmployees(response.data);
-        toast.success("Employees loaded successfully!");
-      } catch (error) {
-        setError("Failed to load employees");
-        toast.error("Failed to load employees!");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchEmployees();
-  }, []);
+  // // Fetch all employees from API
+  // useEffect(() => {
+  //   const fetchEmployees = async () => {
+  //     try {
+  //       const response = await getAllSalesEmployee();  // Add headers if needed
+  //       setEmployees(response.data);
+  //       toast.success("Employees loaded successfully!");
+  //     } catch (error) {
+  //       setError("Failed to load employees");
+  //       toast.error("Failed to load employees!");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchEmployees();
+  // }, []);
 
   // Delete handler for an employee
   const handleDelete = async (id) => {
@@ -32,13 +32,13 @@ function SalesManagement() {
       const updatedEmployees = employees.filter((employee) => employee._id !== id);
       setEmployees(updatedEmployees);
 
-      try {
-        await deleteSalesEmployee(id); // Pass the appropriate header if required
-        toast.success("Employee deleted successfully!");
-      } catch (error) {
-        // Handle failure without reverting employees state
-        toast.error("Failed to delete employee!");
-      }
+      // try {
+      //   await deleteSalesEmployee(id); // Pass the appropriate header if required
+      //   toast.success("Employee deleted successfully!");
+      // } catch (error) {
+      //   // Handle failure without reverting employees state
+      //   toast.error("Failed to delete employee!");
+      // }
     }
   };
 
