@@ -1,9 +1,14 @@
 import React from "react";
-import notifyImg from '../images/notify.svg';
-import profileImg from '../images/profile.png';
-import searchImg from '../images/searchnav.svg';
+import notifyImg from '../../images/notify.svg';
+import profileImg from '../../images/profile.png';
+import searchImg from '../../images/searchnav.svg';
 
 function AdminNavbar() {
+
+    const today = new Date();
+    const formattedDate = `${today.getDate()} ${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}`;
+  
+
   return (
    <div className='adminHeader bg-white flex mx-auto justify-between items-center px-10'>
         <div className="h-[60px] flex gap-[20px] items-center justify-between adminProfilePic">
@@ -16,7 +21,7 @@ function AdminNavbar() {
           </div>
         </div>
         <div className="h-[40px] flex gap-[40px] items-center justify-between ">
-          <div className="text-[18px]">06 December 2024</div>
+          <div className="text-[18px] font-semibold">{formattedDate}</div>
           <form className="adminInput flex items-center ">
             <input type="text" placeholder='Search here...' />
             <button className="ms-[290px] absolute" type="submit"><img src={searchImg} alt="" /></button>

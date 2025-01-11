@@ -1,21 +1,21 @@
 import React from "react";
 import MarketPositioning from "./MarketPositioning";
-import PopUp from "../components/PopUp";
-import ConnectButtons from "../components/ConnectButtons";
-import HeaderBanner from "../components/HeaderBanner";
-import ServicesSub from "../components/ServicesSub";
-import financeImg1 from "../images/fin1.png";
-import financeImg2 from "../images/fin2.png";
-import assetImg1 from "../images/asset1.png";
-import assetImg2 from "../images/asset2.png";
-import hiring from "../images/hiring.jpg";
-import consult from "../images/consult.jpg";
-import strategyImg1 from "../images/trainings.jpg";
-import strategyImg2 from "../images/strategy2.png";
-import strategyImg3 from "../images/strategy3.png";
-import hiringImg1 from "../images/sale.jpg";
-import KeyBenefitServices from "../components/KeyBenefitServices";
-import '../CSS/ourservices.css'
+import PopUp from "../../components/User/PopUp";
+import ConnectButtons from "../../components/ConnectButtons";
+import HeaderBanner from "../../components/User/HeaderBanner";
+import ServicesSub from "../../components/User/ServicesSub";
+import financeImg1 from "../../images/fin1.png";
+import financeImg2 from "../../images/fin2.png";
+import assetImg1 from "../../images/asset1.png";
+import assetImg2 from "../../images/asset2.png";
+import hiring from "../../images/hiring.jpg";
+import consult from "../../images/consult.jpg";
+import strategyImg1 from "../../images/trainings.jpg";
+import strategyImg2 from "../../images/strategy2.png";
+import strategyImg3 from "../../images/strategy3.png";
+import hiringImg1 from "../../images/sale.jpg";
+import KeyBenefitServices from "../../components/User/KeyBenefitServices";
+import '../../CSS/ourservices.css'
 
 function OurServices() {
     return (

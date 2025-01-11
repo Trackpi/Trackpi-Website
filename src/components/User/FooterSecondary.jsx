@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import footerBanner from "../images/footerbanner1.jpg";
-import "../CSS/footer.css";
+import footerBanner from "../../images/footerbanner1.jpg";
+import "../../CSS/footer.css";
 import { Link } from "react-router-dom";
 import { link } from "framer-motion/client";
 

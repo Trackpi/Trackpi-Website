@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import editImg from "../images/editbtn.svg";
-import logoImg from "../images/trackpi_logo.png";
+import editImg from "../../images/editbtn.svg";
+import logoImg from "../../images/trackpi_logo.png";
 import { useNavigate, useLocation } from 'react-router-dom';
-import EditNews from "../components/EditNews";
-import AddNews from "../components/AddNews";
+import EditNews from "../../components/EditNews";
+import AddNews from "../../components/AddNews";
 
 const NewsManagement = () => {
     const [isEditMode, setIsEditMode] = useState(false);

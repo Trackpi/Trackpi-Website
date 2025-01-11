@@ -11,10 +11,10 @@ import logo from '../../images/trackpi_logo.png';
 import { Carousel } from 'react-bootstrap';
 import clientLogo1 from '../../images/growthfactor.png';
 import clientLogo2 from '../../images/trademax.png';
-import HeaderBanner from '../../components/HeaderBanner';
+import HeaderBanner from '../../components/User/HeaderBanner';
 import '../../CSS/User/Home.css';
 import img1 from '../../images/team.png';
-import PopUp from '../../components/PopUp';
+import PopUp from '../../components/User/PopUp';
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });

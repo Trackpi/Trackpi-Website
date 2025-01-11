@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LuCirclePlus } from 'react-icons/lu';
 import Brochure from './Brochure';
 import { Link } from 'react-router-dom';
-import '../CSS/headerbanner.css'
+import '../../CSS/headerbanner.css'
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'; 
 

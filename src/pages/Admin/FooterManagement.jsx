@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import editImg from "../images/editbtn.svg";
-import uploadImg from "../images/uploadimg.svg";
-import footerBannerImg from "../images/footerbanner.jpg";
-import { Col, Row } from "react-bootstrap";
+import editImg from "../../images/editbtn.svg";
+import uploadImg from "../../images/uploadimg.svg";
+import footerBannerImg from "../../images/footerbanner.jpg";
 
 const FooterManagement = () => {
     const [fileName, setFileName] = useState("");
@@ -56,7 +55,7 @@ const FooterManagement = () => {
     };
 
     return (
-        <div className="bg-white w-full">
+        <div className="bg-white w-[calc(100vw-300px)]">
             <div className="py-[40px] px-[30px] grid gap-[40px] w-full">
                 <div className="text-[24px] font-bold mb-4">Footer Management</div>
                 <div className="bg-white partnerContainer border rounded-lg grid p-[30px] gap-[30px]">
@@ -74,7 +73,7 @@ const FooterManagement = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="grid py-[20px] gap-[30px]">
+                        <div className="grid py-[20px] gap-[30px] ">
                         <div className="flex  gap-[40px] items-center w-100">
                             <form className="flex justify-between gap-[30px] w-100 items-center">
                                   <div className="videoBtn min-w-[110px] text-center">Video 1</div>
@@ -224,7 +223,7 @@ const FooterManagement = () => {
                       <iframe src="https://youtube.com/embed/AR1Rwhg5Tdo?si=OUPSKDekgLkAarqP"  className="rounded-[10px] aspect-[14/25]"  frameborder="0"></iframe>
                     </div>
                 </div>
-                <div className="bg-white partnerContainer border rounded-lg grid p-[30px] gap-[30px]">
+                <div className="bg-white partnerContainer  border rounded-lg grid p-[30px] gap-[30px]">
                     <form className="grid gap-[30px]">
                         <div className=" grid gap-[10px]">
                             <label className="block text-[14px] font-semibold">Banner Heading</label>
