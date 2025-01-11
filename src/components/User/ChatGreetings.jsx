@@ -11,8 +11,8 @@ const Chatbox = () => {
 
   const companyMessages = [
     'Hi there! How can we assist you?',
-    'Contact: +1 234 567 890',
-    'Email: support@example.com',
+    'Contact: +91 80781 79646',
+    'Email: operations@trackpi.in',
   ];
 
   useEffect(() => {
