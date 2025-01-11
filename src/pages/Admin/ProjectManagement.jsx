@@ -64,136 +64,148 @@ function ProjectManagement() {
               <div className="text-[#FF9D00] text-[20px]">{dateGroup.date}</div>
 
               {/* Table */}
-              <div className="relative  shadow-md sm:rounded-lg border-dark border-2">
-                <div className="table-wrapper">
-                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-fixed ">
-                    {/* Render Table Headers Only for First Table */}
-                    {dateIndex === 0 && (
-                      <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
-                        <tr>
-                          <th
-                            scope="col"
-                            className="border-r-2 text-center px-2 py-3 w-[60px]"
-                          >
-                            Sl No
-                          </th>
-                          <th
-                            scope="col"
-                            className="border-r-2 text-center px-2 py-3 w-[150px]"
-                          >
-                            Name
-                          </th>
-                          <th
-                            scope="col"
-                            className="border-r-2 text-center px-2 py-3 w-[200px]"
-                          >
-                            Email ID
-                          </th>
-                          <th
-                            scope="col"
-                            className="border-r-2 text-center px-2 py-3 w-[150px]"
-                          >
-                            Phone
-                          </th>
-                          <th
-                            scope="col"
-                            className="border-r-2 text-center px-2 py-3 w-[200px]"
-                          >
-                            Project Name
-                          </th>
-                          <th
-                            scope="col"
-                            className="border-r-2 text-center px-2 py-3 w-[100px]"
-                          >
-                            Time
-                          </th>
-                          <th
-                            scope="col"
-                            className="text-center px-2 py-3 w-[150px]"
-                          >
-                            View
-                          </th>
-                        </tr>
-                      </thead>
-                    )}
-                    {/* Table Body */}
-                    <tbody>
-                      {dateGroup.projects.map((project, projectIndex) => (
-                        <tr
-                          key={projectIndex}
-                          className="bg-white text-md font-semibold text-black hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
+              <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-2">
+                {/* <div className="table-wrapper"> */}
+                <table
+                  className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                  style={{ tableLayout: 'fixed' }}
+                >
+                  {' '}
+                  {/* Render Table Headers Only for First Table */}
+                  {dateIndex === 0 && (
+                    <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
+                      <tr>
+                        <th
+                          scope="col"
+                          className=" border-r-2 text-center"
+                          style={{ width: '10%' }}
                         >
-                          <td
-                            className="border-r-2 text-center px-2 py-3 w-[60px]"
-                            style={{
-                              wordWrap: 'break-word',
-                              overflowWrap: 'break-word',
-                              boxSizing: 'border-box',
-                            }}
-                          >
-                            {projectIndex + 1}
-                          </td>
-                          <td
-                            className="border-r-2 text-center px-2 py-3 w-[150px]"
-                            style={{
-                              wordWrap: 'break-word',
-                              overflowWrap: 'break-word',
-                              boxSizing: 'border-box',
-                            }}
-                          >
-                            {project.name}
-                          </td>
-                          <td
-                            className="border-r-2 text-center px-2 py-3 w-[200px]"
-                            style={{
-                              wordWrap: 'break-word',
-                              overflowWrap: 'break-word',
-                              boxSizing: 'border-box',
-                            }}
-                          >
-                            {project.email}
-                          </td>
-                          <td
-                            className="border-r-2 text-center px-2 py-3 w-[150px]"
-                            style={{
-                              wordWrap: 'break-word',
-                              overflowWrap: 'break-word',
-                              boxSizing: 'border-box',
-                            }}
-                          >
-                            {project.phone}
-                          </td>
-                          <td
-                            className="border-r-2 text-center px-2 py-3 w-[200px]"
-                            style={{
-                              wordWrap: 'break-word',
-                              overflowWrap: 'break-word',
-                              boxSizing: 'border-box',
-                            }}
-                          >
-                            {project.projectName}
-                          </td>
-                          <td
-                            className="border-r-2 text-center px-2 py-3 w-[100px]"
-                            style={{
-                              wordWrap: 'break-word',
-                              overflowWrap: 'break-word',
-                              boxSizing: 'border-box',
-                            }}
-                          >
-                            {project.time}
-                          </td>
-                          <td
-                            className="text-[#FF9D00] font-bold text-center cursor-pointer px-2 py-3 flex justify-center items-center gap-2 w-[150px]"
-                            onClick={() => handleViewDetails(project)}
-                          >
-                            View Details <FiExternalLink size={20} />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                          Sl No
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r-2 text-center"
+                          style={{ width: '25%' }}
+                        >
+                          Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r-2 text-center"
+                          style={{ width: '25%' }}
+                        >
+                          Email ID
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r-2 text-center"
+                          style={{ width: '25%' }}
+                        >
+                          Phone
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r-2 text-center"
+                          style={{ width: '25%' }}
+                        >
+                          Project Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r-2 text-center"
+                          style={{ width: '25%' }}
+                        >
+                          Time
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r-2 text-center"
+                          style={{ width: '25%' }}
+                        >
+                          View
+                        </th>
+                      </tr>
+                    </thead>
+                  )}
+                  {/* Table Body */}
+                  <tbody>
+                    {dateGroup.projects.map((project, projectIndex) => (
+                      <tr
+                        key={projectIndex}
+                        className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
+                      >
+                        <td
+                          key={projectIndex}
+                          className=" border-r-2  text-center"
+                          style={{
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            boxSizing: 'border-box',
+                          }}
+                        >
+                          {projectIndex + 1}
+                        </td>
+                        <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                          {project.name}
+                        </td>
+                        <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                          {project.email}
+                        </td>
+                        <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                          {project.phone}
+                        </td>
+                        <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                          {project.projectName}
+                        </td>
+                        <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                          {project.time}
+                        </td>
+                        <td
+                          className="text-[#FF9D00] font-bold text-center cursor-pointer px-2 py-3 flex justify-center items-center gap-2 "
+                          onClick={() => handleViewDetails(project)}
+                        >
+                          View Details <FiExternalLink size={20} />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {/* </div> */}
               </div>
             </div>
           ))}
