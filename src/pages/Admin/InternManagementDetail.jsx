@@ -122,7 +122,7 @@ const InternManagementDetail = () => {
                <div
       className="absolute text-gray-500 opacity-30 text-[14px] sm:text-[19px] md:text-[21px] lg:text-[24px] font-bold"
       style={{
-        transform: "rotate(-45deg)",
+        
         top: "50%",
         left: "50%",
         transformOrigin: "center",
