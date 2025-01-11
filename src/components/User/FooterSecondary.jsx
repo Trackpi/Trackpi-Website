@@ -28,11 +28,11 @@ function FooterSecondary() {
             },
         ];
     
-        const platformURLs = {
-            youtube: "https://youtube.com/playlist?list=PLooudDpkO1P_3QSsRvL2ujchiryjLHtB_&si=7C3DQ8aY8gLfK5pa",
-            youtube: "https://www.instagram.com/trackpi_official?igsh=YmwyaHpzYXBueWJz",
-            youtube: "https://www.facebook.com/profile.php?id=61565947096778",
-        };
+        // const platformURLs = {
+        //     youtube: "https://youtube.com/playlist?list=PLooudDpkO1P_3QSsRvL2ujchiryjLHtB_&si=7C3DQ8aY8gLfK5pa",
+        //     youtube: "https://www.instagram.com/trackpi_official?igsh=YmwyaHpzYXBueWJz",
+        //     youtube: "https://www.facebook.com/profile.php?id=61565947096778",
+        // };
     
         const handleHover = (index) => {
             const video = videoRefs.current[index];

@@ -253,28 +253,59 @@ function AdminManagement() {
       <div className="p-5">
         <h4 className="font-bold my-4">Admin Management</h4>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-2">
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <table
+            className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+            style={{ tableLayout: 'fixed' }}
+          >
             <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
               <tr>
-                <th scope="col" className="px-1 py-3 border-r-2 text-center">
+                <th
+                  scope="col"
+                  className=" border-r-2 text-center"
+                  style={{ width: '10%' }}
+                >
                   SL No.
                 </th>
-                <th scope="col" className="px-6 py-3 border-r-2 text-center">
+                <th
+                  scope="col"
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '25%' }}
+                >
                   Username
                 </th>
-                <th scope="col" className="px-6 py-3 border-r-2 text-center">
+                <th
+                  scope="col"
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '25%' }}
+                >
                   Email ID
                 </th>
-                <th scope="col" className="px-6 py-3 border-r-2 text-center">
+                <th
+                  scope="col"
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '30%' }}
+                >
                   Password
                 </th>
-                <th scope="col" className="px-6 py-3 border-r-2 text-center">
+                <th
+                  scope="col"
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '20%' }}
+                >
                   Admin Type
                 </th>
-                <th scope="col" className="px-3 py-3 border-r-2 text-center">
+                <th
+                  scope="col"
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '10%' }}
+                >
                   Edit
                 </th>
-                <th scope="col" className="px-10 py-3 border-r-2 text-center">
+                <th
+                  scope="col"
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '25%' }}
+                >
                   Status
                 </th>
               </tr>
@@ -288,28 +319,51 @@ function AdminManagement() {
                   <>
                     <td
                       key={rowIndex}
-                      className="px-3 py-3 border-r-2  text-center"
-                    >
-                      {rowIndex + 1}
-                    </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
-                      {row.username}
-                    </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
-                      {row.email}
-                    </td>
-                    <td
-                      className={`px-6 py-3 border-r-2 text-center  w-[30px]`}
+                      className=" border-r-2  text-center"
                       style={{
                         wordWrap: 'break-word',
                         overflowWrap: 'break-word',
                         boxSizing: 'border-box',
                       }}
                     >
-                      <div className="flex justify-center items-center gap-2">
+                      {rowIndex + 1}
+                    </td>
+                    <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      {' '}
+                      {row.username}
+                    </td>
+                    <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      {' '}
+                      {row.email}
+                    </td>
+                    <td
+                      className={`px-2 py-3 border-r-2 text-center `}
+                      style={{
+                        whiteSpace: 'normal',       // Enable text wrapping
+                        wordWrap: 'break-word',     // Break words at container boundaries
+                        overflowWrap: 'break-word', // Same as word-wrap for modern browsers
+                        wordBreak: 'break-word',    // Break long words if necessary
+                      }}
+            
+                    >
+                      <div className="flex justify-center items-center gap-2  cursor-pointer">
                         {row.password}{' '}
                         <i
-                          className={` fa-copy ms-3 cursor-pointer ${
+                          className={` fa-copy  cursor-pointer ${
                             copied.status && row.username === copied.username
                               ? 'text-warning fa-solid'
                               : 'fa-regular'
@@ -318,10 +372,26 @@ function AdminManagement() {
                         ></i>
                       </div>
                     </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                    <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      {' '}
                       {row.adminType}
                     </td>
-                    <td className={`px-6 py-3 border-r-2 text-center`}>
+                    <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      {' '}
                       {/* {row.edit} */}
                       <div className="flex justify-center items-center">
                         <FaRegEdit
@@ -330,7 +400,15 @@ function AdminManagement() {
                         />
                       </div>
                     </td>
-                    <td>
+                    <td
+                      className={`px-2 py-3 border-r-2 text-center`}
+                      style={{
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      {' '}
                       <div className="flex justify-center gap-2.5">
                         <button
                           onClick={() => toggleStatus(rowIndex)}
