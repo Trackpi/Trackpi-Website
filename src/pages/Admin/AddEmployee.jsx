@@ -11,6 +11,13 @@ import { useNavigate, useParams,useLocation } from "react-router-dom";
 function AddEmployee ()  {
   const location = useLocation();
   const { employeeData } = location.state || { employeeData: {} }
+  const [profileImage, setProfileImage] = useState(null);
+      
+ 
+  const fileInputRef = useRef(null);
+
+  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: employeeData.name || "",
     empID: employeeData.empID || "",
@@ -22,19 +29,21 @@ function AddEmployee ()  {
     feedback: employeeData.feedback || "",
   });
   // Update form data when employeeData changes
+ 
   useEffect(() => {
-    setFormData({
-      name: employeeData.name || "",
-      empID: employeeData.empID || "",
-      desig: employeeData.desig || "",
-      selfIntroduction: employeeData.selfIntroduction || "",
-      instagram: employeeData.instagram || "",
-      linkedin: employeeData.linkedin || "",
-      twitter: employeeData.twitter || "",
-      feedback: employeeData.feedback || "",
-    });
-   
-  }, [employeeData]);
+    if (id && employeeData) {
+      setFormData({
+        name: employeeData.name || "",
+        empID: employeeData.empID || "",
+        desig: employeeData.desig || "",
+        selfIntroduction: employeeData.selfIntroduction || "",
+        instagram: employeeData.instagram || "",
+        linkedin: employeeData.linkedin || "",
+        twitter: employeeData.twitter || "",
+        feedback: employeeData.feedback || "",
+      });
+    }
+  }, [id, employeeData]); // Only trigger when id or employeeData changes
   useEffect(() => {
     // Fetch the image and convert it to a File object
     if (employeeData.image) {
@@ -48,13 +57,7 @@ function AddEmployee ()  {
     }
   }, [employeeData.image]);
     
-      const [profileImage, setProfileImage] = useState(null);
-      
- 
-      const fileInputRef = useRef(null);
-    
-      const { id } = useParams();  // For editing, we'll get the intern ID from URL params
-      const navigate = useNavigate();
+     
       
       //  // Fetch existing intern data for editing
       //  useEffect(() => {
@@ -86,7 +89,10 @@ function AddEmployee ()  {
     
       const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value, // Dynamically update the input value
+        }));
       };
     
       const handleFileChange = (e) => {
@@ -197,9 +203,8 @@ function AddEmployee ()  {
                             name="name"
                             className="form-control rounded-2xl plac"
                             placeholder="Name"
-                            value={employeeData.name}
-                            // value={formData.name}
-                            onChange={handleInputChange}
+                            value={formData.name ||'' } 
+                            onChange={handleInputChange}  
                             
                             style={{fontSize: '12px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                             onFocus={ e => {
@@ -224,9 +229,8 @@ function AddEmployee ()  {
                             name="desig"
                             className="form-control rounded-2xl plac"
                             placeholder="Designation"
-                            value={employeeData.desig}
-                            // value={formData.desig}
-                            onChange={handleInputChange}
+                            value={formData.desig ||'' } 
+                            onChange={handleInputChange}  
                             style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                             onFocus={ e => {
                               
@@ -248,10 +252,13 @@ function AddEmployee ()  {
                     <div className="  w-[507px] h-[324px]  ">
                                             <h4 className="text-[22px]">Description</h4>
                                             <textarea
+                                              type="text"
+                                              name="selfIntroduction"
                                               className="form-control  w-[507px] h-[324px] plac"
                                               placeholder="Enter here"
                                               rows="4"
-                                              onChange={handleInputChange}
+                                              value={formData.selfIntroduction ||'' } 
+                                              onChange={handleInputChange}  
                                               style={{border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                                                       onFocus={ e => {
                                                         
@@ -263,7 +270,7 @@ function AddEmployee ()  {
                                                         e.target.style.borderColor = 'white';
                                                         e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                                                       }}
-                                                      value={employeeData.selfIntroduction}
+                                                      // value={employeeData.selfIntroduction}
                                               // value={formData.selfIntroduction}
                                             ></textarea>
                               </div>
@@ -282,7 +289,7 @@ function AddEmployee ()  {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -307,31 +314,27 @@ function AddEmployee ()  {
                   <label className="form-label text-[15px]" htmlFor="gender">
                   Platform 1 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+               type="url"
+               name="website"
+               id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                     
-                    // value={formData.gender}
-                  >
-                      <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
                 </div>
           </div>
           <div className="flex gap-5">
@@ -343,7 +346,7 @@ function AddEmployee ()  {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -366,33 +369,28 @@ function AddEmployee ()  {
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                  Platform 1 Link
+                  Platform 2 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+               type="url"
+               name="website"
+               id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
-                    
-                    // value={formData.gender}
-                  >
-                    <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                 </div>
           </div>
           <div className="flex gap-5">
@@ -404,7 +402,7 @@ function AddEmployee ()  {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' , width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -427,33 +425,28 @@ function AddEmployee ()  {
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                  Platform 1 Link
+                  Platform 3 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+                type="url"
+                name="website"
+                id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
-                    
-                    // value={formData.gender}
-                  >
-                      <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                 </div>
           </div>
           <div className="flex gap-5">
@@ -465,7 +458,7 @@ function AddEmployee ()  {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -488,33 +481,30 @@ function AddEmployee ()  {
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                    Platform 1 Link
+                    Platform 4 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+                type="url"
+                name="website"
+                id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                     
-                    // value={formData.gender}
-                  >
-                    <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
+                 
                 </div>
           </div>
         </div>

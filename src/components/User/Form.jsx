@@ -94,7 +94,7 @@ function Details() {
 
             type="email"
             id="email"
-            placeholder="Email-Id"
+            placeholder="Email-ID"
             className="bg-white   text-black placeholder-black p-3 place"
             required
           />
@@ -222,7 +222,15 @@ function Details() {
 
         <div className="pt-3 mb-5">
           <h6 className="team text-center text-sm  md:text-xl xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-xl">
-            Or email <span className='connect-text-Color'>operations@trackpi.in </span> to get in touch with our team.
+          Or email{" "}
+            <a
+              href="mailto:operations@trackpi.in"
+              className="connect-text-Color"
+              style={{ textDecoration: "none" }}
+            >
+              operations@trackpi.in
+            </a>{" "}
+            to get in touch with our team.
           </h6>
         </div>
       </Form>

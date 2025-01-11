@@ -39,7 +39,7 @@ function Connect() {
               },
               {
                 icon: "fa-envelope",
-                title: "E-mail Id",
+                title: "E-mail ID",
                 text: "operations@trackpi.in",
 
               },
