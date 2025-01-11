@@ -1,10 +1,8 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../images/tpl.png';
-import settingsImg from '../images/settings.svg';
-import logoutImg from '../images/logout.svg';
-import helpImg from '../images/help.svg';
-import '../CSS/adminsidebar.css';
+import logo from '../../images/tpl.png';
+import logoutImg from '../../images/logout.svg';
+import '../../CSS/adminsidebar.css';
 
 const Tab = ({ name, route, isActive, onClick }) => (
   <div
@@ -21,16 +19,16 @@ const AdminSidebar = () => {
   const location = useLocation();
 
   const tabs = [
-    { name: 'Dashboard', route: '/admin/dashboard' },
-    { name: 'Admin Management', route: '/admin/admin-management' },
-    { name: 'Employee Management', route: '/admin/employee-management' },
-    { name: 'Form Management', route: '/admin/form-management' },
-    { name: 'Project Management', route: '/admin/project-management' },
-    { name: 'News Management', route: '/admin/news-management' },
-    { name: 'Footer Management', route: '/admin/footer-management' },
+    { name: 'Dashboard', route: '/admin/dashboard',pages:["/admin/dashboard"] },
+    { name: 'Admin Management', route: '/admin/admin-management',pages:["/admin/admin-management"] },
+    { name: 'Employee Management', route: '/admin/employee-management',pages:["/admin/employee-management","/admin/employeeManagement-detail",'/admin/salesManagement-detail','/admin/intern-management-detail',"/admin/employeeManagement-addEmployee","/admin/salesManagement-add/","/admin/intern-management-add/"] },
+    { name: 'Form Management', route: '/admin/form-management' , pages:[ '/admin/form-management',"/admin/form-details/"] },
+    { name: 'Project Management', route: '/admin/project-management',pages:["/admin/project-management", "/admin/project-details/"] },
+    { name: 'News Management', route: '/admin/news-management',pages:["/admin/news-management"] },
+    { name: 'Footer Management', route: '/admin/footer-management',pages:["/admin/footer-management"] },
     { name: 'Heading Management', route: '' },
     { name: 'Content Management', route: '' },
-    { name: 'Partnership Management', route: '/admin/partnership-management' }
+    { name: 'Partnership Management', route: '/admin/partnership-management',pages:["/admin/partnership-management"] }
   ];
 
   return (
@@ -46,7 +44,7 @@ const AdminSidebar = () => {
                 key={tab.name}
                 name={tab.name}
                 route={tab.route} 
-                isActive={location.pathname === tab.route}
+                isActive={tab.pages?.some((page) => location.pathname.startsWith(page))}
                 onClick={() => (tab.route ? navigate(tab.route) : alert('Feature under construction'))}
               />
             ))}

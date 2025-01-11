@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderBanner from '../../components/HeaderBanner';
+import HeaderBanner from '../../components/User/HeaderBanner';
 import { Container, Row } from 'react-bootstrap';
 import FormNewProject from '../../components/User/FormNewProject';
 import img1 from '../../images/team.png';

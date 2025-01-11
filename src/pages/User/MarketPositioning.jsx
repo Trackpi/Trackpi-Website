@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import maketingImg1 from '../images/marketPositioning1.svg'
-import maketingImg2 from '../images/marketPositioning2.svg'
-import maketingImg3 from '../images/marketPositioning3.svg'
+import maketingImg1 from '../../images/marketPositioning1.svg'
+import maketingImg2 from '../../images/marketPositioning2.svg'
+import maketingImg3 from '../../images/marketPositioning3.svg'
 
 const MarketPositioning = () => {
 

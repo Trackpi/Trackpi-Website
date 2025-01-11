@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import editImg from "../images/editbtn.svg";
-import uploadImg from "../images/uploadimg.svg";
-import deleteImg from "../images/deleteimg.svg";
-import "../CSS/partnershipAdmin.css";
+import editImg from "../../images/editbtn.svg";
+import uploadImg from "../../images/uploadimg.svg";
+import deleteImg from "../../images/deleteimg.svg";
+import "../../CSS/partnershipAdmin.css";
 
 const PartnershipManagement = () => {
     const [fileName1, setFileName1] = useState("");

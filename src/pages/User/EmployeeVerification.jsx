@@ -4,8 +4,8 @@ import "react-puzzle-captcha/dist/react-puzzle-captcha.css";
 import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
-import Brochure from "../components/Brochure";
-import '../CSS/employverification.css'
+import Brochure from "../../components/User/Brochure";
+import '../../CSS/employverification.css'
 
 function EmployeeVerification() {
     const [formData, setFormData] = useState({

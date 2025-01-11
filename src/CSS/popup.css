@@ -20,7 +20,8 @@
 .custom-modal .modal-content {
     border-radius: 20px !important; /* Adjust the value as needed */
     max-height: 100vh;
-    max-width: 780px;
+    height: max-content;
+    max-width: 624px;
     overflow-y: auto;
     margin: auto !important;
   }
@@ -47,15 +48,12 @@
         margin: auto !important;
     }
 }
-ul {
+.popupForm ul {
     margin: 0 ;
     padding: 0 !important;
     list-style: none ; /* Optional: removes bullet points */
   }
   
-  li {
-    margin: 0 ;
-    padding: 0 ;
-  }
+
 
   

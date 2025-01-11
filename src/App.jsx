@@ -2,28 +2,28 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Sidebar from "./components/Sidebar";
-import AdminSidebar from "./components/AdminSidebar";
+import Header from "./components/User/Header";
+import Footer from "./components/User/Footer";
+import Sidebar from "./components/User/Sidebar";
+import AdminSidebar from "./components/Admin/AdminSidebar";
 import ScrollUp from "./components/ScrollUp";
-import Loader from "./components/Loader";
+import Loader from "./components/User/Loader";
 
 // Page Imports
 import Home from "./pages/User/Home";
 import About from "./pages/User/About";
-import OurServices from "./pages/OurServices";
+import OurServices from "./pages/User/OurServices";
 import OurTeam from "./pages/User/OurTeam";
-import EmployeeVerification from "./pages/EmployeeVerification";
+import EmployeeVerification from "./pages/User/EmployeeVerification";
 import Connect from "./pages/User/Connect";
 import Personel from "./pages/User/Personel";
 import NewProject from "./pages/User/NewProject";
 import EmployeeSales from "./pages/User/EmployeeSales";
 import EmployeeInternship from "./pages/User/EmployeeInternship";
-import FormManagement from "./pages/FormManagement";
-import FooterManagement from "./pages/FooterManagement";
-import PartnershipManagement from "./pages/PartnershipManagement";
-import NewsManagement from "./pages/NewsManagement";
+import FormManagement from "./pages/Admin/FormManagement";
+import FooterManagement from "./pages/Admin/FooterManagement";
+import PartnershipManagement from "./pages/Admin/PartnershipManagement";
+import NewsManagement from "./pages/Admin/NewsManagement";
 import EmployeeManagement from "./pages/Admin/EmployeeManagement";
 import AdminManagement from "./pages/Admin/AdminManagement";
 import AdminLogin from "./pages/Admin/AdminLogin";
@@ -37,9 +37,10 @@ import EmployeeManagementDetail from "./pages/Admin/EmployeeManagementDetail";
 import ProjectManagement from "./pages/Admin/ProjectManagement";
 import ProjectManagementDetail from "./pages/Admin/ProjectManagementDetail";
 import NotFound from "./pages/NotFound";
-import AdminNavbar from "./components/AdminNavbar";
-import Dashboard from "./components/Dashboard";
-import FormManagementDetails from "./pages/FormManagementDetails";
+import AdminNavbar from "./components/Admin/AdminNavbar";
+import Dashboard from "./components/Admin/Dashboard";
+import FormManagementDetails from "./pages/Admin/FormManagementDetails";
+import TermsAndConditions from "./pages/User/TermsAndConditions";
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -64,6 +65,7 @@ function App() {
         "/new-project-form",
         "/employeesales",
         "/employeeinternship",
+        "/termsconditions"
     ].includes(location.pathname);
     const isNotFoundRoute = location.pathname === "/not-found";
     const isAdminRoute =
@@ -96,6 +98,7 @@ function App() {
                                     <Route path="/new-project-form" element={<NewProject />} />
                                     <Route path="/employeesales" element={<EmployeeSales />} />
                                     <Route path="/employeeinternship" element={<EmployeeInternship />} />
+                                    <Route path="/termsconditions" element={<TermsAndConditions />} />
 
 
                                     {/* Admin Routes */}
@@ -109,15 +112,12 @@ function App() {
                                     <Route path="/admin/project-management" element={<ProjectManagement />} />
                                     <Route path="/admin/project-details/:projectId" element={<ProjectManagementDetail />} />
                                     <Route path="/admin/employee-management" element={<EmployeeManagement />} />
-                                    <Route path="/admin/employeeManagement-addEmployee/" element={<AddEmployee />} />  {/* For Add employee */}
-                                    <Route path="/admin/employeeManagement-addEmployee/:id" element={<AddEmployee />} />  {/* For update employee */}
+                                    <Route path="/admin/employeeManagement-addEmployee/:id" element={<AddEmployee />} />
                                     <Route path="/admin/employeeManagement-detail" element={<EmployeeManagementDetail />} />
                                     <Route path="/admin/sales-management" element={<SalesManagement />} />
-                                    <Route path="/admin/salesManagement-add/" element={<AddSales />} /> {/* For Add Sales */}
-                                    <Route path="/admin/salesManagement-add/:id" element={<AddSales />} /> {/* For update Sales */}
+                                    <Route path="/admin/salesManagement-add/:id" element={<AddSales />} />
                                     <Route path="/admin/salesManagement-detail" element={<SalesManagementDetail />} />
-                                   <Route path="/admin/intern-management-add/" element={<AddInterns />} />  {/* For Add Intern  */}
-                                   <Route path="/admin/intern-management-add/:id" element={<AddInterns />} /> {/* For update Intern */}
+                                   <Route path="/admin/intern-management-add/:id" element={<AddInterns />} />
                                    <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
                                     <Route path="/admin/footer-management" element={<FooterManagement />} />
 

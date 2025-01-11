@@ -2,16 +2,16 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link, useNavigate } from "react-router-dom";
-import "../CSS/footer.css";
-import fbIcon from "../images/fb.svg";
-import quoraIcon from "../images/quora.svg";
-import youtubeIcon from "../images/yout.svg";
-import linkedinIcon from "../images/linkedin.svg";
-import bloggerIcon from "../images/blogger.svg";
-import mediumIcon from "../images/medium.svg";
-import instagramIcon from "../images/insta.svg";
-import phoneIcon from "../images/phone.svg";
-import mailIcon from "../images/mail.svg";
+import "../../CSS/footer.css";
+import fbIcon from "../../images/fb.svg";
+import quoraIcon from "../../images/quora.svg";
+import youtubeIcon from "../../images/yout.svg";
+import linkedinIcon from "../../images/linkedin.svg";
+import bloggerIcon from "../../images/blogger.svg";
+import mediumIcon from "../../images/medium.svg";
+import instagramIcon from "../../images/insta.svg";
+import phoneIcon from "../../images/phone.svg";
+import mailIcon from "../../images/mail.svg";
 import FooterSecondary from "./FooterSecondary";
 
 function Footer() {
@@ -32,10 +32,10 @@ function Footer() {
     return (
         <div>
             <FooterSecondary />
-            <footer className="px-6  text-dark pt-2 mx-auto lg:px-[25px] lg:pt-[50px] ">
+            <footer className="px-6 py-[15px] sm:py-6 md:py-8 lg:py-[50px] lg:px-20 xl:px-24 2xl:px-32  text-dark pt-2 mx-auto lg:px-[25px] lg:pt-[50px] ">
                 <div className="col my-auto h-max w-full">
                     <div className=" flex flex-wrap  justify-between items-center gap-[30px]">
-                        <div className="row justify-center xl:w-max sm:w-1/2 w-full flex gap-[25px] sm:gap-[32px] md:gap-[38px] lg:gap-[42px] xl:gap-[50px] ">
+                        <div className="row justify-center xl:w-max md:w-1/2 w-full flex gap-[25px] sm:gap-[32px] md:gap-[38px] lg:gap-[42px] xl:gap-[50px] footerFirstDiv ">
                             <div className=" xl:!max-w-[423px] grid gap-[25px]">
                                 <div className="">
                                     <img
@@ -51,8 +51,7 @@ function Footer() {
                                             rel="noopener noreferrer"
                                             style={{
                                                 color: "rgb(44, 44, 43)",
-                                                textDecoration: "none",
-                                                borderBottom: "2px solid #FF9D00",
+                                                textDecorationColor: "#FF9D00"
                                             }}
                                         >
                                             {" "}
@@ -117,7 +116,7 @@ function Footer() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-dark text-decoration-none">
+                                    <a href="/termsconditions" className="text-dark text-decoration-none">
                                         Terms & Conditions
                                     </a>
                                 </li>
@@ -218,11 +217,11 @@ function Footer() {
                                     </h5>
                                     <div className="d-flex footer_smedia">
                                         <img src={phoneIcon} alt="" />
-                                        <span className="ms-3 font-medium">+91 9538610745</span>
+                                        <span className="ms-3 font-medium">+91 80781 79646</span>
                                     </div>
                                     <div className="d-flex">
                                         <img src={mailIcon} alt="" />
-                                        <span className="ms-3 font-medium">TrackPi@gmail.com</span>
+                                        <span className="ms-3 font-medium">operations@trackpi.in</span>
                                     </div>
                                 </div>
                             </div>

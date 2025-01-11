@@ -2,7 +2,7 @@ import React from 'react';
 import Details from '../../components/User/Form';
 import { Container, Row } from 'react-bootstrap';
 import ConnectButtons from '../../components/ConnectButtons';
-import HeaderBanner from '../../components/HeaderBanner';
+import HeaderBanner from '../../components/User/HeaderBanner';
 
 import "../../CSS/connect.css";
 
