@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import projectUploadImg from '../images/projectUpload.svg';
+import projectUploadImg from '../../images/projectUpload.svg';
 import { FiExternalLink } from 'react-icons/fi';
 
 function ProjectManagement() {

@@ -19,7 +19,7 @@ function AdminLogin() {
       console.log(response, 'responseLogin');
 
       // Extract the token from the response
-      const token = response.data.Token;
+      const token = response.data.token;
       console.log(token, 'token');
 
       // Decode the token to get the user ID

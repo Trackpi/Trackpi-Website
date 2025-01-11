@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate, useLocation, Link } from "react-router-dom";
-import projectManageBack from '../images/projectManageBack.svg'
+import projectManageBack from '../../images/projectManageBack.svg'
 
 function ProjectManagementDetail() {
 

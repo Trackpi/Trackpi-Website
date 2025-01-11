@@ -99,32 +99,32 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <div className="flex px-2 justify-between mr-0 lg:mr-96">
-              <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
+              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
                 <input
                   type="radio"
                   name="options"
                   value="Student"
-                  className="form-radio text-[#0A0A0A] h-5 w-5 "
+                  className="form-radio h-5 w-5 text-black checked:bg-black  focus:ring-black "
                 />
                 <span className="text-sm text-[#0A0A0A]">Student</span>
               </label>
-              <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
+              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
                 <input
                   type="radio"
                   name="options"
                   value="Fresher"
-                  className="form-radio  h-5 w-5"
+                  className="form-radio h-5 w-5 text-black checked:bg-black focus:ring-black"
                 />
                 <span className="text-sm text-[#0A0A0A]">Fresher</span>
               </label>
-              <label className="flex items-center space-x-2 text-[#0A0A0A]  text-opacity-70">
+              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
                 <input
                   type="radio"
                   name="options"
                   value="Working"
-                  className="form-radio h-5 w-5"
+                  className="form-radio h-5 w-5 text-black checked:bg-black focus:ring-black"
                 />
-                <span className="text-sm text-[#0A0A0A] ">Working</span>
+                <span className="text-sm text-[#0A0A0A]">Working</span>
               </label>
             </div>
           </div>
@@ -330,8 +330,6 @@ const FormNewProject = () => {
               className="  border-red text-black placeholder-black p-3 place"
             />
           </div>
-
-          
 
           <div className="flex flex-col items-center mediaUploadDiv">
             <input
