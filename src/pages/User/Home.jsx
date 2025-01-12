@@ -16,6 +16,10 @@ import '../../CSS/User/Home.css';
 import img1 from '../../images/team.png';
 import PopUp from '../../components/User/PopUp';
 import news1 from '../../images/news 1.png';
+import news2 from '../../images/news 2.png';
+import news3 from '../../images/news 3.png';
+import news4 from '../../images/news 4.png';
+
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });
@@ -24,13 +28,25 @@ function Home() {
 
   // const cards = [
   //   {
+  //     id:1,
   //     news:{news1}
   //   },
   //   {
+  //     id:2,
   //     news:{news2}
+  //   },
+  //   {
+  //     id:3,
+  //     news:{news3}
+  //   },
+  //   {
+  //     id:4,
+  //     news:{news4}
   //   },
 
   // ]
+
+
   const cards = [
     {
       id: 1,
@@ -117,6 +133,8 @@ function Home() {
       logo: logo,
     },
   ];
+  
+  
   const clients = [
     { id: 1, logo: clientLogo1 },
     { id: 2, logo: clientLogo2 },
@@ -314,13 +332,13 @@ function Home() {
                               : 'scale-100'
                           }`}
                         >
-                          <img
-                            src={news1}
+                          {/* <img
+                            src={card.news}
                             alt={`News ${card.id}`}
                             className="w-full h-auto rounded"
-                          />
+                          /> */}
 
-                          {/* <img
+                          <img
                             src={card.logo}
                             alt="Card_logo"
                             className={`mx-auto lg:h-auto h-[100px] transition-transform ${
@@ -346,7 +364,7 @@ function Home() {
                             }`}
                           >
                             {card.description}
-                          </p> */}
+                          </p>
                         </div>
                       </div>
                     ))}
