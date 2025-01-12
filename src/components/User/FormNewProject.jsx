@@ -371,8 +371,9 @@ const FormNewProject = () => {
             />
             <label htmlFor="terms" className="text-sm">
               <Link
-                to="#"
+                to="/termsconditions-submit-new-project"
                 className="text-[#212529] items-center text-[14px] no-underline mx-2 cursor-pointor"
+                
               >
                 Agreement to Terms & Conditions
               </Link>

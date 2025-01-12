@@ -1,54 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import projectUploadImg from '../../images/projectUpload.svg';
 import { FiExternalLink } from 'react-icons/fi';
+import baseURL from '../../Api Services/baseURL';
 
 function ProjectManagement() {
-  const [projects] = useState([
-    {
-      date: '01/01/2025',
-      projects: [
-        {
-          name: 'John Doe',
-          email: 'john.doe@gmail.com',
-          phone: '9876543210',
-          projectName: 'Project Alpha,',
-          time: '10:00 AM',
-        },
-        {
-          name: 'Jane Doe',
-          email: 'jane.doe@gmail.com',
-          phone: '9876543211',
-          projectName: 'Project Beta',
-          time: '11:00 AM',
-        },
-      ],
-    },
-    {
-      date: '02/01/2025',
-      projects: [
-        {
-          name: 'Michael Smith',
-          email: 'michael.smith@gmail.com',
-          phone: '9876543212',
-          projectName: 'Project Gamma',
-          time: '12:00 PM',
-        },
-      ],
-    },
-  ]);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
-  const handleViewDetails = project => {
-    navigate(`/admin/project-details/${project.id}`, { state: project });
+  // Fetch the projects from the API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await baseURL.get('/api/projects/getAllProjects');
+        console.log(response.data, 'responseDataProjects');
+        setProjects(response.data); // Assuming the API returns an array of projects
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load projects');
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []); // Empty dependency array means this effect runs once when the component mounts
+
+  // Group projects by date
+  const groupedProjects = projects.reduce((acc, project) => {
+    const date = project.createdAt.split('T')[0]; // Extract date part from createdAt
+    if (!acc[date]) {
+      acc[date] = [];
+    }
+    acc[date].push(project);
+    return acc;
+  }, {});
+
+  const handleViewDetails = (project) => {
+    console.log(project,"projectId")
+    navigate(`/admin/project-details/${project._id}`, { state: project });
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // You can customize the loading indicator
+  }
+
+  if (error) {
+    return <div>{error}</div>; // You can customize the error message
+  }
 
   return (
     <div className="bg-white w-full">
       <div className="py-[40px] px-[30px] grid gap-[30px]">
         {/* Header */}
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <div className="text-[24px] font-bold">Project Management</div>
           <div>
             <button className="w-[55px] h-[45px] rounded-[10px] bg-[#FF9D00]">
@@ -58,154 +65,53 @@ function ProjectManagement() {
         </div>
         {/* Table Content */}
         <div className="py-[10px] grid gap-[25px]">
-          {projects.map((dateGroup, dateIndex) => (
-            <div className="grid gap-[10px]" key={dateIndex}>
+          {Object.keys(groupedProjects).map((date) => (
+            <div className="grid gap-[10px]" key={date}>
               {/* Date Heading */}
-              <div className="text-[#FF9D00] text-[20px]">{dateGroup.date}</div>
+              <div className="text-[#FF9D00] text-[20px]">{date}</div>
 
               {/* Table */}
-              <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-2">
-                {/* <div className="table-wrapper"> */}
-                <table
-                  className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                  style={{ tableLayout: 'fixed' }}
-                >
-                  {' '}
-                  {/* Render Table Headers Only for First Table */}
-                  {dateIndex === 0 && (
+              <div className="relative shadow-md sm:rounded-lg border-dark border-2">
+                <div className="table-wrapper">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-fixed">
+                    {/* Table Headers */}
                     <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
                       <tr>
-                        <th
-                          scope="col"
-                          className=" border-r-2 text-center"
-                          style={{ width: '10%' }}
-                        >
-                          Sl No
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-2 py-3 border-r-2 text-center"
-                          style={{ width: '25%' }}
-                        >
-                          Name
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-2 py-3 border-r-2 text-center"
-                          style={{ width: '25%' }}
-                        >
-                          Email ID
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-2 py-3 border-r-2 text-center"
-                          style={{ width: '25%' }}
-                        >
-                          Phone
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-2 py-3 border-r-2 text-center"
-                          style={{ width: '25%' }}
-                        >
-                          Project Name
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-2 py-3 border-r-2 text-center"
-                          style={{ width: '25%' }}
-                        >
-                          Time
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-2 py-3 border-r-2 text-center"
-                          style={{ width: '25%' }}
-                        >
-                          View
-                        </th>
+                        <th className="border-r-2 text-center px-2 py-3 w-[60px]">Sl No</th>
+                        <th className="border-r-2 text-center px-2 py-3 w-[150px]">Name</th>
+                        <th className="border-r-2 text-center px-2 py-3 w-[200px]">Email ID</th>
+                        <th className="border-r-2 text-center px-2 py-3 w-[150px]">Phone</th>
+                        <th className="border-r-2 text-center px-2 py-3 w-[200px]">Project Name</th>
+                        <th className="border-r-2 text-center px-2 py-3 w-[100px]">Time</th>
+                        <th className="text-center px-2 py-3 w-[150px]">View</th>
                       </tr>
                     </thead>
-                  )}
-                  {/* Table Body */}
-                  <tbody>
-                    {dateGroup.projects.map((project, projectIndex) => (
-                      <tr
-                        key={projectIndex}
-                        className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
-                      >
-                        <td
-                          key={projectIndex}
-                          className=" border-r-2  text-center"
-                          style={{
-                            wordWrap: 'break-word',
-                            overflowWrap: 'break-word',
-                            boxSizing: 'border-box',
-                          }}
+                    {/* Table Body */}
+                    <tbody>
+                      {groupedProjects[date].map((project, projectIndex) => (
+                        <tr
+                          key={project._id}
+                          className="bg-white text-md font-semibold text-black hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
                         >
-                          {projectIndex + 1}
-                        </td>
-                        <td
-                      className={`px-2 py-3 border-r-2 text-center`}
-                      style={{
-                        wordWrap: 'break-word',
-                        overflowWrap: 'break-word',
-                        boxSizing: 'border-box',
-                      }}
-                    >
-                          {project.name}
-                        </td>
-                        <td
-                      className={`px-2 py-3 border-r-2 text-center`}
-                      style={{
-                        wordWrap: 'break-word',
-                        overflowWrap: 'break-word',
-                        boxSizing: 'border-box',
-                      }}
-                    >
-                          {project.email}
-                        </td>
-                        <td
-                      className={`px-2 py-3 border-r-2 text-center`}
-                      style={{
-                        wordWrap: 'break-word',
-                        overflowWrap: 'break-word',
-                        boxSizing: 'border-box',
-                      }}
-                    >
-                          {project.phone}
-                        </td>
-                        <td
-                      className={`px-2 py-3 border-r-2 text-center`}
-                      style={{
-                        wordWrap: 'break-word',
-                        overflowWrap: 'break-word',
-                        boxSizing: 'border-box',
-                      }}
-                    >
-                          {project.projectName}
-                        </td>
-                        <td
-                      className={`px-2 py-3 border-r-2 text-center`}
-                      style={{
-                        wordWrap: 'break-word',
-                        overflowWrap: 'break-word',
-                        boxSizing: 'border-box',
-                      }}
-                    >
-                          {project.time}
-                        </td>
-                        <td
-                          className="text-[#FF9D00] font-bold text-center cursor-pointer px-2 py-3 flex justify-center items-center gap-2 "
-                          onClick={() => handleViewDetails(project)}
-                        >
-                          View Details <FiExternalLink size={20} />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {/* </div> */}
+                          <td className="border-r-2 text-center px-2 py-3 w-[60px]">{projectIndex + 1}</td>
+                          <td className="border-r-2 text-center px-2 py-3 w-[150px]">{project.fullName}</td>
+                          <td className="border-r-2 text-center px-2 py-3 w-[200px]">{project.emailAddress}</td>
+                          <td className="border-r-2 text-center px-2 py-3 w-[150px]">{project.contactNumber}</td>
+                          <td className="border-r-2 text-center px-2 py-3 w-[200px]">{project.projectName}</td>
+                          <td className="border-r-2 text-center px-2 py-3 w-[100px]">
+                            {project.createdAt.split('T')[1].split('.')[0]} {/* Extract time */}
+                          </td>
+                          <td
+                            className="text-[#FF9D00] font-bold text-center cursor-pointer px-2 py-3 flex justify-center items-center gap-2 w-[150px]"
+                            onClick={() => handleViewDetails(project)}
+                          >
+                            View Details <FiExternalLink size={20} />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           ))}

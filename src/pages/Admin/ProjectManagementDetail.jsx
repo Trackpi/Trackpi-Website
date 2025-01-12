@@ -6,6 +6,7 @@ function ProjectManagementDetail() {
 
    const location = useLocation();
       const mockData = location.state; 
+      
 
   return (
     <div className="bg-white w-full">
@@ -28,15 +29,15 @@ function ProjectManagementDetail() {
             <div className="pt-[10px] flex flex-wrap justify-between items-center w-100 gap-[20px] 2xl:gap-[90px]">
               <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv 2xl:grow">
                 <div className="text-[18px]">Name</div>
-                <div className="text-[20px] font-bold">{mockData.name}</div>
+                <div className="text-[20px] font-bold">{mockData.fullName}</div>
               </div>
               <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv 2xl:grow">
                 <div className="text-[18px]">Contact</div>
-                <div className="text-[20x] font-bold">{mockData.phone}</div>
+                <div className="text-[20x] font-bold">{mockData.contactNumber}</div>
               </div>
               <div className="grid gap-[15px]  min-w-[300px] projectDetailsBorderDiv 2xl:grow">
                 <div className="text-[18px]">Email</div>
-                <div className="text-[20x] font-bold">{mockData.email}</div>
+                <div className="text-[20x] font-bold">{mockData.emailAddress}</div>
               </div>
             </div>
             <div className="flex flex-wrap justify-between items-center w-100 gap-[20px] 2xl:gap-[90px]">
@@ -57,15 +58,15 @@ function ProjectManagementDetail() {
               <div className="grid gap-[15px] w-100">
                 <div className="projectDetailsBorderDiv min-h-[110px]">
                   <div className="text-[18px]">Project/Idea Name</div>
-                  <div className="text-[20px] font-bold">{mockData.project}</div>
+                  <div className="text-[20px] font-bold">{mockData.projectName}</div>
                 </div>
                 <div className="projectDetailsBorderDiv min-h-[180px]">
                   <div className="text-[18px]">What Problem Does Your Idea Solve?</div>
-                  <div className="text-[20px] font-bold">{mockData.problem}</div>
+                  <div className="text-[20px] font-bold">{mockData.problemSolved}</div>
                 </div>
                 <div className="projectDetailsBorderDiv min-h-[180px]">
                   <div className="text-[18px]">Who would benefit from this idea?</div>
-                  <div className="text-[20px] font-bold">{mockData.benefit}</div>
+                  <div className="text-[20px] font-bold">{mockData.beneficiaries}</div>
                 </div>
               </div>
               <div className="grid gap-[15px] w-100">
@@ -75,7 +76,7 @@ function ProjectManagementDetail() {
                 </div>
                 <div className="projectDetailsBorderDiv min-h-[180px]">
                   <div className="text-[18px]">Why Do You Think This Idea Will Succeed?</div>
-                  <div className="text-[20px] font-bold">{mockData.success}</div>
+                  <div className="text-[20px] font-bold">{mockData.successReason}</div>
                 </div>
                 <div className="projectDetailsBorderDiv min-h-[180px]">
                   <div className="text-[18px]">Summarize your project ideas.</div>

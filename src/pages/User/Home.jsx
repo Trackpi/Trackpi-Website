@@ -15,12 +15,22 @@ import HeaderBanner from '../../components/User/HeaderBanner';
 import '../../CSS/User/Home.css';
 import img1 from '../../images/team.png';
 import PopUp from '../../components/User/PopUp';
+import news1 from '../../images/news 1.png';
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });
   const isInView2 = useInView({ selector: '.section2' });
   const isInView3 = useInView({ selector: '.section3' });
 
+  // const cards = [
+  //   {
+  //     news:{news1}
+  //   },
+  //   {
+  //     news:{news2}
+  //   },
+
+  // ]
   const cards = [
     {
       id: 1,
@@ -133,7 +143,6 @@ function Home() {
   const [isPaused, setIsPaused] = useState(false);
 
   // Function to group cards based on the current cardsPerGroup value
-  // Function to group cards based on the current cardsPerGroup value
   const groupCards = () => {
     const groups = [];
     for (let i = 0; i < cards.length; i += cardsPerGroup) {
@@ -241,8 +250,9 @@ function Home() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: 'inherit',
-                textDecorationColor: ' #FF9D00',
+                color: '#FF9D00',
+                fontWeight: 'bold',
+                textDecoration:'none'
               }}
             >
               trusted business consulting firm
@@ -305,6 +315,12 @@ function Home() {
                           }`}
                         >
                           <img
+                            src={news1}
+                            alt={`News ${card.id}`}
+                            className="w-full h-auto rounded"
+                          />
+
+                          {/* <img
                             src={card.logo}
                             alt="Card_logo"
                             className={`mx-auto lg:h-auto h-[100px] transition-transform ${
@@ -330,7 +346,7 @@ function Home() {
                             }`}
                           >
                             {card.description}
-                          </p>
+                          </p> */}
                         </div>
                       </div>
                     ))}
@@ -400,7 +416,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1">
+      <section className="mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 w-full px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1">
         <motion.div
           className="flex flex-col-reverse lg:flex-row gap-[1rem] sm:gap-4 md:gap-8 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView1 ? 10 : 0 }}
@@ -436,8 +452,9 @@ function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color: 'inherit',
-                  textDecorationColor: ' #FF9D00',
+                  color: '#FF9D00',
+                  fontWeight: 'bold',
+                  textDecoration:'none'
                 }}
               >
                 expert solutions{' '}
@@ -445,12 +462,13 @@ function Home() {
               that include detailed strategy planning. Looking to evolve your
               business? Why wait,{' '}
               <a
-                href="/our-services"
+                href="/connect-us"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color: 'inherit',
-                  textDecorationColor: ' #FF9D00',
+                  color: '#FF9D00',
+                  fontWeight: 'bold',
+                  textDecoration:'none'
                 }}
               >
                 Contact us{' '}
@@ -464,11 +482,11 @@ function Home() {
             <h1 className="font-bold text-[#FFC100] text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl pb-3 text-center  block lg:hidden">
               We see the challenge
             </h1>
-            <div className="homeImg">
+            <div className="flex-justify-center imgMob">
               <motion.img
                 src={home1}
                 alt="Strategic Procurement"
-                className="shadow-lg rounded-[15px] md:rounded-[10px] w-full h-[200px] sm:h-[350px] md:h-[390px]  lg:h-[390px] 2xl:h-[600px] object-cover"
+                className="shadow-lg rounded-[15px] md:rounded-[10px] w-full  h-[200px] sm:h-[350px] md:h-[390px]  lg:h-[390px] 2xl:h-[600px] object-cover"
                 animate={{ scale: isInView1 ? 1.02 : 1 }}
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
               />
@@ -477,7 +495,7 @@ function Home() {
         </motion.div>
       </section>
 
-      <section className="mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 w-full px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-16 lg:py-20 bg-[#FFC100] text-black bg2 section2">
+      <section className="mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 w-full px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto py-16 lg:py-20 bg-[#FFC100] text-black bg2 section2">
         <motion.div
           className="flex flex-col lg:flex-row gap-[1rem] sm:gap-4 md:gap-8 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView2 ? 10 : 0 }}
@@ -525,7 +543,7 @@ function Home() {
         </motion.div>
       </section>
       <section className="relative z-20"></section>
-      <section className=" mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 px-10 lg:px-20 xl:px-24 2xl:px-32  mx-auto w-full h-full section3">
+      <section className=" mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32  mx-auto w-full h-full section3">
         <motion.div
           className="flex flex-col-reverse lg:flex-row gap-[1rem] sm:gap-4 md:gap-8 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView3 ? 10 : 0 }}
@@ -558,7 +576,7 @@ function Home() {
             <h1 className="font-bold text-[#FFC100]  text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl  text-center  block lg:hidden">
               Outdated Practices Won’t Drive Future Success
             </h1>
-            <div className="mt-3 w-full ">
+            <div className="mt-3 w-full imgMob">
               <motion.img
                 src={home2}
                 alt="Strategic Procurement"

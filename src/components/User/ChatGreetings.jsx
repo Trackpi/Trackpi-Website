@@ -18,7 +18,10 @@ const Chatbox = () => {
   useEffect(() => {
     if (!isChatOpen) return;
 
-    let index = 0;
+    // Immediately display the first message
+    setMessages([companyMessages[0]]);
+    let index = 1; // Start from the second message
+
     const interval = setInterval(() => {
       if (index < companyMessages.length) {
         setMessages(prevMessages => [...prevMessages, companyMessages[index]]);
@@ -48,7 +51,7 @@ const Chatbox = () => {
   return (
     <div
       ref={chatboxRef}
-      className="chatbox relative bg-white rounded-lg shadow-lg w-80 py-4 mx-auto flex flex-col items-center"
+      className="chatbox relative rounded-lg shadow-lg w-80 h-80 py-4 mx-auto flex flex-col items-center"
     >
       {/* Chatbot Icon */}
       <div className="absolute -top-6 bg-white rounded-full p-2 shadow-md">
@@ -62,7 +65,7 @@ const Chatbox = () => {
             message && (
               <div
                 key={index}
-                className={`message bg-gray-100 p-3 mb-2 rounded-lg shadow-md text-black text-sm ${
+                className={`message bg-green-100 p-3 mb-2 rounded-lg shadow-md text-black text-sm ${
                   index === messages.length - 1 ? 'slide-in-inside' : ''
                 }`}
               >

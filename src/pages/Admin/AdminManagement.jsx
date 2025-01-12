@@ -353,12 +353,11 @@ function AdminManagement() {
                     <td
                       className={`px-2 py-3 border-r-2 text-center `}
                       style={{
-                        whiteSpace: 'normal',       // Enable text wrapping
-                        wordWrap: 'break-word',     // Break words at container boundaries
+                        whiteSpace: 'normal', // Enable text wrapping
+                        wordWrap: 'break-word', // Break words at container boundaries
                         overflowWrap: 'break-word', // Same as word-wrap for modern browsers
-                        wordBreak: 'break-word',    // Break long words if necessary
+                        wordBreak: 'break-word', // Break long words if necessary
                       }}
-            
                     >
                       <div className="flex justify-center items-center gap-2  cursor-pointer">
                         {row.password}{' '}
