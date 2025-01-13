@@ -5,7 +5,7 @@ import React, { useState, useRef,useEffect } from "react";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
 import { useNavigate, useParams,useLocation } from "react-router-dom";
-
+import axios from "axios";
 
 
 function AddEmployee ()  {
@@ -27,9 +27,10 @@ function AddEmployee ()  {
     linkedin: employeeData.linkedin || "",
     twitter: employeeData.twitter || "",
     feedback: employeeData.feedback || "",
+    
   });
   // Update form data when employeeData changes
- 
+  const [message, setMessage] = useState("");
   useEffect(() => {
     if (id && employeeData) {
       setFormData({
@@ -57,36 +58,7 @@ function AddEmployee ()  {
     }
   }, [employeeData.image]);
     
-     
-      
-      //  // Fetch existing intern data for editing
-      //  useEffect(() => {
-      //   if (id) {
-      //      // Fetch intern data if editing
-      //      getInternEmployeeById(id)
-      //      .then((data) => {
-      //       console.log("Fetched Data:", data); 
-           
-      //        setFormData({
-      //          userName: data.userName || "",
-      //          empID: data.empID || "",
-      //          desig: data.desig || "",
-      //          selfIntroduction: data.selfIntroduction || "",
-      //          instagram: data.instagram || "",
-      //          linkedin: data.linkedin || "",
-      //          twitter: data.twitter || "",
-      //          feedback: data.feedback || "",
-      //        });
-      //        // Prefill the image and certificate if available
-      //        if (data.profileImage) setProfileImage(data.profileImage);
-             
-      //      })
-      //      .catch((error) => toast.error("Failed to fetch employee details"));
-       
-           
-      //   }
-      // }, [id]);
-    
+  
       const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -117,29 +89,28 @@ function AddEmployee ()  {
         }
     
        
-        const header = {
-          "content-Type": "multipart/form-data",
-          Authorization: `Token ${sessionStorage.getItem("token")}`,
-        };
+        try {
+          const formDataToSend = new FormData();
+          formDataToSend.append("empID", formData.empID);
+          formDataToSend.append("name", formData.name);
+          formDataToSend.append("desig", formData.desig);
+          formDataToSend.append("selfIntroduction", formData.selfIntroduction);
+          formDataToSend.append("socialMediaLinks", formData.socialMediaLinks);
+          if (formData.image) {
+            formDataToSend.append("image", formData.image);
+          }
     
-       
-          try {
-              if (id) {
-                // Update logic
-                // Example: const res = await updateSalesEmployee(fd, header);
-                console.log("Updating employee with ID:", id);
-                toast.success("Sales Employee updated successfully!");
-              } else {
-                // Add logic
-                // Example: const res = await addSalesEmployee(fd, header);
-                console.log("Adding new Sales Employee");
-                toast.success("Sales Employee added successfully!");
-              }
-              navigate(`/admin/salesManagement-detail/${id || "new"}`);
-            } catch (error) {
-              console.error(id ? "Error updating employee" : "Error adding employee:", error);
-              toast.error("Something went wrong! Please try again.");
-            }
+          const response = await axios.post("/employees", formDataToSend, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+    
+          setMessage(response.data.message);
+        } catch (error) {
+          console.error("Error adding employee:", error);
+          setMessage(error.response?.data?.error || "Something went wrong!");
+        }
       
       };
       const handleCancel = () => {

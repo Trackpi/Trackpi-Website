@@ -13,7 +13,9 @@
     border-top-right-radius: 8px;
     box-shadow: 0 8px 15px rgba(255, 179, 0, 0), 0 4px 6px rgba(255, 179, 0, 1);
   }
-
+.backcolor{
+  background: rgba(255, 179, 0, 1);
+}
 .personnelimg {
     position: absolute;
     top: calc(230px - 110px); /* 50% of the image in orange and 50% in white */

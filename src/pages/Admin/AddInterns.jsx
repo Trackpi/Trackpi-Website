@@ -33,14 +33,14 @@ function AddInterns() {
   
   const [profileImage, setProfileImage] = useState(null);
   const fileInputRef = useRef(null);
-  const [certificate, setCertificate] = useState(null);
-
-  const certificateInputRef = useRef(null);
- 
-  const handleCertificateFileChange = (e) => {
-    setCertificate(e.target.files[0]);
-  };
   
+    const [certificate, setCertificate] = useState(null);
+    const certificateInputRef = useRef(null);
+    const handleCertificateFileChange = (e) => {
+     setCertificate(e.target.files[0]);
+    }
+ 
+ 
    // Update form data when employeeData changes
    useEffect(() => {
      if (id && employeeData) {
@@ -805,18 +805,23 @@ function AddInterns() {
                                                       width: "330px",
                                                       height: "150px",
                                                       overflow: "hidden",
+                                                     
                                                     }}
+                                                   
                                                   >
                                                     {certificate ? (
-                                                      <img
-                                                        src={URL.createObjectURL(certificate)}
-                                                        alt="Uploaded Certificate"
-                                                        style={{
-                                                          width: "100%",
-                                                          height: "100%",
-                                                          objectFit: "cover",
-                                                        }}
-                                                      />
+                                                         <div>
+                                                         <p>{certificate.name}</p>
+                                                         <a
+                                                 href={URL.createObjectURL(certificate)}
+                                                 target="_blank"
+                                                 rel="noopener noreferrer"
+                                                 className="btn btn-link text-black"
+                                               >
+                                                 View
+                                               </a>
+                                               </div>
+                                                    
                                                     ) : (
                                                       <p>Upload the file</p>
                                                     )}
@@ -835,9 +840,11 @@ function AddInterns() {
                                             type="file"
                                             ref={certificateInputRef}
                                             style={{ display: "none" }}
-                                            accept="image/*"
+                                            accept=".pdf,.doc,.docx"
                                             onChange={handleCertificateFileChange}
                                           />
+                                            
+    
                                </div>
                           </div>
                       <div className=" flex justify-center gap-4 mt-4">
