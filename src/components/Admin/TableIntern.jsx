@@ -19,7 +19,7 @@ const data = [
     empID: 'EMP001',
     email: 'arjun.menon@gmail.com',
     image:imagepersonnel1,
-    phoneNumber: 9876543210,
+    phone: 9876543210,
   },
   {
     sl_no: 2,
@@ -27,7 +27,7 @@ const data = [
     empID: 'EMP002',
     email: 'meera.nair@yahoo.com',
     image:imagepersonnel2,
-    phoneNumber: 9123456789,
+    phone: 9123456789,
   },
   {
     sl_no: 3,
@@ -35,7 +35,7 @@ const data = [
     empID: 'EMP003',
     email: 'ravi.krishnan@domain.com',
     image:imagepersonnel3,
-    phoneNumber: 8765432190,
+    phone: 8765432190,
   },
   {
     sl_no: 4,
@@ -43,7 +43,7 @@ const data = [
     empID: 'EMP004',
     email: 'divya.rajan@gmail.com',
     image:imagepersonnel4,
-    phoneNumber: 9234567812,
+    phone: 9234567812,
   },
   {
     sl_no: 5,
@@ -51,7 +51,7 @@ const data = [
     empID: 'EMP005',
     email: 'vikram.reddy@outlook.com',
     image:imagepersonnel5,
-    phoneNumber: 9876123456,
+    phone: 9876123456,
   },
   {
     sl_no: 6,
@@ -59,7 +59,7 @@ const data = [
     empID: 'EMP006',
     email: 'anjali.mohan@domain.com',
     image:imagepersonnel6,
-    phoneNumber: 9345678123,
+    phone: 9345678123,
   },
   {
     sl_no: 7,
@@ -67,7 +67,7 @@ const data = [
     empID: 'EMP007',
     email: 'karthik.iyer@company.com',
     image:imagepersonnel1,
-    phoneNumber: 9987654321,
+    phone: 9987654321,
   },
   {
     sl_no: 8,
@@ -75,7 +75,7 @@ const data = [
     empID: 'EMP008',
     email: 'lakshmi.priya@gmail.com',
     image:imagepersonnel2,
-    phoneNumber: 8765432109,
+    phone: 8765432109,
   },
   {
     sl_no: 9,
@@ -83,7 +83,7 @@ const data = [
     empID: 'EMP009',
     email: 'manoj.pillai@domain.com',
     image:imagepersonnel3,
-    phoneNumber: 9123678945,
+    phone: 9123678945,
   },
   {
     sl_no: 10,
@@ -91,7 +91,7 @@ const data = [
     empID: 'EMP010',
     email: 'sharanya.das@website.com',
     image:imagepersonnel4,
-    phoneNumber: 8543217890,
+    phone: 8543217890,
   },
 ];
 
@@ -194,7 +194,7 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    {row.phoneNumber}
+                    {row.phone}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                   style={{

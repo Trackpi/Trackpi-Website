@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 // import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
 import { useNavigate, useParams ,useLocation} from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
-import { BsBoxArrowUp } from "react-icons/bs";
+
 
 
 function AddInterns() {
@@ -14,7 +14,7 @@ function AddInterns() {
     name: employeeData.name || "",
     empID: employeeData.empID ||  "",
     email:employeeData.email || "",
-    phoneNumber:employeeData.phoneNumber ||  "",
+    phone:employeeData.phone ||  "",
     fullAddress:employeeData.fullAddress ||  "",
     gender:employeeData.gender||  "",
     dob:employeeData.dob||  "",
@@ -28,37 +28,42 @@ function AddInterns() {
     twitter: employeeData.twitter || "",
     feedback:employeeData.feedback || "",
   });
+    const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+    const navigate = useNavigate();
   
   const [profileImage, setProfileImage] = useState(null);
+  const fileInputRef = useRef(null);
   const [certificate, setCertificate] = useState(null);
 
   const certificateInputRef = useRef(null);
-  const fileInputRef = useRef(null);
-
-  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
-  const navigate = useNavigate();
+ 
+  const handleCertificateFileChange = (e) => {
+    setCertificate(e.target.files[0]);
+  };
+  
    // Update form data when employeeData changes
-    useEffect(() => {
-      setFormData({
-        name: employeeData.name || "",
-        empID: employeeData.empID ||  "",
-        email:employeeData.email || "",
-        phoneNumber:employeeData.phoneNumber ||  "",
-        fullAddress:employeeData.fullAddress ||  "",
-        gender:employeeData.gender||  "",
-        dob:employeeData.dob||  "",
-        bloodGroup:employeeData.bloodGroup||  "",
-        dateOfJoining:employeeData.dateOfJoining||  "",
-        jobRole:employeeData.jobRole||  "",
-        employeeStatus: employeeData.employeeStatus|| "",
-        jobLevel:employeeData.jobLevel||  "",
-        instagram:employeeData.instagram ||  "",
-        linkedin:employeeData.linkedin || "",
-        twitter: employeeData.twitter || "",
-        feedback:employeeData.feedback || "",
-      });
-     
-    }, [employeeData]);
+   useEffect(() => {
+     if (id && employeeData) {
+       setFormData({
+         name: employeeData.name || "",
+         empID: employeeData.empID || "",
+         email: employeeData.email || "",
+         phone: employeeData.phone || "",
+         fullAddress: employeeData.fullAddress || "",
+         gender: employeeData.gender || "",
+         dob: employeeData.dob || "",
+         bloodGroup: employeeData.bloodGroup || "",
+         dateOfJoining: employeeData.dateOfJoining || "",
+         jobRole: employeeData.jobRole || "",
+         employeeStatus: employeeData.employeeStatus || "",
+         jobLevel: employeeData.jobLevel || "",
+         instagram: employeeData.instagram || "",
+         linkedin: employeeData.linkedin || "",
+         twitter: employeeData.twitter || "",
+         feedback: employeeData.feedback || "",
+       });
+     }
+   }, [id, employeeData]); // Only trigger when id or employeeData changes
     useEffect(() => {
       // Fetch the image and convert it to a File object
       if (employeeData.image) {
@@ -75,37 +80,41 @@ function AddInterns() {
  
       
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value, // Dynamically update the input value
+      }));
+    };
 
   const handleFileChange = (e) => {
     setProfileImage(e.target.files[0]);
   };
 
-  const handleCertificateFileChange = (e) => {
-    setCertificate(e.target.files[0]);
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formDataObj = new FormData();
+   
+       if (
+           Object.values(formData).some((value) => !value.trim()) ||
+           !profileImage ||
+           !certificate
+       ) {
+           toast.warning("Please fill all the fields!");
+           return;
+       }
+   
+       const fd = new FormData();
+       for (const [key, value] of Object.entries(formData)) {
+           fd.append(key, value.trim());
+       }
+       fd.append("image",profileImage);
+       fd.append("certificate", certificate);
 
-    // Append form data
-    for (const key in formData) {
-      formDataObj.append(key, formData[key]);
-    }
-
-    // Append files
-    if (profileImage) {
-      formDataObj.append("profileImage", profileImage);
-    }
-
-    if (certificate) {
-      formDataObj.append("Certificate", certificate);
-    }
+   
     const header = {
       "content-Type": "multipart/form-data",
       Authorization: `Token ${sessionStorage.getItem("token")}`,
@@ -190,8 +199,8 @@ function AddInterns() {
                 name="name"
                 className="form-control rounded-2xl plac"
                 placeholder="Name"
-                value={formData.name}
-                onChange={handleInputChange}
+                value={formData.name ||'' } 
+                onChange={handleInputChange} 
                 
                 style={{fontSize: '12px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -209,14 +218,15 @@ function AddInterns() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label  font-bold text-[15px]">Employee Id</label>
+              <label className="form-label  font-bold text-[15px]">Employee ID</label>
               <input
                 type="text"
                 name="empID"
                 className="form-control rounded-2xl plac"
-                placeholder="Employee Id"
-                value={formData.empID}
-                onChange={handleInputChange}
+                placeholder="Employee ID"
+                // value={formData.empID}
+                value={formData.empID ||'' } 
+              onChange={handleInputChange} 
                 style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
                   
@@ -231,14 +241,15 @@ function AddInterns() {
               />
             </div>
             <div className="col-md-4 ">
-              <label className="form-label  font-bold text-[15px]">Email Id</label>
+              <label className="form-label  font-bold text-[15px]">Email ID</label>
               <input
                 type="email"
                 name="email"
                 className="form-control rounded-2xl plac"
-                placeholder="Email-Id"
-                value={formData.email}
-                onChange={handleInputChange}
+                placeholder="Email-ID"
+                // value={formData.email}
+                value={formData.email ||'' } 
+              onChange={handleInputChange} 
                 style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
                   
@@ -266,12 +277,13 @@ function AddInterns() {
             <input
               type="text"
               id="phone"
-              name="phoneNumber"
+              name="phone"
               className="form-control plac"
               placeholder="Phone Number"
 
-              onChange={handleInputChange}
-              value={formData.phoneNumber}
+              value={formData.phone ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.phoneNumber}
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -295,8 +307,9 @@ function AddInterns() {
               name="fullAddress"
               className="form-control plac"
               placeholder="Address"
-              onChange={handleInputChange}
-              value={formData.fullAddress}
+              value={formData.fullAddress ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.fullAddress}
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -319,7 +332,9 @@ function AddInterns() {
               id="gender"
               name="gender"
               className="form-select rounded-lg plac"
-              onChange={handleInputChange}
+              
+              value={formData.gender ||'' } 
+              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -331,7 +346,7 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.gender}
+              // value={formData.gender}
             >
               <option value="">Gender</option>
               <option value="Male">Male</option>
@@ -347,6 +362,8 @@ function AddInterns() {
               type="date"
               id="dob"
               name="dob"
+              value={formData.dob ||'' } 
+              onChange={handleInputChange} 
               className="form-control rounded-lg plac"
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
@@ -359,8 +376,8 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              onChange={handleInputChange}
-              value={formData.dob}
+              
+              // value={formData.dob}
               
             />
           </div>
@@ -384,8 +401,9 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              onChange={handleInputChange}
-              value={formData.bloodGroup}
+              value={formData.bloodGroup ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.bloodGroup}
             >
               <option value="A+">A+</option>
               <option value="A-">A-</option>
@@ -422,8 +440,9 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              onChange={handleInputChange}
-              value={formData.dateOfJoining}
+              value={formData.dateOfJoining ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.dateOfJoining}
             />
           </div>
           <div className="mb-3">
@@ -445,8 +464,9 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              onChange={handleInputChange}
-              value={formData.jobRole}
+              value={formData.jobRole ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.jobRole}
             >
               <option value="Business Development Executive">
                 Business Development Executive
@@ -467,7 +487,8 @@ function AddInterns() {
               id="empsatus"
               name="employeeStatus"
               className="form-select plac"
-              onChange={handleInputChange}
+              ovalue={formData.employeeStatus ||'' } 
+              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -479,7 +500,7 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.employeeStatus}
+              // value={formData.employeeStatus}
             >
               <option value="Full time">Full time</option>
               <option value="Part time">Part time</option>
@@ -494,7 +515,8 @@ function AddInterns() {
               id="joblevel"
               name="joblevel"
               className="form-select plac"
-              onChange={handleInputChange}
+              value={formData.jobLevel ||'' } 
+              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -506,7 +528,7 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.jobLevel}
+              // value={formData.jobLevel}
             >
               <option value="Manager Level">Manager Level</option>
               <option value="Executive Level">Executive Level</option>
@@ -523,10 +545,10 @@ function AddInterns() {
                     Select Platform 1
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="instagram"
+                    name="platform"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -537,7 +559,9 @@ function AddInterns() {
                       e.target.style.borderColor = 'white';
                       e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                     }}
-                    onChange={handleInputChange}
+                    // value={formData.name ||'' } 
+                    onChange={handleInputChange} 
+                    
                     
                     // value={formData.gender}
                   >
@@ -551,31 +575,27 @@ function AddInterns() {
                   <label className="form-label text-[15px]" htmlFor="gender">
                   Platform 1 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+               type="url"
+               name="website"
+               id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                     
-                    // value={formData.gender}
-                  >
-                      <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
                 </div>
           </div>
           <div className="flex gap-5">
@@ -587,7 +607,7 @@ function AddInterns() {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -612,31 +632,26 @@ function AddInterns() {
                   <label className="form-label text-[15px]" htmlFor="gender">
                   Platform 1 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+                type="url"
+                name="website"
+                id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
-                    
-                    // value={formData.gender}
-                  >
-                    <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                 </div>
           </div>
           <div className="flex gap-5">
@@ -648,7 +663,7 @@ function AddInterns() {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' , width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -673,31 +688,26 @@ function AddInterns() {
                   <label className="form-label text-[15px]" htmlFor="gender">
                   Platform 1 Link
                   </label>
-                  <select
-                    id="instagram"
-                    name="instagram"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+               type="url"
+               name="website"
+               id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
-                    
-                    // value={formData.gender}
-                  >
-                      <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    
-                  </select>
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                 </div>
           </div>
           <div className="flex gap-5">
@@ -709,7 +719,7 @@ function AddInterns() {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -732,33 +742,30 @@ function AddInterns() {
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                    Platform 1 Link
+                    Platform 4 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+                type="url"
+                name="website"
+                id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                     
-                    // value={formData.gender}
-                  >
-                    <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
+                 
                 </div>
           </div>
         </div>
@@ -772,7 +779,8 @@ function AddInterns() {
                                               className="form-control w-[660px] h-[150px] plac"
                                               placeholder="Enter here"
                                               rows="4"
-                                              onChange={handleInputChange}
+                                              value={formData.feedback ||'' } 
+                                              onChange={handleInputChange} 
                                               style={{border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                                                       onFocus={ e => {
                                                         
@@ -784,7 +792,7 @@ function AddInterns() {
                                                         e.target.style.borderColor = 'white';
                                                         e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                                                       }}
-                                              value={formData.feedback}
+                                              
                                             ></textarea>
                               </div>
                              
@@ -817,7 +825,10 @@ function AddInterns() {
                                                       className="btn btn-link text-black "
                                                       aria-label="Upload Internship Certificate"
                                                     >
-                                                    <BsBoxArrowUp />
+                                                    <i
+                                                          className="fa-solid fa-arrow-up-from-bracket"
+                                                          style={{ fontSize: "20px", color: "black" }}
+                                                        />
                                                     </button>
                                              </div>
                                             <input
