@@ -110,30 +110,6 @@
   color: #555;
 }
 
-/* Wrapper for buttons */
-.wrapper {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 999;
-}
-
-/* Icon Button */
-.button {
-  width: 60px;
-  height: 60px;
-  background-color: #f5f5f5;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
 
 .button:hover {
   transform: scale(1.1);
@@ -155,6 +131,10 @@
         height: 45px;
         width: 45px;
     }
+    .wrapper .icons img {
+      width: 27px;
+      height: 27px;
+    }
 }
 @media screen and (max-width: 1024px) {
     .wrapper .button .icons  {
@@ -165,6 +145,10 @@
         height: 38px;
         width: 38px;
     }
+    .wrapper .icons img {
+      width: 24px;
+      height: 24px;
+    }
 }
 @media screen and (max-width: 768px) {
     .wrapper .button .icons  {
@@ -174,6 +158,10 @@
     .wrapper .button  {
         height: 30px;
         width: 30px;
+    }
+    .wrapper .icons img {
+      width: 20px;
+      height: 20px;
     }
 }
 @media (max-width: 640px) {

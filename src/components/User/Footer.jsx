@@ -32,7 +32,7 @@ function Footer() {
     return (
         <div>
             <FooterSecondary />
-            <footer className="px-6 py-[15px] sm:py-6 md:py-8 lg:py-[50px] lg:px-20 xl:px-24 2xl:px-32  text-dark pt-2 mx-auto lg:px-[25px] lg:pt-[50px] ">
+            <footer className="px-[15px] lg:px-20 xl:px-24 2xl:px-32 py-[15px] text-dark pt-2 mx-auto lg:pt-[50px] ">
                 <div className="col my-auto h-max w-full">
                     <div className=" flex flex-wrap  justify-between items-center gap-[30px]">
                         <div className="row justify-center xl:w-max md:w-1/2 w-full flex gap-[25px] sm:gap-[32px] md:gap-[38px] lg:gap-[42px] xl:gap-[50px] footerFirstDiv ">
@@ -101,17 +101,17 @@ function Footer() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-dark text-decoration-none ">
+                                    <a href="https://trackpi.blogspot.com/" target="_blank" className="text-dark text-decoration-none ">
                                         Blogs
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-dark text-decoration-none ">
+                                    <a href="https://trackpi.org/" target="_blank"  className="text-dark text-decoration-none ">
                                         Careers
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-dark text-decoration-none">
+                                    <a href="/connect-us" className="text-dark text-decoration-none">
                                         Help Center
                                     </a>
                                 </li>
@@ -221,7 +221,7 @@ function Footer() {
                                     </div>
                                     <div className="d-flex">
                                         <img src={mailIcon} alt="" />
-                                        <span className="ms-3 font-medium">operations@trackpi.in</span>
+                                        <a href="mailto:operations@trackpi.in" target="_blank" className="text-decoration-none ms-3 font-medium text-[#0A0A0A]">operations@trackpi.in</a>
                                     </div>
                                 </div>
                             </div>

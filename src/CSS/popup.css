@@ -12,8 +12,8 @@
     box-shadow: 2px 2px 4px 0 #0A0A0A33, -2px 1px 4px 0 #0A0A0A33;
 
 }
-.popupForm input::placeholder, .popupForm textarea::placeholder{
-    color: #0A0A0ACC;
+.popupForm input::placeholder, .popupForm textarea::placeholder , .popupForm .selectFormPlaceholder{
+    color: gray;
     font-weight: 400;
 }
 /* Custom CSS */
