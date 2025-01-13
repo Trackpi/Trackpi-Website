@@ -3,11 +3,15 @@ import editImg from "../../images/editbtn.svg";
 import uploadImg from "../../images/uploadimg.svg";
 import deleteImg from "../../images/deleteimg.svg";
 import "../../CSS/partnershipAdmin.css";
+import DeletePopUp from "../../components/Admin/DeletePopUp";
 
 const PartnershipManagement = () => {
     const [fileName1, setFileName1] = useState("");
     const [fileName2, setFileName2] = useState("");
     const [fileName3, setFileName3] = useState("");
+        // modal
+        const [isModalOpen, setIsModalOpen] = useState(false);
+        const [dataDeleted, setDataDeleted] = useState("");
 
     const handleFileChange1 = (event) => {
         const file1 = event.target.files[0];
@@ -121,7 +125,7 @@ const PartnershipManagement = () => {
                                 type="text" required
                                 placeholder="Description"
                                 className="h-100 text-[16px] partnerInput border px-[15px] py-[10px] rounded-[10px]"
-                                value={"Verify the authenticity of employee credentials and background details."}
+                                defaultValue={"Verify the authenticity of employee credentials and background details."}
                             />
                         </div>
                         </div>
@@ -196,16 +200,16 @@ const PartnershipManagement = () => {
                                         type="text"
                                         placeholder="Description"
                                         className="h-100 text-[16px] partnerInput border px-[15px] py-[10px] rounded-[10px]"
-                                        value={"Verify the authenticity of employee credentials and background details."}
+                                        defaultValue={"Verify the authenticity of employee credentials and background details."}
                                     />
                                 </div>
                                 <div className="grid gap-[40px]">
-                                    <button className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
+                                    <div className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px] cursor-pointer ">
                                         <img src={editImg} alt="" />
-                                    </button>
-                                    <button className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
+                                    </div>
+                                    <div  onClick={() => { setIsModalOpen(true); setDataDeleted("Client 1")}} className=" cursor-pointer bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
                                         <img src={deleteImg} alt="" />
-                                    </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -255,22 +259,24 @@ const PartnershipManagement = () => {
                                         type="text"
                                         placeholder="Description"
                                         className="h-100 text-[16px] partnerInput border px-[15px] py-[10px] rounded-[10px]"
-                                        value={"Verify the authenticity of employee credentials and background details."}
+                                        defaultValue={"Verify the authenticity of employee credentials and background details."}
                                     />
                                 </div>
                                 <div className="grid gap-[40px]">
-                                    <button className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
+                                    <div className="cursor-pointer bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
                                         <img src={editImg} alt="" />
-                                    </button>
-                                    <button className="bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
+                                    </div>
+                                    <div onClick={() => { setIsModalOpen(true); setDataDeleted("Client 2")}} className="cursor-pointer bg-[#FF9D00] h-[44px] w-[44px] p-[10px] rounded-[8px]">
                                         <img src={deleteImg} alt="" />
-                                    </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+            {isModalOpen && <DeletePopUp onClose={() => setIsModalOpen(false)} dataDeleted={dataDeleted} datas={"Client"}/>}
+
         </div>
     );
 };

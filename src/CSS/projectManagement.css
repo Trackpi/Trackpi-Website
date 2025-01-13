@@ -40,21 +40,83 @@
     overflow: hidden;
     border-collapse: separate;
   }
-  .projectManagement table tbody td:first-child,  .projectManagement table tbody th:first-child{
-    width: calc(100% - 93% ) !important;
-  }
-  .projectManagement table tbody td:nth-child(2), 
-  .projectManagement table tbody td:nth-child(3), 
-  .projectManagement table tbody td:nth-child(4), 
-  .projectManagement table tbody td:nth-child(5), 
-  .projectManagement table tbody td:nth-child(6), 
-  .projectManagement table thead th:nth-child(2), 
-  .projectManagement table thead th:nth-child(3), 
-  .projectManagement table thead th:nth-child(4), 
-  .projectManagement table thead th:nth-child(5), 
-  .projectManagement table thead th:nth-child(6)
-   {
-    width: calc(100% - 84.5% ) !important;
-    
-  }
+
   
+/* dtv */
+.widthFirstTable{
+  width: 7%;
+}
+.widthCommonTable{
+  width: 15.5%;
+}
+.formTable  .tableHeaderForm{
+  border-bottom:  1.5px solid #0A0A0A ;
+}
+.formTable .tableHeaderForm div , .formTable .tableContentForm div{
+  border-left:  1.5px solid #0A0A0A ;
+}
+.formTable .tableHeaderForm div:last-child , .formTable .tableContentForm div:last-child{
+  border-right:  1.5px solid #0A0A0A ;
+}
+.formTable .tableHeaderForm div:last-child{
+  border-radius: 0 8px 0  0 ;
+  border-top:  1.5px solid #0A0A0A ;
+}
+.formTable .tableHeaderForm div:first-child{
+  border-radius:  8px 0 0  0 ;
+  border-top:  1.5px solid #0A0A0A ;
+}
+.formTable .tableHeaderForm .widthCommonTable:not(:last-child){
+  border-top:  1.5px solid #0A0A0A ;
+}
+.formTable .tableContentForm:last-child div:first-child  {
+  border-bottom:  1.5px solid #0A0A0A ;
+  border-radius: 0 0 0 8px;
+}
+.formTable .tableContentForm:last-child div:last-child  {
+  border-bottom:  1.5px solid #0A0A0A ;
+  border-radius: 0 0 8px 0; 
+}
+.formTable .tableContentForm:last-child .widthCommonTable:not(:last-child) {
+  border-bottom:  1.5px solid #0A0A0A ;
+}
+.formTable .tableHeaderForm div{
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0 5px;
+}
+.formTable .tableContentForm div{
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0 5px;
+}
+
+
+/* table */
+ .projectManagement table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+ .projectManagement table thead th:first-child {
+  width: 5.2% !important;
+}
+
+ .projectManagement table thead th:not(:first-child) {
+  width: 15.8% !important;
+}
+
+ .projectManagement table tbody td:first-child {
+  width: 5.2% !important;
+}
+ .projectManagement table tbody tr td:not(:first-child , :last-child) {
+  width: 15.8% !important;
+}
+ .projectManagement table  {
+  word-wrap: break-word !important;
+  white-space: normal !important;
+}

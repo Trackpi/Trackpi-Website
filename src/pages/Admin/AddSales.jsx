@@ -11,7 +11,7 @@ const location = useLocation();
     name: employeeData.name || "",
     empID: employeeData.empID ||  "",
     email:employeeData.email || "",
-    phoneNumber:employeeData.phoneNumber ||  "",
+    phone:employeeData.phone ||  "",
     fullAddress:employeeData.fullAddress ||  "",
     gender:employeeData.gender||  "",
     dob:employeeData.dob||  "",
@@ -42,40 +42,39 @@ const handleBusinessCardFileChange = (e) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value, // Dynamically update the input value
+    }));
   };
-
   const handleFileChange = (e) => {
-    setImage(e.target.files[0]);
+    setProfileImage(e.target.files[0]);
   };
 
 // Update form data when employeeData changes
 useEffect(() => {
-  // Only update formData if employeeData changes
-  setFormData((prevFormData) => {
-    if (JSON.stringify(prevFormData) !== JSON.stringify(employeeData)) {
-      return {
-        name: employeeData.name || "",
-        empID: employeeData.empID || "",
-        email: employeeData.email || "",
-        phoneNumber: employeeData.phoneNumber || "",
-        fullAddress: employeeData.fullAddress || "",
-        gender: employeeData.gender || "",
-        dob: employeeData.dob || "",
-        bloodGroup: employeeData.bloodGroup || "",
-        dateOfJoining: employeeData.dateOfJoining || "",
-        jobRole: employeeData.jobRole || "",
-        employeeStatus: employeeData.employeeStatus || "",
-        jobLevel: employeeData.jobLevel || "",
-        instagram: employeeData.instagram || "",
-        linkedin: employeeData.linkedin || "",
-        twitter: employeeData.twitter || "",
-        feedback: employeeData.feedback || "",
-      };
-    }
-    return prevFormData; // Avoid unnecessary updates
-  });
-}, [employeeData]);
+  if (id && employeeData) {
+    setFormData({
+      name: employeeData.name || "",
+      empID: employeeData.empID || "",
+      email: employeeData.email || "",
+      phone: employeeData.phone || "",
+      fullAddress: employeeData.fullAddress || "",
+      gender: employeeData.gender || "",
+      dob: employeeData.dob || "",
+      bloodGroup: employeeData.bloodGroup || "",
+      dateOfJoining: employeeData.dateOfJoining || "",
+      jobRole: employeeData.jobRole || "",
+      employeeStatus: employeeData.employeeStatus || "",
+      jobLevel: employeeData.jobLevel || "",
+      instagram: employeeData.instagram || "",
+      linkedin: employeeData.linkedin || "",
+      twitter: employeeData.twitter || "",
+      feedback: employeeData.feedback || "",
+    });
+  }
+}, [id, employeeData]); // Only trigger when id or employeeData changes
+
 
 useEffect(() => {
   // Fetch the image only if it changes and is valid
@@ -192,8 +191,9 @@ const handleCancel = () => {
                 name="name"
                  placeholder="Name"
                 className="form-control rounded-2xl plac"
-                value={formData.name}
-                onChange={handleInputChange}
+                value={formData.name ||'' } 
+              onChange={handleInputChange}  
+                // value={formData.name}
                 style={{fontSize: '12px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
                   
@@ -209,14 +209,16 @@ const handleCancel = () => {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label  font-bold text-[15px]">Employee Id</label>
+              <label className="form-label  font-bold text-[15px]">Employee ID</label>
               <input
                 type="text"
                 name="empID"
                 className="form-control rounded-2xl plac"
-                placeholder="Employee Id"
-                value={formData.empID}
-                onChange={handleInputChange}
+                placeholder="Employee ID"
+                value={formData.empID ||'' } 
+              onChange={handleInputChange}
+                // value={formData.empID}
+                
                 style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
                   
@@ -231,14 +233,16 @@ const handleCancel = () => {
               />
             </div>
             <div className="col-md-4 ">
-              <label className="form-label  font-bold text-[15px]">Email Id</label>
+              <label className="form-label  font-bold text-[15px]">Email ID</label>
               <input
                 type="email"
                 name="email"
                 className="form-control rounded-2xl plac"
-                placeholder="Email-Id"
-                value={formData.email}
-                onChange={handleInputChange}
+                placeholder="Email-ID"
+                value={formData.email ||'' } 
+              onChange={handleInputChange}
+                // value={formData.email}
+              
                 style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
                   
@@ -266,12 +270,12 @@ const handleCancel = () => {
             <input
               type="text"
               id="phone"
-              name="phoneNumber"
+              name="phone"
               className="form-control plac"
               placeholder="Phone Number"
-
+              value={formData.phone ||'' } 
               onChange={handleInputChange}
-              value={formData.phoneNumber}
+              // value={formData.phoneNumber}
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -295,8 +299,9 @@ const handleCancel = () => {
               name="fullAddress"
               className="form-control plac"
               placeholder="Address"
+              value={formData.fullAddress || ''} 
               onChange={handleInputChange}
-              value={formData.fullAddress}
+             
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -319,7 +324,8 @@ const handleCancel = () => {
               id="gender"
               name="gender"
               className="form-select rounded-lg plac"
-              onChange={handleInputChange}
+              value={formData.gender ||'' } 
+              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -331,7 +337,7 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.gender}
+              // value={formData.gender}
             >
               <option value="">Gender</option>
               <option value="Male">Male</option>
@@ -359,8 +365,9 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              onChange={handleInputChange}
-              value={formData.dob}
+              value={formData.dob ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.dob}
               
             />
           </div>
@@ -384,8 +391,9 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              onChange={handleInputChange}
-              value={formData.bloodGroup}
+              value={formData.bloodGroup ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.bloodGroup}
             >
               <option value="A+">A+</option>
               <option value="A-">A-</option>
@@ -422,8 +430,9 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              onChange={handleInputChange}
-              value={formData.dateOfJoining}
+              value={formData.dateOfJoining ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.dateOfJoining}
             />
           </div>
           <div className="mb-3">
@@ -445,8 +454,9 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              onChange={handleInputChange}
-              value={formData.jobRole}
+              value={formData.jobRole ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.jobRole}
             >
               <option value="Business Development Executive">
                 Business Development Executive
@@ -467,7 +477,9 @@ const handleCancel = () => {
               id="empsatus"
               name="employeeStatus"
               className="form-select plac"
-              onChange={handleInputChange}
+              ovalue={formData.employeeStatus ||'' } 
+              onChange={handleInputChange} 
+              
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -479,7 +491,7 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.employeeStatus}
+              // value={formData.employeeStatus}
             >
               <option value="Full time">Full time</option>
               <option value="Part time">Part time</option>
@@ -494,7 +506,8 @@ const handleCancel = () => {
               id="joblevel"
               name="joblevel"
               className="form-select plac"
-              onChange={handleInputChange}
+              value={formData.jobLevel ||'' } 
+              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -506,7 +519,7 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.jobLevel}
+              // value={formData.jobLevel}
             >
               <option value="Manager Level">Manager Level</option>
               <option value="Executive Level">Executive Level</option>
@@ -526,7 +539,7 @@ const handleCancel = () => {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -551,31 +564,27 @@ const handleCancel = () => {
                   <label className="form-label text-[15px]" htmlFor="gender">
                   Platform 1 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+                type="url"
+                name="website"
+                id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                     
-                    // value={formData.gender}
-                  >
-                      <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
                 </div>
           </div>
           <div className="flex gap-5">
@@ -587,7 +596,7 @@ const handleCancel = () => {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -610,33 +619,28 @@ const handleCancel = () => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                  Platform 1 Link
+                  Platform 2 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+                type="url"
+                name="website"
+                id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
-                    
-                    // value={formData.gender}
-                  >
-                    <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                 </div>
           </div>
           <div className="flex gap-5">
@@ -648,7 +652,7 @@ const handleCancel = () => {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' , width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -671,33 +675,28 @@ const handleCancel = () => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                  Platform 2 Link
+                  Platform 3 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+                type="url"
+                name="website"
+                id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
-                    
-                    // value={formData.gender}
-                  >
-                      <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                 </div>
           </div>
           <div className="flex gap-5">
@@ -709,7 +708,7 @@ const handleCancel = () => {
                     id="gender"
                     name="gender"
                     className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                    style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
                       e.target.style.borderColor = 'white';
@@ -732,33 +731,30 @@ const handleCancel = () => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                    Platform 3 Link
+                    Platform 4 Link
                   </label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    className="form-select rounded-lg plac"
-                    style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
-                    onFocus={ e => {
-                      
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onBlur={e => {
+                  <input
+               type="url"
+               name="website"
+               id="website"
+                className="form-control rounded-2xl plac"
+                placeholder="URL Link"
+                // value={formData.email}
+                onChange={handleInputChange}
+                style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
                   
-                      e.target.style.borderColor = 'white';
-                      e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
-                    }}
-                    onChange={handleInputChange}
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
                     
-                    // value={formData.gender}
-                  >
-                    <option value="">URL Link</option>
-                    <option value="">URL LInk</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                    <option value="">URL Link</option>
-                  </select>
+                 
                 </div>
           </div>
         </div>

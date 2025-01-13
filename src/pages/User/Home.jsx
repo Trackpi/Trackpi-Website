@@ -286,7 +286,7 @@ function Home() {
         classname="bgOne"
         image={img1}
       />
-      <section>
+      <section >
         <div className="text-center lg:pb-12  sm:pb-3 px-2">
           <h1 className="text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl  font-bold text-[#FFC100] ">
             Real-Time Business News Updates?

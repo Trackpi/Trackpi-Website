@@ -65,7 +65,7 @@ function PopUp() {
         <button type="button"
           className="w-full text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-left mx-auto flex justify-between items-center  h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]"
           onClick={toggleDropdown}>
-            <div>{selectedOption || 'How Did You Hear About Us?'}</div>
+            <div className={selectedOption? " text-black "  :"selectFormPlaceholder"}>{selectedOption || 'How Did You Hear About Us?'}</div>
           {selectedOption?null:<img className="h-[10px] sm:h-[12px] md:h-[14px] lg:h-[16px] xl:h-[18px]" src={dropdownImg} alt="" />}
         </button>
 
@@ -93,30 +93,30 @@ function PopUp() {
                         </form>
                     </div>
                     <div className="text-center mx-auto text-[12px] sm:text-[13px] md:text-[15px] lg:text-[16px] xl:text-[18px]">
-                        Or email <span className="text-[#FF9D00] font-bold">operations@trackpi.in</span> to get in touch with
+                        Or email <a href="mailto:operations@trackpi.in" target="_blank" className="text-[#FF9D00] font-bold text-decoration-none">operations@trackpi.in</a> to get in touch with
                         our team.
                     </div>
                     <div className="w-full   mx-auto">
                         <div className="flex justify-around  flex-row popupIcons">
-                            <Link to={"#"}>
+                            <Link target="_blank" to={"https://www.facebook.com/profile.php?id=61565947096778"}>
                                 <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={fbIcon} alt="" />
                             </Link>
-                            <Link to={"#"}>
+                            <Link target="_blank" to={"https://www.youtube.com/@trackpi"}>
                                 <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={youtubeIcon} alt="" />
                             </Link>
-                            <Link to={"#"}>
+                            <Link target="_blank" to={"https://www.instagram.com/trackpi_official?igsh=YmwyaHpzYXBueWJz"}>
                                 <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={instagramIcon} alt="" />
                             </Link>
-                            <Link to={"#"}>
+                            <Link target="_blank" to={"https://medium.com/@trackpi"}>
                                 <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={mediumIcon} alt="" />
                             </Link>
-                            <Link to={"#"}>
+                            <Link target="_blank" to={"https://www.linkedin.com/company/trackpi-private-limited/?viewAsMember=true"}>
                                 <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={linkedinIcon} alt="" />
                             </Link>
-                            <Link to={"#"}>
+                            <Link target="_blank" to={"https://www.quora.com/profile/Trackpi-Private-Limited"}>
                                 <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={quoraIcon} alt="" />
                             </Link>
-                            <Link to={"#"}>
+                            <Link target="_blank" to={"https://trackpi.blogspot.com/"}>
                                 <img className="h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] xl:h-[40px]" src={bloggerIcon} alt="" />
                             </Link>
                         </div>

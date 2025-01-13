@@ -4,6 +4,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
+
 import TeamListMemberCrd from '../../components/User/teamListMemberCrd';
 import "../../CSS/ourTeam.css";
 import Clients from '../../components/User/carousel';
@@ -14,6 +15,10 @@ function OurTeam() {
   const [refFirstSection, inViewFirstSection] = useInView(options);
   const [refSecondSection, inViewSecondSection] = useInView(options);
   const [refThirdSection, inViewThirdSection] = useInView(options);
+  
+  const handleInputChange = (e) => {
+    window.open('https://trackpi.org', '_blank');
+  };
   return (
     <>
 
@@ -212,6 +217,7 @@ function OurTeam() {
               <br />
               <div className='flex justify-center md:justify-start'>
               <Button
+              onClick={handleInputChange}
                 className=" mt-4 bg-transparent  text-black fw-bold  rounded-pill  hover:bg-gray-800 
                  px-10 py-2 md:px-12 md:py-3 lg:py-4   xl:py-14 2xl:px-12   
                   text-sm  md:text-lg  lg:text-xl  xl:text-xl  2xl:text-2xl 

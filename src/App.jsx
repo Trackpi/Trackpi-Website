@@ -41,6 +41,7 @@ import AdminNavbar from "./components/Admin/AdminNavbar";
 import Dashboard from "./components/Admin/Dashboard";
 import FormManagementDetails from "./pages/Admin/FormManagementDetails";
 import TermsAndConditions from "./pages/User/TermsAndConditions";
+import TermsAndConditionForNewProject from "./pages/User/TermsAndConditionForNewProject";
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -65,7 +66,8 @@ function App() {
         "/new-project-form",
         "/employeesales",
         "/employeeinternship",
-        "/termsconditions"
+        "/termsconditions",
+        "/termsconditions-submit-new-project"
     ].includes(location.pathname);
     const isNotFoundRoute = location.pathname === "/not-found";
     const isAdminRoute =
@@ -99,6 +101,7 @@ function App() {
                                     <Route path="/employeesales" element={<EmployeeSales />} />
                                     <Route path="/employeeinternship" element={<EmployeeInternship />} />
                                     <Route path="/termsconditions" element={<TermsAndConditions />} />
+                                    <Route path="/termsconditions-submit-new-project" element={<TermsAndConditionForNewProject />} />
 
 
                                     {/* Admin Routes */}
@@ -113,16 +116,18 @@ function App() {
                                     <Route path="/admin/project-details/:projectId" element={<ProjectManagementDetail />} />
                                     <Route path="/admin/employee-management" element={<EmployeeManagement />} />
                                     <Route path="/admin/employeeManagement-addEmployee/:id" element={<AddEmployee />} />
-                                    <Route path="/admin/employeeManagement-addEmployee" element={<AddEmployee />} />
-                                    <Route path="/admin/employeeManagement-detail" element={<EmployeeManagementDetail />} />
-                                    <Route path="/admin/sales-management" element={<SalesManagement />} />
-                                    <Route path="/admin/salesManagement-add/" element={<AddSales />} />
-                                    <Route path="/admin/salesManagement-detail" element={<SalesManagementDetail />} />
-                                    <Route path="/admin/intern-management-add/" element={<AddInterns />} /> 
-                                   <Route path="/admin/intern-management-add/:id" element={<AddInterns />} />
-                                   <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
-                                    <Route path="/admin/footer-management" element={<FooterManagement />} />
 
+                                   <Route path="/admin/employeeManagement-addEmployee/:id" element={<AddEmployee />} />
+                                   <Route path="/admin/employeeManagement-addEmployee/" element={<AddEmployee />} />
+                                   <Route path="/admin/employeeManagement-detail" element={<EmployeeManagementDetail />} />
+                                   <Route path="/admin/sales-management" element={<SalesManagement />} />
+                                   <Route path="/admin/salesManagement-add/:id" element={<AddSales />} />
+                                   <Route path="/admin/salesManagement-add/" element={<AddSales />} />
+                                   <Route path="/admin/salesManagement-detail" element={<SalesManagementDetail />} />
+                                   <Route path="/admin/intern-management-add/:id" element={<AddInterns />} />
+                                   <Route path="/admin/intern-management-add/" element={<AddInterns />} /> 
+                                  <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
+                                   <Route path="/admin/footer-management" element={<FooterManagement />} />
 
                                     {/* 404 Not Found */}
                                     <Route path="/*" element={<Navigate to={"/not-found"} />} />
