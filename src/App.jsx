@@ -41,6 +41,7 @@ import AdminNavbar from "./components/Admin/AdminNavbar";
 import Dashboard from "./components/Admin/Dashboard";
 import FormManagementDetails from "./pages/Admin/FormManagementDetails";
 import TermsAndConditions from "./pages/User/TermsAndConditions";
+import TermsAndConditionForNewProject from "./pages/User/TermsAndConditionForNewProject";
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -65,7 +66,8 @@ function App() {
         "/new-project-form",
         "/employeesales",
         "/employeeinternship",
-        "/termsconditions"
+        "/termsconditions",
+        "/termsconditions-submit-new-project"
     ].includes(location.pathname);
     const isNotFoundRoute = location.pathname === "/not-found";
     const isAdminRoute =
@@ -99,6 +101,7 @@ function App() {
                                     <Route path="/employeesales" element={<EmployeeSales />} />
                                     <Route path="/employeeinternship" element={<EmployeeInternship />} />
                                     <Route path="/termsconditions" element={<TermsAndConditions />} />
+                                    <Route path="/termsconditions-submit-new-project" element={<TermsAndConditionForNewProject />} />
 
 
                                     {/* Admin Routes */}
