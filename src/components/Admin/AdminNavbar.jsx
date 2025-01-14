@@ -13,7 +13,7 @@ function AdminNavbar() {
    <div className='adminHeader bg-white flex mx-auto justify-between items-center px-10'>
         <div className="h-[60px] flex gap-[20px] items-center justify-between adminProfilePic">
           <div>
-          <img src={profileImg} className=' w-[60px] h-[60px] rounded-[40px] object-cover' alt="" />
+          <img src={profileImg} className=' w-[60px] h-[60px] rounded-[40px] object-cover ' alt="" />
           </div>
           <div className="grid">
             <div className="font-bold text-[24px]">Paul Walker</div>

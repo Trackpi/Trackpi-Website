@@ -50,9 +50,10 @@ function Footer() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             style={{
-                                                color: "rgb(44, 44, 43)",
-                                                textDecorationColor: "#FF9D00"
-                                            }}
+                                                color: '#FF9D00',
+                                                fontWeight: 'bold',
+                                                textDecoration:'none'
+                                              }}
                                         >
                                             {" "}
                                             expert guidance
