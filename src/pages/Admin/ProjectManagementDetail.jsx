@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
 import projectManageBack from '../../images/projectManageBack.svg';
-import PdfViewer from "../Admin/blank"
 function ProjectManagementDetail() {
   const location = useLocation();
   const mockData = location.state;
