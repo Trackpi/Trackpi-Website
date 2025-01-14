@@ -15,9 +15,9 @@ function TermsAndConditionForNewProject() {
                         Welcome to Trackpi Private Limited ("Trackpi," "we," "our," or "us"). By submitting your business idea through our platform, you agree to abide by the following terms and conditions. Please read them carefully before proceeding. 
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Key Points Summary </div>
-                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[30px]   text-justify">
+                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px]   text-justify">
                            <li className="">Ownership: Your idea remains yours. TrackPi does not claim ownership of your submission.</li>
                            <li className="">Support: TrackPi helps with initial guidance and resources to start your business.</li>
                            <li className="">Privacy: Your data will not be shared with third parties and is used only by TrackPi.</li>
@@ -26,46 +26,46 @@ function TermsAndConditionForNewProject() {
                            <li className="">Free Submission: Submitting your idea is free with no hidden charges. </li>
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Usage of Submitted Ideas</div>
-                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[30px]  text-justify">
+                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px]  text-justify">
                            <li className=""> TrackPi aims to assist you in initiating and growing your business idea by providing the initial support and guidance needed. </li>
                            <li className=""> All submitted ideas remain the sole property of the submitter. TrackPi does not claim any ownership rights over your idea.</li>
                            <li className=""> If your business idea is shortlisted, TrackPi will collaborate with you to provide the necessary resources and support to help your idea flourish. </li>
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Data Privacy </div>
-                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[30px]  text-justify">
+                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px]  text-justify">
                            <li className=""> The personal and business information submitted through this platform will be used strictly for internal purposes by the TrackPi team. </li>
                            <li className="">   TrackPi will not share your information with any third parties without your explicit consent.</li>
                            <li className="">  Submitting an idea through TrackPi is completely free, with no hidden charges at any stage of the process.  </li>
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Liabilities </div>
-                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[30px]  text-justify">
+                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px]  text-justify">
                            <li className=""> If your business becomes successful, TrackPi reserves the right to use it as promotional material. This will be done in a mutually agreeable manner, ensuring both parties are comfortable with the representation. </li>
                            <li className=""> TrackPi does not accept liability for any issues, challenges, or failures before the business idea is formally initiated. You bear the responsibility for the accuracy and feasibility of your submitted idea.</li>
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Eligibility </div>
-                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[30px]  text-justify">
+                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px]  text-justify">
                            <li className="">TrackPi welcomes submissions from all individuals who aspire to become entrepreneurs.</li>
                            <li className="">Submitters must be at least 18 years old. If you are under 18, you must submit your idea under the guidance and supervision of a parent or legal guardian.</li>
                            <li className="">By submitting an idea, you confirm that you meet the age eligibility requirement and have the authority to share the idea.</li>
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold "> General Terms </div>
-                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[30px]   text-justify">
+                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px]   text-justify">
                            <li className="">TrackPi reserves the right to modify or update these terms and conditions at any time. Any changes will be communicated on our platform.</li>
                            <li className="">By submitting your idea, you acknowledge that you have read, understood, and agreed to these terms and conditions.</li>
                            <li className="">These terms and conditions are governed by the laws applicable to the jurisdiction in which TrackPi operates.</li>
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Contact Information  </div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] text-justify">
                         For any questions or concerns about these Terms, please contact us: Trackpi Private Limited Email ID: operations@trackpi.in Phone: +91 80781 79646 Address: Trackpi Pvt Ltd, KC Arcade, Near TV Centre, CSEZ, Ernakulam, Kerala, 682037

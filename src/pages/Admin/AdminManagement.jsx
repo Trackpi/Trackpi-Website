@@ -2,8 +2,6 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-
 // import {
 //   addAdmin,
 //   deleteAdmin,
@@ -14,10 +12,44 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiFileCopyLine } from 'react-icons/ri';
 import baseURL from '../../Api Services/baseURL';
-import { toast } from 'react-toastify';
 
 const adminId = localStorage.getItem('adminId');
 const adminToken = localStorage.getItem('adminToken');
+
+const data = [
+  {
+    sl_no: 1,
+    username: 'Name',
+    email: 'email@gmail.com',
+    password: 'Password',
+    admin_type: 'Admin Type',
+    isActive: false,
+  },
+  {
+    sl_no: 2,
+    username: 'Name',
+    email: 'email@gmail.com',
+    password: 'Password',
+    admin_type: 'Admin Type',
+    isActive: false,
+  },
+  {
+    sl_no: 3,
+    username: 'Name',
+    email: 'email@gmail.com',
+    password: 'Password',
+    admin_type: 'Admin Type',
+    isActive: false,
+  },
+  {
+    sl_no: 4,
+    username: 'Name',
+    email: 'email@gmail.com',
+    password: 'Password',
+    admin_type: 'Admin Type',
+    isActive: false,
+  },
+];
 
 function AdminManagement() {
   const [admins, setAdmins] = useState([]);
@@ -37,7 +69,8 @@ function AdminManagement() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [copied, setCopied] = useState({ status: false, username: '' });
-  const [refresh, setRefresh] = useState('');
+
+  const [refresh, setRefresh] = useState(true);
 
   const toggleStatus = index => {
     console.log('Toggling row:', index); // This logs the index of the row being toggled
@@ -109,19 +142,17 @@ function AdminManagement() {
           Authorization: `Bearer ${adminToken}`, // Include the token here
         },
       });
-      console.log(response.data, 'addrespone');
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         // On success, add the admin to the table
-        // setAdmins([...admins, response.data]);
+        setAdmins([...admins, response.data]);
         setAddAdminData({
           username: '',
           password: '',
           adminType: '',
           email: '',
         });
-
-        setRefresh(response.data);
+        setRefresh(!refresh);
         // handleClose(); // Close the modal if needed
       }
     } catch (error) {
@@ -153,21 +184,14 @@ function AdminManagement() {
     }
 
     try {
-      // Extract adminId from editModalData or admins
-      const adminId = editModalData._id || admins[editIndex]._id;
-
-      // Log the adminId for debugging
-      console.log('Admin ID:', adminId);
-
       const updatedAdmin = {
-        ...(editModalData.username && { username: editModalData.username }),
-        ...(editModalData.email && { email: editModalData.email }),
-        ...(editModalData.password && { password: editModalData.password }),
-        ...(editModalData.adminType && { adminType: editModalData.adminType }),
+        username: editModalData.username,
+        email: editModalData.email,
+        password: editModalData.password,
+        adminType: editModalData.adminType,
       };
 
-      console.log('Updated Admin Data:', updatedAdmin); // Log the data being sent to the API
-
+      // Make an API request to update the admin
       const response = await baseURL.patch(`/admin/${adminId}`, updatedAdmin, {
         headers: {
           Authorization: `Bearer ${adminToken}`,
@@ -175,14 +199,11 @@ function AdminManagement() {
       });
 
       if (response.status === 200) {
-        console.log('Update Successful:', response.data); // Log the successful response
-
         // Update the rows state with the updated data
         const updatedRows = [...admins];
-        updatedRows[editIndex] = response.data.admin; // Ensure the response contains 'admin'
-        setRefresh(response.data);
+        updatedRows[editIndex] = response.data; // Replace the updated admin data
         setAdmins(updatedRows);
-        toast.success('Admin Details Updated Successfully!!!');
+        setRefresh(!refresh);
 
         // Close the modal
         handleClose();
@@ -190,6 +211,7 @@ function AdminManagement() {
     } catch (error) {
       console.error('Error updating admin:', error);
       if (error.response) {
+        // If the error is from the API, display the response message
         console.error('Error response:', error.response.data);
       }
     }
@@ -207,7 +229,6 @@ function AdminManagement() {
         console.error('Failed to copy: ', error);
       });
   };
-  const handleAdminDelete = () => {};
 
   useEffect(() => {
     const fetchAdmins = async () => {
@@ -231,58 +252,58 @@ function AdminManagement() {
       {/* <AdminNavbar /> */}
       <div className="p-5">
         <h4 className="font-bold my-4">Admin Management</h4>
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-1">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-2">
           <table
             className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
             style={{ tableLayout: 'fixed' }}
           >
-            <thead className="text-md font-bold text-black uppercase border-dark border-b ">
+            <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
               <tr>
                 <th
                   scope="col"
-                  className=" border-r text-center"
+                  className=" border-r-2 text-center"
                   style={{ width: '10%' }}
                 >
                   SL No.
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3 border-r text-center"
+                  className="px-2 py-3 border-r-2 text-center"
                   style={{ width: '25%' }}
                 >
                   Username
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3 border-r text-center"
+                  className="px-2 py-3 border-r-2 text-center"
                   style={{ width: '25%' }}
                 >
                   Email ID
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3 border-r text-center"
-                  style={{ width: '25%' }}
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '30%' }}
                 >
                   Password
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3 border-r text-center"
-                  style={{ width: '25%' }}
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '20%' }}
                 >
                   Admin Type
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3 border-r text-center"
-                  style={{ width: '20%' }}
+                  className="px-2 py-3 border-r-2 text-center"
+                  style={{ width: '10%' }}
                 >
                   Edit
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3  text-center"
+                  className="px-2 py-3 border-r-2 text-center"
                   style={{ width: '25%' }}
                 >
                   Status
@@ -298,7 +319,7 @@ function AdminManagement() {
                   <>
                     <td
                       key={rowIndex}
-                      className=" border-r text-center"
+                      className=" border-r-2  text-center"
                       style={{
                         wordWrap: 'break-word',
                         overflowWrap: 'break-word',
@@ -308,7 +329,7 @@ function AdminManagement() {
                       {rowIndex + 1}
                     </td>
                     <td
-                      className={`px-2 py-3 border-r text-center`}
+                      className={`px-2 py-3 border-r-2 text-center`}
                       style={{
                         wordWrap: 'break-word',
                         overflowWrap: 'break-word',
@@ -319,7 +340,7 @@ function AdminManagement() {
                       {row.username}
                     </td>
                     <td
-                      className={`px-2 py-3 border-r text-center`}
+                      className={`px-2 py-3 border-r-2 text-center`}
                       style={{
                         wordWrap: 'break-word',
                         overflowWrap: 'break-word',
@@ -330,31 +351,18 @@ function AdminManagement() {
                       {row.email}
                     </td>
                     <td
-                      className="px-2 py-3 border-r text-center"
+                      className={`px-2 py-3 border-r-2 text-center `}
                       style={{
-                        whiteSpace: 'normal',
-                        wordWrap: 'break-word',
-                        overflowWrap: 'break-word',
-                        wordBreak: 'break-word',
+                        whiteSpace: 'normal', // Enable text wrapping
+                        wordWrap: 'break-word', // Break words at container boundaries
+                        overflowWrap: 'break-word', // Same as word-wrap for modern browsers
+                        wordBreak: 'break-word', // Break long words if necessary
                       }}
                     >
-                      <div className="flex justify-center items-center gap-1 cursor-pointer">
-                        {/* Show only the first few characters with '...' */}
-                        <span
-                          title={row.password} // Tooltip shows the full password
-                          style={{
-                            display: 'inline-block',
-                            maxWidth: '150px', // Adjust width as needed
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          {row.password}
-                        </span>
-                        {/* Copy Icon */}
+                      <div className="flex justify-center items-center gap-2  cursor-pointer">
+                        {row.password}{' '}
                         <i
-                          className={`fa-copy cursor-pointer ${
+                          className={` fa-copy  cursor-pointer ${
                             copied.status && row.username === copied.username
                               ? 'text-warning fa-solid'
                               : 'fa-regular'
@@ -363,9 +371,8 @@ function AdminManagement() {
                         ></i>
                       </div>
                     </td>
-
                     <td
-                      className={`px-2 py-3 border-r text-center`}
+                      className={`px-2 py-3 border-r-2 text-center`}
                       style={{
                         wordWrap: 'break-word',
                         overflowWrap: 'break-word',
@@ -376,7 +383,7 @@ function AdminManagement() {
                       {row.adminType}
                     </td>
                     <td
-                      className={`px-2 py-3 border-r text-center`}
+                      className={`px-2 py-3 border-r-2 text-center`}
                       style={{
                         wordWrap: 'break-word',
                         overflowWrap: 'break-word',
@@ -393,7 +400,7 @@ function AdminManagement() {
                       </div>
                     </td>
                     <td
-                      className={`px-2 py-3 border-r text-center`}
+                      className={`px-2 py-3 border-r-2 text-center`}
                       style={{
                         wordWrap: 'break-word',
                         overflowWrap: 'break-word',
@@ -452,21 +459,7 @@ function AdminManagement() {
         {/* Add admin box */}
         <div className="d-flex justify-content-center align-items-center my-5">
           <div className="border m-5 shadow rounded-4">
-            <div className="flex justify-center items-center gap-32 pt-5">
-              <h3 className="text-center mx-10 font-bold text-[#FF9D00]">
-                Add Admin
-              </h3>
-              <div className="flex flex-end">
-                <button className="w-100 py-2 px-8 rounded-3  text-[#FF9D00] font-bold btnBorder" onClick={handleAdminDelete}>
-                  <RiDeleteBin6Line
-                    size={18}
-                    className="inline-block mx-1.5 text-center"
-                  />{' '}
-                  Delete
-                </button>
-              </div>
-            </div>
-
+            <h3 className="text-center m-5 font-bold">Add Admin</h3>
             <Row className="m-5">
               <Col sm={6} className="mb-5">
                 <label htmlFor="username" className="d-block font-semibold">
@@ -550,13 +543,15 @@ function AdminManagement() {
                 </select>
               </Col>
 
-              <Col sm={12} className="d-flex    justify-content-center mt-3">
-                <button
-                  className="w-25 py-2 rounded-3 bg-[#FF9D00] text-white font-bold"
+              <Col sm={12} className="d-flex justify-content-center mt-3">
+                <Button
+                  variant="dark"
+                  className="w-25 py-2 rounded-3"
+                  style={{ fontWeight: 'bolder' }}
                   onClick={handleAdminAdd}
                 >
                   Submit
-                </button>
+                </Button>
               </Col>
             </Row>
           </div>

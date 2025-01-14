@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import '../CSS/connectButton.css';
 import Whatsapp from '../images/whatsapp.svg';
 import signal from '../images/signal.svg';
@@ -35,6 +35,18 @@ function ConnectButtons() {
     };
   }, []);
 
+      const navigate = useNavigate();
+  
+  const handleNavigation = (path, hash) => {    
+    navigate(path);
+    setTimeout(() => {
+        const section = document.querySelector(hash);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    }, 100);
+};
+
   return (
     <>
       <div className="wrapper">
@@ -53,7 +65,7 @@ function ConnectButtons() {
           data-tooltip-id="whatsapp-tooltip"
           data-tooltip-content="Whatsapp"
           data-tooltip-place="left"
-          to="https://wa.me/+918078179646/"
+          to="https://wa.me/+918078179646/ "  
           className="button"
         >
           <div className="icons">
@@ -61,12 +73,12 @@ function ConnectButtons() {
           </div>
         </NavLink>
         <NavLink
-          data-tooltip-id="connectus-tooltip"
-          data-tooltip-content="Connect Us"
-          data-tooltip-place="left"
-          to="/connect-us"
-          className="button"
-        >
+  data-tooltip-id="connectus-tooltip"
+  data-tooltip-content="Connect Us"
+  data-tooltip-place="left"
+  onClick={() => handleNavigation("/connect-us", "#connectUsContainer")}  className="button"
+>
+
           <div className="icons">
             <img src={hand} alt="Connect Us" />
           </div>

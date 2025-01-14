@@ -34,7 +34,7 @@ function ServicesSub({
                 initial={{ opacity: 0, z: 50 }}
                 animate={inViewMainHeading ? { opacity: 1, z: 0 } : {}}
                 transition={{ duration: 0.5 }}
-                className="mx-auto grid max-w-[1048px] gap-[15px] sm:gap-6 md:gap-8 lg:gap-[50px]"
+                className="mx-auto grid max-w-[1048px] gap-[15px] sm:gap-[20px] md:gap-[25px] lg:gap-[30px]"
             >
                 <div
                     style={{ textShadow: "2px 4px  4px #0A0A0A33", color: classname ? "white" : "#FF9D00" }}

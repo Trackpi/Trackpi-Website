@@ -69,8 +69,8 @@ function Connect() {
         </div>
       </div>
 
-      <section className="sectionn w-full  md:px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto">
-        <Container fluid className="text-center">
+      <section id='connectUsContainer' className="sectionn w-full  md:px-6 lg:px-20 xl:px-24 2xl:px-32 py-8 mx-auto">
+        <Container fluid className="text-center ">
           <Row className="mt-2 md:mt-5">
             <h1 className="ready mb-3   text-2xl md:text-4xl lg:text-5xl xl:text-[mainHeading] 2xl:text-6xl   font-bold connect-text-Color ">
               You’re ready to <br /> take the next step

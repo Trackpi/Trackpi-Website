@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import deleteImg from '../../images/deletePopupimg.svg'
 
-function DeletePopUp({onClose, dataDeleted,datas}) {
+function DeletePopUp({onClose, dataDeleted,datas ,functions}) {
 
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -15,6 +15,8 @@ function DeletePopUp({onClose, dataDeleted,datas}) {
     setTimeout(onClose, 300); 
   };
 
+
+  
   return (
     <>
             <div
@@ -44,7 +46,7 @@ function DeletePopUp({onClose, dataDeleted,datas}) {
             Cancel
           </button>
           <button
-            
+            onClick={() => functions()}
             className="text-[18px] font-bold text-white bg-[#FF9D00] flex items-center justify-center h-[42px] w-[200px] rounded-[10px]"
           >
             Delete
