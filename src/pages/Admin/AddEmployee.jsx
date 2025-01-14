@@ -5,15 +5,15 @@ import React, { useState, useRef,useEffect } from "react";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
 import { useNavigate, useParams,useLocation } from "react-router-dom";
-import axios from "axios";
+import baseURL from '../../Api Services/baseURL';
 
 
 function AddEmployee ()  {
   const location = useLocation();
   const { employeeData } = location.state || { employeeData: {} }
   const [profileImage, setProfileImage] = useState(null);
-      
- 
+  const adminToken = localStorage.getItem('adminToken');  
+  const [refresh, setRefresh] = useState('');
   const fileInputRef = useRef(null);
 
   const { id } = useParams();  // For editing, we'll get the intern ID from URL params
@@ -30,7 +30,7 @@ function AddEmployee ()  {
     
   });
   // Update form data when employeeData changes
-  const [message, setMessage] = useState("");
+  
   useEffect(() => {
     if (id && employeeData) {
       setFormData({
@@ -41,21 +41,24 @@ function AddEmployee ()  {
         instagram: employeeData.instagram || "",
         linkedin: employeeData.linkedin || "",
         twitter: employeeData.twitter || "",
-        feedback: employeeData.feedback || "",
+        facebook:employeeData.facebook|| "",
       });
+      
     }
   }, [id, employeeData]); // Only trigger when id or employeeData changes
   useEffect(() => {
     // Fetch the image and convert it to a File object
     if (employeeData.image) {
-      fetch(employeeData.image)
+      const imageUrl = `${baseURL}${employeeData.image}`;
+      fetch(imageUrl)
         .then((res) => res.blob())
         .then((blob) => {
-          const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+          const file = new File([blob], "image.jpg", { type: blob.type });
           setProfileImage(file);
         })
         .catch((error) => console.error("Failed to fetch image:", error));
     }
+   
   }, [employeeData.image]);
     
   
@@ -73,46 +76,71 @@ function AddEmployee ()  {
     
       
     
+     
       const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        const formDataObj = new FormData();
-    
-        // Append form data
-        for (const key in formData) {
-          formDataObj.append(key, formData[key]);
-        }
-    
-        // Append files
-        if (profileImage) {
-          formDataObj.append("profileImage", profileImage);
-        }
-    
-       
-        try {
-          const formDataToSend = new FormData();
-          formDataToSend.append("empID", formData.empID);
-          formDataToSend.append("name", formData.name);
-          formDataToSend.append("desig", formData.desig);
-          formDataToSend.append("selfIntroduction", formData.selfIntroduction);
-          formDataToSend.append("socialMediaLinks", formData.socialMediaLinks);
-          if (formData.image) {
-            formDataToSend.append("image", formData.image);
-          }
-    
-          const response = await axios.post("/employees", formDataToSend, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
-    
-          setMessage(response.data.message);
-        } catch (error) {
-          console.error("Error adding employee:", error);
-          setMessage(error.response?.data?.error || "Something went wrong!");
+      
+        // Check required fields
+        if (!formData.name || !formData.desig || !formData.selfIntroduction) {
+          alert('All fields are required!');
+          return;
         }
       
+        try {
+          const formDataToSend = new FormData();
+          formDataToSend.append('name', formData.name);
+          formDataToSend.append('desig', formData.desig);
+          formDataToSend.append('selfIntroduction', formData.selfIntroduction);
+      
+          if (profileImage) {
+            formDataToSend.append('image', profileImage); // Add image file
+          }
+      
+          // Check if this is an update or create operation
+          if (id) {
+            // Update operation
+            const response = await baseURL.put(`/api/employee/employees/${id}`, formDataToSend, {
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+      
+            if (response.status === 200) {
+              toast.success('Employee Details Updated Successfully!');
+              navigate('/admin/employee-management');
+            }
+          } else {
+            // Create operation
+            const response = await baseURL.post('/api/employee/employees', formDataToSend, {
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+      
+            if (response.status === 201) {
+              toast.success('Employee Details Added Successfully!');
+              navigate('/admin/employee-management');
+            }
+          }
+      
+          // Reset form
+          setFormData({
+            id: '',
+            name: '',
+            desig: '',
+            selfIntroduction: '',
+          });
+          setProfileImage(null);
+        } catch (error) {
+          console.error('Error submitting employee data:', error);
+          if (error.response) {
+            console.error('Error response:', error.response.data);
+          }
+        }
       };
+      
       const handleCancel = () => {
         navigate(-1); // Navigate back to the previous page
       }
@@ -132,9 +160,9 @@ function AddEmployee ()  {
                           }}
                         >
                             
-                            {profileImage instanceof File && (
+                            {profileImage  && (
   <img
-    src={URL.createObjectURL(profileImage)}
+    src={profileImage instanceof File ? URL.createObjectURL(profileImage) : profileImage}
     alt="Uploaded"
     style={{
       width: "150px",
@@ -482,7 +510,7 @@ function AddEmployee ()  {
         
         </div>
         <div className=" flex justify-center gap-4 mt-4">
-                                    <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+                                    <button type="submit" onClick={handleSubmit} className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
                                     {id ? "Update" : "Save"}
                                     </button>
                                     <button type="button" onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
