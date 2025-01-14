@@ -4,6 +4,8 @@ import logo from '../../images/trackpi_logo_one.png';
 import { useNavigate } from 'react-router-dom';
 import baseURL from '../../Api Services/baseURL';
 import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify'; 
+// import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for toast notifications
 
 function AdminLogin() {
   const [data, setData] = useState({ username: '', password: '' });
@@ -35,12 +37,13 @@ function AdminLogin() {
         token,
         adminId,
       });
+      toast.success('Successfully Logged In!'); // Toast on successful login
 
       // Navigate to the admin dashboard
       navigate('/admin/admin-management');
     } catch (e) {
       console.error(e);
-      alert('Login failed. Please check your credentials.');
+      toast.error('Login failed. Please check your credentials.', e); // Toast on failed login
     }
   };
 
@@ -58,7 +61,7 @@ function AdminLogin() {
         </Col>
         <Col sm={12} className="d-flex justify-content-center">
           <form
-            onSubmit={e => {
+            onSubmit={(e) => {
               e.preventDefault();
               onLogin();
             }}
@@ -74,7 +77,7 @@ function AdminLogin() {
                   className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
                   placeholder="Username/Email"
                   value={data.username}
-                  onChange={e => setData({ ...data, username: e.target.value })}
+                  onChange={(e) => setData({ ...data, username: e.target.value })}
                   style={{ fontSize: '16px' }}
                   autoComplete="current-username"
                 />
@@ -89,7 +92,7 @@ function AdminLogin() {
                   className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
                   placeholder="Password"
                   value={data.password}
-                  onChange={e => setData({ ...data, password: e.target.value })}
+                  onChange={(e) => setData({ ...data, password: e.target.value })}
                   style={{ fontSize: '16px' }}
                   autoComplete="current-password"
                 />
@@ -108,7 +111,9 @@ function AdminLogin() {
           </form>
         </Col>
       </Row>
-    </div>
+      
+      {/* ToastContainer for toasts */}
+      </div>
   );
 }
 

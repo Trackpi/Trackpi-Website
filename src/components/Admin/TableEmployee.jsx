@@ -160,7 +160,7 @@ const TableEmployee = () => {
             {data.map((row, rowIndex) => (
               <tr
                 key={rowIndex}
-                className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table "
+                className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 "
               >
                 <>
                   <td key={rowIndex} className=" border-r-2  text-center"

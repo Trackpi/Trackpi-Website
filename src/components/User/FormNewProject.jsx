@@ -355,8 +355,8 @@ const FormNewProject = () => {
                 </>
               ) : (
                 <>
-                  Upload Supporting Documents or Files
-                  <GoUpload className="inline-block mx-2" />
+                  <p className='mb-0 font-semibold'>Upload Supporting Documents or Files</p>
+                  <GoUpload className="inline-block mx-1.5" />
                 </>
               )}
             </label>
@@ -373,7 +373,6 @@ const FormNewProject = () => {
               <Link
                 to="/termsconditions-submit-new-project"
                 className="text-[#212529] items-center text-[14px] no-underline mx-2 cursor-pointor"
-                
               >
                 Agreement to Terms & Conditions
               </Link>
@@ -383,7 +382,7 @@ const FormNewProject = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="mt-4 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FFC100] to-[#FF9D00] px-16 py-2 rounded-md font-semibold text-white"
+              className="mt-4 transform hover:scale-105 hover:bg-blue-700 bg-gradient-to-r from-[#FFC100] to-[#FF9D00] px-16 py-2 rounded-md font-bold text-white"
             >
               Submit
             </button>

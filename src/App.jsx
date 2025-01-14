@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Header from "./components/User/Header";
 import Footer from "./components/User/Footer";
@@ -138,7 +139,10 @@ function App() {
                     </div>
                     {showHeaderFooter && <Footer />}
                 </>
+                
             )}
+                  <ToastContainer position="top-center" autoClose={5000} hideProgressBar />
+
         </>
     );
 }
