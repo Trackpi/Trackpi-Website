@@ -121,7 +121,7 @@ function Clients (){
 
     return(
         <>
-         <section className=' py-7 px-2 md:px-9 w-full '
+         <section className=' px-2 md:px-9 w-full '
          onMouseEnter={() => setIsHovered(true)} // Stop auto-sliding
          onMouseLeave={() => setIsHovered(false)} // Resume auto-sliding
          >

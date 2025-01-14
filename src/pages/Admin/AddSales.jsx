@@ -37,7 +37,7 @@ const businessCardInputRef = useRef(null);
 
 
 const handleBusinessCardFileChange = (e) => {
-    setBusinessCard(e.target.files[0]);
+  setBusinessCard(e.target.files[0]);
   };
 
   const handleInputChange = (e) => {
@@ -772,18 +772,31 @@ const handleCancel = () => {
               width: "300px",
               height: "150px",
               overflow: "hidden",
+            
             }}
           >
             {businessCard ? (
-              <img
-                src={URL.createObjectURL(businessCard)}
-                alt="Uploaded Business Card"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                }}
-              />
+              <div>
+                  <p>{businessCard.name}</p>
+                  <a
+          href={URL.createObjectURL(businessCard)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-link text-black"
+        >
+          View
+        </a>
+              </div>
+              // <iframe
+              //   src={URL.createObjectURL(businessCard)}
+              //   alt="Uploaded Business Card"
+              //   style={{
+              //     width: "100%",
+              //     height: "100%",
+              //     border:"none"
+              //   }}
+              //      sandbox="allow-same-origin"
+              // />
             ) : (
               <p>Upload the file</p>
             )}
@@ -802,7 +815,7 @@ const handleCancel = () => {
             type="file"
             ref={businessCardInputRef}
             style={{ display: "none" }}
-            accept="image/*"
+            accept=".pdf,.doc,.docx"
             onChange={handleBusinessCardFileChange}
           />
         </div>

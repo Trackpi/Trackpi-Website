@@ -16,7 +16,7 @@ function Personel({ show, onHide, member }) {
   
   return (
     <Modal show={show} onHide={onHide} centered size="md" >
-      <Modal.Header className="bg-white px-1 py-1 text-center text-black" >
+      <Modal.Header className="backcolor px-1 py-1 text-center text-black" >
         <Modal.Title className="personnelfirst" >
           <h2>{member.title}</h2>
           <p className="text-2xl font-normal">{member.designation}</p>
@@ -50,7 +50,7 @@ function Personel({ show, onHide, member }) {
           <div className="  px-8 flex flex-col justify-center items-center ">
             
             <p className="mt-4 font-medium text-justify"><br/><br/><br/>
-            <span className="font-bold underline">SELF INTRODUCTION:</span>
+            <span className="font-bold underline decoration-gray-300">SELF INTRODUCTION</span>
             &nbsp;
             {member.selfIntroduction}</p>
           </div>
