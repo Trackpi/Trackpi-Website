@@ -19,7 +19,7 @@ import news1 from '../../images/news 1.png';
 import news2 from '../../images/news 2.png';
 import news3 from '../../images/news 3.png';
 import news4 from '../../images/news 4.png';
-
+import news5 from '../../images/news5.jpeg';
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });
@@ -45,7 +45,6 @@ function Home() {
   //   },
 
   // ]
-
 
   const cards = [
     {
@@ -133,8 +132,7 @@ function Home() {
       logo: logo,
     },
   ];
-  
-  
+
   const clients = [
     { id: 1, logo: clientLogo1 },
     { id: 2, logo: clientLogo2 },
@@ -270,7 +268,7 @@ function Home() {
               style={{
                 color: '#FF9D00',
                 fontWeight: 'bold',
-                textDecoration:'none'
+                textDecoration: 'none',
               }}
             >
               trusted business consulting firm
@@ -286,7 +284,7 @@ function Home() {
         classname="bgOne"
         image={img1}
       />
-      <section >
+      <section>
         <div className="text-center lg:pb-12  sm:pb-3 px-2">
           <h1 className="text-lg md:text-3xl lg:text-4xl xl:text-[subHeading] 2xl:text-5xl  font-bold text-[#FFC100] ">
             Real-Time Business News Updates?
@@ -310,12 +308,12 @@ function Home() {
                       cardsPerGroup === 1
                         ? 'grid-cols-1'
                         : 'grid-cols-1 md:grid-cols-4'
-                    } place-content-center gap-10 py-0 lg:px-20 px-16`}
+                    } place-content-center gap-10 py-1 lg:px-20 px-16`}
                   >
                     {group.map((card, cardIndex) => (
                       <div
                         key={cardIndex}
-                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto 2xl:h-[490px] bg-black p-6 2xl:px-20 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
+                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto 2xl:h-[490px]  2xl:px-20 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
                           cardIndex === bulgingCard
                             ? 'scale-110 2xl:scale-105'
                             : 'scale-95'
@@ -332,13 +330,13 @@ function Home() {
                               : 'scale-100'
                           }`}
                         >
-                          {/* <img
+                          <img
                             src={news5}
                             alt={`News ${card.id}`}
                             className="w-full h-auto rounded"
-                          /> */}
+                          />
 
-                          <img
+                          {/* <img
                             src={card.logo}
                             alt="Card_logo"
                             className={`mx-auto lg:h-auto h-[100px] transition-transform ${
@@ -364,7 +362,7 @@ function Home() {
                             }`}
                           >
                             {card.description}
-                          </p>
+                          </p> */}
                         </div>
                       </div>
                     ))}
@@ -472,7 +470,7 @@ function Home() {
                 style={{
                   color: '#FF9D00',
                   fontWeight: 'bold',
-                  textDecoration:'none'
+                  textDecoration: 'none',
                 }}
               >
                 expert solutions{' '}
@@ -486,7 +484,7 @@ function Home() {
                 style={{
                   color: '#FF9D00',
                   fontWeight: 'bold',
-                  textDecoration:'none'
+                  textDecoration: 'none',
                 }}
               >
                 Contact us{' '}

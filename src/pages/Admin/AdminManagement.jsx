@@ -15,74 +15,93 @@ import { FaRegEdit } from 'react-icons/fa';
 import { RiFileCopyLine } from 'react-icons/ri';
 import baseURL from '../../Api Services/baseURL';
 import { toast } from 'react-toastify';
+import { IoMdArrowBack } from 'react-icons/io';
+import { IoIosWarning } from 'react-icons/io';
 
 const adminId = localStorage.getItem('adminId');
 const adminToken = localStorage.getItem('adminToken');
 
 function AdminManagement() {
   const [admins, setAdmins] = useState([]);
-  console.log(admins, 'stateAdmin');
   const [addAdminData, setAddAdminData] = useState({
     username: '',
     password: '',
     adminType: '',
     email: '',
   });
-  console.log(addAdminData, 'addadmin');
   const [editModalData, setEditModalData] = useState({});
+
   // const [rows, setRows] = useState(data);
   const [editIndex, setEditIndex] = useState(null);
   //modal handeler
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
+  const [show2, setShow2] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleClose1 = () => setShow1(false);
+  const handleShow1 = () => setShow1(true);
+
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
   const [copied, setCopied] = useState({ status: false, username: '' });
   const [refresh, setRefresh] = useState('');
 
-  const toggleStatus = index => {
-    console.log('Toggling row:', index); // This logs the index of the row being toggled
-    setAdmins(prevRows =>
-      prevRows.map((row, rowIndex) => {
-        if (rowIndex === index) {
-          // Log the current status before toggling
-          console.log(
-            `Current status of admin at index ${index}:`,
-            row.isActive ? 'DeActivate' : 'Activate'
-          );
+  // const toggleStatus = index => {
+  //   console.log('Toggling row:', index); // This logs the index of the row being toggled
+  //   setAdmins(prevRows =>
+  //     prevRows.map((row, rowIndex) => {
+  //       if (rowIndex === index) {
+  //         // Log the current status before toggling
+  //         console.log(
+  //           `Current status of admin at index ${index}:`,
+  //           row.isActive ? 'DeActivate' : 'Activate'
+  //         );
 
-          // Toggle the status
-          return { ...row, isActive: !row.isActive };
+  //         // Toggle the status
+  //         return { ...row, isActive: !row.isActive };
+  //       }
+  //       return row;
+  //     })
+  //   );
+  // };
+  const toggleStatus = async (adminId, status) => {
+    console.log(adminId, 'Admin ID'); // Debugging log
+    const updatedAdmins = [...admins];
+
+    // Find the admin using the ID
+    const adminIndex = updatedAdmins.findIndex(admin => admin._id === adminId);
+    if (adminIndex === -1) {
+      console.error('Admin not found!');
+      return;
+    }
+
+    // Optimistically update the state
+    const newStatus = status ? 'activate' : 'deactivate';
+    updatedAdmins[adminIndex].isActive = status;
+    setAdmins(updatedAdmins);
+
+    try {
+      // API call to update status
+      await baseURL.patch(
+        `updateStatus/${adminId}`,
+        { status: newStatus },
+        {
+          headers: { Authorization: `Bearer ${adminToken}` },
         }
-        return row;
-      })
-    );
+      );
+      setRefresh(!refresh); // Trigger refresh on success
+    } catch (error) {
+      console.error('Error updating admin status:', error);
+
+      // Revert the state if the API call fails
+      updatedAdmins[adminIndex].isActive = !status;
+      setAdmins(updatedAdmins);
+    }
   };
 
-  // const toggleStatus = async rowIndex => {
-  //   const updatedAdmins = [...admins];
-  //   const admin = updatedAdmins[rowIndex];
-  //   admin.isActive = !admin.isActive;
-
-  //   setAdmins(updatedAdmins);
-
-  //   try {
-  //     // Send the token in the headers
-  //     await baseURL.patch(
-  //       `updateStatus/${adminId}`,
-  //       { isActive: admin.isActive },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${adminToken}`, // Include the token here
-  //         },
-  //       }
-  //     );
-  //     setRefresh(!refresh);
-  //   } catch (error) {
-  //     console.error('Error updating admin status:', error);
-  //     admin.isActive = !admin.isActive; // Revert the status if there's an error
-  //     setAdmins(updatedAdmins);
-  //   }
-  // };
   const handleAdminAdd = async () => {
     // Basic validation to ensure no empty fields
     if (
@@ -122,7 +141,9 @@ function AdminManagement() {
         });
 
         setRefresh(response.data);
-        // handleClose(); // Close the modal if needed
+        toast.success('New Admin Added Successfully!!!');
+
+        handleClose1();
       }
     } catch (error) {
       console.error('Error adding admin:', error);
@@ -132,7 +153,9 @@ function AdminManagement() {
       }
     }
   };
-
+  const handleAdminAddClick = () => {
+    handleShow1();
+  };
   const handleEditClick = index => {
     console.log(index, 'index');
     const adminData = admins[index]; // Get the admin data to edit
@@ -207,7 +230,42 @@ function AdminManagement() {
         console.error('Failed to copy: ', error);
       });
   };
-  const handleAdminDelete = () => {};
+
+  const handleOpenDeleteBox = () => {
+    handleShow2();
+  };
+  const handleAdminDelete = async () => {
+    try {
+      const adminId = editModalData._id; // Get the admin ID from the modal data
+      if (!adminId) {
+        console.error('Admin ID not found');
+        return;
+      }
+
+      await baseURL.delete(`/admin/${adminId}`, {
+        headers: { Authorization: `Bearer ${adminToken}` },
+      });
+
+      // Filter out the deleted admin from the list
+      const updatedAdmins = admins.filter(admin => admin._id !== adminId);
+      setAdmins(updatedAdmins);
+      handleClose();
+      handleClose2(); // Close the modal after deletion
+      toast.success('Admin deleted successfully');
+    } catch (error) {
+      console.error('Error deleting admin:', error);
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    handleClose2();
+  };
+  const handleEditCancel = () => {
+    handleClose();
+  };
+  const handleAddCancel = () => {
+    handleClose1();
+  };
 
   useEffect(() => {
     const fetchAdmins = async () => {
@@ -230,7 +288,18 @@ function AdminManagement() {
     <div className="w-full bg-white">
       {/* <AdminNavbar /> */}
       <div className="p-5">
-        <h4 className="font-bold my-4">Admin Management</h4>
+        <div className="flex justify-between items-center">
+          <h4 className="font-bold my-4">Admin Management</h4>
+          <div>
+            <button
+              className="py-2 px-8 rounded-3 flex items-center gap-2 bg-[#FF9D00] text-white font-bold"
+              onClick={handleAdminAddClick}
+            >
+              <IoMdArrowBack /> Add Admin
+            </button>
+          </div>
+        </div>
+
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-1">
           <table
             className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
@@ -297,7 +366,7 @@ function AdminManagement() {
                 >
                   <>
                     <td
-                      key={rowIndex}
+                      key={row._id}
                       className=" border-r text-center"
                       style={{
                         wordWrap: 'break-word',
@@ -400,10 +469,9 @@ function AdminManagement() {
                         boxSizing: 'border-box',
                       }}
                     >
-                      {' '}
                       <div className="flex justify-center gap-2.5">
                         <button
-                          onClick={() => toggleStatus(rowIndex)}
+                          onClick={() => toggleStatus(row._id, true)} // Explicit activation
                           className={`${
                             row.isActive
                               ? 'bg-[#FF9D00] text-white'
@@ -420,7 +488,7 @@ function AdminManagement() {
                           Activate
                         </button>
                         <button
-                          onClick={() => toggleStatus(rowIndex)}
+                          onClick={() => toggleStatus(row._id, false)} // Explicit deactivation
                           className={`${
                             row.isActive
                               ? 'bg-white text-black'
@@ -452,113 +520,126 @@ function AdminManagement() {
         {/* Add admin box */}
         <div className="d-flex justify-content-center align-items-center my-5">
           <div className="border m-5 shadow rounded-4">
-            <div className="flex justify-center items-center gap-32 pt-5">
-              <h3 className="text-center mx-10 font-bold text-[#FF9D00]">
-                Add Admin
-              </h3>
-              <div className="flex flex-end">
-                <button className="w-100 py-2 px-8 rounded-3  text-[#FF9D00] font-bold btnBorder" onClick={handleAdminDelete}>
-                  <RiDeleteBin6Line
-                    size={18}
-                    className="inline-block mx-1.5 text-center"
-                  />{' '}
-                  Delete
-                </button>
-              </div>
-            </div>
+            <Modal
+              size="lg"
+              aria-labelledby="contained-modal-title-vcenter"
+              centered
+              show={show1}
+              onHide={handleClose1}
+            >
+              <Modal.Body>
+                <div className="flex justify-center items-center gap-32 pt-5 ">
+                  <h3 className="text-center mx-10 font-bold text-[#0A0A0A]">
+                    Add Admin
+                  </h3>
+                </div>
 
-            <Row className="m-5">
-              <Col sm={6} className="mb-5">
-                <label htmlFor="username" className="d-block font-semibold">
-                  User Name
-                </label>
-                <input
-                  type="text"
-                  id="username"
-                  className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
-                  placeholder="User Name"
-                  value={addAdminData.username || ''}
-                  onChange={e =>
-                    setAddAdminData({
-                      ...addAdminData,
-                      username: e.target.value,
-                    })
-                  }
-                  style={{ fontSize: '16px' }} // Adjust the font size of the input text
-                />
-              </Col>
+                <Row className="m-5">
+                  <Col sm={6} className="mb-5">
+                    <label htmlFor="username" className="d-block font-semibold">
+                      User Name
+                    </label>
+                    <input
+                      type="text"
+                      id="username"
+                      className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
+                      placeholder="User Name"
+                      value={addAdminData.username || ''}
+                      onChange={e =>
+                        setAddAdminData({
+                          ...addAdminData,
+                          username: e.target.value,
+                        })
+                      }
+                      style={{ fontSize: '16px' }} // Adjust the font size of the input text
+                    />
+                  </Col>
 
-              <Col sm={6} className="mb-5">
-                <label htmlFor="emailid" className="d-block font-semibold">
-                  Email ID
-                </label>
-                <input
-                  type="email"
-                  id="emailid"
-                  className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
-                  placeholder="Email ID"
-                  value={addAdminData.email || ''}
-                  onChange={e =>
-                    setAddAdminData({ ...addAdminData, email: e.target.value })
-                  }
-                  style={{ fontSize: '16px' }} // Adjust the font size of the input text
-                />
-              </Col>
+                  <Col sm={6} className="mb-5">
+                    <label htmlFor="emailid" className="d-block font-semibold">
+                      Email ID
+                    </label>
+                    <input
+                      type="email"
+                      id="emailid"
+                      className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
+                      placeholder="Email ID"
+                      value={addAdminData.email || ''}
+                      onChange={e =>
+                        setAddAdminData({
+                          ...addAdminData,
+                          email: e.target.value,
+                        })
+                      }
+                      style={{ fontSize: '16px' }} // Adjust the font size of the input text
+                    />
+                  </Col>
 
-              <Col sm={6} className="mb-5">
-                <label htmlFor="password" className="d-block font-semibold">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
-                  placeholder="Password"
-                  value={addAdminData.password || ''}
-                  onChange={e =>
-                    setAddAdminData({
-                      ...addAdminData,
-                      password: e.target.value,
-                    })
-                  }
-                  style={{ fontSize: '16px' }} // Adjust the font size of the input text
-                />
-              </Col>
+                  <Col sm={6} className="mb-5">
+                    <label htmlFor="password" className="d-block font-semibold">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
+                      placeholder="Password"
+                      value={addAdminData.password || ''}
+                      onChange={e =>
+                        setAddAdminData({
+                          ...addAdminData,
+                          password: e.target.value,
+                        })
+                      }
+                      style={{ fontSize: '16px' }} // Adjust the font size of the input text
+                    />
+                  </Col>
 
-              <Col sm={6} className="mb-5">
-                <label htmlFor="adminType" className="d-block font-semibold">
-                  Admin Type
-                </label>
-                <select
-                  className="form-select form-select-lg border-gray-500 my-2 border-2 shadow-md"
-                  aria-label="Default select example"
-                  id="adminType"
-                  value={addAdminData.adminType || ''}
-                  onChange={e =>
-                    setAddAdminData({
-                      ...addAdminData,
-                      adminType: e.target.value,
-                    })
-                  }
-                  style={{ fontSize: '16px' }} // Adjust the font size of the input text
-                >
-                  <option defaultChecked value="">
-                    Admin Type
-                  </option>
-                  <option value="admin">Admin</option>
-                  <option value="superadmin">Superadmin</option>
-                </select>
-              </Col>
+                  <Col sm={6} className="mb-5">
+                    <label
+                      htmlFor="adminType"
+                      className="d-block font-semibold"
+                    >
+                      Admin Type
+                    </label>
+                    <select
+                      className="form-select form-select-lg border-gray-500 my-2 border-2 shadow-md"
+                      aria-label="Default select example"
+                      id="adminType"
+                      value={addAdminData.adminType || ''}
+                      onChange={e =>
+                        setAddAdminData({
+                          ...addAdminData,
+                          adminType: e.target.value,
+                        })
+                      }
+                      style={{ fontSize: '16px' }} // Adjust the font size of the input text
+                    >
+                      <option defaultChecked value="">
+                        Admin Type
+                      </option>
+                      <option value="admin">Admin</option>
+                      <option value="superadmin">Superadmin</option>
+                    </select>
+                  </Col>
 
-              <Col sm={12} className="d-flex    justify-content-center mt-3">
-                <button
-                  className="w-25 py-2 rounded-3 bg-[#FF9D00] text-white font-bold"
-                  onClick={handleAdminAdd}
-                >
-                  Submit
-                </button>
-              </Col>
-            </Row>
+                  <Col sm={12} className="d-flex   gap-12 justify-center mt-3">
+                    <button
+                      className="w-25 py-2 rounded-3 bg-[#FF9D00] text-white font-bold"
+                      onClick={handleAdminAdd}
+                    >
+                      Add
+                    </button>
+                    <button
+                      className="w-25 py-2 rounded-3 text-[#FF9D00] font-bold btnBorder"
+                      onClick={handleAddCancel}
+                    >
+                      Cancel
+                    </button>
+                  </Col>
+                </Row>
+              </Modal.Body>
+            </Modal>
           </div>
         </div>
       </div>
@@ -573,7 +654,24 @@ function AdminManagement() {
         onHide={handleClose}
       >
         <Modal.Body>
-          <h4 className="text-center m-5 font-bold">Admin Details</h4>
+          <div className="flex justify-between items-center pr-4  pl-28 pt-5 pb-5">
+            <div className="dummy"></div>
+            <h4 className="text-center mx-10 font-bold text-[#0A0A0A]">
+              Edit Admin Details
+            </h4>
+            <div className="flex flex-end">
+              <button
+                className="w-100 py-2 px-8 rounded-3  text-[#FF9D00] font-bold btnBorder"
+                onClick={handleOpenDeleteBox}
+              >
+                <RiDeleteBin6Line
+                  size={18}
+                  className="inline-block mx-1.5 text-center"
+                />{' '}
+                Delete
+              </button>
+            </div>
+          </div>
           <Row className="mx-3 my-2">
             <Col sm={6} className="mb-4">
               <label htmlFor="username" className="d-block font-semibold">
@@ -654,19 +752,57 @@ function AdminManagement() {
                 <option value="superadmin">Superadmin</option>
               </select>
             </Col>
-            <Col sm={12} className="d-flex justify-content-center my-4">
-              <Button
-                variant="dark"
-                className="w-25 py-2 rounded-3"
-                style={{ fontWeight: 'bolder' }}
+            <Col sm={12} className="d-flex   gap-12 justify-center mt-3">
+              <button
+                className="w-25 py-2 rounded-3 bg-[#FF9D00] text-white font-bold"
                 onClick={handleUpdateAdmin}
               >
-                Submit
-              </Button>
+                Save
+              </button>
+              <button
+                className="w-25 py-2 rounded-3 text-[#FF9D00] font-bold btnBorder"
+                onClick={handleEditCancel}
+              >
+                Cancel
+              </button>
             </Col>
           </Row>
         </Modal.Body>
       </Modal>
+
+      {/* delete Modal */}
+    <div className="custom-overlay"></div> {/* Background overlay */}
+    <Modal
+      size="md"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      show={show2}
+      onHide={handleClose2}
+    >
+      <Modal.Body>
+        <div className="flex items-center text-[20px] font-bold py-2 justify-start gap-2 text-[#FF9D00]">
+          <IoIosWarning />
+          Delete Admin
+        </div>
+        <p className="text-start font-bold text-[#0A0A0A]">
+          Are you sure you want to delete this admin?
+        </p>
+        <div className="flex gap-4 justify-start">
+          <button
+            onClick={handleAdminDelete}
+            className="bg-[#FF9D00] text-white px-8 py-1 rounded-lg"
+          >
+            Delete
+          </button>
+          <button
+            onClick={handleDeleteCancel}
+            className="text-[#FF9D00] font-semibold btnBorder px-8 py-1 rounded-lg"
+          >
+            Cancel
+          </button>
+        </div>
+      </Modal.Body>
+    </Modal>
     </div>
   );
 }

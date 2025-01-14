@@ -85,7 +85,7 @@
     grid-template-columns: 1fr; /* 1 card per row for mobile */
   }
   .carousel-card {
-    padding: 20px; /* Reduce padding for mobile */
+    padding: 0px; /* Reduce padding for mobile */
   }
   .carousel-card p {
     text-align: center;
