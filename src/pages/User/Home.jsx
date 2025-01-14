@@ -333,7 +333,7 @@ function Home() {
                           }`}
                         >
                           {/* <img
-                            src={card.news}
+                            src={news5}
                             alt={`News ${card.id}`}
                             className="w-full h-auto rounded"
                           /> */}
@@ -413,7 +413,7 @@ function Home() {
 
         {/* Client Logos Section */}
         <div
-          className="flex justify-center md:mt-8 lg:mt-12 sm:mt-2 items-center bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] py-2 "
+          className="flex justify-center md:mt-4 lg:mt-18 sm:mt-2 items-center bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FF9D00] py-2 "
           // style={{
           //   marginTop: '3rem',
           //   overflow: 'hidden',
@@ -434,7 +434,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-28 2xl:mt-28 w-full px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1">
+      <section className="mt-8 sm:mt-12 md:mt-24 lg:mt-24 xl:mt-24 2xl:mt-28 w-full px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-32 mx-auto section1">
         <motion.div
           className="flex flex-col-reverse lg:flex-row gap-[1rem] sm:gap-4 md:gap-8 lg:gap-20 xl:gap-20 2xl:gap-32 items-center"
           animate={{ y: isInView1 ? 10 : 0 }}
