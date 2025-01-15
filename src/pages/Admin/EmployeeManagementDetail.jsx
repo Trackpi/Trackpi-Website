@@ -8,18 +8,19 @@ import { IoMdArrowBack } from 'react-icons/io';
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
 import { useLocation,useNavigate } from "react-router-dom";
-
+import baseURL from '../../Api Services/baseURL';
 
 
 
 function EmployeeManagementDetail() {
     const location = useLocation();
     const navigate = useNavigate();
+    
     const handleBack = () => {
       navigate(-1); // Go back to previous page
     };
     const handleEdit = () => {
-      const employeeId =employeeData.sl_no; // Replace this with the actual intern's ID
+      const employeeId = employeeData._id || employeeData.id; // Replace this with the actual intern's ID
      
       if (employeeId) {
         navigate(`/admin/employeeManagement-addEmployee/${employeeId}`, { state: { employeeData } }); // Navigate to the edit page with the internId
@@ -53,8 +54,8 @@ function EmployeeManagementDetail() {
                           <p className="text-2xl font-normal">{employeeData.desig}</p>
                           
                           <img
-                          src={employeeData.image}
-                          alt={employeeData.title}
+                          src={employeeData.image ? `${baseURL}${employeeData.image}` : "default-image-path.jpg"}
+                          alt={employeeData.title || "Employee"}
                           className="rounded-md w-52 h-52 personnelimg1 object-cover"
                         />
                       
