@@ -640,7 +640,7 @@ tbody tr:hover {
 
 .custom-table th,
 .custom-table td {
-  border-right: 1px solid #0c0c0c; /* Border for vertical lines */
+  border-right: 1px solid #939393; /* Border for vertical lines */
   text-align: center; /* Center align text */
   /* background-color: rebeccapurple; */
   /* Remove width: 100%; to avoid overflow issues */
@@ -652,7 +652,7 @@ tbody tr:hover {
 }
 
 .custom-table thead th {
-  border-bottom: 1px solid #0c0c0c; /* Add border between header and body */
+  border-bottom: 1px solid #939393; /* Add border between header and body */
 }
 
 .custom-table tbody tr {

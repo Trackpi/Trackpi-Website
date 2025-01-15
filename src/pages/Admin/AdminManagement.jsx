@@ -300,12 +300,12 @@ function AdminManagement() {
           </div>
         </div>
 
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-1">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-[#939393] border-1">
           <table
-            className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+            className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-[#939393]"
             style={{ tableLayout: 'fixed' }}
           >
-            <thead className="text-md font-bold text-black uppercase border-dark border-b ">
+            <thead className="text-md font-bold text-black uppercase border-[#939393] border-b ">
               <tr>
                 <th
                   scope="col"
