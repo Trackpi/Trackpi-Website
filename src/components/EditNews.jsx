@@ -3,8 +3,8 @@ import uploadImg from "../images/uploadimg.svg";
 import baseURL from "../Api Services/baseURL";
 
 function EditNews({ newsData, editOnclickForBack, index }) {
-    const [fileName, setFileName] = useState("");
-// 
+    const [fileName, setFileName] = useState("Upload Image");
+
 const adminToken = localStorage.getItem("adminToken");
 
   const [editNewsData, setEditNewsData] = useState({
@@ -19,17 +19,12 @@ const adminToken = localStorage.getItem("adminToken");
     })
   },[newsData])
   
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setFileName(file.name);
-        }
-    };
-
-    const handleRemoveFile = () => {
-        setFileName(null);
-        document.getElementById("fileInput").value = "";
-    };
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        setFileName(file.name);
+    }
+};
 
     const editNewsDataDetails = async () => {
         if (!editNewsData.newsLink || !editNewsData.newsFile) {
@@ -72,14 +67,14 @@ const adminToken = localStorage.getItem("adminToken");
                             type="text"
                             placeholder="Link"
                             value={editNewsData.newsLink}
-                            onChange={e=>setEditNewsData({...editNewsData,newsLink:e.target.value})}
+                            onChange={(e)=>{setEditNewsData({...editNewsData,newsLink:e.target.value})}}
                             className="border rounded-[10px] px-[20px] py-[10px] text-[14px] partnerInput"
                         />
                     </div>
             </div>
 
             <div className="relative w-[250px] h-[42px] mx-auto">
-                <input type="file" id="fileInput" className="hidden"onChange={e=>setEditNewsData({...editNewsData,newsFile:e.target.files[0]})} />
+                <input type="file" id="fileInput" className="hidden"onChange={(e)=>{setEditNewsData({...editNewsData,newsFile:e.target.files[0]});handleFileChange(e);}} />
                 <label
                     htmlFor="fileInput"
                     className="uploadBtn flex items-center justify-center gap-[15px] px-[20px] py-[10px] rounded-[10px] h-[42px] text-[#FF9D00] cursor-pointer"
@@ -93,7 +88,7 @@ const adminToken = localStorage.getItem("adminToken");
                         </>
                     ) : (
                         <> */}
-                            <div>Upload Image</div>
+                            <div>{fileName}</div>
                             <img src={uploadImg} alt="Upload Icon" />
                         {/* </>
                     )} */}
