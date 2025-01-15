@@ -10,199 +10,146 @@ const location = useLocation();
   const adminToken = localStorage.getItem('adminToken');  
   const [refresh, setRefresh] = useState('');
   const { employeeData } = location.state || { employeeData: {} }
+  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    name: employeeData.name || "",
-    eID: employeeData.eID ||  "",
-    empID: employeeData.empID ||  "",
-    email:employeeData.email || "",
-    phone:employeeData.phone ||  "",
-    fullAddress:employeeData.fullAddress ||  "",
-    gender:employeeData.gender||  "",
-    dob:employeeData.dob||  "",
-    bloodGroup:employeeData.bloodGroup||  "",
-    dateOfJoining:employeeData.dateOfJoining||  "",
-    jobRole:employeeData.jobRole||  "",
-    employeeStatus: employeeData.employeeStatus|| "",
-    jobLevel:employeeData.jobLevel||  "",
-    instagram:employeeData.instagram ||  "",
-    linkedin:employeeData.linkedin || "",
-    twitter: employeeData.twitter || "",
+    name: "",
+    
+    empID:"",
+    email: "",
+    phone:"",
+    fullAddress:  "",
+    gender: "",
+    dob:"",
+    bloodGroup:  "",
+    dateOfJoining: "",
+    jobRole:"",
+    employeeStatus:  "",
+    jobLevel:"",
+    instagram: "",
+    linkedin: "",
+    twitter: "",
     
   });
 
 const [profileImage, setProfileImage] = useState(null);
-  
+const [businessCard, setBusinessCard] = useState(null); 
 
   const fileInputRef = useRef(null);
-  const [businessCard, setBusinessCard] = useState(null);
+
 const businessCardInputRef = useRef(null);
-  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
-  const navigate = useNavigate();
+
+
+// Update form data when employeeData changes
+useEffect(() => {
+  if (id && employeeData) {
+    setFormData((prevData) => ({
+      ...prevData,
+      ...employeeData,
+    }));
+
+    if (employeeData.image) {
+      const imageUrl = `${baseURL}${employeeData.image}`;
+      fetch(imageUrl)
+        .then((res) => res.blob())
+        .then((blob) => {
+          const file = new File([blob], "image.jpg", { type: blob.type });
+          setProfileImage(file);
+        })
+        .catch((error) => console.error("Failed to fetch image:", error));
+    }
+  }
+}, [id, employeeData]); // Only trigger when id or employeeData changes
+
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: value, // Dynamically update the input value
+  }));
+};
+
+const handleFileChange = (e) => {
+  setProfileImage(e.target.files[0]);
+};
 
 
 const handleBusinessCardFileChange = (e) => {
   setBusinessCard(e.target.files[0]);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value, // Dynamically update the input value
-    }));
-  };
-  const handleFileChange = (e) => {
-    setProfileImage(e.target.files[0]);
-  };
 
-// Update form data when employeeData changes
-useEffect(() => {
-  if (id && employeeData) {
-    setFormData({
-      name: employeeData.name || "",
-      eID: employeeData.eID ||  "",
-      empID: employeeData.empID || "",
-      email: employeeData.email || "",
-      phone: employeeData.phone || "",
-      fullAddress: employeeData.fullAddress || "",
-      gender: employeeData.gender || "",
-      dob: employeeData.dob || "",
-      bloodGroup: employeeData.bloodGroup || "",
-      dateOfJoining: employeeData.dateOfJoining || "",
-      jobRole: employeeData.jobRole || "",
-      employeeStatus: employeeData.employeeStatus || "",
-      jobLevel: employeeData.jobLevel || "",
-      instagram: employeeData.instagram || "",
-      linkedin: employeeData.linkedin || "",
-      twitter: employeeData.twitter || "",
-     
-    });
-  }
-}, [id, employeeData]); // Only trigger when id or employeeData changes
-
-
-useEffect(() => {
-  // Fetch the image only if it changes and is valid
-  if (employeeData.image) {
-    const imageUrl = `${baseURL}${employeeData.image}`;
-    fetch(imageUrl)
-      .then((res) => res.blob())
-      .then((blob) => {
-        const file = new File([blob], "image.jpg", { type: blob.type });
-        setProfileImage(file);
-      })
-      .catch((error) => console.error("Failed to fetch image:", error));
-  }
-}, [employeeData.image]);
 
  
 
   const handleAddSales = async (e) => {
     e.preventDefault();
 
-    // Check required fields
-    if 
-    (!formData.name ||
-       !formData.empID ||
-        !formData.email ||
-        !formData.phone ||
-        !formData.fullAddress ||
-        !formData.gender||
-        !formData.dob||
-        !formData.bloodGroup ||
-        !formData.dateOfJoining||
-        !formData.jobRole||
-        !formData.employeeStatus||
-        !formData.jobLevel
-      
-      ) {
-      alert('All fields are required!');
-      return;
+     // Validate required fields
+     const requiredFields = [
+      "name",
+      "empID",
+      "email",
+      "phone",
+      "fullAddress",
+      "gender",
+      "dob",
+      "bloodGroup",
+      "dateOfJoining",
+      "jobRole",
+      "employeeStatus",
+      "jobLevel",
+    ];
+    for (const field of requiredFields) {
+      if (!formData[field]) {
+        alert(`Field "${field}" is required!`);
+        return;
+      }
     }
-  
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('empID', formData.ID);
-      formDataToSend.append('empID', formData.empID);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('fullAddress', formData.fullAddress);
-      formDataToSend.append('gender', formData.gender);
-      formDataToSend.append('dob', formData.dob);
-      formDataToSend.append('bloodGroup', formData.bloodGroup);
-      formDataToSend.append('dateOfJoining', formData.dateOfJoining);
-      formDataToSend.append('jobRole', formData.jobRole);
-      formDataToSend.append('employeeStatus', formData.employeeStatus);
-      formDataToSend.append('jobLevel', formData.jobLevel);
-      
-  
-      if (profileImage) {
-        formDataToSend.append('image', profileImage); // Add image file
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
+
+      if (profileImage) formDataToSend.append("profileImage", profileImage);
+      if (businessCard) formDataToSend.append("businessCard", businessCard);
+
+      const response = id
+        ? await baseURL.put(`/api/sales/salesemployee/${id}`, formDataToSend, {
+            headers: { Authorization: `Bearer ${adminToken}` },
+          })
+        : await baseURL.post("/api/sales/salesemployee", formDataToSend, {
+            headers: { Authorization: `Bearer ${adminToken}` },
+          });
+
+      if (response.status === (id ? 200 : 201)) {
+        toast.success(`Sales details ${id ? "updated" : "added"} successfully!`);
+        navigate("/admin/employee-management");
       }
-      if (businessCard) {
-        formDataToSend.append('businessCard', businessCard); // Add image file
-      }
-  
-      // Check if this is an update or create operation
-      if (id) {
-        // Update operation
-        const response = await baseURL.put(`/api/sales/${id}`, formDataToSend, {
-          headers: {
-            Authorization: `Bearer ${adminToken}`,
-           
-          },
-        });
-  
-        if (response.status === 200) {
-          toast.success('Sales Details Updated Successfully!');
-          navigate('/admin/employee-management');
-        }
-      } else {
-        // Create operation
-        const response = await baseURL.post('/api/sales/', formDataToSend, {
-          headers: {
-            Authorization: `Bearer ${adminToken}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
-  
-        if (response.status === 201) {
-          toast.success('Sales Details Added Successfully!');
-          navigate('/admin/employee-management');
-        }
-      }
-  
-      // Reset form
       setFormData({
-        id: '',
-        name: '',
-        empID: '',
-        email: '',
-        phone: '',
-        fullAddress: '',
-        gender: '',
-        dob: '',
-        bloodGroup: '',
-        dateOfJoining: '',
-        jobRole: '',
-        employeeStatus: '',
-        jobLevel: '',
-       
+        name:'',
+        empID,
+        email:'',
+        phone:'',
+        fullAddress:'',
+        gender:'',
+        dob:'',
+        bloodGroup:'',
+        dateOfJoining:'',
+      jobRole:'',
+        employeeStatus:'',
+        jobLevel:'',
       });
       setProfileImage(null);
-      setBusinessCard(null);
+      console.log("empID: ", formData.empID);
     } catch (error) {
-      console.error('Error submitting sales data:', error);
-      if (error.response) {
-        console.error('Error response:', error.response.data);
-        alert(error.response.data.message || 'An error occurred');
-      } else {
-        alert('Network error or server is unreachable');
-      }
+      console.error("Error submitting sales data:", error);
+      alert(error.response?.data?.message || "An error occurred");
     }
-    
-};
+  };
+
 
 const handleCancel = () => {
   navigate(-1);
@@ -219,9 +166,9 @@ const handleCancel = () => {
               className="d-flex justify-content-center align-items-center border border-secondary rounded-2xl position-relative"
               style={{ width: "150px", height: "120px" }}
             >
-                  {profileImage instanceof File && (
+                  {profileImage && (
   <img
-    src={URL.createObjectURL(profileImage)}
+    src={profileImage instanceof File ? URL.createObjectURL(profileImage) : profileImage}
     alt="Uploaded"
     style={{
       width: "150px",
@@ -247,7 +194,7 @@ const handleCancel = () => {
             </div>
             <input
               type="file"
-              name="image"
+              name="profileImage"
               ref={fileInputRef}
               style={{ display: "none" }}
               accept="image/*"
@@ -287,7 +234,7 @@ const handleCancel = () => {
                 name="empID"
                 className="form-control rounded-2xl plac"
                 placeholder="Employee ID"
-                value={formData.empID ||'' } 
+                value={formData.empID } 
               onChange={handleInputChange}
                 // value={formData.empID}
                 

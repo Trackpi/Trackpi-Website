@@ -5,25 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs';
 import { BsDownload } from 'react-icons/bs';
-import imagepersonnel1 from '../../images/personnel-1-400x286.jpg'
-import imagepersonnel2 from '../../images/personnel-2-400x286.jpg'
-import imagepersonnel3 from '../../images/personnel-3-400x310.jpg'
-import imagepersonnel4 from '../../images/personnel-4-400x310.jpg'
-import imagepersonnel5 from '../../images/personnel-5-400x310.jpg'
-import imagepersonnel6 from '../../images/personnel-6-400x310.jpg'
 import baseURL from '../../Api Services/baseURL';
 
 const TableSales = () => {
   const navigate = useNavigate();
-  const [salesEmployees, setSalesEmployee] = useState([]);
+  const [salesEmployees, setSalesEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     useEffect(() => {
       const fetchSales = async () => {
         try {
-          const response = await baseURL.get('/api/sales/');
-          setSalesEmployee(Array.isArray(response.data) ? response.data : []);
-        } catch (error) {
+          const response = await baseURL.get('/api/sales/salesemployee');
+          setSalesEmployees(Array.isArray(response.data) ? response.data : []);
+        } catch (err) {
           setError('Failed to load Sales.');
         } finally {
           setLoading(false);
@@ -31,27 +25,25 @@ const TableSales = () => {
       };
       fetchSales();
     }, []);
-  const handleViewProfile = SalesEmployee => {
-    console.log(SalesEmployee, 'SalesEmployee');
-    navigate('/admin/salesManagement-detail', { state: { rowDatas: SalesEmployee } });
+  const handleViewProfile = (salesEmployee) => {
+    console.log(salesEmployee, 'salesEmployee');
+    navigate('/admin/salesManagement-detail', { state: { rowDatas: salesEmployee } });
   };
   const handleAdd = () => {
     navigate('/admin/salesManagement-add/'); // Navigate Add sales page
   }
   const handleDelete = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this record?')) return;
     try {
-      await baseURL.delete(`/api/sales/${id}`); // Assuming `id` is the unique identifier
-      setSalesEmployee(salesEmployees.filter(SalesEmployee => SalesEmployee._id !== id));
+      await baseURL.delete(`/api/sales/salesemployee/${id}`); // Assuming `id` is the unique identifier
+      setSalesEmployees((prev) => prev.filter((salesEmployee) => salesEmployee._id !== id));
     } catch (error) {
       console.error('Error deleting employee:', error);
+      alert('Failed to delete the record. Please try again.');
     }
   };
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>{error}</div>;
-  }
+  if (loading) return <div className="text-center mt-4">Loading sales data...</div>;
+  if (error) return <div className="text-center mt-4 text-red-500">{error}</div>;
   return (
     <div>
        <div className="flex items-center justify-between">
@@ -95,9 +87,9 @@ const TableSales = () => {
             </tr>
           </thead>
           <tbody>
-            {salesEmployees.map((SalesEmployee, index) => (
+            {salesEmployees.map((salesEmployee, index) => (
               <tr
-                key={SalesEmployee._id }
+                key={salesEmployee._id }
                 className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
               >
                 <>
@@ -114,7 +106,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {SalesEmployee.name}
+                    {salesEmployee.name}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -122,7 +114,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                     {SalesEmployee.email}
+                     {salesEmployee.email}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -131,7 +123,7 @@ const TableSales = () => {
                       boxSizing: 'border-box',
                     }}>
                     {/* <div className="flex justify-center items-center gap-2 "> */}
-                    {SalesEmployee.email}
+                    {salesEmployee.email}
                     {/* </div> */}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
@@ -140,7 +132,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {SalesEmployee.phone}
+                    {salesEmployee.phone}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -150,13 +142,13 @@ const TableSales = () => {
                     }}>
                     <div
                       className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer "
-                      onClick={() => handleViewProfile(SalesEmployee)}
+                      onClick={() => handleViewProfile(salesEmployee)}
                     >
                       View Profile <FiExternalLink size={15} />
                     </div>
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    <div className="flex justify-center items-center" onClick={() => handleDelete(SalesEmployee._id)}>
+                    <div className="flex justify-center items-center" onClick={() => handleDelete(salesEmployee._id)}>
                       <RiDeleteBin6Line size={20} />
                     </div>
                   </td>

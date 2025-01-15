@@ -4,12 +4,15 @@ import { toast } from "react-toastify";
 // import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
 import { useNavigate, useParams ,useLocation} from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
-
+import baseURL from '../../Api Services/baseURL';
 
 
 function AddInterns() {
   const location = useLocation();
   const { employeeData } = location.state || { employeeData: {} }
+  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+  const navigate = useNavigate();
+  const adminToken = localStorage.getItem('adminToken'); 
   const [formData, setFormData] = useState({
     name: employeeData.name || "",
     empID: employeeData.empID ||  "",
@@ -28,8 +31,7 @@ function AddInterns() {
     twitter: employeeData.twitter || "",
     feedback:employeeData.feedback || "",
   });
-    const { id } = useParams();  // For editing, we'll get the intern ID from URL params
-    const navigate = useNavigate();
+
   
   const [profileImage, setProfileImage] = useState(null);
   const fileInputRef = useRef(null);
@@ -67,10 +69,11 @@ function AddInterns() {
     useEffect(() => {
       // Fetch the image and convert it to a File object
       if (employeeData.image) {
-        fetch(employeeData.image)
+        const imageUrl = `${baseURL}${employeeData.image}`;
+        fetch(imageUrl)
           .then((res) => res.blob())
           .then((blob) => {
-            const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+            const file = new File([blob], "image.jpg", { type: blob.type  });
             setProfileImage(file);
           })
           .catch((error) => console.error("Failed to fetch image:", error));
@@ -98,46 +101,107 @@ function AddInterns() {
     e.preventDefault();
 
    
-       if (
-           Object.values(formData).some((value) => !value.trim()) ||
-           !profileImage ||
-           !certificate
-       ) {
-           toast.warning("Please fill all the fields!");
-           return;
-       }
-   
-       const fd = new FormData();
-       for (const [key, value] of Object.entries(formData)) {
-           fd.append(key, value.trim());
-       }
-       fd.append("image",profileImage);
-       fd.append("certificate", certificate);
-
-   
-    const header = {
-      "content-Type": "multipart/form-data",
-      Authorization: `Token ${sessionStorage.getItem("token")}`,
-    };
-     try {
-         if (id) {
-           // Update logic
-           // Example: const res = await updateSalesEmployee(fd, header);
-           console.log("Updating employee with ID:", id);
-           toast.success("Intern Employee updated successfully!");
-         } else {
-           // Add logic
-           // Example: const res = await addSalesEmployee(fd, header);
-           console.log("Adding new intern Employee");
-           toast.success("intern Employee added successfully!");
-         }
-         navigate(`/admin/intern-management-detail/${id || "new"}`);
-       } catch (error) {
-         console.error(id ? "Error updating employee" : "Error adding employee:", error);
-         toast.error("Something went wrong! Please try again.");
-       }
-
-  
+        // Check required fields
+        if (!formData.name || !formData.empID || !formData.email
+          || !formData.phone
+          || !formData.fullAddress
+          || !formData.gender
+          || !formData.dob
+          || !formData.bloodGroup
+          || !formData.dateOfJoining
+          || !formData.jobRole
+          || !formData.employeeStatus
+          || !formData.jobLevel
+          || !formData.feedback
+        ) {
+          alert('All fields are required!');
+          return;
+        }
+         // Ensure employeeID is not null or empty
+    if (!formData.empID || formData.empID.trim() === '') {
+      alert('Employee ID cannot be empty or null!');
+      return;
+    }
+      
+        try {
+          const formDataToSend = new FormData();
+          formDataToSend.append('name', formData.name);
+          formDataToSend.append('empID', formData.empID)
+          formDataToSend.append('email', formData.email);
+          formDataToSend.append('phone', formData.phone);
+          formDataToSend.append('fullAddress', formData.fullAddress);
+          formDataToSend.append('gender', formData.gender);
+          formDataToSend.append('dob', formData.dob);
+          formDataToSend.append('bloodGroup', formData.bloodGroup);
+          formDataToSend.append('dateOfJoining', formData.dateOfJoining);
+          formDataToSend.append('jobRole', formData.jobRole);
+          formDataToSend.append('employeeStatus', formData.employeeStatus);
+          formDataToSend.append('jobLevel', formData.jobLevel);
+          formDataToSend.append('feedback', formData.feedback);
+      
+          if (profileImage) {
+            formDataToSend.append('profileImage', profileImage); // Add image file
+          }
+          if (certificate) {
+            formDataToSend.append('Certificate', certificate); // Add image file
+          }
+          console.log(formDataToSend);
+          // Check if this is an update or create operation
+          if (id) {
+            // Update operation
+            const response = await baseURL.put(`/api/interns/internemp/${id}`, formDataToSend, {
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+      
+            if (response.status === 200) {
+              toast.success('Employee Details Updated Successfully!');
+              navigate('/admin/employee-management');
+            }
+          } else {
+            // Create operation
+            const response = await baseURL.post('/api/interns/add', formDataToSend, {
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+      
+            if (response.status === 201) {
+              toast.success('Employee Details Added Successfully!');
+              navigate('/admin/employee-management');
+            }
+          }
+      
+          // Reset form
+          setFormData({
+            id: '',
+            name: '',
+            empID: '',
+            email: '',
+            fullAddress: '',
+            gender: '',
+            dob: '',
+            bloodGroup: '',
+            dateOfJoining: '',
+            jobRole: '',
+            employeeStatus: '',
+            jobLevel: '',
+            feedback: '',
+            
+          });
+          setProfileImage(null);
+          setCertificate(null);
+        } catch (error) {
+          console.error('Error submitting intern data:', error);
+          if (error.response) {
+            console.error('Error response:', error.response.data);
+          }
+        }
+      
+      
   };
   const handleCancel = () => {
     navigate(-1); // Navigate back to the previous page
@@ -157,9 +221,9 @@ function AddInterns() {
                 position: "relative",
               }}
             >
-             {profileImage instanceof File && (
+             {profileImage  && (
   <img
-    src={URL.createObjectURL(profileImage)}
+    src={profileImage instanceof File ? URL.createObjectURL(profileImage) : profileImage}
     alt="Uploaded"
     style={{
       width: "150px",
@@ -513,10 +577,8 @@ function AddInterns() {
             </label>
             <select
               id="joblevel"
-              name="joblevel"
+              name="jobLevel"
               className="form-select plac"
-              value={formData.jobLevel ||'' } 
-              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -528,10 +590,17 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              // value={formData.jobLevel}
+              value={formData.jobLevel ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.jobRole}
             >
-              <option value="Manager Level">Manager Level</option>
-              <option value="Executive Level">Executive Level</option>
+              <option value="Manager Level">
+              Manager Level
+              </option>
+              <option value="Executive Level">
+                Executive Level
+              </option>
+             
             </select>
           </div>
         </div>
@@ -848,7 +917,7 @@ function AddInterns() {
                                </div>
                           </div>
                       <div className=" flex justify-center gap-4 mt-4">
-                                    <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+                                    <button type="submit" onClick={handleSubmit} className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
                                     {id ? "Update" : "Save"}
                                     </button>
                                     <button type="button"onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
