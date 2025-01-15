@@ -139,7 +139,7 @@ const NewsManagement = () => {
               </div>
             </div>
       
-            <section className="grid grid-cols-3 justify-between gap-[20px] w-full">
+            <section className="flex flex-wrap justify-between gap-[20px] w-full">
             {allNewsData.length > 0 ? (
     allNewsData.map((news, index) => (
         <div className="grid gap-[10px] mx-auto" key={index}>
