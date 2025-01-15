@@ -16,6 +16,7 @@ function DeletePopUp({onClose, dataDeleted,datas ,functions}) {
   };
 
 
+  console.log(dataDeleted);
   
   return (
     <>
