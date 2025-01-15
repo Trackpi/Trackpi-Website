@@ -52,7 +52,7 @@
         max-width: 300px;
         height: 400px; /* Total modal height */
         margin: auto;
-        padding-top: 3px;
+        
         
       }
     
@@ -85,12 +85,13 @@
     .modal-header {
       height: 130px; /* Adjust modal header height */
       padding: 10px;
+      
      
     }
   
     .modal-body {
       height: 435px; /* Adjust modal body height */
-    
+      
       font-size: 12px; /* Adjust text size */
       padding: 2px; /* Adjust padding for body */
       

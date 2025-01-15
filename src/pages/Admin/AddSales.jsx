@@ -4,11 +4,15 @@ import "../../CSS/addsales.css";
 import { useNavigate, useParams,useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
+import baseURL from '../../Api Services/baseURL';
 function AddSales() {
 const location = useLocation();
+  const adminToken = localStorage.getItem('adminToken');  
+  const [refresh, setRefresh] = useState('');
   const { employeeData } = location.state || { employeeData: {} }
   const [formData, setFormData] = useState({
     name: employeeData.name || "",
+    eID: employeeData.eID ||  "",
     empID: employeeData.empID ||  "",
     email:employeeData.email || "",
     phone:employeeData.phone ||  "",
@@ -23,7 +27,7 @@ const location = useLocation();
     instagram:employeeData.instagram ||  "",
     linkedin:employeeData.linkedin || "",
     twitter: employeeData.twitter || "",
-    feedback:employeeData.feedback || "",
+    
   });
 
 const [profileImage, setProfileImage] = useState(null);
@@ -56,6 +60,7 @@ useEffect(() => {
   if (id && employeeData) {
     setFormData({
       name: employeeData.name || "",
+      eID: employeeData.eID ||  "",
       empID: employeeData.empID || "",
       email: employeeData.email || "",
       phone: employeeData.phone || "",
@@ -70,7 +75,7 @@ useEffect(() => {
       instagram: employeeData.instagram || "",
       linkedin: employeeData.linkedin || "",
       twitter: employeeData.twitter || "",
-      feedback: employeeData.feedback || "",
+     
     });
   }
 }, [id, employeeData]); // Only trigger when id or employeeData changes
@@ -79,10 +84,11 @@ useEffect(() => {
 useEffect(() => {
   // Fetch the image only if it changes and is valid
   if (employeeData.image) {
-    fetch(employeeData.image)
+    const imageUrl = `${baseURL}${employeeData.image}`;
+    fetch(imageUrl)
       .then((res) => res.blob())
       .then((blob) => {
-        const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+        const file = new File([blob], "image.jpg", { type: blob.type });
         setProfileImage(file);
       })
       .catch((error) => console.error("Failed to fetch image:", error));
@@ -94,41 +100,106 @@ useEffect(() => {
   const handleAddSales = async (e) => {
     e.preventDefault();
 
-    if (
-        Object.values(formData).some((value) => !value.trim()) ||
-        !profileImage ||
-        !businessCard
-    ) {
-        toast.warning("Please fill all the fields!");
-        return;
+    // Check required fields
+    if 
+    (!formData.name ||
+       !formData.empID ||
+        !formData.email ||
+        !formData.phone ||
+        !formData.fullAddress ||
+        !formData.gender||
+        !formData.dob||
+        !formData.bloodGroup ||
+        !formData.dateOfJoining||
+        !formData.jobRole||
+        !formData.employeeStatus||
+        !formData.jobLevel
+      
+      ) {
+      alert('All fields are required!');
+      return;
     }
-
-    const fd = new FormData();
-    for (const [key, value] of Object.entries(formData)) {
-        fd.append(key, value.trim());
-    }
-    fd.append("image",profileImage);
-    fd.append("businessCard", businessCard);
-
-    const header = {
-        Authorization: `token ${localStorage.getItem("admin")}`,
-    };
+  
     try {
-      if (id) {
-        // Update logic
-        // Example: const res = await updateSalesEmployee(fd, header);
-        console.log("Updating employee with ID:", id);
-        toast.success("Sales Employee updated successfully!");
-      } else {
-        // Add logic
-        // Example: const res = await addSalesEmployee(fd, header);
-        console.log("Adding new Sales Employee");
-        toast.success("Sales Employee added successfully!");
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('empID', formData.ID);
+      formDataToSend.append('empID', formData.empID);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('fullAddress', formData.fullAddress);
+      formDataToSend.append('gender', formData.gender);
+      formDataToSend.append('dob', formData.dob);
+      formDataToSend.append('bloodGroup', formData.bloodGroup);
+      formDataToSend.append('dateOfJoining', formData.dateOfJoining);
+      formDataToSend.append('jobRole', formData.jobRole);
+      formDataToSend.append('employeeStatus', formData.employeeStatus);
+      formDataToSend.append('jobLevel', formData.jobLevel);
+      
+  
+      if (profileImage) {
+        formDataToSend.append('image', profileImage); // Add image file
       }
-      navigate(`/admin/salesManagement-detail/${id || "new"}`);
+      if (businessCard) {
+        formDataToSend.append('businessCard', businessCard); // Add image file
+      }
+  
+      // Check if this is an update or create operation
+      if (id) {
+        // Update operation
+        const response = await baseURL.put(`/api/sales/${id}`, formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+           
+          },
+        });
+  
+        if (response.status === 200) {
+          toast.success('Sales Details Updated Successfully!');
+          navigate('/admin/employee-management');
+        }
+      } else {
+        // Create operation
+        const response = await baseURL.post('/api/sales/', formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        if (response.status === 201) {
+          toast.success('Sales Details Added Successfully!');
+          navigate('/admin/employee-management');
+        }
+      }
+  
+      // Reset form
+      setFormData({
+        id: '',
+        name: '',
+        empID: '',
+        email: '',
+        phone: '',
+        fullAddress: '',
+        gender: '',
+        dob: '',
+        bloodGroup: '',
+        dateOfJoining: '',
+        jobRole: '',
+        employeeStatus: '',
+        jobLevel: '',
+       
+      });
+      setProfileImage(null);
+      setBusinessCard(null);
     } catch (error) {
-      console.error(id ? "Error updating employee" : "Error adding employee:", error);
-      toast.error("Something went wrong! Please try again.");
+      console.error('Error submitting sales data:', error);
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        alert(error.response.data.message || 'An error occurred');
+      } else {
+        alert('Network error or server is unreachable');
+      }
     }
     
 };
@@ -176,6 +247,7 @@ const handleCancel = () => {
             </div>
             <input
               type="file"
+              name="image"
               ref={fileInputRef}
               style={{ display: "none" }}
               accept="image/*"
@@ -477,7 +549,7 @@ const handleCancel = () => {
               id="empsatus"
               name="employeeStatus"
               className="form-select plac"
-              ovalue={formData.employeeStatus ||'' } 
+              value={formData.employeeStatus ||'' } 
               onChange={handleInputChange} 
               
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
@@ -504,10 +576,8 @@ const handleCancel = () => {
             </label>
             <select
               id="joblevel"
-              name="joblevel"
+              name="jobLevel"
               className="form-select plac"
-              value={formData.jobLevel ||'' } 
-              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -519,10 +589,17 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              // value={formData.jobLevel}
+              value={formData.jobLevel ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.jobRole}
             >
-              <option value="Manager Level">Manager Level</option>
-              <option value="Executive Level">Executive Level</option>
+              <option value="Manager Level">
+              Manager Level
+              </option>
+              <option value="Executive Level">
+                Executive Level
+              </option>
+             
             </select>
           </div>
         </div>
@@ -779,6 +856,7 @@ const handleCancel = () => {
               <div>
                   <p>{businessCard.name}</p>
                   <a
+          
           href={URL.createObjectURL(businessCard)}
           target="_blank"
           rel="noopener noreferrer"
@@ -813,6 +891,7 @@ const handleCancel = () => {
           </div>
           <input
             type="file"
+            name="businessCard"
             ref={businessCardInputRef}
             style={{ display: "none" }}
             accept=".pdf,.doc,.docx"
@@ -825,7 +904,7 @@ const handleCancel = () => {
 
         {/* Submit and Cancel Buttons */}
         <div className=" flex justify-center gap-4 mt-4">
-                                    <button type="submit"  className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+                                    <button type="submit" onClick={handleAddSales}  className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
                                     {id ? "Update" : "Save"}
                                     </button>
                                     <button type="button"  onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState,useEffect} from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
@@ -11,97 +11,46 @@ import imagepersonnel3 from '../../images/personnel-3-400x310.jpg'
 import imagepersonnel4 from '../../images/personnel-4-400x310.jpg'
 import imagepersonnel5 from '../../images/personnel-5-400x310.jpg'
 import imagepersonnel6 from '../../images/personnel-6-400x310.jpg'
+import baseURL from '../../Api Services/baseURL';
 
-const data = [
-  {
-    sl_no: 1,
-    name: 'John Doe',
-    empID: 'EMP1234',
-    email: 'johndoe@gmail.com',
-    phone: 9876543210,
-    image:imagepersonnel1,
-  },
-  {
-    sl_no: 2,
-    name: 'Jane Smith',
-    empID: 'EMP5678',
-    email: 'janesmith@yahoo.com',
-    phone: 9123456789,
-    image:imagepersonnel2,
-  },
-  {
-    sl_no: 3,
-    name: 'Robert Brown',
-    empID: 'EMP9101',
-    email: 'robert.brown@hotmail.com',
-    phone: 8765432109,
-    image:imagepersonnel3,
-  },
-  {
-    sl_no: 4,
-    name: 'Emily Davis',
-    empID: 'EMP1122',
-    email: 'emily.davis@gmail.com',
-    phone: 9876123456,
-    image:imagepersonnel4,
-  },
-  {
-    sl_no: 5,
-    name: 'Michael Wilson',
-    empID: 'EMP3344',
-    email: 'michael.wilson@outlook.com',
-    phone: 9123678945,
-    image:imagepersonnel5,
-  },
-  {
-    sl_no: 6,
-    name: 'Sarah Johnson',
-    empID: 'EMP5566',
-    email: 'sarah.johnson@domain.com',
-    phone: 8765432190,
-    image:imagepersonnel6,
-  },
-  {
-    sl_no: 7,
-    name: 'Chris Lee',
-    empID: 'EMP7788',
-    email: 'chris.lee@company.com',
-    phone: 9876541230,
-    image:imagepersonnel1,
-  },
-  {
-    sl_no: 8,
-    name: 'Sophia Martin',
-    empID: 'EMP9900',
-    email: 'sophia.martin@gmail.com',
-    phone: 9234567891,
-    image:imagepersonnel2,
-  },
-  {
-    sl_no: 9,
-    name: 'David Taylor',
-    empID: 'EMP2233',
-    email: 'david.taylor@domain.com',
-    phone: 8543217890,
-    image:imagepersonnel3,
-  },
-  {
-    sl_no: 10,
-    name: 'Olivia White',
-    empID: 'EMP4455',
-    email: 'olivia.white@website.com',
-    phone: 9123456780,
-    image:imagepersonnel4,
-  },
-];
 const TableSales = () => {
   const navigate = useNavigate();
-  const handleViewProfile = rowDatas => {
-    console.log(rowDatas, 'rowDatasSales');
-    navigate('/admin/salesManagement-detail', { state: { rowDatas } });
+  const [salesEmployees, setSalesEmployee] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    useEffect(() => {
+      const fetchSales = async () => {
+        try {
+          const response = await baseURL.get('/api/sales/');
+          setSalesEmployee(Array.isArray(response.data) ? response.data : []);
+        } catch (error) {
+          setError('Failed to load Sales.');
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchSales();
+    }, []);
+  const handleViewProfile = SalesEmployee => {
+    console.log(SalesEmployee, 'SalesEmployee');
+    navigate('/admin/salesManagement-detail', { state: { rowDatas: SalesEmployee } });
   };
   const handleAdd = () => {
     navigate('/admin/salesManagement-add/'); // Navigate Add sales page
+  }
+  const handleDelete = async (id) => {
+    try {
+      await baseURL.delete(`/api/sales/${id}`); // Assuming `id` is the unique identifier
+      setSalesEmployee(salesEmployees.filter(SalesEmployee => SalesEmployee._id !== id));
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+    }
+  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>{error}</div>;
   }
   return (
     <div>
@@ -146,18 +95,18 @@ const TableSales = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, rowIndex) => (
+            {salesEmployees.map((SalesEmployee, index) => (
               <tr
-                key={rowIndex}
+                key={SalesEmployee._id }
                 className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
               >
                 <>
-                  <td key={rowIndex} className=" border-r-2  text-center"   style={{
+                  <td  className=" border-r-2  text-center"   style={{
                               wordWrap: 'break-word',
                               overflowWrap: 'break-word',
                               boxSizing: 'border-box',
                             }}>
-                    {row.sl_no}
+                    {index + 1}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`} 
                     style={{
@@ -165,7 +114,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {row.name}
+                    {SalesEmployee.name}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -173,7 +122,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {row.empID}
+                     {SalesEmployee.email}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -182,7 +131,7 @@ const TableSales = () => {
                       boxSizing: 'border-box',
                     }}>
                     {/* <div className="flex justify-center items-center gap-2 "> */}
-                    {row.email}
+                    {SalesEmployee.email}
                     {/* </div> */}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
@@ -191,7 +140,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {row.phone}
+                    {SalesEmployee.phone}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -201,13 +150,13 @@ const TableSales = () => {
                     }}>
                     <div
                       className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer "
-                      onClick={() => handleViewProfile(row)}
+                      onClick={() => handleViewProfile(SalesEmployee)}
                     >
                       View Profile <FiExternalLink size={15} />
                     </div>
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center" onClick={() => handleDelete(SalesEmployee._id)}>
                       <RiDeleteBin6Line size={20} />
                     </div>
                   </td>

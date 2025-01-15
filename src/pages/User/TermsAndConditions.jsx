@@ -17,83 +17,83 @@ function TermsAndConditions() {
                             Conditions ("Terms"). If you do not agree, please refrain from using our Website.
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold "> Acceptance of Terms</div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] text-justify">
                             By accessing our Website or using our services, you acknowledge that you have read, understood, and agree to be bound by these Terms and any additional policies referenced herein.
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">  Use of the Website</div>
-                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  xl:px-[30px] lg:px-[22px]  sm:px-[15px] px-[0] grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[30px]  text-justify">
+                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  xl:px-[30px] lg:px-[22px]  sm:px-[15px] px-[0] grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px]  text-justify">
                            <li className="">Eligibility: You must be at least 18 years old or have obtained parental/guardian consent to use this Website. </li>
                            <li className="">Prohibited Activities: You agree not to engage in unlawful activities, disrupt the functionality of the Website, or misuse it for any unauthorized purposes. </li>
                            <li className="">Account Registration: For certain services, you may need to create an account. You are responsible for maintaining        the confidentiality of your credentials and all activities under your account.</li>
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold "> Services Provided</div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         Trackpi offers business consulting services tailored to enhance performance, strategy, and operations. Specific service agreements may detail deliverables, timelines, and terms. Success depends on various factors, including client implementation and market conditions.
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold "> Intellectual Property</div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         All content on this Website, including text, graphics, logos, images, and software, is the exclusive property of Trackpi or its licensors and is protected by copyright and trademark laws. Unauthorized reproduction, distribution, or modification is prohibited.
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold"> Privacy Policy</div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         Our practices regarding the collection, use, and protection of personal information are detailed in our Privacy Policy, which is incorporated by reference. By using our Website, you consent to these practices.
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold "> Third-Party Links</div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         Our Website may contain links to third-party websites for your convenience. We are not responsible for the content, policies, or practices of these websites. Use them at your own risk.
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold "> Limitation of Liability </div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         Trackpi shall not be liable for any direct, indirect, incidental, special, or consequential damages, including but not limited to loss of profits, money, data, or business interruptions, arising from the use or inability to use our Website or services.
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold "> Payment Terms</div>
-                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[30px]   text-justify">
+                        <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px]   text-justify">
                            <li className=""> Payments for services must be made in accordance with the terms outlined in your agreement.</li>
                            <li className="">Trackpi does not provide any refunds unless the services delivered do not align with what was explicitly promoted.</li>
                            <li className=""> Late payments may incur additional charges. </li>
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Termination </div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] text-justify">
                         We reserve the right to terminate or suspend access to the Website or services without prior notice if you violate these Terms or engage in harmful activities.  
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Changes to Terms </div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         Trackpi reserves the right to amend or update these Terms at any time. Changes will be effective upon posting to this page. Continued use of the Website after updates constitutes your acceptance of the revised Terms.  
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Governing Law </div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         These Terms are governed by the laws of Kerala, India. Any disputes shall be resolved in the courts of Kerala.
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Force Majeure  </div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         Trackpi shall not be held responsible for delays or non-performance resulting from circumstances beyond its control, including natural disasters, governmental actions, or other unforeseen events. 
                         </div>
                     </div>
-                    <div className=" grid gap-[10px] sm:gap-[15px] md:gap-[20px] lg:gap-[25px] xl:gap-[30px]">
+                    <div className=" grid gap-[10px] sm:gap-[12px] md:gap-[15px] lg:gap-[18px] xl:gap-[20px]">
                         <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[30px] font-bold ">Contact Information  </div>
                         <div className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px]  text-justify">
                         For any questions or concerns about these Terms, please contact us: Trackpi Private Limited Email ID: operations@trackpi.in Phone: +91 80781 79646 Address: Trackpi Pvt Ltd, KC Arcade, Near TV Centre, CSEZ, Ernakulam, Kerala, 682037 

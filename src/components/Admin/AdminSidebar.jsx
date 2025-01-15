@@ -34,7 +34,7 @@ const AdminSidebar = () => {
   return (
     <div className="h-screen adminsidebarMain flex">
       <div className="tabSideMain flex flex-col justify-between items-center py-3">
-        <div className="m-auto">
+        <div className="mx-auto relative top-[10px]">
           <img src={logo} className="h-[75px] " alt="Company Logo" />
         </div>
         <div className="flex flex-col justify-between items-center secondDivAdminsidebar">

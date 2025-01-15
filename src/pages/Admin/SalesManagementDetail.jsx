@@ -3,6 +3,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useLocation, useNavigate } from 'react-router-dom';
 import EmpDetails from '../../components/User/EmpDetails';
+import baseURL from '../../Api Services/baseURL';
 
 function SalesManagementDetail() {
   const location = useLocation();
@@ -15,10 +16,10 @@ function SalesManagementDetail() {
     navigate(-1); // Go back to previous page
   };
   const handleEdit = () => {
-    const salesId = location.state?.rowDatas?.empID;// Replace this with the actual intern's ID
+    const salesId = employeeData._id || employeeData.id;// Replace this with the actual intern's ID
    
     if (salesId) {
-      navigate(`/admin/salesManagement-add/${salesId}`, { state: { employeeData: location.state.rowDatas } }); // Navigate to the edit page with the internId
+      navigate(`/admin/salesManagement-add/${salesId}`, { state: { employeeData } }); // Navigate to the edit page with the internId
     }
   };
   if (!employeeData) {

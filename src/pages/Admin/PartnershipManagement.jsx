@@ -48,7 +48,7 @@ const PartnershipManagement = () => {
 
     return (
         <div className="bg-white w-full">
-            <div className="py-[40px] px-[30px] grid gap-[40px]">
+            <div className="py-[40px] px-[30px] grid gap-[30px]">
                 <div className="text-[24px] font-bold mb-4">Partnership Management</div>
                 <div className="grid gap-[30px]">
                     <form className=" grid gap-[10px]">

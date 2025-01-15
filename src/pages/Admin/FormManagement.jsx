@@ -272,7 +272,7 @@ function FormManagement() {
 
     return (
         <div className=" bg-white">
-            <div className="py-[40px] px-[30px] grid gap-[30px]">
+            <div className="py-[40px] px-[30px] grid gap-[20px]">
                 <div className="flex justify-between">
                     <div className="text-[24px] font-bold">Form Management</div>
                     <div className="">
