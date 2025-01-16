@@ -6,11 +6,11 @@ import '../../CSS/adminsidebar.css';
 
 const Tab = ({ name, route, isActive, onClick }) => (
   <div
-    className={`tab-item px-[25px] py-[13px] rounded-[15px] cursor-pointer ${isActive ? 'active-tab' : ''}`}
+    className={`tab-item px-[25px] flex items-center h-[45px] rounded-[15px] cursor-pointer ${isActive ? 'active-tab' : ''}`}
     onClick={onClick}
     aria-label={`Navigate to ${name}`}
   >
-    {name}
+    <span>{name}</span>
   </div>
 );
 
@@ -38,7 +38,7 @@ const AdminSidebar = () => {
           <img src={logo} className="h-[75px] " alt="Company Logo" />
         </div>
         <div className="flex flex-col justify-between items-center secondDivAdminsidebar">
-          <div className="grid gap-[10px] text-lg">
+          <div className="grid gap-[10px] text-[16px] w-[260px]">
             {tabs.map((tab) => (
               <Tab
                 key={tab.name}
