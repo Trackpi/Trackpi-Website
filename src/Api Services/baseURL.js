@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { SERVER_URL } from './serverUrl';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3001/',
+  baseURL: `${SERVER_URL}/`,
   timeout: 3000,
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,

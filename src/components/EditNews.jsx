@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import uploadImg from "../images/uploadimg.svg";
 import baseURL from "../Api Services/baseURL";
+import { toast } from 'react-toastify';
 
 function EditNews({ newsData, editOnclickForBack, index ,getAllNews}) {
     const [fileName, setFileName] = useState("Upload Image");
@@ -28,7 +29,7 @@ function EditNews({ newsData, editOnclickForBack, index ,getAllNews}) {
                 setEditNewsData({ ...editNewsData, newsFile: file });
                 setFileName(file.name);
             } else {
-                alert("Please upload a file in JPG, JPEG, or PNG format.");
+                toast.info("Please upload a file in JPG, JPEG, or PNG format.");
                 setFileName("Upload Image");
                 setEditNewsData({ ...editNewsData, newsFile: "" });
             }
@@ -38,7 +39,7 @@ function EditNews({ newsData, editOnclickForBack, index ,getAllNews}) {
     const editNewsDataDetails = async (e) => {
         e.preventDefault();
         if (!editNewsData.newsLink || !editNewsData.newsFile) {
-            alert("Both News Link and Image are required!");
+            toast.info("Both News Link and Image are required!");
             return;
         }
 
@@ -55,16 +56,16 @@ function EditNews({ newsData, editOnclickForBack, index ,getAllNews}) {
             });
 
             if (response.status === 200) {
-                alert("News updated successfully!");
+                toast.success("News updated successfully!");
                 editOnclickForBack(); 
                 getAllNews()
             }
         } catch (error) {
             console.error("Error updating news:", error);
             if (error.response && error.response.data) {
-                alert(`Error: ${error.response.data.message || "An error occurred"}`);
+                toast.error(`Error: ${error.response.data.message || "An error occurred"}`);
             } else {
-                alert("An error occurred while updating news.");
+                toast.error("An error occurred while updating news.");
             }
         }
     };

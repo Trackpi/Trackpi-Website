@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import uploadImg from "../images/uploadimg.svg";
 import baseURL from "../Api Services/baseURL";
+import { toast } from "react-toastify";
 
 function AddNews({ newsData, getAllNews }) {
     const [fileName, setFileName] = useState("Upload Image");
@@ -18,7 +19,7 @@ function AddNews({ newsData, getAllNews }) {
                 setNewsDatas({ ...newsDatas, newsFile: file });
                 setFileName(file.name);
             } else {
-                alert("Please upload a file in JPG, JPEG, or PNG format.");
+                toast.info("Please upload a file in JPG, JPEG, or PNG format.");
                 setNewsDatas({ ...newsDatas, newsFile: null });
                 setFileName("Upload Image");
             }
@@ -28,7 +29,7 @@ function AddNews({ newsData, getAllNews }) {
     const addNewNewsData = async (e) => {
         e.preventDefault();
         if (!newsDatas.newsLink || !newsDatas.newsFile) {
-            alert("All fields are required!");
+            toast.info("All fields are required!");
             return;
         }
 
@@ -46,16 +47,16 @@ function AddNews({ newsData, getAllNews }) {
 
             if (response.status === 200) {
                 getAllNews()
-                alert("News added successfully!");
+                toast.success("News added successfully!");
                 setNewsDatas({ newsLink: "", newsFile: null });
                 setFileName("Upload Image");
             }
         } catch (error) {
             console.error("Error adding news:", error);
             if (error.response && error.response.data) {
-                alert(`Error: ${error.response.data.message || "An error occurred"}`);
+                toast.error(`Error: ${error.response.data.message || "An error occurred"}`);
             } else {
-                alert("An error occurred while adding news data.");
+                toast.error("An error occurred while adding news data.");
             }
         }
     };

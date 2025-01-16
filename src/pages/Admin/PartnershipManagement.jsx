@@ -5,6 +5,7 @@ import deleteImg from "../../images/deleteimg.svg";
 import "../../CSS/partnershipAdmin.css";
 import DeletePopUp from "../../components/Admin/DeletePopUp";
 import baseURL from "../../Api Services/baseURL";
+import { toast } from 'react-toastify';
 
 const PartnershipManagement = () => {
     // store all datas from database
@@ -18,6 +19,7 @@ const PartnershipManagement = () => {
     });
     const [editPartnershipDatas, setEditPartnershipDatas] = useState({});
     const [fileName, setFileName] = useState("Upload Image");
+console.log(patnershipDatas);
 
     // console.log(editPartnershipDatas);
 
@@ -43,7 +45,7 @@ const PartnershipManagement = () => {
                 setPatnershipDatas({ ...patnershipDatas, companylogo: file });
                 setFileName(file.name);
             } else {
-                alert("Please upload a file in JPG, JPEG, or PNG format.");
+                toast.info("Please upload a file in JPG, JPEG, or PNG format.");
                 setPatnershipDatas({ ...patnershipDatas, companylogo: null });
                 setFileName("Upload Image");
             }
@@ -57,7 +59,7 @@ const PartnershipManagement = () => {
                 setEditPartnershipDatas({ ...editPartnershipDatas, companylogo: file });
                 setFileName(file.name);
             } else {
-                alert("Please upload a file in JPG, JPEG, or PNG format.");
+                toast.info("Please upload a file in JPG, JPEG, or PNG format.");
                 setEditPartnershipDatas({});
                 setFileName("Upload Image");
             }
@@ -93,7 +95,7 @@ const PartnershipManagement = () => {
     const addNewPatners = async (e) => {
         e.preventDefault();
         if (!patnershipDatas.companylogo || !patnershipDatas.description || !patnershipDatas.companyname) {
-            alert("All fields are required!");
+            toast.info("All fields are required!");
             return;
         }
         try {
@@ -112,16 +114,16 @@ const PartnershipManagement = () => {
             if (response.status === 200) {
                 getAllPartners();
                 setFileName("Upload Image");
-                alert("Patner added successfully!");
+                toast.success("Patner added successfully!");
                 setPatnershipDatas({ companyname: "", description: "", companylogo: null });
             }
         } catch (error) {
             console.error("Error adding partner:", error);
             setFileName("Upload Image");
             if (error.response && error.response.data) {
-                alert(`Error: ${error.response.data.message || "An error occurred"}`);
+                toast.error(`Error: ${error.response.data.message || "An error occurred"}`);
             } else {
-                alert("An error occurred while adding partner data.");
+                toast.error("An error occurred while adding partner data.");
             }
         }
     };
@@ -140,7 +142,7 @@ const PartnershipManagement = () => {
     const editAPartnerDetails = async (e) => {
         e.preventDefault();
         if (!editPartnershipDatas.companylogo || !editPartnershipDatas.description || !editPartnershipDatas.companyname) {
-            alert("Please fill empty Fields");
+            toast.info("Please fill empty Fields");
             return;
         }
 
@@ -159,7 +161,7 @@ const PartnershipManagement = () => {
 
             if (response.status === 200) {
                 getAllPartners();
-                alert("Partnership updated successfully!");
+                toast.success("Partnership updated successfully!");
                 setIsEditMode(false);
                 setFileName("Upload Image");
             }
@@ -167,9 +169,9 @@ const PartnershipManagement = () => {
             console.error("Error updating news:", error);
             setFileName("Upload Image");
             if (error.response && error.response.data) {
-                alert(`Error: ${error.response.data.message || "An error occurred"}`);
+                toast.error(`Error: ${error.response.data.message || "An error occurred"}`);
             } else {
-                alert("An error occurred while updating news.");
+                toast.error("An error occurred while updating news.");
             }
         }
     };
@@ -403,7 +405,7 @@ const PartnershipManagement = () => {
                                               <div className="grid gap-[10px]">
                                                   <label className="block text-[14px] font-semibold">Company Name</label>
                                                   <input
-                                                      readOnly={isEditMode ? false : true}
+                                                      readOnly
                                                       type="text"
                                                       value={`${partners.companyname}`}
                                                       className="border rounded-[10px] px-[20px] py-[10px] text-[14px] partnerInput"

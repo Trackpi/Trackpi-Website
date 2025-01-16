@@ -6,6 +6,7 @@ import AddNews from "../../components/AddNews";
 import EditNews from "../../components/EditNews";
 import DeletePopUp from "../../components/Admin/DeletePopUp";
 import baseURL from "../../Api Services/baseURL";
+import { SERVER_URL } from "../../Api Services/serverUrl";
 
 const NewsManagement = () => {
     const [activeTab, setActiveTab] = useState("add");
@@ -135,7 +136,7 @@ const NewsManagement = () => {
                                             <img src={deleteImg} alt="Delete" className="h-[24px] w-[24px] relative top-[18px] left-[21px]" />
                                         </div>
                                     </div>
-                                    <img src={`http://localhost:3001${news.newsFile}`} className="w-full h-full rounded-[6px]" alt={`News ${index + 1}`} />
+                                    <img src={`${SERVER_URL}${news.newsFile}`} className="w-full h-full rounded-[6px]" alt={`News ${index + 1}`} />
                                 </div>
                             </div>
                         ))
