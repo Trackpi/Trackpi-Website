@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import projectUploadImg from '../../images/projectUpload.svg';
+import { FiUpload } from 'react-icons/fi';
 import { FiExternalLink } from 'react-icons/fi';
 import baseURL from '../../Api Services/baseURL';
 
 function ProjectManagement() {
+  const [fileUrl, setFileUrl] = useState("");
+
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const[refresh,setRefresh] = useState('')
 
   const navigate = useNavigate();
 
@@ -18,6 +21,7 @@ function ProjectManagement() {
         const response = await baseURL.get('/api/projects/getAllProjects');
         console.log(response.data, 'responseDataProjects');
         setProjects(response.data); // Assuming the API returns an array of projects
+        setRefresh(response.data)
         setLoading(false);
       } catch (err) {
         setError('Failed to load projects');
@@ -38,8 +42,8 @@ function ProjectManagement() {
     return acc;
   }, {});
 
-  const handleViewDetails = (project) => {
-    console.log(project,"projectId")
+  const handleViewDetails = project => {
+    console.log(project, 'projectId');
     navigate(`/admin/project-details/${project._id}`, { state: project });
   };
 
@@ -58,32 +62,82 @@ function ProjectManagement() {
         <div className="flex justify-between items-center">
           <div className="text-[24px] font-bold">Project Management</div>
           <div>
-            <button className="w-[55px] h-[45px] rounded-[10px] bg-[#FF9D00]">
-              <img className="m-auto" src={projectUploadImg} alt="" />
+            <button className="px-4 py-2 rounded-[10px] flex items-center gap-3 font-bold text-white bg-[#FF9D00]">
+              <FiUpload size={20} />
+              Export
             </button>
           </div>
         </div>
         {/* Table Content */}
         <div className="py-[10px] grid gap-[25px]">
-          {Object.keys(groupedProjects).map((date) => (
+          {Object.keys(groupedProjects).map(date => (
             <div className="grid gap-[10px]" key={date}>
               {/* Date Heading */}
               <div className="text-[#FF9D00] text-[20px]">{date}</div>
 
               {/* Table */}
-              <div className="relative shadow-md sm:rounded-lg border-dark border-2">
+              <div className="relative shadow-md sm:rounded-lg border-[#939393] border-1">
                 <div className="table-wrapper">
-                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-fixed">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:[#939393] table-fixed">
                     {/* Table Headers */}
-                    <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
+                    <thead className="text-md font-bold text-black uppercase border-[#939393] border-b ">
                       <tr>
-                        <th className="border-r-2 text-center px-2 py-3 w-[60px]">Sl No</th>
-                        <th className="border-r-2 text-center px-2 py-3 w-[150px]">Name</th>
-                        <th className="border-r-2 text-center px-2 py-3 w-[200px]">Email ID</th>
-                        <th className="border-r-2 text-center px-2 py-3 w-[150px]">Phone</th>
-                        <th className="border-r-2 text-center px-2 py-3 w-[200px]">Project Name</th>
-                        <th className="border-r-2 text-center px-2 py-3 w-[100px]">Time</th>
-                        <th className="text-center px-2 py-3 w-[150px]">View</th>
+                        <th
+                          scope="col"
+                          className=" border-r text-center"
+                          style={{ width: '10%' }}
+                        >
+                          {' '}
+                          Sl No
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          Email ID
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          Phone
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          Project Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '20%' }}
+                        >
+                          {' '}
+                          Time
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3  text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          View
+                        </th>
                       </tr>
                     </thead>
                     {/* Table Body */}
@@ -93,13 +147,66 @@ function ProjectManagement() {
                           key={project._id}
                           className="bg-white text-md font-semibold text-black hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
                         >
-                          <td className="border-r-2 text-center px-2 py-3 w-[60px]">{projectIndex + 1}</td>
-                          <td className="border-r-2 text-center px-2 py-3 w-[150px]">{project.fullName}</td>
-                          <td className="border-r-2 text-center px-2 py-3 w-[200px]">{project.emailAddress}</td>
-                          <td className="border-r-2 text-center px-2 py-3 w-[150px]">{project.contactNumber}</td>
-                          <td className="border-r-2 text-center px-2 py-3 w-[200px]">{project.projectName}</td>
-                          <td className="border-r-2 text-center px-2 py-3 w-[100px]">
-                            {project.createdAt.split('T')[1].split('.')[0]} {/* Extract time */}
+                          <td
+                            className=" border-r text-center"
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {projectIndex + 1}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {project.fullName}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {project.emailAddress}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {project.contactNumber}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {project.projectName}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {project.createdAt.split('T')[1].split('.')[0]}{' '}
+                            {/* Extract time */}
                           </td>
                           <td
                             className="text-[#FF9D00] font-bold text-center cursor-pointer px-2 py-3 flex justify-center items-center gap-2 w-[150px]"
@@ -111,11 +218,8 @@ function ProjectManagement() {
                       ))}
                     </tbody>
                   </table>
-
-
                 </div>
               </div>
-              
             </div>
           ))}
         </div>

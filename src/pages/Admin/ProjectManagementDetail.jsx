@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
 import projectManageBack from '../../images/projectManageBack.svg';
+import { HiDownload } from 'react-icons/hi';
+import baseURL from "../../Api Services/baseURL"
+
 function ProjectManagementDetail() {
+  const [fileUrl, setFileUrl] = useState('');
+  console.log(fileUrl,"fileurlsss")
+
   const location = useLocation();
   const mockData = location.state;
+console.log(mockData,"mockDatasss")
+useEffect(() => {
+  const url = mockData?.file;
+  // const url = "http://localhost:3001/uploads/projects/1736956543746.pdf"
+  
+
+  console.log(url,"fileURL");  // Check if the URL is correct
+  setFileUrl(url);
+}, [mockData.file]);
 
   return (
     <div className="bg-white w-full">
@@ -102,21 +117,49 @@ function ProjectManagementDetail() {
         </div>
         {/* <img src="http://192.168.43.197:3001/assets/1736698412080.JPG" alt="" /> */}
 
-        <div className="flex justify-center ">
-          {/* <div className="w-[500px] h-[230px] grid text-white projectDetailsDocument">
-                <div className="bg-[#0A0A0A] h-[200px] flex justify-center items-center my-auto text-[22px]">Document</div>
-                <div className="h-[30px] bg-[#FF9D00] text-[12px] px-[7px] font-semi-bold flex items-center">Document Name</div>
-              </div> */}
+        <div className="flex justify-center">
           <div className="w-[500px] h-[230px] grid text-white projectDetailsDocument">
-            <div className="bg-[#0A0A0A] h-[200px] flex justify-center items-center text-center my-auto text-[22px]">
-              Document
+            <div className="relative bg-[#0A0A0A] h-[200px] flex justify-center items-center text-center my-auto text-[22px] overflow-hidden group">
+              {fileUrl ? (
+                <div className="relative w-full h-full">
+                  {/* Semi-transparent overlay */}
+                  <div
+                    className="absolute inset-0 bg-black bg-opacity-50 pointer-events-none"
+                    style={{ zIndex: 1 }}
+                  ></div>
+                  {/* PDF Viewer */}
+                  <iframe
+                    src={fileUrl}
+                    className="w-full h-full"
+                    style={{
+                      border: 'none',
+                      position: 'relative',
+                      zIndex: 0,
+                      overflow: 'auto',
+                    }}
+                    scrolling="yes"
+                    title="PDF Viewer"
+                  ></iframe>
+                  {/* Download Icon */}
+                  <a
+                    href={fileUrl}
+                    download="document.pdf"
+                    className="absolute top-4 right-4 hidden group-hover:flex items-center justify-center w-10 h-10 bg-[#FF9D00] rounded-md text-black"
+                    style={{ zIndex: 2 }}
+                  >
+                    <HiDownload className="w-6 h-6" color='white' />
+                  </a>
+                </div>
+              ) : (
+                <p>Loading...</p>
+              )}
             </div>
-
-            <div className="h-[30px] bg-[#FF9D00] text-[12px] px-[7px] font-semi-bold flex items-center">
-              Document Name
+            <div className="h-[30px] bg-[#FF9D00] text-[14px] px-[7px] font-semibold flex items-center">
+              {mockData.fileName}
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
