@@ -47,6 +47,45 @@ function ProjectManagement() {
     navigate(`/admin/project-details/${project._id}`, { state: project });
   };
 
+  const handleExportCSV = async () => {
+    console.log("clicked");
+  
+    try {
+      // const token = localStorage.getItem('adminToken');  // Get token from localStorage
+  
+      // if (!token) {
+      //   return console.error("Token is missing!");
+      // }
+  
+      const response = await baseURL.get("export/csv-data?type=project", {
+        headers: {
+          // Authorization: `Bearer ${token}`,  
+          'Content-Type': 'application/json',
+        },
+        responseType: "blob",  // Important for handling file download
+      });
+  
+      // Create a URL for the blob data
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+  
+      // Create a temporary link element
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "project-data.csv"); // Set the filename
+      document.body.appendChild(link);
+      link.click(); // Trigger the download
+  
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error exporting CSV:", error);
+    }
+  };
+  
+
+
+
   if (loading) {
     return <div>Loading...</div>; // You can customize the loading indicator
   }
@@ -62,7 +101,7 @@ function ProjectManagement() {
         <div className="flex justify-between items-center">
           <div className="text-[24px] font-bold">Project Management</div>
           <div>
-            <button className="px-4 py-2 rounded-[10px] flex items-center gap-3 font-bold text-white bg-[#FF9D00]">
+            <button className="px-4 py-2 rounded-[10px] flex items-center gap-3 font-bold text-white bg-[#FF9D00]" onClick={handleExportCSV}>
               <FiUpload size={20} />
               Export
             </button>

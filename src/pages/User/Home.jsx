@@ -154,7 +154,7 @@ function Home() {
   const [bulgingCard, setBulgingCard] = useState(0);
   const [groupedCards, setGroupedCards] = useState([]);
   const [cardsPerGroup, setCardsPerGroup] = useState(
-    window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 4
+    window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 3 : 4
   );
   const [isPaused, setIsPaused] = useState(false);
 
@@ -180,7 +180,7 @@ function Home() {
       if (window.innerWidth < 640) {
         newCardsPerGroup = 1; // Only 1 card for small screens
       } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
-        newCardsPerGroup = 2; // 2 cards for medium screens
+        newCardsPerGroup = 3; // 2 cards for medium screens
       }
 
       if (newCardsPerGroup !== cardsPerGroup) {
@@ -290,7 +290,6 @@ function Home() {
             Real-Time Business News Updates?
           </h1>
         </div>
-
         <div className="relative bg-gradient-to-r from-[#FFC100] to-[#FF9D00]">
           {/* Carousel */}
           <div className="overflow-x-auto md:overflow-hidden touch-pan-x carousel-container">
@@ -308,12 +307,12 @@ function Home() {
                       cardsPerGroup === 1
                         ? 'grid-cols-1'
                         : 'grid-cols-1 md:grid-cols-4'
-                    } place-content-center gap-10 py-1 lg:px-20 px-16`}
+                    } place-content-center gap-10   lg:px-20 `}
                   >
                     {group.map((card, cardIndex) => (
                       <div
                         key={cardIndex}
-                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto 2xl:h-[490px]  2xl:px-20 rounded-lg shadow-lg text-center transform transition-transform duration-500 cursor-pointer ${
+                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto rounded-lg  text-center transform transition-transform duration-500 cursor-pointer ${
                           cardIndex === bulgingCard
                             ? 'scale-110 2xl:scale-105'
                             : 'scale-95'
@@ -324,7 +323,7 @@ function Home() {
                       >
                         {/* Inner wrapper for scaling contents */}
                         <div
-                          className={`transform transition-transform  duration-500 ${
+                          className={`transform transition-transform  duration-500 imgDiv ${
                             cardIndex === bulgingCard
                               ? 'md:scale-105'
                               : 'scale-100'
@@ -333,10 +332,10 @@ function Home() {
                           <img
                             src={news5}
                             alt={`News ${card.id}`}
-                            className="w-full h-auto rounded"
+                            className=" w-full h-full rounded-lg"
                           />
-
-                          {/* <img
+                          {/* 
+                          <img
                             src={card.logo}
                             alt="Card_logo"
                             className={`mx-auto lg:h-auto h-[100px] transition-transform ${
