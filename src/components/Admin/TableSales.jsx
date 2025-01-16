@@ -6,37 +6,45 @@ import { MdAdd } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs';
 import { BsDownload } from 'react-icons/bs';
 import baseURL from '../../Api Services/baseURL';
-
+import DeleteModal from './DeleteModal';
 const TableSales = () => {
   const navigate = useNavigate();
-  const [salesEmployees, setSalesEmployees] = useState([]);
+  const adminToken = localStorage.getItem("adminToken");
+  const [salesemployees, setSalesemployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+     const [isModalOpen, setIsModalOpen] = useState(false);
+        const [deleteId, setDeleteId] = useState("");
+         
+        const [dataDeleted, setDataDeleted] = useState("");
     useEffect(() => {
-      const fetchSales = async () => {
+      const fetchSalesEmployee = async () => {
         try {
           const response = await baseURL.get('/api/sales/salesemployee');
-          setSalesEmployees(Array.isArray(response.data) ? response.data : []);
+          setSalesemployees(response.data);
         } catch (err) {
           setError('Failed to load Sales.');
         } finally {
           setLoading(false);
         }
       };
-      fetchSales();
+      fetchSalesEmployee();
     }, []);
-  const handleViewProfile = (salesEmployee) => {
-    console.log(salesEmployee, 'salesEmployee');
-    navigate('/admin/salesManagement-detail', { state: { rowDatas: salesEmployee } });
+  const handleViewProfile = (newEmployee) => {
+    console.log(newEmployee, 'newEmployee');
+    navigate('/admin/salesManagement-detail', { state: { rowDatas: newEmployee } });
   };
   const handleAdd = () => {
     navigate('/admin/salesManagement-add/'); // Navigate Add sales page
   }
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this record?')) return;
+  const handleDelete = async () => {
     try {
-      await baseURL.delete(`/api/sales/salesemployee/${id}`); // Assuming `id` is the unique identifier
-      setSalesEmployees((prev) => prev.filter((salesEmployee) => salesEmployee._id !== id));
+      await baseURL.delete(`/api/sales/salesemployee/${deleteId}`,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+      },}); // Assuming `id` is the unique identifier
+      setSalesemployees(salesemployees.filter(newEmployee => newEmployee._id !== deleteId));
+      setIsModalOpen(false)
     } catch (error) {
       console.error('Error deleting employee:', error);
       alert('Failed to delete the record. Please try again.');
@@ -87,9 +95,9 @@ const TableSales = () => {
             </tr>
           </thead>
           <tbody>
-            {salesEmployees.map((salesEmployee, index) => (
+            {salesemployees.map((newEmployee, index) => (
               <tr
-                key={salesEmployee._id }
+                key={newEmployee._id  || index}
                 className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
               >
                 <>
@@ -106,7 +114,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {salesEmployee.name}
+                    {newEmployee.name}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -114,7 +122,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                     {salesEmployee.email}
+                     {newEmployee.email}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -123,7 +131,7 @@ const TableSales = () => {
                       boxSizing: 'border-box',
                     }}>
                     {/* <div className="flex justify-center items-center gap-2 "> */}
-                    {salesEmployee.email}
+                    {newEmployee.email}
                     {/* </div> */}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
@@ -132,7 +140,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {salesEmployee.phone}
+                    {newEmployee.phone}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -142,13 +150,19 @@ const TableSales = () => {
                     }}>
                     <div
                       className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer "
-                      onClick={() => handleViewProfile(salesEmployee)}
+                      onClick={() => handleViewProfile(newEmployee)}
                     >
                       View Profile <FiExternalLink size={15} />
                     </div>
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    <div className="flex justify-center items-center" onClick={() => handleDelete(salesEmployee._id)}>
+                    <div className="flex justify-center items-center" onClick={() => 
+                      {
+                        setIsModalOpen(true);
+                        setDataDeleted(`Sales ${index+ 1 }`);
+                        setDeleteId(newEmployee._id);
+                    }
+                      }>
                       <RiDeleteBin6Line size={20} />
                     </div>
                   </td>
@@ -158,6 +172,8 @@ const TableSales = () => {
           </tbody>
         </table>
       </div>{' '}
+      {isModalOpen && <DeleteModal onClose={() => setIsModalOpen(false)} dataDeleted={dataDeleted} datas={"Sales"} functions={handleDelete} />}   
+
     </div>
   );
 };

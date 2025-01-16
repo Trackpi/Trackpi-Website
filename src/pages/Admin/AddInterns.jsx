@@ -8,11 +8,9 @@ import baseURL from '../../Api Services/baseURL';
 
 
 function AddInterns() {
+  const adminToken = localStorage.getItem('adminToken');  
   const location = useLocation();
   const { employeeData } = location.state || { employeeData: {} }
-  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
-  const navigate = useNavigate();
-  const adminToken = localStorage.getItem('adminToken'); 
   const [formData, setFormData] = useState({
     name: employeeData.name || "",
     empID: employeeData.empID ||  "",
@@ -31,16 +29,14 @@ function AddInterns() {
     twitter: employeeData.twitter || "",
     feedback:employeeData.feedback || "",
   });
-
+    const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+    const navigate = useNavigate();
   
   const [profileImage, setProfileImage] = useState(null);
   const fileInputRef = useRef(null);
   
     const [certificate, setCertificate] = useState(null);
     const certificateInputRef = useRef(null);
-    const handleCertificateFileChange = (e) => {
-     setCertificate(e.target.files[0]);
-    }
  
  
    // Update form data when employeeData changes
@@ -69,11 +65,10 @@ function AddInterns() {
     useEffect(() => {
       // Fetch the image and convert it to a File object
       if (employeeData.image) {
-        const imageUrl = `${baseURL}${employeeData.image}`;
-        fetch(imageUrl)
+        fetch(employeeData.image)
           .then((res) => res.blob())
           .then((blob) => {
-            const file = new File([blob], "image.jpg", { type: blob.type  });
+            const file = new File([blob], "image.jpg", { type: "image/jpeg" });
             setProfileImage(file);
           })
           .catch((error) => console.error("Failed to fetch image:", error));
@@ -95,113 +90,101 @@ function AddInterns() {
     setProfileImage(e.target.files[0]);
   };
 
-  
+  const handleCertificateFileChange = (e) => {
+    setCertificate(e.target.files[0]);
+   }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const empID = formData.empID;
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('empID', formData.empID);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('fullAddress', formData.fullAddress);
+      formDataToSend.append('gender', formData.gender);
+      formDataToSend.append('dob', formData.dob);
+      formDataToSend.append('bloodGroup', formData.bloodGroup);
+      formDataToSend.append('dateOfJoining', formData.dateOfJoining);
+      formDataToSend.append('jobRole', formData.jobRole);
+      formDataToSend.append('employeeStatus', formData.employeeStatus);
+      formDataToSend.append('jobLevel', formData.jobLevel);
+      
+  
+      if (profileImage) {
+        formDataToSend.append('profileImage', profileImage); // Add image file
+      }
+      if (certificate) {
+        formDataToSend.append('Certificate',certificate); // Add image file
+      }
+      if (id) {
+        // Update operation
+        const response = await baseURL.put(`/api/interns/internemp/${id}`, formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        if (response.status === 200) {
+          toast.success('Intern Employee Details Updated Successfully!');
+          navigate('/admin/employee-management');
+        }
+      } else {
+        // Create operation
+        const response = await baseURL.post('/api/interns/add', formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        if (response.status === 201) {
+          toast.success('Intern Employee Details Added Successfully!');
+          navigate('/admin/employee-management');
+        }
+      }
+  
+      // Reset form
+      setFormData({
+        name:'',
+  empID,
+  email:'',
+  phone:'',
+  fullAddress:'',
+  gender:'',
+  dob:'',
+  bloodGroup:'',
+  dateOfJoining:'',
+jobRole:'',
+  employeeStatus:'',
+  jobLevel:'',
+      });
+      setProfileImage(null);
+      setCertificate(null);
+    } catch (error) {
+      console.error('Error submitting employee data:', error);
+      if (error.response) {
+        console.error('Error response:', error.response);  // Log the full error object
+        console.error('Error response data:', error.response.data); // More details from API
+        console.error('Error response status:', error.response.status); // HTTP status code
+      } else {
+        console.error('Error:', error.message);  // If error is not from response (e.g., network error)
+      }
+    }
+  
 
    
-        // Check required fields
-        if (!formData.name || !formData.empID || !formData.email
-          || !formData.phone
-          || !formData.fullAddress
-          || !formData.gender
-          || !formData.dob
-          || !formData.bloodGroup
-          || !formData.dateOfJoining
-          || !formData.jobRole
-          || !formData.employeeStatus
-          || !formData.jobLevel
-          || !formData.feedback
-        ) {
-          alert('All fields are required!');
-          return;
-        }
-         // Ensure employeeID is not null or empty
-    if (!formData.empID || formData.empID.trim() === '') {
-      alert('Employee ID cannot be empty or null!');
-      return;
-    }
-      
-        try {
-          const formDataToSend = new FormData();
-          formDataToSend.append('name', formData.name);
-          formDataToSend.append('empID', formData.empID)
-          formDataToSend.append('email', formData.email);
-          formDataToSend.append('phone', formData.phone);
-          formDataToSend.append('fullAddress', formData.fullAddress);
-          formDataToSend.append('gender', formData.gender);
-          formDataToSend.append('dob', formData.dob);
-          formDataToSend.append('bloodGroup', formData.bloodGroup);
-          formDataToSend.append('dateOfJoining', formData.dateOfJoining);
-          formDataToSend.append('jobRole', formData.jobRole);
-          formDataToSend.append('employeeStatus', formData.employeeStatus);
-          formDataToSend.append('jobLevel', formData.jobLevel);
-          formDataToSend.append('feedback', formData.feedback);
-      
-          if (profileImage) {
-            formDataToSend.append('profileImage', profileImage); // Add image file
-          }
-          if (certificate) {
-            formDataToSend.append('Certificate', certificate); // Add image file
-          }
-          console.log(formDataToSend);
-          // Check if this is an update or create operation
-          if (id) {
-            // Update operation
-            const response = await baseURL.put(`/api/interns/internemp/${id}`, formDataToSend, {
-              headers: {
-                Authorization: `Bearer ${adminToken}`,
-                "Content-Type": "multipart/form-data",
-              },
-            });
-      
-            if (response.status === 200) {
-              toast.success('Employee Details Updated Successfully!');
-              navigate('/admin/employee-management');
-            }
-          } else {
-            // Create operation
-            const response = await baseURL.post('/api/interns/add', formDataToSend, {
-              headers: {
-                Authorization: `Bearer ${adminToken}`,
-                "Content-Type": "multipart/form-data",
-              },
-            });
-      
-            if (response.status === 201) {
-              toast.success('Employee Details Added Successfully!');
-              navigate('/admin/employee-management');
-            }
-          }
-      
-          // Reset form
-          setFormData({
-            id: '',
-            name: '',
-            empID: '',
-            email: '',
-            fullAddress: '',
-            gender: '',
-            dob: '',
-            bloodGroup: '',
-            dateOfJoining: '',
-            jobRole: '',
-            employeeStatus: '',
-            jobLevel: '',
-            feedback: '',
-            
-          });
-          setProfileImage(null);
-          setCertificate(null);
-        } catch (error) {
-          console.error('Error submitting intern data:', error);
-          if (error.response) {
-            console.error('Error response:', error.response.data);
-          }
-        }
+     
+   
       
       
+
+  
+  
   };
   const handleCancel = () => {
     navigate(-1); // Navigate back to the previous page
@@ -221,9 +204,9 @@ function AddInterns() {
                 position: "relative",
               }}
             >
-             {profileImage  && (
+             {profileImage instanceof File && (
   <img
-    src={profileImage instanceof File ? URL.createObjectURL(profileImage) : profileImage}
+    src={URL.createObjectURL(profileImage)}
     alt="Uploaded"
     style={{
       width: "150px",
@@ -895,6 +878,7 @@ function AddInterns() {
                                                       <p>Upload the file</p>
                                                     )}
                                                     <button
+                                                    type="button"
                                                       onClick={() => certificateInputRef.current.click()}
                                                       className="btn btn-link text-black "
                                                       aria-label="Upload Internship Certificate"
@@ -917,7 +901,7 @@ function AddInterns() {
                                </div>
                           </div>
                       <div className=" flex justify-center gap-4 mt-4">
-                                    <button type="submit" onClick={handleSubmit} className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+                                    <button type="submit" className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
                                     {id ? "Update" : "Save"}
                                     </button>
                                     <button type="button"onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">

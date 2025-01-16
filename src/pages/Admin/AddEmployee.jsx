@@ -21,6 +21,7 @@ function AddEmployee ()  {
   const [formData, setFormData] = useState({
     name: employeeData.name || "",
     empID: employeeData.empID || "",
+    email: employeeData.email || "",
     desig: employeeData.desig || "",
     selfIntroduction: employeeData.selfIntroduction || "",
     instagram: employeeData.instagram || "",
@@ -36,6 +37,7 @@ function AddEmployee ()  {
       setFormData({
         name: employeeData.name || "",
         empID: employeeData.empID || "",
+        email: employeeData.email || "",
         desig: employeeData.desig || "",
         selfIntroduction: employeeData.selfIntroduction || "",
         instagram: employeeData.instagram || "",
@@ -46,20 +48,18 @@ function AddEmployee ()  {
       
     }
   }, [id, employeeData]); // Only trigger when id or employeeData changes
-  useEffect(() => {
-    // Fetch the image and convert it to a File object
-    if (employeeData.image) {
-      const imageUrl = `${baseURL}${employeeData.image}`;
-      fetch(imageUrl)
-        .then((res) => res.blob())
-        .then((blob) => {
-          const file = new File([blob], "image.jpg", { type: blob.type });
-          setProfileImage(file);
-        })
-        .catch((error) => console.error("Failed to fetch image:", error));
-    }
-   
-  }, [employeeData.image]);
+ useEffect(() => {
+          // Fetch the image and convert it to a File object
+          if (employeeData.image) {
+            fetch(employeeData.image)
+              .then((res) => res.blob())
+              .then((blob) => {
+                const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+                setProfileImage(file);
+              })
+              .catch((error) => console.error("Failed to fetch image:", error));
+          }
+        }, [employeeData.image]);
     
   
       const handleInputChange = (e) => {
@@ -79,7 +79,7 @@ function AddEmployee ()  {
      
       const handleSubmit = async (e) => {
         e.preventDefault();
-      
+        const empID = formData.empID;
         // Check required fields
         if (!formData.name || !formData.desig || !formData.selfIntroduction) {
           alert('All fields are required!');
@@ -90,12 +90,13 @@ function AddEmployee ()  {
           const formDataToSend = new FormData();
           formDataToSend.append('name', formData.name);
           formDataToSend.append('desig', formData.desig);
+          formDataToSend.append('email', formData.email);
           formDataToSend.append('selfIntroduction', formData.selfIntroduction);
       
           if (profileImage) {
             formDataToSend.append('image', profileImage); // Add image file
           }
-      
+        
           // Check if this is an update or create operation
           if (id) {
             // Update operation
@@ -129,6 +130,7 @@ function AddEmployee ()  {
           setFormData({
             id: '',
             name: '',
+            email:'',
             desig: '',
             selfIntroduction: '',
           });
@@ -162,7 +164,7 @@ function AddEmployee ()  {
                             
                             {profileImage  && (
   <img
-    src={profileImage instanceof File ? URL.createObjectURL(profileImage) : profileImage}
+    src={profileImage instanceof File ? URL.createObjectURL(profileImage) :  `${baseURL}${profileImage}`}
     alt="Uploaded"
     style={{
       width: "150px",
@@ -220,7 +222,29 @@ function AddEmployee ()  {
             
                           />
                         </div>
-                       
+                        <div className="col-md-4 ">
+              <label className="form-label  font-bold text-[15px]">Email ID</label>
+              <input
+                type="email"
+                name="email"
+                className="form-control rounded-2xl plac"
+                placeholder="Email-ID"
+                // value={formData.email}
+                value={formData.email ||'' } 
+              onChange={handleInputChange} 
+                style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+                onFocus={ e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+                onBlur={e => {
+                  
+                  e.target.style.borderColor = 'white';
+                  e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+                }}
+              />
+            </div>
                         <div className="col-md-4 ">
                           <label className="form-label  font-bold text-[15px]">Designation</label>
                           <input

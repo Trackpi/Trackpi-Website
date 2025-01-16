@@ -35,7 +35,7 @@ const EmpDetails = ({ employeeData }) => {
 
               <div>
                 <p className="text-sm md:text-lg">Employee ID</p>
-                <p className="font-bold text-sm md:text-lg">{employeeData.employeeId || "EMP001"}</p>
+                <p className="font-bold text-sm md:text-lg">{employeeData.empID || "EMP001"}</p>
               </div>
               <div>
                 <p className="email text-sm md:text-lg">Email</p>
@@ -62,7 +62,7 @@ const EmpDetails = ({ employeeData }) => {
                 Employee ID
               </p>
               <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                {employeeData.employeeId || "EMP001" }
+                {employeeData.empID || "EMP001" }
               </p>
             </div>
             <div className="flex flex-row md:flex-col" style={{ lineHeight: "1px" }}>
@@ -94,7 +94,7 @@ const EmpDetails = ({ employeeData }) => {
               Address
             </p>
             <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-              {employeeData.address || "Church Street, Jude Town, Evasteen, 31562"}
+              {employeeData.fullAddress || "Church Street, Jude Town, Evasteen, 31562"}
             </p>
           </div>
 
@@ -159,7 +159,7 @@ const EmpDetails = ({ employeeData }) => {
                   Date Of Joining
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.doj || "1/12/20124"}
+                  {employeeData.dateOfJoining || "1/12/20124"}
                 </p>
               </div>
 
@@ -177,7 +177,7 @@ const EmpDetails = ({ employeeData }) => {
                   Employment Status
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.employmentStatus || "Full Time"}
+                  {employeeData.employeeStatus || "Full Time"}
                 </p>
               </div>
 
@@ -199,7 +199,7 @@ const EmpDetails = ({ employeeData }) => {
                   Date Of Joining
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.doj ||"1/12/20124"}
+                  {employeeData.dateOfJoining ||"1/12/20124"}
                 </p>
               </div>
               <div className="phone" style={{ lineHeight: "1px" }}>
@@ -207,7 +207,7 @@ const EmpDetails = ({ employeeData }) => {
                   Employment Status
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.employmentStatus || "Full Time"}
+                  {employeeData.employeeStatus || "Full Time"}
                 </p>
               </div>
             </div>

@@ -14,24 +14,24 @@ const location = useLocation();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: "",
-    
-    empID:"",
-    email: "",
-    phone:"",
-    fullAddress:  "",
-    gender: "",
-    dob:"",
-    bloodGroup:  "",
-    dateOfJoining: "",
-    jobRole:"",
-    employeeStatus:  "",
-    jobLevel:"",
-    instagram: "",
-    linkedin: "",
-    twitter: "",
-    
-  });
+     name: employeeData.name || "",
+     empID: employeeData.empID ||  "",
+     email:employeeData.email || "",
+     phone:employeeData.phone ||  "",
+     fullAddress:employeeData.fullAddress ||  "",
+     gender:employeeData.gender||  "",
+     dob:employeeData.dob||  "",
+     bloodGroup:employeeData.bloodGroup||  "",
+     dateOfJoining:employeeData.dateOfJoining||  "",
+     jobRole:employeeData.jobRole||  "",
+     employeeStatus: employeeData.employeeStatus|| "",
+     jobLevel:employeeData.jobLevel||  "",
+     instagram:employeeData.instagram ||  "",
+     linkedin:employeeData.linkedin || "",
+     twitter: employeeData.twitter || "",
+     feedback:employeeData.feedback || "",
+   });
+     
 
 const [profileImage, setProfileImage] = useState(null);
 const [businessCard, setBusinessCard] = useState(null); 
@@ -42,25 +42,40 @@ const businessCardInputRef = useRef(null);
 
 
 // Update form data when employeeData changes
-useEffect(() => {
-  if (id && employeeData) {
-    setFormData((prevData) => ({
-      ...prevData,
-      ...employeeData,
-    }));
-
-    if (employeeData.image) {
-      const imageUrl = `${baseURL}${employeeData.image}`;
-      fetch(imageUrl)
-        .then((res) => res.blob())
-        .then((blob) => {
-          const file = new File([blob], "image.jpg", { type: blob.type });
-          setProfileImage(file);
-        })
-        .catch((error) => console.error("Failed to fetch image:", error));
-    }
-  }
-}, [id, employeeData]); // Only trigger when id or employeeData changes
+  useEffect(() => {
+     if (id && employeeData) {
+       setFormData({
+         name: employeeData.name || "",
+         empID: employeeData.empID || "",
+         email: employeeData.email || "",
+         phone: employeeData.phone || "",
+         fullAddress: employeeData.fullAddress || "",
+         gender: employeeData.gender || "",
+         dob: employeeData.dob || "",
+         bloodGroup: employeeData.bloodGroup || "",
+         dateOfJoining: employeeData.dateOfJoining || "",
+         jobRole: employeeData.jobRole || "",
+         employeeStatus: employeeData.employeeStatus || "",
+         jobLevel: employeeData.jobLevel || "",
+         instagram: employeeData.instagram || "",
+         linkedin: employeeData.linkedin || "",
+         twitter: employeeData.twitter || "",
+         feedback: employeeData.feedback || "",
+       });
+     }
+   }, [id, employeeData]);
+   useEffect(() => {
+         // Fetch the image and convert it to a File object
+         if (employeeData.image) {
+           fetch(employeeData.image)
+             .then((res) => res.blob())
+             .then((blob) => {
+               const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+               setProfileImage(file);
+             })
+             .catch((error) => console.error("Failed to fetch image:", error));
+         }
+       }, [employeeData.image]);
 
 const handleInputChange = (e) => {
   const { name, value } = e.target;
@@ -79,75 +94,96 @@ const handleBusinessCardFileChange = (e) => {
   setBusinessCard(e.target.files[0]);
   };
 
-
+  const handleUpload = () => {
+    if (profileImage || businessCard) {
+      toast.success("Files prepared for upload.");
+    } else {
+      toast.error("Please select files to upload.");
+    }
+  };
 
  
 
   const handleAddSales = async (e) => {
     e.preventDefault();
-
-     // Validate required fields
-     const requiredFields = [
-      "name",
-      "empID",
-      "email",
-      "phone",
-      "fullAddress",
-      "gender",
-      "dob",
-      "bloodGroup",
-      "dateOfJoining",
-      "jobRole",
-      "employeeStatus",
-      "jobLevel",
-    ];
-    for (const field of requiredFields) {
-      if (!formData[field]) {
-        alert(`Field "${field}" is required!`);
-        return;
-      }
-    }
-    try {
-      const formDataToSend = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formDataToSend.append(key, formData[key]);
-      });
-
-      if (profileImage) formDataToSend.append("profileImage", profileImage);
-      if (businessCard) formDataToSend.append("businessCard", businessCard);
-
-      const response = id
-        ? await baseURL.put(`/api/sales/salesemployee/${id}`, formDataToSend, {
-            headers: { Authorization: `Bearer ${adminToken}` },
-          })
-        : await baseURL.post("/api/sales/salesemployee", formDataToSend, {
-            headers: { Authorization: `Bearer ${adminToken}` },
+    
+    const empID = formData.empID;
+       
+         try {
+          const formDataToSend = new FormData();
+          formDataToSend.append('name', formData.name);
+          formDataToSend.append('empID', formData.empID);
+          formDataToSend.append('email', formData.email);
+          formDataToSend.append('phone', formData.phone);
+          formDataToSend.append('fullAddress', formData.fullAddress);
+          formDataToSend.append('gender', formData.gender);
+          formDataToSend.append('dob', formData.dob);
+          formDataToSend.append('bloodGroup', formData.bloodGroup);
+          formDataToSend.append('dateOfJoining', formData.dateOfJoining);
+          formDataToSend.append('jobRole', formData.jobRole);
+          formDataToSend.append('employeeStatus', formData.employeeStatus);
+          formDataToSend.append('jobLevel', formData.jobLevel);
+          
+      
+          if (profileImage) {
+            formDataToSend.append('profileImage', profileImage); // Add image file
+          }
+          if (businessCard) {
+            formDataToSend.append('businessCard',businessCard); // Add image file
+          }
+          if (id) {
+            // Update operation
+            const response = await baseURL.put(`/api/sales/salesemployee/${id}`, formDataToSend, {
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+      
+            if (response.status === 200) {
+              toast.success('Sales Employee Details Updated Successfully!');
+              navigate('/admin/employee-management');
+            }
+          } else {
+            // Create operation
+            const response = await baseURL.post('/api/sales/salesemployee', formDataToSend, {
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+      
+            if (response.status === 201) {
+              toast.success('Sales Employee Details Added Successfully!');
+              navigate('/admin/employee-management');
+            }
+          }
+      
+          // Reset form
+          setFormData({
+            name:'',
+      empID,
+      email:'',
+      phone:'',
+      fullAddress:'',
+      gender:'',
+      dob:'',
+      bloodGroup:'',
+      dateOfJoining:'',
+    jobRole:'',
+      employeeStatus:'',
+      jobLevel:'',
           });
-
-      if (response.status === (id ? 200 : 201)) {
-        toast.success(`Sales details ${id ? "updated" : "added"} successfully!`);
-        navigate("/admin/employee-management");
-      }
-      setFormData({
-        name:'',
-        empID,
-        email:'',
-        phone:'',
-        fullAddress:'',
-        gender:'',
-        dob:'',
-        bloodGroup:'',
-        dateOfJoining:'',
-      jobRole:'',
-        employeeStatus:'',
-        jobLevel:'',
-      });
-      setProfileImage(null);
-      console.log("empID: ", formData.empID);
-    } catch (error) {
-      console.error("Error submitting sales data:", error);
-      alert(error.response?.data?.message || "An error occurred");
-    }
+          setProfileImage(null);
+          setBusinessCard(null);
+        } catch (error) {
+          console.error('Error submitting employee data:', error);
+          if (error.response) {
+            console.error('Error response:', error.response.data);
+          }
+        }
+      
+   
   };
 
 
@@ -812,20 +848,12 @@ const handleCancel = () => {
           View
         </a>
               </div>
-              // <iframe
-              //   src={URL.createObjectURL(businessCard)}
-              //   alt="Uploaded Business Card"
-              //   style={{
-              //     width: "100%",
-              //     height: "100%",
-              //     border:"none"
-              //   }}
-              //      sandbox="allow-same-origin"
-              // />
+             
             ) : (
               <p>Upload the file</p>
             )}
             <button
+              type="button"
               onClick={() => businessCardInputRef.current.click()}
               className="btn btn-link"
               aria-label="Upload Business Card"
@@ -838,10 +866,11 @@ const handleCancel = () => {
           </div>
           <input
             type="file"
-            name="businessCard"
+           
             ref={businessCardInputRef}
             style={{ display: "none" }}
             accept=".pdf,.doc,.docx"
+            onClick={handleUpload}
             onChange={handleBusinessCardFileChange}
           />
         </div>
@@ -851,7 +880,7 @@ const handleCancel = () => {
 
         {/* Submit and Cancel Buttons */}
         <div className=" flex justify-center gap-4 mt-4">
-                                    <button type="submit" onClick={handleAddSales}  className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+                                    <button type="submit"  className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
                                     {id ? "Update" : "Save"}
                                     </button>
                                     <button type="button"  onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">
