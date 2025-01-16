@@ -2,63 +2,79 @@ import React, { useEffect, useState } from "react";
 import uploadImg from "../images/uploadimg.svg";
 import baseURL from "../Api Services/baseURL";
 
-function EditNews({ newsData, editOnclickForBack, index }) {
+function EditNews({ newsData, editOnclickForBack, index ,getAllNews}) {
     const [fileName, setFileName] = useState("Upload Image");
+    const adminToken = localStorage.getItem("adminToken");
 
-const adminToken = localStorage.getItem("adminToken");
+    const [editNewsData, setEditNewsData] = useState({
+        newsFile: "",
+        newsLink: "",
+    });
 
-  const [editNewsData, setEditNewsData] = useState({
-    newsFile:"",
-    newsLink:""
-  });
+    useEffect(() => {
+        if (newsData) {
+            setEditNewsData({
+                newsFile: newsData.newsFile,
+                newsLink: newsData.newsLink,
+            });
+            setFileName(newsData.newsFile ? newsData.newsFile.name || "Existing File" : "Upload Image");
+        }
+    }, [newsData]);
 
-  useEffect(()=>{
-    setEditNewsData({
-        newsFile:newsData.newsFile,
-    newsLink:newsData.newsLink
-    })
-  },[newsData])
-  
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        setFileName(file.name);
-    }
-};
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            if (["image/png", "image/jpg", "image/jpeg"].includes(file.type)) {
+                setEditNewsData({ ...editNewsData, newsFile: file });
+                setFileName(file.name);
+            } else {
+                alert("Please upload a file in JPG, JPEG, or PNG format.");
+                setFileName("Upload Image");
+                setEditNewsData({ ...editNewsData, newsFile: "" });
+            }
+        }
+    };
 
-    const editNewsDataDetails = async () => {
+    const editNewsDataDetails = async (e) => {
+        e.preventDefault();
         if (!editNewsData.newsLink || !editNewsData.newsFile) {
-          alert("Both News Link and Image are required!");
-          return;
+            alert("Both News Link and Image are required!");
+            return;
         }
-    
+
         try {
-          const formData = new FormData();
-          formData.append("newsLink", editNewsData.newsLink);
-          formData.append("newsFile", editNewsData.newsFile);
-    
-          const response = await baseURL.put(`/api/news/news/${newsData._id}`, formData, {
-            headers: {
-              Authorization: `Bearer ${adminToken}`,
-              "Content-Type": "multipart/form-data",
-            },
-          });
-    
-          if (response.status === 201) {
-            alert("News updated successfully!");
-            editOnclickForBack(); // Navigate back after success
-          }
+            const formData = new FormData();
+            formData.append("newsLink", editNewsData.newsLink);
+            formData.append("newsFile", editNewsData.newsFile);
+
+            const response = await baseURL.put(`/api/news/news/${newsData._id}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${adminToken}`,
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            if (response.status === 200) {
+                alert("News updated successfully!");
+                editOnclickForBack(); 
+                getAllNews()
+            }
         } catch (error) {
-          console.error("Error updating news:", error);
-          alert("An error occurred while updating news. Please try again.");
+            console.error("Error updating news:", error);
+            if (error.response && error.response.data) {
+                alert(`Error: ${error.response.data.message || "An error occurred"}`);
+            } else {
+                alert("An error occurred while updating news.");
+            }
         }
-      };
-    
+    };
 
     return (
-        <form className="grid gap-[40px]">
+        <form className="grid gap-[40px]" onSubmit={editNewsDataDetails}>
             <div className="flex justify-between items-end">
-                <div className="px-[20px] w-[103px] h-[42px] text-[18px] font-bold rounded-[10px] mx-auto newsBtn flex items-center">News {index+1}</div>
+                <div className="px-[20px] w-[103px] h-[42px] text-[18px] font-bold rounded-[10px] mx-auto newsBtn flex items-center">
+                    News {index + 1}
+                </div>
 
                 <div className="w-[500px]">
                     <div className="grid gap-[10px]">
@@ -67,42 +83,47 @@ const adminToken = localStorage.getItem("adminToken");
                             type="text"
                             placeholder="Link"
                             value={editNewsData.newsLink}
-                            onChange={(e)=>{setEditNewsData({...editNewsData,newsLink:e.target.value})}}
+                            onChange={(e) => setEditNewsData({ ...editNewsData, newsLink: e.target.value })}
                             className="border rounded-[10px] px-[20px] py-[10px] text-[14px] partnerInput"
                         />
                     </div>
+                </div>
+
+                <div className="relative w-[250px] h-[42px] mx-auto">
+                    <input
+                        type="file"
+                        id="fileInput"
+                        className="hidden"
+                        onChange={handleFileChange}
+                    />
+                    <label
+                        htmlFor="fileInput"
+                        className="uploadBtn flex items-center justify-center gap-[15px] px-[20px] py-[10px] rounded-[10px] h-[42px] text-[#FF9D00] cursor-pointer"
+                    >
+                        <div>{fileName}</div>
+                        <img src={uploadImg} alt="Upload Icon" />
+                    </label>
+                </div>
             </div>
 
-            <div className="relative w-[250px] h-[42px] mx-auto">
-                <input type="file" id="fileInput" className="hidden"onChange={(e)=>{setEditNewsData({...editNewsData,newsFile:e.target.files[0]});handleFileChange(e);}} />
-                <label
-                    htmlFor="fileInput"
-                    className="uploadBtn flex items-center justify-center gap-[15px] px-[20px] py-[10px] rounded-[10px] h-[42px] text-[#FF9D00] cursor-pointer"
+            <div className="flex justify-center gap-[30px]">
+                <button
+                    type="submit"
+                    className="p-[10px] w-[200px] bg-[#FF9D00] rounded-[10px] font-bold text-white"
                 >
-                    {/* {fileName ? (
-                        <>
-                            <span>{fileName.length > 15 ? `${fileName.substring(0, 15)}...` : fileName}</span>
-                            <button onClick={handleRemoveFile} className="ml-2 text-red-500 hover:text-red-700">
-                                ✕
-                            </button>
-                        </>
-                    ) : (
-                        <> */}
-                            <div>{fileName}</div>
-                            <img src={uploadImg} alt="Upload Icon" />
-                        {/* </>
-                    )} */}
-                </label>
-            </div>
-            </div>
-            <div className=" flex justify-center gap-[30px]">
-                <button type="submit" className="p-[10px] w-[200px] bg-[#FF9D00] rounded-[10px] font-bold text-white" onClick={editNewsDataDetails}>
                     Save
                 </button>
                 <button
                     type="button"
                     className="p-[10px] w-[200px] text-[#FF9D00] border-[2px] border-[#FF9D00] font-medium rounded-[10px] font-bold"
-                    onClick={() => editOnclickForBack()}
+                    onClick={() => {
+                        editOnclickForBack();
+                        setEditNewsData({
+                            newsFile: newsData.newsFile,
+                            newsLink: newsData.newsLink,
+                        });
+                        setFileName(newsData.newsFile ? newsData.newsFile.name || "Existing File" : "Upload Image");
+                    }}
                 >
                     Cancel
                 </button>
