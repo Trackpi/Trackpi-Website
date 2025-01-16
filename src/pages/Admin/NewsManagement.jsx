@@ -139,7 +139,7 @@ const NewsManagement = () => {
               </div>
             </div>
       
-            <section className="flex flex-wrap justify-between gap-[20px] w-full">
+            <section className="flex flex-wrap justify-between gap-[30px] w-full">
             {allNewsData.length > 0 ? (
     allNewsData.map((news, index) => (
         <div className="grid gap-[10px] mx-auto" key={index}>
@@ -159,7 +159,7 @@ const NewsManagement = () => {
                     <div
                         onClick={() => {
                             setIsModalOpen(true);
-                            setDataDeleted(`News ${news.id};`);
+                            setDataDeleted(`News ${index+ 1 }`);
                             setDeleteId(news._id);
                         }}
                         className="bg-[#FF9D00] w-[60px] h-[56px] rounded-br-[6px] rounded-tl-[90%]"
