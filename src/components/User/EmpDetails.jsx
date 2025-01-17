@@ -1,25 +1,42 @@
+
 import { GoDotFill } from "react-icons/go";
 import { IoLogoInstagram } from "react-icons/io5";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
-
+import { useState,useEffect } from "react";
+import { SERVER_URL } from "../../Api Services/serverUrl";
 import "../../CSS/employeedet.css";
-import imagepersonnel1 from '../../images/personnel-1-400x286.jpg'
+
 const EmpDetails = ({ employeeData }) => {
   if (!employeeData) return <div>Loading...</div>;
-
+   const [profileImage, setProfileImage] = useState(null);
+   useEffect(() => {
+    if (employeeData && employeeData.profileImage) {
+      // Construct the full image URL by concatenating SERVER_URL with the image path
+      const imageUrl = `${SERVER_URL}${employeeData.profileImage}`;
+      setProfileImage(imageUrl); // Set the image URL to state
+    }
+  }, [employeeData]);
   return (
     <>
       <div className="custom-height h-[135px] py-2 flex flex-col md:flex-row justify-between items-center sm:text-lg md:text-2xl xl:text-xl xl:leading-5 2xl:leading-5 2xl:text-2xl">
         <div className="w-full flex flex-row justify-center items-center gap-4 md:gap-5">
+        {profileImage && (
           <img
-            src={employeeData.image || imagepersonnel1}
+          src={profileImage}
+          style={{
+            borderRadius: "30px",
+            width: "150px",  // Set the fixed width
+            height: "120px", // Set the fixed height
+            objectFit: "cover"  // Ensure the image maintains aspect ratio and doesn't stretch
+            
+          }}
             alt="employee image"
             height={200}
             width={180}
             className="empimg"
-            style={{ borderRadius: "30px" }}
-          />
+            
+          />   )}
           <div className="hidden md:block w-full">
             <div className="flex flex-row justify-between items-center text-2xl xl:text-xl w-full">
               <div>

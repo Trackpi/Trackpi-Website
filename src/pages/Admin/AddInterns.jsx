@@ -8,8 +8,12 @@ import baseURL from '../../Api Services/baseURL';
 
 
 function AddInterns() {
-  const adminToken = localStorage.getItem('adminToken');  
+  const adminToken = localStorage.getItem('adminToken'); 
+  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+  const navigate = useNavigate(); 
   const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const tab = queryParams.get('tab') || 'Intern';
   const { employeeData } = location.state || { employeeData: {} }
   const [formData, setFormData] = useState({
     name: employeeData.name || "",
@@ -24,13 +28,18 @@ function AddInterns() {
     jobRole:employeeData.jobRole||  "",
     employeeStatus: employeeData.employeeStatus|| "",
     jobLevel:employeeData.jobLevel||  "",
-    instagram:employeeData.instagram ||  "",
-    linkedin:employeeData.linkedin || "",
-    twitter: employeeData.twitter || "",
-    feedback:employeeData.feedback || "",
+    socialmedia1: employeeData.socialmedia1 || "",
+    socialmedia2: employeeData.socialmedia2 || "",
+    socialmedia3: employeeData.socialmedia3 || "",
+    socialmedia4: employeeData.socialmedia4 || "",
+    platform1: employeeData.platform1 || "",
+    platform2: employeeData.platform2 || "",
+    platform3: employeeData.platform3 || "",
+    platform4: employeeData.platform4 || "",
+    feedback: employeeData.feedback ? employeeData.feedback.split('\n') : [],
+    category: "intern",
   });
-    const { id } = useParams();  // For editing, we'll get the intern ID from URL params
-    const navigate = useNavigate();
+   
   
   const [profileImage, setProfileImage] = useState(null);
   const fileInputRef = useRef(null);
@@ -55,10 +64,16 @@ function AddInterns() {
          jobRole: employeeData.jobRole || "",
          employeeStatus: employeeData.employeeStatus || "",
          jobLevel: employeeData.jobLevel || "",
-         instagram: employeeData.instagram || "",
-         linkedin: employeeData.linkedin || "",
-         twitter: employeeData.twitter || "",
-         feedback: employeeData.feedback || "",
+         socialmedia1: employeeData.socialmedia1 || "",
+         socialmedia2: employeeData.socialmedia2 || "",
+         socialmedia3: employeeData.socialmedia3 || "",
+         socialmedia4: employeeData.socialmedia4 || "",
+         platform1: employeeData.platform1 || "",
+         platform2: employeeData.platform2 || "",
+         platform3: employeeData.platform3 || "",
+         platform4: employeeData.platform4 || "",
+         feedback: employeeData.feedback ? employeeData.feedback.split('\n') : [],
+         category: "intern",
        });
      }
    }, [id, employeeData]); // Only trigger when id or employeeData changes
@@ -93,6 +108,14 @@ function AddInterns() {
   const handleCertificateFileChange = (e) => {
     setCertificate(e.target.files[0]);
    }
+// Function to handle adding a new feedback point
+const handleFeedbackChange = (e) => {
+  const value = e.target.value;
+  setFormData((prevData) => ({
+    ...prevData,
+    feedback: value.split('\n'), // Split the feedback by new lines into an array
+  }));
+};
 
 
   const handleSubmit = async (e) => {
@@ -100,6 +123,7 @@ function AddInterns() {
     const empID = formData.empID;
     try {
       const formDataToSend = new FormData();
+      const feedbackString = formData.feedback.join('\n');
       formDataToSend.append('name', formData.name);
       formDataToSend.append('empID', formData.empID);
       formDataToSend.append('email', formData.email);
@@ -112,6 +136,17 @@ function AddInterns() {
       formDataToSend.append('jobRole', formData.jobRole);
       formDataToSend.append('employeeStatus', formData.employeeStatus);
       formDataToSend.append('jobLevel', formData.jobLevel);
+      formDataToSend.append('socialmedia1', formData.socialmedia1);
+      formDataToSend.append('socialmedia2', formData.socialmedia2);
+      formDataToSend.append('socialmedia3', formData.socialmedia3);
+      formDataToSend.append('socialmedia4', formData.socialmedia4);
+      formDataToSend.append('platform1', formData.platform1);
+      formDataToSend.append('platform2', formData.platform2);
+      formDataToSend.append('platform3', formData.platform3);
+      formDataToSend.append('platform4', formData.platform4);
+      formDataToSend.append('category', formData.category);
+      formDataToSend.append('feedback', feedbackString);
+
       
   
       if (profileImage) {
@@ -122,7 +157,7 @@ function AddInterns() {
       }
       if (id) {
         // Update operation
-        const response = await baseURL.put(`/api/interns/internemp/${id}`, formDataToSend, {
+        const response = await baseURL.put(`/api/employee/employees/${id}`, formDataToSend, {
           headers: {
             Authorization: `Bearer ${adminToken}`,
             "Content-Type": "multipart/form-data",
@@ -131,11 +166,11 @@ function AddInterns() {
   
         if (response.status === 200) {
           toast.success('Intern Employee Details Updated Successfully!');
-          navigate('/admin/employee-management');
+          navigate(`/admin/employee-management?tab=${tab}`);
         }
       } else {
         // Create operation
-        const response = await baseURL.post('/api/interns/add', formDataToSend, {
+        const response = await baseURL.post('/api/employee/employees', formDataToSend, {
           headers: {
             Authorization: `Bearer ${adminToken}`,
             "Content-Type": "multipart/form-data",
@@ -144,7 +179,7 @@ function AddInterns() {
   
         if (response.status === 201) {
           toast.success('Intern Employee Details Added Successfully!');
-          navigate('/admin/employee-management');
+          navigate(`/admin/employee-management?tab=${tab}`);
         }
       }
   
@@ -160,8 +195,17 @@ function AddInterns() {
   bloodGroup:'',
   dateOfJoining:'',
 jobRole:'',
+category:'intern',
   employeeStatus:'',
   jobLevel:'',
+  socialmedia1:'',
+  socialmedia2:'',
+  socialmedia3:'',
+  socialmedia4:'',
+  platform1:'',
+  platform2:'',
+  platform3:'',
+  platform4:'',
       });
       setProfileImage(null);
       setCertificate(null);
@@ -171,20 +215,14 @@ jobRole:'',
         console.error('Error response:', error.response);  // Log the full error object
         console.error('Error response data:', error.response.data); // More details from API
         console.error('Error response status:', error.response.status); // HTTP status code
+        const message = error.response.data.message || "Failed to save intern details.";
+        toast.error(message);
       } else {
         console.error('Error:', error.message);  // If error is not from response (e.g., network error)
+        toast.error("Network error. Please try again.");
       }
     }
-  
 
-   
-     
-   
-      
-      
-
-  
-  
   };
   const handleCancel = () => {
     navigate(-1); // Navigate back to the previous page
@@ -429,14 +467,15 @@ jobRole:'',
             />
           </div>
           </div>
-          <div className="mb-3 w-[100px]">
+          
+          <div className="mb-3  w-[100px]">
             <label className="form-label text-[15px]" htmlFor="bloodgroup">
               Blood Group
             </label>
             <select
               id="bloodgroup"
               name="bloodGroup"
-              className="form-select  plac"
+              className="form-select plac"
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -462,6 +501,9 @@ jobRole:'',
               <option value="AB-">AB-</option>
             </select>
           </div>
+         
+          
+          
         </div>
         <div className="vertical-line w-[1px] h-[400px] bg-gray-400"></div>
         {/* Employment Overview Section */}
@@ -593,12 +635,14 @@ jobRole:'',
           <h4 className="mb-4 text-[22px]">Social Media</h4>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                     Select Platform 1
                   </label>
                   <select
-                    id="instagram"
-                    name="platform"
+                    id="socialmedia1"
+                    name="socialmedia1"
+                    value={formData.socialmedia1 || ''}
+                    onChange={handleInputChange}
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -611,29 +655,27 @@ jobRole:'',
                       e.target.style.borderColor = 'white';
                       e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                     }}
-                    // value={formData.name ||'' } 
-                    onChange={handleInputChange} 
+                   
                     
                     
-                    // value={formData.gender}
                   >
-                    <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Platform 1 Link
                   </label>
                   <input
                type="url"
-               name="website"
-               id="website"
+               name="platform1"
+               id="platform1"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform1 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -652,12 +694,12 @@ jobRole:'',
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 2
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia2"
+                    name="socialmedia2"
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -672,25 +714,25 @@ jobRole:'',
                     }}
                     onChange={handleInputChange}
                     
-                    // value={formData.gender}
+                    value={formData.socialmedia2 ||''}
                   >
-                   <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                  Platform 1 Link
+                  Platform 2 Link
                   </label>
                   <input
-                type="url"
-                name="website"
-                id="website"
+               type="url"
+               name="platform2"
+               id="platform2"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform2 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -708,12 +750,12 @@ jobRole:'',
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 3
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia3"
+                    name="socialmedia3"
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' , width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -728,25 +770,25 @@ jobRole:'',
                     }}
                     onChange={handleInputChange}
                     
-                    // value={formData.gender}
+                    value={formData.socialmedia3 ||''}
                   >
-                  <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                  <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                  Platform 1 Link
+                  Platform 3 Link
                   </label>
                   <input
-               type="url"
-               name="website"
-               id="website"
+                type="url"
+                name="platform3"
+                id="platform3"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform3 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -764,13 +806,16 @@ jobRole:'',
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 4
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia4"
+                    name="socialmedia4"
+                    
                     className="form-select rounded-lg plac"
+                    value={formData.socialmedia4 ||''}
+                    onChange={handleInputChange}
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
@@ -782,14 +827,14 @@ jobRole:'',
                       e.target.style.borderColor = 'white';
                       e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                     }}
-                    onChange={handleInputChange}
+                   
                     
-                    // value={formData.gender}
+                    
                   >
-                 <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                 <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
@@ -798,11 +843,11 @@ jobRole:'',
                   </label>
                   <input
                 type="url"
-                name="website"
-                id="website"
+                name="platform4"
+                id="platform4"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform4 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -831,8 +876,8 @@ jobRole:'',
                                               className="form-control w-[660px] h-[150px] plac"
                                               placeholder="Enter here"
                                               rows="4"
-                                              value={formData.feedback ||'' } 
-                                              onChange={handleInputChange} 
+                                              value={formData.feedback.join('\n') ||'' } 
+                                              onChange={handleFeedbackChange} 
                                               style={{border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                                                       onFocus={ e => {
                                                         
