@@ -4,7 +4,7 @@ import logo from '../../images/trackpi_logo_one.png';
 import { useNavigate } from 'react-router-dom';
 import baseURL from '../../Api Services/baseURL';
 import { jwtDecode } from 'jwt-decode';
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for toast notifications
 
 function AdminLogin() {
@@ -61,7 +61,7 @@ function AdminLogin() {
         </Col>
         <Col sm={12} className="d-flex justify-content-center">
           <form
-            onSubmit={(e) => {
+            onSubmit={e => {
               e.preventDefault();
               onLogin();
             }}
@@ -77,7 +77,7 @@ function AdminLogin() {
                   className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
                   placeholder="Username/Email"
                   value={data.username}
-                  onChange={(e) => setData({ ...data, username: e.target.value })}
+                  onChange={e => setData({ ...data, username: e.target.value })}
                   style={{ fontSize: '16px' }}
                   autoComplete="current-username"
                 />
@@ -92,28 +92,27 @@ function AdminLogin() {
                   className="form-control form-control-lg border-gray-500 my-2 border-2 shadow-md"
                   placeholder="Password"
                   value={data.password}
-                  onChange={(e) => setData({ ...data, password: e.target.value })}
+                  onChange={e => setData({ ...data, password: e.target.value })}
                   style={{ fontSize: '16px' }}
                   autoComplete="current-password"
                 />
               </Col>
               <Col sm={12} className="d-flex justify-content-center mt-3">
-                <Button
-                  variant="dark"
-                  className="w-50 py-2"
+                <button
+                  className="w-50 py-2  bg-[#FF9D00] rounded-lg text-white"
                   style={{ fontWeight: 'bolder' }}
                   type="submit"
                 >
                   Login
-                </Button>
+                </button>
               </Col>
             </Row>
           </form>
         </Col>
       </Row>
-      
+
       {/* ToastContainer for toasts */}
-      </div>
+    </div>
   );
 }
 

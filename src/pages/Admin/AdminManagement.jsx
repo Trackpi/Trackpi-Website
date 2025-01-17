@@ -778,6 +778,7 @@ function AdminManagement() {
       centered
       show={show2}
       onHide={handleClose2}
+      className='bg-[#00000062] '
     >
       <Modal.Body>
         <div className="flex items-center text-[20px] font-bold py-2 justify-start gap-2 text-[#FF9D00]">

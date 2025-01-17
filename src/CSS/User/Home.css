@@ -25,33 +25,19 @@
 .carousel-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Default: 4 cards per row */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
 }
 
 .carousel-card {
-  /* background-color: black;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.5s ease; */
-
+ 
   width: 100%; /* Use most of the screen width */
   margin: 15px auto 15px; /* Center the card and add spacing below */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
   border-radius: 8px; /* Rounded corners */
 }
 /* Adjust Card Text */
-.carousel-card h3 {
-  font-size: 18px; /* Larger heading */
-  margin-bottom: 10px;
-  text-align: center; /* Center-align text */
-}
-
-.carousel-card p {
-  font-size: 16px; /* Larger paragraph text */
-  line-height: 1.5; /* Better line spacing */
-  text-align: justify; /* Align text for a clean look */
-}
 
 /* .carousel-card img {
   max-width: 100%;
@@ -69,10 +55,15 @@
 /* Responsive styles */
 @media (max-width: 1024px) {
   .carousel-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row for tablets */
+    grid-template-columns: repeat(3, 1fr); /* 2 cards per row for tablets */
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
   .carousel-card {
-    padding: 20px; /* Reduce padding for mobile */
+    padding: 0px; /* Reduce padding for mobile */
+  }
+  .carousel-card img {
+    height: 250px;
   }
   .carousel-card p {
     text-align: center;
@@ -82,16 +73,23 @@
 
 @media (max-width: 640px) {
   .carousel-grid {
-    grid-template-columns: 1fr; /* 1 card per row for mobile */
+    grid-template-columns: repeat(1, 1fr); /* 1 card per row for mobile */
+    /* padding-top: 1.25rem;
+    padding-bottom: 1.25rem; */
   }
   .carousel-card {
     padding: 0px; /* Reduce padding for mobile */
   }
-  .carousel-card p {
-    text-align: center;
+  .carousel-card img {
+    height: 250px;
+    width: 400px;
   }
   .imgMob {
     padding: 0px 20px 0px 20px;
+  }
+  .imgDiv {
+    display: flex;
+    justify-content: center;
   }
 }
 
