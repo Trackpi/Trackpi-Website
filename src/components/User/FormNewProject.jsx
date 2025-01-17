@@ -4,26 +4,113 @@ import { GoUpload } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 
 const FormNewProject = () => {
+  const [formData, setFormData] = useState({
+    fullname: '',
+    contactnumber: '',
+    email: '',
+    userType: '',
+    qualification: '',
+    institute_company: '',
+    project_idea: '',
+    problem_solve: '',
+    benefit_idea: '',
+    idea_success: '',
+    summary: '',
+  });
+console.log(formData,"formDataa")
+  const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
+  // Handle input change
+  const handleChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  // Handle radio button selection
+  const handleRadioChange = e => {
+    setFormData({
+      ...formData,
+      userType: e.target.value,
+    });
+  };
   // Handle file selection
   const handleFileChange = event => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setFileName(selectedFile.name);
     }
   };
 
   // Handle file removal
   const handleRemoveFile = () => {
-    setFileName(null);
-    document.getElementById('fileInput').value = ''; // Reset the input value
+    setFile(null);
+    setFileName('');
+    document.getElementById('fileInput').value = ''; // Reset file input
+  };
+
+  // Handle form submission
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage('');
+
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach(key => {
+      formDataToSend.append(key, formData[key]);
+    });
+
+    if (file) {
+      formDataToSend.append('file', file);
+    }
+
+    try {
+      const response = await fetch('http://your-backend-url/api/submit-form', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setMessage('Form submitted successfully!');
+        setFormData({
+          fullname: '',
+          contactnumber: '',
+          email: '',
+          userType: '',
+          qualification: '',
+          institute_company: '',
+          project_idea: '',
+          problem_solve: '',
+          benefit_idea: '',
+          idea_success: '',
+          summary: '',
+        });
+        setFile(null);
+        setFileName('');
+      } else {
+        setMessage(result.error || 'Something went wrong!');
+      }
+    } catch (error) {
+      setMessage('Network error. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
       <div className=" bg-white md:px-12 lg:px-0 py-3 ">
-        <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
+        <Form
+          onSubmit={handleSubmit}
+          className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl"
+        >
           <div className="mb-4">
             <Form.Control
               style={{
@@ -44,6 +131,8 @@ const FormNewProject = () => {
               id="fullname"
               placeholder="Full Name"
               className="rounded-lg placeholder-black p-3 place"
+              value={formData.fullname}
+              onChange={handleChange}
               required
             />
           </div>
@@ -68,6 +157,8 @@ const FormNewProject = () => {
               id="contactnumber"
               placeholder="Contact Number"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              value={formData.contactnumber}
+              onChange={handleChange}
               className="border-black text-black placeholder-black p-3 place"
               required
             />
@@ -92,6 +183,8 @@ const FormNewProject = () => {
               type="email"
               id="email"
               placeholder="Email Address"
+              value={formData.email}
+              onChange={handleChange}
               className="  border-black text-black placeholder-[#0A0A0A] p-3 place"
               required
             />
@@ -99,33 +192,19 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <div className="flex px-2 justify-between mr-0 lg:mr-96">
-              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
-                <input
-                  type="radio"
-                  name="options"
-                  value="Student"
-                  className="form-radio h-5 w-5 text-black checked:bg-black  focus:ring-black "
-                />
-                <span className="text-sm text-[#0A0A0A]">Student</span>
-              </label>
-              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
-                <input
-                  type="radio"
-                  name="options"
-                  value="Fresher"
-                  className="form-radio h-5 w-5 text-black checked:bg-black focus:ring-black"
-                />
-                <span className="text-sm text-[#0A0A0A]">Fresher</span>
-              </label>
-              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
-                <input
-                  type="radio"
-                  name="options"
-                  value="Working"
-                  className="form-radio h-5 w-5 text-black checked:bg-black focus:ring-black"
-                />
-                <span className="text-sm text-[#0A0A0A]">Working</span>
-              </label>
+              {['Student', 'Fresher', 'Working'].map(option => (
+                <label key={option} className="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    name="userType"
+                    value={option}
+                    checked={formData.userType === option}
+                    onChange={handleRadioChange}
+                    required
+                  />
+                  <span className="text-sm text-[#0A0A0A]">{option}</span>
+                </label>
+              ))}
             </div>
           </div>
 
@@ -148,16 +227,18 @@ const FormNewProject = () => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
+              value={formData.qualification}
+              onChange={handleChange}
               required
             >
               <option value="" disabled selected>
                 Qualification{' '}
               </option>
-              <option value="socialMedia">MCA</option>
-              <option value="searchEngine">MBA</option>
-              <option value="friendFamily">Bcom</option>
-              <option value="advertisement">BTech</option>
-              <option value="other">Other</option>
+              <option value="MCA">MCA</option>
+              <option value="MBA">MBA</option>
+              <option value="Bcom">Bcom</option>
+              <option value="Btech">BTech</option>
+              <option value="Other">Other</option>
             </Form.Select>
           </div>
 
@@ -180,6 +261,8 @@ const FormNewProject = () => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
+              value={formData.institute_company}
+              onChange={handleChange}
               required
             >
               <option value="" disabled selected>
@@ -193,7 +276,7 @@ const FormNewProject = () => {
             </Form.Select>
           </div>
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <Form.Control
               style={{
                 borderRadius: '11.55px',
@@ -283,9 +366,42 @@ const FormNewProject = () => {
               placeholder="Why do you think this idea will succeed?"
               className="  border-black text-black placeholder-black p-3 place"
             />
-          </div>
+          </div> */}
+          {/* Text Fields */}
+          {[
+            'project_idea/Idea Name',
+            'What Problem Does Your Idea Solve?',
+            'Who would benefit from this idea?',
+            'Why Do You Think This Idea Will Succeed?',
+            'Do You Have Any Business or Technical Skills?',
+          ].map(field => (
+            <div key={field} className="mb-4">
+              <Form.Control
+                type="text"
+                id={field}
+                placeholder={field.replace('_', ' ')}
+                value={formData[field]}
+                onChange={handleChange}
+                className="  border-black text-black placeholder-black p-3 place"
+                style={{
+                  borderRadius: '11.55px',
+                  border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                  height: '53.4px',
+                }}
+                onFocus={e => {
+                  e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                  e.target.style.boxShadow =
+                    '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
+                }}
+                onBlur={e => {
+                  e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                  e.target.style.boxShadow = 'none';
+                }}
+              />
+            </div>
+          ))}
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <Form.Control
               style={{
                 borderRadius: '11.55px',
@@ -306,7 +422,7 @@ const FormNewProject = () => {
               placeholder="Do you have any business or teachnical skills?"
               className="  border-black text-black placeholder-black p-3 place"
             />
-          </div>
+          </div> */}
 
           <div className="mb-4">
             <Form.Control
@@ -326,6 +442,8 @@ const FormNewProject = () => {
               }}
               as="textarea"
               id="summarize"
+              value={formData.summary}
+              onChange={handleChange}
               placeholder="Summarize your project Ideas"
               className="  border-red text-black placeholder-black p-3 place"
             />
@@ -355,9 +473,15 @@ const FormNewProject = () => {
                 </>
               ) : (
                 <>
-                  <p className='mb-0 font-semibold'>Upload Supporting Documents or Files</p>
+                  <p className="mb-0 font-semibold">
+                    Upload Supporting Documents or Files
+                  </p>
                   <GoUpload className="inline-block mx-1.5" />
                 </>
+              )}
+              {/* Message Display */}
+              {message && (
+                <p className="mt-4 text-center text-red-500">{message}</p>
               )}
             </label>
           </div>

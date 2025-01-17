@@ -291,6 +291,7 @@ function Home() {
           </h1>
         </div>
         <div className="relative bg-gradient-to-r from-[#FFC100] to-[#FF9D00]">
+          {/* <div className="relative bg-cyan-600"> */}
           {/* Carousel */}
           <div className="overflow-x-auto md:overflow-hidden touch-pan-x carousel-container">
             <Carousel
@@ -312,10 +313,10 @@ function Home() {
                     {group.map((card, cardIndex) => (
                       <div
                         key={cardIndex}
-                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto rounded-lg  text-center transform transition-transform duration-500 cursor-pointer ${
+                        className={`carousel-card flex-shrink-0 w-full rounded-lg  text-center transform transition-transform duration-500 cursor-pointer ${
                           cardIndex === bulgingCard
-                            ? 'scale-110 2xl:scale-105'
-                            : 'scale-95'
+                            ? 'scale-105 sm:scale-125 md:scale-110 lg:scale-110 xl:scale-110 2xl:scale-105'
+                            : 'scale-95 2xl:scale-90'
                         }`}
                         onMouseEnter={() => handleMouseEnter(cardIndex)}
                         onMouseLeave={handleMouseLeave}
