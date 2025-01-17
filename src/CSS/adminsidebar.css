@@ -1,14 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 .adminsidebarMain, .adminsidebarMain li {
-    font-family: "Lato", serif;
     background-color: #fff;
 }
 .tabSideMain::-webkit-scrollbar {
     display: none ;
   }
 .tabSideMain {
-    box-shadow: 2px 0 4px 0 #0A0A0A33;
+    border-right: #0A0A0A33 2px solid;
     width: 300px;
     max-height: max-content;
     min-height: 100vh;
@@ -38,7 +36,7 @@
     gap: 40px;
 }
 .adminHeader{
-    width: calc(100vw - 304px);
+    width: calc(100vw - 300px);
     height: 80px;
 }
 .adminInput input{

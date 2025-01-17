@@ -12,8 +12,16 @@
 
 * {
   box-sizing: border-box;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-urbanist {
   font-family: 'Urbanist', sans-serif;
 }
+
 
 body,
 html {
