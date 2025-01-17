@@ -1,110 +1,63 @@
-import React from 'react';
+import React , {useState,useEffect} from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs';
 import { BsDownload } from 'react-icons/bs';
-import imagepersonnel1 from '../../images/personnel-1-400x286.jpg'
-import imagepersonnel2 from '../../images/personnel-2-400x286.jpg'
-import imagepersonnel3 from '../../images/personnel-3-400x310.jpg'
-import imagepersonnel4 from '../../images/personnel-4-400x310.jpg'
-import imagepersonnel5 from '../../images/personnel-5-400x310.jpg'
-import imagepersonnel6 from '../../images/personnel-6-400x310.jpg'
-const data = [
-  {
-    
-    sl_no: 1,
-    name: 'Arjun Menon',
-    empID: 'EMP001',
-    email: 'arjun.menon@gmail.com',
-    image:imagepersonnel1,
-    phone: 9876543210,
-  },
-  {
-    sl_no: 2,
-    name: 'Meera Nair',
-    empID: 'EMP002',
-    email: 'meera.nair@yahoo.com',
-    image:imagepersonnel2,
-    phone: 9123456789,
-  },
-  {
-    sl_no: 3,
-    name: 'Ravi Krishnan',
-    empID: 'EMP003',
-    email: 'ravi.krishnan@domain.com',
-    image:imagepersonnel3,
-    phone: 8765432190,
-  },
-  {
-    sl_no: 4,
-    name: 'Divya Rajan',
-    empID: 'EMP004',
-    email: 'divya.rajan@gmail.com',
-    image:imagepersonnel4,
-    phone: 9234567812,
-  },
-  {
-    sl_no: 5,
-   name: 'Vikram Reddy',
-    empID: 'EMP005',
-    email: 'vikram.reddy@outlook.com',
-    image:imagepersonnel5,
-    phone: 9876123456,
-  },
-  {
-    sl_no: 6,
-    name: 'Anjali Mohan',
-    empID: 'EMP006',
-    email: 'anjali.mohan@domain.com',
-    image:imagepersonnel6,
-    phone: 9345678123,
-  },
-  {
-    sl_no: 7,
-    name: 'Karthik Iyer',
-    empID: 'EMP007',
-    email: 'karthik.iyer@company.com',
-    image:imagepersonnel1,
-    phone: 9987654321,
-  },
-  {
-    sl_no: 8,
-    name: 'Lakshmi Priya',
-    empID: 'EMP008',
-    email: 'lakshmi.priya@gmail.com',
-    image:imagepersonnel2,
-    phone: 8765432109,
-  },
-  {
-    sl_no: 9,
-    name: 'Manoj Pillai',
-    empID: 'EMP009',
-    email: 'manoj.pillai@domain.com',
-    image:imagepersonnel3,
-    phone: 9123678945,
-  },
-  {
-    sl_no: 10,
-    name: 'Sharanya Das',
-    empID: 'EMP010',
-    email: 'sharanya.das@website.com',
-    image:imagepersonnel4,
-    phone: 8543217890,
-  },
-];
+import baseURL from '../../Api Services/baseURL';
+import DeleteModal from './DeleteModal';
 
 const TableIntern = () => {
   const navigate = useNavigate();
-  const handleViewProfile = (rowDatas) => {
-    console.log(rowDatas,"rowDatas")
-    navigate('/admin/intern-management-detail', { state: { rowDatas } });
+     const [interns, setInterns] = useState([]);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState(null);
+
+      const adminToken = localStorage.getItem("adminToken");
+        const [isModalOpen, setIsModalOpen] = useState(false);
+          const [deleteId, setDeleteId] = useState("");
+          const [dataDeleted, setDataDeleted] = useState("");
+      useEffect(() => {
+        const fetchAllInterns = async () => {
+          try {
+            const response = await baseURL.get('/api/interns/internemp');
+            console.log("Fetched interns:", response.data);
+            setInterns(response.data);
+          } catch (err) {
+            console.error("Error fetching interns:", err);
+            setError('Failed to load interns.');
+            
+          } finally {
+            setLoading(false);
+          }
+        };
+        fetchAllInterns();
+      }, []);
+  const handleViewProfile = (newIntern) => {
+    console.log(newIntern,"newIntern")
+    navigate('/admin/intern-management-detail', { state: { rowDatas: newIntern } });
     
   };
   const handleAdd = () => {
     navigate('/admin/intern-management-add/'); // Navigate Add intern page
   }
+  const handleDelete = async () => {
+    
+    try {
+      await baseURL.delete(`/api/interns/internemp/${deleteId}`,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+      },}); // Assuming `id` is the unique identifier
+      setInterns(interns.filter(newIntern => newIntern._id !== deleteId));
+      setIsModalOpen(false)
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+      alert('Failed to delete the record. Please try again.');
+    }
+  };
+  if (loading) return <div className="text-center mt-4">Loading sales data...</div>;
+  if (error) return <div className="text-center mt-4 text-red-500">{error}</div>;
   return (
     <div>
        <div className="flex items-center justify-between">
@@ -148,19 +101,19 @@ const TableIntern = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, rowIndex) => (
+            {interns.map((newIntern, index) => (
               <tr
-                key={rowIndex}
+                key={newIntern._id  || index}
                 className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
               >
                 <>
-                  <td key={rowIndex} className=" border-r-2  text-center"
+                  <td className=" border-r-2  text-center"
                   style={{
                     wordWrap: 'break-word',
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    {row.sl_no}
+                  {index + 1}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                   style={{
@@ -168,7 +121,7 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    {row.name}
+                    {newIntern.name}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                   style={{
@@ -176,7 +129,7 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    {row.empID}
+                    {newIntern.empID}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                   style={{
@@ -185,7 +138,7 @@ const TableIntern = () => {
                     boxSizing: 'border-box',
                   }}>
                     {/* <div className="flex justify-center items-center gap-2 "> */}
-                    {row.email}
+                    {newIntern.email}
                     {/* </div> */}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
@@ -194,7 +147,7 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    {row.phone}
+                    {newIntern.phone}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                   style={{
@@ -202,13 +155,17 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    <div className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer"  onClick={() => handleViewProfile(row)}>
+                    <div className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer"  onClick={() => handleViewProfile(newIntern)}>
                       View Profile <FiExternalLink size={15} />
                     </div>
                   
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center" onClick={() =>{
+                            setIsModalOpen(true);
+                            setDataDeleted(`Intern ${index+ 1 }`);
+                            setDeleteId(newIntern._id);
+                        } }>
                       <RiDeleteBin6Line size={20} />
                     </div>
                   </td>
@@ -218,6 +175,7 @@ const TableIntern = () => {
           </tbody>
         </table>
       </div>{' '}
+      {isModalOpen && <DeleteModal onClose={() => setIsModalOpen(false)} dataDeleted={dataDeleted} datas={"Intern"} functions={handleDelete} />} 
     </div>
   );
 };

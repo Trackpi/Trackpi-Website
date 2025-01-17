@@ -54,7 +54,8 @@ function EmployeeManagementDetail() {
                           <p className="text-2xl font-normal">{employeeData.desig}</p>
                           
                           <img
-                          src={employeeData.image ? `${baseURL}${employeeData.image}` : "default-image-path.jpg"}
+                         
+                          src={`http://localhost:3001${employeeData.image}`}
                           alt={employeeData.title || "Employee"}
                           className="rounded-md w-52 h-52 personnelimg1 object-cover"
                         />

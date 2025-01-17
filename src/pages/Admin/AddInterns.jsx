@@ -4,10 +4,11 @@ import { toast } from "react-toastify";
 // import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
 import { useNavigate, useParams ,useLocation} from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
-
+import baseURL from '../../Api Services/baseURL';
 
 
 function AddInterns() {
+  const adminToken = localStorage.getItem('adminToken');  
   const location = useLocation();
   const { employeeData } = location.state || { employeeData: {} }
   const [formData, setFormData] = useState({
@@ -36,9 +37,6 @@ function AddInterns() {
   
     const [certificate, setCertificate] = useState(null);
     const certificateInputRef = useRef(null);
-    const handleCertificateFileChange = (e) => {
-     setCertificate(e.target.files[0]);
-    }
  
  
    // Update form data when employeeData changes
@@ -92,51 +90,100 @@ function AddInterns() {
     setProfileImage(e.target.files[0]);
   };
 
-  
+  const handleCertificateFileChange = (e) => {
+    setCertificate(e.target.files[0]);
+   }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const empID = formData.empID;
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('empID', formData.empID);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('fullAddress', formData.fullAddress);
+      formDataToSend.append('gender', formData.gender);
+      formDataToSend.append('dob', formData.dob);
+      formDataToSend.append('bloodGroup', formData.bloodGroup);
+      formDataToSend.append('dateOfJoining', formData.dateOfJoining);
+      formDataToSend.append('jobRole', formData.jobRole);
+      formDataToSend.append('employeeStatus', formData.employeeStatus);
+      formDataToSend.append('jobLevel', formData.jobLevel);
+      
+  
+      if (profileImage) {
+        formDataToSend.append('profileImage', profileImage); // Add image file
+      }
+      if (certificate) {
+        formDataToSend.append('Certificate',certificate); // Add image file
+      }
+      if (id) {
+        // Update operation
+        const response = await baseURL.put(`/api/interns/internemp/${id}`, formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        if (response.status === 200) {
+          toast.success('Intern Employee Details Updated Successfully!');
+          navigate('/admin/employee-management');
+        }
+      } else {
+        // Create operation
+        const response = await baseURL.post('/api/interns/add', formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        if (response.status === 201) {
+          toast.success('Intern Employee Details Added Successfully!');
+          navigate('/admin/employee-management');
+        }
+      }
+  
+      // Reset form
+      setFormData({
+        name:'',
+  empID,
+  email:'',
+  phone:'',
+  fullAddress:'',
+  gender:'',
+  dob:'',
+  bloodGroup:'',
+  dateOfJoining:'',
+jobRole:'',
+  employeeStatus:'',
+  jobLevel:'',
+      });
+      setProfileImage(null);
+      setCertificate(null);
+    } catch (error) {
+      console.error('Error submitting employee data:', error);
+      if (error.response) {
+        console.error('Error response:', error.response);  // Log the full error object
+        console.error('Error response data:', error.response.data); // More details from API
+        console.error('Error response status:', error.response.status); // HTTP status code
+      } else {
+        console.error('Error:', error.message);  // If error is not from response (e.g., network error)
+      }
+    }
+  
 
    
-       if (
-           Object.values(formData).some((value) => !value.trim()) ||
-           !profileImage ||
-           !certificate
-       ) {
-           toast.warning("Please fill all the fields!");
-           return;
-       }
+     
    
-       const fd = new FormData();
-       for (const [key, value] of Object.entries(formData)) {
-           fd.append(key, value.trim());
-       }
-       fd.append("image",profileImage);
-       fd.append("certificate", certificate);
+      
+      
 
-   
-    const header = {
-      "content-Type": "multipart/form-data",
-      Authorization: `Token ${sessionStorage.getItem("token")}`,
-    };
-     try {
-         if (id) {
-           // Update logic
-           // Example: const res = await updateSalesEmployee(fd, header);
-           console.log("Updating employee with ID:", id);
-           toast.success("Intern Employee updated successfully!");
-         } else {
-           // Add logic
-           // Example: const res = await addSalesEmployee(fd, header);
-           console.log("Adding new intern Employee");
-           toast.success("intern Employee added successfully!");
-         }
-         navigate(`/admin/intern-management-detail/${id || "new"}`);
-       } catch (error) {
-         console.error(id ? "Error updating employee" : "Error adding employee:", error);
-         toast.error("Something went wrong! Please try again.");
-       }
-
+  
   
   };
   const handleCancel = () => {
@@ -513,10 +560,8 @@ function AddInterns() {
             </label>
             <select
               id="joblevel"
-              name="joblevel"
+              name="jobLevel"
               className="form-select plac"
-              value={formData.jobLevel ||'' } 
-              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -528,10 +573,17 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              // value={formData.jobLevel}
+              value={formData.jobLevel ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.jobRole}
             >
-              <option value="Manager Level">Manager Level</option>
-              <option value="Executive Level">Executive Level</option>
+              <option value="Manager Level">
+              Manager Level
+              </option>
+              <option value="Executive Level">
+                Executive Level
+              </option>
+             
             </select>
           </div>
         </div>
@@ -826,6 +878,7 @@ function AddInterns() {
                                                       <p>Upload the file</p>
                                                     )}
                                                     <button
+                                                    type="button"
                                                       onClick={() => certificateInputRef.current.click()}
                                                       className="btn btn-link text-black "
                                                       aria-label="Upload Internship Certificate"
