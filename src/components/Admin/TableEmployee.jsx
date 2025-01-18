@@ -24,7 +24,12 @@ const TableEmployee = () => {
     // Fetch employee data from the backend
     const fetchEmployees = async () => {
       try {
-        const response = await baseURL.get('/api/employee/employees');
+        const response = await baseURL.get('/api/employee/employees', {
+          params: { category: 'employee' },
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        });
         setEmployees(response.data);
       } catch (error) {
         setError('Failed to load employees.');
@@ -35,7 +40,7 @@ const TableEmployee = () => {
     };
 
     fetchEmployees();
-  }, []); // Runs once on component mount
+  }, []);
   const handleViewProfile = employee => {
     console.log(employee, 'employees');
     navigate('/admin/employeeManagement-detail', { state: {rowDatas: employee } });

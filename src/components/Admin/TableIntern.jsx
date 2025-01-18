@@ -10,7 +10,7 @@ import DeleteModal from './DeleteModal';
 
 const TableIntern = () => {
   const navigate = useNavigate();
-     const [interns, setInterns] = useState([]);
+     const [employees, setEmployees] = useState([]);
       const [loading, setLoading] = useState(true);
       const [error, setError] = useState(null);
 
@@ -18,25 +18,31 @@ const TableIntern = () => {
         const [isModalOpen, setIsModalOpen] = useState(false);
           const [deleteId, setDeleteId] = useState("");
           const [dataDeleted, setDataDeleted] = useState("");
-      useEffect(() => {
-        const fetchAllInterns = async () => {
+       // Fetch employee data from the backend
+       useEffect(() => {
+        // Fetch employee data from the backend
+        const fetchEmployees = async () => {
           try {
-            const response = await baseURL.get('/api/interns/internemp');
-            console.log("Fetched interns:", response.data);
-            setInterns(response.data);
-          } catch (err) {
-            console.error("Error fetching interns:", err);
-            setError('Failed to load interns.');
-            
+            const response = await baseURL.get('/api/employee/employees', {
+              params: { category: 'intern' },
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+              },
+            });
+            setEmployees(response.data);
+          } catch (error) {
+            setError('Failed to load employees.');
           } finally {
             setLoading(false);
           }
+        
         };
-        fetchAllInterns();
+    
+        fetchEmployees();
       }, []);
-  const handleViewProfile = (newIntern) => {
-    console.log(newIntern,"newIntern")
-    navigate('/admin/intern-management-detail', { state: { rowDatas: newIntern } });
+  const handleViewProfile = employee => {
+    console.log(employee,"employee")
+    navigate('/admin/intern-management-detail', { state: { rowDatas: employee } });
     
   };
   const handleAdd = () => {
@@ -45,11 +51,11 @@ const TableIntern = () => {
   const handleDelete = async () => {
     
     try {
-      await baseURL.delete(`/api/interns/internemp/${deleteId}`,{
+      await baseURL.delete(`/api/employee/employees/${deleteId}`,{
         headers: {
           Authorization: `Bearer ${adminToken}`,
       },}); // Assuming `id` is the unique identifier
-      setInterns(interns.filter(newIntern => newIntern._id !== deleteId));
+      setEmployees(employees.filter((employee) => employee._id !== deleteId));
       setIsModalOpen(false)
     } catch (error) {
       console.error('Error deleting employee:', error);
@@ -101,9 +107,9 @@ const TableIntern = () => {
             </tr>
           </thead>
           <tbody>
-            {interns.map((newIntern, index) => (
+            {employees.map((employee, index) => (
               <tr
-                key={newIntern._id  || index}
+                key={employee._id  || index}
                 className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
               >
                 <>
@@ -121,7 +127,7 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    {newIntern.name}
+                    {employee.name}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                   style={{
@@ -129,7 +135,7 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    {newIntern.empID}
+                    {employee.empID}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                   style={{
@@ -138,7 +144,7 @@ const TableIntern = () => {
                     boxSizing: 'border-box',
                   }}>
                     {/* <div className="flex justify-center items-center gap-2 "> */}
-                    {newIntern.email}
+                    {employee.email}
                     {/* </div> */}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
@@ -147,7 +153,7 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    {newIntern.phone}
+                    {employee.phone}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                   style={{
@@ -155,7 +161,7 @@ const TableIntern = () => {
                     overflowWrap: 'break-word',
                     boxSizing: 'border-box',
                   }}>
-                    <div className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer"  onClick={() => handleViewProfile(newIntern)}>
+                    <div className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer"  onClick={() => handleViewProfile(employee)}>
                       View Profile <FiExternalLink size={15} />
                     </div>
                   
@@ -164,7 +170,7 @@ const TableIntern = () => {
                     <div className="flex justify-center items-center" onClick={() =>{
                             setIsModalOpen(true);
                             setDataDeleted(`Intern ${index+ 1 }`);
-                            setDeleteId(newIntern._id);
+                            setDeleteId(employee._id);
                         } }>
                       <RiDeleteBin6Line size={20} />
                     </div>
