@@ -133,7 +133,7 @@ console.log(footerVideoDetails);
             } else {
                 toast.info("Please upload a file in AVI, MP4 format.");
                 setFooterVideoDetails({ ...footerVideoDetails, videofile1: null });
-                setFileNameVideo1("Upload Image");
+                setFileNameVideo1("Upload Video");
             }
         }
     };
@@ -147,7 +147,7 @@ console.log(footerVideoDetails);
             } else {
                 toast.info("Please upload a file in AVI, MP4 format.");
                 setFooterVideoDetails({ ...footerVideoDetails, videofile2: null });
-                setFileNameVideo2("Upload Image");
+                setFileNameVideo2("Upload Video");
             }
         }
     };
@@ -162,7 +162,7 @@ console.log(footerVideoDetails);
             } else {
                 toast.info("Please upload a file in AVI, MP4 format.");
                 setFooterVideoDetails({ ...footerVideoDetails, videofile3: null });
-                setFileNameVideo3("Upload Image");
+                setFileNameVideo3("Upload Video");
             }
         }
     };
@@ -214,9 +214,9 @@ console.log(footerVideoDetails);
                                 }
                                     type="text"
                                     defaultValue="Discover Winning Business Strategies"
-                                    className="border partnerInput rounded-lg px-[15px] py-[12px] w-3/5 text-[20px] font-semibold"
+                                    className="border partnerInput rounded-lg px-[15px] h-[45px] w-3/5 text-[20px] font-semibold"
                                 />
-                                <button type="submit" className="bg-[#FF9D00] p-[10px] rounded-[8px]"
+                                <button type="submit" className="bg-[#FF9D00] p-[10px] rounded-[8px] h-[45px] w-[45px]"
                                  onClick={(e) => {
                                     e.preventDefault();
                                     videoHeadingEditMode?setVideoHeadingEditMode(false):setVideoHeadingEditMode(true)
@@ -461,9 +461,9 @@ console.log(footerVideoDetails);
                                 }
                                     type="text"
                                     defaultValue="Want to Learn More"
-                                    className="border partnerInput rounded-lg px-[15px] py-[12px] w-3/5 text-[20px] font-semibold"
+                                    className="border partnerInput rounded-lg px-[15px] h-[45px] w-3/5 text-[20px] font-semibold"
                                 />
-                                <button type="submit" className="bg-[#FF9D00] p-[10px] rounded-[8px]"
+                                <button type="submit" className="bg-[#FF9D00] p-[10px] rounded-[8px] w-[45px] h-[45px]"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     imageHeadingEditMode?setImageHeadingEditMode(false):setImageHeadingEditMode(true)

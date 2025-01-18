@@ -7,6 +7,7 @@ import EditNews from "../../components/EditNews";
 import DeletePopUp from "../../components/Admin/DeletePopUp";
 import baseURL from "../../Api Services/baseURL";
 import { SERVER_URL } from "../../Api Services/serverUrl";
+import { toast } from "react-toastify";
 
 const NewsManagement = () => {
     const [activeTab, setActiveTab] = useState("add");
@@ -16,6 +17,9 @@ const NewsManagement = () => {
     const [idOfCard, setIdOfCard] = useState("");
     const [deleteId, setDeleteId] = useState("");
     const [dataDeleted, setDataDeleted] = useState("");
+    const [headingEditMode, setHeadingEditMode] = useState(false);
+
+    const[heading,setHeading]=useState({})
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -43,8 +47,20 @@ const NewsManagement = () => {
         }
     };
 
+    const getAllHeadings = async () => {
+        try {
+            const response = await baseURL.get("/api/headingfornewspatnership/getallheading", );
+            if (response.data && response.data.length > 0) {
+                setHeading(response.data[0]);
+            }
+        } catch (error) {
+            console.error("Error fetching haeding data:", error);
+        }
+    };
+
     useEffect(() => {
         getAllNews();
+        getAllHeadings()
     }, []);
 
     const editNewsFile = (newsData, tabName, index) => {
@@ -75,6 +91,35 @@ const NewsManagement = () => {
         navigate("?tab=add");
     };
 
+    const editHeading=async (e)=>{
+        e.preventDefault()
+        try {
+            const formDatas = new FormData();
+            formDatas.append("newsHeading",heading.newsHeading);
+
+            const response = await baseURL.patch('/api/headingfornewspatnership/updateallheading', formDatas, {
+                headers: {
+                    Authorization: `Bearer ${adminToken}`,
+                    "Content-Type": "application/json"
+                },
+            });
+
+            if (response.status === 200) {
+                toast.success("Heading updated successfully!");
+                getAllHeadings();
+                setHeadingEditMode(false)
+            }
+        } catch (error) {
+            console.error("Error updating heading:", error);
+            setHeadingEditMode(false)
+            if (error.response && error.response.data) {
+                toast.error(`Error: ${error.response.data.message || "An error occurred"}`);
+            } else {
+                toast.error("An error occurred while updating heading.");
+            }
+        }
+    }
+
     return (
         <div className="bg-white w-full">
             <div className="py-[40px] px-[30px] grid gap-[30px]">
@@ -82,16 +127,43 @@ const NewsManagement = () => {
                 <div className="grid gap-[50px]">
                     <div className="grid gap-[10px]">
                         <label className="block text-[14px] font-semibold">Heading</label>
-                        <div className="flex items-center gap-[20px]">
+                        <form onSubmit={editHeading} className="flex items-center gap-[20px]">
                             <input
+                            readOnly={!headingEditMode}
                                 type="text"
-                                defaultValue="Real-Time Business News Updates?"
-                                className="border partnerInput rounded-lg px-[15px] py-[12px] w-3/5 text-[20px] font-bold"
+                                value={heading.newsHeading}
+                                onChange={(e) =>
+                                    setHeading({ ...heading, newsHeading: e.target.value })}
+                                className="border partnerInput rounded-lg px-[15px] h-[45px] w-3/5 text-[20px] font-bold"
                             />
-                            <button className="bg-[#FF9D00] p-[10px] rounded-[8px]">
+                            {!headingEditMode?<button className="bg-[#FF9D00] p-[10px] rounded-[8px]"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setHeadingEditMode(true)
+                                
+                            }}
+                            >
                                 <img src={editImg} alt="Edit" />
+                            </button>:
+                            <div className=" flex justify-start gap-[10px]">
+                            <button
+                                className=" w-[200px] bg-[#FF9D00] rounded-[10px] font-bold text-white h-[45px]"
+                                type="submit"
+                            >
+                                Save
                             </button>
-                        </div>
+                            <button
+                                type="button"
+                                className=" h-[45px] w-[200px] text-[#FF9D00] border-[2px] border-[#FF9D00] font-medium rounded-[10px] font-bold"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setHeadingEditMode(false)                                 
+                                }}
+                            >
+                                Cancel
+                            </button>
+                        </div>}
+                        </form>
                     </div>
 
                     <div className="grid partnerContainer border rounded-[20px] gap-[40px] p-[30px]">

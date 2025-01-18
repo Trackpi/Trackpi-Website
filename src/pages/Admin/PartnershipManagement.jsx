@@ -19,8 +19,11 @@ const PartnershipManagement = () => {
     });
     const [editPartnershipDatas, setEditPartnershipDatas] = useState({});
     const [fileName, setFileName] = useState("Upload Image");
-console.log(patnershipDatas);
-
+        const [headingEditMode, setHeadingEditMode] = useState(false);
+        const [subHeadingEditMode, setSubHeadingEditMode] = useState(false);
+            const[heading,setHeading]=useState({})
+        
+    
     // console.log(editPartnershipDatas);
 
     // modal
@@ -88,9 +91,53 @@ console.log(patnershipDatas);
         }
     };
 
+    const getAllHeadings = async () => {
+        try {
+            const response = await baseURL.get("/api/headingfornewspatnership/getallheading", );
+            if (response.data && response.data.length > 0) {
+                setHeading(response.data[0]);
+            }
+        } catch (error) {
+            console.error("Error fetching haeding data:", error);
+        }
+    };
+
     useEffect(() => {
         getAllPartners();
+        getAllHeadings()
     }, []);
+
+    const editHeading=async (e)=>{
+        e.preventDefault()
+        try {
+            const formDatas = new FormData();
+            formDatas.append("partnershipHeading",heading.partnershipHeading);
+            formDatas.append("partnershipSubHeading",heading.partnershipSubHeading);
+
+            const response = await baseURL.patch('/api/headingfornewspatnership/updateallheading', formDatas, {
+                headers: {
+                    Authorization: `Bearer ${adminToken}`,
+                    "Content-Type": "application/json"
+                },
+            });
+
+            if (response.status === 200) {
+                toast.success("Heading updated successfully!");
+                getAllHeadings();
+                setHeadingEditMode(false)
+                setSubHeadingEditMode(false)
+            }
+        } catch (error) {
+            console.error("Error updating heading:", error);
+            setHeadingEditMode(false)
+            setSubHeadingEditMode(false)
+            if (error.response && error.response.data) {
+                toast.error(`Error: ${error.response.data.message || "An error occurred"}`);
+            } else {
+                toast.error("An error occurred while updating heading.");
+            }
+        }
+    }
 
     const addNewPatners = async (e) => {
         e.preventDefault();
@@ -181,32 +228,86 @@ console.log(patnershipDatas);
             <div className="py-[40px] px-[30px] grid gap-[30px]">
                 <div className="text-[24px] font-bold mb-4">Partnership Management</div>
                 <div className="grid gap-[30px]">
-                    <form className=" grid gap-[10px]">
+                    <div className=" grid gap-[10px]">
                         <label className="block text-[14px] font-semibold">Heading</label>
-                        <div className="flex items-center gap-[20px]">
+                        <form onSubmit={editHeading} className="flex items-center gap-[20px]">
                             <input
+                            readOnly={!headingEditMode}
                                 type="text"
-                                defaultValue="OUR CLIENTS"
-                                className="border partnerInput rounded-lg px-[15px] py-[12px] w-3/5 text-[20px] font-bold"
+                                value={heading.partnershipHeading}
+                                onChange={(e) =>
+                                    setHeading({ ...heading, partnershipHeading: e.target.value })}
+                                className="border partnerInput rounded-lg px-[15px] h-[45px] w-3/5 text-[20px] font-bold"
                             />
-                            <button type="submit" className="bg-[#FF9D00] p-[10px] rounded-[8px]">
-                                <img src={editImg} alt="" />
-                            </button>
-                        </div>
-                    </form>
-                    <form className=" grid gap-[10px]">
+                            {!headingEditMode?<button className="bg-[#FF9D00] p-[10px] rounded-[8px]"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setHeadingEditMode(true)
+                                                            
+                                                        }}
+                                                        >
+                                                            <img src={editImg} alt="Edit" />
+                                                        </button>:
+                                                        <div className=" flex justify-start gap-[10px]">
+                                                        <button
+                                                            className=" w-[200px] bg-[#FF9D00] rounded-[10px] font-bold text-white h-[45px]"
+                                                            // onClick={editFooterDetails}
+                                                        >
+                                                            Save
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            className=" h-[45px] w-[200px] text-[#FF9D00] border-[2px] border-[#FF9D00] font-medium rounded-[10px] font-bold"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                setHeadingEditMode(false)                                 
+                                                            }}
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </div>}
+                        </form>
+                    </div>
+                    <div className=" grid gap-[10px]">
                         <label className="block text-[14px] font-semibold">Sub Heading</label>
-                        <div className="flex items-center gap-[20px]">
+                        <form onSubmit={editHeading} className="flex items-center gap-[20px]">
                             <input
                                 type="text"
-                                defaultValue="We're fortunate to work with the best!"
-                                className="border partnerInput rounded-lg px-[15px] py-[12px] w-3/5 text-[20px] font-semibold"
+                                readOnly={!subHeadingEditMode}
+                                value={heading.partnershipSubHeading}
+                                onChange={(e) =>
+                                    setHeading({ ...heading, partnershipSubHeading: e.target.value })}
+                                className="border partnerInput rounded-lg px-[15px] h-[45px] w-3/5 text-[20px] font-semibold"
                             />
-                            <button type="submit" className="bg-[#FF9D00] p-[10px] rounded-[8px]">
-                                <img src={editImg} alt="" />
-                            </button>
-                        </div>
-                    </form>
+                            {!subHeadingEditMode?<button className="bg-[#FF9D00] p-[10px] rounded-[8px] "
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setSubHeadingEditMode(true)
+                                                            
+                                                        }}
+                                                        >
+                                                            <img src={editImg} alt="Edit" />
+                                                        </button>:
+                                                        <div className=" flex justify-start gap-[10px]">
+                                                        <button
+                                                            className=" w-[200px] bg-[#FF9D00] rounded-[10px] font-bold text-white h-[45px]"
+                                                            // onClick={editFooterDetails}
+                                                        >
+                                                            Save
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            className=" h-[45px] w-[200px] text-[#FF9D00] border-[2px] border-[#FF9D00] font-medium rounded-[10px] font-bold"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                setSubHeadingEditMode(false)                                 
+                                                            }}
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </div>}
+                        </form>
+                    </div>
                 </div>
                 {/* Add Client Form */}
                 <div id="editFormPartner" className="bg-white partnerContainer border rounded-lg grid p-[40px] gap-[40px]">
