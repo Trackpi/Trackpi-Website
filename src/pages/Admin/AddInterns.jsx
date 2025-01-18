@@ -122,8 +122,9 @@ const handleFeedbackChange = (e) => {
     e.preventDefault();
     const empID = formData.empID;
     try {
-      const formDataToSend = new FormData();
       const feedbackString = formData.feedback.join('\n');
+      const formDataToSend = new FormData();
+    
       formDataToSend.append('name', formData.name);
       formDataToSend.append('empID', formData.empID);
       formDataToSend.append('email', formData.email);
@@ -310,7 +311,7 @@ category:'intern',
                 className="form-control rounded-2xl plac"
                 placeholder="Employee ID"
                 // value={formData.empID}
-                value={formData.empID ||'' } 
+                value={formData.empID  } 
               onChange={handleInputChange} 
                 style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {

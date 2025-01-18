@@ -9,7 +9,8 @@ import { useEffect } from 'react';
 const InternManagementDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+   // Retrieve employeeData passed via navigate
+   const employeeData  = location.state.rowDatas || {}; 
 
   const useScreenshotPrevention = () => {
     useEffect(() => {
@@ -61,14 +62,13 @@ const InternManagementDetail = () => {
 
 
   const handleEdit = () => {
-    const internId = location.state?.rowDatas?.empID; // Replace this with the actual intern's ID
+    const internId = employeeData._id || employeeData.id;// Replace this with the actual intern's ID
    
     if (internId) {
       navigate(`/admin/intern-management-add/${internId}`, { state: { employeeData: location.state.rowDatas } }); // Navigate to the edit page with the internId
     }
   };
-  // Retrieve employeeData passed via navigate
-  const employeeData  = location.state.rowDatas || {};
+
 
   // Handle Back button functionality
   const handleBack = () => {
