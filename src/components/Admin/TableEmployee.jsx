@@ -30,7 +30,7 @@ const TableEmployee = () => {
             Authorization: `Bearer ${adminToken}`,
           },
         });
-        setEmployees(response.data);
+        setEmployees(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         setError('Failed to load employees.');
       } finally {
@@ -182,6 +182,7 @@ const TableEmployee = () => {
           </tbody>
         </table>
       </div>{' '}
+    
       {isModalOpen && <DeleteModal onClose={() => setIsModalOpen(false)} dataDeleted={dataDeleted} datas={"Employee"} functions={handleDelete} />}    </div>
   );
 };

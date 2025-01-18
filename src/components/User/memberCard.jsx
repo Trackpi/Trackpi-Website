@@ -1,12 +1,21 @@
 // import { useNavigate } from "react-router-dom";
 import "../../CSS/teamListMember.css";
-function MemberCard({ member, onCardClick }) {
+import React,{useEffect,useState} from "react";
+import { SERVER_URL } from "../../Api Services/serverUrl";
+function MemberCard({ employee, onCardClick }) {
+  const [profileImage, setProfileImage] = useState(null);
   // const navigate = useNavigate();
 
   // const handleNavigation = () => {
   //   navigate("/personnel", { state: props.setCmp }); // Pass data via 'state'
   // };
-
+    useEffect(() => {
+      if (employee && employee.image) {
+          // Construct the full image URL by concatenating SERVER_URL with the image path
+          const imageUrl = `${SERVER_URL}${employee.image}`; // Use SERVER_URL directly here
+          setProfileImage(imageUrl); // Set the image URL to state
+      }
+    }, [employee]);
   return (
     <div className=" p-1 md:p-4">
       <div
@@ -14,18 +23,22 @@ function MemberCard({ member, onCardClick }) {
         onClick={onCardClick} // Trigger the modal opening
       >
         <div className="relative overflow-hidden">
-          <img
-            src={member.image}
-            alt={member.title}
-            className="w-full h-auto transition-transform duration-500 ease-in-out transform hover:scale-110"
-          />
+        {profileImage && (
+                <img
+                  src={profileImage}
+                  
+                  alt={employee.title || "Employee"}
+                  className="w-full h-[150px] lg:[300px] xl:h-[400px] 2xl:[300px] transition-transform duration-500 ease-in-out transform hover:scale-110"
+                  />
+              )}
+          
         </div>
         <div className="p-2 md:p-6">
           <span className="text-lg font-bold text-gray-800 hover:text-gray-600 cursor-pointer block md:mb-2">
-            {member.title}
+            {employee.name}
           </span>
           <p className="text-sm  font-semibold text-gray-500 mb-1">
-            {member.designation}
+            {employee.desig}
           </p>
           <span className="read text-sm font-thin text-gray-800 hover:text-yellow-600 cursor-pointer block  md:mb-2">
             Read more

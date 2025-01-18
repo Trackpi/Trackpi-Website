@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams ,useLocation} from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
 import baseURL from '../../Api Services/baseURL';
+import { SERVER_URL } from "../../Api Services/serverUrl";
 
 
 function AddInterns() {
@@ -22,16 +23,18 @@ function AddInterns() {
     phone:employeeData.phone ||  "",
     fullAddress:employeeData.fullAddress ||  "",
     gender:employeeData.gender||  "",
-    dob:employeeData.dob||  "",
-    bloodGroup:employeeData.bloodGroup||  "",
-    dateOfJoining:employeeData.dateOfJoining||  "",
-    jobRole:employeeData.jobRole||  "",
-    employeeStatus: employeeData.employeeStatus|| "",
-    jobLevel:employeeData.jobLevel||  "",
-    socialmedia1: employeeData.socialmedia1 || "",
-    socialmedia2: employeeData.socialmedia2 || "",
-    socialmedia3: employeeData.socialmedia3 || "",
-    socialmedia4: employeeData.socialmedia4 || "",
+    dob: employeeData.dob ? new Date(employeeData.dob).toISOString().substring(0, 10) : "",
+    bloodGroup:employeeData.bloodGroup|| "A+",
+    dateOfJoining: employeeData.dateOfJoining
+    ? new Date(employeeData.dateOfJoining).toISOString().substring(0, 10)
+    : "",
+    jobRole:employeeData.jobRole||  "Business Development Executive",
+    employeeStatus: employeeData.employeeStatus || "Full time",
+    jobLevel:employeeData.jobLevel|| "Manager Level",
+    socialmedia1: employeeData.socialmedia1 || "Instagram" ,
+    socialmedia2: employeeData.socialmedia2 || "Instagram" ,
+    socialmedia3: employeeData.socialmedia3 || "Instagram" ,
+    socialmedia4: employeeData.socialmedia4|| "Instagram" ,
     platform1: employeeData.platform1 || "",
     platform2: employeeData.platform2 || "",
     platform3: employeeData.platform3 || "",
@@ -58,16 +61,18 @@ function AddInterns() {
          phone: employeeData.phone || "",
          fullAddress: employeeData.fullAddress || "",
          gender: employeeData.gender || "",
-         dob: employeeData.dob || "",
-         bloodGroup: employeeData.bloodGroup || "",
-         dateOfJoining: employeeData.dateOfJoining || "",
-         jobRole: employeeData.jobRole || "",
-         employeeStatus: employeeData.employeeStatus || "",
-         jobLevel: employeeData.jobLevel || "",
-         socialmedia1: employeeData.socialmedia1 || "",
-         socialmedia2: employeeData.socialmedia2 || "",
-         socialmedia3: employeeData.socialmedia3 || "",
-         socialmedia4: employeeData.socialmedia4 || "",
+         dob: employeeData.dob ? new Date(employeeData.dob).toISOString().substring(0, 10) : "",
+         bloodGroup: employeeData.bloodGroup || "A+",
+         dateOfJoining: employeeData.dateOfJoining
+         ? new Date(employeeData.dateOfJoining).toISOString().substring(0, 10)
+         : "",        
+          jobRole: employeeData.jobRole ||  "Business Development Executive",
+         employeeStatus: employeeData.employeeStatus  || "Full time",
+         jobLevel: employeeData.jobLevel || "Manager Level",
+         socialmedia1: employeeData.socialmedia1 || "Instagram",
+         socialmedia2: employeeData.socialmedia2 || "Instagram",
+         socialmedia3: employeeData.socialmedia3 || "Instagram",
+         socialmedia4: employeeData.socialmedia4 || "Instagram",
          platform1: employeeData.platform1 || "",
          platform2: employeeData.platform2 || "",
          platform3: employeeData.platform3 || "",
@@ -77,20 +82,18 @@ function AddInterns() {
        });
      }
    }, [id, employeeData]); // Only trigger when id or employeeData changes
-    useEffect(() => {
-      // Fetch the image and convert it to a File object
-      if (employeeData.image) {
-        fetch(employeeData.image)
-          .then((res) => res.blob())
-          .then((blob) => {
-            const file = new File([blob], "image.jpg", { type: "image/jpeg" });
-            setProfileImage(file);
-          })
-          .catch((error) => console.error("Failed to fetch image:", error));
-      }
-    }, [employeeData.image]);
+ useEffect(() => {
+    if (employeeData && employeeData.profileImage) {
+        setProfileImage(`${SERVER_URL}${employeeData.profileImage}`);
+    }
+}, [employeeData]);
       
- 
+useEffect(() => {
+  if (employeeData && employeeData.Certificate) {
+    setCertificate(`${SERVER_URL}${employeeData.Certificate}`);
+  }
+}, [employeeData]);
+
       
 
     const handleInputChange = (e) => {
@@ -99,6 +102,9 @@ function AddInterns() {
         ...prevData,
         [name]: value, // Dynamically update the input value
       }));
+     
+  
+      
     };
 
   const handleFileChange = (e) => {
@@ -106,8 +112,11 @@ function AddInterns() {
   };
 
   const handleCertificateFileChange = (e) => {
-    setCertificate(e.target.files[0]);
-   }
+    if (e.target.files && e.target.files[0]) {
+      setCertificate(e.target.files[0]); // Update state with the new file
+    }
+  };
+  
 // Function to handle adding a new feedback point
 const handleFeedbackChange = (e) => {
   const value = e.target.value;
@@ -121,6 +130,13 @@ const handleFeedbackChange = (e) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const empID = formData.empID;
+      // Validate empID format
+  
+  const empIDPattern = /^TPE1D\d{6}$/; // Regular expression to match 'TPE1D' followed by 6 digits
+  if (!empIDPattern.test(empID)) {
+    toast.error("Employee ID must start with 'TPE1D' followed by 6 digits (e.g., TPE1D123456).");
+    return; // Prevent form submission
+  }
     try {
       const feedbackString = formData.feedback.join('\n');
       const formDataToSend = new FormData();
@@ -131,7 +147,7 @@ const handleFeedbackChange = (e) => {
       formDataToSend.append('phone', formData.phone);
       formDataToSend.append('fullAddress', formData.fullAddress);
       formDataToSend.append('gender', formData.gender);
-      formDataToSend.append('dob', formData.dob);
+      formDataToSend.append('dob', formData.dob); 
       formDataToSend.append('bloodGroup', formData.bloodGroup);
       formDataToSend.append('dateOfJoining', formData.dateOfJoining);
       formDataToSend.append('jobRole', formData.jobRole);
@@ -153,8 +169,8 @@ const handleFeedbackChange = (e) => {
       if (profileImage) {
         formDataToSend.append('profileImage', profileImage); // Add image file
       }
-      if (certificate) {
-        formDataToSend.append('Certificate',certificate); // Add image file
+      if (certificate instanceof File) {
+        formDataToSend.append('Certificate', certificate); // Append the certificate file
       }
       if (id) {
         // Update operation
@@ -193,16 +209,16 @@ const handleFeedbackChange = (e) => {
   fullAddress:'',
   gender:'',
   dob:'',
-  bloodGroup:'',
+  bloodGroup:'A+',
   dateOfJoining:'',
-jobRole:'',
+jobRole:'Business Development Executive',
 category:'intern',
-  employeeStatus:'',
-  jobLevel:'',
-  socialmedia1:'',
-  socialmedia2:'',
-  socialmedia3:'',
-  socialmedia4:'',
+  employeeStatus:'Full time',
+  jobLevel:'Manager Level',
+  socialmedia1:'Instagram',
+  socialmedia2:'Instagram',
+  socialmedia3:'Instagram',
+  socialmedia4:'Instagram',
   platform1:'',
   platform2:'',
   platform3:'',
@@ -210,6 +226,7 @@ category:'intern',
       });
       setProfileImage(null);
       setCertificate(null);
+      fileInputRef.current.value = "";
     } catch (error) {
       console.error('Error submitting employee data:', error);
       if (error.response) {
@@ -223,8 +240,9 @@ category:'intern',
         toast.error("Network error. Please try again.");
       }
     }
-
+      
   };
+  
   const handleCancel = () => {
     navigate(-1); // Navigate back to the previous page
   }
@@ -243,17 +261,23 @@ category:'intern',
                 position: "relative",
               }}
             >
-             {profileImage instanceof File && (
-  <img
-    src={URL.createObjectURL(profileImage)}
-    alt="Uploaded"
-    style={{
-      width: "150px",
-      height: "120px",
-      borderRadius: "12%",
-      objectFit: "cover",
-    }}
-  />
+             {profileImage ? (
+    <img
+        src={
+            profileImage instanceof File
+                ? URL.createObjectURL(profileImage) // Local file preview
+                : profileImage // URL of the existing image
+        }
+        alt="Uploaded"
+        style={{
+            width: "150px",
+            height: "120px",
+            borderRadius: "12%",
+            objectFit: "cover",
+        }}
+    />
+) : (
+    <span>No image available</span> // Placeholder for no image
 )}
               <div
                 className="position-absolute bottom-2 end-2 bg-warning rounded-circle d-flex justify-content-center align-items-center"
@@ -488,7 +512,7 @@ category:'intern',
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.bloodGroup ||'' } 
+              value={formData.bloodGroup  } 
               onChange={handleInputChange} 
               // value={formData.bloodGroup}
             >
@@ -554,7 +578,7 @@ category:'intern',
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.jobRole ||'' } 
+              value={formData.jobRole  } 
               onChange={handleInputChange} 
               // value={formData.jobRole}
             >
@@ -577,7 +601,7 @@ category:'intern',
               id="empsatus"
               name="employeeStatus"
               className="form-select plac"
-              ovalue={formData.employeeStatus ||'' } 
+              ovalue={formData.employeeStatus  } 
               onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
@@ -616,7 +640,7 @@ category:'intern',
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.jobLevel ||'' } 
+              value={formData.jobLevel  } 
               onChange={handleInputChange} 
               // value={formData.jobRole}
             >
@@ -642,7 +666,7 @@ category:'intern',
                   <select
                     id="socialmedia1"
                     name="socialmedia1"
-                    value={formData.socialmedia1 || ''}
+                    value={formData.socialmedia1 }
                     onChange={handleInputChange}
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
@@ -715,7 +739,7 @@ category:'intern',
                     }}
                     onChange={handleInputChange}
                     
-                    value={formData.socialmedia2 ||''}
+                    value={formData.socialmedia2 }
                   >
                     <option value="instagram">Instagram</option>
                     <option value="facebook">Facebook</option>
@@ -771,7 +795,7 @@ category:'intern',
                     }}
                     onChange={handleInputChange}
                     
-                    value={formData.socialmedia3 ||''}
+                    value={formData.socialmedia3 }
                   >
                   <option value="instagram">Instagram</option>
                     <option value="facebook">Facebook</option>
@@ -815,7 +839,7 @@ category:'intern',
                     name="socialmedia4"
                     
                     className="form-select rounded-lg plac"
-                    value={formData.socialmedia4 ||''}
+                    value={formData.socialmedia4 }
                     onChange={handleInputChange}
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -908,21 +932,31 @@ category:'intern',
                                                    
                                                   >
                                                     {certificate ? (
-                                                         <div>
-                                                         <p>{certificate.name}</p>
-                                                         <a
-                                                 href={URL.createObjectURL(certificate)}
-                                                 target="_blank"
-                                                 rel="noopener noreferrer"
-                                                 className="btn btn-link text-black"
-                                               >
-                                                 View
-                                               </a>
-                                               </div>
-                                                    
-                                                    ) : (
-                                                      <p>Upload the file</p>
-                                                    )}
+      typeof certificate === "string" ? (
+        <a
+          href={certificate}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-link text-black"
+        >
+          View Certificate
+        </a>
+      ) : (
+        <div>
+          <p>{certificate.name}</p>
+          <a
+            href={URL.createObjectURL(certificate)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-link text-black"
+          >
+            View
+          </a>
+        </div>
+      )
+    ) : (
+      <p>Upload the file</p>
+    )}
                                                     <button
                                                     type="button"
                                                       onClick={() => certificateInputRef.current.click()}
