@@ -1,34 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import { GoUpload } from 'react-icons/go';
 import { Link } from 'react-router-dom';
+import BaseURL from '../../Api Services/baseURL';
 
 const FormNewProject = () => {
-  const [formData, setFormData] = useState({
-    fullname: '',
-    contactnumber: '',
-    email: '',
+  const initialFormData = {
+    fullName: '',
+    contactNumber: '',
+    emailAddress: '',
     userType: '',
     qualification: '',
     institute_company: '',
-    project_idea: '',
-    problem_solve: '',
-    benefit_idea: '',
-    idea_success: '',
+    projectName: '',
+    problemSolved: '',
+    beneficiaries: '',
+    successReason: '',
     summary: '',
-  });
-console.log(formData,"formDataa")
+    skills: '',
+    agreeTerms:'false'
+  };
+  const storedData = localStorage.getItem('formData');
+  const [formData, setFormData] = useState(storedData ? JSON.parse(storedData) : initialFormData);
+  console.log(formData, 'formDataa');
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+
+  // Save form data to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+  }, [formData]);
 
   // Handle input change
-  const handleChange = e => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
+ const handleChange = (e) => {
+    const { id, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: type === 'checkbox' ? checked : value, // ✅ Handle checkboxes correctly
+    }));
   };
 
   // Handle radio button selection
@@ -55,54 +65,44 @@ console.log(formData,"formDataa")
   };
 
   // Handle form submission
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
+    console.log("Clicked Submit");
     e.preventDefault();
     setLoading(true);
-    setMessage('');
-
+  
     const formDataToSend = new FormData();
-    Object.keys(formData).forEach(key => {
+    Object.keys(formData).forEach((key) => {
       formDataToSend.append(key, formData[key]);
     });
-
+  
     if (file) {
-      formDataToSend.append('file', file);
+      formDataToSend.append("projectFile", file);
     }
-
+  
     try {
-      const response = await fetch('http://your-backend-url/api/submit-form', {
-        method: 'POST',
-        body: formDataToSend,
+      const response = await BaseURL.post("api/projects/submit", formDataToSend, {
+        headers: { "Content-Type": "multipart/form-data" }
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setMessage('Form submitted successfully!');
-        setFormData({
-          fullname: '',
-          contactnumber: '',
-          email: '',
-          userType: '',
-          qualification: '',
-          institute_company: '',
-          project_idea: '',
-          problem_solve: '',
-          benefit_idea: '',
-          idea_success: '',
-          summary: '',
-        });
-        setFile(null);
-        setFileName('');
-      } else {
-        setMessage(result.error || 'Something went wrong!');
-      }
+  
+      console.log(response.data, "Response Data");
+  
+      setFormData({
+        ...initialFormData,
+        agreeTerms: false, // Replace `yourCheckboxField` with your actual checkbox state key
+      });
+      
+      setFile(null);
+      setFileName("");
+      localStorage.removeItem('formData'); // Clear stored data after submission
+      
     } catch (error) {
-      setMessage('Network error. Please try again.');
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
+
+
 
   return (
     <>
@@ -128,10 +128,10 @@ console.log(formData,"formDataa")
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="fullname"
+              id="fullName"
               placeholder="Full Name"
               className="rounded-lg placeholder-black p-3 place"
-              value={formData.fullname}
+              value={formData.fullName}
               onChange={handleChange}
               required
             />
@@ -154,10 +154,10 @@ console.log(formData,"formDataa")
                 e.target.style.boxShadow = 'none';
               }}
               type="tel"
-              id="contactnumber"
+              id="contactNumber"
               placeholder="Contact Number"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              value={formData.contactnumber}
+              // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              value={formData.contactNumber}
               onChange={handleChange}
               className="border-black text-black placeholder-black p-3 place"
               required
@@ -181,9 +181,9 @@ console.log(formData,"formDataa")
                 e.target.style.boxShadow = 'none';
               }}
               type="email"
-              id="email"
+              id="emailAddress"
               placeholder="Email Address"
-              value={formData.email}
+              value={formData.emailAddress}
               onChange={handleChange}
               className="  border-black text-black placeholder-[#0A0A0A] p-3 place"
               required
@@ -231,7 +231,7 @@ console.log(formData,"formDataa")
               onChange={handleChange}
               required
             >
-              <option value="" disabled selected>
+              <option value="" defaultValue disabled>
                 Qualification{' '}
               </option>
               <option value="MCA">MCA</option>
@@ -243,9 +243,10 @@ console.log(formData,"formDataa")
           </div>
 
           <div className="mb-4 overflow-x-auto">
-            <Form.Select
+            <Form.Control
               id="institute_company"
               className=" p-3 max-w-full  placeholder-black place"
+              placeholder="Institute/Company Name"
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
@@ -265,18 +266,18 @@ console.log(formData,"formDataa")
               onChange={handleChange}
               required
             >
-              <option value="" disabled selected>
+              {/* <option value="" disabled selected>
                 Institute/Company Name
               </option>
               <option value="socialMedia">Social Media</option>
               <option value="searchEngine">Search Engine</option>
               <option value="friendFamily">Friend or Family</option>
               <option value="advertisement">Advertisement</option>
-              <option value="other">Other</option>
-            </Form.Select>
+              <option value="other">Other</option> */}
+            </Form.Control>
           </div>
 
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <Form.Control
               style={{
                 borderRadius: '11.55px',
@@ -293,8 +294,10 @@ console.log(formData,"formDataa")
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="project_idea"
+              id="projectName"
               placeholder="Project/Idea Name"
+              value={formData.projectName}
+              onChange={handleChange}
               className="  border-black text-black placeholder-black p-3 place"
             />
           </div>
@@ -316,7 +319,9 @@ console.log(formData,"formDataa")
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="problem_solve"
+              id="problemSolved"
+              value={formData.problemSolved}
+              onChange={handleChange}
               placeholder="What problem does your Idea Solve?"
               className="  border-black text-black placeholder-black p-3 place"
             />
@@ -339,7 +344,9 @@ console.log(formData,"formDataa")
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="benefit_idea"
+              id="beneficiaries"
+              value={formData.beneficiaries}
+              onChange={handleChange}
               placeholder="Who would benefit from this idea?"
               className="  border-black text-black placeholder-black p-3 place"
             />
@@ -362,13 +369,15 @@ console.log(formData,"formDataa")
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="idea_success"
+              id="successReason"
+              value={formData.successReason}
+              onChange={handleChange}
               placeholder="Why do you think this idea will succeed?"
               className="  border-black text-black placeholder-black p-3 place"
             />
-          </div> */}
+          </div>
           {/* Text Fields */}
-          {[
+          {/* {[
             'project_idea/Idea Name',
             'What Problem Does Your Idea Solve?',
             'Who would benefit from this idea?',
@@ -399,7 +408,7 @@ console.log(formData,"formDataa")
                 }}
               />
             </div>
-          ))}
+          ))} */}
 
           {/* <div className="mb-4">
             <Form.Control
@@ -441,7 +450,7 @@ console.log(formData,"formDataa")
                 e.target.style.boxShadow = 'none';
               }}
               as="textarea"
-              id="summarize"
+              id="summary"
               value={formData.summary}
               onChange={handleChange}
               placeholder="Summarize your project Ideas"
@@ -480,20 +489,20 @@ console.log(formData,"formDataa")
                 </>
               )}
               {/* Message Display */}
-              {message && (
-                <p className="mt-4 text-center text-red-500">{message}</p>
-              )}
+             
             </label>
           </div>
 
           <div className="flex justify-center items-center mt-3">
             <input
               type="checkbox"
-              id="terms"
+              id="agreeTerms"
+              checked={formData.agreeTerms || false}
+              onChange={handleChange}
               className="form-checkbox border-gray-300"
               required
             />
-            <label htmlFor="terms" className="text-sm">
+            <label htmlFor="agreeTerms" className="text-sm">
               <Link
                 to="/termsconditions-submit-new-project"
                 className="text-[#212529] items-center text-[14px] no-underline mx-2 cursor-pointor"
