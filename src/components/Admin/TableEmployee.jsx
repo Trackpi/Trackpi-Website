@@ -5,26 +5,31 @@ import { useNavigate } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs';
 import { BsDownload } from 'react-icons/bs';
-import imagepersonnel1 from '../../images/personnel-1-400x286.jpg'
-import imagepersonnel2 from '../../images/personnel-2-400x286.jpg'
-import imagepersonnel3 from '../../images/personnel-3-400x310.jpg'
-import imagepersonnel4 from '../../images/personnel-4-400x310.jpg'
-import imagepersonnel5 from '../../images/personnel-5-400x310.jpg'
-import imagepersonnel6 from '../../images/personnel-6-400x310.jpg'
-import AddEmployee from '../../pages/Admin/AddEmployee';
+
 import baseURL from '../../Api Services/baseURL';
+import DeleteModal from './DeleteModal';
 
 
 const TableEmployee = () => {
+  const adminToken = localStorage.getItem("adminToken");
   const navigate = useNavigate();
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+    const [deleteId, setDeleteId] = useState("");
+     
+    const [dataDeleted, setDataDeleted] = useState("");
   const [error, setError] = useState(null);
   useEffect(() => {
     // Fetch employee data from the backend
     const fetchEmployees = async () => {
       try {
-        const response = await baseURL.get('/api/employee/employees');
+        const response = await baseURL.get('/api/employee/employees', {
+          params: { category: 'employee' },
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        });
         setEmployees(response.data);
       } catch (error) {
         setError('Failed to load employees.');
@@ -35,7 +40,7 @@ const TableEmployee = () => {
     };
 
     fetchEmployees();
-  }, []); // Runs once on component mount
+  }, []);
   const handleViewProfile = employee => {
     console.log(employee, 'employees');
     navigate('/admin/employeeManagement-detail', { state: {rowDatas: employee } });
@@ -43,14 +48,22 @@ const TableEmployee = () => {
   const handleAdd = () => {
     navigate('/admin/employeeManagement-addEmployee/'); // Navigate Add employee page
   }
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
+    
     try {
-      await baseURL.delete(`/api/employee/employees/${id}`); // Assuming `id` is the unique identifier
-      setEmployees(employees.filter(employee => employee._id !== id));
+       await baseURL.delete(`/api/employee/employees/${deleteId}`,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+      },
+      }); // Assuming `id` is the unique identifier
+      setEmployees(employees.filter((employee) => employee._id !== deleteId));
+
+      setIsModalOpen(false)
     } catch (error) {
       console.error('Error deleting employee:', error);
     }
   };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -155,7 +168,11 @@ const TableEmployee = () => {
                     </div>
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    <div className="flex justify-center items-center cursor-pointer" onClick={() => handleDelete(employee._id)}>
+                    <div className="flex justify-center items-center cursor-pointer" onClick={() =>{
+                            setIsModalOpen(true);
+                            setDataDeleted(`Employee ${index+ 1 }`);
+                            setDeleteId(employee._id);
+                        }}>
                       <RiDeleteBin6Line size={20} />
                     </div>
                   </td>
@@ -165,7 +182,7 @@ const TableEmployee = () => {
           </tbody>
         </table>
       </div>{' '}
-    </div>
+      {isModalOpen && <DeleteModal onClose={() => setIsModalOpen(false)} dataDeleted={dataDeleted} datas={"Employee"} functions={handleDelete} />}    </div>
   );
 };
 

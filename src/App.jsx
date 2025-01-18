@@ -75,8 +75,10 @@ function App() {
         location.pathname.startsWith("/admin") && location.pathname !== "/admin/admin-login" && !isNotFoundRoute;
     const isAdminRouted =
         location.pathname.startsWith("/admin") && location.pathname !== "/admin/admin-login" && !isNotFoundRoute;
+
+        const fontClass = isAdminRoute ? "font-inter" : "font-urbanist";
     return (
-        <>
+        <div className={fontClass}>
             <ScrollUp />
             {loading ? (
                 <Loader />
@@ -143,7 +145,7 @@ function App() {
             )}
                   <ToastContainer position="top-center" autoClose={5000} hideProgressBar />
 
-        </>
+        </div>
     );
 }
 
@@ -152,6 +154,7 @@ const styles = {
         padding: "2px",
         overflowY: "scroll",
         height: "calc(100vh - 80px)",
+        backgroundColor:"white"
     },
 };
 

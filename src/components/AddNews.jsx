@@ -1,41 +1,35 @@
 import React, { useEffect, useState } from "react";
 import uploadImg from "../images/uploadimg.svg";
 import baseURL from "../Api Services/baseURL";
+import { toast } from "react-toastify";
 
-function AddNews({ newsData }) {
+function AddNews({ newsData, getAllNews }) {
     const [fileName, setFileName] = useState("Upload Image");
-    // state to load datas on input
     const [newsDatas, setNewsDatas] = useState({
         newsLink: "",
-        newsFile: "",
+        newsFile: null,
     });
+
+    const adminToken = localStorage.getItem("adminToken");
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setFileName(file.name);
+            if (["image/png", "image/jpg", "image/jpeg"].includes(file.type)) {
+                setNewsDatas({ ...newsDatas, newsFile: file });
+                setFileName(file.name);
+            } else {
+                toast.info("Please upload a file in JPG, JPEG, or PNG format.");
+                setNewsDatas({ ...newsDatas, newsFile: null });
+                setFileName("Upload Image");
+            }
         }
     };
 
-    // // // // // // // Backend datas
-
-    const adminToken = localStorage.getItem("adminToken");
-    useEffect(() => {
-        if (
-            newsDatas.newsFile.type == "image/png" ||
-            newsDatas.newsFile.type == "image/jpg" ||
-            newsDatas.newsFile.type == "image/jpeg"
-        ) {
-            //   console.log("generte url");
-        } else {
-            console.log("Please upload jpeg/jpg/png image format....");
-            setNewsDatas({ ...newsDatas, newsFile: "" });
-        }
-    }, [newsDatas.newsFile]);
-
-    const addNewNewsData = async () => {
+    const addNewNewsData = async (e) => {
+        e.preventDefault();
         if (!newsDatas.newsLink || !newsDatas.newsFile) {
-            alert("All fields are required!");
+            toast.info("All fields are required!");
             return;
         }
 
@@ -47,24 +41,22 @@ function AddNews({ newsData }) {
             const response = await baseURL.post("/api/news/news", formData, {
                 headers: {
                     Authorization: `Bearer ${adminToken}`,
-                    "Content-Type": "multipart/form-data", // Important for file uploads
+                    "Content-Type": "multipart/form-data",
                 },
-            });
+            });            
 
-            if (response.status === 201) {
-                setNewsDatas({
-                    newsFile: "",
-                    newsLink: "",
-                });
+            if (response.status === 200) {
+                getAllNews()
+                toast.success("News added successfully!");
+                setNewsDatas({ newsLink: "", newsFile: null });
+                setFileName("Upload Image");
             }
         } catch (error) {
             console.error("Error adding news:", error);
-
-            // Display error message from API response
             if (error.response && error.response.data) {
-                alert(`Error: ${error.response.data.message || "An error occurred"}`);
+                toast.error(`Error: ${error.response.data.message || "An error occurred"}`);
             } else {
-                alert("An error occurred while adding news data.", err);
+                toast.error("An error occurred while adding news data.");
             }
         }
     };
@@ -73,12 +65,13 @@ function AddNews({ newsData }) {
         <form className="grid gap-[40px]">
             <div className="flex justify-between items-end w-100">
                 <div className="px-[20px] w-[103px] h-[42px] text-[18px] font-bold rounded-[10px] mx-auto newsBtn flex items-center">
-                    <span>News {newsData.length + 1}</span>{" "}
+                    <span>News {newsData.length + 1}</span>
                 </div>
                 <div className="w-[500px]">
                     <div className="grid gap-[10px]">
                         <label className="block text-[14px] font-semibold">News Link</label>
                         <input
+                            value={newsDatas.newsLink}
                             onChange={(e) => setNewsDatas({ ...newsDatas, newsLink: e.target.value })}
                             type="text"
                             placeholder="Link"
@@ -87,16 +80,13 @@ function AddNews({ newsData }) {
                     </div>
                 </div>
 
-                <div className="relative w-[250px] h-[42px]  mx-auto">
-                <input 
-    type="file" 
-    id="fileInput" 
-    className="hidden" 
-    onChange={(e) => {
-        setNewsDatas({ ...newsDatas, newsFile: e.target.files[0] }); 
-        handleFileChange(e);
-    }} 
-/>
+                <div className="relative w-[250px] h-[42px] mx-auto">
+                    <input
+                        type="file"
+                        id="fileInput"
+                        className="hidden"
+                        onChange={handleFileChange}
+                    />
                     <label
                         htmlFor="fileInput"
                         className="uploadBtn flex items-center justify-center gap-[15px] px-[20px] py-[10px] h-[42px] rounded-[10px] text-[#FF9D00] cursor-pointer"
@@ -106,7 +96,7 @@ function AddNews({ newsData }) {
                     </label>
                 </div>
             </div>
-            <div className=" flex justify-center gap-[30px]">
+            <div className="flex justify-center gap-[30px]">
                 <button
                     type="submit"
                     className="p-[10px] w-[200px] bg-[#FF9D00] rounded-[10px] font-semibold text-white"
@@ -117,6 +107,10 @@ function AddNews({ newsData }) {
                 <button
                     type="button"
                     className="p-[10px] w-[200px] text-[#FF9D00] border-[2px] border-[#FF9D00] font-medium rounded-[10px] font-bold"
+                    onClick={() => {
+                        setNewsDatas({ newsLink: "", newsFile: null });
+                        setFileName("Upload Image");
+                    }}
                 >
                     Cancel
                 </button>

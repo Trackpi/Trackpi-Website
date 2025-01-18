@@ -3,11 +3,14 @@ import { FaRegEdit } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useLocation, useNavigate } from 'react-router-dom';
 import EmpDetails from '../../components/User/EmpDetails';
+import { SERVER_URL } from "../../Api Services/serverUrl";
 import { useEffect } from 'react';
+
 const InternManagementDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+   // Retrieve employeeData passed via navigate
+   const employeeData  = location.state.rowDatas || {}; 
 
   const useScreenshotPrevention = () => {
     useEffect(() => {
@@ -45,7 +48,7 @@ const InternManagementDetail = () => {
     window.addEventListener('beforeunload', handleBeforeUnload);
 
   
-      // Cleanup on component unmount
+  //     // Cleanup on component unmount
       return () => {
         document.removeEventListener('contextmenu', handleContextMenu);
         document.removeEventListener('keydown', handleKeyDown);
@@ -59,14 +62,13 @@ const InternManagementDetail = () => {
 
 
   const handleEdit = () => {
-    const internId = location.state?.rowDatas?.empID; // Replace this with the actual intern's ID
+    const internId = employeeData._id || employeeData.id;// Replace this with the actual intern's ID
    
     if (internId) {
       navigate(`/admin/intern-management-add/${internId}`, { state: { employeeData: location.state.rowDatas } }); // Navigate to the edit page with the internId
     }
   };
-  // Retrieve employeeData passed via navigate
-  const employeeData  = location.state.rowDatas || {};
+
 
   // Handle Back button functionality
   const handleBack = () => {
@@ -100,24 +102,32 @@ const InternManagementDetail = () => {
             <h5 className="connect-text-Color font-medium">Feedback</h5>
             <br />
             <ul className="feed list-disc text-justify text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] 2xl:text-[18px] xl:leading-6 2xl:leading-9 2xl:text-xl leading-7 font-medium space-y-2">
-              <li>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </li>
-              <li>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </li>
-              <li>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </li>
+            {employeeData.feedback
+                ? employeeData.feedback.split('\n').map((point, index) => (
+                    <li key={index} className="text-base">{point}</li>
+                  ))
+                : <li>No feedback available for this employee.</li>}
+              
             </ul>
           </div>
           <div  className="relative flex flex-col justify-center items-center">
            
             <div className="custom-height3 w-[326px] md:w-full h-[138px] md:h-[310px] xl:h-[320px] flex justify-center items-center rounded-t-md" style={{ backgroundColor: '#2A2A2A' }}>
-              
-              <h6 className="text-white text-center container w-50">
-                Internship Certificate
-              </h6>
+            {employeeData.Certificate ? (
+            <iframe
+              src={`${SERVER_URL}${employeeData.Certificate}`}
+              className="w-[225px] md:w-[500px] h-[300px] rounded-lg"
+              style={{ border: 'none' }}
+              title="Business Card"
+            />
+          ) : (
+            <div
+              className="w-[225px] md:w-[500px] h-[121px] md:h-[300px] rounded-lg d-flex justify-content-center align-items-center"
+              style={{ backgroundColor: '#2A2A2A' }}
+            >
+              <h6 className="text-white text-center container w-50">internship certificate</h6>
+            </div>
+          )}
                {/* Dynamic Watermark */}
                <div
       className="absolute text-gray-500 opacity-30 text-[14px] sm:text-[19px] md:text-[21px] lg:text-[24px] font-bold"

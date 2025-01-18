@@ -5,53 +5,61 @@ import { useNavigate } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs';
 import { BsDownload } from 'react-icons/bs';
-import imagepersonnel1 from '../../images/personnel-1-400x286.jpg'
-import imagepersonnel2 from '../../images/personnel-2-400x286.jpg'
-import imagepersonnel3 from '../../images/personnel-3-400x310.jpg'
-import imagepersonnel4 from '../../images/personnel-4-400x310.jpg'
-import imagepersonnel5 from '../../images/personnel-5-400x310.jpg'
-import imagepersonnel6 from '../../images/personnel-6-400x310.jpg'
 import baseURL from '../../Api Services/baseURL';
-
+import DeleteModal from './DeleteModal';
 const TableSales = () => {
   const navigate = useNavigate();
-  const [salesEmployees, setSalesEmployee] = useState([]);
+  const adminToken = localStorage.getItem("adminToken");
+  const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    useEffect(() => {
-      const fetchSales = async () => {
-        try {
-          const response = await baseURL.get('/api/sales/');
-          setSalesEmployee(Array.isArray(response.data) ? response.data : []);
-        } catch (error) {
-          setError('Failed to load Sales.');
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchSales();
-    }, []);
-  const handleViewProfile = SalesEmployee => {
-    console.log(SalesEmployee, 'SalesEmployee');
-    navigate('/admin/salesManagement-detail', { state: { rowDatas: SalesEmployee } });
+     const [isModalOpen, setIsModalOpen] = useState(false);
+        const [deleteId, setDeleteId] = useState("");
+         
+        const [dataDeleted, setDataDeleted] = useState("");
+        useEffect(() => {
+          // Fetch employee data from the backend
+          const fetchEmployees = async () => {
+            try {
+              const response = await baseURL.get('/api/employee/employees', {
+                params: { category: 'sales' },
+                headers: {
+                  Authorization: `Bearer ${adminToken}`,
+                },
+              });
+              setEmployees(response.data);
+            } catch (error) {
+              setError('Failed to load employees.');
+            } finally {
+              setLoading(false);
+            }
+          
+          };
+      
+          fetchEmployees();
+        }, []);
+  const handleViewProfile = (employee) => {
+    console.log(employee, 'employee');
+    navigate('/admin/salesManagement-detail', { state: { rowDatas: employee } });
   };
   const handleAdd = () => {
     navigate('/admin/salesManagement-add/'); // Navigate Add sales page
   }
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
-      await baseURL.delete(`/api/sales/${id}`); // Assuming `id` is the unique identifier
-      setSalesEmployee(salesEmployees.filter(SalesEmployee => SalesEmployee._id !== id));
+      await baseURL.delete(`/api/employee/employees/${deleteId}`,{
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+      },}); // Assuming `id` is the unique identifier
+      setEmployees(employees.filter((employee) => employee._id !== deleteId));
+      setIsModalOpen(false)
     } catch (error) {
       console.error('Error deleting employee:', error);
+      alert('Failed to delete the record. Please try again.');
     }
   };
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>{error}</div>;
-  }
+  if (loading) return <div className="text-center mt-4">Loading sales data...</div>;
+  if (error) return <div className="text-center mt-4 text-red-500">{error}</div>;
   return (
     <div>
        <div className="flex items-center justify-between">
@@ -95,9 +103,9 @@ const TableSales = () => {
             </tr>
           </thead>
           <tbody>
-            {salesEmployees.map((SalesEmployee, index) => (
+            {employees.map((employee, index) => (
               <tr
-                key={SalesEmployee._id }
+                key={employee._id  || index}
                 className="bg-white text-md font-semibold text-black dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
               >
                 <>
@@ -114,7 +122,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {SalesEmployee.name}
+                    {employee.name}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -122,7 +130,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                     {SalesEmployee.email}
+                     {employee.empID}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -131,7 +139,7 @@ const TableSales = () => {
                       boxSizing: 'border-box',
                     }}>
                     {/* <div className="flex justify-center items-center gap-2 "> */}
-                    {SalesEmployee.email}
+                    {employee.email}
                     {/* </div> */}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
@@ -140,7 +148,7 @@ const TableSales = () => {
                       overflowWrap: 'break-word',
                       boxSizing: 'border-box',
                     }}>
-                    {SalesEmployee.phone}
+                    {employee.phone}
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}
                     style={{
@@ -150,13 +158,19 @@ const TableSales = () => {
                     }}>
                     <div
                       className="flex justify-center items-center gap-2 text-[#FF9D00] cursor-pointer "
-                      onClick={() => handleViewProfile(SalesEmployee)}
+                      onClick={() => handleViewProfile(employee)}
                     >
                       View Profile <FiExternalLink size={15} />
                     </div>
                   </td>
                   <td className={`px-2 py-3 border-r-2 text-center`}>
-                    <div className="flex justify-center items-center" onClick={() => handleDelete(SalesEmployee._id)}>
+                    <div className="flex justify-center items-center" onClick={() => 
+                      {
+                        setIsModalOpen(true);
+                        setDataDeleted(`Sales ${index+ 1 }`);
+                        setDeleteId(employee._id);
+                    }
+                      }>
                       <RiDeleteBin6Line size={20} />
                     </div>
                   </td>
@@ -166,6 +180,8 @@ const TableSales = () => {
           </tbody>
         </table>
       </div>{' '}
+      {isModalOpen && <DeleteModal onClose={() => setIsModalOpen(false)} dataDeleted={dataDeleted} datas={"Sales"} functions={handleDelete} />}   
+
     </div>
   );
 };

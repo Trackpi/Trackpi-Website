@@ -1,5 +1,5 @@
 
-import React from "react";
+import React,{useEffect,useState} from "react";
 
 
 import { IoLogoInstagram } from "react-icons/io5";
@@ -8,17 +8,22 @@ import { IoMdArrowBack } from 'react-icons/io';
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandLinkedin } from "react-icons/tb";
 import { useLocation,useNavigate } from "react-router-dom";
-import baseURL from '../../Api Services/baseURL';
+import { SERVER_URL } from "../../Api Services/serverUrl";
 
 
 
 function EmployeeManagementDetail() {
     const location = useLocation();
     const navigate = useNavigate();
-    
+    const [profileImage, setProfileImage] = useState(null);
+    const employeeData  = location.state.rowDatas || {};
+
+
     const handleBack = () => {
       navigate(-1); // Go back to previous page
     };
+
+
     const handleEdit = () => {
       const employeeId = employeeData._id || employeeData.id; // Replace this with the actual intern's ID
      
@@ -26,7 +31,18 @@ function EmployeeManagementDetail() {
         navigate(`/admin/employeeManagement-addEmployee/${employeeId}`, { state: { employeeData } }); // Navigate to the edit page with the internId
       }
     };
-    const employeeData  = location.state.rowDatas || {};
+  
+    useEffect(() => {
+      if (employeeData && employeeData.image) {
+          // Construct the full image URL by concatenating SERVER_URL with the image path
+          const imageUrl = `${SERVER_URL}${employeeData.image}`; // Use SERVER_URL directly here
+          setProfileImage(imageUrl); // Set the image URL to state
+      }
+    }, [employeeData]);
+
+  // Log for debugging
+  console.log("Employee Data:", employeeData);
+  console.log("Image URL:", profileImage);
   if (!location.state?.rowDatas) {
     return <div>Loading...</div>; // Optionally, show a loading state if member is not available
   }
@@ -53,12 +69,13 @@ function EmployeeManagementDetail() {
                           <h2>{employeeData.name}</h2>
                           <p className="text-2xl font-normal">{employeeData.desig}</p>
                           
-                          <img
-                          src={employeeData.image ? `${baseURL}${employeeData.image}` : "default-image-path.jpg"}
-                          alt={employeeData.title || "Employee"}
-                          className="rounded-md w-52 h-52 personnelimg1 object-cover"
-                        />
-                      
+                          {profileImage && (
+                <img
+                  src={profileImage}
+                  alt={employeeData.title || "Employee"}
+                  className="rounded-md w-52 h-52 personnelimg1 object-cover"
+                />
+              )}
                         </div>
                        
                 </div>

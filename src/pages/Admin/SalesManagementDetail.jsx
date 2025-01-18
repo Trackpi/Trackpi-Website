@@ -3,14 +3,16 @@ import { FaRegEdit } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useLocation, useNavigate } from 'react-router-dom';
 import EmpDetails from '../../components/User/EmpDetails';
-import baseURL from '../../Api Services/baseURL';
+
+import { SERVER_URL } from "../../Api Services/serverUrl";
 
 function SalesManagementDetail() {
   const location = useLocation();
   const navigate = useNavigate();
+  
   // Retrieve employeeData passed via navigate
   const employeeData = location.state.rowDatas || {};
-  console.log(employeeData, 'empDataaaa');
+ 
   // Handle Back button functionality
   const handleBack = () => {
     navigate(-1); // Go back to previous page
@@ -22,6 +24,7 @@ function SalesManagementDetail() {
       navigate(`/admin/salesManagement-add/${salesId}`, { state: { employeeData } }); // Navigate to the edit page with the internId
     }
   };
+  
   if (!employeeData) {
     return <div>No employee data found.</div>;
   }
@@ -45,9 +48,21 @@ function SalesManagementDetail() {
             className=" w-[225px] md:w-[500px] h-[121px] md:h-[300px] rounded-lg d-flex justify-content-center align-items-center"
             style={{ backgroundColor: '#2A2A2A' }}
           >
-            <h6 className="business text-white text-center container w-50 ">
-              Business Card
-            </h6>
+            {employeeData.businessCard ? (
+            <iframe
+              src={`${SERVER_URL}${employeeData.businessCard}`}
+              className="w-[225px] md:w-[500px] h-[300px] rounded-lg"
+              style={{ border: 'none' }}
+              title="Business Card"
+            />
+          ) : (
+            <div
+              className="w-[225px] md:w-[500px] h-[121px] md:h-[300px] rounded-lg d-flex justify-content-center align-items-center"
+              style={{ backgroundColor: '#2A2A2A' }}
+            >
+              <h6 className="text-white text-center container w-50">Business Card</h6>
+            </div>
+          )}
           </div>
         </div>
       </div>

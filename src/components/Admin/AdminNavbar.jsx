@@ -21,7 +21,7 @@ function AdminNavbar() {
           </div>
         </div>
         <div className="h-[40px] flex gap-[40px] items-center justify-between ">
-          <div className="text-[18px] font-semibold">{formattedDate}</div>
+          <div className="text-[18px] ">{formattedDate}</div>
           <form className="adminInput flex items-center ">
             <input type="text" placeholder='Search here...' />
             <button className="ms-[290px] absolute" type="submit"><img src={searchImg} alt="" /></button>

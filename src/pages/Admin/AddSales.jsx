@@ -7,202 +7,218 @@ import { RiImageAddLine } from "react-icons/ri";
 import baseURL from '../../Api Services/baseURL';
 function AddSales() {
 const location = useLocation();
+const queryParams = new URLSearchParams(location.search);
+const tab = queryParams.get('tab') || 'Sales';
   const adminToken = localStorage.getItem('adminToken');  
   const [refresh, setRefresh] = useState('');
   const { employeeData } = location.state || { employeeData: {} }
-  const [formData, setFormData] = useState({
-    name: employeeData.name || "",
-    eID: employeeData.eID ||  "",
-    empID: employeeData.empID ||  "",
-    email:employeeData.email || "",
-    phone:employeeData.phone ||  "",
-    fullAddress:employeeData.fullAddress ||  "",
-    gender:employeeData.gender||  "",
-    dob:employeeData.dob||  "",
-    bloodGroup:employeeData.bloodGroup||  "",
-    dateOfJoining:employeeData.dateOfJoining||  "",
-    jobRole:employeeData.jobRole||  "",
-    employeeStatus: employeeData.employeeStatus|| "",
-    jobLevel:employeeData.jobLevel||  "",
-    instagram:employeeData.instagram ||  "",
-    linkedin:employeeData.linkedin || "",
-    twitter: employeeData.twitter || "",
-    
-  });
-
-const [profileImage, setProfileImage] = useState(null);
-  
-
-  const fileInputRef = useRef(null);
-  const [businessCard, setBusinessCard] = useState(null);
-const businessCardInputRef = useRef(null);
   const { id } = useParams();  // For editing, we'll get the intern ID from URL params
   const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+     name: employeeData.name || "",
+     empID: employeeData.empID ||  "",
+     email:employeeData.email || "",
+     phone:employeeData.phone ||  "",
+     fullAddress:employeeData.fullAddress ||  "",
+     gender:employeeData.gender||  "",
+     dob:employeeData.dob||  "",
+     bloodGroup:employeeData.bloodGroup||  "",
+     dateOfJoining:employeeData.dateOfJoining||  "",
+     jobRole:employeeData.jobRole||  "",
+     employeeStatus: employeeData.employeeStatus|| "",
+     jobLevel:employeeData.jobLevel||  "",
+     socialmedia1: employeeData.socialmedia1 || "",
+     socialmedia2: employeeData.socialmedia2 || "",
+     socialmedia3: employeeData.socialmedia3 || "",
+     socialmedia4: employeeData.socialmedia4 || "",
+     platform1: employeeData.platform1 || "",
+     platform2: employeeData.platform2 || "",
+     platform3: employeeData.platform3 || "",
+     platform4: employeeData.platform4 || "",
+     category: "sales",
+     
+   
+   });
+     
+
+const [profileImage, setProfileImage] = useState(null);
+const [businessCard, setBusinessCard] = useState(null); 
+
+  const fileInputRef = useRef(null);
+
+const businessCardInputRef = useRef(null);
+
+
+// Update form data when employeeData changes
+  useEffect(() => {
+     if (id && employeeData) {
+       setFormData({
+         name: employeeData.name || "",
+         empID: employeeData.empID || "",
+         email: employeeData.email || "",
+         phone: employeeData.phone || "",
+         fullAddress: employeeData.fullAddress || "",
+         gender: employeeData.gender || "",
+         dob: employeeData.dob || "",
+         bloodGroup: employeeData.bloodGroup || "",
+         dateOfJoining: employeeData.dateOfJoining || "",
+         jobRole: employeeData.jobRole || "",
+         employeeStatus: employeeData.employeeStatus || "",
+         jobLevel: employeeData.jobLevel || "",
+         socialmedia1: employeeData.socialmedia1 || "",
+         socialmedia2: employeeData.socialmedia2 || "",
+         socialmedia3: employeeData.socialmedia3 || "",
+         socialmedia4: employeeData.socialmedia4 || "",
+         platform1: employeeData.platform1 || "",
+         platform2: employeeData.platform2 || "",
+         platform3: employeeData.platform3 || "",
+         platform4: employeeData.platform4 || "",
+         category:"sales",
+        
+       });
+     }
+   }, [id, employeeData]);
+   useEffect(() => {
+         // Fetch the image and convert it to a File object
+         if (employeeData.image) {
+           fetch(employeeData.image)
+             .then((res) => res.blob())
+             .then((blob) => {
+               const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+               setProfileImage(file);
+             })
+             .catch((error) => console.error("Failed to fetch image:", error));
+         }
+       }, [employeeData.image]);
+
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: value, // Dynamically update the input value
+  }));
+};
+
+const handleFileChange = (e) => {
+  setProfileImage(e.target.files[0]);
+};
 
 
 const handleBusinessCardFileChange = (e) => {
   setBusinessCard(e.target.files[0]);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value, // Dynamically update the input value
-    }));
+  const handleUpload = () => {
+    if (profileImage || businessCard) {
+      toast.success("Files prepared for upload.");
+    } else {
+      toast.error("Please select files to upload.");
+    }
   };
-  const handleFileChange = (e) => {
-    setProfileImage(e.target.files[0]);
-  };
-
-// Update form data when employeeData changes
-useEffect(() => {
-  if (id && employeeData) {
-    setFormData({
-      name: employeeData.name || "",
-      eID: employeeData.eID ||  "",
-      empID: employeeData.empID || "",
-      email: employeeData.email || "",
-      phone: employeeData.phone || "",
-      fullAddress: employeeData.fullAddress || "",
-      gender: employeeData.gender || "",
-      dob: employeeData.dob || "",
-      bloodGroup: employeeData.bloodGroup || "",
-      dateOfJoining: employeeData.dateOfJoining || "",
-      jobRole: employeeData.jobRole || "",
-      employeeStatus: employeeData.employeeStatus || "",
-      jobLevel: employeeData.jobLevel || "",
-      instagram: employeeData.instagram || "",
-      linkedin: employeeData.linkedin || "",
-      twitter: employeeData.twitter || "",
-     
-    });
-  }
-}, [id, employeeData]); // Only trigger when id or employeeData changes
-
-
-useEffect(() => {
-  // Fetch the image only if it changes and is valid
-  if (employeeData.image) {
-    const imageUrl = `${baseURL}${employeeData.image}`;
-    fetch(imageUrl)
-      .then((res) => res.blob())
-      .then((blob) => {
-        const file = new File([blob], "image.jpg", { type: blob.type });
-        setProfileImage(file);
-      })
-      .catch((error) => console.error("Failed to fetch image:", error));
-  }
-}, [employeeData.image]);
 
  
 
   const handleAddSales = async (e) => {
     e.preventDefault();
-
-    // Check required fields
-    if 
-    (!formData.name ||
-       !formData.empID ||
-        !formData.email ||
-        !formData.phone ||
-        !formData.fullAddress ||
-        !formData.gender||
-        !formData.dob||
-        !formData.bloodGroup ||
-        !formData.dateOfJoining||
-        !formData.jobRole||
-        !formData.employeeStatus||
-        !formData.jobLevel
-      
-      ) {
-      alert('All fields are required!');
-      return;
-    }
-  
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('empID', formData.ID);
-      formDataToSend.append('empID', formData.empID);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('fullAddress', formData.fullAddress);
-      formDataToSend.append('gender', formData.gender);
-      formDataToSend.append('dob', formData.dob);
-      formDataToSend.append('bloodGroup', formData.bloodGroup);
-      formDataToSend.append('dateOfJoining', formData.dateOfJoining);
-      formDataToSend.append('jobRole', formData.jobRole);
-      formDataToSend.append('employeeStatus', formData.employeeStatus);
-      formDataToSend.append('jobLevel', formData.jobLevel);
-      
-  
-      if (profileImage) {
-        formDataToSend.append('image', profileImage); // Add image file
-      }
-      if (businessCard) {
-        formDataToSend.append('businessCard', businessCard); // Add image file
-      }
-  
-      // Check if this is an update or create operation
-      if (id) {
-        // Update operation
-        const response = await baseURL.put(`/api/sales/${id}`, formDataToSend, {
-          headers: {
-            Authorization: `Bearer ${adminToken}`,
-           
-          },
-        });
-  
-        if (response.status === 200) {
-          toast.success('Sales Details Updated Successfully!');
-          navigate('/admin/employee-management');
-        }
-      } else {
-        // Create operation
-        const response = await baseURL.post('/api/sales/', formDataToSend, {
-          headers: {
-            Authorization: `Bearer ${adminToken}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
-  
-        if (response.status === 201) {
-          toast.success('Sales Details Added Successfully!');
-          navigate('/admin/employee-management');
-        }
-      }
-  
-      // Reset form
-      setFormData({
-        id: '',
-        name: '',
-        empID: '',
-        email: '',
-        phone: '',
-        fullAddress: '',
-        gender: '',
-        dob: '',
-        bloodGroup: '',
-        dateOfJoining: '',
-        jobRole: '',
-        employeeStatus: '',
-        jobLevel: '',
-       
-      });
-      setProfileImage(null);
-      setBusinessCard(null);
-    } catch (error) {
-      console.error('Error submitting sales data:', error);
-      if (error.response) {
-        console.error('Error response:', error.response.data);
-        alert(error.response.data.message || 'An error occurred');
-      } else {
-        alert('Network error or server is unreachable');
-      }
-    }
     
-};
+    const empID = formData.empID;
+       
+         try {
+          const formDataToSend = new FormData();
+          formDataToSend.append('name', formData.name);
+          formDataToSend.append('empID', formData.empID);
+          formDataToSend.append('email', formData.email);
+          formDataToSend.append('phone', formData.phone);
+          formDataToSend.append('fullAddress', formData.fullAddress);
+          formDataToSend.append('gender', formData.gender);
+          formDataToSend.append('dob', formData.dob);
+          formDataToSend.append('bloodGroup', formData.bloodGroup);
+          formDataToSend.append('dateOfJoining', formData.dateOfJoining);
+          formDataToSend.append('jobRole', formData.jobRole);
+          formDataToSend.append('employeeStatus', formData.employeeStatus);
+          formDataToSend.append('jobLevel', formData.jobLevel);
+          formDataToSend.append('socialmedia1', formData.socialmedia1);
+          formDataToSend.append('socialmedia2', formData.socialmedia2);
+          formDataToSend.append('socialmedia3', formData.socialmedia3);
+          formDataToSend.append('socialmedia4', formData.socialmedia4);
+          formDataToSend.append('platform1', formData.platform1);
+          formDataToSend.append('platform2', formData.platform2);
+          formDataToSend.append('platform3', formData.platform3);
+          formDataToSend.append('platform4', formData.platform4);
+          formDataToSend.append('category', formData.category);
+          
+      
+          if (profileImage) {
+            formDataToSend.append('profileImage', profileImage); // Add image file
+          }
+          if (businessCard) {
+            formDataToSend.append('businessCard',businessCard); // Add image file
+          }
+          if (id) {
+            // Update operation
+            const response = await baseURL.put(`/api/employee/employees/${id}`, formDataToSend, {
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+      
+            if (response.status === 200) {
+              toast.success('Sales Employee Details Updated Successfully!');
+              navigate(`/admin/employee-management?tab=${tab}`);
+            }
+          } else {
+            // Create operation
+            const response = await baseURL.post('/api/employee/employees', formDataToSend, {
+              headers: {
+                Authorization: `Bearer ${adminToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+      
+            if (response.status === 201) {
+              toast.success('Sales Employee Details Added Successfully!');
+              navigate(`/admin/employee-management?tab=${tab}`);
+            }
+          }
+      
+          // Reset form
+          setFormData({
+            name:'',
+      empID,
+      email:'',
+      phone:'',
+      fullAddress:'',
+      gender:'',
+      dob:'',
+      bloodGroup:'',
+      dateOfJoining:'',
+    jobRole:'',
+    category:'sales',
+      employeeStatus:'',
+      jobLevel:'',
+      socialmedia1:'',
+      socialmedia2:'',
+      socialmedia3:'',
+      socialmedia4:'',
+      platform1:'',
+      platform2:'',
+      platform3:'',
+      platform4:'',
+          });
+          setProfileImage(null);
+          setBusinessCard(null);
+        } catch (error) {
+          console.error('Error submitting employee data:', error);
+          if (error.response) {
+            console.error('Error response:', error.response.data);
+          }
+        }
+      
+   
+  };
+
 
 const handleCancel = () => {
   navigate(-1);
@@ -219,9 +235,9 @@ const handleCancel = () => {
               className="d-flex justify-content-center align-items-center border border-secondary rounded-2xl position-relative"
               style={{ width: "150px", height: "120px" }}
             >
-                  {profileImage instanceof File && (
+                  {profileImage && (
   <img
-    src={URL.createObjectURL(profileImage)}
+    src={profileImage instanceof File ? URL.createObjectURL(profileImage) : profileImage}
     alt="Uploaded"
     style={{
       width: "150px",
@@ -247,7 +263,7 @@ const handleCancel = () => {
             </div>
             <input
               type="file"
-              name="image"
+              name="profileImage"
               ref={fileInputRef}
               style={{ display: "none" }}
               accept="image/*"
@@ -287,7 +303,7 @@ const handleCancel = () => {
                 name="empID"
                 className="form-control rounded-2xl plac"
                 placeholder="Employee ID"
-                value={formData.empID ||'' } 
+                value={formData.empID } 
               onChange={handleInputChange}
                 // value={formData.empID}
                 
@@ -444,6 +460,7 @@ const handleCancel = () => {
             />
           </div>
           </div>
+          
           <div className="mb-3  w-[100px]">
             <label className="form-label text-[15px]" htmlFor="bloodgroup">
               Blood Group
@@ -477,6 +494,37 @@ const handleCancel = () => {
               <option value="AB-">AB-</option>
             </select>
           </div>
+          {/* <div className="mb-3  w-[170px]">
+            <label className="form-label text-[15px]" htmlFor="category">
+              Type
+            </label>
+            <select
+              id="category"
+              name="category"
+              className="form-select plac"
+              style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
+              onFocus={ e => {
+                
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              onBlur={e => {
+                  
+                e.target.style.borderColor = 'white';
+                e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
+              }}
+              value={formData.category ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.bloodGroup}
+            >
+              <option value="employee+">  Employee</option>
+              <option value="sales">Sales</option>
+              <option value="intern">Intern</option>
+       
+            </select>
+          </div> */}
+          
+        
         </div>
         <div className="vertical-line w-[1px] h-[400px] bg-gray-400"></div>
         {/* Employment Overview Section */}
@@ -609,12 +657,14 @@ const handleCancel = () => {
           <h4 className="mb-4 text-[22px]">Social Media</h4>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                     Select Platform 1
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia1"
+                    name="socialmedia1"
+                    value={formData.socialmedia1 || ''}
+                    onChange={handleInputChange}
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -627,27 +677,27 @@ const handleCancel = () => {
                       e.target.style.borderColor = 'white';
                       e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                     }}
-                    onChange={handleInputChange}
+                   
                     
-                    // value={formData.gender}
+                    
                   >
-                    <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Platform 1 Link
                   </label>
                   <input
-                type="url"
-                name="website"
-                id="website"
+               type="url"
+               name="platform1"
+               id="platform1"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform1 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -666,12 +716,12 @@ const handleCancel = () => {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 2
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia2"
+                    name="socialmedia2"
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -686,12 +736,12 @@ const handleCancel = () => {
                     }}
                     onChange={handleInputChange}
                     
-                    // value={formData.gender}
+                    value={formData.socialmedia2 ||''}
                   >
-                   <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
@@ -699,12 +749,12 @@ const handleCancel = () => {
                   Platform 2 Link
                   </label>
                   <input
-                type="url"
-                name="website"
-                id="website"
+               type="url"
+               name="platform2"
+               id="platform2"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform2 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -722,12 +772,12 @@ const handleCancel = () => {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 3
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia3"
+                    name="socialmedia3"
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' , width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -742,12 +792,12 @@ const handleCancel = () => {
                     }}
                     onChange={handleInputChange}
                     
-                    // value={formData.gender}
+                    value={formData.socialmedia3 ||''}
                   >
-                  <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                  <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
@@ -756,11 +806,11 @@ const handleCancel = () => {
                   </label>
                   <input
                 type="url"
-                name="website"
-                id="website"
+                name="platform3"
+                id="platform3"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform3 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -778,13 +828,16 @@ const handleCancel = () => {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 4
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia4"
+                    name="socialmedia4"
+                    
                     className="form-select rounded-lg plac"
+                    value={formData.socialmedia4 ||''}
+                    onChange={handleInputChange}
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
@@ -796,14 +849,14 @@ const handleCancel = () => {
                       e.target.style.borderColor = 'white';
                       e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                     }}
-                    onChange={handleInputChange}
+                   
                     
-                    // value={formData.gender}
+                    
                   >
-                 <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                 <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
@@ -811,12 +864,12 @@ const handleCancel = () => {
                     Platform 4 Link
                   </label>
                   <input
-               type="url"
-               name="website"
-               id="website"
+                type="url"
+                name="platform4"
+                id="platform4"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform4 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -834,6 +887,7 @@ const handleCancel = () => {
                  
                 </div>
           </div>
+          
         </div>
         
         </div>
@@ -865,20 +919,12 @@ const handleCancel = () => {
           View
         </a>
               </div>
-              // <iframe
-              //   src={URL.createObjectURL(businessCard)}
-              //   alt="Uploaded Business Card"
-              //   style={{
-              //     width: "100%",
-              //     height: "100%",
-              //     border:"none"
-              //   }}
-              //      sandbox="allow-same-origin"
-              // />
+             
             ) : (
               <p>Upload the file</p>
             )}
             <button
+              type="button"
               onClick={() => businessCardInputRef.current.click()}
               className="btn btn-link"
               aria-label="Upload Business Card"
@@ -891,10 +937,11 @@ const handleCancel = () => {
           </div>
           <input
             type="file"
-            name="businessCard"
+           
             ref={businessCardInputRef}
             style={{ display: "none" }}
             accept=".pdf,.doc,.docx"
+            onClick={handleUpload}
             onChange={handleBusinessCardFileChange}
           />
         </div>
@@ -904,7 +951,7 @@ const handleCancel = () => {
 
         {/* Submit and Cancel Buttons */}
         <div className=" flex justify-center gap-4 mt-4">
-                                    <button type="submit" onClick={handleAddSales}  className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
+                                    <button type="submit"  className="px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center me-3">
                                     {id ? "Update" : "Save"}
                                     </button>
                                     <button type="button"  onClick={handleCancel} className=" px-14 py-2 text-white bg-[#FF9D00] rounded-xl flex justify-center items-center">

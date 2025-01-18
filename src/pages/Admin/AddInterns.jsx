@@ -4,11 +4,16 @@ import { toast } from "react-toastify";
 // import { addInternEmployee,getInternEmployeeById,updateInternEmployee } from "../Api Services/internsManagementApi";
 import { useNavigate, useParams ,useLocation} from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
-
+import baseURL from '../../Api Services/baseURL';
 
 
 function AddInterns() {
+  const adminToken = localStorage.getItem('adminToken'); 
+  const { id } = useParams();  // For editing, we'll get the intern ID from URL params
+  const navigate = useNavigate(); 
   const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const tab = queryParams.get('tab') || 'Intern';
   const { employeeData } = location.state || { employeeData: {} }
   const [formData, setFormData] = useState({
     name: employeeData.name || "",
@@ -23,22 +28,24 @@ function AddInterns() {
     jobRole:employeeData.jobRole||  "",
     employeeStatus: employeeData.employeeStatus|| "",
     jobLevel:employeeData.jobLevel||  "",
-    instagram:employeeData.instagram ||  "",
-    linkedin:employeeData.linkedin || "",
-    twitter: employeeData.twitter || "",
-    feedback:employeeData.feedback || "",
+    socialmedia1: employeeData.socialmedia1 || "",
+    socialmedia2: employeeData.socialmedia2 || "",
+    socialmedia3: employeeData.socialmedia3 || "",
+    socialmedia4: employeeData.socialmedia4 || "",
+    platform1: employeeData.platform1 || "",
+    platform2: employeeData.platform2 || "",
+    platform3: employeeData.platform3 || "",
+    platform4: employeeData.platform4 || "",
+    feedback: employeeData.feedback ? employeeData.feedback.split('\n') : [],
+    category: "intern",
   });
-    const { id } = useParams();  // For editing, we'll get the intern ID from URL params
-    const navigate = useNavigate();
+   
   
   const [profileImage, setProfileImage] = useState(null);
   const fileInputRef = useRef(null);
   
     const [certificate, setCertificate] = useState(null);
     const certificateInputRef = useRef(null);
-    const handleCertificateFileChange = (e) => {
-     setCertificate(e.target.files[0]);
-    }
  
  
    // Update form data when employeeData changes
@@ -57,10 +64,16 @@ function AddInterns() {
          jobRole: employeeData.jobRole || "",
          employeeStatus: employeeData.employeeStatus || "",
          jobLevel: employeeData.jobLevel || "",
-         instagram: employeeData.instagram || "",
-         linkedin: employeeData.linkedin || "",
-         twitter: employeeData.twitter || "",
-         feedback: employeeData.feedback || "",
+         socialmedia1: employeeData.socialmedia1 || "",
+         socialmedia2: employeeData.socialmedia2 || "",
+         socialmedia3: employeeData.socialmedia3 || "",
+         socialmedia4: employeeData.socialmedia4 || "",
+         platform1: employeeData.platform1 || "",
+         platform2: employeeData.platform2 || "",
+         platform3: employeeData.platform3 || "",
+         platform4: employeeData.platform4 || "",
+         feedback: employeeData.feedback ? employeeData.feedback.split('\n') : [],
+         category: "intern",
        });
      }
    }, [id, employeeData]); // Only trigger when id or employeeData changes
@@ -92,52 +105,125 @@ function AddInterns() {
     setProfileImage(e.target.files[0]);
   };
 
-  
+  const handleCertificateFileChange = (e) => {
+    setCertificate(e.target.files[0]);
+   }
+// Function to handle adding a new feedback point
+const handleFeedbackChange = (e) => {
+  const value = e.target.value;
+  setFormData((prevData) => ({
+    ...prevData,
+    feedback: value.split('\n'), // Split the feedback by new lines into an array
+  }));
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const empID = formData.empID;
+    try {
+      const feedbackString = formData.feedback.join('\n');
+      const formDataToSend = new FormData();
+    
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('empID', formData.empID);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('fullAddress', formData.fullAddress);
+      formDataToSend.append('gender', formData.gender);
+      formDataToSend.append('dob', formData.dob);
+      formDataToSend.append('bloodGroup', formData.bloodGroup);
+      formDataToSend.append('dateOfJoining', formData.dateOfJoining);
+      formDataToSend.append('jobRole', formData.jobRole);
+      formDataToSend.append('employeeStatus', formData.employeeStatus);
+      formDataToSend.append('jobLevel', formData.jobLevel);
+      formDataToSend.append('socialmedia1', formData.socialmedia1);
+      formDataToSend.append('socialmedia2', formData.socialmedia2);
+      formDataToSend.append('socialmedia3', formData.socialmedia3);
+      formDataToSend.append('socialmedia4', formData.socialmedia4);
+      formDataToSend.append('platform1', formData.platform1);
+      formDataToSend.append('platform2', formData.platform2);
+      formDataToSend.append('platform3', formData.platform3);
+      formDataToSend.append('platform4', formData.platform4);
+      formDataToSend.append('category', formData.category);
+      formDataToSend.append('feedback', feedbackString);
 
-   
-       if (
-           Object.values(formData).some((value) => !value.trim()) ||
-           !profileImage ||
-           !certificate
-       ) {
-           toast.warning("Please fill all the fields!");
-           return;
-       }
-   
-       const fd = new FormData();
-       for (const [key, value] of Object.entries(formData)) {
-           fd.append(key, value.trim());
-       }
-       fd.append("image",profileImage);
-       fd.append("certificate", certificate);
-
-   
-    const header = {
-      "content-Type": "multipart/form-data",
-      Authorization: `Token ${sessionStorage.getItem("token")}`,
-    };
-     try {
-         if (id) {
-           // Update logic
-           // Example: const res = await updateSalesEmployee(fd, header);
-           console.log("Updating employee with ID:", id);
-           toast.success("Intern Employee updated successfully!");
-         } else {
-           // Add logic
-           // Example: const res = await addSalesEmployee(fd, header);
-           console.log("Adding new intern Employee");
-           toast.success("intern Employee added successfully!");
-         }
-         navigate(`/admin/intern-management-detail/${id || "new"}`);
-       } catch (error) {
-         console.error(id ? "Error updating employee" : "Error adding employee:", error);
-         toast.error("Something went wrong! Please try again.");
-       }
-
+      
   
+      if (profileImage) {
+        formDataToSend.append('profileImage', profileImage); // Add image file
+      }
+      if (certificate) {
+        formDataToSend.append('Certificate',certificate); // Add image file
+      }
+      if (id) {
+        // Update operation
+        const response = await baseURL.put(`/api/employee/employees/${id}`, formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        if (response.status === 200) {
+          toast.success('Intern Employee Details Updated Successfully!');
+          navigate(`/admin/employee-management?tab=${tab}`);
+        }
+      } else {
+        // Create operation
+        const response = await baseURL.post('/api/employee/employees', formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        if (response.status === 201) {
+          toast.success('Intern Employee Details Added Successfully!');
+          navigate(`/admin/employee-management?tab=${tab}`);
+        }
+      }
+  
+      // Reset form
+      setFormData({
+        name:'',
+  empID,
+  email:'',
+  phone:'',
+  fullAddress:'',
+  gender:'',
+  dob:'',
+  bloodGroup:'',
+  dateOfJoining:'',
+jobRole:'',
+category:'intern',
+  employeeStatus:'',
+  jobLevel:'',
+  socialmedia1:'',
+  socialmedia2:'',
+  socialmedia3:'',
+  socialmedia4:'',
+  platform1:'',
+  platform2:'',
+  platform3:'',
+  platform4:'',
+      });
+      setProfileImage(null);
+      setCertificate(null);
+    } catch (error) {
+      console.error('Error submitting employee data:', error);
+      if (error.response) {
+        console.error('Error response:', error.response);  // Log the full error object
+        console.error('Error response data:', error.response.data); // More details from API
+        console.error('Error response status:', error.response.status); // HTTP status code
+        const message = error.response.data.message || "Failed to save intern details.";
+        toast.error(message);
+      } else {
+        console.error('Error:', error.message);  // If error is not from response (e.g., network error)
+        toast.error("Network error. Please try again.");
+      }
+    }
+
   };
   const handleCancel = () => {
     navigate(-1); // Navigate back to the previous page
@@ -225,7 +311,7 @@ function AddInterns() {
                 className="form-control rounded-2xl plac"
                 placeholder="Employee ID"
                 // value={formData.empID}
-                value={formData.empID ||'' } 
+                value={formData.empID  } 
               onChange={handleInputChange} 
                 style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -382,14 +468,15 @@ function AddInterns() {
             />
           </div>
           </div>
-          <div className="mb-3 w-[100px]">
+          
+          <div className="mb-3  w-[100px]">
             <label className="form-label text-[15px]" htmlFor="bloodgroup">
               Blood Group
             </label>
             <select
               id="bloodgroup"
               name="bloodGroup"
-              className="form-select  plac"
+              className="form-select plac"
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -415,6 +502,9 @@ function AddInterns() {
               <option value="AB-">AB-</option>
             </select>
           </div>
+         
+          
+          
         </div>
         <div className="vertical-line w-[1px] h-[400px] bg-gray-400"></div>
         {/* Employment Overview Section */}
@@ -513,10 +603,8 @@ function AddInterns() {
             </label>
             <select
               id="joblevel"
-              name="joblevel"
+              name="jobLevel"
               className="form-select plac"
-              value={formData.jobLevel ||'' } 
-              onChange={handleInputChange} 
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
               onFocus={ e => {
                 
@@ -528,10 +616,17 @@ function AddInterns() {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              // value={formData.jobLevel}
+              value={formData.jobLevel ||'' } 
+              onChange={handleInputChange} 
+              // value={formData.jobRole}
             >
-              <option value="Manager Level">Manager Level</option>
-              <option value="Executive Level">Executive Level</option>
+              <option value="Manager Level">
+              Manager Level
+              </option>
+              <option value="Executive Level">
+                Executive Level
+              </option>
+             
             </select>
           </div>
         </div>
@@ -541,12 +636,14 @@ function AddInterns() {
           <h4 className="mb-4 text-[22px]">Social Media</h4>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                     Select Platform 1
                   </label>
                   <select
-                    id="instagram"
-                    name="platform"
+                    id="socialmedia1"
+                    name="socialmedia1"
+                    value={formData.socialmedia1 || ''}
+                    onChange={handleInputChange}
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -559,29 +656,27 @@ function AddInterns() {
                       e.target.style.borderColor = 'white';
                       e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                     }}
-                    // value={formData.name ||'' } 
-                    onChange={handleInputChange} 
+                   
                     
                     
-                    // value={formData.gender}
                   >
-                    <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Platform 1 Link
                   </label>
                   <input
                type="url"
-               name="website"
-               id="website"
+               name="platform1"
+               id="platform1"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform1 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -600,12 +695,12 @@ function AddInterns() {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 2
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia2"
+                    name="socialmedia2"
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -620,25 +715,25 @@ function AddInterns() {
                     }}
                     onChange={handleInputChange}
                     
-                    // value={formData.gender}
+                    value={formData.socialmedia2 ||''}
                   >
-                   <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                  Platform 1 Link
+                  Platform 2 Link
                   </label>
                   <input
-                type="url"
-                name="website"
-                id="website"
+               type="url"
+               name="platform2"
+               id="platform2"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform2 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -656,12 +751,12 @@ function AddInterns() {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 3
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia3"
+                    name="socialmedia3"
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' , width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -676,25 +771,25 @@ function AddInterns() {
                     }}
                     onChange={handleInputChange}
                     
-                    // value={formData.gender}
+                    value={formData.socialmedia3 ||''}
                   >
-                  <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                  <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-[15px]" htmlFor="gender">
-                  Platform 1 Link
+                  Platform 3 Link
                   </label>
                   <input
-               type="url"
-               name="website"
-               id="website"
+                type="url"
+                name="platform3"
+                id="platform3"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform3 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -712,13 +807,16 @@ function AddInterns() {
           </div>
           <div className="flex gap-5">
                 <div className="mb-3">
-                  <label className="form-label text-[15px]" htmlFor="gender">
+                  <label className="form-label text-[15px]" htmlFor="socialmedia1">
                   Select Platform 4
                   </label>
                   <select
-                    id="gender"
-                    name="gender"
+                    id="socialmedia4"
+                    name="socialmedia4"
+                    
                     className="form-select rounded-lg plac"
+                    value={formData.socialmedia4 ||''}
+                    onChange={handleInputChange}
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
                       
@@ -730,14 +828,14 @@ function AddInterns() {
                       e.target.style.borderColor = 'white';
                       e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
                     }}
-                    onChange={handleInputChange}
+                   
                     
-                    // value={formData.gender}
+                    
                   >
-                 <option value="">Instagram</option>
-                    <option value="">Facebook</option>
-                    <option value="">LinkedIn</option>
-                    <option value="">Twitter</option>
+                 <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="likedin">LinkedIn</option>
+                    <option value="twitter">Twitter</option>
                   </select>
                 </div>
                 <div className="mb-3">
@@ -746,11 +844,11 @@ function AddInterns() {
                   </label>
                   <input
                 type="url"
-                name="website"
-                id="website"
+                name="platform4"
+                id="platform4"
                 className="form-control rounded-2xl plac"
                 placeholder="URL Link"
-                // value={formData.email}
+                value={formData.platform4 || ''}
                 onChange={handleInputChange}
                 style={{fontSize: '12px' ,  width:'170px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                 onFocus={ e => {
@@ -779,8 +877,8 @@ function AddInterns() {
                                               className="form-control w-[660px] h-[150px] plac"
                                               placeholder="Enter here"
                                               rows="4"
-                                              value={formData.feedback ||'' } 
-                                              onChange={handleInputChange} 
+                                              value={formData.feedback.join('\n') ||'' } 
+                                              onChange={handleFeedbackChange} 
                                               style={{border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                                                       onFocus={ e => {
                                                         
@@ -826,6 +924,7 @@ function AddInterns() {
                                                       <p>Upload the file</p>
                                                     )}
                                                     <button
+                                                    type="button"
                                                       onClick={() => certificateInputRef.current.click()}
                                                       className="btn btn-link text-black "
                                                       aria-label="Upload Internship Certificate"
