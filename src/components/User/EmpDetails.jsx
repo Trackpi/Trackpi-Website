@@ -7,6 +7,7 @@ import { useState,useEffect } from "react";
 import { SERVER_URL } from "../../Api Services/serverUrl";
 import "../../CSS/employeedet.css";
 import { Link } from "react-router-dom";
+
 const EmpDetails = ({ employeeData }) => {
   if (!employeeData) return <div>Loading...</div>;
    const [profileImage, setProfileImage] = useState(null);

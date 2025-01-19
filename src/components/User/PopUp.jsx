@@ -50,7 +50,7 @@ function PopUp() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(true);
-        }, 3);
+        }, 30000);
         return () => clearTimeout(timer);
     }, []);
 // console.log(newDatas);
