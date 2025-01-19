@@ -2,18 +2,21 @@
 import { GoDotFill } from "react-icons/go";
 import { IoLogoInstagram } from "react-icons/io5";
 import { RiFacebookCircleLine } from "react-icons/ri";
-import { TbBrandLinkedin } from "react-icons/tb";
+import { TbBrandLinkedin, TbBrandTwitter } from "react-icons/tb";
 import { useState,useEffect } from "react";
 import { SERVER_URL } from "../../Api Services/serverUrl";
 import "../../CSS/employeedet.css";
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // months are zero-indexed
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
-};
+import { Link } from "react-router-dom";
+
+
 const EmpDetails = ({ employeeData }) => {
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // months are zero-indexed
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
   if (!employeeData) return <div>Loading...</div>;
    const [profileImage, setProfileImage] = useState(null);
    useEffect(() => {
@@ -23,6 +26,28 @@ const EmpDetails = ({ employeeData }) => {
       setProfileImage(imageUrl); // Set the image URL to state
     }
   }, [employeeData]);
+
+  const[socialMediaLink,setSocialMediaLink]=useState({
+    instagram:"",
+    facebook:"",
+    likedin:"",
+    twitter:""
+  })
+  useEffect(() => {
+    const newLinks = { ...socialMediaLink };
+  
+    for (let i = 1; i <= 4; i++) {
+      const socialMediaKey = employeeData[`socialmedia${i}`];
+      const platformKey = employeeData[`platform${i}`];
+  
+      if (socialMediaKey && platformKey) {
+        newLinks[socialMediaKey] = platformKey;
+      }
+    }
+  
+    setSocialMediaLink(newLinks);
+  }, [employeeData]);
+
   return (
     <>
       <div className="custom-height h-[135px] py-2 flex flex-col md:flex-row justify-between items-center sm:text-lg md:text-2xl xl:text-xl xl:leading-5 2xl:leading-5 2xl:text-2xl">
@@ -259,19 +284,20 @@ const EmpDetails = ({ employeeData }) => {
       </div>
 
       <div className="flex justify-center gap-20 mt-8 md:mt-3 2xl:mt-8 px-10 py-2 md:py-0 mb-3 md:mb-3 lg:mb-3 xl:mb-0 ">
-        <a
-          href={employeeData.instagram}
-          target="_blank"
-          className="social-link text-yellow-500  text-2xl md:text-3xl lg:text-4xl cursor-pointer"
-        >
-          <IoLogoInstagram />
-        </a>
-        <a href={employeeData.linkedin} target="_blank" className="social-link text-yellow-500  text-2xl md:text-3xl lg:text-4xl cursor-pointer">
-          <TbBrandLinkedin  />
-        </a>
-        <a href={employeeData.facebook} target="_blank" className="social-link text-yellow-500  text-2xl md:text-3xl lg:text-4xl cursor-pointer">
-          <RiFacebookCircleLine />
-        </a>
+        {socialMediaLink.facebook&&<Link target="_blank"  to={`${socialMediaLink.facebook}`} >
+                                              <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
+                                          </Link>}
+                                          {socialMediaLink.instagram&&<Link target="_blank"  to={`${socialMediaLink.instagram}`} >
+                                              <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />
+                                              </Link>}
+                                             {socialMediaLink.likedin&& <Link target="_blank"  to={`${socialMediaLink.likedin}`} >
+        
+                                              <TbBrandLinkedin size={35} className="text-yellow-500 cursor-pointer" />
+                                              </Link>}
+                                              {socialMediaLink.twitter&&<Link target="_blank"  to={`${socialMediaLink.twitter}`} >
+        
+                                              <TbBrandTwitter  size={35} className="text-yellow-500 cursor-pointer" />
+                                              </Link>}
       </div>
     </>
   );

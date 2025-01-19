@@ -39,7 +39,7 @@ const FooterManagement = () => {
     useEffect(() => {
         getAllFooterDatas();
     }, []);
-console.log(footerVideoDetails);
+// console.log(footerVideoDetails);
 
     const editFooterDetails = async (e) => {
         e.preventDefault();
@@ -228,7 +228,7 @@ console.log(footerVideoDetails);
                         <div className="grid py-[20px] gap-[30px] ">
                             <div className="flex  gap-[40px] items-center w-100">
                                 <div className="flex justify-between gap-[30px] w-100 items-center">
-                                    <div className="videoBtn min-w-[110px] text-center">Video 1</div>
+                                    <div className="videoBtn min-w-[120px] text-center">Video 1</div>
                                     <input
                                     readOnly={!videoEditMode1}
                                         className="px-[20px] py-[15px] footerBanner outline-none rounded-[10px] w-100 border"
@@ -286,7 +286,7 @@ console.log(footerVideoDetails);
                             </div>
                             <div className="flex gap-[40px] items-center w-100">
                                 <div className="flex justify-between gap-[30px] w-100 items-center">
-                                    <div className="videoBtn min-w-[110px] text-center">Video 2</div>
+                                    <div className="videoBtn min-w-[120px] text-center">Video 2</div>
                                     <input
                                     readOnly={!videoEditMode2}
                                     className="px-[20px] py-[15px] footerBanner outline-none rounded-[10px] w-100 border"
@@ -344,7 +344,7 @@ console.log(footerVideoDetails);
                             </div>
                             <div className="flex gap-[40px] items-center w-100">
                                 <form className="flex justify-between gap-[30px] w-100 items-center">
-                                    <div className="videoBtn min-w-[110px] text-center">Video 3</div>
+                                    <div className="videoBtn min-w-[120px] text-center">Video 3</div>
                                     <input
                                     readOnly={!videoEditMode3}
                                         className="px-[20px] py-[15px] footerBanner outline-none rounded-[10px] w-100 border"

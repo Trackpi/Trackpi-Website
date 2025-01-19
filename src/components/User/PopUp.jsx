@@ -11,11 +11,23 @@ import instagramIcon from "../../images/insta2.svg";
 import closeImg from "../../images/closePopup.svg";
 import dropdownImg from "../../images/dropdownImg.svg";
 import { Link } from "react-router-dom";
+import baseURL from "../../Api Services/baseURL";
+import { toast } from "react-toastify";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 function PopUp() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
+    const[newDatas,setNewDatas]=useState({
+        fullName:"",
+        phone:"",
+        email:"",
+        location:"",
+        info_from:"",
+        message:""
+    })
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
@@ -41,6 +53,72 @@ function PopUp() {
         }, 30000);
         return () => clearTimeout(timer);
     }, []);
+// console.log(newDatas);
+
+const handlePhoneChange = (value, country) => {
+    if (!value) {
+        setNewDatas({...newDatas,phone:""});
+      return;
+    }
+    const formattedPhone = `+${country.dialCode} ${value.slice(country.dialCode.length)}`;
+    setNewDatas({...newDatas,phone:formattedPhone});
+    // console.log(formattedPhone); 
+  };
+
+    const addNewForm=async (e)=>{
+        e.preventDefault()
+        try {
+            const formData = new FormData();
+            formData.append("fullName", newDatas.fullName);
+            formData.append("phone", newDatas.phone);
+            formData.append("email", newDatas.email);
+            formData.append("location", newDatas.location);
+            formData.append("info_from", newDatas.info_from);
+            formData.append("message", newDatas.message);
+
+            const response = await baseURL.post("/contactForm/formSubmit", formData,{
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            });            
+
+            if (response.status === 201) {
+                toast.success(" Datas submitted successfully!");
+                setNewDatas({
+                    fullName:"",
+                    phone:"91",
+                    email:"",
+                    location:"",
+                    info_from:"",
+                    message:""
+                })
+                setSelectedOption("")
+                setTimeout(()=>{
+                    handleClose()
+                },1000)
+            }
+        } catch (error) {
+            console.error("Error adding news:", error);
+        
+            if (error.name === 'ValidationError') {
+                const errorMessages = Object.values(error.errors).map(err => err.message);
+                toast.error(`Validation Error: ${errorMessages.join(', ')}`);
+            } else if (error.response) {
+                if (error.response.data) {
+                    const errorMessage = error.response.data.error || "An error occurred";
+                    toast.error(`${errorMessage}`);
+                    console.log(error);
+                } else {
+                    toast.error("Server responded with an error.");
+                }
+            } else if (error.request) {
+                toast.error("No response received from the server.");
+            } else {
+                toast.error(`Error: ${error.message}`);
+            }
+        }
+    }        
+
 
     return (
         <div>
@@ -48,17 +126,31 @@ function PopUp() {
                 <div className="grid gap-[20px] sm:gap-[21px] md:gap-[22px] lg:gap-[23px] xl:gap-[25px] p-[15px]  sm:p-[15px] md:p-[20px]  lg:p-[25px] xl:p-[30px]">
                     <div className="flex justify-between ">
                         <div className="h-[20px] sm:h-[25px] md:h-[30px] lg:h-[35px] xl:h-[40px]"></div>
-                        <div className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] xl:text-[34px] font-bold text-[#FF9D00]">Connect With Us</div>
+                        <div className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-bold text-[#FF9D00]">Connect With Us</div>
                         <div className="cursor-pointer" onClick={handleClose}>
                             <img className="h-[20px] sm:h-[25px] md:h-[30px] lg:h-[35px] xl:h-[40px] " src={closeImg} alt="" />
                         </div>
                     </div>
                     <div className="popupForm sm:px-[15px] md:px-[20px]  lg:px-[25px] xl:px-[30px]">
-                        <form className=" grid gap-[10px] sm:gap-[11px] md:gap-[12px] lg:gap-[14px] xl:gap-[15px]">
-                            <input className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]  h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]" required type="text" placeholder="Name" />
-                            <input className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]   h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]" required type="email" placeholder="Email" />
-                            <input className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]   h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]" required type="number" placeholder="Contact Number" />
-                            <input className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]  h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]" required type="text" placeholder="Where are you located?" />
+                        <form onSubmit={addNewForm} className=" grid gap-[10px] sm:gap-[11px] md:gap-[12px] lg:gap-[14px] xl:gap-[15px]">
+                            <input className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]  h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]" value={newDatas.fullName} onChange={(e) =>
+                                    setNewDatas({ ...newDatas, fullName: e.target.value })} type="text" placeholder="Name" />
+                            <input className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]   h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]"  value={newDatas.email}  onChange={(e) =>
+                                    setNewDatas({ ...newDatas, email: e.target.value })}  type="text" placeholder="Email" />
+                                    <div className="w-full popupPhoneInput">
+
+                                    <PhoneInput
+        value={newDatas.phone}
+        country={"in"}
+        enableSearch={true}
+        onChange={(value, country) => handlePhoneChange(value, country)}
+      />
+
+                                    </div>
+                            {/* <input className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]   h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]" value={newDatas.phone}  onChange={(e) =>
+                                    setNewDatas({ ...newDatas, phone: e.target.value })}  type="text" placeholder="Contact Number" /> */}
+                            <input className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]  h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]"  value={newDatas.location}  onChange={(e) =>
+                                    setNewDatas({ ...newDatas, location: e.target.value })}  type="text" placeholder="Where are you located?" />
 
       <div className="relative selectForPopup text-center  ">
         {/* Button to toggle dropdown */}
@@ -74,18 +166,23 @@ function PopUp() {
           <ul className=" w-[90%]  absolute left-[5%]  mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
             {options.map((option) => (
               <li 
-                key={option.value} 
+                key={option.value}
                 className="flex items-center w-100 text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[14px] md:py-[11px] lg:px-[15px] lg:py-[12px]  relative   mx-auto hover:bg-[#FF9D00] hover:text-black hover:rounded-lg text-left cursor-pointer dropdownList list-none  h-[30px] sm:h-[32px] md:h-[35px] lg:h-[37px] lg:h-[40px]"
-                onClick={() => handleOptionClick(option.label)}>
+                onClick={() => {
+                    handleOptionClick(option.label); 
+                    setNewDatas({ ...newDatas, info_from:option.label });  
+                  }}
+                  >
                 {option.label}
               </li>
             ))}
           </ul>
         )}
       </div>
-                          <textarea className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] h-[60] sm:h-[65px] md:h-[70px] lg:h-[75px] xl:h-[80px]" required name="" placeholder="Message"></textarea>
+                          <textarea className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] px-[10px] py-[8px] sm:px-[12px] sm:py-[10px] md:px-[16px] md:py-[14px] lg:px-[18px] lg:py-[16px] h-[60] sm:h-[65px] md:h-[70px] lg:h-[75px] xl:h-[80px]" value={newDatas.message}  onChange={(e) =>
+                                    setNewDatas({ ...newDatas, message: e.target.value })}  name="" placeholder="Message"></textarea>
                             <div className="max-w-[244px] mx-auto">
-                                <button className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00] font-bold text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] text-white rounded-lg px-[15px] md:px-[30px] lg:px-[45px] xl:px-[60px]  
+                                <button type="submit" className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00] font-bold text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] text-white rounded-lg px-[15px] md:px-[30px] lg:px-[45px] xl:px-[60px]  
           py-[8px] md:py-[9px] lg:py-[10px]    font-bold ">
                                     <span>Submit</span>
                                 </button>

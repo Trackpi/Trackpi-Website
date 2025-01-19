@@ -72,7 +72,7 @@ function ConnectButtons() {
             <img src={Whatsapp} alt="Whatsapp" />
           </div>
         </NavLink>
-        <NavLink
+        <div
   data-tooltip-id="connectus-tooltip"
   data-tooltip-content="Connect Us"
   data-tooltip-place="left"
@@ -82,7 +82,7 @@ function ConnectButtons() {
           <div className="icons">
             <img src={hand} alt="Connect Us" />
           </div>
-        </NavLink>
+        </div>
         <div
           data-tooltip-id="bot-tooltip"
           data-tooltip-content="Bot"
