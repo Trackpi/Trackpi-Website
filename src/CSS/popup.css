@@ -56,4 +56,60 @@
   
 
 
-  
+  .popupPhoneInput .react-tel-input input {
+    width: 100% !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: 2px 2px 4px 0 #0A0A0A33, -2px 1px 4px 0 #0A0A0A33 !important;
+
+  }
+
+  @media (max-width: 1280px) {
+    .popupPhoneInput .react-tel-input input {
+    height: 32px !important;
+  }
+}
+  @media (max-width: 1024px) {
+    .popupPhoneInput .react-tel-input input {
+    height: 35px !important;
+  }
+}
+  @media (max-width: 768px) {
+    .popupPhoneInput .react-tel-input input {
+    height: 37px !important;
+  }
+}
+  @media (max-width: 640px) {
+    .popupPhoneInput .react-tel-input input {
+    height: 30px !important;
+  }
+}
+
+.connectPhoneInput {
+    width: 100% !important;
+    max-width: 712px;
+    margin: auto;
+    }
+  .connectPhoneInput .react-tel-input input {
+    width: 100% !important;
+    max-width: 712px;
+    height: 53.4px !important;
+    border-radius: 5px !important;
+    border: 0.89px solid  #0A0A0ACC !important;
+  }
+  .connectPhoneInput .react-tel-input input:focus {
+    box-shadow: none!important;
+
+  }
+
+
+  @media (max-width: 768px) {
+    .connectPhoneInput .react-tel-input input {
+        border-radius: 20px !important;
+    }
+    /* .connectPhoneInput .flag-dropdown , .connectPhoneInput .open{
+        border-radius:20px 0 0 20px   !important;
+    } */
+}

@@ -6,8 +6,8 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaRegEdit } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
 import { RiFacebookCircleLine } from "react-icons/ri";
-import { TbBrandLinkedin } from "react-icons/tb";
-import { useLocation,useNavigate } from "react-router-dom";
+import { TbBrandLinkedin, TbBrandTwitter } from "react-icons/tb";
+import { Link, useLocation,useNavigate } from "react-router-dom";
 import { SERVER_URL } from "../../Api Services/serverUrl";
 
 
@@ -17,7 +17,26 @@ function EmployeeManagementDetail() {
     const navigate = useNavigate();
     const [profileImage, setProfileImage] = useState(null);
     const employeeData  = location.state.rowDatas || {};
+const[socialMediaLink,setSocialMediaLink]=useState({
+  instagram:"",
+  facebook:"",
+  likedin:"",
+  twitter:""
+})
+useEffect(() => {
+  const newLinks = { ...socialMediaLink };
 
+  for (let i = 1; i <= 4; i++) {
+    const socialMediaKey = employeeData[`socialmedia${i}`];
+    const platformKey = employeeData[`platform${i}`];
+
+    if (socialMediaKey && platformKey) {
+      newLinks[socialMediaKey] = platformKey;
+    }
+  }
+
+  setSocialMediaLink(newLinks);
+}, [employeeData]);
 
     const handleBack = () => {
       navigate(-1); // Go back to previous page
@@ -90,10 +109,20 @@ function EmployeeManagementDetail() {
                                       {employeeData.selfIntroduction}</p>
                                 </div>
                                 <div className=" flex justify-evenly gap-20 mt-6 px-10">
+                                  {socialMediaLink.facebook&&<Link target="_blank"  to={`${socialMediaLink.facebook}`} >
                                       <RiFacebookCircleLine size={35} className="text-yellow-500 cursor-pointer" />
-                                    
+                                  </Link>}
+                                  {socialMediaLink.instagram&&<Link target="_blank"  to={`${socialMediaLink.instagram}`} >
                                       <IoLogoInstagram size={35} className="text-yellow-500 cursor-pointer" />
+                                      </Link>}
+                                     {socialMediaLink.likedin&& <Link target="_blank"  to={`${socialMediaLink.likedin}`} >
+
                                       <TbBrandLinkedin size={35} className="text-yellow-500 cursor-pointer" />
+                                      </Link>}
+                                      {socialMediaLink.twitter&&<Link target="_blank"  to={`${socialMediaLink.twitter}`} >
+
+                                      <TbBrandTwitter  size={35} className="text-yellow-500 cursor-pointer" />
+                                      </Link>}
                               </div>
                       </div>
                 </div>
