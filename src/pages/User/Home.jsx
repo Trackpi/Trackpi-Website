@@ -20,6 +20,7 @@ import news2 from '../../images/news 2.png';
 import news3 from '../../images/news 3.png';
 import news4 from '../../images/news 4.png';
 import news5 from '../../images/news5.jpeg';
+import baseURL from '../../Api Services/baseURL';
 
 function Home() {
   const isInView1 = useInView({ selector: '.section1' });
@@ -149,7 +150,7 @@ function Home() {
     { id: 13, logo: clientLogo1 },
     { id: 14, logo: clientLogo2 },
   ];
-
+const [clientsLogo,setClientsLogo] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0);
   const [bulgingCard, setBulgingCard] = useState(0);
   const [groupedCards, setGroupedCards] = useState([]);
@@ -251,6 +252,19 @@ function Home() {
   const dotsToRender =
     window.innerWidth < 640 ? groupedCards.slice(0, 4) : groupedCards;
 
+  useEffect(() => {
+    const getClients = async () => {
+      try {
+        const response = await baseURL.get('api/partner/getpartner');
+        console.log(response.data[0].companylogo, 'clientsData');
+        setClientsLogo(response.data)
+        set
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    getClients();
+  }, []);
   return (
     <>
       <PopUp />
@@ -291,6 +305,7 @@ function Home() {
           </h1>
         </div>
         <div className="relative bg-gradient-to-r from-[#FFC100] to-[#FF9D00]">
+          {/* <div className="relative bg-cyan-600"> */}
           {/* Carousel */}
           <div className="overflow-x-auto md:overflow-hidden touch-pan-x carousel-container">
             <Carousel
@@ -312,10 +327,10 @@ function Home() {
                     {group.map((card, cardIndex) => (
                       <div
                         key={cardIndex}
-                        className={`carousel-card flex-shrink-0 w-full h-[250px] lg:h-auto xl:h-auto rounded-lg  text-center transform transition-transform duration-500 cursor-pointer ${
+                        className={`carousel-card flex-shrink-0 w-full rounded-lg  text-center transform transition-transform duration-500 cursor-pointer ${
                           cardIndex === bulgingCard
-                            ? 'scale-110 2xl:scale-105'
-                            : 'scale-95'
+                            ? 'scale-105 sm:scale-125 md:scale-110 lg:scale-110 xl:scale-110 2xl:scale-105'
+                            : 'scale-95 2xl:scale-90'
                         }`}
                         onMouseEnter={() => handleMouseEnter(cardIndex)}
                         onMouseLeave={handleMouseLeave}

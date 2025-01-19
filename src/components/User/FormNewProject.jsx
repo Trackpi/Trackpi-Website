@@ -1,29 +1,116 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import { GoUpload } from 'react-icons/go';
 import { Link } from 'react-router-dom';
+import BaseURL from '../../Api Services/baseURL';
 
 const FormNewProject = () => {
+  const initialFormData = {
+    fullName: '',
+    contactNumber: '',
+    emailAddress: '',
+    userType: '',
+    qualification: '',
+    institute_company: '',
+    projectName: '',
+    problemSolved: '',
+    beneficiaries: '',
+    successReason: '',
+    summary: '',
+    skills: '',
+    agreeTerms:'false'
+  };
+  const storedData = localStorage.getItem('formData');
+  const [formData, setFormData] = useState(storedData ? JSON.parse(storedData) : initialFormData);
+  console.log(formData, 'formDataa');
+  const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
+  const [loading, setLoading] = useState(false);
 
+  // Save form data to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+  }, [formData]);
+
+  // Handle input change
+ const handleChange = (e) => {
+    const { id, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: type === 'checkbox' ? checked : value, // ✅ Handle checkboxes correctly
+    }));
+  };
+
+  // Handle radio button selection
+  const handleRadioChange = e => {
+    setFormData({
+      ...formData,
+      userType: e.target.value,
+    });
+  };
   // Handle file selection
   const handleFileChange = event => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setFileName(selectedFile.name);
     }
   };
 
   // Handle file removal
   const handleRemoveFile = () => {
-    setFileName(null);
-    document.getElementById('fileInput').value = ''; // Reset the input value
+    setFile(null);
+    setFileName('');
+    document.getElementById('fileInput').value = ''; // Reset file input
   };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    console.log("Clicked Submit");
+    e.preventDefault();
+    setLoading(true);
+  
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formDataToSend.append(key, formData[key]);
+    });
+  
+    if (file) {
+      formDataToSend.append("projectFile", file);
+    }
+  
+    try {
+      const response = await BaseURL.post("api/projects/submit", formDataToSend, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+  
+      console.log(response.data, "Response Data");
+  
+      setFormData({
+        ...initialFormData,
+        agreeTerms: false, // Replace `yourCheckboxField` with your actual checkbox state key
+      });
+      
+      setFile(null);
+      setFileName("");
+      localStorage.removeItem('formData'); // Clear stored data after submission
+      
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
 
   return (
     <>
       <div className=" bg-white md:px-12 lg:px-0 py-3 ">
-        <Form className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl">
+        <Form
+          onSubmit={handleSubmit}
+          className="flex flex-col  max-w-[712px] mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-4xl mx-auto text-sm sm:text-lg md:text-lg xl:text-lg xl-leading-7 2xl:leading-10 2xl:text-2xl"
+        >
           <div className="mb-4">
             <Form.Control
               style={{
@@ -41,9 +128,11 @@ const FormNewProject = () => {
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="fullname"
+              id="fullName"
               placeholder="Full Name"
               className="rounded-lg placeholder-black p-3 place"
+              value={formData.fullName}
+              onChange={handleChange}
               required
             />
           </div>
@@ -65,9 +154,11 @@ const FormNewProject = () => {
                 e.target.style.boxShadow = 'none';
               }}
               type="tel"
-              id="contactnumber"
+              id="contactNumber"
               placeholder="Contact Number"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              value={formData.contactNumber}
+              onChange={handleChange}
               className="border-black text-black placeholder-black p-3 place"
               required
             />
@@ -90,8 +181,10 @@ const FormNewProject = () => {
                 e.target.style.boxShadow = 'none';
               }}
               type="email"
-              id="email"
+              id="emailAddress"
               placeholder="Email Address"
+              value={formData.emailAddress}
+              onChange={handleChange}
               className="  border-black text-black placeholder-[#0A0A0A] p-3 place"
               required
             />
@@ -99,33 +192,19 @@ const FormNewProject = () => {
 
           <div className="mb-4">
             <div className="flex px-2 justify-between mr-0 lg:mr-96">
-              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
-                <input
-                  type="radio"
-                  name="options"
-                  value="Student"
-                  className="form-radio h-5 w-5 text-black checked:bg-black  focus:ring-black "
-                />
-                <span className="text-sm text-[#0A0A0A]">Student</span>
-              </label>
-              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
-                <input
-                  type="radio"
-                  name="options"
-                  value="Fresher"
-                  className="form-radio h-5 w-5 text-black checked:bg-black focus:ring-black"
-                />
-                <span className="text-sm text-[#0A0A0A]">Fresher</span>
-              </label>
-              <label className="flex items-center space-x-2 text-[#0A0A0A] text-opacity-70">
-                <input
-                  type="radio"
-                  name="options"
-                  value="Working"
-                  className="form-radio h-5 w-5 text-black checked:bg-black focus:ring-black"
-                />
-                <span className="text-sm text-[#0A0A0A]">Working</span>
-              </label>
+              {['Student', 'Fresher', 'Working'].map(option => (
+                <label key={option} className="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    name="userType"
+                    value={option}
+                    checked={formData.userType === option}
+                    onChange={handleRadioChange}
+                    required
+                  />
+                  <span className="text-sm text-[#0A0A0A]">{option}</span>
+                </label>
+              ))}
             </div>
           </div>
 
@@ -148,23 +227,26 @@ const FormNewProject = () => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
+              value={formData.qualification}
+              onChange={handleChange}
               required
             >
-              <option value="" disabled selected>
+              <option value="" defaultValue disabled>
                 Qualification{' '}
               </option>
-              <option value="socialMedia">MCA</option>
-              <option value="searchEngine">MBA</option>
-              <option value="friendFamily">Bcom</option>
-              <option value="advertisement">BTech</option>
-              <option value="other">Other</option>
+              <option value="MCA">MCA</option>
+              <option value="MBA">MBA</option>
+              <option value="Bcom">Bcom</option>
+              <option value="Btech">BTech</option>
+              <option value="Other">Other</option>
             </Form.Select>
           </div>
 
           <div className="mb-4 overflow-x-auto">
-            <Form.Select
+            <Form.Control
               id="institute_company"
               className=" p-3 max-w-full  placeholder-black place"
+              placeholder="Institute/Company Name"
               style={{
                 border: '0.2px solid rgba(10, 10, 10, 0.82)',
                 borderRadius: '11.55px',
@@ -180,17 +262,19 @@ const FormNewProject = () => {
                 e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
                 e.target.style.boxShadow = 'none';
               }}
+              value={formData.institute_company}
+              onChange={handleChange}
               required
             >
-              <option value="" disabled selected>
+              {/* <option value="" disabled selected>
                 Institute/Company Name
               </option>
               <option value="socialMedia">Social Media</option>
               <option value="searchEngine">Search Engine</option>
               <option value="friendFamily">Friend or Family</option>
               <option value="advertisement">Advertisement</option>
-              <option value="other">Other</option>
-            </Form.Select>
+              <option value="other">Other</option> */}
+            </Form.Control>
           </div>
 
           <div className="mb-4">
@@ -210,8 +294,10 @@ const FormNewProject = () => {
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="project_idea"
+              id="projectName"
               placeholder="Project/Idea Name"
+              value={formData.projectName}
+              onChange={handleChange}
               className="  border-black text-black placeholder-black p-3 place"
             />
           </div>
@@ -233,7 +319,9 @@ const FormNewProject = () => {
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="problem_solve"
+              id="problemSolved"
+              value={formData.problemSolved}
+              onChange={handleChange}
               placeholder="What problem does your Idea Solve?"
               className="  border-black text-black placeholder-black p-3 place"
             />
@@ -256,7 +344,9 @@ const FormNewProject = () => {
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="benefit_idea"
+              id="beneficiaries"
+              value={formData.beneficiaries}
+              onChange={handleChange}
               placeholder="Who would benefit from this idea?"
               className="  border-black text-black placeholder-black p-3 place"
             />
@@ -279,13 +369,48 @@ const FormNewProject = () => {
                 e.target.style.boxShadow = 'none';
               }}
               type="text"
-              id="idea_success"
+              id="successReason"
+              value={formData.successReason}
+              onChange={handleChange}
               placeholder="Why do you think this idea will succeed?"
               className="  border-black text-black placeholder-black p-3 place"
             />
           </div>
+          {/* Text Fields */}
+          {/* {[
+            'project_idea/Idea Name',
+            'What Problem Does Your Idea Solve?',
+            'Who would benefit from this idea?',
+            'Why Do You Think This Idea Will Succeed?',
+            'Do You Have Any Business or Technical Skills?',
+          ].map(field => (
+            <div key={field} className="mb-4">
+              <Form.Control
+                type="text"
+                id={field}
+                placeholder={field.replace('_', ' ')}
+                value={formData[field]}
+                onChange={handleChange}
+                className="  border-black text-black placeholder-black p-3 place"
+                style={{
+                  borderRadius: '11.55px',
+                  border: '0.2px solid rgba(10, 10, 10, 0.82)',
+                  height: '53.4px',
+                }}
+                onFocus={e => {
+                  e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                  e.target.style.boxShadow =
+                    '0 0 0 0.2rem rgba(131, 133, 134, 0.25)';
+                }}
+                onBlur={e => {
+                  e.target.style.borderColor = 'rgba(10, 10, 10, 0.82)';
+                  e.target.style.boxShadow = 'none';
+                }}
+              />
+            </div>
+          ))} */}
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <Form.Control
               style={{
                 borderRadius: '11.55px',
@@ -306,7 +431,7 @@ const FormNewProject = () => {
               placeholder="Do you have any business or teachnical skills?"
               className="  border-black text-black placeholder-black p-3 place"
             />
-          </div>
+          </div> */}
 
           <div className="mb-4">
             <Form.Control
@@ -325,7 +450,9 @@ const FormNewProject = () => {
                 e.target.style.boxShadow = 'none';
               }}
               as="textarea"
-              id="summarize"
+              id="summary"
+              value={formData.summary}
+              onChange={handleChange}
               placeholder="Summarize your project Ideas"
               className="  border-red text-black placeholder-black p-3 place"
             />
@@ -355,21 +482,27 @@ const FormNewProject = () => {
                 </>
               ) : (
                 <>
-                  <p className='mb-0 font-semibold'>Upload Supporting Documents or Files</p>
+                  <p className="mb-0 font-semibold">
+                    Upload Supporting Documents or Files
+                  </p>
                   <GoUpload className="inline-block mx-1.5" />
                 </>
               )}
+              {/* Message Display */}
+             
             </label>
           </div>
 
           <div className="flex justify-center items-center mt-3">
             <input
               type="checkbox"
-              id="terms"
+              id="agreeTerms"
+              checked={formData.agreeTerms || false}
+              onChange={handleChange}
               className="form-checkbox border-gray-300"
               required
             />
-            <label htmlFor="terms" className="text-sm">
+            <label htmlFor="agreeTerms" className="text-sm">
               <Link
                 to="/termsconditions-submit-new-project"
                 className="text-[#212529] items-center text-[14px] no-underline mx-2 cursor-pointor"
