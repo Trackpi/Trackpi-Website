@@ -50,7 +50,7 @@ function SalesManagementDetail() {
           >
             {employeeData.businessCard ? (
             <iframe
-              src={`${SERVER_URL}${employeeData.businessCard}`}
+              src={`${SERVER_URL}${employeeData.businessCard}#toolbar=0`}
               className="w-[225px] md:w-[500px] h-[300px] rounded-lg"
               style={{ border: 'none' }}
               title="Business Card"

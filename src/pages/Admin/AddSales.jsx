@@ -4,6 +4,7 @@ import "../../CSS/addsales.css";
 import { useNavigate, useParams,useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
+import { SERVER_URL } from "../../Api Services/serverUrl";
 import baseURL from '../../Api Services/baseURL';
 function AddSales() {
 const location = useLocation();
@@ -22,16 +23,18 @@ const tab = queryParams.get('tab') || 'Sales';
      phone:employeeData.phone ||  "",
      fullAddress:employeeData.fullAddress ||  "",
      gender:employeeData.gender||  "",
-     dob:employeeData.dob||  "",
-     bloodGroup:employeeData.bloodGroup||  "",
-     dateOfJoining:employeeData.dateOfJoining||  "",
-     jobRole:employeeData.jobRole||  "",
-     employeeStatus: employeeData.employeeStatus|| "",
-     jobLevel:employeeData.jobLevel||  "",
-     socialmedia1: employeeData.socialmedia1 || "",
-     socialmedia2: employeeData.socialmedia2 || "",
-     socialmedia3: employeeData.socialmedia3 || "",
-     socialmedia4: employeeData.socialmedia4 || "",
+     dob: employeeData.dob ? new Date(employeeData.dob).toISOString().substring(0, 10) : "",         
+     bloodGroup:employeeData.bloodGroup || "A+",
+     dateOfJoining: employeeData.dateOfJoining
+     ? new Date(employeeData.dateOfJoining).toISOString().substring(0, 10)
+     : "",      
+     jobRole:employeeData.jobRole ||  "Business Development Executive",
+     employeeStatus: employeeData.employeeStatus || "Full time",
+     jobLevel:employeeData.jobLevel || "Manager Level",
+     socialmedia1: employeeData.socialmedia1 || "Instagram" ,
+     socialmedia2: employeeData.socialmedia2 || "Instagram"  ,
+     socialmedia3: employeeData.socialmedia3 || "Instagram"  ,
+     socialmedia4: employeeData.socialmedia4 || "Instagram" ,
      platform1: employeeData.platform1 || "",
      platform2: employeeData.platform2 || "",
      platform3: employeeData.platform3 || "",
@@ -60,16 +63,18 @@ const businessCardInputRef = useRef(null);
          phone: employeeData.phone || "",
          fullAddress: employeeData.fullAddress || "",
          gender: employeeData.gender || "",
-         dob: employeeData.dob || "",
-         bloodGroup: employeeData.bloodGroup || "",
-         dateOfJoining: employeeData.dateOfJoining || "",
-         jobRole: employeeData.jobRole || "",
-         employeeStatus: employeeData.employeeStatus || "",
-         jobLevel: employeeData.jobLevel || "",
-         socialmedia1: employeeData.socialmedia1 || "",
-         socialmedia2: employeeData.socialmedia2 || "",
-         socialmedia3: employeeData.socialmedia3 || "",
-         socialmedia4: employeeData.socialmedia4 || "",
+         dob: employeeData.dob ? new Date(employeeData.dob).toISOString().substring(0, 10) : "",         
+          bloodGroup: employeeData.bloodGroup || "A+",
+          dateOfJoining: employeeData.dateOfJoining
+          ? new Date(employeeData.dateOfJoining).toISOString().substring(0, 10)
+          : "",             
+         jobRole: employeeData.jobRole ||  "Business Development Executive" ,
+         employeeStatus: employeeData.employeeStatus  || "Full time",
+         jobLevel: employeeData.jobLevel  || "Manager Level",
+         socialmedia1: employeeData.socialmedia1  || "Instagram" ,
+         socialmedia2: employeeData.socialmedia2  || "Instagram",
+         socialmedia3: employeeData.socialmedia3  || "Instagram",
+         socialmedia4: employeeData.socialmedia4  || "Instagram" ,
          platform1: employeeData.platform1 || "",
          platform2: employeeData.platform2 || "",
          platform3: employeeData.platform3 || "",
@@ -80,17 +85,16 @@ const businessCardInputRef = useRef(null);
      }
    }, [id, employeeData]);
    useEffect(() => {
-         // Fetch the image and convert it to a File object
-         if (employeeData.image) {
-           fetch(employeeData.image)
-             .then((res) => res.blob())
-             .then((blob) => {
-               const file = new File([blob], "image.jpg", { type: "image/jpeg" });
-               setProfileImage(file);
-             })
-             .catch((error) => console.error("Failed to fetch image:", error));
-         }
-       }, [employeeData.image]);
+    if (employeeData && employeeData.profileImage) {
+        setProfileImage(`${SERVER_URL}${employeeData.profileImage}`);
+    }
+}, [employeeData]);
+useEffect(() => {
+  if (employeeData && employeeData.businessCard) {
+      setBusinessCard(`${SERVER_URL}${employeeData.businessCard}`); // Set the full business card URL
+  }
+}, [employeeData]);
+
 
 const handleInputChange = (e) => {
   const { name, value } = e.target;
@@ -101,13 +105,17 @@ const handleInputChange = (e) => {
 };
 
 const handleFileChange = (e) => {
-  setProfileImage(e.target.files[0]);
+  if (e.target.files && e.target.files[0]) {
+    setProfileImage(e.target.files[0]);
+  }
 };
 
 
 const handleBusinessCardFileChange = (e) => {
-  setBusinessCard(e.target.files[0]);
-  };
+  if (e.target.files && e.target.files[0]) {
+      setBusinessCard(e.target.files[0]); // If a new file is selected, update state with the file
+  }
+};
 
   const handleUpload = () => {
     if (profileImage || businessCard) {
@@ -123,6 +131,30 @@ const handleBusinessCardFileChange = (e) => {
     e.preventDefault();
     
     const empID = formData.empID;
+     const empIDPattern = /^TPE1D\d{6}$/; // Regular expression to match 'TPE1D' followed by 6 digits
+      if (!empIDPattern.test(empID)) {
+        toast.error("Employee ID must start with 'TPE1D' followed by 6 digits (e.g., TPE1D123456).");
+        return; // Prevent form submission
+      }
+      // Validate name length
+const name = formData.name.trim();
+if (name.length < 3 || name.length > 64) {
+  toast.error("Name must be between 3 and 64 characters.");
+  return; // Prevent form submission
+}
+        // Validate phone number format
+  const phone = formData.phone;
+  const phonePattern = /^\+(\d{1,3})\s?\d{7,12}$/; // Regular expression for valid phone number with country code
+  if (!phonePattern.test(phone)) {
+    toast.error("Phone number must include a valid country code (e.g., +91 9876543210) and be 7 to 12 digits long.");
+    return; // Prevent form submission
+  }
+    // Validate address length
+    const address = formData.fullAddress;
+    if (address.length < 6) {
+      toast.error("Address must be at least 6 characters long.");
+      return; // Prevent form submission
+    }
        
          try {
           const formDataToSend = new FormData();
@@ -149,10 +181,10 @@ const handleBusinessCardFileChange = (e) => {
           formDataToSend.append('category', formData.category);
           
       
-          if (profileImage) {
-            formDataToSend.append('profileImage', profileImage); // Add image file
-          }
-          if (businessCard) {
+          if (profileImage instanceof File) {
+            formDataToSend.append('profileImage', profileImage); // Only append if it's a file
+        }
+          if (businessCard instanceof File) {
             formDataToSend.append('businessCard',businessCard); // Add image file
           }
           if (id) {
@@ -209,6 +241,7 @@ const handleBusinessCardFileChange = (e) => {
           });
           setProfileImage(null);
           setBusinessCard(null);
+          fileInputRef.current.value = "";
         } catch (error) {
           console.error('Error submitting employee data:', error);
           if (error.response) {
@@ -235,18 +268,25 @@ const handleCancel = () => {
               className="d-flex justify-content-center align-items-center border border-secondary rounded-2xl position-relative"
               style={{ width: "150px", height: "120px" }}
             >
-                  {profileImage && (
-  <img
-    src={profileImage instanceof File ? URL.createObjectURL(profileImage) : profileImage}
-    alt="Uploaded"
-    style={{
-      width: "150px",
-      height: "120px",
-      borderRadius: "12%",
-      objectFit: "cover",
-    }}
-  />
+      {profileImage ? (
+    <img
+        src={
+            profileImage instanceof File
+                ? URL.createObjectURL(profileImage) // Local file preview
+                : profileImage // URL of the existing image
+        }
+        alt="Uploaded"
+        style={{
+            width: "150px",
+            height: "120px",
+            borderRadius: "12%",
+            objectFit: "cover",
+        }}
+    />
+) : (
+    <span>No image available</span> // Placeholder for no image
 )}
+
                <div
                 className="position-absolute bottom-2 end-2 bg-warning rounded-circle d-flex justify-content-center align-items-center"
                 style={{ width: "25px", height: "25px" }}
@@ -480,7 +520,7 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.bloodGroup ||'' } 
+              value={formData.bloodGroup } 
               onChange={handleInputChange} 
               // value={formData.bloodGroup}
             >
@@ -574,7 +614,7 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.jobRole ||'' } 
+              value={formData.jobRole  } 
               onChange={handleInputChange} 
               // value={formData.jobRole}
             >
@@ -597,7 +637,7 @@ const handleCancel = () => {
               id="empsatus"
               name="employeeStatus"
               className="form-select plac"
-              value={formData.employeeStatus ||'' } 
+              value={formData.employeeStatus  } 
               onChange={handleInputChange} 
               
               style={{fontSize: '12px' ,border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
@@ -637,7 +677,7 @@ const handleCancel = () => {
                 e.target.style.borderColor = 'white';
                 e.target.style.boxShadow = '-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)';
               }}
-              value={formData.jobLevel ||'' } 
+              value={formData.jobLevel  } 
               onChange={handleInputChange} 
               // value={formData.jobRole}
             >
@@ -663,7 +703,7 @@ const handleCancel = () => {
                   <select
                     id="socialmedia1"
                     name="socialmedia1"
-                    value={formData.socialmedia1 || ''}
+                    value={formData.socialmedia1 }
                     onChange={handleInputChange}
                     className="form-select rounded-lg plac"
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
@@ -736,7 +776,7 @@ const handleCancel = () => {
                     }}
                     onChange={handleInputChange}
                     
-                    value={formData.socialmedia2 ||''}
+                    value={formData.socialmedia2 }
                   >
                     <option value="instagram">Instagram</option>
                     <option value="facebook">Facebook</option>
@@ -792,7 +832,7 @@ const handleCancel = () => {
                     }}
                     onChange={handleInputChange}
                     
-                    value={formData.socialmedia3 ||''}
+                    value={formData.socialmedia3 }
                   >
                   <option value="instagram">Instagram</option>
                     <option value="facebook">Facebook</option>
@@ -836,7 +876,7 @@ const handleCancel = () => {
                     name="socialmedia4"
                     
                     className="form-select rounded-lg plac"
-                    value={formData.socialmedia4 ||''}
+                    value={formData.socialmedia4 }
                     onChange={handleInputChange}
                     style={{fontSize: '12px' ,  width:'140px',border:'1px solid whie',boxShadow:'-2px 2px 4px 0px rgba(10, 10, 10, 0.15),2px 1px 4px 0px rgba(10, 10, 10, 0.15),0px -2px 4px 0px rgba(10, 10, 10, 0.15)'}}
                     onFocus={ e => {
@@ -906,23 +946,32 @@ const handleCancel = () => {
             
             }}
           >
-            {businessCard ? (
-              <div>
-                  <p>{businessCard.name}</p>
-                  <a
-          
-          href={URL.createObjectURL(businessCard)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-link text-black"
-        >
-          View
-        </a>
-              </div>
-             
+           {businessCard ? (
+            typeof businessCard === "string" ? (
+                <a
+                    href={businessCard}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-link text-black"
+                >
+                    View Business Card
+                </a>
             ) : (
-              <p>Upload the file</p>
-            )}
+                <div>
+                    <p>{businessCard.name}</p>
+                    <a
+                        href={URL.createObjectURL(businessCard)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-link text-black"
+                    >
+                        View
+                    </a>
+                </div>
+            )
+        ) : (
+            <p>Upload the file</p>
+        )}
             <button
               type="button"
               onClick={() => businessCardInputRef.current.click()}

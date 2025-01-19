@@ -9,71 +9,7 @@ import "../../CSS/teamListMember.css";
 import EmployeeManagementDetail from "../../pages/Admin/EmployeeManagementDetail";
 
 
-const memberList = [
-    {  
-         id:1,
-        image: ('src/images/personnel-1-400x310.jpg'),
-        title: 'Paul Walker',
-        designation: 'Chief Executive Officer',
-        ph: '+1-334-3452-345',
-        mail: 'Johnsm@financitytheme.com',
-        titleLink: '/personnel',
-        selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
-    },
-    {   id:2,
-        image:( 'src/images/personnel-2-400x310.jpg'),
-        title: 'Jeanette Kingston',
-        designation: 'Vice President',
-        ph: '+1-334-3452-345',
-        mail: 'Johnsm@financitytheme.com',
-        titleLink: '/personnel',
-        selfIntroduction:'dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
-
-    },
-    {   id:3,
-        image: ('src/images/personnel-3-400x310.jpg'),
-        title: 'John Smithy',
-        designation: 'Chief Financial Officer',
-        ph: '+1-334-3452-345',
-        mail: 'Johnsm@financitytheme.com',
-        titleLink: '/personnel',
-        selfIntroduction:' dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
-
-    },
-    {   id:4,
-        image: ('src/images/personnel-4-400x310.jpg'),
-        title: 'Linda Kloe',
-        designation: 'Senior Engineer',
-        ph: '+1-334-3452-345',
-        mail: 'Johnsm@financitytheme.com',
-        titleLink: '/personnel',
-        selfIntroduction:'  dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
-
-    },
-    {   id:5,
-        image: ('src/images/personnel-5-400x310.jpg'),
-        title: 'Ricardo Gomez',
-        designation: 'HR Manager',
-        ph: '+1-334-3452-345',
-        mail: 'Johnsm@financitytheme.com',
-        titleLink: '/personnel',
-        selfIntroduction:' dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
-
-    },
-    {   
-        id:6,
-        image: ('src/images/personnel-6-400x310.jpg'),
-        title: 'Jeneth Kings',
-        designation: 'Chief Technology Officer',
-        ph: '+1-334-3452-345',
-        mail: 'Johnsm@financitytheme.com',
-        titleLink: '/personnel',
-        selfIntroduction:' dolor sit amet consectetur. Rutrum sollicitudin ut urna magnis eget urna lectus suspendisse. Placerat faucibus leo pulvinar eu elementum etiam magna mauris. Leo mollis sem fermentum tellus euismod pharetra mauris lacinia nec. Mauris enim id arcu viverra vitae diam volutpat auctor',
-
-    },
-];
-
- function TeamListMemberCrd() {
+ function TeamListMemberCrd({ employees  }) {
     
     const [showModal, setShowModal] = useState(false);
     const [selectedMember, setSelectedMember] = useState(null);
@@ -81,8 +17,8 @@ const memberList = [
     const scrollRef = useRef(null);
    
   
-    const handleCardClick = (member) => {
-      setSelectedMember(member); // Set the clicked member's data
+    const handleCardClick = (employee) => {
+      setSelectedMember(employee); // Set the clicked member's data
       setShowModal(true);        // Open the modal
     
     };
@@ -114,11 +50,11 @@ const memberList = [
                         <div 
                             ref={scrollRef}
                             className="flex overflow-x-auto  space-x-0  scroll-snap-x scroll-snap-mandatory  md:grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-8">
-                            {memberList.map((item, index) => (
-                                <div className="min-w-[full] md:min-w-0 flex-shrink-0   scroll-snap-align-start">
-                                <MemberCard key={index}  member={item} onCardClick={() => handleCardClick(item)} />
-                                </div>
-                                ))}
+                           {employees?.map((employee, index) => (
+    <div key={employee._id || index}  className="min-w-[full] md:min-w-0 flex-shrink-0 scroll-snap-align-start">
+        <MemberCard employee={employee} onCardClick={() => handleCardClick(employee)} />
+    </div>
+))}
                                  
                                 
                         </div>
@@ -148,7 +84,7 @@ const memberList = [
         <Personel
           show={showModal}
           onHide={() => setShowModal(false)}
-          member={selectedMember}
+          employee={selectedMember}
         />
          
       )}
