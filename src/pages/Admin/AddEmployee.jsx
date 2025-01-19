@@ -5,8 +5,8 @@ import React, { useState, useRef,useEffect } from "react";
 import { toast } from "react-toastify";
 import { RiImageAddLine } from "react-icons/ri";
 import { useNavigate, useParams,useLocation } from "react-router-dom";
+import { SERVER_URL } from "../../Api Services/serverUrl";
 import baseURL from '../../Api Services/baseURL';
-
 
 function AddEmployee ()  {
   const { id } = useParams();  // For editing, we'll get the intern ID from URL params
@@ -19,7 +19,6 @@ function AddEmployee ()  {
   const adminToken = localStorage.getItem('adminToken');  
   const [refresh, setRefresh] = useState('');
   const fileInputRef = useRef(null);
-
 
   const [formData, setFormData] = useState({
     name: employeeData.name || "",
@@ -39,6 +38,7 @@ function AddEmployee ()  {
     
     
   });
+
   // Update form data when employeeData changes
   
   useEffect(() => {
@@ -63,17 +63,10 @@ function AddEmployee ()  {
     }
   }, [id, employeeData]); // Only trigger when id or employeeData changes
   useEffect(() => {
-    // Fetch the image and convert it to a File object
-    if (employeeData.image) {
-      fetch(employeeData.image)
-        .then((res) => res.blob())
-        .then((blob) => {
-          const file = new File([blob], "image.jpg", { type: "image/jpeg" });
-          setProfileImage(file);
-        })
-        .catch((error) => console.error("Failed to fetch image:", error));
+    if (employeeData && employeeData.image) {
+        setProfileImage(`${SERVER_URL}${employeeData.image}`); // Set the full image URL
     }
-  }, [employeeData.image]);
+}, [employeeData]);
   
     
   
@@ -90,26 +83,59 @@ function AddEmployee ()  {
           setProfileImage(e.target.files[0]);
         }
       };
-    
+      const validateImage = (file) => {
+        if (file) {
+          const validExtensions = ["image/jpeg", "image/png", "image/gif"];
+          if (!validExtensions.includes(file.type)) {
+            toast.error("Please upload a valid image (JPEG, PNG, GIF)");
+            return false;
+          }
+          return true;
+        }
+        return true;
+      };
      
       const handleSubmit = async (e) => {
         e.preventDefault();
         const empID = formData.empID;
+        // Validate name length
+const name = formData.name.trim();
+if (name.length < 3 || name.length > 64) {
+  toast.error("Name must be between 3 and 64 characters.");
+  return; // Prevent form submission
+}
+ // Validate self-introduction length (in words)
+ const selfIntroduction = formData.selfIntroduction.trim();
+const wordCount = selfIntroduction.split(/\s+/).length;
+const charCount = selfIntroduction.length;
+
+if (wordCount < 50 || charCount > 540) {
+  toast.error("Self-introduction must be at least 50 words and no more than 540 characters long.");
+  return;
+}
+ const email = formData.email.trim();
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+if (!emailPattern.test(email)) {
+  toast.error("Please enter a valid email address.");
+  return; // Prevent form submission
+}
         // Check required fields
-      
         if (!formData.name.trim()) {
-          toast.error('Name is required');
+          toast.error("Name is required");
           return;
         }
         if (!formData.desig.trim()) {
-          toast.error('Designation is required');
+          toast.error("Designation is required");
           return;
         }
         if (!formData.selfIntroduction.trim()) {
-          toast.error('Self-introduction is required');
+          toast.error("Self-introduction is required");
           return;
         }
-        
+    
+        if (profileImage instanceof File && !validateImage(profileImage)) {
+          return;
+        }
       
         try {
           const formDataToSend = new FormData();
@@ -128,7 +154,7 @@ function AddEmployee ()  {
           formDataToSend.append('platform4', formData.platform4);
           formDataToSend.append('category', formData.category);
       
-          if (profileImage) {
+          if (profileImage instanceof File) {
             formDataToSend.append('image', profileImage); // Add image file
           }
         
@@ -157,6 +183,7 @@ function AddEmployee ()  {
       
             if (response.status === 201) {
               toast.success('Employee Details Added Successfully!');
+             
               navigate(`/admin/employee-management?tab=${tab}`);
             }
           }
@@ -206,19 +233,26 @@ function AddEmployee ()  {
                             position: "relative",
                           }}
                         >
-                            
-                            {profileImage  && (
-  <img
-    src={profileImage instanceof File ? URL.createObjectURL(profileImage) :  `${baseURL}${profileImage}`}
-    alt="Uploaded"
-    style={{
-      width: "150px",
-      height: "120px",
-      borderRadius: "12%",
-      objectFit: "cover",
-    }}
-  />
+                       {profileImage ? (
+    <img
+        src={
+            profileImage instanceof File
+                ? URL.createObjectURL(profileImage) // If it's a file, generate a local preview
+                : profileImage // Otherwise, use the URL directly
+        }
+        alt="Uploaded"
+        style={{
+            width: "150px",
+            height: "120px",
+            borderRadius: "12%",
+            objectFit: "cover",
+        }}
+    />
+) : (
+    <span>No image available</span> // Placeholder for no image
 )}
+
+  
                           <div
                             className="position-absolute bottom-2 end-2 bg-warning rounded-circle d-flex justify-content-center align-items-center"
                             style={{ width: "25px", height: "25px" }}

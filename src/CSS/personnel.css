@@ -25,7 +25,12 @@
     width: 270px;
     z-index: 1;
   }
-  
+  .modhead{
+    height: 230px;
+  }
+  .modbod{
+    height: auto;
+  }
   /* Responsive Design Adjustments */
   @media (min-width: 768px) {
    
@@ -50,9 +55,9 @@
     .modal-content {
         width: 50%; /* Reduce modal width */
         max-width: 300px;
-        height: 400px; /* Total modal height */
+        height: auto; /* Total modal height */
         margin: auto;
-        
+       
         
       }
     
@@ -90,7 +95,7 @@
     }
   
     .modal-body {
-      height: 435px; /* Adjust modal body height */
+      height: auto; /* Adjust modal body height */
       
       font-size: 12px; /* Adjust text size */
       padding: 2px; /* Adjust padding for body */

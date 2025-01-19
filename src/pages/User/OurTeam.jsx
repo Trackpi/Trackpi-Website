@@ -3,22 +3,50 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
+import { useState,useEffect } from 'react';
 
 import TeamListMemberCrd from '../../components/User/teamListMemberCrd';
 import "../../CSS/ourTeam.css";
 import Clients from '../../components/User/carousel';
+import baseURL from '../../Api Services/baseURL';
 function OurTeam() {
   const options = { threshold: 0.1 };
-
+ 
+    const [employees, setEmployees] = useState([]);
+    const adminToken = localStorage.getItem("adminToken");
+    const [loading, setLoading] = useState(true);
+   const [error, setError] = useState(null);
   // Hooks for intersection observers
   const [refFirstSection, inViewFirstSection] = useInView(options);
   const [refSecondSection, inViewSecondSection] = useInView(options);
   const [refThirdSection, inViewThirdSection] = useInView(options);
+  useEffect(() => {
+    // Fetch employee data from the backend
+    const fetchEmployees = async () => {
+      try {
+        const response = await baseURL.get('/api/employee/employees', {
+          params: { category: 'employee' },
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        });
+        setEmployees(Array.isArray(response.data) ? response.data : []);
+      } catch (error) {
+        setError('Failed to load employees.');
+      } finally {
+        setLoading(false);
+      }
+    
+    };
+
+    fetchEmployees();
+  }, []);
+    
   
   const handleInputChange = (e) => {
     window.open('https://trackpi.org', '_blank');
   };
+
   return (
     <>
 
@@ -251,7 +279,16 @@ function OurTeam() {
               The Ready from A–Z
             </h1>
           </Row>
-          <TeamListMemberCrd />
+          {loading ? (
+            <p>Loading employees...</p>
+          ) : error ? (
+            <p className="text-red-500">Error: {error}</p>
+          ) : employees.length === 0 ? (
+            <p>No employees found.</p>
+          ) : (
+            <TeamListMemberCrd employees={employees} />
+          )}
+         
         </Container>
       </section>
     </>

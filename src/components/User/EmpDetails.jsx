@@ -8,7 +8,15 @@ import { SERVER_URL } from "../../Api Services/serverUrl";
 import "../../CSS/employeedet.css";
 import { Link } from "react-router-dom";
 
+
 const EmpDetails = ({ employeeData }) => {
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // months are zero-indexed
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
   if (!employeeData) return <div>Loading...</div>;
    const [profileImage, setProfileImage] = useState(null);
    useEffect(() => {
@@ -153,7 +161,8 @@ const EmpDetails = ({ employeeData }) => {
                   Date Of Birth
                 </p>
                 <p className="font-bold text-lg" style={{ margin: 0 }}>
-                  {employeeData.dob || "10/03/2000"}
+                {employeeData.dob ? formatDate(employeeData.dob) : "10/03/2000"}
+
                 </p>
               </div>
             </div>
@@ -165,7 +174,7 @@ const EmpDetails = ({ employeeData }) => {
                 Date Of Birth
               </p>
               <p className="font-bold text-sm" style={{ margin: 0 }}>
-                {employeeData.dob || "10/03/2000"}
+              {employeeData.dob ? formatDate(employeeData.dob) : "10/03/2000"}
               </p>
             </div>
             <div className="phone" style={{ lineHeight: "1px" }}>
@@ -199,7 +208,8 @@ const EmpDetails = ({ employeeData }) => {
                   Date Of Joining
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.dateOfJoining || "1/12/20124"}
+                 
+                  {employeeData.dateOfJoining ? formatDate(employeeData.dateOfJoining) : "10/03/2000"}
                 </p>
               </div>
 
@@ -239,7 +249,7 @@ const EmpDetails = ({ employeeData }) => {
                   Date Of Joining
                 </p>
                 <p className="font-bold text-sm md:text-lg" style={{ margin: 0 }}>
-                  {employeeData.dateOfJoining ||"1/12/20124"}
+                {employeeData.dateOfJoining ? formatDate(employeeData.dateOfJoining) : "10/03/2000"}
                 </p>
               </div>
               <div className="phone" style={{ lineHeight: "1px" }}>
