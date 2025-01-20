@@ -5,270 +5,300 @@ import { FiExternalLink } from 'react-icons/fi';
 import baseURL from '../../Api Services/baseURL';
 
 function FormManagement() {
-    const [forms, setForms] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [refresh, setRefresh] = useState('');
-    
-  
-    const navigate = useNavigate();
-  
-    // Fetch the projects from the API
-    useEffect(() => {
-      const getFormView = async () => {
-        try {
-          const response = await baseURL.get('/contactForm/getforms');
-          console.log(response.data, 'response_Forms');
-          setForms(response.data); // Assuming the API returns an array of projects
-          setRefresh(response.data)
-          setLoading(false);
-        } catch (err) {
-          setError('Failed to load projects');
-          setLoading(false);
-        }
-      };
-  
-      getFormView();
-    }, []); // Empty dependency array means this effect runs once when the component mounts
-  
-    // Group projects by date
-    const groupedContactForms = forms.reduce((acc, forms) => {
-      const date = forms.createdAt.split('T')[0]; // Extract date part from createdAt
-      if (!acc[date]) {
-        acc[date] = [];
-      }
-      acc[date].push(forms);
-      return acc;
-    }, {});
-  
-    const handleViewDetails = form => {
-      console.log(form, 'formId');
-      navigate(`/admin/form-details/${form._id}`, { state: form });
-    };
+  const [forms, setForms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [refresh, setRefresh] = useState('');
 
-    const handleExportCSV = async () => {
-      console.log("clicked");
-    
+  const navigate = useNavigate();
+
+  // Fetch the projects from the API
+  useEffect(() => {
+    const getFormView = async () => {
       try {
-        // const token = localStorage.getItem('adminToken');  // Get token from localStorage
-    
-        // if (!token) {
-        //   return console.error("Token is missing!");
-        // }
-    
-        const response = await baseURL.get("export/csv-data?type=form", {
-          headers: {
-            // Authorization: `Bearer ${token}`,  
-            'Content-Type': 'application/json',
-          },
-          responseType: "blob",  // Important for handling file download
-        });
-    
-        // Create a URL for the blob data
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-    
-        // Create a temporary link element
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "project-data.csv"); // Set the filename
-        document.body.appendChild(link);
-        link.click(); // Trigger the download
-    
-        // Cleanup
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-      } catch (error) {
-        console.error("Error exporting CSV:", error);
+        const response = await baseURL.get('/contactForm/getforms');
+        console.log(response.data, 'response_Forms');
+        setForms(response.data); // Assuming the API returns an array of projects
+        setRefresh(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load projects');
+        setLoading(false);
       }
     };
-    
-  
-    if (loading) {
-      return <div>Loading...</div>; // You can customize the loading indicator
-    }
-  
-    if (error) {
-      return <div>{error}</div>; // You can customize the error message
-    }
-  
 
-    return (
-     <div className="bg-white w-full">
-          <div className="py-[40px] px-[30px] grid gap-[30px]">
-            {/* Header */}
-            <div className="flex justify-between items-center">
-              <div className="text-[24px] font-bold">Form Management</div>
-              <div>
-                <button className="px-4 py-2 rounded-[10px] flex items-center gap-3 font-bold text-white bg-[#FF9D00]" onClick={handleExportCSV}>
-                  <FiUpload size={20} />
-                  Export
-                </button>
-              </div>
-            </div>
-            {/* Table Content */}
-            <div className="py-[10px] grid gap-[25px]">
-              {Object.keys(groupedContactForms).map(date => (
-                <div className="grid gap-[10px]" key={date}>
-                  {/* Date Heading */}
-                  <div className="text-[#FF9D00] text-[20px]">{date}</div>
-    
-                  {/* Table */}
-                  <div className="relative shadow-md sm:rounded-lg border-[#939393] border-1">
-                    <div className="table-wrapper">
-                      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:[#939393] table-fixed">
-                        {/* Table Headers */}
-                        <thead className="text-md font-bold text-black uppercase border-[#939393] border-b ">
-                          <tr>
-                            <th
-                              scope="col"
-                              className=" border-r text-center"
-                              style={{ width: '10%' }}
-                            >
-                              {' '}
-                              Sl No
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-2 py-3 border-r text-center"
-                              style={{ width: '25%' }}
-                            >
-                              {' '}
-                              Name
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-2 py-3 border-r text-center"
-                              style={{ width: '25%' }}
-                            >
-                              {' '}
-                              Email ID
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-2 py-3 border-r text-center"
-                              style={{ width: '25%' }}
-                            >
-                              {' '}
-                              Phone
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-2 py-3 border-r text-center"
-                              style={{ width: '25%' }}
-                            >
-                              {' '}
-                              Hear About Us
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-2 py-3 border-r text-center"
-                              style={{ width: '20%' }}
-                            >
-                              {' '}
-                              Time
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-2 py-3  text-center"
-                              style={{ width: '25%' }}
-                            >
-                              {' '}
-                              View
-                            </th>
-                          </tr>
-                        </thead>
-                        {/* Table Body */}
-                        <tbody>
-                          {groupedContactForms[date].map((form, formIndex) => (
-                            <tr
-                              key={form._id}
-                              className="bg-white text-md font-semibold text-black hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
-                            >
-                              <td
-                                className=" border-r text-center"
-                                style={{
-                                  wordWrap: 'break-word',
-                                  overflowWrap: 'break-word',
-                                  boxSizing: 'border-box',
-                                }}
-                              >
-                                {formIndex + 1}
-                              </td>
-                              <td
-                                className={`px-2 py-3 border-r text-center`}
-                                style={{
-                                  wordWrap: 'break-word',
-                                  overflowWrap: 'break-word',
-                                  boxSizing: 'border-box',
-                                }}
-                              >
-                                {form.fullName}
-                              </td>
-                              <td
-                                className={`px-2 py-3 border-r text-center`}
-                                style={{
-                                  wordWrap: 'break-word',
-                                  overflowWrap: 'break-word',
-                                  boxSizing: 'border-box',
-                                }}
-                              >
-                                {form.email}
-                              </td>
-                              <td
-                                className={`px-2 py-3 border-r text-center`}
-                                style={{
-                                  wordWrap: 'break-word',
-                                  overflowWrap: 'break-word',
-                                  boxSizing: 'border-box',
-                                }}
-                              >
-                                {form.phone}
-                              </td>
-                              <td
-                                className={`px-2 py-3 border-r text-center`}
-                                style={{
-                                  wordWrap: 'break-word',
-                                  overflowWrap: 'break-word',
-                                  boxSizing: 'border-box',
-                                }}
-                              >
-                                {form.info_from}
-                              </td>
-                              <td
-                                className={`px-2 py-3 border-r text-center`}
-                                style={{
-                                  wordWrap: 'break-word',
-                                  overflowWrap: 'break-word',
-                                  boxSizing: 'border-box',
-                                }}
-                              >
-                                {form.createdAt.split('T')[1].split('.')[0]}{' '}
-                                {/* Extract time */}
-                              </td>
-                              <td
-                                className="text-[#FF9D00] font-bold text-center cursor-pointer px-2 py-3 flex justify-center items-center gap-2 w-[150px]"
-                                onClick={() => handleViewDetails(form)}
-                              >
-                                View Details <FiExternalLink size={20} />
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+    getFormView();
+  }, []); // Empty dependency array means this effect runs once when the component mounts
+
+  // Group projects by date
+  // Group projects by exact date (considering time correctly)
+  const groupedContactForms = forms.reduce((acc, form) => {
+    const date = new Date(form.createdAt); // Convert to Date object
+    const formattedDate = date.toISOString().split('T')[0]; // Ensure correct date extraction
+
+    if (!acc[formattedDate]) {
+      acc[formattedDate] = [];
+    }
+    acc[formattedDate].push(form);
+    return acc;
+  }, {});
+
+  const handleViewDetails = form => {
+    console.log(form, 'formId');
+    navigate(`/admin/form-details/${form._id}`, { state: form });
+  };
+
+  const handleExportCSV = async () => {
+    console.log('clicked');
+
+    try {
+      // const token = localStorage.getItem('adminToken');  // Get token from localStorage
+
+      // if (!token) {
+      //   return console.error("Token is missing!");
+      // }
+
+      const response = await baseURL.get('export/csv-data?type=form', {
+        headers: {
+          // Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        responseType: 'blob', // Important for handling file download
+      });
+
+      // Create a URL for the blob data
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'project-data.csv'); // Set the filename
+      document.body.appendChild(link);
+      link.click(); // Trigger the download
+
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error exporting CSV:', error);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>; // You can customize the loading indicator
+  }
+
+  if (error) {
+    return <div>{error}</div>; // You can customize the error message
+  }
+  const formatDate = dateString => {
+    const date = new Date(dateString);
+    const formattedDate = new Intl.DateTimeFormat('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      // hour: '2-digit',
+      // minute: '2-digit',
+      // hour12: true
+    }).format(date);
+
+    return formattedDate;
+  };
+
+  const formatTime = dateString => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    }).format(date);
+  };
+
+  return (
+    <div className="bg-white w-full">
+      <div className="py-[40px] px-[30px] grid gap-[30px]">
+        {/* Header */}
+        <div className="flex justify-between items-center">
+          <div className="text-[24px] font-bold">Form Management</div>
+          <div>
+            <button
+              className="px-4 py-2 rounded-[10px] flex items-center gap-3 font-bold text-white bg-[#FF9D00]"
+              onClick={handleExportCSV}
+            >
+              <FiUpload size={20} />
+              Export
+            </button>
           </div>
         </div>
-    );
+        {/* Table Content */}
+        <div className="py-[10px] grid gap-[25px]">
+          {Object.keys(groupedContactForms).map(date => (
+            <div className="grid gap-[10px]" key={date}>
+              {/* Date Heading */}
+              <div className="text-[#FF9D00] text-[20px]">
+                {formatDate(date)}
+              </div>
+
+              {/* Table */}
+              <div className="relative shadow-md sm:rounded-lg border-[#939393] border-1">
+                <div className="table-wrapper">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:[#939393] table-fixed">
+                    {/* Table Headers */}
+                    <thead className="text-md font-bold text-black uppercase border-[#939393] border-b ">
+                      <tr>
+                        <th
+                          scope="col"
+                          className=" border-r text-center"
+                          style={{ width: '10%' }}
+                        >
+                          {' '}
+                          Sl No
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          Email ID
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          Phone
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          Hear About Us
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3 border-r text-center"
+                          style={{ width: '20%' }}
+                        >
+                          {' '}
+                          Time
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3  text-center"
+                          style={{ width: '25%' }}
+                        >
+                          {' '}
+                          View
+                        </th>
+                      </tr>
+                    </thead>
+                    {/* Table Body */}
+                    <tbody>
+                      {groupedContactForms[date].map((form, formIndex) => (
+                        <tr
+                          key={form._id}
+                          className="bg-white text-md font-semibold text-black hover:bg-gray-50 dark:hover:bg-gray-600 custom-table"
+                        >
+                          <td
+                            className=" border-r text-center"
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {formIndex + 1}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {form.fullName}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {form.email}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {form.phone}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {form.info_from}
+                          </td>
+                          <td
+                            className={`px-2 py-3 border-r text-center`}
+                            style={{
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            {formatTime(form.createdAt)}
+                            {/* {form.createdAt.split('T')[1].split('.')[0]}{' '} */}
+                            {/* Extract time */}
+                          </td>
+                          <td
+                            className="text-[#FF9D00] font-bold text-center cursor-pointer px-2 py-3 flex justify-center items-center gap-2 w-[150px]"
+                            onClick={() => handleViewDetails(form)}
+                          >
+                            <div  className="flex justify-center gap-2">
+                              View Details <FiExternalLink size={20} />
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default FormManagement;
 
 {
-    /* import React, { useState, useEffect } from "react";
+  /* import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import importImg from "../../images/import.svg";
 import viewMoreImg from "../../images/viewMore.svg";
@@ -321,10 +351,10 @@ function FormManagement() {
 }
 
 {
-    /* Displaying only the first header here */
+  /* Displaying only the first header here */
 }
 {
-    /* <div className="flex font-bold text-center items-center justify-center sticky top-0 bg-white z-10 tableHeaderForm">
+  /* <div className="flex font-bold text-center items-center justify-center sticky top-0 bg-white z-10 tableHeaderForm">
         <div className="widthFirstTable">Sl No</div>
         <div className="widthCommonTable">Name</div>
         <div className="widthCommonTable">Email ID</div>
@@ -339,10 +369,10 @@ function FormManagement() {
 }
 
 {
-    /* Table Rows */
+  /* Table Rows */
 }
 {
-    /* {groupedByDate[date].map((data, rowIndex) => (
+  /* {groupedByDate[date].map((data, rowIndex) => (
         <div key={rowIndex} className="flex text-center justify-center tableContentForm">
           <div className="widthFirstTable ">{rowIndex+1}</div>
           <div className="widthCommonTable ">{data.name}</div>
@@ -374,7 +404,7 @@ export default FormManagement; */
 }
 
 {
-    /* <div className="projectManagement relative overflow-y-auto h-max">
+  /* <div className="projectManagement relative overflow-y-auto h-max">
                             <table className="w-full text-center relative">
                                 <thead className="sticky top-0">
                                     <th className="">Sl No</th>
