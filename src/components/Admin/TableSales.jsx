@@ -75,29 +75,29 @@ const TableSales = () => {
                           </div>
                     </div>
                 </div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-dark border-2">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" style={{ tableLayout: "fixed" }}>
-          <thead className="text-md font-bold text-black uppercase border-b-2 border-dark">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg  border-[#939393] border-1">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 " style={{ tableLayout: "fixed" }}>
+          <thead className="text-md font-bold text-black uppercase border-[#939393] border-b">
             <tr>
-              <th scope="col" className=" border-r-2 text-center" style={{ width: "10%" }}>
+              <th scope="col" className=" border-r text-center" style={{ width: "10%" }}>
                 SL No.
               </th>
-              <th scope="col" className="px-2 py-3 border-r-2 text-center" style={{ width: "25%" }}>
+              <th scope="col" className="px-2 py-3 border-r text-center" style={{ width: "25%" }}>
                 Name
               </th>
-              <th scope="col" className="px-2 py-3 border-r-2 text-center" style={{ width: "25%" }}>
+              <th scope="col" className="px-2 py-3 border-r text-center" style={{ width: "25%" }}>
                 Employee ID{' '}
               </th>
-              <th scope="col" className="px-2 py-3 border-r-2 text-center" style={{ width: "25%" }}>
+              <th scope="col" className="px-2 py-3 border-r text-center" style={{ width: "25%" }}>
                 Email ID
               </th>
-              <th scope="col" className="px-2 py-3 border-r-2 text-center"style={{ width: "25%" }}>
+              <th scope="col" className="px-2 py-3 border-r text-center"style={{ width: "25%" }}>
                 Phone{' '}
               </th>
-              <th scope="col" className="px-2 py-3 border-r-2 text-center"style={{ width: "25%" }}>
+              <th scope="col" className="px-2 py-3 border-r text-center"style={{ width: "25%" }}>
                 View
               </th>
-              <th scope="col" className="px-2 py-3 border-r-2 text-center"style={{ width: "10%" }}>
+              <th scope="col" className="px-2 py-3 border-b text-center"style={{ width: "10%" }}>
                 Delete
               </th>
             </tr>
