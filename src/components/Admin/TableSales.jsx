@@ -58,6 +58,43 @@ const TableSales = () => {
       alert('Failed to delete the record. Please try again.');
     }
   };
+  const handleExportCSV = async () => {
+    console.log("clicked");
+  
+    try {
+      // const token = localStorage.getItem('adminToken');  // Get token from localStorage
+  
+      // if (!token) {
+      //   return console.error("Token is missing!");
+      // }
+  
+      const response = await baseURL.get("/export/csv-data?type=employee&category=sales", {
+        headers: {
+          // Authorization: `Bearer ${token}`,  
+          'Content-Type': 'application/json',
+        },
+        responseType: "blob",  // Important for handling file download
+      });
+  
+      // Create a URL for the blob data
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+  
+      // Create a temporary link element
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "sales-data.csv"); // Set the filename
+      document.body.appendChild(link);
+      link.click(); // Trigger the download
+  
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error exporting CSV:", error);
+    }
+  };
+  
+
   if (loading) return <div className="text-center mt-4">Loading sales data...</div>;
   if (error) return <div className="text-center mt-4 text-red-500">{error}</div>;
   return (
@@ -66,7 +103,7 @@ const TableSales = () => {
                   <h4 className="font-bold my-4">Sales Management</h4>
                     <div className="flex gap-2">
                           <div className="px-4 py-1 rounded-md bg-[#FF9D00] text-white flex items-center gap-2 cursor-pointer">
-                            <BsUpload color="white" className="font-bold" /> |{' '}
+                            <BsUpload color="white" className="font-bold" onClick={handleExportCSV}/> |{' '}
                             <BsDownload color="white" />
                           </div>
                           <div onClick={handleAdd} className="px-4 py-1 rounded-md bg-[#FF9D00] text-white flex items-center gap-2 cursor-pointer">
