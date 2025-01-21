@@ -43,6 +43,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import FormManagementDetails from "./pages/Admin/FormManagementDetails";
 import TermsAndConditions from "./pages/User/TermsAndConditions";
 import TermsAndConditionForNewProject from "./pages/User/TermsAndConditionForNewProject";
+import PrivateRoute from "./components/PrivateRoutes/PrivateRoutes";
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -60,11 +61,11 @@ function App() {
 
     const showHeaderFooter = [
         "/",
-        "/about",
-        "/our-services",
-        "/connect-us",
+        "/about-trackpi",
+        "/business-consulting-services",
+        "/contact-us",
         "/employee-verification",
-        "/new-project-form",
+        "/project-submission",
         "/employeesales",
         "/employeeinternship",
         "/termsconditions",
@@ -94,13 +95,12 @@ function App() {
                                 <Routes>
                                     {/* Public Routes */}
                                     <Route path="/" element={<Home />} />
-                                    <Route path="/about" element={<About />} />
-                                    <Route path="/our-services" element={<OurServices />} />
-                                    <Route path="/our-team" element={<OurTeam />} />
+                                    <Route path="/about-trackpi" element={<About />} />
+                                    <Route path="/business-consulting-services" element={<OurServices />} />
                                     <Route path="/employee-verification" element={<EmployeeVerification />} />
-                                    <Route path="/connect-us" element={<Connect />} />
+                                    <Route path="/contact-us" element={<Connect />} />
                                     <Route path="/personnel" element={<Personel />} />
-                                    <Route path="/new-project-form" element={<NewProject />} />
+                                    <Route path="/project-submission" element={<NewProject />} />
                                     <Route path="/employeesales" element={<EmployeeSales />} />
                                     <Route path="/employeeinternship" element={<EmployeeInternship />} />
                                     <Route path="/termsconditions" element={<TermsAndConditions />} />
@@ -109,6 +109,7 @@ function App() {
 
                                     {/* Admin Routes */}
                                     <Route path="/admin/admin-login" element={<AdminLogin />} />
+                                    <Route element={<PrivateRoute/>}>
                                     <Route path="/admin/dashboard" element={<Dashboard />} />
                                     <Route path="/admin/admin-management" element={<AdminManagement />} />
                                     <Route path="/admin/form-management" element={<FormManagement />} />
@@ -131,10 +132,11 @@ function App() {
                                    <Route path="/admin/intern-management-add/" element={<AddInterns />} /> 
                                   <Route path="/admin/intern-management-detail" element={<InternManagementDetail />} />
                                    <Route path="/admin/footer-management" element={<FooterManagement />} />
+                                   </Route>
 
                                     {/* 404 Not Found */}
                                     <Route path="/*" element={<Navigate to={"/not-found"} />} />
-                                    <Route path="/not-found" element={<NotFound />} />
+                                    <Route path="/*" element={<NotFound />} />
                                 </Routes>
                             </div>
                         </div>

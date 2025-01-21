@@ -40,7 +40,7 @@ function HeaderBanner({
 <section className={`${classname}`}>
         {noButton?null:<div className={`headerbuttons flex sm:justify-end  items-center space-x-0 sm:space-x-5 relative px-[15px] sm:px-[22.5px] lg:px-[30px] ${!brochure ? 'justify-end' : 'justify-between'} `}>
           {brochure ? (
-                        <Link to="/new-project-form" className='no-underline'>
+                        <Link to="/project-submission" className='no-underline'>
 
             <button data-tooltip-id="submit-tooltip"
           data-tooltip-place="bottom" className="bg-gradient-to-r from-[#FFC100] to-[#FF9D00]  text-white lg:rounded-[10px]  sm:rounded-[7.5px] rounded-[5px] px-[10px] py-[5px] sm:px-[12px] sm:py-[6px] md:px-[14px] md:py-[7px] lg:px-[16px] lg:py-[8px] xl:px-[18px] xl:py-[9px] 2xl:px-[20px] 2xl:py-[10px] font-bold flex items-center space-x-2 text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[14px]">
